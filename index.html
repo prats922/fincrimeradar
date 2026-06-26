@@ -236,8 +236,8 @@
   <div class="nav-links">
     <a href="#features">Features</a>
     <a href="#roadmap">Roadmap</a>
+    <a href="/screen.html" style="color:#63b3ed; font-weight:600;">Try tool</a>
     <a href="https://github.com/fincrimeradar/fincrimeradar" target="_blank" rel="noopener">GitHub</a>
-    <span class="nav-badge">Coming soon</span>
   </div>
 </nav>
 
@@ -257,12 +257,18 @@
   <h1>Free <em>AML & sanctions screening</em> for everyone</h1>
   <p class="hero-sub">An open-source tool for compliance students and professionals to learn how real-world screening works — sanctions, PEP checks, and adverse media, powered by live data.</p>
 
-  <form class="signup-form" onsubmit="handleSignup(event)">
-    <input type="email" id="emailInput" placeholder="your@email.com" required />
-    <button type="submit" class="btn btn-accent" id="submitBtn">Get early access</button>
-  </form>
-  <p class="form-hint">No spam. We'll notify you when we launch.</p>
-  <p class="form-success" id="successMsg">✓ You're on the list — we'll be in touch!</p>
+  <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:1.5rem;">
+    <a href="/screen.html" class="btn btn-accent" style="text-decoration:none; padding:12px 28px; border-radius:8px; font-weight:600; font-size:15px;">🛡️ Try the screening tool</a>
+    <button type="button" onclick="document.getElementById('signupSection').style.display='block';this.style.display='none';" class="btn" style="background:transparent; border:1px solid rgba(99,179,237,0.4); color:#63b3ed; padding:12px 28px; border-radius:8px; font-size:15px; cursor:pointer;">Get early access</button>
+  </div>
+  <div id="signupSection" style="display:none;">
+    <form class="signup-form" onsubmit="handleSignup(event)">
+      <input type="email" id="emailInput" placeholder="your@email.com" required />
+      <button type="submit" class="btn btn-accent" id="submitBtn">Notify me</button>
+    </form>
+    <p class="form-hint">No spam. We'll notify you when we launch new features.</p>
+    <p class="form-success" id="successMsg">✓ You're on the list — we'll be in touch!</p>
+  </div>
 </section>
 
 <hr class="divider" />
