@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinCrimeRadar — Free AML & Sanctions Screening</title>
+  <meta name="description" content="A free, open-source tool for students and compliance professionals to learn how sanctions screening, PEP checks, and adverse media monitoring work." />
+  <meta name="keywords" content="AML screening, sanctions screening, PEP screening, adverse media, financial crime, compliance, OFAC, open source" />
+  <meta property="og:title" content="FinCrimeRadar — Free AML & Sanctions Screening" />
+  <meta property="og:description" content="Free open-source sanctions, PEP and adverse media screening for students and compliance professionals." />
+  <meta property="og:url" content="https://fincrimeradar.org" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0b0f1a;
+      --surface:   #131929;
+      --card:      #1a2235;
+      --border:    rgba(255,255,255,0.08);
+      --border-hi: rgba(99,179,237,0.4);
+      --text:      #e8edf5;
+      --muted:     #7b90b0;
+      --accent:    #63b3ed;
+      --accent-dk: #3a8fd1;
+      --danger:    #fc8181;
+      --success:   #68d391;
+      --radar-1:   rgba(99,179,237,0.12);
+      --radar-2:   rgba(99,179,237,0.06);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* nav */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(11,15,26,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo { width: 32px; height: 32px; }
+    .nav-name { font-size: 17px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
+    .nav-name span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-links a { font-size: 14px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-badge {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+      padding: 4px 10px; border-radius: 99px;
+      background: rgba(99,179,237,0.12); color: var(--accent);
+      border: 1px solid rgba(99,179,237,0.25);
+      text-transform: uppercase;
+    }
+
+    /* hero */
+    .hero {
+      position: relative;
+      padding: 6rem 2rem 5rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -120px; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(99,179,237,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .radar-rings {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -60%);
+      width: 600px; height: 600px; pointer-events: none; opacity: 0.15;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.6px;
+      padding: 5px 14px; border-radius: 99px;
+      background: rgba(99,179,237,0.1); color: var(--accent);
+      border: 1px solid rgba(99,179,237,0.2);
+      text-transform: uppercase; margin-bottom: 2rem;
+    }
+    .pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(1.4); } }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      max-width: 700px;
+      margin: 0 auto 1.25rem;
+    }
+    h1 em { font-style: normal; color: var(--accent); }
+
+    .hero-sub {
+      font-size: 18px; color: var(--muted);
+      max-width: 520px; margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .signup-form {
+      display: flex; gap: 8px; max-width: 440px; margin: 0 auto 1rem;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .signup-form input {
+      flex: 1; min-width: 200px;
+      padding: 12px 16px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-size: 15px;
+      outline: none; transition: border-color 0.2s;
+    }
+    .signup-form input:focus { border-color: var(--accent); }
+    .signup-form input::placeholder { color: var(--muted); }
+    .btn {
+      padding: 12px 22px; border-radius: 8px; font-size: 15px; font-weight: 600;
+      cursor: pointer; border: none; transition: all 0.2s; white-space: nowrap;
+    }
+    .btn-accent { background: var(--accent); color: #0b0f1a; }
+    .btn-accent:hover { background: var(--accent-dk); transform: translateY(-1px); }
+    .btn-accent:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .form-hint { font-size: 13px; color: var(--muted); margin-bottom: 0.5rem; }
+    .form-success { display: none; font-size: 14px; color: var(--success); margin-top: 0.5rem; }
+
+    /* pillars */
+    .section { padding: 4rem 2rem; max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-size: 12px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+    }
+    .section-title { font-size: 28px; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
+    .section-sub { font-size: 16px; color: var(--muted); max-width: 520px; line-height: 1.65; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0 2rem; }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px; margin-top: 2.5rem;
+    }
+    .pillar {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .pillar:hover { border-color: var(--border-hi); transform: translateY(-2px); }
+    .pillar-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(99,179,237,0.1); border: 1px solid rgba(99,179,237,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem; font-size: 20px;
+    }
+    .pillar h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .pillar p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+    /* roadmap */
+    .roadmap { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 10px; }
+    .phase {
+      display: flex; align-items: center; gap: 14px;
+      padding: 1rem 1.25rem; border-radius: 10px;
+      background: var(--card); border: 1px solid var(--border);
+    }
+    .phase.done { opacity: 0.6; }
+    .phase.active { border-color: rgba(99,179,237,0.35); background: rgba(99,179,237,0.06); }
+    .phase-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .phase.done .phase-dot { background: var(--success); }
+    .phase.active .phase-dot { background: var(--accent); box-shadow: 0 0 0 3px rgba(99,179,237,0.25); animation: pulse 2s infinite; }
+    .phase.upcoming .phase-dot { background: var(--border); }
+    .phase-text { flex: 1; font-size: 14px; color: var(--text); }
+    .phase.done .phase-text { color: var(--muted); }
+    .phase-pill {
+      font-size: 11px; font-weight: 600; padding: 3px 10px;
+      border-radius: 99px; letter-spacing: 0.3px;
+    }
+    .phase.done .phase-pill { background: rgba(104,211,145,0.1); color: var(--success); border: 1px solid rgba(104,211,145,0.2); }
+    .phase.active .phase-pill { background: rgba(99,179,237,0.1); color: var(--accent); border: 1px solid rgba(99,179,237,0.25); }
+    .phase.upcoming .phase-pill { background: var(--surface); color: var(--muted); border: 1px solid var(--border); }
+
+    /* data sources */
+    .sources { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 2rem; }
+    .source-tag {
+      font-size: 12px; font-weight: 500;
+      padding: 5px 12px; border-radius: 6px;
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    /* footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+      max-width: 1000px; margin: 0 auto;
+    }
+    .footer-brand { font-size: 13px; color: var(--muted); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem; }
+      .nav-links { display: none; }
+      .hero { padding: 4rem 1.25rem 3rem; }
+      .section { padding: 3rem 1.25rem; }
+      .pillars { grid-template-columns: 1fr 1fr; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="/">
+    <svg class="nav-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="14" stroke="#63b3ed" stroke-width="1"/>
+      <circle cx="16" cy="16" r="9" stroke="#63b3ed" stroke-width="0.75" stroke-dasharray="3 2"/>
+      <circle cx="16" cy="16" r="4" stroke="#63b3ed" stroke-width="0.75" stroke-dasharray="2 2"/>
+      <circle cx="16" cy="16" r="1.5" fill="#63b3ed"/>
+      <line x1="16" y1="16" x2="25" y2="7" stroke="#63b3ed" stroke-width="1.25" stroke-linecap="round" opacity="0.7"/>
+      <circle cx="22" cy="10" r="2" fill="#fc8181"/>
+    </svg>
+    <span class="nav-name">Fin<span>Crime</span>Radar</span>
+  </a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="https://github.com/fincrimeradar/fincrimeradar" target="_blank" rel="noopener">GitHub</a>
+    <span class="nav-badge">Coming soon</span>
+  </div>
+</nav>
+
+<section class="hero">
+  <svg class="radar-rings" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="300" cy="300" r="280" stroke="#63b3ed" stroke-width="1" stroke-dasharray="4 6"/>
+    <circle cx="300" cy="300" r="200" stroke="#63b3ed" stroke-width="0.75" stroke-dasharray="3 5"/>
+    <circle cx="300" cy="300" r="120" stroke="#63b3ed" stroke-width="0.5" stroke-dasharray="2 4"/>
+    <circle cx="300" cy="300" r="50" stroke="#63b3ed" stroke-width="0.5"/>
+  </svg>
+
+  <div class="hero-badge">
+    <span class="pulse"></span>
+    Now in development
+  </div>
+
+  <h1>Free <em>AML & sanctions screening</em> for everyone</h1>
+  <p class="hero-sub">An open-source tool for compliance students and professionals to learn how real-world screening works — sanctions, PEP checks, and adverse media, powered by live data.</p>
+
+  <form class="signup-form" onsubmit="handleSignup(event)">
+    <input type="email" id="emailInput" placeholder="your@email.com" required />
+    <button type="submit" class="btn btn-accent" id="submitBtn">Get early access</button>
+  </form>
+  <p class="form-hint">No spam. We'll notify you when we launch.</p>
+  <p class="form-success" id="successMsg">✓ You're on the list — we'll be in touch!</p>
+</section>
+
+<hr class="divider" />
+
+<section class="section" id="features">
+  <p class="section-label">What we're building</p>
+  <h2 class="section-title">Everything you need to understand financial crime screening</h2>
+  <p class="section-sub">All tools are free, open-source, and built for learning — not selling you a compliance product.</p>
+
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-icon">🛡️</div>
+      <h3>Sanctions screening</h3>
+      <p>Search OFAC, UN, EU, OFSI, and global sanction lists in real time.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">🔍</div>
+      <h3>PEP screening</h3>
+      <p>Identify politically exposed persons across global data sources.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">📰</div>
+      <h3>Adverse media</h3>
+      <p>Surface negative news and financial crime flags from public sources.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">📚</div>
+      <h3>Knowledge hub</h3>
+      <p>FCA materials, FATF typologies, fraud frameworks — all in one place.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">⚙️</div>
+      <h3>Open API</h3>
+      <p>Free API access for developers, researchers, and compliance students.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">🎓</div>
+      <h3>Learning tools</h3>
+      <p>Guided walkthroughs, case studies, and red flag exercises.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section class="section">
+  <p class="section-label">Data sources</p>
+  <h2 class="section-title">Real data, open and transparent</h2>
+  <p class="section-sub">FinCrimeRadar will be powered by verified, publicly available sanction and PEP datasets — no black boxes.</p>
+  <div class="sources">
+    <span class="source-tag">OFAC SDN</span>
+    <span class="source-tag">UN Consolidated List</span>
+    <span class="source-tag">EU Sanctions List</span>
+    <span class="source-tag">OFSI (UK)</span>
+    <span class="source-tag">OpenSanctions</span>
+    <span class="source-tag">Wikidata PEP</span>
+    <span class="source-tag">GDELT (News)</span>
+    <span class="source-tag">World Bank Debarred</span>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section class="section" id="roadmap">
+  <p class="section-label">Roadmap</p>
+  <h2 class="section-title">Where we are</h2>
+  <p class="section-sub">Building in public. Every step open-sourced on GitHub.</p>
+
+  <div class="roadmap">
+    <div class="phase done">
+      <div class="phase-dot"></div>
+      <span class="phase-text">Domain registered — fincrimeradar.org</span>
+      <span class="phase-pill">Done</span>
+    </div>
+    <div class="phase active">
+      <div class="phase-dot"></div>
+      <span class="phase-text">Landing page, GitHub repo & early access signup</span>
+      <span class="phase-pill">In progress</span>
+    </div>
+    <div class="phase upcoming">
+      <div class="phase-dot"></div>
+      <span class="phase-text">Sanctions screening engine (OpenSanctions integration)</span>
+      <span class="phase-pill">Up next</span>
+    </div>
+    <div class="phase upcoming">
+      <div class="phase-dot"></div>
+      <span class="phase-text">PEP screening & adverse media monitoring</span>
+      <span class="phase-pill">Up next</span>
+    </div>
+    <div class="phase upcoming">
+      <div class="phase-dot"></div>
+      <span class="phase-text">Public API & developer docs</span>
+      <span class="phase-pill">Up next</span>
+    </div>
+    <div class="phase upcoming">
+      <div class="phase-dot"></div>
+      <span class="phase-text">Knowledge hub — FCA, FATF, fraud frameworks</span>
+      <span class="phase-pill">Up next</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-brand">© 2026 FinCrimeRadar · fincrimeradar.org · Open source, always free</span>
+  <div class="footer-links">
+    <a href="https://github.com/fincrimeradar/fincrimeradar" target="_blank" rel="noopener">GitHub</a>
+    <a href="mailto:hello@fincrimeradar.org">Contact</a>
+    <a href="#features">Features</a>
+  </div>
+</footer>
+
+<script>
+function handleSignup(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const msg = document.getElementById('successMsg');
+  btn.disabled = true;
+  btn.textContent = 'Joined ✓';
+  msg.style.display = 'block';
+}
+</script>
+
+</body>
+</html>
