@@ -364,18 +364,23 @@
   }
 
   function renderAdverse(hits) {
-    if (!hits.length) return '<div class="empty">No adverse media found in the last 12 months.</div>';
+    if (!hits.length) return `<div class="empty" style="text-align:center; padding:2rem;">
+      <div style="font-size:32px; margin-bottom:8px;">📰</div>
+      <div style="color:var(--muted); font-size:14px;">No adverse media found in the last 12 months.</div>
+      <div style="color:var(--muted); font-size:12px; margin-top:6px;">This may indicate a clean media profile, or the name may be too common. Try a more specific search.</div>
+    </div>`;
     return hits.map(h => {
-      const toneClass = h.tone < -1 ? 'tone-negative' : h.tone > 1 ? 'tone-positive' : 'tone-neutral';
-      const toneLabel = h.tone < -1 ? 'Negative' : h.tone > 1 ? 'Positive' : 'Neutral';
+      const toneClass = h.tone < -2 ? 'tone-negative' : h.tone > 2 ? 'tone-positive' : 'tone-neutral';
+      const toneLabel = h.tone_label || (h.tone < -2 ? 'Negative' : h.tone > 2 ? 'Positive' : 'Neutral');
+      const toneIcon = h.tone < -2 ? '🔴' : h.tone > 2 ? '🟢' : '⚪';
       return `
         <div class="adverse-card">
-          <div class="adverse-title"><a href="${h.url}" target="_blank" rel="noopener">${h.title}</a></div>
-          <div class="adverse-meta">
-            <span>${h.source}</span>
-            <span>${h.date}</span>
-            <span class="${toneClass}">Tone: ${toneLabel}</span>
-            ${h.language !== 'English' ? `<span>Language: ${h.language}</span>` : ''}
+          <div class="adverse-title"><a href="${h.url}" target="_blank" rel="noopener noreferrer">${h.title || 'Untitled article'}</a></div>
+          <div class="adverse-meta" style="margin-top:8px; display:flex; gap:12px; flex-wrap:wrap; font-size:12px; color:var(--muted);">
+            <span>📡 ${h.source}</span>
+            <span>📅 ${h.date}</span>
+            <span class="${toneClass}">${toneIcon} ${toneLabel} tone</span>
+            ${h.language && h.language !== 'English' ? `<span>🌐 ${h.language}</span>` : ''}
           </div>
         </div>`;
     }).join('');
@@ -393,7 +398,8 @@
     document.getElementById('results').innerHTML = `
       <div class="loading">
         <div class="spinner"></div>
-        <div>Screening across sanctions lists, PEP databases and adverse media...</div>
+        <div style="margin-bottom:8px;">Screening across sanctions lists, PEP databases and adverse media...</div>
+        <div style="font-size:12px; color:var(--muted);">This may take up to 30 seconds if the API is waking up.</div>
       </div>`;
 
     try {
