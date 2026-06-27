@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AML Knowledge Hub — FinCrimeRadar</title>
+  <meta name="description" content="Free AML learning resources — guides on UK financial crime law, sanctions screening, PEP checks, adverse media, and more. Built for compliance students and professionals." />
+  <meta name="keywords" content="AML knowledge hub, financial crime learning, UK AML guide, MLR 2017, POCA, FCA compliance, sanctions screening guide" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:#ffffff; --off:#f7f8fa; --border:#e4e7ec;
+      --muted:#6b7280; --text:#111827; --navy:#0f2044;
+      --accent:#1d5fc4; --accent-h:#1749a0; --accent-light:#eff6ff;
+      --danger:#dc2626; --success:#16a34a; --warning:#d97706;
+      --purple:#7c3aed; --teal:#0d9488;
+    }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.6; }
+
+    /* NAV */
+    nav { position:sticky; top:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:60px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-logo { width:26px; height:26px; }
+    .nav-name { font-size:15px; font-weight:600; color:var(--navy); }
+    .nav-name span { color:var(--accent); }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.15s; }
+    .nav-links a:hover { color:var(--navy); }
+    .nav-links a.active { color:var(--accent); font-weight:500; }
+    .nav-cta { padding:7px 16px; background:var(--accent); color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; text-decoration:none; }
+
+    /* HERO */
+    .hub-hero { background:linear-gradient(135deg,#0f2044 0%,#1d3a6e 100%); padding:4.5rem 2rem 3.5rem; text-align:center; }
+    .hub-eyebrow { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:#93c5fd; margin-bottom:1.25rem; }
+    .hub-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(2rem,4.5vw,3.25rem); font-weight:400; color:#fff; line-height:1.2; margin-bottom:1rem; max-width:680px; margin-left:auto; margin-right:auto; }
+    .hub-hero h1 em { font-style:italic; color:#93c5fd; }
+    .hub-sub { font-size:16px; color:#cbd5e1; max-width:540px; margin:0 auto 2.5rem; line-height:1.7; }
+    .hub-stats { display:flex; justify-content:center; gap:2.5rem; flex-wrap:wrap; }
+    .hub-stat { text-align:center; }
+    .hub-stat .num { font-size:22px; font-weight:700; color:#fff; }
+    .hub-stat .lbl { font-size:12px; color:#94a3b8; margin-top:2px; }
+
+    /* SEARCH BAR */
+    .search-bar { background:var(--white); border-bottom:1px solid var(--border); padding:1.25rem 2rem; }
+    .search-inner { max-width:600px; margin:0 auto; display:flex; gap:8px; }
+    .search-inner input { flex:1; padding:10px 14px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; color:var(--text); outline:none; font-family:'Inter',sans-serif; background:var(--off); transition:border-color 0.15s; }
+    .search-inner input:focus { border-color:var(--accent); background:var(--white); }
+    .search-inner input::placeholder { color:#9ca3af; }
+
+    /* FILTER PILLS */
+    .filter-bar { max-width:1060px; margin:0 auto; padding:1.5rem 1.5rem 0; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+    .filter-label { font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.4px; }
+    .filter-pill { padding:5px 14px; border-radius:99px; font-size:12px; font-weight:500; border:1.5px solid var(--border); color:var(--muted); cursor:pointer; background:var(--white); transition:all 0.15s; font-family:'Inter',sans-serif; }
+    .filter-pill.active { border-color:var(--accent); color:var(--accent); background:var(--accent-light); }
+    .filter-pill:hover:not(.active) { border-color:#9ca3af; color:var(--text); }
+
+    /* MAIN GRID */
+    .hub-container { max-width:1060px; margin:0 auto; padding:1.5rem; }
+
+    /* FEATURED SECTION */
+    .featured-section { margin-bottom:2rem; }
+    .section-heading { display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; }
+    .section-heading h2 { font-size:16px; font-weight:600; color:var(--navy); }
+    .section-heading a { font-size:13px; color:var(--accent); text-decoration:none; }
+    .section-heading a:hover { text-decoration:underline; }
+
+    /* FEATURED SERIES CARD */
+    .series-card { background:linear-gradient(135deg,#0f2044 0%,#1d3a6e 100%); border-radius:16px; padding:2rem; display:grid; grid-template-columns:1fr auto; gap:1.5rem; align-items:center; margin-bottom:1rem; }
+    .sc-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); border-radius:99px; padding:3px 12px; font-size:11px; font-weight:600; color:#93c5fd; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:0.75rem; }
+    .sc-title { font-family:'DM Serif Display',Georgia,serif; font-size:22px; font-weight:400; color:#fff; margin-bottom:0.5rem; line-height:1.3; }
+    .sc-desc { font-size:13.5px; color:#cbd5e1; line-height:1.6; margin-bottom:1rem; }
+    .sc-parts { display:flex; gap:8px; flex-wrap:wrap; }
+    .sc-part { font-size:12px; padding:4px 10px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15); border-radius:6px; color:#e2e8f0; text-decoration:none; transition:all 0.15s; }
+    .sc-part:hover { background:rgba(255,255,255,0.2); }
+    .sc-cta { flex-shrink:0; }
+    .sc-btn { display:inline-block; padding:11px 22px; background:var(--accent); color:#fff; border-radius:8px; font-size:14px; font-weight:600; text-decoration:none; transition:all 0.15s; white-space:nowrap; }
+    .sc-btn:hover { background:var(--accent-h); transform:translateY(-1px); }
+
+    /* ARTICLE GRID */
+    .articles-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; margin-bottom:2rem; }
+
+    /* ARTICLE CARD */
+    .article-card { background:var(--white); border:1px solid var(--border); border-radius:12px; overflow:hidden; text-decoration:none; display:flex; flex-direction:column; transition:all 0.2s; }
+    .article-card:hover { border-color:var(--accent); transform:translateY(-2px); box-shadow:0 4px 16px rgba(29,95,196,0.1); }
+    .card-top { padding:1.25rem 1.25rem 0; }
+    .card-meta { display:flex; align-items:center; gap:8px; margin-bottom:0.75rem; }
+    .card-category { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; padding:3px 8px; border-radius:4px; }
+    .cat-screening { background:#dbeafe; color:#1e40af; }
+    .cat-law { background:#fee2e2; color:#991b1b; }
+    .cat-pep { background:#ede9fe; color:#5b21b6; }
+    .cat-aml { background:#fef3c7; color:#92400e; }
+    .cat-fraud { background:#dcfce7; color:#166534; }
+    .cat-sanctions { background:#fff1f2; color:#9f1239; }
+    .card-read { font-size:11px; color:var(--muted); }
+    .card-title { font-size:16px; font-weight:600; color:var(--navy); line-height:1.35; margin-bottom:0.6rem; }
+    .card-desc { font-size:13px; color:var(--muted); line-height:1.55; margin-bottom:1rem; }
+    .card-bottom { padding:0 1.25rem 1.25rem; margin-top:auto; display:flex; align-items:center; justify-content:space-between; }
+    .card-tags { display:flex; gap:5px; flex-wrap:wrap; }
+    .card-tag { font-size:11px; padding:2px 7px; border-radius:4px; background:var(--off); border:1px solid var(--border); color:var(--muted); }
+    .card-arrow { font-size:16px; color:var(--accent); flex-shrink:0; }
+    .card-new { position:relative; }
+    .card-new::after { content:'NEW'; position:absolute; top:12px; right:12px; font-size:10px; font-weight:700; background:var(--success); color:#fff; padding:2px 7px; border-radius:4px; letter-spacing:0.4px; }
+    .card-series { border-left:3px solid var(--accent); }
+
+    /* COMING SOON CARD */
+    .coming-card { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.25rem; opacity:0.6; }
+    .coming-badge { font-size:11px; font-weight:600; color:var(--muted); background:var(--off); padding:2px 8px; border-radius:4px; display:inline-block; margin-bottom:0.75rem; }
+    .coming-title { font-size:15px; font-weight:600; color:var(--navy); margin-bottom:4px; }
+    .coming-desc { font-size:13px; color:var(--muted); }
+
+    /* TOOL BANNER */
+    .tool-banner { background:var(--accent-light); border:1px solid #bfdbfe; border-radius:12px; padding:1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1.25rem; flex-wrap:wrap; margin-bottom:2rem; }
+    .tb-left { flex:1; }
+    .tb-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--accent); margin-bottom:5px; }
+    .tb-title { font-size:16px; font-weight:600; color:var(--navy); margin-bottom:3px; }
+    .tb-sub { font-size:13px; color:var(--muted); }
+    .tb-btn { padding:10px 20px; background:var(--accent); color:#fff; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap; transition:all 0.15s; }
+    .tb-btn:hover { background:var(--accent-h); }
+
+    /* NEWSLETTER */
+    .newsletter { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.75rem; text-align:center; margin-bottom:2rem; }
+    .nl-title { font-family:'DM Serif Display',Georgia,serif; font-size:20px; font-weight:400; color:var(--navy); margin-bottom:0.5rem; }
+    .nl-sub { font-size:13px; color:var(--muted); margin-bottom:1.25rem; }
+    .nl-form { display:flex; gap:8px; max-width:380px; margin:0 auto; }
+    .nl-form input { flex:1; padding:9px 13px; border:1.5px solid var(--border); border-radius:7px; font-size:13px; color:var(--text); outline:none; font-family:'Inter',sans-serif; }
+    .nl-form input:focus { border-color:var(--accent); }
+    .nl-form button { padding:9px 18px; background:var(--accent); color:#fff; border:none; border-radius:7px; font-size:13px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; white-space:nowrap; }
+    .nl-hint { font-size:11px; color:#9ca3af; margin-top:8px; }
+    .nl-success { display:none; font-size:13px; color:var(--success); margin-top:8px; }
+
+    footer { background:var(--white); border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:12px; color:var(--muted); }
+    footer a { color:var(--muted); text-decoration:none; margin:0 8px; }
+    footer a:hover { color:var(--accent); }
+
+    @media (max-width:768px) {
+      nav { padding:0 1rem; }
+      .nav-links .hm { display:none; }
+      .hub-hero { padding:3rem 1.25rem 2.5rem; }
+      .hub-container { padding:1rem; }
+      .series-card { grid-template-columns:1fr; }
+      .sc-cta { display:none; }
+      .filter-bar { padding:1rem 1rem 0; }
+      .search-inner { flex-direction:column; }
+      .tool-banner { flex-direction:column; }
+      .nl-form { flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="/">
+    <svg class="nav-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="14" stroke="#1d5fc4" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="9" stroke="#1d5fc4" stroke-width="1" stroke-dasharray="3 2"/>
+      <circle cx="16" cy="16" r="4" stroke="#1d5fc4" stroke-width="0.75" stroke-dasharray="2 2"/>
+      <circle cx="16" cy="16" r="1.5" fill="#1d5fc4"/>
+      <line x1="16" y1="16" x2="25" y2="7" stroke="#1d5fc4" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="22" cy="10" r="2" fill="#dc2626"/>
+    </svg>
+    <span class="nav-name">Fin<span>Crime</span>Radar</span>
+  </a>
+  <div class="nav-links">
+    <a href="/" class="hm">Home</a>
+    <a href="/knowledge.html" class="active hm">Knowledge Hub</a>
+    <a href="/screen.html" class="hm">Screen</a>
+    <a href="/screen.html" class="nav-cta">Try the tool →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hub-hero">
+  <div class="hub-eyebrow">📚 Free learning resources</div>
+  <h1>AML Knowledge Hub — <em>Learn financial crime compliance</em></h1>
+  <p class="hub-sub">Guides, explainers, and deep dives on sanctions, PEP screening, UK AML law, and more — written for compliance students and professionals. All free, always.</p>
+  <div class="hub-stats">
+    <div class="hub-stat"><div class="num">3</div><div class="lbl">In-depth guides</div></div>
+    <div class="hub-stat"><div class="num">25K+</div><div class="lbl">Sanctions records</div></div>
+    <div class="hub-stat"><div class="num">100%</div><div class="lbl">Free forever</div></div>
+    <div class="hub-stat"><div class="num">2026</div><div class="lbl">Regularly updated</div></div>
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div class="search-bar">
+  <div class="search-inner">
+    <input type="text" id="searchInput" placeholder="Search guides — e.g. PEP screening, SAR, MLR 2017..." oninput="filterCards()" />
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div class="filter-bar">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-pill active" data-cat="all" onclick="setFilter(this)">All</button>
+  <button class="filter-pill" data-cat="screening" onclick="setFilter(this)">Screening</button>
+  <button class="filter-pill" data-cat="law" onclick="setFilter(this)">UK Law</button>
+  <button class="filter-pill" data-cat="aml" onclick="setFilter(this)">AML</button>
+  <button class="filter-pill" data-cat="pep" onclick="setFilter(this)">PEP</button>
+  <button class="filter-pill" data-cat="sanctions" onclick="setFilter(this)">Sanctions</button>
+</div>
+
+<div class="hub-container">
+
+  <!-- FEATURED SERIES -->
+  <div class="featured-section" data-cats="law aml">
+    <div class="section-heading">
+      <h2>⭐ Featured series</h2>
+    </div>
+
+    <div class="series-card">
+      <div>
+        <div class="sc-badge">📋 3-Part Series · Updated July 2025</div>
+        <div class="sc-title">UK AML Compliance: The Complete Guide</div>
+        <div class="sc-desc">Everything FCA-regulated firms need to know — MLR 2017, POCA 2002, Terrorism Act 2000, CDD, SARs, record keeping, staff training, transaction monitoring, and enforcement. Verified against the latest FCA guidance and HM Treasury reforms.</div>
+        <div class="sc-parts">
+          <a href="/aml-guide-part1.html" class="sc-part">Part 1: Legal Framework →</a>
+          <a href="/aml-guide-part2.html" class="sc-part">Part 2: Core Obligations →</a>
+          <a href="/aml-guide-part3.html" class="sc-part">Part 3: Controls & Enforcement →</a>
+        </div>
+      </div>
+      <div class="sc-cta">
+        <a href="/aml-guide-part1.html" class="sc-btn">Start reading →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOL BANNER -->
+  <div class="tool-banner">
+    <div class="tb-left">
+      <div class="tb-eyebrow">🛡️ Live screening tool</div>
+      <div class="tb-title">Put your knowledge into practice — screen real names</div>
+      <div class="tb-sub">Sanctions, PEP, and adverse media screening. Free. No sign-up. Try it alongside any guide.</div>
+    </div>
+    <a href="/screen.html" class="tb-btn">Open screening tool →</a>
+  </div>
+
+  <!-- ALL GUIDES -->
+  <div class="section-heading">
+    <h2>All guides</h2>
+    <span id="card-count" style="font-size:13px; color:var(--muted);"></span>
+  </div>
+
+  <div class="articles-grid" id="articlesGrid">
+
+    <!-- Card 1: Screening explainer -->
+    <a href="/learn.html" class="article-card card-new" data-cats="screening pep sanctions aml" data-title="what is financial crime screening complete guide sanctions pep adverse media">
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="card-category cat-screening">Screening</span>
+          <span class="card-read">⏱ 25 min read</span>
+        </div>
+        <div class="card-title">What is Financial Crime Screening? The Complete Guide</div>
+        <div class="card-desc">A comprehensive, interactive introduction to sanctions screening, PEP checks, and adverse media monitoring — with quizzes, real examples, and live tool access.</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-tags">
+          <span class="card-tag">Sanctions</span>
+          <span class="card-tag">PEP</span>
+          <span class="card-tag">Adverse media</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Card 2: AML Part 1 -->
+    <a href="/aml-guide-part1.html" class="article-card card-series card-new" data-cats="law aml sanctions" data-title="uk aml compliance legal framework mlr 2017 poca terrorism act samla fca">
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="card-category cat-law">UK Law</span>
+          <span class="card-read">⏱ 20 min · Part 1 of 3</span>
+        </div>
+        <div class="card-title">UK AML Compliance Part 1: The Legal Framework</div>
+        <div class="card-desc">MLR 2017, POCA 2002, Terrorism Act 2000, SAMLA 2018, and the FCA's financial crime framework — the four pillars of UK AML law. Includes July 2025 updates.</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-tags">
+          <span class="card-tag">MLR 2017</span>
+          <span class="card-tag">POCA</span>
+          <span class="card-tag">FCA</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Card 3: AML Part 2 -->
+    <a href="/aml-guide-part2.html" class="article-card card-series card-new" data-cats="aml pep" data-title="uk aml compliance core obligations risk assessment cdd edd pep sar record keeping">
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="card-category cat-aml">AML</span>
+          <span class="card-read">⏱ 22 min · Part 2 of 3</span>
+        </div>
+        <div class="card-title">UK AML Compliance Part 2: Core Obligations</div>
+        <div class="card-desc">Risk assessments, Customer Due Diligence, Enhanced Due Diligence, Suspicious Activity Reports, and record keeping — the five obligations you must get right.</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-tags">
+          <span class="card-tag">CDD/EDD</span>
+          <span class="card-tag">SARs</span>
+          <span class="card-tag">Records</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Card 4: AML Part 3 -->
+    <a href="/aml-guide-part3.html" class="article-card card-series card-new" data-cats="aml law" data-title="uk aml compliance controls enforcement staff training transaction monitoring mlro fca">
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="card-category cat-aml">AML</span>
+          <span class="card-read">⏱ 20 min · Part 3 of 3</span>
+        </div>
+        <div class="card-title">UK AML Compliance Part 3: Controls & Enforcement</div>
+        <div class="card-desc">Staff training, transaction monitoring, MLRO governance, FCA enforcement patterns, and the 2026–2028 regulatory horizon. What good looks like in practice.</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-tags">
+          <span class="card-tag">Training</span>
+          <span class="card-tag">MLRO</span>
+          <span class="card-tag">Enforcement</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Coming soon cards -->
+    <div class="coming-card" data-cats="pep" data-title="pep screening guide politically exposed persons">
+      <div class="coming-badge">Coming soon</div>
+      <div class="coming-title">The PEP Screening Handbook</div>
+      <div class="coming-desc">Who qualifies as a PEP, how to apply EDD, the FG25/3 domestic PEP guidance, and real case studies.</div>
+    </div>
+
+    <div class="coming-card" data-cats="sanctions" data-title="sanctions compliance guide ofac ofsi un eu">
+      <div class="coming-badge">Coming soon</div>
+      <div class="coming-title">Sanctions Compliance: OFAC, OFSI & Beyond</div>
+      <div class="coming-desc">How sanctions lists work, extraterritorial reach, the Russia sanctions wave, and how to build a sanctions screening programme.</div>
+    </div>
+
+    <div class="coming-card" data-cats="aml" data-title="sar guide suspicious activity reports nca ukfiu">
+      <div class="coming-badge">Coming soon</div>
+      <div class="coming-title">Writing Better SARs: A Practical Guide</div>
+      <div class="coming-desc">What makes a good SAR, tipping-off risks, the DAML process, and how to structure financial intelligence that law enforcement can actually use.</div>
+    </div>
+
+    <div class="coming-card" data-cats="screening aml" data-title="transaction monitoring guide aml alerts false positives">
+      <div class="coming-badge">Coming soon</div>
+      <div class="coming-title">Transaction Monitoring: From Rules to AI</div>
+      <div class="coming-desc">How TM systems work, common red flags, the false positive problem, and how machine learning is transforming AML detection.</div>
+    </div>
+
+    <div class="coming-card" data-cats="law" data-title="fatf grey list black list high risk countries">
+      <div class="coming-badge">Coming soon</div>
+      <div class="coming-title">The FATF Lists Explained</div>
+      <div class="coming-desc">Grey list vs black list, what being listed means for firms dealing with those jurisdictions, and how to apply EDD for high-risk third countries.</div>
+    </div>
+
+    <div class="coming-card" data-cats="aml" data-title="mlro guide money laundering reporting officer smf17">
+      <div class="coming-badge">Coming soon</div>
+      <div class="coming-title">The MLRO Handbook</div>
+      <div class="coming-desc">SMF17 responsibilities, personal liability, the annual board report, managing the FCA relationship, and what good MLRO governance looks like.</div>
+    </div>
+
+  </div>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter">
+    <div class="nl-title">Get notified when new guides drop</div>
+    <div class="nl-sub">New articles, regulatory updates, and screening tool improvements — straight to your inbox. Free.</div>
+    <div class="nl-form">
+      <input type="email" id="nlEmail" placeholder="your@email.com" />
+      <button onclick="nlSignup()">Notify me</button>
+    </div>
+    <div class="nl-hint">No spam. Unsubscribe any time.</div>
+    <div class="nl-success" id="nlSuccess">✓ You're in! We'll notify you when new guides are published.</div>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 FinCrimeRadar ·
+  <a href="/">Home</a>
+  <a href="/knowledge.html">Knowledge Hub</a>
+  <a href="/screen.html">Screen</a>
+  <a href="/learn.html">Screening Guide</a>
+  <a href="/privacy.html">Privacy</a>
+  <a href="mailto:hello@fincrimeradar.org">Contact</a>
+</footer>
+
+<script>
+  let activeFilter = 'all';
+
+  function setFilter(btn) {
+    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.cat;
+    filterCards();
+  }
+
+  function filterCards() {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    const cards = document.querySelectorAll('#articlesGrid [data-cats]');
+    let visible = 0;
+    cards.forEach(card => {
+      const cats = card.dataset.cats || '';
+      const title = card.dataset.title || '';
+      const catMatch = activeFilter === 'all' || cats.includes(activeFilter);
+      const searchMatch = !q || title.includes(q) || cats.includes(q);
+      if (catMatch && searchMatch) {
+        card.style.display = '';
+        visible++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    const countEl = document.getElementById('card-count');
+    if (countEl) countEl.textContent = visible + ' guide' + (visible !== 1 ? 's' : '');
+
+    // Show/hide featured section based on filter
+    const featured = document.querySelector('.featured-section');
+    if (featured) {
+      const featCats = featured.dataset.cats || '';
+      featured.style.display = (activeFilter === 'all' || featCats.includes(activeFilter)) && !q ? '' : 'none';
+    }
+  }
+
+  async function nlSignup() {
+    const email = document.getElementById('nlEmail').value;
+    if (!email || !email.includes('@')) return;
+    try {
+      const r = await fetch('/api/subscribe', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({email})
+      });
+      const d = await r.json();
+      if (d.success) {
+        document.getElementById('nlSuccess').style.display = 'block';
+        document.getElementById('nlEmail').value = '';
+      }
+    } catch(e) {
+      document.getElementById('nlSuccess').style.display = 'block';
+    }
+  }
+
+  // Init count
+  filterCards();
+</script>
+
+</body>
+</html>
