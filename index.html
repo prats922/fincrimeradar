@@ -140,7 +140,7 @@
     .section-sub { font-size: 15px; color: var(--muted); max-width: 480px; line-height: 1.65; }
     .divider { border: none; border-top: 1px solid var(--border); }
 
-    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; margin-top: 2.5rem; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--border); }
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 2.5rem; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--border); }
     .feature { background: var(--white); padding: 1.5rem; transition: background 0.15s; }
     .feature:hover { background: #f8faff; }
     .feature-icon { font-size: 24px; margin-bottom: 12px; }
@@ -234,16 +234,55 @@
 <hr class="divider" />
 
 <section class="section" id="features">
-  <p class="section-eyebrow">What we're building</p>
+  <p class="section-eyebrow">What's inside</p>
   <h2 class="section-title">Everything you need to understand financial crime screening</h2>
-  <p class="section-sub">All tools are free, open-source, and built for learning — not selling you a compliance product.</p>
-  <div class="features">
-    <div class="feature"><div class="feature-icon">🛡️</div><h3>Sanctions screening</h3><p>Search OFAC, UN, EU, OFSI and 40+ global sanction lists in real time.</p></div>
-    <div class="feature"><div class="feature-icon">🔍</div><h3>PEP screening</h3><p>Identify politically exposed persons — heads of state, ministers, central bank governors and more.</p></div>
-    <div class="feature"><div class="feature-icon">📰</div><h3>Adverse media</h3><p>Surface financial crime coverage from BBC, OCCRP, AP and other trusted sources.</p></div>
-    <div class="feature"><div class="feature-icon">🎯</div><h3>Fuzzy matching</h3><p>Catches name spelling variations, aliases and transliteration differences automatically.</p></div>
-    <div class="feature"><div class="feature-icon">⚙️</div><h3>Open API</h3><p>Free API access for developers, researchers, and compliance students.</p></div>
-    <div class="feature"><div class="feature-icon">📚</div><h3>Knowledge hub</h3><p>FCA materials, FATF typologies and fraud frameworks — coming soon.</p></div>
+  <p class="section-sub">Free, open-source, and built for learning — not selling you a compliance product.</p>
+
+  <!-- Top 3 — primary screening tools -->
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:2rem;">
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; border-top:3px solid var(--danger);">
+      <div style="font-size:22px; margin-bottom:10px;">🛡️</div>
+      <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--danger); margin-bottom:6px;">Sanctions</div>
+      <h3 style="font-size:15px; font-weight:600; color:var(--navy); margin-bottom:6px;">Sanctions screening</h3>
+      <p style="font-size:13px; color:var(--muted); line-height:1.55; margin:0;">Search OFAC, UN, EU, OFSI and 40+ global lists in real time.</p>
+    </div>
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; border-top:3px solid var(--purple);">
+      <div style="font-size:22px; margin-bottom:10px;">🔍</div>
+      <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--purple); margin-bottom:6px;">PEP</div>
+      <h3 style="font-size:15px; font-weight:600; color:var(--navy); margin-bottom:6px;">PEP screening</h3>
+      <p style="font-size:13px; color:var(--muted); line-height:1.55; margin:0;">Identify politically exposed persons — heads of state, ministers, central bank governors.</p>
+    </div>
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; border-top:3px solid var(--warning);">
+      <div style="font-size:22px; margin-bottom:10px;">📰</div>
+      <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--warning); margin-bottom:6px;">Adverse Media</div>
+      <h3 style="font-size:15px; font-weight:600; color:var(--navy); margin-bottom:6px;">Adverse media</h3>
+      <p style="font-size:13px; color:var(--muted); line-height:1.55; margin:0;">Surface financial crime coverage from BBC, OCCRP, AP and trusted news sources.</p>
+    </div>
+  </div>
+
+  <!-- Bottom 3 — supporting features -->
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:12px;">
+    <div style="background:var(--off); border:1px solid var(--border); border-radius:12px; padding:1.25rem; display:flex; gap:12px; align-items:flex-start;">
+      <div style="font-size:20px; flex-shrink:0;">🎯</div>
+      <div>
+        <h3 style="font-size:14px; font-weight:600; color:var(--navy); margin-bottom:4px;">Fuzzy matching</h3>
+        <p style="font-size:13px; color:var(--muted); line-height:1.5; margin:0;">Catches spelling variations, aliases and transliterations automatically.</p>
+      </div>
+    </div>
+    <div style="background:var(--off); border:1px solid var(--border); border-radius:12px; padding:1.25rem; display:flex; gap:12px; align-items:flex-start;">
+      <div style="font-size:20px; flex-shrink:0;">⚙️</div>
+      <div>
+        <h3 style="font-size:14px; font-weight:600; color:var(--navy); margin-bottom:4px;">Open API</h3>
+        <p style="font-size:13px; color:var(--muted); line-height:1.5; margin:0;">Free API access for developers, researchers, and compliance students.</p>
+      </div>
+    </div>
+    <div style="background:var(--off); border:1px solid var(--border); border-radius:12px; padding:1.25rem; display:flex; gap:12px; align-items:flex-start;">
+      <div style="font-size:20px; flex-shrink:0;">📚</div>
+      <div>
+        <h3 style="font-size:14px; font-weight:600; color:var(--navy); margin-bottom:4px;">Knowledge hub</h3>
+        <p style="font-size:13px; color:var(--muted); line-height:1.5; margin:0;"><a href="/learn.html" style="color:var(--accent); text-decoration:none; font-weight:500;">Read the complete guide →</a></p>
+      </div>
+    </div>
   </div>
 </section>
 
