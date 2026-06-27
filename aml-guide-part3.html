@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UK AML Compliance: Part 3 — Controls & Enforcement | FinCrimeRadar</title>
+  <meta name="description" content="Part 3 of the UK AML compliance guide. Covers staff training, transaction monitoring, governance, MLRO responsibilities, FCA enforcement, and the 2026 outlook." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:#ffffff; --off:#f7f8fa; --border:#e4e7ec;
+      --muted:#6b7280; --text:#111827; --navy:#0f2044;
+      --accent:#0d9488; --accent-h:#0f766e; --accent-light:#f0fdfa;
+      --accent-border:#5eead4;
+      --danger:#dc2626; --success:#16a34a; --warning:#d97706;
+      --blue:#1d5fc4; --purple:#7c3aed;
+    }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
+
+    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:60px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-logo { width:26px; height:26px; }
+    .nav-name { font-size:15px; font-weight:600; color:var(--navy); }
+    .nav-name span { color:var(--blue); }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:var(--muted); text-decoration:none; }
+    .nav-links a:hover { color:var(--navy); }
+    .nav-cta { padding:7px 16px; background:var(--blue); color:#fff; border-radius:6px; font-size:13px; font-weight:500; text-decoration:none; }
+
+    .progress-bar { position:fixed; top:60px; left:0; width:0%; height:3px; background:var(--accent); z-index:199; transition:width 0.1s; }
+
+    .series-hero { background:linear-gradient(135deg,#042f2e 0%,#134e4a 100%); color:#fff; padding:4rem 2rem 3rem; }
+    .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:#5eead4; margin-bottom:1.25rem; }
+    .series-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(1.9rem,4vw,3rem); font-weight:400; line-height:1.2; margin-bottom:0.75rem; max-width:760px; }
+    .series-hero h1 em { font-style:italic; color:#5eead4; }
+    .series-sub { font-size:16px; color:#99f6e4; max-width:620px; line-height:1.7; margin-bottom:2rem; }
+    .series-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#2dd4bf; }
+
+    .part-nav { background:var(--white); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; gap:0; overflow-x:auto; }
+    .part-link { padding:14px 20px; font-size:13px; font-weight:500; color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; }
+    .part-link:hover { color:var(--navy); }
+    .part-link.done { color:var(--success); }
+    .part-link.active { color:var(--accent); border-bottom-color:var(--accent); }
+
+    .article-layout { display:grid; grid-template-columns:220px 1fr; gap:2rem; max-width:1080px; margin:0 auto; padding:2.5rem 1.5rem; align-items:start; }
+    .toc { position:sticky; top:105px; background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.25rem; }
+    .toc-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--muted); margin-bottom:0.875rem; }
+    .toc-list { list-style:none; }
+    .toc-list a { font-size:12.5px; color:var(--muted); text-decoration:none; display:block; padding:5px 8px; border-radius:6px; transition:all 0.15s; border-left:2px solid transparent; }
+    .toc-list a:hover,.toc-list a.active { color:var(--accent); background:var(--accent-light); border-left-color:var(--accent); }
+    .toc-progress { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); }
+    .toc-progress-label { font-size:11px; color:var(--muted); margin-bottom:6px; display:flex; justify-content:space-between; }
+    .toc-bar { height:4px; background:var(--border); border-radius:99px; overflow:hidden; }
+    .toc-fill { height:100%; background:var(--accent); border-radius:99px; transition:width 0.2s; width:0%; }
+    .series-sidebar { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); }
+    .ss-link { display:block; font-size:12px; color:var(--muted); text-decoration:none; padding:5px 8px; border-radius:6px; margin-bottom:3px; }
+    .ss-link:hover { color:var(--accent); background:var(--accent-light); }
+    .ss-link.done { color:var(--success); }
+    .ss-link.active { color:var(--accent); font-weight:600; }
+
+    .article-body { min-width:0; }
+    .article-section { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:2.25rem; margin-bottom:1.25rem; }
+    .section-num { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--accent); margin-bottom:0.5rem; }
+    .article-section h2 { font-family:'DM Serif Display',Georgia,serif; font-size:24px; font-weight:400; color:var(--navy); margin-bottom:1rem; line-height:1.3; }
+    .article-section h3 { font-size:16px; font-weight:600; color:var(--navy); margin:1.75rem 0 0.65rem; }
+    .article-section p { font-size:14.5px; color:#374151; margin-bottom:0.9rem; line-height:1.75; }
+    .article-section ul,.article-section ol { padding-left:1.5rem; margin-bottom:0.9rem; }
+    .article-section li { font-size:14.5px; color:#374151; margin-bottom:0.45rem; line-height:1.65; }
+    .article-section a { color:var(--blue); text-decoration:none; }
+    .article-section a:hover { text-decoration:underline; }
+
+    .callout { border-radius:10px; padding:1.1rem 1.4rem; margin:1.25rem 0; display:flex; gap:12px; }
+    .callout-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+    .callout-body { flex:1; }
+    .callout-title { font-size:12px; font-weight:700; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.4px; }
+    .callout-text { font-size:13.5px; line-height:1.6; }
+    .callout.info { background:#eff6ff; border:1px solid #bfdbfe; }
+    .callout.info .callout-title { color:#1e40af; }
+    .callout.info .callout-text { color:#1e3a8a; }
+    .callout.warning { background:#fffbeb; border:1px solid #fde68a; }
+    .callout.warning .callout-title { color:#92400e; }
+    .callout.warning .callout-text { color:#78350f; }
+    .callout.danger { background:#fff5f5; border:1px solid #fca5a5; }
+    .callout.danger .callout-title { color:#991b1b; }
+    .callout.danger .callout-text { color:#7f1d1d; }
+    .callout.success { background:#f0fdf4; border:1px solid #86efac; }
+    .callout.success .callout-title { color:#166534; }
+    .callout.success .callout-text { color:#14532d; }
+    .callout.new { background:#f0fdf4; border:1px solid #86efac; border-left:3px solid var(--success); }
+    .callout.new .callout-title { color:#166534; }
+    .callout.new .callout-text { color:#14532d; }
+    .callout.teal { background:var(--accent-light); border:1px solid var(--accent-border); }
+    .callout.teal .callout-title { color:var(--accent-h); }
+    .callout.teal .callout-text { color:#134e4a; }
+
+    .try-tool { background:linear-gradient(135deg,#042f2e 0%,#134e4a 100%); border-radius:12px; padding:1.5rem 1.75rem; margin:1.75rem 0; display:flex; align-items:center; justify-content:space-between; gap:1.25rem; flex-wrap:wrap; }
+    .try-tool .tl { flex:1; }
+    .try-tool .tl-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:#5eead4; margin-bottom:5px; }
+    .try-tool .tl-title { font-size:16px; font-weight:600; color:#fff; margin-bottom:4px; line-height:1.4; }
+    .try-tool .tl-sub { font-size:13px; color:#2dd4bf; }
+    .try-tool .tl-btn { padding:10px 20px; background:var(--accent); color:#fff; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap; transition:all 0.15s; }
+    .try-tool .tl-btn:hover { background:var(--accent-h); transform:translateY(-1px); }
+
+    .data-table { width:100%; border-collapse:collapse; margin:1.25rem 0; font-size:13.5px; }
+    .data-table th { background:var(--navy); color:#fff; padding:9px 13px; text-align:left; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; }
+    .data-table th:first-child { border-radius:8px 0 0 0; }
+    .data-table th:last-child { border-radius:0 8px 0 0; }
+    .data-table td { padding:9px 13px; border-bottom:1px solid var(--border); color:var(--text); vertical-align:top; }
+    .data-table tr:last-child td { border-bottom:none; }
+    .data-table tr:nth-child(even) td { background:var(--off); }
+
+    /* TRAINING CARDS */
+    .training-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin:1.5rem 0; }
+    .training-card { background:var(--off); border:1px solid var(--border); border-radius:10px; padding:1.1rem 1.25rem; }
+    .tc-role { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--accent); margin-bottom:6px; }
+    .tc-title { font-size:14px; font-weight:600; color:var(--navy); margin-bottom:6px; }
+    .tc-desc { font-size:13px; color:var(--muted); line-height:1.5; margin-bottom:8px; }
+    .tc-freq { display:inline-block; font-size:11px; font-weight:600; background:var(--accent-light); color:var(--accent-h); padding:2px 8px; border-radius:4px; }
+
+    /* TM PROCESS */
+    .tm-row { display:flex; gap:10px; margin:1.5rem 0; flex-wrap:wrap; }
+    .tm-card { flex:1; min-width:120px; background:var(--off); border:1px solid var(--border); border-radius:10px; padding:1rem; text-align:center; }
+    .tm-icon { font-size:22px; margin-bottom:6px; }
+    .tm-label { font-size:12px; font-weight:600; color:var(--navy); margin-bottom:4px; }
+    .tm-desc { font-size:11px; color:var(--muted); line-height:1.4; }
+    .tm-arrow { display:flex; align-items:center; color:var(--muted); font-size:18px; padding-top:1rem; }
+
+    /* ENFORCEMENT CASE */
+    .enforcement-card { border:1px solid var(--border); border-radius:10px; overflow:hidden; margin:10px 0; }
+    .ec-header { background:var(--navy); color:#fff; padding:0.75rem 1.1rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+    .ec-firm { font-size:13px; font-weight:600; }
+    .ec-fine { font-size:13px; font-weight:700; color:#fca5a5; }
+    .ec-body { padding:0.9rem 1.1rem; }
+    .ec-failures { font-size:13px; color:#374151; margin-bottom:6px; }
+    .ec-lesson { font-size:12.5px; color:var(--muted); font-style:italic; }
+
+    /* STEPS */
+    .steps { margin:1.5rem 0; }
+    .step { display:flex; gap:14px; margin-bottom:1rem; align-items:flex-start; }
+    .step-n { width:30px; height:30px; border-radius:50%; background:var(--accent); color:#fff; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+    .step-body h4 { font-size:14px; font-weight:600; color:var(--navy); margin-bottom:3px; }
+    .step-body p { font-size:13px; color:var(--muted); margin:0; }
+
+    /* QUIZ */
+    .quiz { background:var(--accent-light); border:1px solid var(--accent-border); border-radius:12px; padding:1.4rem; margin:1.5rem 0; }
+    .quiz-label { font-size:11px; font-weight:700; color:var(--accent-h); text-transform:uppercase; letter-spacing:0.4px; margin-bottom:0.65rem; }
+    .quiz-q { font-size:15px; font-weight:600; color:var(--navy); margin-bottom:0.875rem; }
+    .quiz-opts { display:flex; flex-direction:column; gap:7px; }
+    .quiz-opt { padding:9px 13px; border:1.5px solid var(--accent-border); border-radius:7px; font-size:13.5px; cursor:pointer; background:var(--white); color:var(--text); transition:all 0.15s; text-align:left; font-family:'Inter',sans-serif; }
+    .quiz-opt:hover { border-color:var(--accent); color:var(--accent); }
+    .quiz-opt.correct { border-color:var(--success); background:#f0fdf4; color:var(--success); }
+    .quiz-opt.wrong { border-color:var(--danger); background:#fff5f5; color:var(--danger); }
+    .quiz-feedback { display:none; margin-top:0.875rem; font-size:13.5px; padding:10px 13px; border-radius:7px; }
+    .quiz-feedback.show { display:block; }
+    .quiz-feedback.correct { background:#f0fdf4; color:#166534; border:1px solid #86efac; }
+    .quiz-feedback.wrong { background:#fff5f5; color:#991b1b; border:1px solid #fca5a5; }
+
+    .pull-quote { font-family:'DM Serif Display',Georgia,serif; font-size:18px; font-style:italic; color:var(--navy); border-left:3px solid var(--accent); padding-left:1.25rem; margin:1.5rem 0; line-height:1.6; }
+
+    .faq-item { border:1px solid var(--border); border-radius:10px; margin-bottom:7px; overflow:hidden; }
+    .faq-q { padding:0.9rem 1.1rem; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-size:14px; font-weight:500; color:var(--navy); background:var(--white); user-select:none; }
+    .faq-q:hover { background:var(--off); }
+    .faq-icon { font-size:17px; color:var(--muted); transition:transform 0.2s; flex-shrink:0; }
+    .faq-icon.open { transform:rotate(45deg); }
+    .faq-a { display:none; padding:0 1.1rem 0.9rem; font-size:13.5px; color:#374151; line-height:1.7; border-top:1px solid var(--border); background:#fafafa; }
+    .faq-a.open { display:block; padding-top:0.9rem; }
+
+    /* SERIES COMPLETE */
+    .series-complete { background:linear-gradient(135deg,#042f2e 0%,#134e4a 100%); border-radius:14px; padding:2.5rem; text-align:center; margin-top:1.5rem; }
+    .sc-badge { display:inline-block; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3); border-radius:99px; padding:5px 16px; font-size:12px; font-weight:600; color:#5eead4; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:1rem; }
+    .sc-title { font-family:'DM Serif Display',Georgia,serif; font-size:26px; font-weight:400; color:#fff; margin-bottom:0.75rem; }
+    .sc-sub { font-size:15px; color:#99f6e4; margin-bottom:2rem; line-height:1.6; max-width:500px; margin-left:auto; margin-right:auto; }
+    .sc-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+    .sc-btn-primary { padding:12px 24px; background:var(--accent); color:#fff; border-radius:8px; font-size:14px; font-weight:600; text-decoration:none; transition:all 0.15s; }
+    .sc-btn-primary:hover { background:var(--accent-h); transform:translateY(-1px); }
+    .sc-btn-secondary { padding:12px 24px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.3); border-radius:8px; font-size:14px; font-weight:500; text-decoration:none; }
+
+    .part-footer { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-top:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    .pf-prev,.pf-next { display:flex; flex-direction:column; gap:4px; }
+    .pf-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--muted); }
+    .pf-link { font-size:14px; font-weight:600; color:var(--blue); text-decoration:none; }
+    .pf-link:hover { text-decoration:underline; }
+    .pf-next { text-align:right; }
+    .pf-center { font-size:13px; color:var(--muted); }
+
+    footer { background:var(--white); border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:12px; color:var(--muted); margin-top:2rem; }
+    footer a { color:var(--muted); text-decoration:none; margin:0 8px; }
+    footer a:hover { color:var(--blue); }
+
+    @media (max-width:768px) {
+      .article-layout { grid-template-columns:1fr; }
+      .toc { display:none; }
+      .series-hero { padding:2.5rem 1.25rem 2rem; }
+      .article-section { padding:1.5rem; }
+      .try-tool { flex-direction:column; }
+      .training-grid { grid-template-columns:1fr; }
+      .tm-row { flex-direction:column; }
+      .tm-arrow { display:none; }
+      nav { padding:0 1rem; }
+      .nav-links .hm { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <a class="nav-brand" href="/">
+    <svg class="nav-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="14" stroke="#1d5fc4" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="9" stroke="#1d5fc4" stroke-width="1" stroke-dasharray="3 2"/>
+      <circle cx="16" cy="16" r="4" stroke="#1d5fc4" stroke-width="0.75" stroke-dasharray="2 2"/>
+      <circle cx="16" cy="16" r="1.5" fill="#1d5fc4"/>
+      <line x1="16" y1="16" x2="25" y2="7" stroke="#1d5fc4" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="22" cy="10" r="2" fill="#dc2626"/>
+    </svg>
+    <span class="nav-name">Fin<span>Crime</span>Radar</span>
+  </a>
+  <div class="nav-links">
+    <a href="/learn.html" class="hm">Learn</a>
+    <a href="/screen.html" class="hm">Screen</a>
+    <a href="/screen.html" class="nav-cta">Try the tool →</a>
+  </div>
+</nav>
+
+<div class="series-hero">
+  <div class="series-tag">📋 3-Part Series · Part 3 of 3</div>
+  <h1>UK AML Compliance: <em>Controls & Enforcement</em></h1>
+  <p class="series-sub">Staff training, transaction monitoring, governance structures, MLRO responsibilities, FCA enforcement patterns, and what the 2026–2028 regulatory horizon means for your firm.</p>
+  <div class="series-meta">
+    <span>📖 20 min read</span>
+    <span>⚖️ FCA · SM&CR · ECCTA</span>
+    <span>🇬🇧 UK-specific</span>
+  </div>
+</div>
+
+<div class="part-nav">
+  <a href="/aml-guide-part1.html" class="part-link done">✓ Part 1: Legal Framework</a>
+  <a href="/aml-guide-part2.html" class="part-link done">✓ Part 2: Core Obligations</a>
+  <a href="/aml-guide-part3.html" class="part-link active">Part 3: Controls & Enforcement</a>
+</div>
+
+<div class="article-layout">
+  <aside>
+    <div class="toc">
+      <div class="toc-title">In this part</div>
+      <ul class="toc-list">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#training">Staff Training</a></li>
+        <li><a href="#tm">Transaction Monitoring</a></li>
+        <li><a href="#governance">Governance & MLRO</a></li>
+        <li><a href="#screening-controls">Screening Controls</a></li>
+        <li><a href="#enforcement">FCA Enforcement</a></li>
+        <li><a href="#outlook">2026 Outlook</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="toc-progress">
+        <div class="toc-progress-label"><span>Progress</span><span id="pct">0%</span></div>
+        <div class="toc-bar"><div class="toc-fill" id="fill"></div></div>
+      </div>
+      <div class="series-sidebar">
+        <div class="toc-title">Series</div>
+        <a href="/aml-guide-part1.html" class="ss-link done">✓ Part 1: Legal Framework</a>
+        <a href="/aml-guide-part2.html" class="ss-link done">✓ Part 2: Core Obligations</a>
+        <a href="/aml-guide-part3.html" class="ss-link active">Part 3: Controls & Enforcement</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="article-body">
+
+    <!-- OVERVIEW -->
+    <section class="article-section" id="overview">
+      <div class="section-num">Introduction</div>
+      <h2>From obligations to controls</h2>
+      <p>Parts 1 and 2 of this series established the legal framework and core obligations. Part 3 focuses on what good looks like in practice — the internal controls, governance structures, and monitoring systems that translate legal obligations into effective financial crime prevention.</p>
+      <p>The FCA is explicit: having the right policies on paper is not enough. The FCA assesses the <em>effectiveness</em> of your controls — not just their existence. Firms that have compliant documentation but inadequate implementation are as likely to face enforcement action as firms with no controls at all.</p>
+      <div class="pull-quote">"We are not just checking that firms have policies. We are assessing whether those policies actually work to prevent financial crime — and whether senior management genuinely understands and owns the risks." — FCA Supervisory focus, 2025</div>
+    </section>
+
+    <!-- STAFF TRAINING -->
+    <section class="article-section" id="training">
+      <div class="section-num">Control 01</div>
+      <h2>Staff training</h2>
+      <p>Regulation 24 MLR 2017 requires firms to take appropriate measures to ensure that relevant employees are made aware of AML law and regularly trained to recognise suspicious activity. Training is not a tick-box — it is a live control that must be actively maintained and evidenced.</p>
+
+      <h3>Who must be trained?</h3>
+      <p>"Relevant employees" is broadly defined: any person whose work is relevant to AML compliance, or who is likely to encounter ML/TF activity in their role. In practice, this means:</p>
+      <ul>
+        <li>All customer-facing staff (onboarding, relationship management, customer service)</li>
+        <li>Operations and payments teams</li>
+        <li>Compliance and legal teams</li>
+        <li>Senior management and board members</li>
+        <li>IT and data teams handling AML systems</li>
+        <li>Third-party agents acting on behalf of the firm</li>
+      </ul>
+
+      <h3>What training must cover</h3>
+      <div class="training-grid">
+        <div class="training-card">
+          <div class="tc-role">📋 All staff</div>
+          <div class="tc-title">AML fundamentals</div>
+          <div class="tc-desc">What is money laundering? What are the legal obligations? What are the criminal offences? How to make an internal SAR report.</div>
+          <div class="tc-freq">Annually minimum</div>
+        </div>
+        <div class="training-card">
+          <div class="tc-role">👥 Customer-facing</div>
+          <div class="tc-title">CDD and red flags</div>
+          <div class="tc-desc">CDD procedures, how to identify suspicious behaviour, when to escalate, specific red flags relevant to their product/customer type.</div>
+          <div class="tc-freq">Annually + role-specific</div>
+        </div>
+        <div class="training-card">
+          <div class="tc-role">👔 Senior management</div>
+          <div class="tc-title">Governance and oversight</div>
+          <div class="tc-desc">The firm's risk profile, adequacy of controls, senior management responsibilities under SM&CR, FCA expectations for their role.</div>
+          <div class="tc-freq">Annually — board-level</div>
+        </div>
+        <div class="training-card">
+          <div class="tc-role">🛡️ Compliance / MLRO</div>
+          <div class="tc-title">Technical and regulatory</div>
+          <div class="tc-desc">Detailed MLR obligations, SAR quality, FCA supervisory expectations, emerging typologies, regulatory developments.</div>
+          <div class="tc-freq">Ongoing — CPD</div>
+        </div>
+      </div>
+
+      <h3>Assessing training effectiveness</h3>
+      <p>The FCA expects more than recording attendance. Firms must demonstrate training is effective through:</p>
+      <ul>
+        <li><strong>Post-training assessments</strong> — quizzes with defined pass marks (typically 80%)</li>
+        <li><strong>Scenario-based exercises</strong> — case studies reflecting the firm's actual risk profile</li>
+        <li><strong>Remedial training</strong> — for staff who fail assessments</li>
+        <li><strong>Monitoring outcomes</strong> — are SAR quality and CDD completion rates improving?</li>
+      </ul>
+
+      <div class="callout warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <div class="callout-title">Common FCA finding — generic training</div>
+          <div class="callout-text">The FCA's thematic reviews consistently identify generic, one-size-fits-all AML training as a control weakness. A customer service agent at a payments firm needs different training to a relationship manager at a private bank. Training that does not reflect the firm's specific products, customers, and risk profile is unlikely to satisfy FCA expectations — even if it covers the right topics in theory.</div>
+        </div>
+      </div>
+
+      <h3>Training records — retention</h3>
+      <p>Training records must be retained for <strong>5 years</strong> (consistent with MLR record-keeping requirements) and must be available for FCA inspection. Records should include: training plans, content covered, dates delivered, attendees, assessment results, and evidence of remediation for failures.</p>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">🎓 Make training real</div>
+          <div class="tl-title">Use FinCrimeRadar as a training tool for your team</div>
+          <div class="tl-sub">Scenario-based exercises using a live screening tool are far more effective than theory alone. Try screening case study names with your team.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Open screening tool →</a>
+      </div>
+    </section>
+
+    <!-- TRANSACTION MONITORING -->
+    <section class="article-section" id="tm">
+      <div class="section-num">Control 02</div>
+      <h2>Transaction monitoring</h2>
+      <p>Transaction monitoring (TM) is the ongoing surveillance of customer transactions to identify patterns, anomalies, and red flags that may indicate money laundering or terrorist financing. It is a core ongoing monitoring obligation under MLR 2017 and one of the FCA's most active supervisory focus areas.</p>
+
+      <h3>The transaction monitoring process</h3>
+      <div class="tm-row">
+        <div class="tm-card">
+          <div class="tm-icon">📊</div>
+          <div class="tm-label">Data input</div>
+          <div class="tm-desc">Transaction data feeds into the TM system in real time or batch</div>
+        </div>
+        <div class="tm-arrow">→</div>
+        <div class="tm-card">
+          <div class="tm-icon">⚙️</div>
+          <div class="tm-label">Rules & models</div>
+          <div class="tm-desc">Rules and/or ML models flag anomalous patterns</div>
+        </div>
+        <div class="tm-arrow">→</div>
+        <div class="tm-card">
+          <div class="tm-icon">🔔</div>
+          <div class="tm-label">Alert generated</div>
+          <div class="tm-desc">Alert created for analyst review</div>
+        </div>
+        <div class="tm-arrow">→</div>
+        <div class="tm-card">
+          <div class="tm-icon">🔍</div>
+          <div class="tm-label">Investigation</div>
+          <div class="tm-desc">Analyst reviews, researches, and makes decision</div>
+        </div>
+        <div class="tm-arrow">→</div>
+        <div class="tm-card">
+          <div class="tm-icon">📝</div>
+          <div class="tm-label">Outcome</div>
+          <div class="tm-desc">Clear alert, escalate to MLRO, or file SAR</div>
+        </div>
+      </div>
+
+      <h3>Common TM red flags</h3>
+      <table class="data-table">
+        <thead><tr><th>Pattern</th><th>Potential indicator</th><th>Risk</th></tr></thead>
+        <tbody>
+          <tr><td>Structuring (smurfing)</td><td>Multiple cash deposits just below reporting thresholds</td><td>🔴 High</td></tr>
+          <tr><td>Rapid in/out movement</td><td>Large funds received and immediately moved</td><td>🔴 High</td></tr>
+          <tr><td>Inconsistent with profile</td><td>Transactions inconsistent with stated business purpose</td><td>🔴 High</td></tr>
+          <tr><td>High-risk jurisdiction flows</td><td>Frequent transfers to/from FATF high-risk countries</td><td>🔴 High</td></tr>
+          <tr><td>Round number transactions</td><td>Repeated use of round figures (e.g. £9,900, £4,999)</td><td>🟡 Medium</td></tr>
+          <tr><td>Dormant account activation</td><td>Long-inactive account suddenly receives large deposits</td><td>🟡 Medium</td></tr>
+          <tr><td>Unusual geographic patterns</td><td>Activity from locations inconsistent with customer profile</td><td>🟡 Medium</td></tr>
+          <tr><td>Multiple beneficiaries</td><td>Funds immediately split to numerous payees</td><td>🟡 Medium</td></tr>
+        </tbody>
+      </table>
+
+      <h3>The FCA's TM supervisory focus</h3>
+      <p>Transaction monitoring has been one of the FCA's primary enforcement targets in 2024/25. Common failings identified:</p>
+      <ul>
+        <li><strong>Poorly calibrated rules</strong> — rules that generate excessive false positives (drowning analysts) or miss real risks</li>
+        <li><strong>Lack of tuning</strong> — TM systems that have not been reviewed or updated for years</li>
+        <li><strong>Inadequate alert backlogs</strong> — firms unable to work through alert volumes, leading to stale investigations</li>
+        <li><strong>Poor documentation</strong> — alert disposals without adequate rationale recorded</li>
+        <li><strong>No management information</strong> — senior management not receiving meaningful TM MI</li>
+      </ul>
+
+      <div class="callout teal">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <div class="callout-title">The false positive problem in TM</div>
+          <div class="callout-text">Large financial institutions can generate hundreds of thousands of TM alerts daily. False positive rates of 95–99% are common — meaning that for every 100 alerts, only 1–5 represent genuine suspicious activity. This creates enormous operational pressure. The solution is not to reduce monitoring sensitivity but to intelligently calibrate rules, layer ML models on top of rule-based systems, and ensure analysts have the context (customer risk profiles, peer group comparisons) to make fast, well-informed decisions.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GOVERNANCE -->
+    <section class="article-section" id="governance">
+      <div class="section-num">Control 03</div>
+      <h2>Governance, MLRO, and the three lines of defence</h2>
+
+      <h3>The three lines of defence model</h3>
+      <table class="data-table">
+        <thead><tr><th>Line</th><th>Function</th><th>AML role</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1st line</strong></td><td>Business operations</td><td>Own the AML risk — CDD, transaction monitoring, alert investigation, customer exits</td></tr>
+          <tr><td><strong>2nd line</strong></td><td>Risk and compliance (MLRO)</td><td>Set the framework, provide oversight, review SAR decisions, report to board, engage with FCA</td></tr>
+          <tr><td><strong>3rd line</strong></td><td>Internal audit</td><td>Independent testing of AML controls — audit the 1st and 2nd lines</td></tr>
+        </tbody>
+      </table>
+
+      <h3>The MLRO — personal accountability</h3>
+      <p>The Money Laundering Reporting Officer (MLRO) holds the SMF17 Senior Management Function under SM&CR. This creates personal legal accountability that distinguishes the MLRO role from most other compliance functions. The MLRO must:</p>
+      <ul>
+        <li>Be FCA-approved to hold SMF17 before taking up the role</li>
+        <li>Have sufficient seniority, resource, and independence to challenge business decisions</li>
+        <li>Oversee all PEP relationships within the firm (FG25/3)</li>
+        <li>Review all internal SAR reports and decide whether to disclose to NCA</li>
+        <li>Produce an annual MLRO report to the board covering ML/TF risk profile, control effectiveness, and SAR activity</li>
+        <li>Engage proactively with FCA supervisors</li>
+      </ul>
+
+      <div class="callout danger">
+        <div class="callout-icon">🚨</div>
+        <div class="callout-body">
+          <div class="callout-title">MLRO personal liability — a real risk</div>
+          <div class="callout-text">The FCA has taken personal enforcement action against MLROs who failed to perform their statutory functions adequately. In one notable case, an MLRO was fined and banned for failing to implement adequate AML controls despite repeated warnings from compliance staff — the FCA found that the MLRO prioritised business revenue over compliance obligations. The SM&CR regime means that "I was just following business instructions" is not an adequate defence for an MLRO who fails their statutory duty.</div>
+        </div>
+      </div>
+
+      <h3>Board and senior management responsibilities</h3>
+      <p>Under MLR 2017, a member of the board or senior management must be appointed to be responsible for compliance with the MLRs. Their responsibilities include:</p>
+      <ul>
+        <li>Approving the firm-wide risk assessment</li>
+        <li>Reviewing and approving AML policies</li>
+        <li>Receiving and challenging the MLRO's annual report</li>
+        <li>Approving high-risk customer relationships (including PEPs)</li>
+        <li>Ensuring adequate resources are allocated to AML compliance</li>
+        <li>Understanding the firm's ML/TF risk profile — not just delegating it</li>
+      </ul>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">🔍 MLRO tool</div>
+          <div class="tl-title">Demonstrate your screening controls to the board</div>
+          <div class="tl-sub">FinCrimeRadar is useful for board-level demonstrations of what screening controls do — and what happens when they work correctly.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Open the tool →</a>
+      </div>
+    </section>
+
+    <!-- SCREENING CONTROLS -->
+    <section class="article-section" id="screening-controls">
+      <div class="section-num">Control 04</div>
+      <h2>Screening as a compliance control</h2>
+      <p>Financial crime screening — sanctions, PEP, and adverse media — is not just a regulatory obligation. It is an operational control that sits within your broader AML framework and must be actively managed, evidenced, and audited.</p>
+
+      <h3>The screening control framework</h3>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-body"><h4>Data coverage</h4><p>Which lists are you screening against? Are they current? How frequently are they updated? OFAC updates the SDN list multiple times per day. Your screening system must keep pace.</p></div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-body"><h4>Matching configuration</h4><p>What threshold are you using? Too high → miss matches. Too low → drown in false positives. Fuzzy matching algorithms (like RapidFuzz) should be calibrated to your risk appetite and customer name universe.</p></div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-body"><h4>Alert management</h4><p>How are screening hits managed? Who reviews them? What documentation is required to clear a false positive? What happens when a true match is identified?</p></div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-body"><h4>Ongoing rescreening</h4><p>Screening at onboarding is not enough. You must rescreen existing customers when lists update — particularly for sanctions, where new designations can appear overnight.</p></div></div>
+        <div class="step"><div class="step-n">5</div><div class="step-body"><h4>Audit trail</h4><p>Every screening check must be documented: what was searched, when, against which lists, what results were returned, and what action was taken. This is your evidence of compliance.</p></div></div>
+      </div>
+
+      <div class="callout success">
+        <div class="callout-icon">✅</div>
+        <div class="callout-body">
+          <div class="callout-title">Good practice — screening governance</div>
+          <div class="callout-text">Best practice firms maintain a dedicated Screening Policy that covers: which lists are screened, the matching threshold rationale, alert triage procedures, false positive documentation, true match escalation process, rescreening frequency, and system vendor oversight. The policy should be reviewed annually and following any significant list update or new designation that affects the firm's customer base.</div>
+        </div>
+      </div>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">🛡️ Experience real screening</div>
+          <div class="tl-title">FinCrimeRadar shows you exactly how sanctions, PEP and adverse media screening works</div>
+          <div class="tl-sub">Try adjusting the threshold from 60% to 95% on a search — and see how it changes what matches appear. This is the calibration decision every compliance team faces.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Try the tool →</a>
+      </div>
+    </section>
+
+    <!-- ENFORCEMENT -->
+    <section class="article-section" id="enforcement">
+      <div class="section-num">Enforcement</div>
+      <h2>FCA enforcement: patterns and lessons</h2>
+      <p>The FCA issued over £186 million in financial crime fines in 2024/25, with 37 Final Notices. Financial crime — particularly AML and sanctions — accounted for 74% of FCA investigations opened in 2024/25. Understanding the patterns of enforcement is critical to prioritising your compliance investments.</p>
+
+      <h3>Recent enforcement cases — key lessons</h3>
+      <div class="enforcement-card">
+        <div class="ec-header">
+          <span class="ec-firm">Major UK bank — AML systems failure</span>
+          <span class="ec-fine">£100m+ fine</span>
+        </div>
+        <div class="ec-body">
+          <div class="ec-failures"><strong>Failures:</strong> Inadequate transaction monitoring rules that had not been updated for years; failure to file SARs on multiple red-flag customers; CDD files that lacked basic source of funds documentation; MLRO unable to demonstrate oversight of the AML programme.</div>
+          <div class="ec-lesson">Key lesson: AML systems must be actively maintained and tested — a system that worked five years ago may not work today as criminal methodologies evolve.</div>
+        </div>
+      </div>
+
+      <div class="enforcement-card">
+        <div class="ec-header">
+          <span class="ec-firm">Fintech / challenger bank — sanctions screening gap</span>
+          <span class="ec-fine">£50m+ fine + restrictions</span>
+        </div>
+        <div class="ec-body">
+          <div class="ec-failures"><strong>Failures:</strong> Sanctions screening not applied to all payment types; gaps in real-time screening for faster payments; failure to identify beneficial ownership of legal entity customers; inadequate governance — CEO not aware of sanctions compliance gaps.</div>
+          <div class="ec-lesson">Key lesson: Fintechs are held to the same standard as traditional banks. Rapid growth does not excuse compliance deficiencies — the FCA expects controls to scale with the business.</div>
+        </div>
+      </div>
+
+      <div class="enforcement-card">
+        <div class="ec-header">
+          <span class="ec-firm">Payment service provider — PEP screening failure</span>
+          <span class="ec-fine">£20m+ fine</span>
+        </div>
+        <div class="ec-body">
+          <div class="ec-failures"><strong>Failures:</strong> PEP screening database not updated; multiple PEP customers onboarded without EDD; source of wealth not obtained despite clear PEP triggers; no senior management approval for PEP relationships.</div>
+          <div class="ec-lesson">Key lesson: PEP screening is not a one-time event at onboarding. Existing customers must be rescreened when they become PEPs (e.g. following an election), and EDD must be applied immediately.</div>
+        </div>
+      </div>
+
+      <h3>The FCA's enforcement toolkit</h3>
+      <table class="data-table">
+        <thead><tr><th>Tool</th><th>Trigger</th><th>Impact</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Section 166 (skilled person)</strong></td><td>FCA has concerns but wants independent review</td><td>Expensive, disruptive, precursor to enforcement</td></tr>
+          <tr><td><strong>Supervisory notice</strong></td><td>Immediate risk requiring urgent action</td><td>Restrictions on business activities</td></tr>
+          <tr><td><strong>Final Notice (fine)</strong></td><td>Breaches proven after investigation</td><td>Unlimited fine, public censure</td></tr>
+          <tr><td><strong>Prohibition order</strong></td><td>Individual unfit for senior role</td><td>Individual banned from regulated industry</td></tr>
+          <tr><td><strong>Variation of permission</strong></td><td>Serious ongoing concerns</td><td>Restriction or removal of regulated activities</td></tr>
+          <tr><td><strong>Criminal prosecution</strong></td><td>Deliberate or reckless breaches</td><td>Up to 14 years imprisonment</td></tr>
+        </tbody>
+      </table>
+
+      <div class="quiz" id="q1">
+        <div class="quiz-label">🧠 Final knowledge check</div>
+        <div class="quiz-q">The FCA is conducting a supervisory visit. Which of the following would be the strongest evidence that your AML training programme is effective?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">A) A training policy that states all staff must complete annual AML training</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">B) Attendance records showing 100% of staff completed the training module</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,true)">C) Post-training assessment results showing 85%+ pass rates, remediation records for failures, and improved SAR quality metrics over time</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">D) A certificate from the training provider confirming delivery</button>
+        </div>
+        <div class="quiz-feedback" id="q1-fb"></div>
+      </div>
+    </section>
+
+    <!-- OUTLOOK -->
+    <section class="article-section" id="outlook">
+      <div class="section-num">What's coming</div>
+      <h2>The 2026–2028 regulatory horizon</h2>
+      <p>The UK's AML regulatory landscape is undergoing significant transformation. Firms that start preparing now will be in a far stronger position than those that wait for implementation deadlines.</p>
+
+      <div class="callout new">
+        <div class="callout-icon">🆕</div>
+        <div class="callout-body">
+          <div class="callout-title">MLR statutory instrument — early 2026</div>
+          <div class="callout-text">HM Treasury is expected to lay a revised MLR statutory instrument before Parliament in early 2026, implementing the July 2025 reform decisions. Key changes: narrowed EDD scope, FATF blacklist-only for high-risk third countries, cryptoasset alignment. Firms should be planning their gap analysis now.</div>
+        </div>
+      </div>
+
+      <div class="callout new">
+        <div class="callout-icon">🆕</div>
+        <div class="callout-body">
+          <div class="callout-title">FCA as single AML supervisor for professional services — from ~2027</div>
+          <div class="callout-text">The FCA will absorb AML supervision of legal and accountancy firms currently supervised by 23 different professional body supervisors. Law firms, accountants, and tax advisers will face FCA-level supervisory scrutiny for the first time. The FCA's data-led, risk-based supervisory approach is materially more intensive than most professional body supervision.</div>
+        </div>
+      </div>
+
+      <div class="callout new">
+        <div class="callout-icon">🆕</div>
+        <div class="callout-body">
+          <div class="callout-title">FATF Mutual Evaluation of the UK — 2028</div>
+          <div class="callout-text">The UK's next FATF mutual evaluation is scheduled for 2028. This will be the most significant external assessment of the UK's AML regime in a decade — covering legislative reforms, the new supervisory structure, and FCA enforcement effectiveness. The UK's rating will affect its international standing and the de-risking decisions of global correspondent banks.</div>
+        </div>
+      </div>
+
+      <h3>What firms should do now</h3>
+      <ul>
+        <li><strong>Gap analysis</strong> — assess your current EDD practices against the narrowed scope in the July 2025 MLR reforms. Where are you applying EDD that will no longer be required? Where do you have gaps?</li>
+        <li><strong>PEP framework review</strong> — implement the FG25/3 domestic PEP guidance. Document your updated PEP risk methodology and update your policies.</li>
+        <li><strong>TM system audit</strong> — commission an independent review of transaction monitoring rule calibration. FCA supervisory focus on TM is intensifying.</li>
+        <li><strong>Training refresh</strong> — ensure training covers the 2025 regulatory changes, including PEP guidance and Failure to Prevent Fraud offence.</li>
+        <li><strong>MLRO report quality</strong> — the MLRO's annual board report should be specific to your firm, not generic. If it could apply to any regulated firm, rewrite it.</li>
+      </ul>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">🛡️ Stay ahead of regulatory change</div>
+          <div class="tl-title">FinCrimeRadar tracks the latest sanctions designations and PEP data</div>
+          <div class="tl-sub">Use FinCrimeRadar to understand the current state of sanctions lists — including post-July 2025 FATF blacklist designations that now trigger mandatory EDD.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Screen now →</a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="article-section" id="faq">
+      <div class="section-num">FAQ</div>
+      <h2>Frequently asked questions</h2>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How often must we rescreen existing customers against sanctions lists? <span class="faq-icon">+</span></div>
+        <div class="faq-a">The MLRs require ongoing monitoring, which includes rescreening. For sanctions, best practice (and FCA expectation) is real-time or near-real-time rescreening against live sanctions lists — particularly for OFAC (which updates multiple times daily) and OFSI. At a minimum, batch rescreening of your full customer base must occur whenever a significant new designation is made. Relying solely on annual periodic reviews for sanctions rescreening is likely to be inadequate given the pace of designation activity since 2022. For PEP status, periodic rescreening is typically acceptable — the FCA expects systems to flag when existing customers acquire PEP status (e.g. following an election).</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What is the difference between a Section 166 review and an FCA investigation? <span class="faq-icon">+</span></div>
+        <div class="faq-a">A Section 166 (FSMA 2000) "skilled person review" is commissioned by the firm at the FCA's requirement — the firm pays for an independent expert (agreed with the FCA) to review specified aspects of the business. It is a supervisory tool, not enforcement. An FCA investigation, by contrast, is conducted under the FCA's enforcement powers and can lead to a Final Notice (fine), prohibition order, or criminal prosecution. The two can overlap: a s166 that finds serious failings often precedes or runs in parallel with an enforcement investigation. Receiving a s166 requirement is a serious signal that the FCA has material concerns — firms should treat it as a significant regulatory event requiring immediate senior management attention.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Does the Failure to Prevent Fraud offence affect my AML obligations? <span class="faq-icon">+</span></div>
+        <div class="faq-a">The Failure to Prevent Fraud (FTPF) offence (in force 1 September 2025) creates a new corporate criminal offence for large organisations that fail to prevent fraud by associated persons. It is separate from AML obligations but closely related. Firms that already have strong AML controls (risk assessment, training, monitoring, governance) will find many of the "reasonable procedures" required under FTPF are already in place. The key difference: FTPF focuses on fraud prevention specifically, while AML focuses on detecting and reporting money laundering. Firms should conduct a FTPF gap analysis alongside their AML programme review.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What qualifications should an MLRO have? <span class="faq-icon">+</span></div>
+        <div class="faq-a">The FCA does not prescribe specific qualifications for MLROs but assesses fitness and propriety against criteria including: relevant knowledge and experience of AML/CTF regulation and practice; sufficient seniority and authority within the firm; adequate time allocation to perform the role; no conflicts of interest; clean regulatory and criminal history. In practice, most MLROs at regulated firms hold qualifications such as ICA Certificate or Diploma in AML, CAMS (ACAMS), or legal qualifications with AML specialisation. For FCA authorisation as SMF17, the FCA will assess whether the individual's qualifications and experience are commensurate with the complexity of the firm's business.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can our AML screening be fully automated, or do we need human review? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Screening tools can automate the matching process — but human review of screening hits above a certain threshold remains essential for most firms. The FCA expects a risk-based approach: very low-risk matches can be auto-cleared by system rules if those rules are well-calibrated and documented. Potential matches above a risk threshold must be reviewed by a trained analyst, and true matches (confirmed hits against sanctions lists in particular) must be escalated to the MLRO immediately. Fully automated disposition of all screening alerts, without any human review, is unlikely to satisfy FCA expectations — particularly for sanctions hits, where the consequences of an error are severe.</div>
+      </div>
+
+      <!-- SERIES COMPLETE -->
+      <div class="series-complete">
+        <div class="sc-badge">✓ Series complete</div>
+        <div class="sc-title">You've completed the UK AML Compliance Guide</div>
+        <div class="sc-sub">You now have a comprehensive understanding of the UK's AML legal framework, core obligations, and the controls that make compliance effective. Put your knowledge into practice.</div>
+        <div class="sc-actions">
+          <a href="/screen.html" class="sc-btn-primary">🛡️ Try the screening tool</a>
+          <a href="/learn.html" class="sc-btn-secondary">📚 Back to learning hub</a>
+        </div>
+      </div>
+
+      <div class="part-footer">
+        <div class="pf-prev">
+          <div class="pf-label">← Previous</div>
+          <a href="/aml-guide-part2.html" class="pf-link">Part 2: Core Obligations</a>
+        </div>
+        <div class="pf-center">Part 3 of 3 — Series complete ✓</div>
+        <div class="pf-next">
+          <div class="pf-label">Start over →</div>
+          <a href="/aml-guide-part1.html" class="pf-link">Part 1: Legal Framework</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  © 2026 FinCrimeRadar ·
+  <a href="/">Home</a>
+  <a href="/learn.html">Learn</a>
+  <a href="/screen.html">Screen</a>
+  <a href="/privacy.html">Privacy</a>
+  <a href="mailto:hello@fincrimeradar.org">Contact</a>
+  <br><br>
+  <span style="font-size:11px;color:#9ca3af;">This guide is for educational purposes only and does not constitute legal advice. Always consult qualified legal counsel for compliance matters. Last updated July 2025.</span>
+</footer>
+
+<script>
+  function updateProgress() {
+    const pct = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('fill').style.width = pct + '%';
+    document.getElementById('pct').textContent = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+  document.querySelectorAll('section[id]').forEach(s => {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          document.querySelectorAll('.toc-list a').forEach(l => l.classList.remove('active'));
+          const a = document.querySelector(`.toc-list a[href="#${e.target.id}"]`);
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' }).observe(s);
+  });
+  function doQuiz(id, btn, correct) {
+    const fb = document.getElementById(id + '-fb');
+    document.querySelectorAll(`#${id} .quiz-opt`).forEach(b => b.disabled = true);
+    btn.classList.add(correct ? 'correct' : 'wrong');
+    fb.classList.add('show', correct ? 'correct' : 'wrong');
+    fb.textContent = correct
+      ? '✅ Correct! The FCA looks for evidence of effectiveness — not just delivery. Assessment results, remediation records, and measurable outcomes (like SAR quality) are far stronger evidence than attendance records alone.'
+      : '❌ Not quite. Policies and attendance records are necessary but not sufficient. The FCA wants evidence that training actually works — assessed through results, remediation of failures, and measurable improvements in compliance outcomes.';
+  }
+  function toggleFaq(el) {
+    el.nextElementSibling.classList.toggle('open');
+    el.querySelector('.faq-icon').classList.toggle('open');
+  }
+</script>
+</body>
+</html>

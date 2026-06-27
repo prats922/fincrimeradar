@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UK AML Compliance: Part 2 — Core Obligations | FinCrimeRadar</title>
+  <meta name="description" content="Part 2 of the UK AML compliance guide. Covers risk assessments, Customer Due Diligence (CDD/EDD/SDD), Suspicious Activity Reports (SARs), and record keeping obligations under MLR 2017." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:#ffffff; --off:#f7f8fa; --border:#e4e7ec;
+      --muted:#6b7280; --text:#111827; --navy:#0f2044;
+      --accent:#7c3aed; --accent-h:#6d28d9; --accent-light:#ede9fe;
+      --accent-border:#c4b5fd;
+      --danger:#dc2626; --success:#16a34a; --warning:#d97706;
+      --blue:#1d5fc4; --teal:#0d9488;
+    }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
+
+    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:60px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-logo { width:26px; height:26px; }
+    .nav-name { font-size:15px; font-weight:600; color:var(--navy); }
+    .nav-name span { color:#1d5fc4; }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:var(--muted); text-decoration:none; }
+    .nav-links a:hover { color:var(--navy); }
+    .nav-cta { padding:7px 16px; background:#1d5fc4; color:#fff; border-radius:6px; font-size:13px; font-weight:500; text-decoration:none; }
+
+    .progress-bar { position:fixed; top:60px; left:0; width:0%; height:3px; background:var(--accent); z-index:199; transition:width 0.1s; }
+
+    .series-hero { background:linear-gradient(135deg,#2d1b69 0%,#4c1d95 100%); color:#fff; padding:4rem 2rem 3rem; }
+    .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:#c4b5fd; margin-bottom:1.25rem; }
+    .series-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(1.9rem,4vw,3rem); font-weight:400; line-height:1.2; margin-bottom:0.75rem; max-width:760px; }
+    .series-hero h1 em { font-style:italic; color:#c4b5fd; }
+    .series-sub { font-size:16px; color:#ddd6fe; max-width:620px; line-height:1.7; margin-bottom:2rem; }
+    .series-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#a78bfa; }
+
+    .part-nav { background:var(--white); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; gap:0; overflow-x:auto; }
+    .part-link { padding:14px 20px; font-size:13px; font-weight:500; color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; }
+    .part-link:hover { color:var(--navy); }
+    .part-link.done { color:var(--success); }
+    .part-link.active { color:var(--accent); border-bottom-color:var(--accent); }
+
+    .article-layout { display:grid; grid-template-columns:220px 1fr; gap:2rem; max-width:1080px; margin:0 auto; padding:2.5rem 1.5rem; align-items:start; }
+    .toc { position:sticky; top:105px; background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.25rem; }
+    .toc-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--muted); margin-bottom:0.875rem; }
+    .toc-list { list-style:none; }
+    .toc-list a { font-size:12.5px; color:var(--muted); text-decoration:none; display:block; padding:5px 8px; border-radius:6px; transition:all 0.15s; border-left:2px solid transparent; }
+    .toc-list a:hover,.toc-list a.active { color:var(--accent); background:var(--accent-light); border-left-color:var(--accent); }
+    .toc-progress { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); }
+    .toc-progress-label { font-size:11px; color:var(--muted); margin-bottom:6px; display:flex; justify-content:space-between; }
+    .toc-bar { height:4px; background:var(--border); border-radius:99px; overflow:hidden; }
+    .toc-fill { height:100%; background:var(--accent); border-radius:99px; transition:width 0.2s; width:0%; }
+    .part-links-sidebar { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); display:flex; flex-direction:column; gap:5px; }
+    .pls-link { font-size:12px; color:var(--muted); text-decoration:none; padding:5px 8px; border-radius:6px; }
+    .pls-link:hover { color:var(--accent); background:var(--accent-light); }
+    .pls-link.active { color:var(--accent); font-weight:600; }
+
+    .article-body { min-width:0; }
+    .article-section { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:2.25rem; margin-bottom:1.25rem; }
+    .section-num { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--accent); margin-bottom:0.5rem; }
+    .article-section h2 { font-family:'DM Serif Display',Georgia,serif; font-size:24px; font-weight:400; color:var(--navy); margin-bottom:1rem; line-height:1.3; }
+    .article-section h3 { font-size:16px; font-weight:600; color:var(--navy); margin:1.75rem 0 0.65rem; }
+    .article-section p { font-size:14.5px; color:#374151; margin-bottom:0.9rem; line-height:1.75; }
+    .article-section ul,.article-section ol { padding-left:1.5rem; margin-bottom:0.9rem; }
+    .article-section li { font-size:14.5px; color:#374151; margin-bottom:0.45rem; line-height:1.65; }
+    .article-section a { color:var(--blue); text-decoration:none; }
+    .article-section a:hover { text-decoration:underline; }
+
+    /* CDD TIER CARDS */
+    .cdd-tiers { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:1.5rem 0; }
+    .cdd-tier { border-radius:12px; padding:1.25rem; }
+    .cdd-tier.sdd { background:#f0fdf4; border:1px solid #86efac; border-top:3px solid var(--success); }
+    .cdd-tier.standard { background:#eff6ff; border:1px solid #bfdbfe; border-top:3px solid var(--blue); }
+    .cdd-tier.edd { background:#fff5f5; border:1px solid #fca5a5; border-top:3px solid var(--danger); }
+    .cdd-tier-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:6px; }
+    .sdd .cdd-tier-label { color:var(--success); }
+    .standard .cdd-tier-label { color:var(--blue); }
+    .edd .cdd-tier-label { color:var(--danger); }
+    .cdd-tier h3 { font-size:14px; font-weight:600; color:var(--navy); margin-bottom:8px; margin-top:0; }
+    .cdd-tier p { font-size:12.5px; line-height:1.55; margin-bottom:6px; }
+    .sdd p { color:#166534; }
+    .standard p { color:#1e40af; }
+    .edd p { color:#991b1b; }
+    .cdd-tier ul { padding-left:1rem; margin:0; }
+    .cdd-tier li { font-size:12px; margin-bottom:3px; }
+    .sdd li { color:#166534; }
+    .standard li { color:#1e40af; }
+    .edd li { color:#991b1b; }
+
+    /* PROCESS STEPS */
+    .steps { margin:1.5rem 0; }
+    .step { display:flex; gap:14px; margin-bottom:1rem; align-items:flex-start; }
+    .step-n { width:30px; height:30px; border-radius:50%; background:var(--accent); color:#fff; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+    .step-body h4 { font-size:14px; font-weight:600; color:var(--navy); margin-bottom:3px; }
+    .step-body p { font-size:13px; color:var(--muted); margin:0; }
+
+    /* SAR FLOWCHART */
+    .sar-flow { margin:1.5rem 0; }
+    .sf-step { display:flex; align-items:flex-start; gap:14px; margin-bottom:8px; }
+    .sf-dot { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+    .sf-dot.blue { background:#dbeafe; }
+    .sf-dot.yellow { background:#fef3c7; }
+    .sf-dot.green { background:#dcfce7; }
+    .sf-dot.red { background:#fee2e2; }
+    .sf-dot.purple { background:#ede9fe; }
+    .sf-body { flex:1; background:var(--off); border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; }
+    .sf-body h4 { font-size:13px; font-weight:600; color:var(--navy); margin-bottom:3px; }
+    .sf-body p { font-size:12.5px; color:var(--muted); margin:0; }
+    .sf-arrow { text-align:center; color:var(--muted); margin:2px 0 2px 18px; font-size:16px; }
+    .sf-time { display:inline-block; font-size:11px; font-weight:600; color:var(--danger); background:#fee2e2; padding:2px 7px; border-radius:4px; margin-top:4px; }
+
+    /* RISK MATRIX */
+    .risk-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:1.25rem 0; }
+    .risk-cell { border-radius:10px; padding:1rem 1.1rem; }
+    .risk-high { background:#fff5f5; border:1px solid #fca5a5; }
+    .risk-medium { background:#fef3c7; border:1px solid #fcd34d; }
+    .risk-cell .rc-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:6px; }
+    .risk-high .rc-label { color:var(--danger); }
+    .risk-medium .rc-label { color:var(--warning); }
+    .risk-cell ul { padding-left:1rem; margin:0; }
+    .risk-cell li { font-size:12.5px; margin-bottom:3px; }
+    .risk-high li { color:#7f1d1d; }
+    .risk-medium li { color:#78350f; }
+
+    /* RECORD TABLE */
+    .data-table { width:100%; border-collapse:collapse; margin:1.25rem 0; font-size:13.5px; }
+    .data-table th { background:var(--navy); color:#fff; padding:9px 13px; text-align:left; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; }
+    .data-table th:first-child { border-radius:8px 0 0 0; }
+    .data-table th:last-child { border-radius:0 8px 0 0; }
+    .data-table td { padding:9px 13px; border-bottom:1px solid var(--border); color:var(--text); vertical-align:top; }
+    .data-table tr:last-child td { border-bottom:none; }
+    .data-table tr:nth-child(even) td { background:var(--off); }
+
+    /* CALLOUTS */
+    .callout { border-radius:10px; padding:1.1rem 1.4rem; margin:1.25rem 0; display:flex; gap:12px; }
+    .callout-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+    .callout-body { flex:1; }
+    .callout-title { font-size:12px; font-weight:700; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.4px; }
+    .callout-text { font-size:13.5px; line-height:1.6; }
+    .callout.info { background:#eff6ff; border:1px solid #bfdbfe; }
+    .callout.info .callout-title { color:#1e40af; }
+    .callout.info .callout-text { color:#1e3a8a; }
+    .callout.warning { background:#fffbeb; border:1px solid #fde68a; }
+    .callout.warning .callout-title { color:#92400e; }
+    .callout.warning .callout-text { color:#78350f; }
+    .callout.danger { background:#fff5f5; border:1px solid #fca5a5; }
+    .callout.danger .callout-title { color:#991b1b; }
+    .callout.danger .callout-text { color:#7f1d1d; }
+    .callout.success { background:#f0fdf4; border:1px solid #86efac; }
+    .callout.success .callout-title { color:#166534; }
+    .callout.success .callout-text { color:#14532d; }
+    .callout.new { background:#f0fdf4; border:1px solid #86efac; border-left:3px solid var(--success); }
+    .callout.new .callout-title { color:#166534; }
+    .callout.new .callout-text { color:#14532d; }
+
+    /* TRY TOOL */
+    .try-tool { background:linear-gradient(135deg,#2d1b69 0%,#4c1d95 100%); border-radius:12px; padding:1.5rem 1.75rem; margin:1.75rem 0; display:flex; align-items:center; justify-content:space-between; gap:1.25rem; flex-wrap:wrap; }
+    .try-tool .tl { flex:1; }
+    .try-tool .tl-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:#c4b5fd; margin-bottom:5px; }
+    .try-tool .tl-title { font-size:16px; font-weight:600; color:#fff; margin-bottom:4px; line-height:1.4; }
+    .try-tool .tl-sub { font-size:13px; color:#a78bfa; }
+    .try-tool .tl-btn { padding:10px 20px; background:var(--accent); color:#fff; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap; transition:all 0.15s; }
+    .try-tool .tl-btn:hover { background:#6d28d9; transform:translateY(-1px); }
+
+    /* QUIZ */
+    .quiz { background:var(--accent-light); border:1px solid var(--accent-border); border-radius:12px; padding:1.4rem; margin:1.5rem 0; }
+    .quiz-label { font-size:11px; font-weight:700; color:#5b21b6; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:0.65rem; }
+    .quiz-q { font-size:15px; font-weight:600; color:var(--navy); margin-bottom:0.875rem; }
+    .quiz-opts { display:flex; flex-direction:column; gap:7px; }
+    .quiz-opt { padding:9px 13px; border:1.5px solid var(--accent-border); border-radius:7px; font-size:13.5px; cursor:pointer; background:var(--white); color:var(--text); transition:all 0.15s; text-align:left; font-family:'Inter',sans-serif; }
+    .quiz-opt:hover { border-color:var(--accent); color:var(--accent); }
+    .quiz-opt.correct { border-color:var(--success); background:#f0fdf4; color:var(--success); }
+    .quiz-opt.wrong { border-color:var(--danger); background:#fff5f5; color:var(--danger); }
+    .quiz-feedback { display:none; margin-top:0.875rem; font-size:13.5px; padding:10px 13px; border-radius:7px; }
+    .quiz-feedback.show { display:block; }
+    .quiz-feedback.correct { background:#f0fdf4; color:#166534; border:1px solid #86efac; }
+    .quiz-feedback.wrong { background:#fff5f5; color:#991b1b; border:1px solid #fca5a5; }
+
+    /* FAQ */
+    .faq-item { border:1px solid var(--border); border-radius:10px; margin-bottom:7px; overflow:hidden; }
+    .faq-q { padding:0.9rem 1.1rem; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-size:14px; font-weight:500; color:var(--navy); background:var(--white); user-select:none; }
+    .faq-q:hover { background:var(--off); }
+    .faq-icon { font-size:17px; color:var(--muted); transition:transform 0.2s; flex-shrink:0; }
+    .faq-icon.open { transform:rotate(45deg); }
+    .faq-a { display:none; padding:0 1.1rem 0.9rem; font-size:13.5px; color:#374151; line-height:1.7; border-top:1px solid var(--border); background:#fafafa; }
+    .faq-a.open { display:block; padding-top:0.9rem; }
+
+    .pull-quote { font-family:'DM Serif Display',Georgia,serif; font-size:18px; font-style:italic; color:var(--navy); border-left:3px solid var(--accent); padding-left:1.25rem; margin:1.5rem 0; line-height:1.6; }
+
+    .part-footer { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-top:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    .pf-prev,.pf-next { display:flex; flex-direction:column; gap:4px; }
+    .pf-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--muted); }
+    .pf-link { font-size:14px; font-weight:600; color:var(--blue); text-decoration:none; }
+    .pf-link:hover { text-decoration:underline; }
+    .pf-next { text-align:right; }
+    .pf-center { font-size:13px; color:var(--muted); }
+
+    .badge-5yr { background:#dbeafe; color:#1e40af; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700; }
+    .badge-10yr { background:#ede9fe; color:#5b21b6; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700; }
+    .badge-req { background:#fee2e2; color:#991b1b; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700; }
+
+    footer { background:var(--white); border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:12px; color:var(--muted); margin-top:2rem; }
+    footer a { color:var(--muted); text-decoration:none; margin:0 8px; }
+    footer a:hover { color:var(--blue); }
+
+    @media (max-width:768px) {
+      .article-layout { grid-template-columns:1fr; }
+      .toc { display:none; }
+      .series-hero { padding:2.5rem 1.25rem 2rem; }
+      .article-section { padding:1.5rem; }
+      .try-tool { flex-direction:column; }
+      .cdd-tiers { grid-template-columns:1fr; }
+      .risk-grid { grid-template-columns:1fr; }
+      nav { padding:0 1rem; }
+      .nav-links .hm { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <a class="nav-brand" href="/">
+    <svg class="nav-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="14" stroke="#1d5fc4" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="9" stroke="#1d5fc4" stroke-width="1" stroke-dasharray="3 2"/>
+      <circle cx="16" cy="16" r="4" stroke="#1d5fc4" stroke-width="0.75" stroke-dasharray="2 2"/>
+      <circle cx="16" cy="16" r="1.5" fill="#1d5fc4"/>
+      <line x1="16" y1="16" x2="25" y2="7" stroke="#1d5fc4" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="22" cy="10" r="2" fill="#dc2626"/>
+    </svg>
+    <span class="nav-name">Fin<span>Crime</span>Radar</span>
+  </a>
+  <div class="nav-links">
+    <a href="/learn.html" class="hm">Learn</a>
+    <a href="/screen.html" class="hm">Screen</a>
+    <a href="/screen.html" class="nav-cta">Try the tool →</a>
+  </div>
+</nav>
+
+<div class="series-hero">
+  <div class="series-tag">📋 3-Part Series · Part 2 of 3</div>
+  <h1>UK AML Compliance: <em>Core Obligations</em></h1>
+  <p class="series-sub">Risk assessments, Customer Due Diligence, Suspicious Activity Reports, and record keeping — the five obligations every regulated firm must get right. Practical, detailed, and updated for 2026.</p>
+  <div class="series-meta">
+    <span>📖 22 min read</span>
+    <span>⚖️ MLR 2017 · POCA 2002</span>
+    <span>🇬🇧 UK-specific</span>
+  </div>
+</div>
+
+<div class="part-nav">
+  <a href="/aml-guide-part1.html" class="part-link done">✓ Part 1: Legal Framework</a>
+  <a href="/aml-guide-part2.html" class="part-link active">Part 2: Core Obligations</a>
+  <a href="/aml-guide-part3.html" class="part-link">Part 3: Controls & Enforcement</a>
+</div>
+
+<div class="article-layout">
+  <aside>
+    <div class="toc">
+      <div class="toc-title">In this part</div>
+      <ul class="toc-list">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#risk-assessment">Risk Assessment</a></li>
+        <li><a href="#cdd">Customer Due Diligence</a></li>
+        <li><a href="#edd">Enhanced Due Diligence</a></li>
+        <li><a href="#pep-cdd">PEP CDD</a></li>
+        <li><a href="#sars">SARs</a></li>
+        <li><a href="#record-keeping">Record Keeping</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="toc-progress">
+        <div class="toc-progress-label"><span>Progress</span><span id="pct">0%</span></div>
+        <div class="toc-bar"><div class="toc-fill" id="fill"></div></div>
+      </div>
+      <div class="part-links-sidebar">
+        <div class="toc-title">Series</div>
+        <a href="/aml-guide-part1.html" class="pls-link">✓ Part 1: Legal Framework</a>
+        <a href="/aml-guide-part2.html" class="pls-link active">Part 2: Core Obligations</a>
+        <a href="/aml-guide-part3.html" class="pls-link">Part 3: Controls & Enforcement</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="article-body">
+
+    <!-- OVERVIEW -->
+    <section class="article-section" id="overview">
+      <div class="section-num">Introduction</div>
+      <h2>The five core compliance obligations</h2>
+      <p>The Money Laundering Regulations 2017 impose five core operational obligations on every firm in scope. These are not optional best practices — they are legal requirements, breaches of which can result in FCA enforcement action, criminal prosecution of the MLRO, and unlimited fines.</p>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-body"><h4>Firm-wide risk assessment</h4><p>Identify and document your organisation's exposure to ML/TF risk across products, customers, geographies, and channels.</p></div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-body"><h4>Customer Due Diligence (CDD)</h4><p>Identify and verify your customers and beneficial owners. Apply SDD, standard CDD, or EDD proportionate to risk.</p></div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-body"><h4>Suspicious Activity Reports (SARs)</h4><p>Report suspected money laundering or terrorist financing to the NCA via UKFIU as soon as practicable.</p></div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-body"><h4>Record keeping</h4><p>Retain CDD documents and transaction records for 5 years. Delete after 5 years under UK GDPR (with limited exceptions).</p></div></div>
+        <div class="step"><div class="step-n">5</div><div class="step-body"><h4>Staff training</h4><p>Ensure all relevant employees understand AML law, the firm's risk assessment, CDD procedures, and how to report suspicions.</p></div></div>
+      </div>
+      <div class="pull-quote">"MLR 2017 is not a compliance checklist. It is a risk-based framework — and the FCA will assess whether your controls are proportionate to the risks your firm actually faces, not whether you have ticked boxes."</div>
+    </section>
+
+    <!-- RISK ASSESSMENT -->
+    <section class="article-section" id="risk-assessment">
+      <div class="section-num">Obligation 01</div>
+      <h2>Firm-wide risk assessment</h2>
+      <p>The firm-wide risk assessment (FWRA) is the foundation of your entire AML programme. Under Regulation 18 MLR 2017, every relevant person must identify and assess the risks of money laundering and terrorist financing to which their business is subject — and must document this assessment in writing.</p>
+
+      <h3>What the FWRA must cover</h3>
+      <p>The MLR 2017 specifies that the FWRA must take into account at least the following risk factors:</p>
+      <div class="risk-grid">
+        <div class="risk-cell risk-high">
+          <div class="rc-label">🏢 Products & services</div>
+          <ul>
+            <li>Nature and complexity of products</li>
+            <li>Cash handling volumes</li>
+            <li>Cross-border payment capabilities</li>
+            <li>Anonymity features (e.g. e-money)</li>
+            <li>Virtual asset services</li>
+          </ul>
+        </div>
+        <div class="risk-cell risk-high">
+          <div class="rc-label">🌍 Geographic risk</div>
+          <ul>
+            <li>High-risk third countries (FATF lists)</li>
+            <li>Countries with weak AML regimes</li>
+            <li>Offshore financial centres</li>
+            <li>Conflict zones and sanctioned countries</li>
+          </ul>
+        </div>
+        <div class="risk-cell risk-medium">
+          <div class="rc-label">👥 Customer risk</div>
+          <ul>
+            <li>PEPs and their associates</li>
+            <li>Cash-intensive businesses</li>
+            <li>Non-face-to-face customers</li>
+            <li>Complex ownership structures</li>
+            <li>High-net-worth individuals</li>
+          </ul>
+        </div>
+        <div class="risk-cell risk-medium">
+          <div class="rc-label">📡 Delivery channels</div>
+          <ul>
+            <li>Online/digital onboarding</li>
+            <li>Third-party intermediaries</li>
+            <li>Correspondent relationships</li>
+            <li>Mobile payment channels</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>The risk assessment process</h3>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-body"><h4>Identify inherent risks</h4><p>What ML/TF risks exist in your business before controls are applied? Consider each risk factor category above.</p></div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-body"><h4>Assess risk level</h4><p>Rate each inherent risk: High / Medium / Low. Document your methodology and rationale.</p></div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-body"><h4>Identify mitigating controls</h4><p>What controls does the firm have in place to reduce each identified risk?</p></div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-body"><h4>Assess residual risk</h4><p>After applying controls, what risk remains? This is your residual risk — the basis for your ongoing monitoring.</p></div></div>
+        <div class="step"><div class="step-n">5</div><div class="step-body"><h4>Approve and document</h4><p>The FWRA must be approved by senior management and reviewed regularly (typically annually, or when risks change materially).</p></div></div>
+      </div>
+
+      <div class="callout warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <div class="callout-title">Common FCA finding — generic risk assessments</div>
+          <div class="callout-text">The FCA's risk assessment thematic review (2024) found that many firms produce risk assessments that are too generic — describing industry risks rather than the firm's specific risk profile. A risk assessment that could apply to any payment firm in the sector is unlikely to satisfy the FCA. Your FWRA should reflect your specific products, your specific customers, your specific geographies — not a template.</div>
+        </div>
+      </div>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">🔍 Risk assessment in practice</div>
+          <div class="tl-title">Customer screening is part of your risk assessment controls</div>
+          <div class="tl-sub">Sanctions, PEP, and adverse media screening are key risk assessment tools. Try FinCrimeRadar to understand what a screening control delivers.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Try the tool →</a>
+      </div>
+    </section>
+
+    <!-- CDD -->
+    <section class="article-section" id="cdd">
+      <div class="section-num">Obligation 02</div>
+      <h2>Customer Due Diligence (CDD)</h2>
+      <p>Customer Due Diligence is the process of identifying and verifying your customers — and, for legal entities, their beneficial owners. It is the cornerstone of AML compliance: if you do not know who you are dealing with, you cannot assess the risk they present.</p>
+
+      <h3>The three tiers of CDD</h3>
+      <div class="cdd-tiers">
+        <div class="cdd-tier sdd">
+          <div class="cdd-tier-label">🟢 Lower risk</div>
+          <h3>Simplified Due Diligence (SDD)</h3>
+          <p>Applied where risk is demonstrably low. Less intensive checks — though basic identity verification is still required.</p>
+          <ul>
+            <li>Listed companies on regulated markets</li>
+            <li>UK public authorities</li>
+            <li>Low-value e-money products (≤€150)</li>
+            <li>Regulated financial institutions</li>
+          </ul>
+        </div>
+        <div class="cdd-tier standard">
+          <div class="cdd-tier-label">🔵 Standard risk</div>
+          <h3>Standard CDD</h3>
+          <p>The default level. Identify the customer, verify identity, understand the relationship, and conduct ongoing monitoring.</p>
+          <ul>
+            <li>Verify name, address, DOB (individuals)</li>
+            <li>Identify UBO (>25% ownership threshold)</li>
+            <li>Understand purpose of relationship</li>
+            <li>Ongoing monitoring of transactions</li>
+          </ul>
+        </div>
+        <div class="cdd-tier edd">
+          <div class="cdd-tier-label">🔴 Higher risk</div>
+          <h3>Enhanced Due Diligence (EDD)</h3>
+          <p>Mandatory for PEPs, high-risk third countries, and other elevated risk situations. More intrusive checks required.</p>
+          <ul>
+            <li>Source of funds verification</li>
+            <li>Source of wealth documentation</li>
+            <li>Senior management approval</li>
+            <li>Enhanced ongoing monitoring</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Standard CDD — what must you collect?</h3>
+      <p><strong>For individuals:</strong></p>
+      <ul>
+        <li>Full name</li>
+        <li>Date of birth</li>
+        <li>Residential address</li>
+        <li>Verification documents (passport, driving licence, utility bill — reliable, independent sources)</li>
+      </ul>
+      <p><strong>For legal entities (companies, partnerships, trusts):</strong></p>
+      <ul>
+        <li>Name, legal form, registered address</li>
+        <li>Constitutional documents (articles of association, trust deed)</li>
+        <li>Names of senior persons responsible for operations</li>
+        <li>Identification of ultimate beneficial owners (UBOs) — individuals owning >25% shares or voting rights, or exercising significant control</li>
+        <li>Verification of UBO identity</li>
+      </ul>
+
+      <h3>When must CDD be conducted?</h3>
+      <table class="data-table">
+        <thead><tr><th>Trigger</th><th>CDD required?</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Establishing a business relationship</td><td>✅ Yes — before or during</td><td>Must complete before proceeding in most cases</td></tr>
+          <tr><td>Occasional transaction ≥€15,000</td><td>✅ Yes</td><td>Single or linked transactions</td></tr>
+          <tr><td>Suspicion of ML/TF</td><td>✅ Yes — regardless of thresholds</td><td>Even if relationship pre-dates suspicion</td></tr>
+          <tr><td>Doubt about previous verification</td><td>✅ Yes</td><td>Refresh CDD when reliability doubted</td></tr>
+          <tr><td>Periodic review (existing customers)</td><td>✅ Yes — risk-based</td><td>High risk: annually; Medium: 2–3yr; Low: 3–5yr</td></tr>
+          <tr><td>Change in customer circumstances</td><td>✅ Yes — trigger-based</td><td>Change of ownership, new product, higher risk activity</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <div class="callout-title">Beneficial ownership — the 25% threshold</div>
+          <div class="callout-text">Under MLR 2017, you must identify any individual who owns more than 25% of shares or voting rights in a legal entity, or who otherwise exercises significant control. This threshold is a minimum, not a ceiling — where risks are higher, you should look through lower ownership levels. If no individual meets the 25% threshold, you should identify the most senior person responsible for managing the entity as the beneficial owner.</div>
+        </div>
+      </div>
+
+      <div class="quiz" id="q1">
+        <div class="quiz-label">🧠 Knowledge check</div>
+        <div class="quiz-q">Under MLR 2017, what is the beneficial ownership threshold that triggers the requirement to identify and verify an individual's ownership of a company?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">A) 10%</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,true)">B) 25%</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">C) 50%</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">D) Any ownership</button>
+        </div>
+        <div class="quiz-feedback" id="q1-fb"></div>
+      </div>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">🔍 CDD in practice</div>
+          <div class="tl-title">Screening is a core component of CDD — try it here</div>
+          <div class="tl-sub">Sanctions and PEP screening are required as part of CDD for regulated firms. Enter a customer name to see what a compliant screening check reveals.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Run a CDD screen →</a>
+      </div>
+    </section>
+
+    <!-- EDD -->
+    <section class="article-section" id="edd">
+      <div class="section-num">Obligation 02b</div>
+      <h2>Enhanced Due Diligence (EDD)</h2>
+      <p>Enhanced Due Diligence is mandatory — not discretionary — in certain circumstances defined by MLR 2017. It requires additional measures beyond standard CDD to manage elevated risks.</p>
+
+      <h3>When is EDD mandatory?</h3>
+      <ul>
+        <li><strong>Politically Exposed Persons (PEPs)</strong> — and their family members and known close associates</li>
+        <li><strong>Correspondent banking relationships</strong> — between credit or financial institutions</li>
+        <li><strong>High-risk third countries</strong> — from July 2025 reforms, limited to FATF "Call for Action" (blacklist) countries</li>
+        <li><strong>Unusually complex transactions</strong> — from July 2025 MLR reforms, narrowed from "all complex transactions"</li>
+        <li><strong>Any other situation assessed as high risk</strong> — under the firm's risk-based approach</li>
+      </ul>
+
+      <h3>What does EDD involve?</h3>
+      <ul>
+        <li><strong>Source of funds (SoF)</strong> — documentary evidence of where the specific funds being used originate (e.g. sale proceeds, salary, inheritance)</li>
+        <li><strong>Source of wealth (SoW)</strong> — broader evidence of how the customer accumulated their overall wealth (e.g. business ownership, investment history, inheritance)</li>
+        <li><strong>Senior management approval</strong> — the business relationship must be approved by senior management before proceeding</li>
+        <li><strong>Enhanced ongoing monitoring</strong> — more frequent transaction reviews, lower thresholds for alert generation</li>
+        <li><strong>Purpose of the relationship</strong> — detailed understanding of why the customer needs the product/service</li>
+      </ul>
+
+      <div class="callout new">
+        <div class="callout-icon">🆕</div>
+        <div class="callout-body">
+          <div class="callout-title">July 2025 reform — EDD scope narrowed</div>
+          <div class="callout-text">HM Treasury's July 2025 MLR reform response confirms that EDD obligations will be narrowed: (1) EDD for "complex" transactions will be limited to "unusually complex" transactions — reducing burden on firms dealing with routine cross-border payments; (2) For high-risk third countries, EDD will now only be required for jurisdictions on the FATF "Call for Action" list (the FATF blacklist), rather than all countries on the FATF monitoring list. This is a significant reduction in EDD scope for many payment firms.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PEP CDD -->
+    <section class="article-section" id="pep-cdd">
+      <div class="section-num">Obligation 02c</div>
+      <h2>PEP screening and due diligence</h2>
+      <p>PEP screening is a mandatory component of CDD for all regulated firms. The key question is not just "is this person a PEP?" — it is "what EDD measures are proportionate to the risk this particular PEP presents?"</p>
+
+      <h3>Identifying PEPs — the screening obligation</h3>
+      <p>Firms must screen customers against PEP databases at onboarding and on an ongoing basis. This is where automated screening tools (like FinCrimeRadar) play a critical role — manual screening against the full universe of domestic and international PEPs is not practical at scale.</p>
+
+      <h3>The FG25/3 approach — domestic vs foreign PEPs</h3>
+      <table class="data-table">
+        <thead><tr><th>PEP type</th><th>Default risk under FG25/3</th><th>EDD required?</th><th>MLRO approval?</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Foreign PEP</strong></td><td>High</td><td>Always</td><td>Required (or delegated oversight)</td></tr>
+          <tr><td><strong>UK domestic PEP</strong></td><td>Lower (generally)</td><td>Risk-based</td><td>No longer automatic — MLRO oversight required</td></tr>
+          <tr><td><strong>International org PEP</strong></td><td>Medium</td><td>Risk-based</td><td>Risk-based</td></tr>
+          <tr><td><strong>RCA (family/close associate)</strong></td><td>Medium-High</td><td>Risk-based</td><td>Risk-based</td></tr>
+          <tr><td><strong>Former PEP (&lt;12 months)</strong></td><td>Medium-High</td><td>Risk-based — document reasons</td><td>Risk-based</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <div class="callout-title">Who is NOT a PEP under FG25/3?</div>
+          <div class="callout-text">The FCA's July 2025 guidance (FG25/3) confirms: non-executive board members of UK government departments are NOT PEPs; junior civil servants below senior grade are NOT PEPs; junior military officials are NOT PEPs. This addressed industry concerns that MPs' staffers, junior HMRC officials, and similar individuals were being treated as PEPs when their positions did not create meaningful corruption risk.</div>
+        </div>
+      </div>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">🔍 PEP screening in practice</div>
+          <div class="tl-title">See what PEP data looks like on a real screening tool</div>
+          <div class="tl-sub">Try screening UK ministers, foreign heads of state, or central bank governors — and see how FinCrimeRadar displays PEP category, position, and country data.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Screen a PEP →</a>
+      </div>
+    </section>
+
+    <!-- SARS -->
+    <section class="article-section" id="sars">
+      <div class="section-num">Obligation 03</div>
+      <h2>Suspicious Activity Reports (SARs)</h2>
+      <p>The SAR regime is one of the most important — and most legally exposed — aspects of AML compliance. Getting it wrong in either direction carries serious risk: fail to file and face criminal prosecution; file incorrectly and risk tipping off customers.</p>
+
+      <div class="pull-quote">"The SAR is not a bureaucratic form. It is the mechanism by which the regulated sector shares financial intelligence with law enforcement — and filing one correctly can make the difference between catching and missing a criminal."</div>
+
+      <h3>The SAR decision flowchart</h3>
+      <div class="sar-flow">
+        <div class="sf-step">
+          <div class="sf-dot blue">🔍</div>
+          <div class="sf-body"><h4>Step 1 — Identify the suspicion</h4><p>You know, suspect, or have reasonable grounds to suspect that a person is engaged in money laundering or terrorist financing. This can arise from CDD, transaction monitoring, adverse media, or staff reports.</p></div>
+        </div>
+        <div class="sf-arrow">↓</div>
+        <div class="sf-step">
+          <div class="sf-dot yellow">📝</div>
+          <div class="sf-body"><h4>Step 2 — Internal report to MLRO</h4><p>The employee submits an internal suspicious activity report (ISAR) to the MLRO. Do NOT discuss with the customer — tipping off risk. The MLRO must investigate promptly.</p><div class="sf-time">Immediately — do not delay</div></div>
+        </div>
+        <div class="sf-arrow">↓</div>
+        <div class="sf-step">
+          <div class="sf-dot purple">🤔</div>
+          <div class="sf-body"><h4>Step 3 — MLRO assessment</h4><p>The MLRO reviews the ISAR and any supporting information. They must decide whether there are reasonable grounds to know or suspect ML/TF. This is an objective test — "would a reasonable person suspect?"</p></div>
+        </div>
+        <div class="sf-arrow">↓</div>
+        <div class="sf-step">
+          <div class="sf-dot red">📤</div>
+          <div class="sf-body"><h4>Step 4 — Submit SAR to NCA (if grounds exist)</h4><p>If the MLRO concludes there are grounds, a SAR must be submitted to the NCA's UKFIU via SAR Online. Where the transaction has not yet occurred, submit a DAML (consent request) SAR.</p><div class="sf-time">As soon as practicable / before transaction where possible</div></div>
+        </div>
+        <div class="sf-arrow">↓</div>
+        <div class="sf-step">
+          <div class="sf-dot green">✅</div>
+          <div class="sf-body"><h4>Step 5 — Await consent / proceed</h4><p>For DAML SARs: the NCA has 7 working days to respond. Consent granted (or no response) = proceed. Consent refused = do NOT proceed. The MLRO must document all decisions including reasons for NOT filing a SAR.</p></div>
+        </div>
+      </div>
+
+      <h3>What makes a good SAR?</h3>
+      <p>The NCA and FCA have been explicit: quality matters more than quantity. A well-written SAR should include:</p>
+      <ul>
+        <li><strong>Who</strong> — full details of the subject (name, DOB, address, account numbers)</li>
+        <li><strong>What</strong> — the specific suspicious activity, with amounts and dates</li>
+        <li><strong>Why</strong> — why the activity is suspicious (not just a description of what happened)</li>
+        <li><strong>When</strong> — dates and timeline of the suspicious activity</li>
+        <li><strong>Where</strong> — jurisdictions, accounts, and institutions involved</li>
+        <li><strong>How</strong> — the method used (cash, wire transfer, cryptocurrency, etc.)</li>
+      </ul>
+
+      <div class="callout danger">
+        <div class="callout-icon">🚨</div>
+        <div class="callout-body">
+          <div class="callout-title">Tipping off — the most common compliance error</div>
+          <div class="callout-text">Once a SAR has been filed (or is being considered), you must not disclose this to the customer or any third party in a way that could prejudice an investigation. Common tipping-off scenarios: closing an account without explanation immediately after filing a SAR; telling the customer their account is "under review for compliance reasons"; discussing the SAR with colleagues who don't need to know. The safest approach: maintain normal business conduct while the SAR is under investigation unless instructed otherwise by law enforcement.</div>
+        </div>
+      </div>
+
+      <h3>SAR statistics — the scale of the regime</h3>
+      <table class="data-table">
+        <thead><tr><th>Metric</th><th>2023/24</th></tr></thead>
+        <tbody>
+          <tr><td>Total SARs submitted to UKFIU</td><td>~900,000+</td></tr>
+          <tr><td>Percentage from banking sector</td><td>~65%</td></tr>
+          <tr><td>DAML (consent) requests</td><td>~35,000</td></tr>
+          <tr><td>Consent refused by NCA</td><td>&lt;1% of DAML requests</td></tr>
+          <tr><td>Value of assets refused under DAML</td><td>£258 million+</td></tr>
+        </tbody>
+      </table>
+
+      <div class="quiz" id="q2">
+        <div class="quiz-label">🧠 Knowledge check</div>
+        <div class="quiz-q">If you submit a DAML (consent) SAR to the NCA and receive no response, how long must you wait before proceeding with the transaction?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="doQuiz('q2',this,false)">A) 24 hours</button>
+          <button class="quiz-opt" onclick="doQuiz('q2',this,false)">B) 3 working days</button>
+          <button class="quiz-opt" onclick="doQuiz('q2',this,true)">C) 7 working days</button>
+          <button class="quiz-opt" onclick="doQuiz('q2',this,false)">D) 28 days</button>
+        </div>
+        <div class="quiz-feedback" id="q2-fb"></div>
+      </div>
+    </section>
+
+    <!-- RECORD KEEPING -->
+    <section class="article-section" id="record-keeping">
+      <div class="section-num">Obligation 04</div>
+      <h2>Record keeping</h2>
+      <p>Record keeping is the audit trail that proves compliance. Under Regulation 40 MLR 2017, firms must retain specific records for defined periods — and, critically, must <em>delete</em> personal data after the retention period under UK GDPR (with limited exceptions).</p>
+
+      <h3>What records must be kept?</h3>
+      <table class="data-table">
+        <thead><tr><th>Record type</th><th>Content</th><th>Retention period</th></tr></thead>
+        <tbody>
+          <tr><td><strong>CDD documents</strong></td><td>Identity documents, verification data, beneficial ownership records</td><td><span class="badge-5yr">5 years</span> from end of relationship</td></tr>
+          <tr><td><strong>Transaction records</strong></td><td>Records sufficient to reconstruct each transaction — amounts, dates, counterparties, accounts</td><td><span class="badge-5yr">5 years</span> from end of relationship</td></tr>
+          <tr><td><strong>SAR records</strong></td><td>Internal reports, investigation notes, external SAR submissions, reasons for not filing</td><td><span class="badge-5yr">5 years</span></td></tr>
+          <tr><td><strong>Training records</strong></td><td>Training plans, attendance records, assessment results, content delivered</td><td><span class="badge-5yr">5 years</span></td></tr>
+          <tr><td><strong>Firm-wide risk assessment</strong></td><td>Current and all prior versions with approval records</td><td><span class="badge-5yr">5 years</span></td></tr>
+          <tr><td><strong>Policies and procedures</strong></td><td>Current and all prior versions</td><td><span class="badge-5yr">5 years</span></td></tr>
+          <tr><td><strong>Transaction monitoring</strong></td><td>Alerts generated, investigations conducted, outcomes and rationale</td><td><span class="badge-10yr">10 years</span> in some cases to enable reconstruction</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <div class="callout-title">The deletion obligation — MLR 2017 meets UK GDPR</div>
+          <div class="callout-text">MLR 2017 requires retention for 5 years. UK GDPR requires deletion when data is no longer needed. These obligations interact directly: after the 5-year retention period, you must delete personal data collected for AML purposes unless a specific exemption applies (e.g. ongoing legal proceedings, law enforcement request). Failure to delete is a UK GDPR breach. This means your AML record-keeping system must have automated deletion functionality — a manual process is unlikely to be reliable or auditable at scale. Note: record keeping requirements are not subject to the risk-based approach — there is no discretion on whether or how to comply.</div>
+        </div>
+      </div>
+
+      <h3>What "sufficient to reconstruct" means</h3>
+      <p>For transaction records, the test is whether the records enable the transaction to be fully reconstructed by law enforcement. This means you need to retain:</p>
+      <ul>
+        <li>The amount and currency of each transaction</li>
+        <li>The date and time of the transaction</li>
+        <li>The originating and receiving accounts/parties</li>
+        <li>The payment reference and any narrative</li>
+        <li>The channel through which the transaction was made</li>
+        <li>Any screening alerts triggered and their resolution</li>
+      </ul>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">📋 Screening audit trails</div>
+          <div class="tl-title">Every screening result should be part of your CDD record</div>
+          <div class="tl-sub">FinCrimeRadar's results show you exactly what data was checked — use this to understand what a screening audit trail should contain.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Run a screen →</a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="article-section" id="faq">
+      <div class="section-num">FAQ</div>
+      <h2>Frequently asked questions</h2>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What is the difference between SDD, CDD, and EDD? <span class="faq-icon">+</span></div>
+        <div class="faq-a">All three are customer due diligence measures — they differ in intensity. Simplified Due Diligence (SDD) can be applied to demonstrably lower-risk customers (e.g. regulated financial institutions, listed companies) and requires less intensive checks. Standard CDD is the default — full identity verification, beneficial ownership identification, and ongoing monitoring. Enhanced Due Diligence (EDD) is mandatory for PEPs, certain correspondent relationships, high-risk third countries, and unusually complex transactions — it requires additional measures including source of funds/wealth, senior management approval, and enhanced monitoring. The firm's risk assessment determines which tier applies to each customer.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can we rely on a third party to conduct CDD on our behalf? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Yes — Regulation 39 MLR 2017 allows firms to rely on third parties to conduct CDD, provided: (1) the third party is itself a relevant person under MLR 2017 or is subject to equivalent requirements; (2) you have a written agreement requiring the third party to provide CDD data within 2 working days on request; (3) the third party retains records in accordance with MLR 2017. Critically: you cannot delegate liability. If the third party's CDD is inadequate, the relying firm remains responsible. The FCA has been clear that "we relied on our outsource partner" is not an adequate defence.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What is the "reasonable grounds" test for filing a SAR? <span class="faq-icon">+</span></div>
+        <div class="faq-a">The Section 330 POCA obligation to file a SAR is triggered when a person knows or suspects — or has reasonable grounds to know or suspect — that another person is engaged in ML/TF. "Reasonable grounds" is an objective test: would a reasonable person with the same information and training have suspected money laundering? This is lower than the civil standard of balance of probabilities. You do not need to be certain, or even more likely than not, that ML/TF is occurring. If a reasonable compliance professional would have suspected it, the obligation to file is triggered — regardless of whether you personally believed it was suspicious.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How do we handle CDD when a customer refuses to provide information? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Under Regulation 31 MLR 2017, where a firm cannot complete CDD measures, it must: not carry out the transaction or establish the business relationship; terminate any existing business relationship; consider whether to file a SAR. A customer's refusal to provide CDD information is itself a potential red flag that should be documented and assessed. The FCA has been clear that "we could not obtain the documents" is not a reason to proceed with a relationship — if you cannot complete CDD, you should not have the customer. Note: the exit must be handled carefully to avoid tipping-off obligations if a SAR has been or is being considered.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Do the 5-year record retention periods run from the transaction date or the end of the relationship? <span class="faq-icon">+</span></div>
+        <div class="faq-a">For CDD documents and transaction records: the 5-year period runs from the end of the business relationship (or, for occasional transactions, from the date of the transaction). This means you retain all CDD and transaction records for the entire duration of the relationship PLUS 5 years after it ends. For SAR records: 5 years from the date the SAR was submitted. The practical implication: a 10-year customer relationship means records must be retained for 15 years total (10 years of relationship + 5 years after end), then deleted. Your data architecture must support this lifecycle management.</div>
+      </div>
+
+      <div class="part-footer">
+        <div class="pf-prev">
+          <div class="pf-label">← Previous</div>
+          <a href="/aml-guide-part1.html" class="pf-link">Part 1: Legal Framework</a>
+        </div>
+        <div class="pf-center">Part 2 of 3</div>
+        <div class="pf-next">
+          <div class="pf-label">Next →</div>
+          <a href="/aml-guide-part3.html" class="pf-link">Part 3: Controls & Enforcement →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  © 2026 FinCrimeRadar ·
+  <a href="/">Home</a>
+  <a href="/learn.html">Learn</a>
+  <a href="/screen.html">Screen</a>
+  <a href="/privacy.html">Privacy</a>
+  <a href="mailto:hello@fincrimeradar.org">Contact</a>
+  <br><br>
+  <span style="font-size:11px;color:#9ca3af;">This guide is for educational purposes only and does not constitute legal advice. Always consult qualified legal counsel for compliance matters. Last updated July 2025.</span>
+</footer>
+
+<script>
+  function updateProgress() {
+    const pct = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('fill').style.width = pct + '%';
+    document.getElementById('pct').textContent = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+  document.querySelectorAll('section[id]').forEach(s => {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          document.querySelectorAll('.toc-list a').forEach(l => l.classList.remove('active'));
+          const a = document.querySelector(`.toc-list a[href="#${e.target.id}"]`);
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' }).observe(s);
+  });
+  function doQuiz(id, btn, correct) {
+    const fb = document.getElementById(id + '-fb');
+    document.querySelectorAll(`#${id} .quiz-opt`).forEach(b => b.disabled = true);
+    btn.classList.add(correct ? 'correct' : 'wrong');
+    fb.classList.add('show', correct ? 'correct' : 'wrong');
+    if (id === 'q1') fb.textContent = correct ? '✅ Correct! 25% is the UBO threshold under MLR 2017 — any individual owning more than 25% of shares or voting rights, or exercising significant control, must be identified and verified.' : '❌ Not quite. The threshold is 25% under MLR 2017. Note: this is a minimum — firms should look through lower ownership levels in higher-risk situations.';
+    if (id === 'q2') fb.textContent = correct ? '✅ Correct! Under the DAML regime, the NCA has 7 working days to respond to a consent request. If no response is received within 7 working days, consent is deemed to have been granted and you may proceed.' : '❌ Not quite. The correct answer is 7 working days. This "moratorium period" is defined in POCA and gives the NCA time to investigate before a suspicious transaction proceeds.';
+  }
+  function toggleFaq(el) {
+    el.nextElementSibling.classList.toggle('open');
+    el.querySelector('.faq-icon').classList.toggle('open');
+  }
+</script>
+</body>
+</html>

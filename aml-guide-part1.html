@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UK AML Compliance: The Complete Guide — Part 1: The Legal Framework | FinCrimeRadar</title>
+  <meta name="description" content="Part 1 of the definitive guide to UK AML compliance. Covers MLR 2017, POCA 2002, Terrorism Act 2000, SAMLA 2018, and the FCA Financial Crime Guide — updated for 2026." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:#ffffff; --off:#f7f8fa; --border:#e4e7ec;
+      --muted:#6b7280; --text:#111827; --navy:#0f2044;
+      --accent:#1d5fc4; --accent-h:#1749a0; --accent-light:#eff6ff;
+      --danger:#dc2626; --success:#16a34a; --warning:#d97706;
+      --purple:#7c3aed; --teal:#0d9488;
+      --part-color: #1d5fc4;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
+
+    /* NAV */
+    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:60px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-logo { width:26px; height:26px; }
+    .nav-name { font-size:15px; font-weight:600; color:var(--navy); }
+    .nav-name span { color:var(--accent); }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.15s; }
+    .nav-links a:hover { color:var(--accent); }
+    .nav-cta { padding:7px 16px; background:var(--accent); color:#fff; border-radius:6px; font-size:13px; font-weight:500; text-decoration:none; }
+    .nav-cta:hover { background:var(--accent-h); color:#fff; }
+
+    /* PROGRESS */
+    .progress-bar { position:fixed; top:60px; left:0; width:0%; height:3px; background:var(--part-color); z-index:199; transition:width 0.1s; }
+
+    /* SERIES HERO */
+    .series-hero { background:linear-gradient(135deg, #0f2044 0%, #1a3a6b 100%); color:#fff; padding:4rem 2rem 3rem; }
+    .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:#93c5fd; margin-bottom:1.25rem; }
+    .series-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(1.9rem,4vw,3rem); font-weight:400; line-height:1.2; margin-bottom:0.75rem; max-width:760px; }
+    .series-hero h1 em { font-style:italic; color:#93c5fd; }
+    .series-sub { font-size:16px; color:#cbd5e1; max-width:620px; line-height:1.7; margin-bottom:2rem; }
+    .series-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#94a3b8; }
+    .series-meta span { display:flex; align-items:center; gap:5px; }
+
+    /* PART NAV */
+    .part-nav { background:var(--white); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; gap:0; overflow-x:auto; }
+    .part-link { padding:14px 20px; font-size:13px; font-weight:500; color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; }
+    .part-link:hover { color:var(--navy); }
+    .part-link.active { color:var(--accent); border-bottom-color:var(--accent); }
+    .part-link.done { color:var(--success); }
+
+    /* LAYOUT */
+    .article-layout { display:grid; grid-template-columns:220px 1fr; gap:2rem; max-width:1080px; margin:0 auto; padding:2.5rem 1.5rem; align-items:start; }
+
+    /* TOC */
+    .toc { position:sticky; top:105px; background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.25rem; }
+    .toc-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--muted); margin-bottom:0.875rem; }
+    .toc-list { list-style:none; }
+    .toc-list li { margin-bottom:2px; }
+    .toc-list a { font-size:12.5px; color:var(--muted); text-decoration:none; display:block; padding:5px 8px; border-radius:6px; transition:all 0.15s; border-left:2px solid transparent; }
+    .toc-list a:hover,.toc-list a.active { color:var(--accent); background:var(--accent-light); border-left-color:var(--accent); }
+    .toc-progress { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); }
+    .toc-progress-label { font-size:11px; color:var(--muted); margin-bottom:6px; display:flex; justify-content:space-between; }
+    .toc-bar { height:4px; background:var(--border); border-radius:99px; overflow:hidden; }
+    .toc-fill { height:100%; background:var(--accent); border-radius:99px; transition:width 0.2s; width:0%; }
+    .next-part { margin-top:1rem; padding:10px; background:var(--accent-light); border:1px solid #bfdbfe; border-radius:8px; }
+    .next-part-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--accent); margin-bottom:4px; }
+    .next-part a { font-size:12px; font-weight:600; color:var(--accent); text-decoration:none; }
+    .next-part a:hover { text-decoration:underline; }
+
+    /* ARTICLE */
+    .article-body { min-width:0; }
+    .article-section { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:2.25rem; margin-bottom:1.25rem; }
+    .section-num { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--accent); margin-bottom:0.5rem; }
+    .article-section h2 { font-family:'DM Serif Display',Georgia,serif; font-size:24px; font-weight:400; color:var(--navy); margin-bottom:1rem; line-height:1.3; }
+    .article-section h3 { font-size:16px; font-weight:600; color:var(--navy); margin:1.75rem 0 0.65rem; }
+    .article-section p { font-size:14.5px; color:#374151; margin-bottom:0.9rem; line-height:1.75; }
+    .article-section ul,.article-section ol { padding-left:1.5rem; margin-bottom:0.9rem; }
+    .article-section li { font-size:14.5px; color:#374151; margin-bottom:0.45rem; line-height:1.65; }
+    .article-section a { color:var(--accent); text-decoration:none; }
+    .article-section a:hover { text-decoration:underline; }
+
+    /* LAW CARD */
+    .law-card { border:1px solid var(--border); border-radius:12px; overflow:hidden; margin:1.5rem 0; }
+    .law-header { padding:1.25rem 1.5rem; display:flex; align-items:flex-start; gap:14px; }
+    .law-badge { padding:4px 10px; border-radius:6px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; white-space:nowrap; flex-shrink:0; margin-top:3px; }
+    .law-badge.primary { background:#fee2e2; color:#991b1b; }
+    .law-badge.secondary { background:#fef3c7; color:#92400e; }
+    .law-badge.tertiary { background:#ede9fe; color:#5b21b6; }
+    .law-badge.new { background:#dcfce7; color:#166534; }
+    .law-header-text h3 { font-size:16px; font-weight:600; color:var(--navy); margin-bottom:4px; }
+    .law-header-text p { font-size:13px; color:var(--muted); margin:0; }
+    .law-body { padding:0 1.5rem 1.25rem; }
+    .law-body p { font-size:14px; color:#374151; margin-bottom:0.5rem; }
+    .law-offences { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:8px; margin-top:0.75rem; }
+    .law-offence { background:var(--off); border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; }
+    .law-offence .offence-name { font-size:12px; font-weight:700; color:var(--navy); margin-bottom:3px; }
+    .law-offence .offence-desc { font-size:12px; color:var(--muted); line-height:1.45; }
+    .law-offence .offence-penalty { font-size:11px; font-weight:600; color:var(--danger); margin-top:4px; }
+
+    /* PENALTY SCALE */
+    .penalty-scale { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:1.25rem 0; }
+    .penalty-card { border-radius:10px; padding:1rem; text-align:center; }
+    .penalty-card .p-icon { font-size:22px; margin-bottom:6px; }
+    .penalty-card .p-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:4px; }
+    .penalty-card .p-val { font-size:17px; font-weight:700; margin-bottom:3px; }
+    .penalty-card .p-desc { font-size:11px; line-height:1.4; }
+    .p-civil { background:#fff5f5; border:1px solid #fca5a5; }
+    .p-civil .p-label,.p-civil .p-val { color:var(--danger); }
+    .p-civil .p-desc { color:#991b1b; }
+    .p-criminal { background:#fef3c7; border:1px solid #fcd34d; }
+    .p-criminal .p-label,.p-criminal .p-val { color:var(--warning); }
+    .p-criminal .p-desc { color:#92400e; }
+    .p-reputational { background:#ede9fe; border:1px solid #c4b5fd; }
+    .p-reputational .p-label,.p-reputational .p-val { color:var(--purple); }
+    .p-reputational .p-desc { color:#5b21b6; }
+
+    /* TIMELINE */
+    .timeline { position:relative; padding-left:28px; margin:1.5rem 0; }
+    .timeline::before { content:''; position:absolute; left:10px; top:6px; bottom:6px; width:2px; background:var(--border); }
+    .tl-item { position:relative; margin-bottom:1.25rem; }
+    .tl-dot { position:absolute; left:-22px; top:5px; width:12px; height:12px; border-radius:50%; background:var(--accent); border:2px solid var(--white); box-shadow:0 0 0 2px var(--accent); }
+    .tl-dot.new { background:var(--success); box-shadow:0 0 0 2px var(--success); }
+    .tl-year { font-size:11px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:0.4px; margin-bottom:2px; }
+    .tl-year.new { color:var(--success); }
+    .tl-title { font-size:14px; font-weight:600; color:var(--navy); margin-bottom:2px; }
+    .tl-desc { font-size:13px; color:var(--muted); line-height:1.5; }
+
+    /* CALLOUT */
+    .callout { border-radius:10px; padding:1.1rem 1.4rem; margin:1.25rem 0; display:flex; gap:12px; }
+    .callout-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+    .callout-body { flex:1; }
+    .callout-title { font-size:12px; font-weight:700; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.4px; }
+    .callout-text { font-size:13.5px; line-height:1.6; }
+    .callout.info { background:#eff6ff; border:1px solid #bfdbfe; }
+    .callout.info .callout-title { color:#1e40af; }
+    .callout.info .callout-text { color:#1e3a8a; }
+    .callout.warning { background:#fffbeb; border:1px solid #fde68a; }
+    .callout.warning .callout-title { color:#92400e; }
+    .callout.warning .callout-text { color:#78350f; }
+    .callout.danger { background:#fff5f5; border:1px solid #fca5a5; }
+    .callout.danger .callout-title { color:#991b1b; }
+    .callout.danger .callout-text { color:#7f1d1d; }
+    .callout.success { background:#f0fdf4; border:1px solid #86efac; }
+    .callout.success .callout-title { color:#166534; }
+    .callout.success .callout-text { color:#14532d; }
+    .callout.new { background:#f0fdf4; border:1px solid #86efac; border-left:3px solid var(--success); }
+    .callout.new .callout-title { color:#166534; }
+    .callout.new .callout-text { color:#14532d; }
+
+    /* TRY TOOL CTA */
+    .try-tool { background:linear-gradient(135deg,#0f2044 0%,#1a3a6b 100%); border-radius:12px; padding:1.5rem 1.75rem; margin:1.75rem 0; display:flex; align-items:center; justify-content:space-between; gap:1.25rem; flex-wrap:wrap; }
+    .try-tool .tl { flex:1; }
+    .try-tool .tl-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:#93c5fd; margin-bottom:5px; }
+    .try-tool .tl-title { font-size:16px; font-weight:600; color:#fff; margin-bottom:4px; line-height:1.4; }
+    .try-tool .tl-sub { font-size:13px; color:#94a3b8; }
+    .try-tool .tl-btn { padding:10px 20px; background:var(--accent); color:#fff; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap; transition:all 0.15s; display:inline-block; }
+    .try-tool .tl-btn:hover { background:#2563eb; transform:translateY(-1px); }
+
+    /* QUIZ */
+    .quiz { background:var(--accent-light); border:1px solid #bfdbfe; border-radius:12px; padding:1.4rem; margin:1.5rem 0; }
+    .quiz-label { font-size:11px; font-weight:700; color:#1e40af; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:0.65rem; }
+    .quiz-q { font-size:15px; font-weight:600; color:var(--navy); margin-bottom:0.875rem; }
+    .quiz-opts { display:flex; flex-direction:column; gap:7px; }
+    .quiz-opt { padding:9px 13px; border:1.5px solid #bfdbfe; border-radius:7px; font-size:13.5px; cursor:pointer; background:var(--white); color:var(--text); transition:all 0.15s; text-align:left; font-family:'Inter',sans-serif; }
+    .quiz-opt:hover { border-color:var(--accent); color:var(--accent); }
+    .quiz-opt.correct { border-color:var(--success); background:#f0fdf4; color:var(--success); }
+    .quiz-opt.wrong { border-color:var(--danger); background:#fff5f5; color:var(--danger); }
+    .quiz-feedback { display:none; margin-top:0.875rem; font-size:13.5px; padding:10px 13px; border-radius:7px; }
+    .quiz-feedback.show { display:block; }
+    .quiz-feedback.correct { background:#f0fdf4; color:#166534; border:1px solid #86efac; }
+    .quiz-feedback.wrong { background:#fff5f5; color:#991b1b; border:1px solid #fca5a5; }
+
+    /* TABLE */
+    .data-table { width:100%; border-collapse:collapse; margin:1.25rem 0; font-size:13.5px; }
+    .data-table th { background:var(--navy); color:#fff; padding:9px 13px; text-align:left; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; }
+    .data-table th:first-child { border-radius:8px 0 0 0; }
+    .data-table th:last-child { border-radius:0 8px 0 0; }
+    .data-table td { padding:9px 13px; border-bottom:1px solid var(--border); color:var(--text); vertical-align:top; }
+    .data-table tr:last-child td { border-bottom:none; }
+    .data-table tr:nth-child(even) td { background:var(--off); }
+    .badge-red { background:#fee2e2; color:#991b1b; padding:2px 7px; border-radius:4px; font-size:11px; font-weight:600; }
+    .badge-yellow { background:#fef3c7; color:#92400e; padding:2px 7px; border-radius:4px; font-size:11px; font-weight:600; }
+    .badge-green { background:#dcfce7; color:#166534; padding:2px 7px; border-radius:4px; font-size:11px; font-weight:600; }
+
+    /* PART NAV FOOTER */
+    .part-footer { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-top:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    .pf-prev,.pf-next { display:flex; flex-direction:column; gap:4px; }
+    .pf-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--muted); }
+    .pf-link { font-size:14px; font-weight:600; color:var(--accent); text-decoration:none; }
+    .pf-link:hover { text-decoration:underline; }
+    .pf-next { text-align:right; }
+    .pf-center { text-align:center; font-size:13px; color:var(--muted); }
+
+    /* HIGHLIGHT QUOTE */
+    .pull-quote { font-family:'DM Serif Display',Georgia,serif; font-size:18px; font-style:italic; color:var(--navy); border-left:3px solid var(--accent); padding-left:1.25rem; margin:1.5rem 0; line-height:1.6; }
+
+    /* STATS ROW */
+    .stats-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:10px; margin:1.25rem 0; }
+    .stat-card { background:var(--off); border:1px solid var(--border); border-radius:10px; padding:1rem; text-align:center; }
+    .stat-num { font-size:22px; font-weight:700; color:var(--navy); }
+    .stat-label { font-size:11px; color:var(--muted); margin-top:3px; }
+
+    /* FAQ */
+    .faq-item { border:1px solid var(--border); border-radius:10px; margin-bottom:7px; overflow:hidden; }
+    .faq-q { padding:0.9rem 1.1rem; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-size:14px; font-weight:500; color:var(--navy); background:var(--white); user-select:none; }
+    .faq-q:hover { background:var(--off); }
+    .faq-icon { font-size:17px; color:var(--muted); transition:transform 0.2s; flex-shrink:0; }
+    .faq-icon.open { transform:rotate(45deg); }
+    .faq-a { display:none; padding:0 1.1rem 0.9rem; font-size:13.5px; color:#374151; line-height:1.7; border-top:1px solid var(--border); background:#fafafa; }
+    .faq-a.open { display:block; padding-top:0.9rem; }
+
+    footer { background:var(--white); border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:12px; color:var(--muted); margin-top:2rem; }
+    footer a { color:var(--muted); text-decoration:none; margin:0 8px; }
+    footer a:hover { color:var(--accent); }
+
+    @media (max-width:768px) {
+      .article-layout { grid-template-columns:1fr; }
+      .toc { display:none; }
+      .series-hero { padding:2.5rem 1.25rem 2rem; }
+      .article-section { padding:1.5rem; }
+      .try-tool { flex-direction:column; }
+      .penalty-scale { grid-template-columns:1fr; }
+      nav { padding:0 1rem; }
+      .nav-links .hm { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <a class="nav-brand" href="/">
+    <svg class="nav-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="14" stroke="#1d5fc4" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="9" stroke="#1d5fc4" stroke-width="1" stroke-dasharray="3 2"/>
+      <circle cx="16" cy="16" r="4" stroke="#1d5fc4" stroke-width="0.75" stroke-dasharray="2 2"/>
+      <circle cx="16" cy="16" r="1.5" fill="#1d5fc4"/>
+      <line x1="16" y1="16" x2="25" y2="7" stroke="#1d5fc4" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="22" cy="10" r="2" fill="#dc2626"/>
+    </svg>
+    <span class="nav-name">Fin<span>Crime</span>Radar</span>
+  </a>
+  <div class="nav-links">
+    <a href="/learn.html" class="hm">Learn</a>
+    <a href="/screen.html" class="hm">Screen</a>
+    <a href="/screen.html" class="nav-cta">Try the tool →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="series-hero">
+  <div class="series-tag">📋 3-Part Series · Part 1 of 3</div>
+  <h1>UK AML Compliance: <em>The Legal Framework</em></h1>
+  <p class="series-sub">Everything FCA-regulated firms need to know about MLR 2017, POCA 2002, the Terrorism Act 2000, and SAMLA 2018 — the four pillars of UK AML law. Updated for 2026 including the July 2025 FCA PEP guidance and HM Treasury MLR reforms.</p>
+  <div class="series-meta">
+    <span>📖 20 min read</span>
+    <span>⚖️ Updated July 2025</span>
+    <span>🇬🇧 UK-specific</span>
+    <span>🎯 All FCA-regulated firms</span>
+  </div>
+</div>
+
+<!-- PART NAV -->
+<div class="part-nav">
+  <a href="/aml-guide-part1.html" class="part-link active">Part 1: Legal Framework</a>
+  <a href="/aml-guide-part2.html" class="part-link">Part 2: Core Obligations</a>
+  <a href="/aml-guide-part3.html" class="part-link">Part 3: Controls & Enforcement</a>
+</div>
+
+<div class="article-layout">
+
+  <!-- TOC -->
+  <aside>
+    <div class="toc">
+      <div class="toc-title">In this part</div>
+      <ul class="toc-list">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#mlr2017">MLR 2017</a></li>
+        <li><a href="#poca">POCA 2002</a></li>
+        <li><a href="#terrorism">Terrorism Act 2000</a></li>
+        <li><a href="#samla">SAMLA 2018</a></li>
+        <li><a href="#fca">FCA Framework</a></li>
+        <li><a href="#2026">2026 Changes</a></li>
+        <li><a href="#penalties">Penalties</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="toc-progress">
+        <div class="toc-progress-label"><span>Progress</span><span id="pct">0%</span></div>
+        <div class="toc-bar"><div class="toc-fill" id="fill"></div></div>
+      </div>
+      <div class="next-part">
+        <div class="next-part-label">Next →</div>
+        <a href="/aml-guide-part2.html">Part 2: Core Obligations →</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="article-body">
+
+    <!-- OVERVIEW -->
+    <section class="article-section" id="overview">
+      <div class="section-num">Introduction</div>
+      <h2>The four pillars of UK AML law</h2>
+
+      <p>The United Kingdom's anti-money laundering framework rests on four primary legislative pillars, each serving a distinct but interlocking function. Together, they create one of the most comprehensive AML regimes in the world — and, since 2025, one of the most actively enforced.</p>
+
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-num">£186M+</div><div class="stat-label">FCA fines issued 2024/25</div></div>
+        <div class="stat-card"><div class="stat-num">74%</div><div class="stat-label">of FCA investigations involve financial crime</div></div>
+        <div class="stat-card"><div class="stat-num">37</div><div class="stat-label">Final Notices issued by FCA 2024/25</div></div>
+        <div class="stat-card"><div class="stat-num">14 yrs</div><div class="stat-label">Maximum prison sentence for ML</div></div>
+      </div>
+
+      <div class="callout new">
+        <div class="callout-icon">🆕</div>
+        <div class="callout-body">
+          <div class="callout-title">2025–2026 updates</div>
+          <div class="callout-text">This guide incorporates the FCA's July 2025 PEP guidance (FG25/3), HM Treasury's July 2025 MLR reform response, the Failure to Prevent Fraud offence (in force September 2025), the FCA Financial Crime Guide amendments (PS24/17, November 2024), and the FCA's confirmation as Single Professional Services Supervisor (announced October 2025).</div>
+        </div>
+      </div>
+
+      <p>The four pillars are:</p>
+      <ol>
+        <li><strong>Money Laundering Regulations 2017 (MLR 2017)</strong> — the primary rulebook for AML compliance obligations</li>
+        <li><strong>Proceeds of Crime Act 2002 (POCA)</strong> — establishes criminal offences and the SAR regime</li>
+        <li><strong>Terrorism Act 2000</strong> — addresses terrorist financing obligations</li>
+        <li><strong>Sanctions and Anti-Money Laundering Act 2018 (SAMLA)</strong> — the post-Brexit UK sanctions framework</li>
+      </ol>
+
+      <p>Layered on top of these are the <strong>FCA's Financial Crime Guide (FCG)</strong>, FCA rules in SYSC 3.2.6R and SYSC 6.1.1R, the Senior Managers and Certification Regime (SM&CR), and a growing body of FCA guidance including the July 2025 PEP guidance (FG25/3).</p>
+
+      <div class="pull-quote">"Financial crime is one of our four strategic priorities for 2025–2030. Firms that fail to meet our expectations will face the full range of our supervisory and enforcement tools." — FCA, 2025</div>
+    </section>
+
+    <!-- MLR 2017 -->
+    <section class="article-section" id="mlr2017">
+      <div class="section-num">Pillar 01</div>
+      <h2>Money Laundering Regulations 2017</h2>
+
+      <div class="law-card">
+        <div class="law-header">
+          <span class="law-badge primary">Primary Law</span>
+          <div class="law-header-text">
+            <h3>Money Laundering, Terrorist Financing and Transfer of Funds (Information on the Payer) Regulations 2017</h3>
+            <p>SI 2017/692 · In force 26 June 2017 · Multiple amendments to 2025</p>
+          </div>
+        </div>
+        <div class="law-body">
+          <p>The MLR 2017 replaced the Money Laundering Regulations 2007 and transposed the EU's Fourth Money Laundering Directive (4MLD) into UK law. Following Brexit, the UK retained and now independently amends the MLRs. They set out the detailed operational obligations for all firms in the regulated sector.</p>
+        </div>
+      </div>
+
+      <h3>Who is in scope?</h3>
+      <p>The MLR 2017 applies to a wide range of "relevant persons" carrying on business in the UK:</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Sector</th><th>Examples</th><th>Risk Level</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Credit institutions</strong></td><td>Banks, building societies</td><td><span class="badge-red">High</span></td></tr>
+          <tr><td><strong>Financial institutions</strong></td><td>Payment firms, EMIs, insurers, investment firms</td><td><span class="badge-red">High</span></td></tr>
+          <tr><td><strong>Auditors & accountants</strong></td><td>Audit firms, tax advisers, accountants</td><td><span class="badge-yellow">Medium</span></td></tr>
+          <tr><td><strong>Legal professionals</strong></td><td>Solicitors, barristers (certain activities)</td><td><span class="badge-yellow">Medium</span></td></tr>
+          <tr><td><strong>Estate agents</strong></td><td>Residential and commercial property agents</td><td><span class="badge-yellow">Medium</span></td></tr>
+          <tr><td><strong>High-value dealers</strong></td><td>Dealers in goods receiving ≥€10,000 cash</td><td><span class="badge-yellow">Medium</span></td></tr>
+          <tr><td><strong>Casinos</strong></td><td>Land-based and online casinos</td><td><span class="badge-red">High</span></td></tr>
+          <tr><td><strong>Cryptoasset businesses</strong></td><td>Exchanges, wallet providers (from Jan 2020)</td><td><span class="badge-red">High</span></td></tr>
+        </tbody>
+      </table>
+
+      <h3>Core obligations under MLR 2017</h3>
+      <p>The MLR 2017 imposes six core obligations on relevant persons. These are explored in depth in Part 2 of this series, but in summary:</p>
+      <ul>
+        <li><strong>Firm-wide risk assessment</strong> — identify and assess your ML/TF risks</li>
+        <li><strong>Policies, controls and procedures</strong> — implement proportionate controls</li>
+        <li><strong>Customer due diligence (CDD)</strong> — identify and verify customers and beneficial owners</li>
+        <li><strong>Ongoing monitoring</strong> — keep CDD up to date and monitor transactions</li>
+        <li><strong>Record keeping</strong> — retain records for 5 years (delete after 5 years under UK GDPR)</li>
+        <li><strong>Staff training</strong> — ensure relevant staff are trained</li>
+      </ul>
+
+      <h3>Key amendments since 2017</h3>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">June 2017</div>
+          <div class="tl-title">MLR 2017 in force</div>
+          <div class="tl-desc">Replaced MLR 2007. Introduced risk-based approach, enhanced beneficial ownership requirements, domestic PEP obligations.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">January 2020</div>
+          <div class="tl-title">Cryptoassets brought into scope</div>
+          <div class="tl-desc">FCA becomes supervisor for cryptoasset businesses. Exchange providers and custodian wallet providers must register.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">March 2022</div>
+          <div class="tl-title">Russia sanctions — emergency amendments</div>
+          <div class="tl-desc">Significant wave of MLR amendments following Russia's invasion of Ukraine. Expanded sanctions obligations for regulated firms.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">November 2023</div>
+          <div class="tl-title">Domestic PEP clarification</div>
+          <div class="tl-desc">Amendments introduce clearer distinction between domestic and foreign PEPs — domestic PEPs not automatically subject to EDD.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">November 2024</div>
+          <div class="tl-title">FCA Financial Crime Guide updated (PS24/17)</div>
+          <div class="tl-desc">FCA updates its Financial Crime Guide — enhanced sanctions guidance, updated AML systems and controls expectations.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot new"></div>
+          <div class="tl-year new">July 2025</div>
+          <div class="tl-title">HM Treasury MLR reform response</div>
+          <div class="tl-desc">HM Treasury confirms MLR amendments: narrowing EDD to "unusually complex" transactions, FATF blacklist-only for high-risk third countries, cryptoasset alignment with FSMA.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot new"></div>
+          <div class="tl-year new">2026 (expected)</div>
+          <div class="tl-title">MLR statutory instrument</div>
+          <div class="tl-desc">HM Treasury expected to lay revised MLRs before Parliament in early 2026, implementing the July 2025 reform decisions.</div>
+        </div>
+      </div>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">🛡️ MLR in action</div>
+          <div class="tl-title">See how MLR screening obligations work in practice</div>
+          <div class="tl-sub">The FinCrimeRadar screening tool demonstrates the sanctions, PEP and adverse media checks that regulated firms must conduct under MLR 2017.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Try the tool →</a>
+      </div>
+    </section>
+
+    <!-- POCA -->
+    <section class="article-section" id="poca">
+      <div class="section-num">Pillar 02</div>
+      <h2>Proceeds of Crime Act 2002 (POCA)</h2>
+
+      <div class="law-card">
+        <div class="law-header">
+          <span class="law-badge primary">Criminal Law</span>
+          <div class="law-header-text">
+            <h3>Proceeds of Crime Act 2002</h3>
+            <p>Chapter 29 · In force 24 February 2003 · Amended by numerous instruments</p>
+          </div>
+        </div>
+        <div class="law-body">
+          <p>POCA is the backbone of UK criminal AML law. It creates the money laundering offences, the asset recovery regime, and — critically — the legal obligation to submit Suspicious Activity Reports (SARs). Failure to report is itself a criminal offence. POCA applies to everyone, not just the regulated sector, though Part 7 (money laundering offences) has specific "regulated sector" provisions.</p>
+        </div>
+      </div>
+
+      <h3>The three principal money laundering offences (Part 7)</h3>
+      <div class="law-offences">
+        <div class="law-offence">
+          <div class="offence-name">Section 327 — Concealing</div>
+          <div class="offence-desc">Concealing, disguising, converting, transferring or removing criminal property from the UK.</div>
+          <div class="offence-penalty">Max: 14 years / unlimited fine</div>
+        </div>
+        <div class="law-offence">
+          <div class="offence-name">Section 328 — Arranging</div>
+          <div class="offence-desc">Entering into or becoming concerned in an arrangement which facilitates acquisition, retention, use or control of criminal property.</div>
+          <div class="offence-penalty">Max: 14 years / unlimited fine</div>
+        </div>
+        <div class="law-offence">
+          <div class="offence-name">Section 329 — Acquisition</div>
+          <div class="offence-desc">Acquiring, using or possessing criminal property.</div>
+          <div class="offence-penalty">Max: 14 years / unlimited fine</div>
+        </div>
+      </div>
+
+      <div class="callout warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <div class="callout-title">What is "criminal property"?</div>
+          <div class="callout-text">Criminal property is any property that constitutes a person's benefit from criminal conduct — and the alleged offender knows or suspects it does. This is a broad definition. It includes the proceeds of tax evasion, fraud, corruption, drug trafficking, and any other criminal conduct — not just traditional money laundering.</div>
+        </div>
+      </div>
+
+      <h3>The SAR regime — Section 330</h3>
+      <p>Section 330 POCA creates the legal obligation to submit Suspicious Activity Reports for persons in the <strong>regulated sector</strong>. The offence of "failure to disclose" is committed when a person:</p>
+      <ul>
+        <li>Knows or suspects — or has <em>reasonable grounds to know or suspect</em> — that another person is engaged in money laundering</li>
+        <li>The information comes to them in the course of business in the regulated sector</li>
+        <li>They do not disclose to the NCA as soon as practicable</li>
+      </ul>
+
+      <div class="callout danger">
+        <div class="callout-icon">🚨</div>
+        <div class="callout-body">
+          <div class="callout-title">Tipping off — Section 333A</div>
+          <div class="callout-text">It is a criminal offence under S333A POCA to disclose to a third party that a SAR has been submitted, or that an investigation is underway, if that disclosure is likely to prejudice the investigation. Maximum penalty: 2 years imprisonment and/or unlimited fine. This means firms must be extremely careful about how they handle customer requests for information once a SAR has been filed.</div>
+        </div>
+      </div>
+
+      <h3>Defence Against Money Laundering (DAML)</h3>
+      <p>The "consent" or DAML regime allows firms to seek permission from the NCA before proceeding with a suspicious transaction. If the NCA grants consent (or does not respond within 7 working days), the firm has a statutory defence against the money laundering offences in sections 327–329 POCA. This is a vital tool — it allows firms to proceed with transactions they suspect may be suspicious without committing a criminal offence.</p>
+
+      <h3>Asset recovery powers</h3>
+      <p>POCA also grants law enforcement extensive asset recovery powers including: confiscation orders (post-conviction), civil recovery orders (no criminal conviction required), cash forfeiture, account freezing orders (AFOs), and unexplained wealth orders (UWOs). These powers have been significantly expanded by the Economic Crime (Transparency and Enforcement) Act 2022 and the Economic Crime and Corporate Transparency Act 2023.</p>
+
+      <div class="quiz" id="q1">
+        <div class="quiz-label">🧠 Knowledge check</div>
+        <div class="quiz-q">Under POCA Section 330, what is the maximum prison sentence for failure to disclose (failing to file a SAR when required)?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">A) 2 years</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">B) 7 years</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,true)">C) 5 years</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">D) 14 years</button>
+        </div>
+        <div class="quiz-feedback" id="q1-fb"></div>
+      </div>
+    </section>
+
+    <!-- TERRORISM ACT -->
+    <section class="article-section" id="terrorism">
+      <div class="section-num">Pillar 03</div>
+      <h2>Terrorism Act 2000</h2>
+
+      <div class="law-card">
+        <div class="law-header">
+          <span class="law-badge secondary">CTF Law</span>
+          <div class="law-header-text">
+            <h3>Terrorism Act 2000</h3>
+            <p>Chapter 11 · In force 19 February 2001 · Amended by Counter-Terrorism Act 2008 and others</p>
+          </div>
+        </div>
+        <div class="law-body">
+          <p>The Terrorism Act 2000 (TA 2000) addresses counter-terrorism financing (CTF) — the financial crime of funding terrorist activities. While POCA addresses the proceeds of crime (money going into the system), the TA 2000 addresses terrorist financing (money going out to fund attacks and organisations).</p>
+        </div>
+      </div>
+
+      <h3>Key CTF offences</h3>
+      <div class="law-offences">
+        <div class="law-offence">
+          <div class="offence-name">Section 15 — Fundraising</div>
+          <div class="offence-desc">Inviting or receiving money or property intended for use in terrorism, or knowing it will be used.</div>
+          <div class="offence-penalty">Max: 14 years / unlimited fine</div>
+        </div>
+        <div class="law-offence">
+          <div class="offence-name">Section 16 — Use/possession</div>
+          <div class="offence-desc">Using money or other property for terrorism, or possessing property intending it to be used.</div>
+          <div class="offence-penalty">Max: 14 years / unlimited fine</div>
+        </div>
+        <div class="law-offence">
+          <div class="offence-name">Section 17 — Funding arrangements</div>
+          <div class="offence-desc">Entering into an arrangement where money or property is to be used for terrorism.</div>
+          <div class="offence-penalty">Max: 14 years / unlimited fine</div>
+        </div>
+        <div class="law-offence">
+          <div class="offence-name">Section 18 — Money laundering</div>
+          <div class="offence-desc">Entering into arrangements to facilitate retention or control of terrorist property.</div>
+          <div class="offence-penalty">Max: 14 years / unlimited fine</div>
+        </div>
+      </div>
+
+      <h3>The CTF disclosure obligation — Section 21A</h3>
+      <p>Section 21A TA 2000 (inserted by the Anti-terrorism, Crime and Security Act 2001) creates the obligation for persons in the regulated sector to disclose information about suspected terrorist financing to the police or NCA. This mirrors the POCA s.330 obligation for money laundering.</p>
+
+      <div class="callout info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <div class="callout-title">AML vs CTF — a key difference</div>
+          <div class="callout-text">Money laundering involves "dirty money" — the proceeds of crime being cleaned. Terrorist financing can involve entirely "clean money" — legitimately earned funds being diverted to terrorism. This makes CTF screening harder: a terrorist financier may have no criminal record, no suspicious transaction history, and may appear entirely legitimate. Screening against terrorist designation lists is therefore even more critical for CTF than it is for AML.</div>
+        </div>
+      </div>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">🛡️ Screen for terrorism financing risk</div>
+          <div class="tl-title">UN and OFAC lists include terrorist designation data</div>
+          <div class="tl-sub">FinCrimeRadar screens against UN Security Council sanctions (which include terrorist designations) and OFAC's SDGT list — key tools for CTF compliance.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Screen now →</a>
+      </div>
+    </section>
+
+    <!-- SAMLA -->
+    <section class="article-section" id="samla">
+      <div class="section-num">Pillar 04</div>
+      <h2>Sanctions and Anti-Money Laundering Act 2018 (SAMLA)</h2>
+
+      <div class="law-card">
+        <div class="law-header">
+          <span class="law-badge tertiary">Sanctions Law</span>
+          <div class="law-header-text">
+            <h3>Sanctions and Anti-Money Laundering Act 2018</h3>
+            <p>Chapter 13 · In force 23 May 2018 · UK's post-Brexit sanctions framework</p>
+          </div>
+        </div>
+        <div class="law-body">
+          <p>SAMLA gives the UK government the power to impose, maintain, and lift sanctions regimes independently following Brexit — without reliance on EU mechanisms. Prior to SAMLA, the UK could only impose sanctions through EU law or UN Security Council resolutions. SAMLA created the autonomous UK sanctions regime administered by the Office of Financial Sanctions Implementation (OFSI) under HM Treasury.</p>
+        </div>
+      </div>
+
+      <h3>The UK sanctions architecture</h3>
+      <ul>
+        <li><strong>OFSI</strong> — implements and enforces UK financial sanctions, issues licences, and publishes the UK Consolidated List</li>
+        <li><strong>FCDO</strong> — Foreign, Commonwealth & Development Office: leads on sanctions policy</li>
+        <li><strong>HM Treasury</strong> — ministerial accountability for OFSI and financial sanctions</li>
+        <li><strong>FCA</strong> — supervises compliance with sanctions obligations by regulated firms (via SYSC rules)</li>
+      </ul>
+
+      <h3>Civil monetary penalties under SAMLA</h3>
+      <p>SAMLA introduced civil monetary penalties (CMPs) for sanctions breaches — meaning OFSI can fine firms without requiring criminal prosecution. CMPs can be up to the greater of:</p>
+      <ul>
+        <li><strong>£1 million</strong>, or</li>
+        <li><strong>50% of the value</strong> of the breach</li>
+      </ul>
+      <p>The Economic Crime (Transparency and Enforcement) Act 2022 lowered the evidentiary threshold for CMPs — OFSI no longer needs to prove the firm <em>knew</em> they were breaching sanctions, only that a breach occurred.</p>
+
+      <div class="callout warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <div class="callout-title">Russia sanctions — the biggest test of SAMLA</div>
+          <div class="callout-text">Following Russia's invasion of Ukraine in February 2022, the UK imposed some of the most extensive sanctions in its history — designating hundreds of Russian individuals, entities, and vessels. The pace and complexity of designations placed significant strain on firms' sanctions screening systems. The FCA's 2024/25 enforcement activity focused heavily on sanctions compliance failures at this period.</div>
+        </div>
+      </div>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">🛡️ UK sanctions screening</div>
+          <div class="tl-title">Search the OFSI Consolidated List in real time</div>
+          <div class="tl-sub">FinCrimeRadar includes OFSI (UK) sanctions data via OpenSanctions — try screening individuals or entities to see their UK sanctions status.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Screen for UK sanctions →</a>
+      </div>
+    </section>
+
+    <!-- FCA FRAMEWORK -->
+    <section class="article-section" id="fca">
+      <div class="section-num">Regulatory Layer</div>
+      <h2>The FCA's financial crime framework</h2>
+
+      <p>Above the legislative framework sits the FCA's own regulatory architecture for financial crime. For FCA-regulated firms, this layer is where the rubber meets the road — it translates the law into specific supervisory expectations.</p>
+
+      <h3>SYSC rules — the foundation</h3>
+      <p>Two rules in the FCA's Senior Management Arrangements, Systems and Controls (SYSC) sourcebook are central:</p>
+      <ul>
+        <li><strong>SYSC 3.2.6R</strong> — requires firms to take reasonable care to establish and maintain effective systems and controls for compliance and financial crime</li>
+        <li><strong>SYSC 6.1.1R</strong> — requires firms to have robust governance arrangements, effective processes, and adequate internal control mechanisms to manage money laundering risk</li>
+      </ul>
+
+      <h3>The Financial Crime Guide (FCG)</h3>
+      <p>The FCA's Financial Crime Guide (FCG) is not technically binding law — but in practice, it defines the FCA's supervisory expectations. The FCG covers:</p>
+      <table class="data-table">
+        <thead><tr><th>FCG Chapter</th><th>Topic</th></tr></thead>
+        <tbody>
+          <tr><td>FCG 1</td><td>Financial crime systems and controls — overview</td></tr>
+          <tr><td>FCG 2</td><td>Financial crime governance</td></tr>
+          <tr><td>FCG 3</td><td>Money laundering and terrorist financing</td></tr>
+          <tr><td>FCG 4</td><td>Fraud</td></tr>
+          <tr><td>FCG 5</td><td>Bribery and corruption</td></tr>
+          <tr><td>FCG 6</td><td>Market abuse</td></tr>
+          <tr><td>FCG 7</td><td>Sanctions</td></tr>
+        </tbody>
+      </table>
+
+      <h3>SM&CR — personal accountability for MLROs</h3>
+      <p>Under the Senior Managers and Certification Regime (SM&CR), the Money Laundering Reporting Officer (MLRO) is a designated Senior Management Function: <strong>SMF17</strong>. This means:</p>
+      <ul>
+        <li>The MLRO must be approved by the FCA before taking up the role</li>
+        <li>The FCA assesses qualifications, experience, reputation, and time availability</li>
+        <li>The MLRO has personal accountability under Conduct Rule 4 (obligation to disclose appropriately)</li>
+        <li>Failure to perform the MLRO role adequately can result in personal enforcement action by the FCA</li>
+      </ul>
+
+      <div class="callout info">
+        <div class="callout-icon">👤</div>
+        <div class="callout-body">
+          <div class="callout-title">The MLRO's dual role</div>
+          <div class="callout-text">The MLRO wears two hats simultaneously: (1) as the firm's nominated officer under the MLRs — responsible for the firm's AML framework; and (2) as the person with statutory responsibility under POCA to decide whether to submit SARs to the NCA. The combination of these two roles creates significant personal legal exposure. The FCA expects MLROs to have sufficient seniority, resources, and independence to perform both functions effectively.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2026 CHANGES -->
+    <section class="article-section" id="2026">
+      <div class="section-num">What's changing</div>
+      <h2>2025–2026 regulatory changes: What you need to know now</h2>
+
+      <div class="callout new">
+        <div class="callout-icon">🆕</div>
+        <div class="callout-body">
+          <div class="callout-title">FCA PEP Guidance FG25/3 — July 2025</div>
+          <div class="callout-text">The FCA's updated PEP guidance confirms that UK PEPs are generally lower risk than foreign PEPs. Non-executive board members of UK government departments and junior civil servants and military officials are NOT classified as PEPs. MLRO sign-off is no longer required automatically for every PEP relationship — firms must document reasons when applying EDD to former PEPs.</div>
+        </div>
+      </div>
+
+      <div class="callout new">
+        <div class="callout-icon">🆕</div>
+        <div class="callout-body">
+          <div class="callout-title">HM Treasury MLR Reform — July 2025</div>
+          <div class="callout-text">EDD requirements narrowed to "unusually complex" transactions (not all complex transactions). For high-risk third countries, EDD now limited to FATF "Call for Action" (blacklist) countries only. Cryptoasset firms aligned with FSMA regime — no dual registration required. Statutory instrument expected early 2026.</div>
+        </div>
+      </div>
+
+      <div class="callout new">
+        <div class="callout-icon">🆕</div>
+        <div class="callout-body">
+          <div class="callout-title">Failure to Prevent Fraud — September 2025</div>
+          <div class="callout-text">The Failure to Prevent Fraud (FTPF) offence (Economic Crime and Corporate Transparency Act 2023) came into force 1 September 2025. Large organisations must have "reasonable procedures" to prevent fraud. Applies to firms with turnover &gt;£36m, assets &gt;£18m, or &gt;250 employees (meeting two of three).</div>
+        </div>
+      </div>
+
+      <div class="callout new">
+        <div class="callout-icon">🆕</div>
+        <div class="callout-body">
+          <div class="callout-title">FCA as Single Professional Services Supervisor — from 2027</div>
+          <div class="callout-text">The FCA will consolidate AML supervision of professional services firms (currently supervised by 23 separate bodies including the SRA, ICAEW, and ACCA) under a single FCA regime. Legislation introduced to Parliament; implementation expected late 2027 at earliest.</div>
+        </div>
+      </div>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">🔍 See the PEP changes in practice</div>
+          <div class="tl-title">Under FG25/3, UK PEPs are generally lower risk — test the difference</div>
+          <div class="tl-sub">Search for UK politicians, ministers or civil servants on FinCrimeRadar and see how they appear in PEP screening data.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Try PEP screening →</a>
+      </div>
+    </section>
+
+    <!-- PENALTIES -->
+    <section class="article-section" id="penalties">
+      <div class="section-num">Consequences</div>
+      <h2>Penalties for non-compliance</h2>
+
+      <p>The consequences of AML compliance failures in the UK are severe, operating across three dimensions:</p>
+
+      <div class="penalty-scale">
+        <div class="penalty-card p-civil">
+          <div class="p-icon">💰</div>
+          <div class="p-label">Civil / regulatory</div>
+          <div class="p-val">Unlimited</div>
+          <div class="p-desc">FCA fines with no cap. OFSI CMPs up to £1m or 50% of breach value. Senior manager bans.</div>
+        </div>
+        <div class="penalty-card p-criminal">
+          <div class="p-icon">⚖️</div>
+          <div class="p-label">Criminal</div>
+          <div class="p-val">14 years</div>
+          <div class="p-desc">Maximum imprisonment for POCA / TA 2000 offences. Unlimited fines. Confiscation of assets.</div>
+        </div>
+        <div class="penalty-card p-reputational">
+          <div class="p-icon">📉</div>
+          <div class="p-label">Reputational</div>
+          <div class="p-val">Existential</div>
+          <div class="p-desc">FCA Final Notices are public. Loss of authorisation. De-risking by correspondent banks.</div>
+        </div>
+      </div>
+
+      <h3>Recent FCA enforcement cases — the pattern</h3>
+      <table class="data-table">
+        <thead><tr><th>Firm type</th><th>Failure</th><th>Consequence</th></tr></thead>
+        <tbody>
+          <tr><td>Challenger bank</td><td>Inadequate transaction monitoring, weak CDD</td><td>Multi-million pound fine, enhanced supervision</td></tr>
+          <tr><td>Payment institution</td><td>Sanctions screening gaps, failure to file SARs</td><td>Licence restriction, skilled person review (s166)</td></tr>
+          <tr><td>Traditional bank</td><td>Systematic AML control failures over multiple years</td><td>£100m+ fine, executive personal censure</td></tr>
+          <tr><td>Cryptoasset firm</td><td>Failure to register under MLRs</td><td>Cessation of business, FCA public warning</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout danger">
+        <div class="callout-icon">🚨</div>
+        <div class="callout-body">
+          <div class="callout-title">The FCA's five-step penalty calculation</div>
+          <div class="callout-text">The FCA uses a five-step methodology to calculate fines: (1) revenue figure, (2) seriousness adjustment (1–5 scale), (3) mitigating/aggravating factors, (4) deterrence uplift, (5) settlement discount (up to 30%). There is no cap. For senior individuals, step 1 uses a "benefit received" figure. The absence of a cap means financial penalties can reach hundreds of millions of pounds for systematic failures.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="article-section" id="faq">
+      <div class="section-num">FAQ</div>
+      <h2>Frequently asked questions</h2>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What is the difference between MLR 2017 obligations and POCA offences? <span class="faq-icon">+</span></div>
+        <div class="faq-a">MLR 2017 sets out the compliance framework obligations — what systems and controls firms must have. POCA sets out criminal offences — what conduct is illegal. A firm can breach the MLRs (e.g. have inadequate CDD procedures) without committing a POCA offence, and can commit a POCA offence (e.g. fail to file a required SAR) even if their MLR compliance framework is otherwise adequate. Both can apply simultaneously in serious cases.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Does MLR 2017 apply to my fintech / EMI? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Yes. Electronic money institutions (EMIs) and payment institutions are explicitly within scope of MLR 2017 as "financial institutions." This includes e-money issuers like Revolut, Wise, and similar businesses. The FCA is also their AML supervisor. From 2020, cryptoasset exchange providers and custodian wallet providers are also in scope. If you hold an FCA authorisation or registration, you are almost certainly within MLR scope.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What changed under the July 2025 PEP guidance? <span class="faq-icon">+</span></div>
+        <div class="faq-a">The FCA's FG25/3 (July 2025) clarifies that UK PEPs are generally lower risk than foreign PEPs. Specifically: non-executive board members of UK government departments are not PEPs; junior civil servants and military officials are not PEPs; MLRO sign-off is no longer required for every PEP relationship (though MLRO oversight of all PEP relationships remains required); firms must document reasons when applying EDD to former PEPs. This guidance addresses the industry concern that domestic PEPs (including MPs and civil servants) were being over-screened relative to their actual risk.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What is a Section 166 review? <span class="faq-icon">+</span></div>
+        <div class="faq-a">A Section 166 review (under FSMA 2000) is a "skilled person review" — where the FCA requires a firm to commission an independent expert (approved by the FCA) to review and report on specific aspects of the firm's activities. In financial crime, s166 reviews typically look at AML controls, transaction monitoring, CDD quality, and sanctions screening. They are expensive (six-figure fees are common), disruptive, and often precede formal enforcement action. Receiving a s166 is a significant red flag that the FCA has material concerns about a firm's controls.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What is the UKFIU and how does it relate to SARs? <span class="faq-icon">+</span></div>
+        <div class="faq-a">The UK Financial Intelligence Unit (UKFIU) is a unit within the National Crime Agency (NCA) that receives, processes, and disseminates Suspicious Activity Reports (SARs). All SARs submitted by regulated firms go to the UKFIU via the NCA's SAR Online system. The UKFIU analyses SARs for financial intelligence and shares relevant information with law enforcement. In 2023/24, over 900,000 SARs were submitted to the UKFIU — the vast majority from banks and other financial institutions. Quality over quantity is the FCA's message: a well-reasoned SAR with good financial intelligence is far more valuable than a defensive SAR filed to avoid prosecution.</div>
+      </div>
+
+      <!-- PART FOOTER -->
+      <div class="part-footer">
+        <div class="pf-prev">
+          <div class="pf-label">← Series</div>
+          <a href="/learn.html" class="pf-link">Back to Learning Hub</a>
+        </div>
+        <div class="pf-center">Part 1 of 3</div>
+        <div class="pf-next">
+          <div class="pf-label">Next →</div>
+          <a href="/aml-guide-part2.html" class="pf-link">Part 2: Core Obligations →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  © 2026 FinCrimeRadar ·
+  <a href="/">Home</a>
+  <a href="/learn.html">Learn</a>
+  <a href="/screen.html">Screen</a>
+  <a href="/privacy.html">Privacy</a>
+  <a href="mailto:hello@fincrimeradar.org">Contact</a>
+  <br><br>
+  <span style="font-size:11px; color:#9ca3af;">This guide is for educational purposes only and does not constitute legal advice. Always consult qualified legal counsel for compliance matters. Last updated July 2025.</span>
+</footer>
+
+<script>
+  function updateProgress() {
+    const pct = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('fill').style.width = pct + '%';
+    document.getElementById('pct').textContent = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+
+  const sections = document.querySelectorAll('section[id]');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`.toc-list a[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' }).observe(...sections);
+  sections.forEach(s => new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`.toc-list a[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' }).observe(s));
+
+  function doQuiz(id, btn, correct) {
+    const fb = document.getElementById(id + '-fb');
+    document.querySelectorAll(`#${id} .quiz-opt`).forEach(b => b.disabled = true);
+    btn.classList.add(correct ? 'correct' : 'wrong');
+    fb.classList.add('show', correct ? 'correct' : 'wrong');
+    fb.textContent = correct
+      ? '✅ Correct! Section 330 POCA carries a maximum 5-year prison sentence. The 14-year maximum applies to the principal money laundering offences under sections 327–329.'
+      : '❌ Not quite. The failure to disclose offence under s330 carries a maximum of 5 years. The principal offences (ss327–329) carry 14 years.';
+  }
+
+  function toggleFaq(el) {
+    el.nextElementSibling.classList.toggle('open');
+    el.querySelector('.faq-icon').classList.toggle('open');
+  }
+</script>
+</body>
+</html>
