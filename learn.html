@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What is Financial Crime Screening? The Complete Guide — FinCrimeRadar</title>
+  <meta name="description" content="A comprehensive, interactive guide to financial crime screening — sanctions, PEP, and adverse media. Learn how real-world AML screening works." />
+  <meta name="keywords" content="financial crime screening, AML screening, sanctions screening, PEP screening, adverse media, KYC, OFAC, UK GDPR, compliance" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white: #ffffff; --off: #f7f8fa; --border: #e4e7ec;
+      --muted: #6b7280; --text: #111827; --navy: #0f2044;
+      --accent: #1d5fc4; --accent-h: #1749a0; --accent-light: #eff6ff;
+      --danger: #dc2626; --success: #16a34a; --warning: #d97706;
+      --purple: #7c3aed; --purple-light: #ede9fe;
+      --teal: #0d9488; --teal-light: #f0fdfa;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--off); color: var(--text); line-height: 1.7; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 60px;
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo { width: 26px; height: 26px; }
+    .nav-name { font-size: 15px; font-weight: 600; color: var(--navy); }
+    .nav-name span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 1.25rem; }
+    .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta { padding: 7px 16px; background: var(--accent); color: #fff; border-radius: 6px; font-size: 13px; font-weight: 500; text-decoration: none; }
+    .nav-cta:hover { background: var(--accent-h); color: #fff; }
+
+    /* PROGRESS BAR */
+    .progress-bar { position: fixed; top: 60px; left: 0; width: 0%; height: 3px; background: var(--accent); z-index: 199; transition: width 0.1s; }
+
+    /* HERO */
+    .article-hero {
+      background: linear-gradient(135deg, #0f2044 0%, #1d3a6e 100%);
+      color: #fff; padding: 5rem 2rem 4rem; text-align: center;
+    }
+    .article-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #93c5fd; margin-bottom: 1.25rem; }
+    .article-hero h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.25rem; max-width: 750px; margin-left: auto; margin-right: auto; }
+    .article-hero h1 em { font-style: italic; color: #93c5fd; }
+    .article-sub { font-size: 17px; color: #cbd5e1; max-width: 600px; margin: 0 auto 2rem; line-height: 1.7; }
+    .article-meta { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 13px; color: #94a3b8; }
+    .article-meta span { display: flex; align-items: center; gap: 5px; }
+
+    /* LAYOUT */
+    .article-layout { display: grid; grid-template-columns: 240px 1fr; gap: 2rem; max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem; align-items: start; }
+
+    /* SIDEBAR TOC */
+    .toc { position: sticky; top: 80px; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
+    .toc-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin-bottom: 1rem; }
+    .toc-list { list-style: none; }
+    .toc-list li { margin-bottom: 2px; }
+    .toc-list a { font-size: 13px; color: var(--muted); text-decoration: none; display: block; padding: 5px 8px; border-radius: 6px; transition: all 0.15s; border-left: 2px solid transparent; }
+    .toc-list a:hover, .toc-list a.active { color: var(--accent); background: var(--accent-light); border-left-color: var(--accent); }
+    .toc-list .sub { padding-left: 16px; font-size: 12px; }
+    .toc-progress { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .toc-progress-label { font-size: 11px; color: var(--muted); margin-bottom: 6px; display: flex; justify-content: space-between; }
+    .toc-progress-bar { height: 4px; background: var(--border); border-radius: 99px; overflow: hidden; }
+    .toc-progress-fill { height: 100%; background: var(--accent); border-radius: 99px; transition: width 0.2s; width: 0%; }
+
+    /* ARTICLE BODY */
+    .article-body { min-width: 0; }
+
+    /* SECTIONS */
+    .article-section { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 2.5rem; margin-bottom: 1.5rem; }
+    .section-number { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 0.5rem; }
+    .article-section h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 26px; font-weight: 400; color: var(--navy); margin-bottom: 1rem; line-height: 1.3; }
+    .article-section h3 { font-size: 17px; font-weight: 600; color: var(--navy); margin: 1.75rem 0 0.75rem; }
+    .article-section p { font-size: 15px; color: #374151; margin-bottom: 1rem; line-height: 1.75; }
+    .article-section ul, .article-section ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+    .article-section li { font-size: 15px; color: #374151; margin-bottom: 0.5rem; line-height: 1.65; }
+    .article-section a { color: var(--accent); text-decoration: none; }
+    .article-section a:hover { text-decoration: underline; }
+
+    /* CALLOUT BOXES */
+    .callout { border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; display: flex; gap: 12px; }
+    .callout-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .callout-body { flex: 1; }
+    .callout-title { font-size: 13px; font-weight: 700; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.4px; }
+    .callout-text { font-size: 14px; line-height: 1.6; }
+    .callout.info { background: #eff6ff; border: 1px solid #bfdbfe; }
+    .callout.info .callout-title { color: #1e40af; }
+    .callout.info .callout-text { color: #1e3a8a; }
+    .callout.warning { background: #fffbeb; border: 1px solid #fde68a; }
+    .callout.warning .callout-title { color: #92400e; }
+    .callout.warning .callout-text { color: #78350f; }
+    .callout.success { background: #f0fdf4; border: 1px solid #86efac; }
+    .callout.success .callout-title { color: #166534; }
+    .callout.success .callout-text { color: #14532d; }
+    .callout.purple { background: var(--purple-light); border: 1px solid #c4b5fd; }
+    .callout.purple .callout-title { color: #5b21b6; }
+    .callout.purple .callout-text { color: #4c1d95; }
+
+    /* TRY TOOL CTA — the natural conversion element */
+    .try-tool-cta {
+      background: linear-gradient(135deg, #0f2044 0%, #1d3a6e 100%);
+      border-radius: 12px; padding: 1.75rem 2rem; margin: 2rem 0;
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .try-tool-cta .cta-left { flex: 1; }
+    .try-tool-cta .cta-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #93c5fd; margin-bottom: 6px; }
+    .try-tool-cta .cta-title { font-size: 17px; font-weight: 600; color: #fff; margin-bottom: 5px; line-height: 1.4; }
+    .try-tool-cta .cta-sub { font-size: 13px; color: #94a3b8; }
+    .try-tool-cta .cta-btn { padding: 10px 22px; background: var(--accent); color: #fff; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; transition: all 0.15s; display: inline-block; }
+    .try-tool-cta .cta-btn:hover { background: #2563eb; transform: translateY(-1px); }
+
+    /* STATS GRID */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin: 1.5rem 0; }
+    .stat-card { background: var(--off); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; text-align: center; }
+    .stat-card .num { font-size: 26px; font-weight: 700; color: var(--navy); }
+    .stat-card .label { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+    /* PROCESS STEPS */
+    .process-steps { margin: 1.5rem 0; }
+    .process-step { display: flex; gap: 16px; margin-bottom: 1.25rem; align-items: flex-start; }
+    .step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .step-body h4 { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+    .step-body p { font-size: 14px; color: var(--muted); margin: 0; }
+
+    /* COMPARISON TABLE */
+    .compare-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 14px; }
+    .compare-table th { background: var(--navy); color: #fff; padding: 10px 14px; text-align: left; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
+    .compare-table th:first-child { border-radius: 8px 0 0 0; }
+    .compare-table th:last-child { border-radius: 0 8px 0 0; }
+    .compare-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:nth-child(even) td { background: var(--off); }
+    .compare-table .yes { color: var(--success); font-weight: 600; }
+    .compare-table .no { color: var(--danger); }
+    .compare-table .partial { color: var(--warning); }
+
+    /* EXPANDABLE FAQ */
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
+    .faq-q { padding: 1rem 1.25rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 15px; font-weight: 500; color: var(--navy); background: var(--white); transition: background 0.15s; user-select: none; }
+    .faq-q:hover { background: var(--off); }
+    .faq-icon { font-size: 18px; color: var(--muted); transition: transform 0.2s; flex-shrink: 0; }
+    .faq-icon.open { transform: rotate(45deg); }
+    .faq-a { display: none; padding: 0 1.25rem 1rem; font-size: 14px; color: #374151; line-height: 1.7; border-top: 1px solid var(--border); background: #fafafa; }
+    .faq-a.open { display: block; }
+    .faq-a p { margin-top: 1rem; margin-bottom: 0; }
+
+    /* RISK MATRIX */
+    .risk-matrix { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 1.5rem 0; }
+    .risk-cell { padding: 1rem; border-radius: 8px; text-align: center; }
+    .risk-cell .risk-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 4px; }
+    .risk-cell .risk-desc { font-size: 12px; line-height: 1.4; }
+    .risk-high { background: #fee2e2; border: 1px solid #fca5a5; }
+    .risk-high .risk-label { color: var(--danger); }
+    .risk-medium { background: #fef3c7; border: 1px solid #fcd34d; }
+    .risk-medium .risk-label { color: var(--warning); }
+    .risk-low { background: #dcfce7; border: 1px solid #86efac; }
+    .risk-low .risk-label { color: var(--success); }
+
+    /* TIMELINE */
+    .timeline { margin: 1.5rem 0; position: relative; padding-left: 24px; }
+    .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+    .timeline-item { position: relative; margin-bottom: 1.5rem; }
+    .timeline-dot { position: absolute; left: -20px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid var(--white); box-shadow: 0 0 0 2px var(--accent); }
+    .timeline-year { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 3px; }
+    .timeline-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
+    .timeline-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* QUIZ */
+    .quiz-box { background: var(--accent-light); border: 1px solid #bfdbfe; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+    .quiz-title { font-size: 13px; font-weight: 700; color: #1e40af; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 0.75rem; }
+    .quiz-question { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 1rem; }
+    .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+    .quiz-option { padding: 10px 14px; border: 1.5px solid #bfdbfe; border-radius: 8px; font-size: 14px; cursor: pointer; background: var(--white); color: var(--text); transition: all 0.15s; text-align: left; font-family: 'Inter', sans-serif; }
+    .quiz-option:hover { border-color: var(--accent); color: var(--accent); }
+    .quiz-option.correct { border-color: var(--success); background: #f0fdf4; color: var(--success); }
+    .quiz-option.wrong { border-color: var(--danger); background: #fff5f5; color: var(--danger); }
+    .quiz-feedback { display: none; margin-top: 1rem; font-size: 14px; padding: 10px 14px; border-radius: 8px; }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct { background: #f0fdf4; color: #166534; border: 1px solid #86efac; }
+    .quiz-feedback.wrong { background: #fff5f5; color: #991b1b; border: 1px solid #fca5a5; }
+
+    /* TAG PILLS */
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 1rem 0; }
+    .tag { font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 99px; }
+    .tag-blue { background: #dbeafe; color: #1e40af; }
+    .tag-red { background: #fee2e2; color: #991b1b; }
+    .tag-green { background: #dcfce7; color: #166534; }
+    .tag-purple { background: #ede9fe; color: #5b21b6; }
+    .tag-yellow { background: #fef3c7; color: #92400e; }
+
+    /* DIVIDER */
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+    /* HIGHLIGHT TEXT */
+    .highlight-text { font-size: 18px; font-style: italic; color: var(--navy); border-left: 3px solid var(--accent); padding-left: 1.25rem; margin: 1.5rem 0; line-height: 1.6; font-family: 'DM Serif Display', Georgia, serif; }
+
+    /* FOOTER */
+    footer { background: var(--white); border-top: 1px solid var(--border); padding: 2rem; text-align: center; font-size: 12px; color: var(--muted); margin-top: 2rem; }
+    footer a { color: var(--muted); text-decoration: none; margin: 0 8px; }
+    footer a:hover { color: var(--accent); }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .article-layout { grid-template-columns: 1fr; }
+      .toc { display: none; }
+      .article-hero { padding: 3rem 1.25rem 2.5rem; }
+      .article-section { padding: 1.5rem; }
+      .try-tool-cta { flex-direction: column; }
+      .risk-matrix { grid-template-columns: 1fr; }
+      nav { padding: 0 1rem; }
+      .nav-links .hide-mobile { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <a class="nav-brand" href="/">
+    <svg class="nav-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="14" stroke="#1d5fc4" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="9" stroke="#1d5fc4" stroke-width="1" stroke-dasharray="3 2"/>
+      <circle cx="16" cy="16" r="4" stroke="#1d5fc4" stroke-width="0.75" stroke-dasharray="2 2"/>
+      <circle cx="16" cy="16" r="1.5" fill="#1d5fc4"/>
+      <line x1="16" y1="16" x2="25" y2="7" stroke="#1d5fc4" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="22" cy="10" r="2" fill="#dc2626"/>
+    </svg>
+    <span class="nav-name">Fin<span>Crime</span>Radar</span>
+  </a>
+  <div class="nav-links">
+    <a href="/" class="hide-mobile">Home</a>
+    <a href="/screen.html" class="hide-mobile">Screen</a>
+    <a href="/screen.html" class="nav-cta">Try the tool →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="article-hero">
+  <p class="article-eyebrow">The definitive guide</p>
+  <h1>What is Financial Crime Screening? <em>Everything you need to know.</em></h1>
+  <p class="article-sub">A comprehensive, interactive guide to understanding how sanctions screening, PEP checks, and adverse media monitoring work in the real world — written for students and professionals alike.</p>
+  <div class="article-meta">
+    <span>📖 25 min read</span>
+    <span>🎓 Beginner to advanced</span>
+    <span>🔄 Updated June 2026</span>
+    <span>✍️ FinCrimeRadar Editorial</span>
+  </div>
+</div>
+
+<div class="article-layout">
+
+  <!-- SIDEBAR TOC -->
+  <aside>
+    <div class="toc">
+      <div class="toc-title">Contents</div>
+      <ul class="toc-list">
+        <li><a href="#intro">1. Introduction</a></li>
+        <li><a href="#what-is">2. What is screening?</a></li>
+        <li><a href="#why-matters">3. Why it matters</a></li>
+        <li><a href="#sanctions">4. Sanctions screening</a></li>
+        <li><a href="#pep">5. PEP screening</a></li>
+        <li><a href="#adverse">6. Adverse media</a></li>
+        <li><a href="#how-works">7. How screening works</a></li>
+        <li><a href="#risk">8. Risk scoring</a></li>
+        <li><a href="#regulatory">9. Regulatory framework</a></li>
+        <li><a href="#challenges">10. Challenges</a></li>
+        <li><a href="#technology">11. Technology & AI</a></li>
+        <li><a href="#faq">12. FAQ</a></li>
+      </ul>
+      <div class="toc-progress">
+        <div class="toc-progress-label">
+          <span>Reading progress</span>
+          <span id="progressPct">0%</span>
+        </div>
+        <div class="toc-progress-bar">
+          <div class="toc-progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ARTICLE BODY -->
+  <main class="article-body">
+
+    <!-- SECTION 1: INTRO -->
+    <section class="article-section" id="intro">
+      <div class="section-number">Section 01</div>
+      <h2>Introduction: The invisible gatekeepers of the financial world</h2>
+
+      <p>Every time you open a bank account, apply for a mortgage, or make a large international transfer, something happens behind the scenes that most people never see. Within milliseconds, your name is checked against hundreds of thousands of records — sanctioned individuals, politically exposed persons, criminal databases, and global news archives.</p>
+
+      <p>This process is called <strong>financial crime screening</strong>, and it is one of the most critical — yet least understood — functions in modern finance. It is the invisible layer that separates legitimate financial transactions from money laundering, terrorism financing, and sanctions evasion.</p>
+
+      <p>In 2023 alone, global financial institutions paid over <strong>$6.6 billion in AML fines</strong>. Banks that failed to screen properly found themselves enabling drug cartels, terrorist organisations, and sanctioned regimes. The consequences — financial, reputational, and criminal — can be existential.</p>
+
+      <div class="stats-grid">
+        <div class="stat-card"><div class="num">$6.6B</div><div class="label">AML fines paid globally in 2023</div></div>
+        <div class="stat-card"><div class="num">2-5%</div><div class="label">of global GDP laundered annually</div></div>
+        <div class="stat-card"><div class="num">40+</div><div class="label">major sanctions lists worldwide</div></div>
+        <div class="stat-card"><div class="num">300K+</div><div class="label">sanctioned individuals & entities</div></div>
+      </div>
+
+      <p>This guide will walk you through everything — from the fundamental concepts to the cutting-edge technology — so that whether you are a compliance student taking your first steps, or a seasoned professional looking to deepen your knowledge, you leave with a complete picture of how financial crime screening really works.</p>
+
+      <div class="callout info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <div class="callout-title">How to use this guide</div>
+          <div class="callout-text">Each section builds on the last. As you read, you will find interactive elements — quizzes, expandable explanations, and real-world examples. At key points, we invite you to test concepts on a live screening tool. Learning by doing is far more effective than reading alone.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: WHAT IS SCREENING -->
+    <section class="article-section" id="what-is">
+      <div class="section-number">Section 02</div>
+      <h2>What is financial crime screening?</h2>
+
+      <p>Financial crime screening is the process of checking individuals, businesses, and transactions against a set of lists, databases, and information sources to identify potential risks of financial crime — including money laundering, terrorism financing, sanctions evasion, bribery, and corruption.</p>
+
+      <p>At its core, screening asks one fundamental question: <strong>"Should we be doing business with this person or entity?"</strong></p>
+
+      <h3>The three pillars of screening</h3>
+      <p>Modern financial crime screening is built on three interconnected pillars. Each addresses a different type of risk, and together they create a comprehensive picture of who you are dealing with.</p>
+
+      <div class="risk-matrix">
+        <div class="risk-cell risk-high">
+          <div class="risk-label">🛡️ Sanctions</div>
+          <div class="risk-desc">Is this person legally prohibited from transacting?</div>
+        </div>
+        <div class="risk-cell risk-medium">
+          <div class="risk-label">🔍 PEP</div>
+          <div class="risk-desc">Does this person hold political power that creates corruption risk?</div>
+        </div>
+        <div class="risk-cell risk-low" style="background:#eff6ff; border-color:#bfdbfe;">
+          <div class="risk-label" style="color:#1e40af;">📰 Adverse Media</div>
+          <div class="risk-desc" style="color:#1e3a8a;">Has this person been linked to financial crime in the news?</div>
+        </div>
+      </div>
+
+      <h3>Who conducts screening?</h3>
+      <p>Screening is not exclusive to large banks. A wide range of organisations are required — legally or by best practice — to screen their customers and counterparties:</p>
+      <ul>
+        <li><strong>Banks and financial institutions</strong> — the primary obligated entities under AML law</li>
+        <li><strong>Payment service providers and fintechs</strong> — including e-money institutions like Revolut, Wise, and Rapyd</li>
+        <li><strong>Insurance companies</strong> — particularly for large or complex products</li>
+        <li><strong>Law firms and accountants</strong> — subject to AML regulations as "gatekeepers"</li>
+        <li><strong>Estate agents</strong> — required to screen buyers and sellers of high-value property</li>
+        <li><strong>Cryptocurrency exchanges</strong> — increasingly regulated globally</li>
+        <li><strong>NGOs and charities</strong> — to prevent aid from reaching sanctioned individuals</li>
+      </ul>
+
+      <div class="highlight-text">"Screening is not a compliance checkbox — it is an organisation's first line of defence against being used as a vehicle for financial crime."</div>
+
+      <div class="try-tool-cta">
+        <div class="cta-left">
+          <div class="cta-label">🛡️ See it in action</div>
+          <div class="cta-title">Now you understand what screening is — see what it actually looks like</div>
+          <div class="cta-sub">Try searching a well-known name and see how the three pillars work together in real time.</div>
+        </div>
+        <a href="/screen.html" class="cta-btn">Try the screening tool →</a>
+      </div>
+    </section>
+
+    <!-- SECTION 3: WHY IT MATTERS -->
+    <section class="article-section" id="why-matters">
+      <div class="section-number">Section 03</div>
+      <h2>Why financial crime screening matters</h2>
+
+      <p>To understand why screening matters, it helps to understand the scale of the problem it is designed to solve.</p>
+
+      <h3>The scale of financial crime</h3>
+      <p>The United Nations Office on Drugs and Crime (UNODC) estimates that between 2% and 5% of global GDP — approximately <strong>$800 billion to $2 trillion</strong> — is laundered through the financial system every year. Less than 1% of this is ever detected and seized.</p>
+
+      <p>Money laundering is not a victimless crime. It enables:</p>
+      <ul>
+        <li>Drug trafficking and organised crime</li>
+        <li>Terrorism financing — funding attacks and extremist groups</li>
+        <li>Human trafficking and modern slavery</li>
+        <li>Corruption and kleptocracy — allowing authoritarian regimes to plunder their countries</li>
+        <li>Tax evasion — depriving governments of funds for public services</li>
+      </ul>
+
+      <div class="callout warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <div class="callout-title">Real consequence</div>
+          <div class="callout-text">In 2012, HSBC was fined $1.9 billion by US authorities after it was found to have processed hundreds of millions of dollars for Mexican drug cartels. The bank's AML screening had failed to catch transactions linked to the Sinaloa cartel. This remains one of the largest AML fines in history.</div>
+        </div>
+      </div>
+
+      <h3>The regulatory imperative</h3>
+      <p>Beyond the moral case, financial crime screening is a <strong>legal obligation</strong> for most financial institutions. Failure to screen properly can result in:</p>
+      <ul>
+        <li>Massive regulatory fines — often running into hundreds of millions of pounds</li>
+        <li>Criminal prosecution of senior executives</li>
+        <li>Revocation of operating licences</li>
+        <li>Reputational damage that can destroy customer trust overnight</li>
+        <li>Derisking — being cut off from correspondent banking relationships</li>
+      </ul>
+
+      <div class="quiz-box" id="quiz1">
+        <div class="quiz-title">🧠 Quick check</div>
+        <div class="quiz-question">Which of the following is NOT a consequence of failing to conduct proper financial crime screening?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="answerQuiz('quiz1', this, false)">A) Regulatory fines</button>
+          <button class="quiz-option" onclick="answerQuiz('quiz1', this, false)">B) Criminal prosecution of executives</button>
+          <button class="quiz-option" onclick="answerQuiz('quiz1', this, true)">C) Lower interest rates on loans</button>
+          <button class="quiz-option" onclick="answerQuiz('quiz1', this, false)">D) Revocation of operating licence</button>
+        </div>
+        <div class="quiz-feedback" id="quiz1-feedback"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: SANCTIONS -->
+    <section class="article-section" id="sanctions">
+      <div class="section-number">Section 04</div>
+      <h2>Sanctions screening: The hard stop</h2>
+
+      <p>Sanctions are restrictions imposed by governments or international bodies against specific countries, individuals, or entities. They are one of the most powerful tools in foreign policy and financial crime prevention.</p>
+
+      <p>Unlike other financial crime risks which involve judgement and risk assessment, <strong>sanctions are binary</strong>: if a person or entity is on a sanctions list, you cannot transact with them. Full stop. No exceptions. No mitigation. Proceeding knowingly is a criminal offence.</p>
+
+      <h3>Who issues sanctions?</h3>
+      <div class="tag-row">
+        <span class="tag tag-blue">🇺🇸 OFAC (US Treasury)</span>
+        <span class="tag tag-blue">🇬🇧 OFSI (UK)</span>
+        <span class="tag tag-blue">🇪🇺 EU</span>
+        <span class="tag tag-blue">🇺🇳 UN Security Council</span>
+        <span class="tag tag-blue">🇦🇺 DFAT (Australia)</span>
+        <span class="tag tag-blue">🇨🇦 OSFI (Canada)</span>
+        <span class="tag tag-blue">🇨🇭 SECO (Switzerland)</span>
+      </div>
+
+      <h3>Types of sanctions</h3>
+      <ul>
+        <li><strong>Individual sanctions</strong> — named persons are prohibited from accessing the financial system. Examples: Russian oligarchs, North Korean officials, terrorist financiers.</li>
+        <li><strong>Entity sanctions</strong> — companies, organisations, or vessels are designated. Examples: Wagner Group, state-owned banks in sanctioned countries.</li>
+        <li><strong>Country sanctions</strong> — comprehensive restrictions on entire jurisdictions. Examples: North Korea, Iran, Cuba (varying degrees).</li>
+        <li><strong>Sectoral sanctions</strong> — restrictions on specific sectors of an economy. Example: Russian energy sector sanctions after 2022.</li>
+        <li><strong>Thematic sanctions</strong> — targeted at specific activities regardless of nationality. Example: cyber sanctions, human rights sanctions.</li>
+      </ul>
+
+      <h3>Key sanctions lists to know</h3>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>List</th>
+            <th>Issuer</th>
+            <th>Jurisdiction</th>
+            <th>Extraterritorial?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>SDN List</strong></td>
+            <td>OFAC</td>
+            <td>US</td>
+            <td><span class="yes">Yes — most powerful</span></td>
+          </tr>
+          <tr>
+            <td><strong>Consolidated List</strong></td>
+            <td>OFSI</td>
+            <td>UK</td>
+            <td><span class="partial">Limited</span></td>
+          </tr>
+          <tr>
+            <td><strong>Financial Sanctions</strong></td>
+            <td>EU</td>
+            <td>EU member states</td>
+            <td><span class="partial">Within EU</span></td>
+          </tr>
+          <tr>
+            <td><strong>UN Consolidated</strong></td>
+            <td>UN Security Council</td>
+            <td>Global</td>
+            <td><span class="yes">Yes — all member states</span></td>
+          </tr>
+          <tr>
+            <td><strong>DFAT List</strong></td>
+            <td>DFAT</td>
+            <td>Australia</td>
+            <td><span class="no">No</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout info">
+        <div class="callout-icon">🔑</div>
+        <div class="callout-body">
+          <div class="callout-title">Why OFAC matters everywhere</div>
+          <div class="callout-text">OFAC sanctions have extraterritorial reach — meaning non-US banks can be fined by the US if they process USD transactions involving sanctioned parties, even if the transaction has no other US connection. This is why OFAC compliance is considered mandatory globally for any bank that clears USD.</div>
+        </div>
+      </div>
+
+      <div class="try-tool-cta">
+        <div class="cta-left">
+          <div class="cta-label">🛡️ Try sanctions screening</div>
+          <div class="cta-title">Search for a sanctioned individual and see which lists they appear on</div>
+          <div class="cta-sub">Try names like "Wagner Group", "Kim Jong Un", or "Bashar al-Assad" to see real sanctions data.</div>
+        </div>
+        <a href="/screen.html" class="cta-btn">Screen now →</a>
+      </div>
+    </section>
+
+    <!-- SECTION 5: PEP -->
+    <section class="article-section" id="pep">
+      <div class="section-number">Section 05</div>
+      <h2>PEP screening: The grey zone of political risk</h2>
+
+      <p>If sanctions screening is black and white, PEP screening lives in the grey zone. A Politically Exposed Person (PEP) is not a criminal — they are simply someone whose position of power creates an elevated risk of corruption, bribery, or abuse of public funds.</p>
+
+      <p>The logic is straightforward: a finance minister who controls billions in public spending, or a central bank governor who sets interest rates, has access to power that can be — and historically has been — abused for personal financial gain. Financial institutions must identify PEPs and apply enhanced due diligence.</p>
+
+      <h3>Who qualifies as a PEP?</h3>
+      <p>Under FATF guidelines and the UK's Money Laundering Regulations 2017, PEPs include:</p>
+      <ul>
+        <li><strong>Heads of state and government</strong> — presidents, prime ministers, monarchs</li>
+        <li><strong>Senior government ministers</strong> — cabinet members, secretaries of state</li>
+        <li><strong>Senior judicial officials</strong> — supreme court judges, attorney generals</li>
+        <li><strong>Senior military officials</strong> — chiefs of staff, generals</li>
+        <li><strong>Senior executives of state-owned enterprises</strong> — CEOs of national oil companies, state banks</li>
+        <li><strong>Senior political party officials</strong> — party leaders, senior officials</li>
+        <li><strong>Members of parliament and legislative bodies</strong></li>
+        <li><strong>Ambassadors and high commissioners</strong></li>
+        <li><strong>Central bank governors and board members</strong></li>
+        <li><strong>Board members of international organisations</strong> — UN, IMF, World Bank</li>
+      </ul>
+
+      <h3>Domestic vs. foreign PEPs</h3>
+      <p>The treatment of PEPs differs depending on whether they are domestic (from your own country) or foreign:</p>
+      <table class="compare-table">
+        <thead>
+          <tr><th>Type</th><th>Risk Level</th><th>EDD Required?</th><th>Examples</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Foreign PEP</strong></td><td><span class="yes">High</span></td><td><span class="yes">Always</span></td><td>Foreign head of state opening UK account</td></tr>
+          <tr><td><strong>Domestic PEP (UK)</strong></td><td><span class="partial">Medium</span></td><td><span class="partial">Risk-based</span></td><td>UK MP applying for a mortgage</td></tr>
+          <tr><td><strong>International Org PEP</strong></td><td><span class="partial">Medium</span></td><td><span class="partial">Risk-based</span></td><td>Senior IMF official</td></tr>
+          <tr><td><strong>RCA (Relative/Close Associate)</strong></td><td><span class="partial">Medium</span></td><td><span class="partial">Risk-based</span></td><td>Spouse or business partner of a PEP</td></tr>
+        </tbody>
+      </table>
+
+      <h3>How long does PEP status last?</h3>
+      <p>This is one of the most commonly misunderstood aspects of PEP screening. Under FATF guidance, a person who leaves a prominent public function should continue to be considered a PEP for at least <strong>12 months</strong> after leaving office. Many institutions apply a 12–24 month "cooling off" period, and some apply enhanced scrutiny indefinitely for very high-risk roles.</p>
+
+      <div class="callout purple">
+        <div class="callout-icon">🎭</div>
+        <div class="callout-body">
+          <div class="callout-title">The Marcos case</div>
+          <div class="callout-text">Ferdinand Marcos, former President of the Philippines, and his family allegedly looted between $5–10 billion from the Philippine state during his 20-year rule. Imelda Marcos's famous collection of 3,000 pairs of shoes became a symbol of kleptocracy. Proper PEP identification and enhanced due diligence is specifically designed to prevent such abuse of power.</div>
+        </div>
+      </div>
+
+      <div class="try-tool-cta">
+        <div class="cta-left">
+          <div class="cta-label">🔍 Try PEP screening</div>
+          <div class="cta-title">Search for a world leader or government official</div>
+          <div class="cta-sub">Try "Emmanuel Macron", "Rachel Reeves", or "Mohammed bin Salman" to see PEP profile data.</div>
+        </div>
+        <a href="/screen.html" class="cta-btn">Screen a PEP →</a>
+      </div>
+    </section>
+
+    <!-- SECTION 6: ADVERSE MEDIA -->
+    <section class="article-section" id="adverse">
+      <div class="section-number">Section 06</div>
+      <h2>Adverse media screening: What the news tells you</h2>
+
+      <p>Sanctions lists and PEP databases are structured, curated data sources. But financial crime does not announce itself on official lists. Some of the most important warning signs appear first in the press — a corruption investigation, a regulatory probe, a criminal conviction. This is where adverse media screening comes in.</p>
+
+      <p>Adverse media screening (also called negative news screening) involves systematically searching news sources, court records, and other public information for negative coverage related to your customer or counterparty.</p>
+
+      <h3>What counts as adverse media?</h3>
+      <div class="tag-row">
+        <span class="tag tag-red">Money laundering</span>
+        <span class="tag tag-red">Fraud</span>
+        <span class="tag tag-red">Corruption</span>
+        <span class="tag tag-red">Bribery</span>
+        <span class="tag tag-red">Drug trafficking</span>
+        <span class="tag tag-red">Tax evasion</span>
+        <span class="tag tag-red">Terrorism</span>
+        <span class="tag tag-red">Human trafficking</span>
+        <span class="tag tag-yellow">Regulatory action</span>
+        <span class="tag tag-yellow">Criminal charges</span>
+        <span class="tag tag-yellow">Civil litigation</span>
+        <span class="tag tag-yellow">Sanctions violations</span>
+      </div>
+
+      <h3>Why adverse media matters</h3>
+      <p>Consider this: a person may not yet be on a sanctions list, but they might be under investigation by the FBI, mentioned in the Panama Papers, or the subject of a OCCRP investigation into corruption. None of this would appear in a sanctions or PEP search — but it is absolutely material to a risk assessment.</p>
+
+      <p>Adverse media screening bridges the gap between what is officially designated and what is publicly known. It is particularly important for:</p>
+      <ul>
+        <li><strong>Enhanced Due Diligence (EDD)</strong> — required for high-risk customers</li>
+        <li><strong>Ongoing monitoring</strong> — catching risks that emerge after onboarding</li>
+        <li><strong>Correspondent banking</strong> — assessing the risk profile of partner banks</li>
+        <li><strong>Trade finance</strong> — screening counterparties in complex multi-party transactions</li>
+      </ul>
+
+      <div class="callout success">
+        <div class="callout-icon">📰</div>
+        <div class="callout-body">
+          <div class="callout-title">The OCCRP effect</div>
+          <div class="callout-text">The Organised Crime and Corruption Reporting Project (OCCRP) has exposed financial crime involving billions of dollars — from the Azerbaijani Laundromat to the Pandora Papers. OCCRP investigations have led to prosecutions, sanctions designations, and regulatory actions worldwide. This is why OCCRP is one of the sources in FinCrimeRadar's adverse media engine.</div>
+        </div>
+      </div>
+
+      <div class="try-tool-cta">
+        <div class="cta-left">
+          <div class="cta-label">📰 Try adverse media search</div>
+          <div class="cta-title">See what the news says about a company or individual</div>
+          <div class="cta-sub">Try "HSBC", "Wirecard", or "Glencore" to see adverse media results from live news sources.</div>
+        </div>
+        <a href="/screen.html" class="cta-btn">Search adverse media →</a>
+      </div>
+    </section>
+
+    <!-- SECTION 7: HOW SCREENING WORKS -->
+    <section class="article-section" id="how-works">
+      <div class="section-number">Section 07</div>
+      <h2>How screening actually works: The process</h2>
+
+      <p>Understanding <em>what</em> screening checks is one thing. Understanding <em>how</em> those checks are performed is where the real technical insight lies. This section walks through the mechanics.</p>
+
+      <h3>The screening workflow</h3>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Data ingestion</h4>
+            <p>Screening begins with the data you are checking against. Sanctions lists, PEP databases, and adverse media sources are downloaded, parsed, and structured into a searchable index. Lists are updated daily — or in real time for critical designations.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Name normalisation</h4>
+            <p>The input name (e.g. "Mohammed Al-Rashid") is cleaned and standardised — removing titles, punctuation, and special characters — to prepare it for matching.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Name matching</h4>
+            <p>The normalised name is compared against the database. This is where the sophistication lies — see the section below on matching algorithms.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h4>Score generation</h4>
+            <p>Each potential match is given a score (typically 0–100%) reflecting how similar the input is to the database record. Higher scores indicate closer matches.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <h4>Threshold filtering</h4>
+            <p>Results below a set threshold (e.g. 80%) are discarded. Results above it are returned as potential matches for review.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num">6</div>
+          <div class="step-body">
+            <h4>Human review (for high scores)</h4>
+            <p>Potential matches above a higher threshold (e.g. 95%) may require a compliance analyst to review and determine whether it is a true match or a false positive.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3>The name matching challenge</h3>
+      <p>Name matching sounds simple. It is not. The same person can appear in databases under dozens of different spellings, transliterations, and aliases. Consider:</p>
+      <ul>
+        <li><strong>Muammar Gaddafi</strong> — also written as Qaddafi, Qadhafi, Kaddafi, Kadafi (over 100 recorded variations)</li>
+        <li><strong>Mohammed</strong> — one of the world's most common names, appearing in dozens of transliterations</li>
+        <li><strong>Chinese names</strong> — different romanisation systems produce different spellings</li>
+        <li><strong>Aliases</strong> — many individuals on sanctions lists use aliases, nicknames, or maiden names</li>
+      </ul>
+
+      <p>This is why modern screening systems use <strong>fuzzy matching algorithms</strong> rather than simple exact-match lookups. Fuzzy matching calculates similarity scores between strings, catching variations that an exact match would miss.</p>
+
+      <div class="callout info">
+        <div class="callout-icon">⚙️</div>
+        <div class="callout-body">
+          <div class="callout-title">How FinCrimeRadar does it</div>
+          <div class="callout-text">FinCrimeRadar uses RapidFuzz — a high-performance fuzzy matching library — with the WRatio algorithm. This catches spelling variations, transliteration differences, and partial name matches. You can adjust the sensitivity using the threshold slider on the screening tool. Try lowering it to 60% on a name search to see what additional matches emerge.</div>
+        </div>
+      </div>
+
+      <div class="try-tool-cta">
+        <div class="cta-left">
+          <div class="cta-label">⚙️ Try the threshold</div>
+          <div class="cta-title">See how matching thresholds affect results</div>
+          <div class="cta-sub">Search "Qaddafi" and adjust the threshold slider — see how 60% vs 90% changes what matches appear.</div>
+        </div>
+        <a href="/screen.html" class="cta-btn">Try it now →</a>
+      </div>
+    </section>
+
+    <!-- SECTION 8: RISK SCORING -->
+    <section class="article-section" id="risk">
+      <div class="section-number">Section 08</div>
+      <h2>Risk scoring and the art of the false positive</h2>
+
+      <p>The screening process generates matches — but not every match is a real hit. This is one of the most significant operational challenges in AML compliance: the <strong>false positive problem</strong>.</p>
+
+      <h3>True hits vs. false positives</h3>
+      <table class="compare-table">
+        <thead>
+          <tr><th>Type</th><th>What it means</th><th>Action required</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>True positive</strong></td>
+            <td>The matched person IS the sanctioned/PEP individual</td>
+            <td>Block transaction, file SAR, escalate immediately</td>
+          </tr>
+          <tr>
+            <td><strong>False positive</strong></td>
+            <td>The matched person shares a name but is NOT the same individual</td>
+            <td>Document the false positive, clear the alert, proceed</td>
+          </tr>
+          <tr>
+            <td><strong>False negative</strong></td>
+            <td>A sanctioned person was NOT matched (worst case)</td>
+            <td>Review screening configuration, threshold, and data quality</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>The false positive problem</h3>
+      <p>In large financial institutions processing millions of transactions daily, false positive rates can be enormous. Some banks report false positive rates of <strong>95–99%</strong> — meaning that for every 100 screening alerts, only 1–5 are genuine matches. The rest are innocent customers who happen to share a name with a sanctioned person.</p>
+
+      <p>This creates a real tension:</p>
+      <ul>
+        <li>Set the threshold <strong>too high</strong> (e.g. 95%) → miss genuine matches → regulatory risk</li>
+        <li>Set the threshold <strong>too low</strong> (e.g. 50%) → flood of false positives → operational cost</li>
+      </ul>
+
+      <p>The art of good screening configuration is finding the right balance for your risk appetite and customer base.</p>
+
+      <div class="quiz-box" id="quiz2">
+        <div class="quiz-title">🧠 Quick check</div>
+        <div class="quiz-question">A bank screens 10,000 transactions per day and gets 500 alerts. Of those, only 10 are genuine matches. What is the false positive rate?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="answerQuiz('quiz2', this, false)">A) 10%</button>
+          <button class="quiz-option" onclick="answerQuiz('quiz2', this, false)">B) 50%</button>
+          <button class="quiz-option" onclick="answerQuiz('quiz2', this, true)">C) 98%</button>
+          <button class="quiz-option" onclick="answerQuiz('quiz2', this, false)">D) 2%</button>
+        </div>
+        <div class="quiz-feedback" id="quiz2-feedback"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 9: REGULATORY -->
+    <section class="article-section" id="regulatory">
+      <div class="section-number">Section 09</div>
+      <h2>The regulatory framework: Who makes the rules?</h2>
+
+      <p>Financial crime screening does not exist in a vacuum. It is embedded in a complex web of international standards, national laws, and regulatory guidance. Understanding this framework is essential for any compliance professional.</p>
+
+      <h3>The international standard: FATF</h3>
+      <p>The Financial Action Task Force (FATF) is the global standard-setter for AML and counter-terrorism financing (CTF). Founded in 1989, FATF has 37 member jurisdictions and produces the internationally recognised "<strong>40 Recommendations</strong>" — the blueprint for AML frameworks worldwide.</p>
+
+      <p>FATF conducts mutual evaluations of member countries, assessing the effectiveness of their AML systems. Countries that fail evaluations can be placed on the "grey list" (increased monitoring) or "black list" (call for action) — which can have severe consequences for their banking sector.</p>
+
+      <h3>Key regulatory milestones</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">1989</div>
+          <div class="timeline-title">FATF established</div>
+          <div class="timeline-desc">Founded by G7 to combat money laundering. Original 40 Recommendations published.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2001</div>
+          <div class="timeline-title">FATF expands to terrorism financing</div>
+          <div class="timeline-desc">Post 9/11, FATF adds 8 Special Recommendations on terrorist financing.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2003</div>
+          <div class="timeline-title">PEP definition formalised</div>
+          <div class="timeline-desc">FATF formally defines Politically Exposed Persons and requires enhanced due diligence.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2012</div>
+          <div class="timeline-title">Revised 40 Recommendations</div>
+          <div class="timeline-desc">Risk-based approach embedded. Virtual assets and tax crimes added to scope.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2017</div>
+          <div class="timeline-title">UK MLR 2017</div>
+          <div class="timeline-desc">UK Money Laundering Regulations 2017 transposed EU 4th AMLD into UK law.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2022</div>
+          <div class="timeline-title">Russia sanctions surge</div>
+          <div class="timeline-desc">Following invasion of Ukraine, OFAC, OFSI and EU issued unprecedented waves of sanctions against Russian individuals and entities.</div>
+        </div>
+      </div>
+
+      <h3>UK-specific framework</h3>
+      <p>For those operating in the UK, the key legislative and regulatory framework includes:</p>
+      <ul>
+        <li><strong>Proceeds of Crime Act 2002 (POCA)</strong> — primary money laundering legislation</li>
+        <li><strong>Terrorism Act 2000</strong> — terrorism financing offences</li>
+        <li><strong>Money Laundering Regulations 2017 (as amended)</strong> — detailed AML obligations</li>
+        <li><strong>Financial Services and Markets Act 2000 (FSMA)</strong> — FCA's regulatory powers</li>
+        <li><strong>The Sanctions and Anti-Money Laundering Act 2018</strong> — post-Brexit UK sanctions regime</li>
+        <li><strong>FCA's Financial Crime Guide</strong> — practical guidance on implementing AML obligations</li>
+      </ul>
+
+      <div class="try-tool-cta">
+        <div class="cta-left">
+          <div class="cta-label">🔍 See regulation in action</div>
+          <div class="cta-title">Search for entities on UK (OFSI) sanctions lists</div>
+          <div class="cta-sub">Try screening names to see which are on UK OFSI lists vs US OFAC — and see how different regulators designate differently.</div>
+        </div>
+        <a href="/screen.html" class="cta-btn">Compare lists →</a>
+      </div>
+    </section>
+
+    <!-- SECTION 10: CHALLENGES -->
+    <section class="article-section" id="challenges">
+      <div class="section-number">Section 10</div>
+      <h2>The real challenges of financial crime screening</h2>
+
+      <p>Theory is one thing. The practical reality of operating a financial crime screening programme is filled with challenges that textbooks rarely address.</p>
+
+      <h3>1. Data quality</h3>
+      <p>Screening is only as good as the data you feed it. Customer records with missing middle names, inconsistent transliterations, or outdated addresses lead to missed matches and unnecessary false positives. "Garbage in, garbage out" is never more true than in screening.</p>
+
+      <h3>2. Beneficial ownership</h3>
+      <p>Criminals and sanctioned individuals rarely put their own name on accounts. They use shell companies, nominees, and complex ownership structures to obscure their identity. Effective screening must look through these structures to identify the ultimate beneficial owner (UBO) — but this data is often unavailable or unreliable.</p>
+
+      <h3>3. Speed vs. accuracy</h3>
+      <p>In real-time payments (faster payments, SWIFT, crypto), there may be milliseconds to screen before a transaction completes. This creates tension between thoroughness and speed. Batch screening (end-of-day checks) allows more time but misses real-time risk.</p>
+
+      <h3>4. List proliferation</h3>
+      <p>There are over 40 major sanction lists globally, updated at different frequencies, in different formats, with different legal implications. Keeping all of them current, integrated, and accurately weighted is a significant operational challenge.</p>
+
+      <h3>5. De-risking</h3>
+      <p>Faced with the compliance burden, many large banks have simply exited entire markets or customer segments — closing accounts for money service businesses, charities operating in conflict zones, or correspondent banks in high-risk jurisdictions. This "de-risking" can leave vulnerable populations without access to financial services, and pushes activity into unregulated channels.</p>
+
+      <div class="callout warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <div class="callout-title">The de-risking paradox</div>
+          <div class="callout-text">When Barclays closed accounts for money transfer operators sending remittances to Somalia in 2013, it cut off a financial lifeline for millions of Somali diaspora. The fear of AML exposure led to an action that ironically increased financial crime risk by pushing transfers into unmonitored cash networks.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 11: TECHNOLOGY -->
+    <section class="article-section" id="technology">
+      <div class="section-number">Section 11</div>
+      <h2>Technology and AI: The future of screening</h2>
+
+      <p>Financial crime screening is being transformed by technology. What was once a manual, rule-based process is rapidly becoming an AI-driven, adaptive system.</p>
+
+      <h3>From rules to machine learning</h3>
+      <p>Traditional screening systems used simple exact-match or basic fuzzy-match rules. Modern systems use machine learning to:</p>
+      <ul>
+        <li>Learn from analyst decisions to reduce false positives over time</li>
+        <li>Identify unusual patterns in transaction behaviour</li>
+        <li>Link entities across multiple data sources</li>
+        <li>Predict risk before a transaction even completes</li>
+      </ul>
+
+      <h3>Natural Language Processing (NLP)</h3>
+      <p>NLP is transforming adverse media screening. Instead of keyword searches that return anything mentioning "fraud", NLP systems can understand context — distinguishing between "John Smith was convicted of fraud" and "John Smith's company helped uncover a fraud".</p>
+
+      <h3>Graph analytics and network analysis</h3>
+      <p>Financial crime rarely involves a single individual acting alone. Graph analytics maps the relationships between entities — revealing networks of shell companies, shared addresses, and common directors that might not be visible when looking at customers individually.</p>
+
+      <h3>The role of open-source intelligence (OSINT)</h3>
+      <p>The growth of open-source data — from company registries to social media to leaked documents — has transformed what is possible in due diligence. Platforms like OpenSanctions aggregate publicly available sanctions and PEP data from dozens of sources into a single, machine-readable format. This is the data that powers FinCrimeRadar.</p>
+
+      <div class="callout success">
+        <div class="callout-icon">🤖</div>
+        <div class="callout-body">
+          <div class="callout-title">AI in compliance</div>
+          <div class="callout-text">Financial institutions are increasingly using large language models (LLMs) to assist with KYC document review, SAR drafting, and regulatory interpretation. The compliance function is becoming one of the highest-growth areas for AI adoption in financial services — making this an excellent time to develop both domain knowledge and technical literacy.</div>
+        </div>
+      </div>
+
+      <div class="try-tool-cta">
+        <div class="cta-left">
+          <div class="cta-label">🤖 Experience AI screening</div>
+          <div class="cta-title">FinCrimeRadar uses real fuzzy-matching AI — try it yourself</div>
+          <div class="cta-sub">Search a misspelled name — e.g. "Vladiir Putin" or "Kim Jong-un" — and see how the AI still finds the right match.</div>
+        </div>
+        <a href="/screen.html" class="cta-btn">Try AI screening →</a>
+      </div>
+    </section>
+
+    <!-- SECTION 12: FAQ -->
+    <section class="article-section" id="faq">
+      <div class="section-number">Section 12</div>
+      <h2>Frequently asked questions</h2>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What is the difference between AML and KYC? <span class="faq-icon">+</span></div>
+        <div class="faq-a"><p>KYC (Know Your Customer) is the process of verifying customer identity and understanding their business. AML (Anti-Money Laundering) is the broader framework of policies, controls, and procedures designed to prevent money laundering. KYC is a component of AML — you need to know who your customer is (KYC) before you can assess the risk they pose (AML). Screening sits within both: it is part of the KYC onboarding process and ongoing AML monitoring.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How often should screening be conducted? <span class="faq-icon">+</span></div>
+        <div class="faq-a"><p>At minimum, screening should occur at onboarding (before the customer relationship begins) and on an ongoing basis. Most institutions screen at onboarding and then conduct periodic rescreening — typically annually for standard risk customers, more frequently for high-risk. Many institutions also screen in real time at the point of transaction. Trigger-based rescreening (when new information emerges about a customer) is also best practice.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What is Enhanced Due Diligence (EDD)? <span class="faq-icon">+</span></div>
+        <div class="faq-a"><p>Enhanced Due Diligence (EDD) is a more thorough level of customer due diligence applied to higher-risk customers — including PEPs, customers from high-risk jurisdictions, and those in higher-risk business sectors. EDD typically involves: obtaining additional information about the source of funds and wealth, senior management approval for the relationship, more frequent monitoring, and additional adverse media searches. EDD is required under UK Money Laundering Regulations 2017 for PEPs and certain other high-risk categories.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What is a Suspicious Activity Report (SAR)? <span class="faq-icon">+</span></div>
+        <div class="faq-a"><p>A Suspicious Activity Report (SAR) is a report filed with the financial intelligence unit (in the UK, the National Crime Agency's UKFIU) when a firm knows or suspects that a person is engaged in money laundering or terrorist financing. If a screening match turns out to be a genuine hit — or if transaction monitoring reveals suspicious patterns — the institution's MLRO must consider whether to file a SAR. In the UK, filing a SAR and obtaining a "defence against money laundering" (DAML) consent can protect the institution from prosecution if they proceed with a transaction.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I use FinCrimeRadar for actual compliance screening? <span class="faq-icon">+</span></div>
+        <div class="faq-a"><p>FinCrimeRadar is an educational tool designed to help students and compliance professionals understand how screening works. It should not be used as a substitute for regulated compliance screening solutions. For actual compliance purposes, you should use FCA-approved or equivalent commercial screening platforms with full audit trails, complete data coverage, and legal accountability. FinCrimeRadar is excellent for learning, testing concepts, and understanding the mechanics — but it is not a compliance tool.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What qualifications are available in financial crime compliance? <span class="faq-icon">+</span></div>
+        <div class="faq-a"><p>Several professional qualifications are widely recognised in the UK and globally: ICA (International Compliance Association) — offers Certificates and Diplomas in AML and compliance; ACAMS (Association of Certified Anti-Money Laundering Specialists) — offers the CAMS certification, widely regarded as the gold standard globally; ACFE (Association of Certified Fraud Examiners) — offers the CFE for fraud professionals; ICA Diploma in Financial Crime Prevention — UK-specific qualification. Many employers in financial crime compliance look for at least one of these certifications in addition to relevant experience.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What is the difference between screening and transaction monitoring? <span class="faq-icon">+</span></div>
+        <div class="faq-a"><p>Screening checks who you are dealing with — it is identity-focused and compares names against lists. Transaction monitoring checks what is happening — it analyses patterns of transactions over time to identify unusual or suspicious behaviour (e.g. structuring, unusual cash deposits, rapid movement of funds). Both are required under AML regulations. Screening typically triggers at onboarding and rescreening points; transaction monitoring runs continuously on account activity.</p></div>
+      </div>
+
+      <!-- FINAL CTA -->
+      <div class="try-tool-cta" style="margin-top: 2rem;">
+        <div class="cta-left">
+          <div class="cta-label">🎓 You've read the guide — now experience it</div>
+          <div class="cta-title">Put your new knowledge to work on a real screening tool</div>
+          <div class="cta-sub">Free, open-source, and built for exactly this moment. No sign-up required.</div>
+        </div>
+        <a href="/screen.html" class="cta-btn">🛡️ Launch the tool →</a>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  © 2026 FinCrimeRadar ·
+  <a href="/">Home</a>
+  <a href="/screen.html">Screening tool</a>
+  <a href="/privacy.html">Privacy</a>
+  <a href="mailto:hello@fincrimeradar.org">Contact</a>
+</footer>
+
+<script>
+  // READING PROGRESS
+  function updateProgress() {
+    const doc = document.documentElement;
+    const scrolled = doc.scrollTop || document.body.scrollTop;
+    const total = doc.scrollHeight - doc.clientHeight;
+    const pct = Math.round((scrolled / total) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+
+  // ACTIVE TOC LINK
+  const sections = document.querySelectorAll('section[id]');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.toc-list a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+
+  // QUIZ
+  function answerQuiz(quizId, btn, isCorrect) {
+    const quiz = document.getElementById(quizId);
+    const feedback = document.getElementById(quizId + '-feedback');
+    quiz.querySelectorAll('.quiz-option').forEach(b => b.disabled = true);
+    btn.classList.add(isCorrect ? 'correct' : 'wrong');
+    feedback.classList.add('show');
+    if (isCorrect) {
+      feedback.classList.add('correct');
+      feedback.textContent = '✅ Correct! ' + (quizId === 'quiz1' ? 'Interest rates are set by central banks and monetary policy — they have no connection to AML compliance failures.' : '98% — (500 - 10) / 500 × 100 = 98%. This high false positive rate is typical for large financial institutions and is a major operational challenge.');
+    } else {
+      feedback.classList.add('wrong');
+      feedback.textContent = '❌ Not quite. ' + (quizId === 'quiz1' ? 'Think about what regulators can actually do to financial institutions that fail AML obligations.' : 'Calculate: genuine matches = 10, total alerts = 500, false positives = 490, false positive rate = 490/500 = 98%.');
+    }
+  }
+
+  // FAQ
+  function toggleFaq(el) {
+    const answer = el.nextElementSibling;
+    const icon = el.querySelector('.faq-icon');
+    answer.classList.toggle('open');
+    icon.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
