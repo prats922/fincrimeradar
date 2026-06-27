@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About FinCrimeRadar — Built by a Compliance Professional, for Compliance Professionals</title>
+  <meta name="description" content="FinCrimeRadar is a free, open-source AML screening tool built by Pratik Zanke — a Senior AML professional and former Acting MLRO with experience across four international jurisdictions." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:#ffffff; --off:#f7f8fa; --border:#e4e7ec;
+      --muted:#6b7280; --text:#111827; --navy:#0f2044;
+      --accent:#1d5fc4; --accent-h:#1749a0; --accent-light:#eff6ff;
+      --danger:#dc2626; --success:#16a34a; --warning:#d97706;
+    }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
+
+    nav { position:sticky; top:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:60px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-logo { width:26px; height:26px; }
+    .nav-name { font-size:15px; font-weight:600; color:var(--navy); }
+    .nav-name span { color:var(--accent); }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.15s; }
+    .nav-links a:hover { color:var(--navy); }
+    .nav-links a.active { color:var(--accent); font-weight:500; }
+    .nav-cta { padding:7px 16px; background:var(--accent); color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; }
+
+    /* HERO */
+    .about-hero { background:linear-gradient(135deg,#0f2044 0%,#1d3a6e 100%); padding:4.5rem 2rem 3.5rem; }
+    .hero-inner { max-width:860px; margin:0 auto; display:grid; grid-template-columns:1fr auto; gap:3rem; align-items:center; }
+    .hero-text .eyebrow { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:#93c5fd; margin-bottom:1rem; }
+    .hero-text h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(2rem,4vw,3rem); font-weight:400; color:#fff; line-height:1.2; margin-bottom:1rem; }
+    .hero-text h1 em { font-style:italic; color:#93c5fd; }
+    .hero-text p { font-size:16px; color:#cbd5e1; line-height:1.7; max-width:520px; }
+    .founder-card { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:16px; padding:1.75rem; text-align:center; flex-shrink:0; width:200px; }
+    .founder-avatar { width:72px; height:72px; border-radius:50%; background:linear-gradient(135deg,#1d5fc4,#7c3aed); display:flex; align-items:center; justify-content:center; font-size:28px; margin:0 auto 12px; border:3px solid rgba(255,255,255,0.2); }
+    .founder-name { font-size:15px; font-weight:600; color:#fff; margin-bottom:3px; }
+    .founder-title { font-size:12px; color:#94a3b8; line-height:1.4; margin-bottom:12px; }
+    .founder-links { display:flex; flex-direction:column; gap:6px; }
+    .founder-link { display:block; font-size:12px; padding:5px 10px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15); border-radius:6px; color:#e2e8f0; text-decoration:none; transition:all 0.15s; }
+    .founder-link:hover { background:rgba(255,255,255,0.2); }
+
+    /* CONTENT */
+    .content { max-width:860px; margin:0 auto; padding:3rem 1.5rem; }
+
+    .section { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:2.25rem; margin-bottom:1.25rem; }
+    .section h2 { font-family:'DM Serif Display',Georgia,serif; font-size:24px; font-weight:400; color:var(--navy); margin-bottom:1rem; line-height:1.3; }
+    .section h3 { font-size:16px; font-weight:600; color:var(--navy); margin:1.5rem 0 0.65rem; }
+    .section p { font-size:14.5px; color:#374151; margin-bottom:0.9rem; line-height:1.75; }
+    .section ul { padding-left:1.5rem; margin-bottom:0.9rem; }
+    .section li { font-size:14.5px; color:#374151; margin-bottom:0.45rem; line-height:1.65; }
+    .section a { color:var(--accent); text-decoration:none; }
+    .section a:hover { text-decoration:underline; }
+
+    /* STORY TIMELINE */
+    .story-line { position:relative; padding-left:28px; margin:1.5rem 0; }
+    .story-line::before { content:''; position:absolute; left:10px; top:6px; bottom:6px; width:2px; background:var(--border); }
+    .story-item { position:relative; margin-bottom:1.5rem; }
+    .story-dot { position:absolute; left:-22px; top:5px; width:12px; height:12px; border-radius:50%; background:var(--accent); border:2px solid var(--white); box-shadow:0 0 0 2px var(--accent); }
+    .story-dot.highlight { background:var(--success); box-shadow:0 0 0 2px var(--success); }
+    .story-year { font-size:11px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:0.4px; margin-bottom:2px; }
+    .story-year.highlight { color:var(--success); }
+    .story-title { font-size:14px; font-weight:600; color:var(--navy); margin-bottom:3px; }
+    .story-desc { font-size:13px; color:var(--muted); line-height:1.55; }
+
+    /* JURISDICTION BADGES */
+    .jurisdiction-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin:1.25rem 0; }
+    .j-card { background:var(--off); border:1px solid var(--border); border-radius:10px; padding:1rem 1.25rem; }
+    .j-flag { font-size:20px; margin-bottom:6px; }
+    .j-name { font-size:13px; font-weight:600; color:var(--navy); margin-bottom:3px; }
+    .j-body { font-size:12px; color:var(--muted); line-height:1.45; }
+    .j-regulator { font-size:11px; font-weight:600; color:var(--accent); margin-top:4px; }
+
+    /* MISSION STATEMENT */
+    .mission { background:var(--accent-light); border:1px solid #bfdbfe; border-radius:12px; padding:1.75rem; margin:1.25rem 0; }
+    .mission-quote { font-family:'DM Serif Display',Georgia,serif; font-size:19px; font-style:italic; color:var(--navy); line-height:1.55; margin-bottom:0.75rem; }
+    .mission-attr { font-size:13px; color:var(--muted); }
+
+    /* STATS */
+    .stats-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:10px; margin:1.25rem 0; }
+    .stat { background:var(--off); border:1px solid var(--border); border-radius:10px; padding:1rem; text-align:center; }
+    .stat-num { font-size:22px; font-weight:700; color:var(--navy); }
+    .stat-label { font-size:11px; color:var(--muted); margin-top:3px; line-height:1.3; }
+
+    /* TOOL HIGHLIGHT */
+    .tool-highlight { background:linear-gradient(135deg,#0f2044 0%,#1d3a6e 100%); border-radius:12px; padding:1.75rem; display:flex; align-items:center; justify-content:space-between; gap:1.25rem; flex-wrap:wrap; margin:1.25rem 0; }
+    .th-left { flex:1; }
+    .th-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:#93c5fd; margin-bottom:5px; }
+    .th-title { font-size:16px; font-weight:600; color:#fff; margin-bottom:4px; }
+    .th-sub { font-size:13px; color:#94a3b8; }
+    .th-btn { padding:10px 20px; background:var(--accent); color:#fff; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap; transition:all 0.15s; }
+    .th-btn:hover { background:var(--accent-h); }
+
+    /* DISCLAIMER */
+    .disclaimer { background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:1.1rem 1.4rem; font-size:13px; color:#78350f; line-height:1.6; }
+    .disclaimer strong { color:#92400e; }
+
+    footer { background:var(--white); border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:12px; color:var(--muted); margin-top:2rem; }
+    footer a { color:var(--muted); text-decoration:none; margin:0 8px; }
+    footer a:hover { color:var(--accent); }
+
+    @media (max-width:768px) {
+      nav { padding:0 1rem; }
+      .nav-links .hm { display:none; }
+      .about-hero { padding:3rem 1.25rem 2.5rem; }
+      .hero-inner { grid-template-columns:1fr; }
+      .founder-card { width:100%; }
+      .content { padding:1.5rem 1rem; }
+      .section { padding:1.5rem; }
+      .tool-highlight { flex-direction:column; }
+      .jurisdiction-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="/">
+    <svg class="nav-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="14" stroke="#1d5fc4" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="9" stroke="#1d5fc4" stroke-width="1" stroke-dasharray="3 2"/>
+      <circle cx="16" cy="16" r="4" stroke="#1d5fc4" stroke-width="0.75" stroke-dasharray="2 2"/>
+      <circle cx="16" cy="16" r="1.5" fill="#1d5fc4"/>
+      <line x1="16" y1="16" x2="25" y2="7" stroke="#1d5fc4" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="22" cy="10" r="2" fill="#dc2626"/>
+    </svg>
+    <span class="nav-name">Fin<span>Crime</span>Radar</span>
+  </a>
+  <div class="nav-links">
+    <a href="/" class="hm">Home</a>
+    <a href="/knowledge.html" class="hm">Knowledge Hub</a>
+    <a href="/screen.html" class="hm">Screen</a>
+    <a href="/about.html" class="active hm">About</a>
+    <a href="/screen.html" class="nav-cta">Try the tool →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="about-hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="eyebrow">About FinCrimeRadar</div>
+      <h1>Built by a compliance professional, <em>for compliance professionals</em></h1>
+      <p>FinCrimeRadar was built from scratch by a senior AML professional who spent eight years building financial crime programmes across four international jurisdictions — because free, accessible screening tools for learning simply didn't exist.</p>
+    </div>
+    <div class="founder-card">
+      <div class="founder-avatar">🛡️</div>
+      <div class="founder-name">Pratik Zanke</div>
+      <div class="founder-title">Compliance Operations Analyst · Former Acting MLRO</div>
+      <div class="founder-links">
+        <a href="mailto:hello@fincrimeradar.org" class="founder-link">✉ hello@fincrimeradar.org</a>
+        <a href="https://www.linkedin.com/in/pratik-zanke-749856126/" target="_blank" rel="noopener" class="founder-link">💼 LinkedIn</a>
+        <a href="https://github.com/prats922/fincrimeradar" target="_blank" rel="noopener" class="founder-link">⚙️ GitHub</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- MISSION -->
+  <div class="section">
+    <h2>Our mission</h2>
+    <div class="mission">
+      <div class="mission-quote">"Financial crime compliance knowledge should be accessible to everyone — not locked behind expensive certifications, paywalled databases, or enterprise software subscriptions that only large institutions can afford."</div>
+      <div class="mission-attr">— Pratik Zanke, Founder of FinCrimeRadar</div>
+    </div>
+    <p>FinCrimeRadar exists to democratise financial crime compliance education. Whether you are a compliance student taking your first steps, a junior analyst trying to understand how screening actually works, or a professional who wants to test concepts against real data — FinCrimeRadar gives you a free, open, and honest tool to learn with.</p>
+    <p>Every feature on this platform is free. The screening tool is free. The knowledge hub is free. The API will be free for educational use. That is not a promotional offer — it is a permanent commitment.</p>
+  </div>
+
+  <!-- THE STORY -->
+  <div class="section">
+    <h2>The story behind FinCrimeRadar</h2>
+    <p>FinCrimeRadar was built by <strong>Pratik Zanke</strong> — a Financial Crime and Compliance professional with eight years of hands-on experience building AML programmes from scratch across multiple international markets.</p>
+    <p>After spending years working as a Senior Manager and Acting MLRO — holding regulatory accountability across four jurisdictions simultaneously — Pratik noticed a persistent gap: students and junior professionals entering the compliance field had no practical way to understand how screening actually works. The concepts exist in textbooks, but the hands-on experience of running a real screening check against live sanctions data was locked away inside enterprise systems that cost thousands per year.</p>
+    <p>FinCrimeRadar was built to fix that. With no prior coding experience, Pratik taught himself to build the platform from scratch — a fitting parallel to building AML frameworks from scratch across his career.</p>
+
+    <div class="story-line">
+      <div class="story-item">
+        <div class="story-dot"></div>
+        <div class="story-year">2017–2025</div>
+        <div class="story-title">Sr. Manager — Financial Crime, Risk & Compliance · Acting MLRO</div>
+        <div class="story-desc">PayMate India Ltd. Built AML programmes across four international jurisdictions — CBUAE, MAS Singapore, AUSTRAC Australia, and FIU India. Oversaw $1B+ monthly transaction volume with 0% fraud rate across three markets.</div>
+      </div>
+      <div class="story-item">
+        <div class="story-dot"></div>
+        <div class="story-year">March 2025</div>
+        <div class="story-title">Compliance Operations Analyst · Rapyd Payments Ltd</div>
+        <div class="story-desc">Joined Rapyd, an FCA-regulated Electronic Money Institution in Birmingham, UK — continuing to develop expertise in UK-specific AML and payment regulation.</div>
+      </div>
+      <div class="story-item">
+        <div class="story-dot highlight"></div>
+        <div class="story-year highlight">June 2026</div>
+        <div class="story-title">FinCrimeRadar launched</div>
+        <div class="story-desc">Built from scratch with no prior coding experience — sanctions screening, PEP database, adverse media monitoring, and the AML Knowledge Hub. All free, all open source.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JURISDICTIONS -->
+  <div class="section">
+    <h2>Built on real regulatory experience</h2>
+    <p>FinCrimeRadar's content and tools are informed by direct, hands-on experience building and operating AML frameworks under four different regulatory regimes:</p>
+    <div class="jurisdiction-grid">
+      <div class="j-card">
+        <div class="j-flag">🇦🇪</div>
+        <div class="j-name">United Arab Emirates</div>
+        <div class="j-body">AML framework built for payments operations under UAE regulatory requirements including sanctions obligations.</div>
+        <div class="j-regulator">CBUAE supervised</div>
+      </div>
+      <div class="j-card">
+        <div class="j-flag">🇸🇬</div>
+        <div class="j-name">Singapore</div>
+        <div class="j-body">Compliance programme development for B2B payments under MAS regulatory framework — one of Asia's most rigorous regimes.</div>
+        <div class="j-regulator">MAS supervised</div>
+      </div>
+      <div class="j-card">
+        <div class="j-flag">🇦🇺</div>
+        <div class="j-name">Australia</div>
+        <div class="j-body">AML/CTF programme built under AUSTRAC requirements, covering reporting obligations and transaction monitoring.</div>
+        <div class="j-regulator">AUSTRAC supervised</div>
+      </div>
+      <div class="j-card">
+        <div class="j-flag">🇮🇳</div>
+        <div class="j-name">India</div>
+        <div class="j-body">Financial intelligence and AML compliance across a large-scale B2B payments platform under FIU-India oversight.</div>
+        <div class="j-regulator">FIU India supervised</div>
+      </div>
+    </div>
+    <p>This multi-jurisdictional background means the tools and content on FinCrimeRadar reflect how AML compliance actually works in practice across different regulatory environments — not just theory.</p>
+  </div>
+
+  <!-- WHAT WE BUILT -->
+  <div class="section">
+    <h2>What FinCrimeRadar provides</h2>
+
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num">25,000+</div><div class="stat-label">Sanctions records screened</div></div>
+      <div class="stat"><div class="stat-num">114+</div><div class="stat-label">PEP profiles</div></div>
+      <div class="stat"><div class="stat-num">40+</div><div class="stat-label">Sanctions lists covered</div></div>
+      <div class="stat"><div class="stat-num">17,000+</div><div class="stat-label">Words of free content</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Free forever</div></div>
+    </div>
+
+    <h3>The screening tool</h3>
+    <p>A live, free sanctions screening, PEP screening, and adverse media monitoring tool powered by OpenSanctions data (covering OFAC, UN, EU, OFSI and 40+ lists), a curated PEP database, and real-time news sources including BBC and OCCRP. Designed to show students and professionals exactly what a real screening check looks like.</p>
+
+    <h3>The AML Knowledge Hub</h3>
+    <p>Free, in-depth guides on UK financial crime law (MLR 2017, POCA 2002, Terrorism Act 2000), AML compliance obligations, and how screening works in practice. All content is verified against current FCA guidance and updated regularly.</p>
+
+    <h3>Open source</h3>
+    <p>FinCrimeRadar is open source. The code, data integrations, and screening engine are available on <a href="https://github.com/prats922/fincrimeradar" target="_blank" rel="noopener">GitHub</a> for anyone to inspect, use, or contribute to.</p>
+
+    <div class="tool-highlight">
+      <div class="th-left">
+        <div class="th-eyebrow">🛡️ Try it now</div>
+        <div class="th-title">The screening tool is free — no sign-up required</div>
+        <div class="th-sub">Screen any name against sanctions lists, PEP databases, and adverse media in seconds.</div>
+      </div>
+      <a href="/screen.html" class="th-btn">Open screening tool →</a>
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="section">
+    <h2>Important disclaimer</h2>
+    <div class="disclaimer">
+      <strong>Educational tool only.</strong> FinCrimeRadar is designed as a free educational resource for compliance students and professionals. It is not a regulated compliance screening solution and must not be used as a substitute for commercial-grade AML screening in regulated firms. Results may not be complete, current, or accurate enough for compliance decision-making. Always verify against official sanction list sources and use FCA-approved or equivalent solutions for actual compliance obligations.
+    </div>
+    <p style="margin-top:1rem;">For privacy-related questions or data requests, see our <a href="/privacy.html">Privacy Policy</a> or contact us at <a href="mailto:hello@fincrimeradar.org">hello@fincrimeradar.org</a>.</p>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 FinCrimeRadar ·
+  <a href="/">Home</a>
+  <a href="/knowledge.html">Knowledge Hub</a>
+  <a href="/screen.html">Screen</a>
+  <a href="/about.html">About</a>
+  <a href="/contact.html">Contact</a>
+  <a href="/privacy.html">Privacy</a>
+</footer>
+
+</body>
+</html>
