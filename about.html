@@ -39,7 +39,7 @@
     .hero-text h1 em { font-style:italic; color:#93c5fd; }
     .hero-text p { font-size:16px; color:#cbd5e1; line-height:1.7; max-width:520px; }
     .founder-card { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:16px; padding:1.75rem; text-align:center; flex-shrink:0; width:200px; }
-    .founder-avatar { width:72px; height:72px; border-radius:50%; background:linear-gradient(135deg,#1d5fc4,#7c3aed); display:flex; align-items:center; justify-content:center; font-size:28px; margin:0 auto 12px; border:3px solid rgba(255,255,255,0.2); }
+    .founder-avatar { width:88px; height:88px; border-radius:50%; background:linear-gradient(135deg,#1d5fc4,#7c3aed); display:flex; align-items:center; justify-content:center; font-size:28px; margin:0 auto 14px; border:3px solid rgba(255,255,255,0.25); overflow:hidden; }
     .founder-name { font-size:15px; font-weight:600; color:#fff; margin-bottom:3px; }
     .founder-title { font-size:12px; color:#94a3b8; line-height:1.4; margin-bottom:12px; }
     .founder-links { display:flex; flex-direction:column; gap:6px; }
@@ -150,9 +150,14 @@
       <p>FinCrimeRadar was built from scratch by a senior AML professional who spent eight years building financial crime programmes across four international jurisdictions — because free, accessible screening tools for learning simply didn't exist.</p>
     </div>
     <div class="founder-card">
-      <div class="founder-avatar">🛡️</div>
+      <div class="founder-avatar">
+        <img src="pratik.jpg" alt="Pratik Zanke" id="founderPhoto"
+          onerror="this.style.display='none'; document.getElementById('founderEmoji').style.display='flex';"
+          style="width:100%; height:100%; object-fit:cover; border-radius:50%;" />
+        <span id="founderEmoji" style="display:none; width:100%; height:100%; align-items:center; justify-content:center; font-size:28px;">🛡️</span>
+      </div>
       <div class="founder-name">Pratik Zanke</div>
-      <div class="founder-title">Compliance Operations Analyst · Former Acting MLRO</div>
+      <div class="founder-title">Financial Crime &amp; Compliance Professional<br/>Former Acting MLRO · 4 Regions</div>
       <div class="founder-links">
         <a href="mailto:hello@fincrimeradar.org" class="founder-link">✉ hello@fincrimeradar.org</a>
         <a href="https://www.linkedin.com/in/pratik-zanke-749856126/" target="_blank" rel="noopener" class="founder-link">💼 LinkedIn</a>
