@@ -1,41 +1,45 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0f2044"/>
-      <stop offset="100%" style="stop-color:#1d3a6e"/>
+      <stop offset="0%" style="stop-color:#0d1b2a"/>
+      <stop offset="100%" style="stop-color:#0f2044"/>
+    </linearGradient>
+    <linearGradient id="teal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4b8"/>
+      <stop offset="100%" style="stop-color:#00a892"/>
     </linearGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <!-- Radar circles -->
-  <circle cx="950" cy="315" r="200" fill="none" stroke="#1d5fc4" stroke-width="1" opacity="0.3"/>
-  <circle cx="950" cy="315" r="140" fill="none" stroke="#1d5fc4" stroke-width="1" opacity="0.3" stroke-dasharray="6 4"/>
-  <circle cx="950" cy="315" r="80" fill="none" stroke="#1d5fc4" stroke-width="1" opacity="0.3" stroke-dasharray="4 4"/>
-  <circle cx="950" cy="315" r="20" fill="none" stroke="#1d5fc4" stroke-width="1.5" opacity="0.5"/>
-  <circle cx="950" cy="315" r="6" fill="#1d5fc4" opacity="0.8"/>
-  <line x1="950" y1="315" x2="1020" y2="245" stroke="#1d5fc4" stroke-width="2" opacity="0.6"/>
-  <circle cx="1015" cy="250" r="8" fill="#dc2626"/>
-  <!-- Logo -->
-  <text x="80" y="120" font-family="Georgia, serif" font-size="52" font-weight="400" fill="#ffffff">Fin<tspan fill="#1d5fc4">Crime</tspan>Radar</text>
+  <!-- Network nodes background -->
+  <circle cx="950" cy="200" r="2" fill="#00c4a7" opacity="0.3"/>
+  <circle cx="1050" cy="300" r="2" fill="#00c4a7" opacity="0.2"/>
+  <circle cx="900" cy="400" r="2" fill="#00c4a7" opacity="0.3"/>
+  <circle cx="1100" cy="150" r="2" fill="#00c4a7" opacity="0.2"/>
+  <line x1="950" y1="200" x2="1050" y2="300" stroke="#00c4a7" stroke-width="0.5" opacity="0.15"/>
+  <line x1="1050" y1="300" x2="900" y2="400" stroke="#00c4a7" stroke-width="0.5" opacity="0.15"/>
+  <line x1="950" y1="200" x2="1100" y2="150" stroke="#00c4a7" stroke-width="0.5" opacity="0.15"/>
+  <!-- Logo placeholder circle -->
+  <circle cx="130" cy="100" r="60" fill="none" stroke="#00c4a7" stroke-width="1.5" opacity="0.4"/>
+  <image href="/logo.png" x="70" y="40" width="120" height="120"/>
+  <!-- Brand name -->
+  <text x="210" y="115" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="700" fill="#ffffff">FinCrime<tspan fill="#00c4a7">Radar</tspan></text>
   <!-- Tagline -->
-  <text x="80" y="175" font-family="Inter, Arial, sans-serif" font-size="22" fill="#93c5fd" letter-spacing="1">Free AML &amp; Sanctions Screening · UK Compliance Hub</text>
+  <text x="80" y="185" font-family="Inter, Arial, sans-serif" font-size="20" fill="#00c4a7" letter-spacing="1">Free AML &amp; Sanctions Screening · UK Compliance Hub</text>
   <!-- Divider -->
-  <rect x="80" y="210" width="60" height="3" fill="#1d5fc4" rx="2"/>
+  <rect x="80" y="215" width="60" height="3" fill="#00c4a7" rx="2"/>
   <!-- Main headline -->
-  <text x="80" y="295" font-family="Georgia, serif" font-size="44" fill="#ffffff">Sanctions · PEP · Adverse Media</text>
-  <text x="80" y="355" font-family="Georgia, serif" font-size="44" fill="#ffffff">Screening — <tspan font-style="italic" fill="#93c5fd">free, forever.</tspan></text>
-  <!-- Features -->
-  <rect x="80" y="410" width="220" height="56" rx="8" fill="rgba(29,95,196,0.2)" stroke="#1d5fc4" stroke-width="1"/>
-  <text x="190" y="443" font-family="Inter, Arial, sans-serif" font-size="16" fill="#ffffff" text-anchor="middle">40,000+ words</text>
-  <text x="190" y="462" font-family="Inter, Arial, sans-serif" font-size="13" fill="#93c5fd" text-anchor="middle">of free guides</text>
-
-  <rect x="315" y="410" width="220" height="56" rx="8" fill="rgba(29,95,196,0.2)" stroke="#1d5fc4" stroke-width="1"/>
-  <text x="425" y="443" font-family="Inter, Arial, sans-serif" font-size="16" fill="#ffffff" text-anchor="middle">25,000+ records</text>
-  <text x="425" y="462" font-family="Inter, Arial, sans-serif" font-size="13" fill="#93c5fd" text-anchor="middle">sanctions database</text>
-
-  <rect x="550" y="410" width="220" height="56" rx="8" fill="rgba(29,95,196,0.2)" stroke="#1d5fc4" stroke-width="1"/>
-  <text x="660" y="443" font-family="Inter, Arial, sans-serif" font-size="16" fill="#ffffff" text-anchor="middle">3 full series</text>
-  <text x="660" y="462" font-family="Inter, Arial, sans-serif" font-size="13" fill="#93c5fd" text-anchor="middle">AML · PEP · SARs</text>
-
+  <text x="80" y="295" font-family="Georgia, serif" font-size="42" fill="#ffffff">Sanctions · PEP · Adverse Media</text>
+  <text x="80" y="350" font-family="Georgia, serif" font-size="42" fill="#ffffff">Screening — <tspan font-style="italic" fill="#00c4a7">free, forever.</tspan></text>
+  <!-- Feature pills -->
+  <rect x="80" y="400" width="200" height="52" rx="8" fill="rgba(0,196,167,0.15)" stroke="#00c4a7" stroke-width="1"/>
+  <text x="180" y="430" font-family="Inter, Arial, sans-serif" font-size="15" fill="#ffffff" text-anchor="middle">40,000+ words</text>
+  <text x="180" y="448" font-family="Inter, Arial, sans-serif" font-size="12" fill="#00c4a7" text-anchor="middle">of free guides</text>
+  <rect x="295" y="400" width="200" height="52" rx="8" fill="rgba(0,196,167,0.15)" stroke="#00c4a7" stroke-width="1"/>
+  <text x="395" y="430" font-family="Inter, Arial, sans-serif" font-size="15" fill="#ffffff" text-anchor="middle">25,000+ records</text>
+  <text x="395" y="448" font-family="Inter, Arial, sans-serif" font-size="12" fill="#00c4a7" text-anchor="middle">sanctions database</text>
+  <rect x="510" y="400" width="200" height="52" rx="8" fill="rgba(0,196,167,0.15)" stroke="#00c4a7" stroke-width="1"/>
+  <text x="610" y="430" font-family="Inter, Arial, sans-serif" font-size="15" fill="#ffffff" text-anchor="middle">Live news feed</text>
+  <text x="610" y="448" font-family="Inter, Arial, sans-serif" font-size="12" fill="#00c4a7" text-anchor="middle">FCA · OCCRP · OFSI</text>
   <!-- URL -->
-  <text x="80" y="580" font-family="Inter, Arial, sans-serif" font-size="20" fill="#475569">fincrimeradar.org</text>
+  <text x="80" y="580" font-family="Inter, Arial, sans-serif" font-size="18" fill="#475569">fincrimeradar.org</text>
 </svg>

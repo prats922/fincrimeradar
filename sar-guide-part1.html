@@ -50,11 +50,11 @@
     .nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
     .nav-logo { width:26px; height:26px; }
     .nav-name { font-size:15px; font-weight:600; color:var(--navy); }
-    .nav-name span { color:var(--blue); }
+    .nav-name span { color:#00c4a7; }
     .nav-links { display:flex; align-items:center; gap:1.25rem; }
     .nav-links a { font-size:13px; color:var(--muted); text-decoration:none; }
     .nav-links a:hover { color:var(--navy); }
-    .nav-cta { padding:7px 16px; background:var(--blue); color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; }
+    .nav-cta { padding:7px 16px; background:#00c4a7; color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; }
     .progress-bar { position:fixed; top:60px; left:0; width:0%; height:3px; background:var(--accent); z-index:199; transition:width 0.1s; }
     .series-hero { background:linear-gradient(135deg,#78350f 0%,#b45309 100%); color:#fff; padding:4rem 2rem 3rem; }
     .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:#fde68a; margin-bottom:1.25rem; }
@@ -178,7 +178,7 @@
     .pf-center { font-size:13px; color:var(--muted); }
     footer { background:var(--white); border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:12px; color:var(--muted); margin-top:2rem; }
     footer a { color:var(--muted); text-decoration:none; margin:0 8px; }
-    footer a:hover { color:var(--blue); }
+    footer a:hover { color:#00c4a7; }
     @media (max-width:768px) {
       .article-layout { grid-template-columns:1fr; }
       .toc { display:none; }
@@ -195,21 +195,14 @@
 <div class="progress-bar" id="progressBar"></div>
 <nav>
   <a class="nav-brand" href="/">
-    <svg class="nav-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="16" cy="16" r="14" stroke="#1d5fc4" stroke-width="1.5"/>
-      <circle cx="16" cy="16" r="9" stroke="#1d5fc4" stroke-width="1" stroke-dasharray="3 2"/>
-      <circle cx="16" cy="16" r="4" stroke="#1d5fc4" stroke-width="0.75" stroke-dasharray="2 2"/>
-      <circle cx="16" cy="16" r="1.5" fill="#1d5fc4"/>
-      <line x1="16" y1="16" x2="25" y2="7" stroke="#1d5fc4" stroke-width="1.5" stroke-linecap="round"/>
-      <circle cx="22" cy="10" r="2" fill="#dc2626"/>
-    </svg>
-    <span class="nav-name">Fin<span>Crime</span>Radar</span>
+    <img src="/logo.png" alt="FinCrimeRadar Logo" class="nav-logo" style="width:32px;height:32px;object-fit:contain;" />
+    <span class="nav-name">FinCrime<span style="color:#00c4a7;">Radar</span></span>
   </a>
   <div class="nav-links">
     <a href="/knowledge.html" class="hm">Knowledge Hub</a>
     <a href="/news.html" class="hm">News</a>
     <a href="/screen.html" class="hm">Screen</a>
-    <a href="/screen.html" class="nav-cta">Try the tool →</a>
+    <a href="/screen.html" class="nav-cta" style="background:#00c4a7;">Try the tool →</a>
   </div>
 </nav>
 
@@ -598,7 +591,7 @@
   </div>
   <div style="display:flex; gap:8px; flex-shrink:0;">
     <button onclick="rejectCookies()" style="padding:8px 16px; background:transparent; border:1px solid #334155; color:#94a3b8; border-radius:6px; font-size:12px; font-weight:500; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Reject non-essential</button>
-    <button onclick="acceptCookies()" style="padding:8px 18px; background:#1d5fc4; border:none; color:#fff; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Accept all</button>
+    <button onclick="acceptCookies()" style="padding:8px 18px; background:#00c4a7; border:none; color:#fff; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Accept all</button>
   </div>
 </div>
 <script>
