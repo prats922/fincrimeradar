@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suspicious Activity Reports Part 2: Writing Better SARs | FinCrimeRadar</title>
+  <meta name="description" content="Part 2 of the SAR Complete Guide. How to write a high-quality SAR — structure, content, the 5W framework, common mistakes, and what the NCA actually needs." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --white:#ffffff; --off:#f7f8fa; --border:#e4e7ec;
+      --muted:#6b7280; --text:#111827; --navy:#0f2044;
+      --accent:#d97706; --accent-h:#b45309; --accent-light:#fffbeb;
+      --accent-border:#fde68a;
+      --danger:#dc2626; --success:#16a34a; --blue:#1d5fc4;
+    }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
+    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:60px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-logo { width:26px; height:26px; }
+    .nav-name { font-size:15px; font-weight:600; color:var(--navy); }
+    .nav-name span { color:var(--blue); }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:var(--muted); text-decoration:none; }
+    .nav-links a:hover { color:var(--navy); }
+    .nav-cta { padding:7px 16px; background:var(--blue); color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; }
+    .progress-bar { position:fixed; top:60px; left:0; width:0%; height:3px; background:var(--accent); z-index:199; }
+    .series-hero { background:linear-gradient(135deg,#78350f 0%,#b45309 100%); color:#fff; padding:4rem 2rem 3rem; }
+    .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:#fde68a; margin-bottom:1.25rem; }
+    .series-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(1.9rem,4vw,3rem); font-weight:400; line-height:1.2; margin-bottom:0.75rem; max-width:760px; }
+    .series-hero h1 em { font-style:italic; color:#fde68a; }
+    .series-sub { font-size:16px; color:#fef3c7; max-width:620px; line-height:1.7; margin-bottom:2rem; }
+    .series-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#fcd34d; }
+    .part-nav { background:var(--white); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; overflow-x:auto; }
+    .part-link { padding:14px 20px; font-size:13px; font-weight:500; color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; }
+    .part-link.active { color:var(--accent); border-bottom-color:var(--accent); }
+    .part-link.done { color:var(--success); }
+    .article-layout { display:grid; grid-template-columns:220px 1fr; gap:2rem; max-width:1080px; margin:0 auto; padding:2.5rem 1.5rem; align-items:start; }
+    .toc { position:sticky; top:105px; background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.25rem; }
+    .toc-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--muted); margin-bottom:0.875rem; }
+    .toc-list { list-style:none; }
+    .toc-list a { font-size:12.5px; color:var(--muted); text-decoration:none; display:block; padding:5px 8px; border-radius:6px; transition:all 0.15s; border-left:2px solid transparent; }
+    .toc-list a:hover,.toc-list a.active { color:var(--accent); background:var(--accent-light); border-left-color:var(--accent); }
+    .toc-progress { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); }
+    .toc-progress-label { font-size:11px; color:var(--muted); margin-bottom:6px; display:flex; justify-content:space-between; }
+    .toc-bar { height:4px; background:var(--border); border-radius:99px; overflow:hidden; }
+    .toc-fill { height:100%; background:var(--accent); border-radius:99px; transition:width 0.2s; width:0%; }
+    .series-nav { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); }
+    .sn-link { display:block; font-size:12px; color:var(--muted); text-decoration:none; padding:5px 8px; border-radius:6px; margin-bottom:3px; }
+    .sn-link:hover,.sn-link.active { color:var(--accent); background:var(--accent-light); }
+    .sn-link.done { color:var(--success); }
+    .sn-link.active { font-weight:600; }
+    .article-body { min-width:0; }
+    .article-section { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:2.25rem; margin-bottom:1.25rem; }
+    .section-num { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--accent); margin-bottom:0.5rem; }
+    .article-section h2 { font-family:'DM Serif Display',Georgia,serif; font-size:24px; font-weight:400; color:var(--navy); margin-bottom:1rem; line-height:1.3; }
+    .article-section h3 { font-size:16px; font-weight:600; color:var(--navy); margin:1.75rem 0 0.65rem; }
+    .article-section p { font-size:14.5px; color:#374151; margin-bottom:0.9rem; line-height:1.75; }
+    .article-section ul,.article-section ol { padding-left:1.5rem; margin-bottom:0.9rem; }
+    .article-section li { font-size:14.5px; color:#374151; margin-bottom:0.45rem; line-height:1.65; }
+    .article-section a { color:var(--blue); text-decoration:none; }
+    .callout { border-radius:10px; padding:1.1rem 1.4rem; margin:1.25rem 0; display:flex; gap:12px; }
+    .callout-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+    .callout-body { flex:1; }
+    .callout-title { font-size:12px; font-weight:700; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.4px; }
+    .callout-text { font-size:13.5px; line-height:1.6; }
+    .callout.info { background:#eff6ff; border:1px solid #bfdbfe; }
+    .callout.info .callout-title { color:#1e40af; }
+    .callout.info .callout-text { color:#1e3a8a; }
+    .callout.warning { background:#fffbeb; border:1px solid #fde68a; }
+    .callout.warning .callout-title { color:#92400e; }
+    .callout.warning .callout-text { color:#78350f; }
+    .callout.danger { background:#fff5f5; border:1px solid #fca5a5; }
+    .callout.danger .callout-title { color:#991b1b; }
+    .callout.danger .callout-text { color:#7f1d1d; }
+    .callout.success { background:#f0fdf4; border:1px solid #86efac; }
+    .callout.success .callout-title { color:#166534; }
+    .callout.success .callout-text { color:#14532d; }
+    .callout.amber { background:var(--accent-light); border:1px solid var(--accent-border); }
+    .callout.amber .callout-title { color:#92400e; }
+    .callout.amber .callout-text { color:#78350f; }
+    /* 5W FRAMEWORK */
+    .five-w { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; margin:1.5rem 0; }
+    .fw-card { border-radius:10px; padding:1.1rem; text-align:center; }
+    .fw-card:nth-child(1) { background:#eff6ff; border:1px solid #bfdbfe; }
+    .fw-card:nth-child(2) { background:#f0fdf4; border:1px solid #86efac; }
+    .fw-card:nth-child(3) { background:var(--accent-light); border:1px solid var(--accent-border); }
+    .fw-card:nth-child(4) { background:#fff5f5; border:1px solid #fca5a5; }
+    .fw-card:nth-child(5) { background:#ede9fe; border:1px solid #ddd6fe; }
+    .fw-letter { font-size:28px; font-weight:700; color:var(--navy); margin-bottom:4px; font-family:'DM Serif Display',Georgia,serif; }
+    .fw-word { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--muted); margin-bottom:6px; }
+    .fw-desc { font-size:12px; color:var(--text); line-height:1.45; }
+    /* GOOD VS BAD */
+    .compare { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:1.5rem 0; }
+    .compare-bad { background:#fff5f5; border:1px solid #fca5a5; border-radius:10px; padding:1.1rem; }
+    .compare-good { background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:1.1rem; }
+    .compare-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:8px; }
+    .compare-bad .compare-label { color:var(--danger); }
+    .compare-good .compare-label { color:var(--success); }
+    .compare-text { font-size:13px; line-height:1.6; font-style:italic; }
+    .compare-bad .compare-text { color:#7f1d1d; }
+    .compare-good .compare-text { color:#14532d; }
+    /* COMMON MISTAKES */
+    .mistakes-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:10px; margin:1.5rem 0; }
+    .mistake-card { background:var(--off); border:1px solid var(--border); border-left:3px solid var(--danger); border-radius:10px; padding:1rem; }
+    .mc-num { font-size:11px; font-weight:700; color:var(--danger); margin-bottom:5px; }
+    .mc-title { font-size:13px; font-weight:600; color:var(--navy); margin-bottom:4px; }
+    .mc-desc { font-size:12px; color:var(--muted); line-height:1.45; }
+    .try-tool { background:linear-gradient(135deg,#78350f 0%,#b45309 100%); border-radius:12px; padding:1.5rem 1.75rem; margin:1.75rem 0; display:flex; align-items:center; justify-content:space-between; gap:1.25rem; flex-wrap:wrap; }
+    .try-tool .tl { flex:1; }
+    .try-tool .tl-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:#fde68a; margin-bottom:5px; }
+    .try-tool .tl-title { font-size:16px; font-weight:600; color:#fff; margin-bottom:4px; }
+    .try-tool .tl-sub { font-size:13px; color:#fcd34d; }
+    .try-tool .tl-btn { padding:10px 20px; background:var(--accent); color:#fff; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap; }
+    .try-tool .tl-btn:hover { background:var(--accent-h); }
+    .quiz { background:var(--accent-light); border:1px solid var(--accent-border); border-radius:12px; padding:1.4rem; margin:1.5rem 0; }
+    .quiz-label { font-size:11px; font-weight:700; color:#92400e; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:0.65rem; }
+    .quiz-q { font-size:15px; font-weight:600; color:var(--navy); margin-bottom:0.875rem; }
+    .quiz-opts { display:flex; flex-direction:column; gap:7px; }
+    .quiz-opt { padding:9px 13px; border:1.5px solid var(--accent-border); border-radius:7px; font-size:13.5px; cursor:pointer; background:var(--white); color:var(--text); transition:all 0.15s; text-align:left; font-family:'Inter',sans-serif; }
+    .quiz-opt:hover { border-color:var(--accent); color:var(--accent); }
+    .quiz-opt.correct { border-color:var(--success); background:#f0fdf4; color:var(--success); }
+    .quiz-opt.wrong { border-color:var(--danger); background:#fff5f5; color:var(--danger); }
+    .quiz-feedback { display:none; margin-top:0.875rem; font-size:13.5px; padding:10px 13px; border-radius:7px; }
+    .quiz-feedback.show { display:block; }
+    .quiz-feedback.correct { background:#f0fdf4; color:#166534; border:1px solid #86efac; }
+    .quiz-feedback.wrong { background:#fff5f5; color:#991b1b; border:1px solid #fca5a5; }
+    .faq-item { border:1px solid var(--border); border-radius:10px; margin-bottom:7px; overflow:hidden; }
+    .faq-q { padding:0.9rem 1.1rem; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-size:14px; font-weight:500; color:var(--navy); background:var(--white); user-select:none; }
+    .faq-q:hover { background:var(--off); }
+    .faq-icon { font-size:17px; color:var(--muted); transition:transform 0.2s; flex-shrink:0; }
+    .faq-icon.open { transform:rotate(45deg); }
+    .faq-a { display:none; padding:0 1.1rem 0.9rem; font-size:13.5px; color:#374151; line-height:1.7; border-top:1px solid var(--border); background:#fafafa; }
+    .faq-a.open { display:block; padding-top:0.9rem; }
+    .pull-quote { font-family:'DM Serif Display',Georgia,serif; font-size:18px; font-style:italic; color:var(--navy); border-left:3px solid var(--accent); padding-left:1.25rem; margin:1.5rem 0; line-height:1.6; }
+    .data-table { width:100%; border-collapse:collapse; margin:1.25rem 0; font-size:13.5px; }
+    .data-table th { background:var(--navy); color:#fff; padding:9px 13px; text-align:left; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; }
+    .data-table th:first-child { border-radius:8px 0 0 0; }
+    .data-table th:last-child { border-radius:0 8px 0 0; }
+    .data-table td { padding:9px 13px; border-bottom:1px solid var(--border); color:var(--text); vertical-align:top; }
+    .data-table tr:last-child td { border-bottom:none; }
+    .data-table tr:nth-child(even) td { background:var(--off); }
+    .part-footer { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-top:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    .pf-prev,.pf-next { display:flex; flex-direction:column; gap:4px; }
+    .pf-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--muted); }
+    .pf-link { font-size:14px; font-weight:600; color:var(--blue); text-decoration:none; }
+    .pf-link:hover { text-decoration:underline; }
+    .pf-next { text-align:right; }
+    .pf-center { font-size:13px; color:var(--muted); }
+    footer { background:var(--white); border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:12px; color:var(--muted); margin-top:2rem; }
+    footer a { color:var(--muted); text-decoration:none; margin:0 8px; }
+    footer a:hover { color:var(--blue); }
+    @media (max-width:768px) {
+      .article-layout { grid-template-columns:1fr; }
+      .toc { display:none; }
+      .series-hero { padding:2.5rem 1.25rem 2rem; }
+      .article-section { padding:1.5rem; }
+      .try-tool { flex-direction:column; }
+      .compare { grid-template-columns:1fr; }
+      nav { padding:0 1rem; }
+      .nav-links .hm { display:none; }
+    }
+  </style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav>
+  <a class="nav-brand" href="/">
+    <svg class="nav-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="14" stroke="#1d5fc4" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="9" stroke="#1d5fc4" stroke-width="1" stroke-dasharray="3 2"/>
+      <circle cx="16" cy="16" r="4" stroke="#1d5fc4" stroke-width="0.75" stroke-dasharray="2 2"/>
+      <circle cx="16" cy="16" r="1.5" fill="#1d5fc4"/>
+      <line x1="16" y1="16" x2="25" y2="7" stroke="#1d5fc4" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="22" cy="10" r="2" fill="#dc2626"/>
+    </svg>
+    <span class="nav-name">Fin<span>Crime</span>Radar</span>
+  </a>
+  <div class="nav-links">
+    <a href="/knowledge.html" class="hm">Knowledge Hub</a>
+    <a href="/screen.html" class="hm">Screen</a>
+    <a href="/screen.html" class="nav-cta">Try the tool →</a>
+  </div>
+</nav>
+
+<div class="series-hero">
+  <div class="series-tag">📝 SAR Complete Guide · Part 2 of 3</div>
+  <h1>Writing Better SARs: <em>What the NCA actually needs</em></h1>
+  <p class="series-sub">The 5W framework for SAR writing, good vs bad examples, the most common mistakes MLROs make, typologies that need specific information, and how to write a SAR that becomes actionable intelligence.</p>
+  <div class="series-meta">
+    <span>📖 20 min read</span>
+    <span>📋 Practical examples</span>
+    <span>🏛️ NCA · UKFIU</span>
+  </div>
+</div>
+
+<div class="part-nav">
+  <a href="/sar-guide-part1.html" class="part-link done">✓ Part 1: The Legal Regime</a>
+  <a href="/sar-guide-part2.html" class="part-link active">Part 2: Writing Better SARs</a>
+  <a href="/sar-guide-part3.html" class="part-link">Part 3: Quality, Intelligence & NCA</a>
+</div>
+
+<div class="article-layout">
+  <aside>
+    <div class="toc">
+      <div class="toc-title">In this part</div>
+      <ul class="toc-list">
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#5w">The 5W framework</a></li>
+        <li><a href="#subject">Subject information</a></li>
+        <li><a href="#narrative">The narrative</a></li>
+        <li><a href="#good-bad">Good vs bad examples</a></li>
+        <li><a href="#mistakes">Common mistakes</a></li>
+        <li><a href="#typologies">Typology-specific tips</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="toc-progress">
+        <div class="toc-progress-label"><span>Progress</span><span id="pct">0%</span></div>
+        <div class="toc-bar"><div class="toc-fill" id="fill"></div></div>
+      </div>
+      <div class="series-nav">
+        <div class="toc-title">Series</div>
+        <a href="/sar-guide-part1.html" class="sn-link done">✓ Part 1: Legal Regime</a>
+        <a href="/sar-guide-part2.html" class="sn-link active">Part 2: Writing SARs</a>
+        <a href="/sar-guide-part3.html" class="sn-link">Part 3: Quality & NCA</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="article-body">
+
+    <section class="article-section" id="intro">
+      <div class="section-num">Introduction</div>
+      <h2>Quality over quantity — the NCA's message</h2>
+      <p>The UK receives more SARs per capita than almost any other country in the world. Yet the UKFIU and NCA have consistently flagged the same problem: too many SARs provide too little actionable intelligence. A defensive SAR — filed to avoid prosecution, with minimal content, vague language, and incomplete subject information — consumes UKFIU analyst time without contributing to law enforcement outcomes.</p>
+      <p>The difference between a good SAR and a bad one is not the length — it is the specificity, the clarity of reasoning, and the completeness of the information provided. This part of the guide teaches you to write SARs that get used.</p>
+      <div class="pull-quote">"What we need is not more SARs. We need better ones. A SAR that tells us who, what, why it's suspicious, and gives us something to work with is worth fifty defensive filings that tell us nothing useful."</div>
+    </section>
+
+    <section class="article-section" id="5w">
+      <div class="section-num">Section 01</div>
+      <h2>The 5W framework — the backbone of every SAR</h2>
+      <p>Every SAR, regardless of the typology or complexity, should answer five fundamental questions. These are the intelligence questions that the UKFIU analyst needs to begin an investigation.</p>
+      <div class="five-w">
+        <div class="fw-card">
+          <div class="fw-letter">Who</div>
+          <div class="fw-word">Subject</div>
+          <div class="fw-desc">Full identity of the subject — name, DOB, address, account numbers, national IDs, business connections</div>
+        </div>
+        <div class="fw-card">
+          <div class="fw-letter">What</div>
+          <div class="fw-word">Activity</div>
+          <div class="fw-desc">Precisely what happened — transaction amounts, dates, accounts, counterparties, payment references</div>
+        </div>
+        <div class="fw-card">
+          <div class="fw-letter">Why</div>
+          <div class="fw-word">Suspicion</div>
+          <div class="fw-desc">Why is this suspicious? The reasoning — not just a description of events but why they indicate ML/TF</div>
+        </div>
+        <div class="fw-card">
+          <div class="fw-letter">When</div>
+          <div class="fw-word">Timeline</div>
+          <div class="fw-desc">Dates and times — when did the activity occur, when was it identified, what is the relevant period</div>
+        </div>
+        <div class="fw-card">
+          <div class="fw-letter">Where</div>
+          <div class="fw-word">Geography</div>
+          <div class="fw-desc">Jurisdictions, accounts, institutions, addresses involved — particularly any cross-border elements</div>
+        </div>
+      </div>
+      <p>Before submitting any SAR, ask yourself: does this report clearly answer all five questions? If any are missing or vague, the SAR needs more work before it is submitted.</p>
+    </section>
+
+    <section class="article-section" id="subject">
+      <div class="section-num">Section 02</div>
+      <h2>Subject information — be exhaustive</h2>
+      <p>The most common quality failure in SARs is inadequate subject information. The UKFIU cannot investigate a subject they cannot identify. Provide everything you know.</p>
+      <h3>For individual subjects</h3>
+      <table class="data-table">
+        <thead><tr><th>Field</th><th>What to include</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr><td>Full name</td><td>All names, including middle names and any known aliases or former names</td><td>🔴 Essential</td></tr>
+          <tr><td>Date of birth</td><td>Full DOB — not just year</td><td>🔴 Essential</td></tr>
+          <tr><td>Address</td><td>Current residential address — all addresses if multiple known</td><td>🔴 Essential</td></tr>
+          <tr><td>Account details</td><td>All account numbers, sort codes, IBANs associated with the subject</td><td>🔴 Essential</td></tr>
+          <tr><td>Nationality/passport</td><td>Nationality, passport number and issuing country if held on file</td><td>🟡 Important</td></tr>
+          <tr><td>Occupation</td><td>Stated occupation and employer — especially relevant if inconsistent with activity</td><td>🟡 Important</td></tr>
+          <tr><td>Phone/email</td><td>Contact details on file — useful for linking to other intelligence</td><td>🟡 Important</td></tr>
+          <tr><td>Associated persons</td><td>Named associates, joint account holders, related parties</td><td>🟡 Important</td></tr>
+          <tr><td>National insurance/tax ID</td><td>NI number or overseas tax ID if held</td><td>🟢 Include if known</td></tr>
+        </tbody>
+      </table>
+      <h3>For business/entity subjects</h3>
+      <ul>
+        <li>Full legal name and any trading names</li>
+        <li>Company registration number and registered address</li>
+        <li>Nature of business and stated purpose of relationship</li>
+        <li>Names and details of directors and ultimate beneficial owners</li>
+        <li>All account numbers associated with the entity</li>
+        <li>VAT number if known</li>
+        <li>Related entities in the same group or under common ownership</li>
+      </ul>
+      <div class="callout info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <div class="callout-title">Include what you know — even if incomplete</div>
+          <div class="callout-text">Do not delay submitting a SAR because you do not have all subject information. Include what you have and flag clearly what is unknown. An incomplete SAR submitted promptly is better than a complete SAR submitted late. The UKFIU can supplement SAR intelligence from other sources — but only if they have something to work with.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section" id="narrative">
+      <div class="section-num">Section 03</div>
+      <h2>Writing the narrative — the heart of the SAR</h2>
+      <p>The narrative is the most important part of the SAR. It is where the MLRO explains the suspicious activity, sets it in context, and communicates why it gives rise to suspicion of money laundering or terrorist financing. A good narrative is clear, specific, logical, and reads like an intelligence report — not a compliance form.</p>
+
+      <h3>Narrative structure — a recommended approach</h3>
+      <ol>
+        <li><strong>Context</strong> — who is the customer, what is the relationship, what do you know about them? (2–3 sentences)</li>
+        <li><strong>What happened</strong> — describe the suspicious activity specifically: dates, amounts, counterparties, accounts (as much detail as possible)</li>
+        <li><strong>Why it's suspicious</strong> — explain why this activity is inconsistent with what you know about the customer, or why it matches a known ML/TF typology. This is the most important paragraph.</li>
+        <li><strong>What you've done</strong> — any additional checks conducted: adverse media search, CDD review, customer contact (if appropriate)</li>
+        <li><strong>What you need</strong> — if submitting a DAML, state clearly what consent you are seeking and the value/nature of the transaction</li>
+      </ol>
+
+      <h3>The key paragraph — why it's suspicious</h3>
+      <p>Many SARs describe what happened without explaining why it's suspicious. The "why" is what makes your SAR actionable. Some examples of good "why" reasoning:</p>
+      <ul>
+        <li>"This activity is inconsistent with the customer's stated occupation as a part-time teacher and declared income of £18,000 per year — the account has received £240,000 in the past 12 months."</li>
+        <li>"The pattern of deposits — multiple cash payments between £8,000 and £9,500 over a 30-day period — is consistent with structuring to avoid cash reporting thresholds."</li>
+        <li>"The customer provided no explanation for the source of funds when asked, stating only that it was 'a business payment' despite having no registered business activity on file."</li>
+        <li>"The recipient account in Jurisdiction X has been associated with fraud in previous adverse media reporting identified during our checks."</li>
+      </ul>
+    </section>
+
+    <section class="article-section" id="good-bad">
+      <div class="section-num">Section 04</div>
+      <h2>Good vs bad — real examples</h2>
+      <p>The difference between a useful SAR and a defensive one is stark. These examples illustrate the quality gap.</p>
+
+      <h3>Example 1 — structuring suspicion</h3>
+      <div class="compare">
+        <div class="compare-bad">
+          <div class="compare-label">❌ Poor SAR narrative</div>
+          <div class="compare-text">"Customer has been making multiple cash deposits. This is suspicious and we are reporting it. The customer has not provided a satisfactory explanation."</div>
+        </div>
+        <div class="compare-good">
+          <div class="compare-label">✅ Strong SAR narrative</div>
+          <div class="compare-text">"Between 1 March and 30 April 2026, the customer made 14 cash deposits totalling £127,450. No individual deposit exceeded £9,500. The customer's stated occupation is retail shop assistant with declared income of £22,000 per annum. This pattern is consistent with structuring to avoid internal reporting thresholds. When contacted regarding the source of funds on 28 April, the customer terminated the call. No explanation has been provided."</div>
+        </div>
+      </div>
+
+      <h3>Example 2 — international wire suspicion</h3>
+      <div class="compare">
+        <div class="compare-bad">
+          <div class="compare-label">❌ Poor SAR narrative</div>
+          <div class="compare-text">"Customer has sent funds internationally to a high-risk jurisdiction. We cannot verify the purpose of the transaction. Filing for compliance purposes."</div>
+        </div>
+        <div class="compare-good">
+          <div class="compare-label">✅ Strong SAR narrative</div>
+          <div class="compare-text">"On 15 June 2026, the customer (John Smith, DOB 12/03/1978, Account 12345678) sent £85,000 to account [IBAN] at [Bank], [Country] — a jurisdiction on the FATF grey list. The stated purpose was 'investment.' The customer has no declared business interests overseas and has not previously sent international transfers. The receiving account name does not match any known associate. An adverse media search conducted on 18 June returned results linking the account holder's name to a fraud investigation in [Country] reported by [news outlet] on [date]."</div>
+        </div>
+      </div>
+
+      <div class="callout warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <div class="callout-title">Avoid vague "compliance purposes" SARs</div>
+          <div class="callout-text">The phrase "filing for compliance purposes" in a SAR narrative is a red flag that the MLRO is unsure whether they should be filing at all. If you cannot articulate why the activity is suspicious, consider whether the reasonable grounds threshold has actually been met. Filing defensively without genuine suspicion does not protect the firm — and poor quality SARs undermine the effectiveness of the entire regime. If in doubt, consult legal counsel before filing.</div>
+        </div>
+      </div>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">🛡️ Strengthen your SAR with screening data</div>
+          <div class="tl-title">Adverse media results can be cited directly in your SAR narrative</div>
+          <div class="tl-sub">FinCrimeRadar's adverse media search returns BBC, OCCRP, AP and DW results — relevant findings can be cited to add intelligence value to your SAR.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Search adverse media →</a>
+      </div>
+    </section>
+
+    <section class="article-section" id="mistakes">
+      <div class="section-num">Section 05</div>
+      <h2>The most common SAR mistakes</h2>
+      <div class="mistakes-grid">
+        <div class="mistake-card">
+          <div class="mc-num">Mistake 01</div>
+          <div class="mc-title">Describing not explaining</div>
+          <div class="mc-desc">Narrating what happened without saying why it's suspicious. Description ≠ intelligence.</div>
+        </div>
+        <div class="mistake-card">
+          <div class="mc-num">Mistake 02</div>
+          <div class="mc-title">Missing subject details</div>
+          <div class="mc-desc">Omitting DOB, address, account numbers, or aliases that are on file. Include everything you have.</div>
+        </div>
+        <div class="mistake-card">
+          <div class="mc-num">Mistake 03</div>
+          <div class="mc-title">Late filing</div>
+          <div class="mc-desc">Filing weeks after the suspicion arose. "As soon as practicable" means promptly — not after the next quarterly review.</div>
+        </div>
+        <div class="mistake-card">
+          <div class="mc-num">Mistake 04</div>
+          <div class="mc-title">Vague amounts</div>
+          <div class="mc-desc">"Large cash deposits" is useless. "14 cash deposits totalling £127,450 between March and April 2026" is intelligence.</div>
+        </div>
+        <div class="mistake-card">
+          <div class="mc-num">Mistake 05</div>
+          <div class="mc-title">No DAML when needed</div>
+          <div class="mc-desc">Filing a standard SAR when a transaction is pending — failing to seek consent means the firm may commit a POCA offence by proceeding.</div>
+        </div>
+        <div class="mistake-card">
+          <div class="mc-num">Mistake 06</div>
+          <div class="mc-title">Generic typology</div>
+          <div class="mc-desc">"This may be money laundering" without linking to a specific typology or explaining what ML methodology is suspected.</div>
+        </div>
+        <div class="mistake-card">
+          <div class="mc-num">Mistake 07</div>
+          <div class="mc-title">No additional checks</div>
+          <div class="mc-desc">Filing without first conducting adverse media searches, sanctions screening, or reviewing the full CDD file for relevant history.</div>
+        </div>
+        <div class="mistake-card">
+          <div class="mc-num">Mistake 08</div>
+          <div class="mc-title">Not documenting non-files</div>
+          <div class="mc-desc">Receiving an internal SAR report, deciding not to file externally, and leaving no record of the decision or reasoning.</div>
+        </div>
+      </div>
+
+      <div class="quiz" id="q1">
+        <div class="quiz-label">🧠 Knowledge check</div>
+        <div class="quiz-q">An MLRO receives an internal SAR about a customer making repeated cash deposits. After investigation, the MLRO decides NOT to file an external SAR because they believe there is an innocent explanation. What must the MLRO do?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">A) Nothing — no external SAR means no record is needed</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">B) Close the internal report and move on</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,true)">C) Document the reasons for NOT filing, retain the internal SAR record, and ensure the rationale is clearly recorded in the compliance file</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">D) File a SAR anyway as a precaution</button>
+        </div>
+        <div class="quiz-feedback" id="q1-fb"></div>
+      </div>
+    </section>
+
+    <section class="article-section" id="typologies">
+      <div class="section-num">Section 06</div>
+      <h2>Typology-specific SAR tips</h2>
+      <p>Different money laundering typologies require different information in the SAR narrative. Here are the key additions for the most common typologies:</p>
+
+      <h3>🏦 Structuring / smurfing</h3>
+      <ul>
+        <li>List every deposit: date, amount, branch/channel, account credited</li>
+        <li>State the threshold that appears to be avoided (e.g. your internal cash reporting threshold)</li>
+        <li>Include the total amount deposited and the period over which it occurred</li>
+        <li>Compare to customer's declared income and account history</li>
+      </ul>
+
+      <h3>🌍 Trade-based money laundering (TBML)</h3>
+      <ul>
+        <li>Name the specific goods or services ostensibly involved in the trade</li>
+        <li>Identify the over or under-invoicing indicators — compare invoice values to market rates</li>
+        <li>Name the counterparties and their jurisdictions</li>
+        <li>Flag any mismatch between the stated trade and the customer's known business activity</li>
+      </ul>
+
+      <h3>🏠 Property-related laundering</h3>
+      <ul>
+        <li>Property address, purchase price, and any cash element</li>
+        <li>Source of funds for the deposit or purchase — if unknown or suspicious, say so</li>
+        <li>Any third-party payments or unusual settlement arrangements</li>
+        <li>Conveyancer/solicitor details if known</li>
+      </ul>
+
+      <h3>💻 Cyber fraud / authorised push payment</h3>
+      <ul>
+        <li>The specific nature of the fraud if known (invoice fraud, romance scam, impersonation)</li>
+        <li>The receiving account details — sort code, account number, name of account holder</li>
+        <li>Whether the victim is the subject of the SAR (mule) or a third party</li>
+        <li>Any URLs, email addresses, or phone numbers associated with the fraud</li>
+      </ul>
+
+      <h3>🔐 Cryptoasset-related</h3>
+      <ul>
+        <li>Wallet addresses associated with the activity</li>
+        <li>Which blockchain/network (Bitcoin, Ethereum, etc.)</li>
+        <li>Any exchange platforms used — named, if known</li>
+        <li>Results of any blockchain analytics checks conducted</li>
+        <li>Whether the wallet has been flagged by analytics tools as associated with illicit activity</li>
+      </ul>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Should we mention our screening tool results in the SAR? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Yes — if your screening checks produced relevant results, include them in the SAR narrative. For example: "A sanctions screening check conducted on [date] against [source] returned a potential match for the subject against [list] — this was investigated and [confirmed/not confirmed as a true match]." Or: "An adverse media search on [date] returned results linking the subject to [allegation/investigation] reported by [source] on [date]." This adds intelligence value and demonstrates the thoroughness of your investigation. Negative results are also worth noting: "Screening against OFAC, UN, EU, and OFSI lists returned no matches."</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How long should a SAR narrative be? <span class="faq-icon">+</span></div>
+        <div class="faq-a">There is no prescribed length. A simple structuring SAR covering one customer and a clear transaction pattern might need 200–300 words. A complex SAR covering multiple related accounts, international transfers, and a suspected trade-based laundering scheme might run to 1,000 words or more. The principle is: include everything relevant, nothing irrelevant. The NCA does not reward length — it rewards precision and completeness. Every sentence should add intelligence value. Padding a SAR with general background information about money laundering typologies wastes analyst time.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can we share information from one SAR with another reporting entity? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Yes — with care. Section 333B and 333C POCA create limited exceptions to the tipping-off prohibition that allow information sharing between regulated firms in certain circumstances, including for the purpose of deciding whether to make a disclosure. These are known as "permitted disclosures." The conditions include that both parties are in the regulated sector, the disclosure is for the purpose of AML/CTF, and both parties are subject to professional obligations of confidentiality. In practice, information-sharing arrangements between firms in the same sector (particularly banks) for SAR-related purposes should be documented and should be reviewed by legal counsel to ensure they fall within the permitted exceptions.</div>
+      </div>
+
+      <div class="part-footer">
+        <div class="pf-prev">
+          <div class="pf-label">← Previous</div>
+          <a href="/sar-guide-part1.html" class="pf-link">Part 1: The Legal Regime</a>
+        </div>
+        <div class="pf-center">Part 2 of 3</div>
+        <div class="pf-next">
+          <div class="pf-label">Next →</div>
+          <a href="/sar-guide-part3.html" class="pf-link">Part 3: Quality, Intelligence & NCA →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  © 2026 FinCrimeRadar · <a href="/">Home</a> · <a href="/knowledge.html">Knowledge Hub</a> · <a href="/screen.html">Screen</a> · <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
+  <br><br>
+  <span style="font-size:11px;color:#9ca3af;">Educational purposes only. Not legal advice. Last updated 2026.</span>
+</footer>
+
+<script>
+  function updateProgress() {
+    const pct = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('fill').style.width = pct + '%';
+    document.getElementById('pct').textContent = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+  document.querySelectorAll('section[id]').forEach(s => {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          document.querySelectorAll('.toc-list a').forEach(l => l.classList.remove('active'));
+          const a = document.querySelector(`.toc-list a[href="#${e.target.id}"]`);
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin:'-20% 0px -70% 0px' }).observe(s);
+  });
+  function doQuiz(id, btn, correct) {
+    const fb = document.getElementById(id+'-fb');
+    document.querySelectorAll(`#${id} .quiz-opt`).forEach(b => b.disabled = true);
+    btn.classList.add(correct ? 'correct' : 'wrong');
+    fb.classList.add('show', correct ? 'correct' : 'wrong');
+    fb.textContent = correct ? '✅ Correct! The MLRO must document the reasons for NOT filing a SAR. This is one of the most commonly missed obligations. The internal SAR record, the investigation conducted, and the rationale for non-disclosure must all be retained.' : '❌ Not quite. When an MLRO decides not to file an external SAR after receiving an internal report, they must document their reasoning. A non-filing decision carries the same documentation obligation as a filing decision — both must be evidenced in the compliance file.';
+  }
+  function toggleFaq(el) {
+    el.nextElementSibling.classList.toggle('open');
+    el.querySelector('.faq-icon').classList.toggle('open');
+  }
+</script>
+</body>
+</html>

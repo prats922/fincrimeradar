@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The PEP Screening Handbook Part 1: Who is a PEP? | FinCrimeRadar</title>
+  <meta name="description" content="Part 1 of the definitive PEP Screening Handbook. Covers FATF definitions, PEP categories, domestic vs foreign PEPs, RCAs, and the FCA's July 2025 FG25/3 guidance." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --white:#ffffff; --off:#f7f8fa; --border:#e4e7ec;
+      --muted:#6b7280; --text:#111827; --navy:#0f2044;
+      --accent:#7c3aed; --accent-h:#6d28d9; --accent-light:#f5f3ff;
+      --accent-border:#ddd6fe;
+      --danger:#dc2626; --success:#16a34a; --warning:#d97706;
+      --blue:#1d5fc4;
+    }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
+
+    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:60px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-logo { width:26px; height:26px; }
+    .nav-name { font-size:15px; font-weight:600; color:var(--navy); }
+    .nav-name span { color:var(--blue); }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:var(--muted); text-decoration:none; }
+    .nav-links a:hover { color:var(--navy); }
+    .nav-cta { padding:7px 16px; background:var(--blue); color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; }
+
+    .progress-bar { position:fixed; top:60px; left:0; width:0%; height:3px; background:var(--accent); z-index:199; transition:width 0.1s; }
+
+    .series-hero { background:linear-gradient(135deg,#2d1b69 0%,#4c1d95 100%); color:#fff; padding:4rem 2rem 3rem; }
+    .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:#c4b5fd; margin-bottom:1.25rem; }
+    .series-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(1.9rem,4vw,3rem); font-weight:400; line-height:1.2; margin-bottom:0.75rem; max-width:760px; }
+    .series-hero h1 em { font-style:italic; color:#c4b5fd; }
+    .series-sub { font-size:16px; color:#ddd6fe; max-width:620px; line-height:1.7; margin-bottom:2rem; }
+    .series-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#a78bfa; }
+
+    .part-nav { background:var(--white); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; gap:0; overflow-x:auto; }
+    .part-link { padding:14px 20px; font-size:13px; font-weight:500; color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; }
+    .part-link.active { color:var(--accent); border-bottom-color:var(--accent); }
+    .part-link.done { color:var(--success); }
+
+    .article-layout { display:grid; grid-template-columns:220px 1fr; gap:2rem; max-width:1080px; margin:0 auto; padding:2.5rem 1.5rem; align-items:start; }
+
+    .toc { position:sticky; top:105px; background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.25rem; }
+    .toc-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--muted); margin-bottom:0.875rem; }
+    .toc-list { list-style:none; }
+    .toc-list a { font-size:12.5px; color:var(--muted); text-decoration:none; display:block; padding:5px 8px; border-radius:6px; transition:all 0.15s; border-left:2px solid transparent; }
+    .toc-list a:hover,.toc-list a.active { color:var(--accent); background:var(--accent-light); border-left-color:var(--accent); }
+    .toc-progress { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); }
+    .toc-progress-label { font-size:11px; color:var(--muted); margin-bottom:6px; display:flex; justify-content:space-between; }
+    .toc-bar { height:4px; background:var(--border); border-radius:99px; overflow:hidden; }
+    .toc-fill { height:100%; background:var(--accent); border-radius:99px; transition:width 0.2s; width:0%; }
+    .next-part { margin-top:1rem; padding:10px; background:var(--accent-light); border:1px solid var(--accent-border); border-radius:8px; }
+    .next-part-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--accent); margin-bottom:4px; }
+    .next-part a { font-size:12px; font-weight:600; color:var(--accent); text-decoration:none; }
+
+    .article-body { min-width:0; }
+    .article-section { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:2.25rem; margin-bottom:1.25rem; }
+    .section-num { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--accent); margin-bottom:0.5rem; }
+    .article-section h2 { font-family:'DM Serif Display',Georgia,serif; font-size:24px; font-weight:400; color:var(--navy); margin-bottom:1rem; line-height:1.3; }
+    .article-section h3 { font-size:16px; font-weight:600; color:var(--navy); margin:1.75rem 0 0.65rem; }
+    .article-section p { font-size:14.5px; color:#374151; margin-bottom:0.9rem; line-height:1.75; }
+    .article-section ul,.article-section ol { padding-left:1.5rem; margin-bottom:0.9rem; }
+    .article-section li { font-size:14.5px; color:#374151; margin-bottom:0.45rem; line-height:1.65; }
+    .article-section a { color:var(--blue); text-decoration:none; }
+    .article-section a:hover { text-decoration:underline; }
+
+    /* PEP CATEGORY CARDS */
+    .pep-categories { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:10px; margin:1.5rem 0; }
+    .pep-cat { background:var(--accent-light); border:1px solid var(--accent-border); border-radius:10px; padding:1rem 1.1rem; }
+    .pep-cat-icon { font-size:20px; margin-bottom:6px; }
+    .pep-cat-title { font-size:13px; font-weight:700; color:#4c1d95; margin-bottom:4px; }
+    .pep-cat-desc { font-size:12px; color:#5b21b6; line-height:1.45; }
+
+    /* RISK COMPARISON */
+    .risk-compare { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin:1.5rem 0; }
+    .rc-card { border-radius:10px; padding:1.1rem; }
+    .rc-high { background:#fff5f5; border:1px solid #fca5a5; border-top:3px solid var(--danger); }
+    .rc-med { background:#fef3c7; border:1px solid #fcd34d; border-top:3px solid var(--warning); }
+    .rc-low { background:#f0fdf4; border:1px solid #86efac; border-top:3px solid var(--success); }
+    .rc-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:6px; }
+    .rc-high .rc-label { color:var(--danger); }
+    .rc-med .rc-label { color:var(--warning); }
+    .rc-low .rc-label { color:var(--success); }
+    .rc-title { font-size:14px; font-weight:600; color:var(--navy); margin-bottom:5px; }
+    .rc-desc { font-size:12.5px; line-height:1.5; }
+    .rc-high .rc-desc { color:#7f1d1d; }
+    .rc-med .rc-desc { color:#78350f; }
+    .rc-low .rc-desc { color:#14532d; }
+
+    /* CASE STUDY */
+    .case-study { border-radius:12px; overflow:hidden; margin:1.5rem 0; border:1px solid var(--border); }
+    .cs-header { background:var(--navy); color:#fff; padding:1rem 1.5rem; display:flex; align-items:center; gap:10px; }
+    .cs-badge { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; background:rgba(255,255,255,0.15); padding:3px 10px; border-radius:4px; }
+    .cs-title { font-size:14px; font-weight:600; }
+    .cs-body { padding:1.25rem 1.5rem; background:var(--off); }
+    .cs-body p { font-size:14px; color:#374151; margin-bottom:0.6rem; line-height:1.65; }
+    .cs-lesson { background:var(--accent-light); border:1px solid var(--accent-border); border-radius:8px; padding:0.875rem 1rem; margin-top:0.75rem; font-size:13px; color:#4c1d95; }
+    .cs-lesson strong { color:#3b0764; }
+
+    /* DATA TABLE */
+    .data-table { width:100%; border-collapse:collapse; margin:1.25rem 0; font-size:13.5px; }
+    .data-table th { background:var(--navy); color:#fff; padding:9px 13px; text-align:left; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; }
+    .data-table th:first-child { border-radius:8px 0 0 0; }
+    .data-table th:last-child { border-radius:0 8px 0 0; }
+    .data-table td { padding:9px 13px; border-bottom:1px solid var(--border); color:var(--text); vertical-align:top; }
+    .data-table tr:last-child td { border-bottom:none; }
+    .data-table tr:nth-child(even) td { background:var(--off); }
+    .yes { color:var(--danger); font-weight:600; }
+    .no { color:var(--success); font-weight:600; }
+    .maybe { color:var(--warning); font-weight:600; }
+
+    /* CALLOUTS */
+    .callout { border-radius:10px; padding:1.1rem 1.4rem; margin:1.25rem 0; display:flex; gap:12px; }
+    .callout-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+    .callout-body { flex:1; }
+    .callout-title { font-size:12px; font-weight:700; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.4px; }
+    .callout-text { font-size:13.5px; line-height:1.6; }
+    .callout.info { background:#eff6ff; border:1px solid #bfdbfe; }
+    .callout.info .callout-title { color:#1e40af; }
+    .callout.info .callout-text { color:#1e3a8a; }
+    .callout.warning { background:#fffbeb; border:1px solid #fde68a; }
+    .callout.warning .callout-title { color:#92400e; }
+    .callout.warning .callout-text { color:#78350f; }
+    .callout.danger { background:#fff5f5; border:1px solid #fca5a5; }
+    .callout.danger .callout-title { color:#991b1b; }
+    .callout.danger .callout-text { color:#7f1d1d; }
+    .callout.purple { background:var(--accent-light); border:1px solid var(--accent-border); }
+    .callout.purple .callout-title { color:#5b21b6; }
+    .callout.purple .callout-text { color:#4c1d95; }
+    .callout.new { background:#f0fdf4; border:1px solid #86efac; border-left:3px solid var(--success); }
+    .callout.new .callout-title { color:#166534; }
+    .callout.new .callout-text { color:#14532d; }
+
+    /* TRY TOOL */
+    .try-tool { background:linear-gradient(135deg,#2d1b69 0%,#4c1d95 100%); border-radius:12px; padding:1.5rem 1.75rem; margin:1.75rem 0; display:flex; align-items:center; justify-content:space-between; gap:1.25rem; flex-wrap:wrap; }
+    .try-tool .tl { flex:1; }
+    .try-tool .tl-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:#c4b5fd; margin-bottom:5px; }
+    .try-tool .tl-title { font-size:16px; font-weight:600; color:#fff; margin-bottom:4px; line-height:1.4; }
+    .try-tool .tl-sub { font-size:13px; color:#a78bfa; }
+    .try-tool .tl-btn { padding:10px 20px; background:var(--accent); color:#fff; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap; transition:all 0.15s; }
+    .try-tool .tl-btn:hover { background:var(--accent-h); transform:translateY(-1px); }
+
+    /* QUIZ */
+    .quiz { background:var(--accent-light); border:1px solid var(--accent-border); border-radius:12px; padding:1.4rem; margin:1.5rem 0; }
+    .quiz-label { font-size:11px; font-weight:700; color:#5b21b6; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:0.65rem; }
+    .quiz-q { font-size:15px; font-weight:600; color:var(--navy); margin-bottom:0.875rem; }
+    .quiz-opts { display:flex; flex-direction:column; gap:7px; }
+    .quiz-opt { padding:9px 13px; border:1.5px solid var(--accent-border); border-radius:7px; font-size:13.5px; cursor:pointer; background:var(--white); color:var(--text); transition:all 0.15s; text-align:left; font-family:'Inter',sans-serif; }
+    .quiz-opt:hover { border-color:var(--accent); color:var(--accent); }
+    .quiz-opt.correct { border-color:var(--success); background:#f0fdf4; color:var(--success); }
+    .quiz-opt.wrong { border-color:var(--danger); background:#fff5f5; color:var(--danger); }
+    .quiz-feedback { display:none; margin-top:0.875rem; font-size:13.5px; padding:10px 13px; border-radius:7px; }
+    .quiz-feedback.show { display:block; }
+    .quiz-feedback.correct { background:#f0fdf4; color:#166534; border:1px solid #86efac; }
+    .quiz-feedback.wrong { background:#fff5f5; color:#991b1b; border:1px solid #fca5a5; }
+
+    /* FAQ */
+    .faq-item { border:1px solid var(--border); border-radius:10px; margin-bottom:7px; overflow:hidden; }
+    .faq-q { padding:0.9rem 1.1rem; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-size:14px; font-weight:500; color:var(--navy); background:var(--white); user-select:none; }
+    .faq-q:hover { background:var(--off); }
+    .faq-icon { font-size:17px; color:var(--muted); transition:transform 0.2s; flex-shrink:0; }
+    .faq-icon.open { transform:rotate(45deg); }
+    .faq-a { display:none; padding:0 1.1rem 0.9rem; font-size:13.5px; color:#374151; line-height:1.7; border-top:1px solid var(--border); background:#fafafa; }
+    .faq-a.open { display:block; padding-top:0.9rem; }
+
+    .pull-quote { font-family:'DM Serif Display',Georgia,serif; font-size:18px; font-style:italic; color:var(--navy); border-left:3px solid var(--accent); padding-left:1.25rem; margin:1.5rem 0; line-height:1.6; }
+
+    .stats-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:10px; margin:1.25rem 0; }
+    .stat { background:var(--off); border:1px solid var(--border); border-radius:10px; padding:1rem; text-align:center; }
+    .stat-num { font-size:22px; font-weight:700; color:var(--navy); }
+    .stat-label { font-size:11px; color:var(--muted); margin-top:3px; line-height:1.3; }
+
+    .part-footer { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-top:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    .pf-prev,.pf-next { display:flex; flex-direction:column; gap:4px; }
+    .pf-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--muted); }
+    .pf-link { font-size:14px; font-weight:600; color:var(--blue); text-decoration:none; }
+    .pf-link:hover { text-decoration:underline; }
+    .pf-next { text-align:right; }
+    .pf-center { font-size:13px; color:var(--muted); }
+
+    footer { background:var(--white); border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:12px; color:var(--muted); margin-top:2rem; }
+    footer a { color:var(--muted); text-decoration:none; margin:0 8px; }
+    footer a:hover { color:var(--blue); }
+
+    @media (max-width:768px) {
+      .article-layout { grid-template-columns:1fr; }
+      .toc { display:none; }
+      .series-hero { padding:2.5rem 1.25rem 2rem; }
+      .article-section { padding:1.5rem; }
+      .try-tool { flex-direction:column; }
+      .risk-compare { grid-template-columns:1fr; }
+      .pep-categories { grid-template-columns:1fr 1fr; }
+      nav { padding:0 1rem; }
+      .nav-links .hm { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <a class="nav-brand" href="/">
+    <svg class="nav-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="14" stroke="#1d5fc4" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="9" stroke="#1d5fc4" stroke-width="1" stroke-dasharray="3 2"/>
+      <circle cx="16" cy="16" r="4" stroke="#1d5fc4" stroke-width="0.75" stroke-dasharray="2 2"/>
+      <circle cx="16" cy="16" r="1.5" fill="#1d5fc4"/>
+      <line x1="16" y1="16" x2="25" y2="7" stroke="#1d5fc4" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="22" cy="10" r="2" fill="#dc2626"/>
+    </svg>
+    <span class="nav-name">Fin<span>Crime</span>Radar</span>
+  </a>
+  <div class="nav-links">
+    <a href="/knowledge.html" class="hm">Knowledge Hub</a>
+    <a href="/screen.html" class="hm">Screen</a>
+    <a href="/screen.html" class="nav-cta">Try the tool →</a>
+  </div>
+</nav>
+
+<div class="series-hero">
+  <div class="series-tag">🔍 PEP Screening Handbook · Part 1 of 3</div>
+  <h1>Who is a Politically Exposed Person? <em>The definitive answer.</em></h1>
+  <p class="series-sub">FATF definitions, PEP categories, domestic vs foreign PEPs, Relatives and Close Associates, and the FCA's landmark July 2025 FG25/3 guidance — everything you need to identify a PEP correctly.</p>
+  <div class="series-meta">
+    <span>📖 20 min read</span>
+    <span>🔍 Updated July 2025</span>
+    <span>🇬🇧 UK-focused</span>
+    <span>🌍 FATF-aligned</span>
+  </div>
+</div>
+
+<div class="part-nav">
+  <a href="/pep-guide-part1.html" class="part-link active">Part 1: Who is a PEP?</a>
+  <a href="/pep-guide-part2.html" class="part-link">Part 2: PEP Due Diligence</a>
+  <a href="/pep-guide-part3.html" class="part-link">Part 3: Case Studies & Application</a>
+</div>
+
+<div class="article-layout">
+  <aside>
+    <div class="toc">
+      <div class="toc-title">In this part</div>
+      <ul class="toc-list">
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#definition">The FATF definition</a></li>
+        <li><a href="#categories">PEP categories</a></li>
+        <li><a href="#domestic">Domestic vs foreign</a></li>
+        <li><a href="#rca">RCAs</a></li>
+        <li><a href="#duration">PEP duration</a></li>
+        <li><a href="#fg253">FG25/3 — July 2025</a></li>
+        <li><a href="#notpep">Who is NOT a PEP</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="toc-progress">
+        <div class="toc-progress-label"><span>Progress</span><span id="pct">0%</span></div>
+        <div class="toc-bar"><div class="toc-fill" id="fill"></div></div>
+      </div>
+      <div class="next-part">
+        <div class="next-part-label">Next →</div>
+        <a href="/pep-guide-part2.html">Part 2: PEP Due Diligence →</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="article-body">
+
+    <section class="article-section" id="intro">
+      <div class="section-num">Introduction</div>
+      <h2>Why getting PEP identification right matters</h2>
+      <p>Of all the customer risk categories in AML compliance, Politically Exposed Persons (PEPs) are among the most consequential — and most misunderstood. Get the identification wrong in one direction and you fail to apply required Enhanced Due Diligence, exposing your firm to regulatory action. Get it wrong in the other direction and you over-screen ordinary customers, damaging relationships and creating operational burden.</p>
+      <p>The FCA's 2024 thematic review found PEP identification failures in a significant proportion of firms reviewed — both under-identification of genuine PEPs and over-identification of individuals who did not meet the threshold. This guide cuts through the complexity.</p>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-num">£2.5B+</div><div class="stat-label">Stolen by kleptocrats globally per year (est.)</div></div>
+        <div class="stat"><div class="stat-num">900K+</div><div class="stat-label">PEPs in global databases</div></div>
+        <div class="stat"><div class="stat-num">12+</div><div class="stat-label">Months PEP status continues after leaving office</div></div>
+        <div class="stat"><div class="stat-num">FG25/3</div><div class="stat-label">FCA's latest PEP guidance (July 2025)</div></div>
+      </div>
+      <div class="callout new">
+        <div class="callout-icon">🆕</div>
+        <div class="callout-body">
+          <div class="callout-title">July 2025 — FCA PEP Guidance FG25/3</div>
+          <div class="callout-text">The FCA published revised PEP guidance FG25/3 in July 2025 following a statutory review of the MLR 2017 domestic PEP provisions. This guidance significantly clarifies who is — and who is NOT — a PEP in the UK context, reducing the burden on domestic PEPs while maintaining rigour for high-risk cases. This guide incorporates FG25/3 throughout.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section" id="definition">
+      <div class="section-num">Section 01</div>
+      <h2>The FATF definition — where it all starts</h2>
+      <p>The concept of the Politically Exposed Person was formalised by the Financial Action Task Force (FATF) in its 2003 revision of the 40 Recommendations. The FATF definition — adopted into UK law via MLR 2017 — defines a PEP as:</p>
+      <div class="callout purple">
+        <div class="callout-icon">📖</div>
+        <div class="callout-body">
+          <div class="callout-title">FATF / MLR 2017 Definition</div>
+          <div class="callout-text">An individual who is, or has been, entrusted with a prominent public function — including heads of state or government, senior politicians, senior government, judicial or military officials, senior executives of state-owned corporations, and important political party officials.</div>
+        </div>
+      </div>
+      <p>The key phrase is <strong>"entrusted with a prominent public function."</strong> This is the test. The rationale is straightforward: individuals in positions of public power have both the opportunity and, in some cases, the motivation to misuse that power for personal financial gain — through bribery, corruption, embezzlement of public funds, or abuse of their position to benefit associates.</p>
+      <p>It is important to be clear about what PEP status is not: it is <strong>not an accusation of wrongdoing</strong>. Being identified as a PEP is a risk indicator, not a finding of guilt. The vast majority of PEPs are entirely legitimate individuals who happen to hold (or have held) public positions. The obligation is to apply additional scrutiny, not to refuse business.</p>
+      <div class="pull-quote">"PEP status is a risk flag, not a criminal finding. The obligation is enhanced diligence — not automatic refusal."</div>
+    </section>
+
+    <section class="article-section" id="categories">
+      <div class="section-num">Section 02</div>
+      <h2>PEP categories — who qualifies</h2>
+      <p>MLR 2017 Regulation 35(12) defines six categories of prominent public functions that qualify for PEP status. Understanding each category — and its boundaries — is essential for accurate identification.</p>
+      <div class="pep-categories">
+        <div class="pep-cat">
+          <div class="pep-cat-icon">👑</div>
+          <div class="pep-cat-title">Heads of State & Government</div>
+          <div class="pep-cat-desc">Presidents, Prime Ministers, monarchs, chancellors. The highest tier — always foreign PEPs when non-UK.</div>
+        </div>
+        <div class="pep-cat">
+          <div class="pep-cat-icon">🏛️</div>
+          <div class="pep-cat-title">Senior Politicians</div>
+          <div class="pep-cat-desc">Cabinet ministers, secretaries of state, senior party officials at national level. MPs and equivalent legislators.</div>
+        </div>
+        <div class="pep-cat">
+          <div class="pep-cat-icon">⚖️</div>
+          <div class="pep-cat-title">Senior Judicial Officials</div>
+          <div class="pep-cat-desc">Supreme Court justices, Court of Appeal judges, attorney generals. Must be "senior" — not all judges qualify.</div>
+        </div>
+        <div class="pep-cat">
+          <div class="pep-cat-icon">🎖️</div>
+          <div class="pep-cat-title">Senior Military Officials</div>
+          <div class="pep-cat-desc">Chiefs of Staff, generals, admirals. Senior rank is required — junior officers do not qualify.</div>
+        </div>
+        <div class="pep-cat">
+          <div class="pep-cat-icon">🏢</div>
+          <div class="pep-cat-title">State-Owned Enterprise Executives</div>
+          <div class="pep-cat-desc">CEOs, CFOs, and board members of state-owned corporations — particularly in high-risk sectors like energy, telecoms, and defence.</div>
+        </div>
+        <div class="pep-cat">
+          <div class="pep-cat-icon">🌐</div>
+          <div class="pep-cat-title">International Organisation Officials</div>
+          <div class="pep-cat-desc">Senior officials of international bodies — UN Secretary-General, IMF Managing Director, World Bank President, NATO Secretary General.</div>
+        </div>
+      </div>
+
+      <h3>The "senior" threshold — where the line is drawn</h3>
+      <p>Several categories require the individual to hold a "senior" position. MLR 2017 does not define "senior" numerically — it is a judgement call based on the prominence of the public function and the degree of power and influence it carries. The FCA's FG25/3 guidance provides important clarification on where the line falls for UK domestic positions (see Section 07 below).</p>
+      <p>The general principle: the more influence over public funds, public policy, or regulatory decisions, the more likely a position qualifies. A permanent secretary at a major UK government department qualifies; a mid-grade civil servant in the same department does not.</p>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">🔍 Try PEP screening now</div>
+          <div class="tl-title">Search for a world leader, minister or central bank governor</div>
+          <div class="tl-sub">FinCrimeRadar's PEP database covers heads of state, finance ministers, intelligence chiefs and more. See how PEP categories appear in real screening results.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Screen a PEP →</a>
+      </div>
+    </section>
+
+    <section class="article-section" id="domestic">
+      <div class="section-num">Section 03</div>
+      <h2>Domestic vs foreign PEPs — a critical distinction</h2>
+      <p>One of the most important distinctions in PEP compliance — and one that changed significantly with FG25/3 — is between domestic and foreign PEPs. The risk profile is materially different, and so are the compliance obligations.</p>
+
+      <div class="risk-compare">
+        <div class="rc-card rc-high">
+          <div class="rc-label">🔴 Highest risk</div>
+          <div class="rc-title">Foreign PEPs</div>
+          <div class="rc-desc">Politicians and officials from foreign states. EDD is always required regardless of assessed risk level. FATF Recommendation 12 mandates this. No exceptions.</div>
+        </div>
+        <div class="rc-card rc-med">
+          <div class="rc-label">🟡 Lower risk</div>
+          <div class="rc-title">UK Domestic PEPs</div>
+          <div class="rc-desc">UK politicians and officials. Under FG25/3, generally lower risk than foreign PEPs. EDD required only where specific risk factors elevate the risk.</div>
+        </div>
+        <div class="rc-card rc-low">
+          <div class="rc-label">🟢 Medium risk</div>
+          <div class="rc-title">International Org PEPs</div>
+          <div class="rc-desc">Officials of international bodies. Risk-based approach applies. Generally treated similarly to domestic PEPs under FG25/3.</div>
+        </div>
+      </div>
+
+      <h3>Why are foreign PEPs higher risk?</h3>
+      <p>The elevated risk of foreign PEPs reflects several factors that do not apply — or apply less strongly — to domestic PEPs:</p>
+      <ul>
+        <li><strong>Weaker rule of law</strong> — in many countries, the legal and institutional constraints on political corruption are weaker than in the UK</li>
+        <li><strong>Less transparency</strong> — beneficial ownership, asset declarations, and public accountability mechanisms are less developed in many jurisdictions</li>
+        <li><strong>Cross-border complexity</strong> — funds from foreign corruption are often deliberately moved across jurisdictions to obscure their origin</li>
+        <li><strong>Enforcement asymmetry</strong> — UK law enforcement has less visibility into the conduct of foreign officials than domestic ones</li>
+        <li><strong>Historical evidence</strong> — the majority of high-profile PEP-related money laundering cases have involved foreign officials laundering proceeds in the UK financial system</li>
+      </ul>
+
+      <div class="case-study">
+        <div class="cs-header">
+          <span class="cs-badge">📋 Case study</span>
+          <span class="cs-title">Teodorin Obiang — Equatorial Guinea</span>
+        </div>
+        <div class="cs-body">
+          <p>Teodorin Obiang, son of the President of Equatorial Guinea and himself a government minister, allegedly laundered hundreds of millions of dollars through US, French, and UK financial institutions. His spending included a $30 million private jet, a $35 million Malibu mansion, and a $38 million yacht — all funded from a country where the per capita GDP was under $2,000.</p>
+          <p>Multiple financial institutions processed transactions for Obiang without applying adequate EDD, failing to identify the obvious inconsistency between his official salary and his expenditure.</p>
+          <div class="cs-lesson"><strong>Lesson:</strong> Source of wealth must be genuinely scrutinised for foreign PEPs. Expenditure patterns inconsistent with official income are a primary red flag that EDD must address.</div>
+        </div>
+      </div>
+
+      <div class="quiz" id="q1">
+        <div class="quiz-label">🧠 Knowledge check</div>
+        <div class="quiz-q">Under FATF Recommendation 12 and MLR 2017, when is Enhanced Due Diligence mandatory for a foreign PEP?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">A) Only if there are specific risk indicators</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,true)">B) Always — EDD is mandatory for all foreign PEPs without exception</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">C) Only for heads of state and government ministers</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">D) Only if the PEP is from a high-risk jurisdiction</button>
+        </div>
+        <div class="quiz-feedback" id="q1-fb"></div>
+      </div>
+    </section>
+
+    <section class="article-section" id="rca">
+      <div class="section-num">Section 04</div>
+      <h2>Relatives and Close Associates (RCAs)</h2>
+      <p>PEP obligations do not stop with the PEP themselves. MLR 2017 Regulation 35(12) also requires firms to identify and apply EDD to the PEP's family members and known close associates — often referred to as RCAs.</p>
+      <h3>Who is a family member of a PEP?</h3>
+      <ul>
+        <li>Spouse or civil partner</li>
+        <li>Children and their spouses or civil partners</li>
+        <li>Parents</li>
+      </ul>
+      <h3>Who is a "known close associate"?</h3>
+      <p>A known close associate is an individual who is known to have joint beneficial ownership of legal entities or legal arrangements with a PEP, or who has any other close business or personal relationship with the PEP. This includes:</p>
+      <ul>
+        <li>Business partners with joint ownership or control</li>
+        <li>Individuals with a joint bank account or investment portfolio</li>
+        <li>Individuals who are sole beneficial owners of entities known to be set up for the benefit of a PEP</li>
+      </ul>
+
+      <div class="callout warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <div class="callout-title">The "known" qualifier matters</div>
+          <div class="callout-text">The obligation applies to "known" close associates — you are not required to conduct exhaustive investigations to discover unknown relationships. However, if information comes to light during CDD that suggests a close associate relationship, you must act on it. The FCA expects reasonable steps to identify RCAs, not willful blindness.</div>
+        </div>
+      </div>
+
+      <h3>Why RCAs are high risk</h3>
+      <p>Corrupt PEPs rarely hold assets in their own name. Family members and close associates are frequently used as nominees — holding assets, accounts, and companies on behalf of the PEP to obscure the true beneficial owner. Some of the largest financial crime cases in history have involved PEP funds held through RCA structures:</p>
+
+      <div class="case-study">
+        <div class="cs-header">
+          <span class="cs-badge">📋 Case study</span>
+          <span class="cs-title">The 1MDB scandal — Malaysia</span>
+        </div>
+        <div class="cs-body">
+          <p>The 1Malaysia Development Berhad (1MDB) fraud involved the alleged embezzlement of over $4.5 billion from a Malaysian state investment fund. Funds were channelled through a network of shell companies, with associates and family members of senior Malaysian officials used as beneficial owners of accounts and entities across multiple jurisdictions.</p>
+          <p>Goldman Sachs, among other institutions, paid billions in penalties for its role in facilitating 1MDB bond issuances without adequate due diligence on beneficial ownership and source of funds.</p>
+          <div class="cs-lesson"><strong>Lesson:</strong> RCA screening is not optional. Where a customer is an RCA of a known PEP, EDD including source of funds and source of wealth must be applied with the same rigour as for the PEP directly.</div>
+        </div>
+      </div>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">🔍 Screen PEPs and their associates</div>
+          <div class="tl-title">FinCrimeRadar's PEP database includes family members and known associates</div>
+          <div class="tl-sub">Try searching "Rotenberg" or "Sechin" to see how Russian oligarchs connected to PEPs appear in screening results.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Try PEP screening →</a>
+      </div>
+    </section>
+
+    <section class="article-section" id="duration">
+      <div class="section-num">Section 05</div>
+      <h2>How long does PEP status last?</h2>
+      <p>PEP status does not end the moment an individual leaves public office. FATF Recommendation 12 and MLR 2017 both make clear that former PEPs must continue to be treated as PEPs for a period after leaving office.</p>
+      <h3>The 12-month minimum</h3>
+      <p>MLR 2017 Regulation 35(4) requires firms to continue applying EDD measures to a former PEP for at least <strong>12 months</strong> after the person ceased to be a PEP. After 12 months, the firm must assess on a risk-based basis whether enhanced measures should continue.</p>
+      <table class="data-table">
+        <thead><tr><th>Period</th><th>Status</th><th>EDD required?</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><strong>While in office</strong></td><td>Active PEP</td><td class="yes">Yes — mandatory</td><td>Full PEP obligations apply</td></tr>
+          <tr><td><strong>0–12 months after leaving</strong></td><td>Former PEP</td><td class="yes">Yes — mandatory</td><td>Treat same as active PEP</td></tr>
+          <tr><td><strong>12+ months after leaving</strong></td><td>Former PEP</td><td class="maybe">Risk-based</td><td>Must assess whether risk remains elevated</td></tr>
+          <tr><td><strong>Long-term former PEPs</strong></td><td>Former PEP</td><td class="no">May not be required</td><td>Document rationale for reducing measures</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <div class="callout-title">FG25/3 — documenting de-escalation</div>
+          <div class="callout-text">Under the FCA's July 2025 FG25/3 guidance, firms must document their reasons when they reduce or remove EDD measures for former PEPs after the 12-month period. A bare assertion that "12 months have passed" is not sufficient — firms must consider whether the individual's profile, wealth, and activities suggest residual PEP risk. Senior political figures who remain active in public life may retain elevated risk for years after leaving formal office.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section" id="fg253">
+      <div class="section-num">Section 06</div>
+      <h2>FCA Guidance FG25/3 — the July 2025 landmark</h2>
+      <p>The FCA's Finalised Guidance FG25/3, published in July 2025, represents the most significant update to PEP compliance expectations in the UK since the MLR 2017. It followed a statutory review of the domestic PEP provisions and addressed industry concerns that UK domestic PEPs were being treated with the same level of scrutiny as high-risk foreign officials — disproportionate to their actual risk.</p>
+
+      <h3>Key changes under FG25/3</h3>
+      <ul>
+        <li><strong>Domestic PEPs are generally lower risk</strong> — UK PEPs should not automatically receive the same treatment as foreign PEPs. Risk must be assessed individually.</li>
+        <li><strong>MLRO sign-off not required automatically</strong> — Firms no longer need automatic MLRO approval for every domestic PEP relationship, though MLRO oversight of all PEP relationships remains required.</li>
+        <li><strong>Former PEP documentation</strong> — Firms must document reasons for continuing or reducing EDD after the 12-month period.</li>
+        <li><strong>Proportionality emphasis</strong> — Enhanced measures must be proportionate to the actual risk presented by the specific individual, not applied mechanically.</li>
+      </ul>
+
+      <div class="callout new">
+        <div class="callout-icon">🆕</div>
+        <div class="callout-body">
+          <div class="callout-title">FG25/3 — practical impact for firms</div>
+          <div class="callout-text">Under FG25/3, firms should review their PEP policies to ensure domestic PEPs are not automatically treated as high risk without assessment. UK MPs, civil servants, and military officials should be assessed individually rather than receiving blanket EDD. Firms should update their PEP risk methodology and retrain staff who may have been applying a "PEP = always EDD" rule of thumb.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section" id="notpep">
+      <div class="section-num">Section 07</div>
+      <h2>Who is NOT a PEP — common mistakes</h2>
+      <p>FG25/3 provides important clarification on individuals who do not meet the PEP threshold. Getting this right reduces unnecessary burden on customers and staff while maintaining focus on genuine risks.</p>
+
+      <table class="data-table">
+        <thead><tr><th>Role</th><th>PEP?</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr><td>Non-executive board members of UK government departments</td><td class="no">❌ No</td><td>No executive power over public funds</td></tr>
+          <tr><td>Junior civil servants (below senior grade)</td><td class="no">❌ No</td><td>Insufficient prominence/power</td></tr>
+          <tr><td>Junior military officers</td><td class="no">❌ No</td><td>Not "senior" under MLR 2017</td></tr>
+          <tr><td>Local councillors</td><td class="maybe">⚠️ Usually no</td><td>Generally insufficient prominence — risk-based</td></tr>
+          <tr><td>MPs (UK)</td><td class="yes">✅ Yes</td><td>Legislators — senior political function</td></tr>
+          <tr><td>Cabinet ministers</td><td class="yes">✅ Yes</td><td>Senior government function</td></tr>
+          <tr><td>Permanent secretaries</td><td class="yes">✅ Yes</td><td>Most senior civil service grade</td></tr>
+          <tr><td>FCA Chief Executive</td><td class="yes">✅ Yes</td><td>Senior executive of public body</td></tr>
+          <tr><td>Bank of England Governor</td><td class="yes">✅ Yes</td><td>Senior official of public body</td></tr>
+          <tr><td>Foreign head of state</td><td class="yes">✅ Yes — high risk</td><td>Mandatory EDD regardless of risk assessment</td></tr>
+        </tbody>
+      </table>
+
+      <div class="quiz" id="q2">
+        <div class="quiz-label">🧠 Knowledge check</div>
+        <div class="quiz-q">Under FG25/3, a customer reveals they are a non-executive board member of the Department for Transport. Should they be treated as a PEP?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="doQuiz('q2',this,false)">A) Yes — all government board members are PEPs</button>
+          <button class="quiz-opt" onclick="doQuiz('q2',this,true)">B) No — non-executive board members of UK government departments are not PEPs under FG25/3</button>
+          <button class="quiz-opt" onclick="doQuiz('q2',this,false)">C) Yes — any government connection creates PEP status</button>
+          <button class="quiz-opt" onclick="doQuiz('q2',this,false)">D) Only if they have access to public funds</button>
+        </div>
+        <div class="quiz-feedback" id="q2-fb"></div>
+      </div>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">🔍 See PEP identification in practice</div>
+          <div class="tl-title">Search for UK politicians, ministers and officials</div>
+          <div class="tl-sub">Try screening "Keir Starmer", "Rachel Reeves", or "Andrew Bailey" — and see how FinCrimeRadar categorises each PEP type.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Screen now →</a>
+      </div>
+    </section>
+
+    <section class="article-section" id="faq">
+      <div class="section-num">FAQ</div>
+      <h2>Frequently asked questions</h2>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Is a local councillor a PEP? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Generally no — local councillors in the UK are typically considered to hold insufficient prominence to meet the PEP threshold under MLR 2017. However, this is a risk-based determination. A councillor who chairs a major metropolitan authority's finance committee and controls significant public procurement may present different risks to a parish councillor. FG25/3 confirms that local government positions are generally below the PEP threshold, but firms should apply judgement where councillors have unusually significant financial powers.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Does PEP status apply to candidates for political office who haven't been elected yet? <span class="faq-icon">+</span></div>
+        <div class="faq-a">No — PEP status is triggered by being "entrusted with a prominent public function," not by standing for election. A candidate who has not yet taken office is not yet a PEP. However, firms with existing relationships should have processes to identify when a customer takes up a qualifying position — for example, following a general election. Ongoing monitoring should include triggers for customers who stand for and win political office.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What if a customer doesn't know they are connected to a PEP? <span class="faq-icon">+</span></div>
+        <div class="faq-a">This is a common scenario, particularly for RCAs. A customer may genuinely not know that their business partner or family member qualifies as a PEP. The firm's obligation is to conduct reasonable screening and due diligence — if the connection emerges, EDD must be applied regardless of whether the customer was aware. Customer self-declaration should not be the sole method of identifying PEP connections — it must be supplemented by database screening and public information checks.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How do we handle PEPs from countries with weak governance or high corruption? <span class="faq-icon">+</span></div>
+        <div class="faq-a">All foreign PEPs require EDD — but the depth and focus of that EDD should reflect the specific risk. For PEPs from high-corruption jurisdictions (as measured by Transparency International's Corruption Perceptions Index or FATF grey/black list status), firms should apply more intensive source of wealth scrutiny, consider whether the relationship can be adequately managed, seek senior management approval at a higher level than usual, and apply more frequent ongoing monitoring. The FCA expects firms to calibrate EDD to actual risk, not to apply a one-size-fits-all approach regardless of jurisdiction.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Do PEP obligations apply to business customers as well as individuals? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Yes — indirectly. Where a legal entity customer has a PEP as a beneficial owner, director, or significant controller, PEP obligations apply to that relationship. This is why beneficial ownership identification is so critical — it is not enough to screen the entity name; you must identify and screen the individuals behind it. This is particularly relevant for companies from high-risk jurisdictions where PEPs frequently use corporate structures to hold assets.</div>
+      </div>
+
+      <div class="part-footer">
+        <div class="pf-prev">
+          <div class="pf-label">← Series</div>
+          <a href="/knowledge.html" class="pf-link">Knowledge Hub</a>
+        </div>
+        <div class="pf-center">Part 1 of 3</div>
+        <div class="pf-next">
+          <div class="pf-label">Next →</div>
+          <a href="/pep-guide-part2.html" class="pf-link">Part 2: PEP Due Diligence →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  © 2026 FinCrimeRadar · <a href="/">Home</a> · <a href="/knowledge.html">Knowledge Hub</a> · <a href="/screen.html">Screen</a> · <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
+  <br><br>
+  <span style="font-size:11px;color:#9ca3af;">Educational purposes only. Not legal advice. Last updated July 2025.</span>
+</footer>
+
+<script>
+  function updateProgress() {
+    const pct = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('fill').style.width = pct + '%';
+    document.getElementById('pct').textContent = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+  document.querySelectorAll('section[id]').forEach(s => {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          document.querySelectorAll('.toc-list a').forEach(l => l.classList.remove('active'));
+          const a = document.querySelector(`.toc-list a[href="#${e.target.id}"]`);
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin:'-20% 0px -70% 0px' }).observe(s);
+  });
+  function doQuiz(id, btn, correct) {
+    const fb = document.getElementById(id+'-fb');
+    document.querySelectorAll(`#${id} .quiz-opt`).forEach(b => b.disabled = true);
+    btn.classList.add(correct ? 'correct' : 'wrong');
+    fb.classList.add('show', correct ? 'correct' : 'wrong');
+    if (id==='q1') fb.textContent = correct ? '✅ Correct! EDD is mandatory for ALL foreign PEPs under FATF Recommendation 12 and MLR 2017 — there are no exceptions based on risk level or jurisdiction.' : '❌ Not quite. EDD for foreign PEPs is mandatory without exception — it applies to all foreign PEPs regardless of specific risk indicators or jurisdiction.';
+    if (id==='q2') fb.textContent = correct ? '✅ Correct! Under FG25/3 (July 2025), non-executive board members of UK government departments are explicitly NOT PEPs — they have no executive power over public funds.' : '❌ Not quite. FG25/3 specifically confirms that non-executive board members of UK government departments are not PEPs — they lack the executive public function that triggers PEP status.';
+  }
+  function toggleFaq(el) {
+    el.nextElementSibling.classList.toggle('open');
+    el.querySelector('.faq-icon').classList.toggle('open');
+  }
+</script>
+</body>
+</html>

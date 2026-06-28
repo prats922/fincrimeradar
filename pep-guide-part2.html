@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PEP Screening Handbook Part 2: PEP Due Diligence | FinCrimeRadar</title>
+  <meta name="description" content="Part 2 of the PEP Screening Handbook. Covers Enhanced Due Diligence for PEPs, source of funds, source of wealth, ongoing monitoring, and senior management approval." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --white:#ffffff; --off:#f7f8fa; --border:#e4e7ec;
+      --muted:#6b7280; --text:#111827; --navy:#0f2044;
+      --accent:#7c3aed; --accent-h:#6d28d9; --accent-light:#f5f3ff;
+      --accent-border:#ddd6fe;
+      --danger:#dc2626; --success:#16a34a; --warning:#d97706;
+      --blue:#1d5fc4;
+    }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
+    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:60px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-logo { width:26px; height:26px; }
+    .nav-name { font-size:15px; font-weight:600; color:var(--navy); }
+    .nav-name span { color:var(--blue); }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:var(--muted); text-decoration:none; }
+    .nav-links a:hover { color:var(--navy); }
+    .nav-cta { padding:7px 16px; background:var(--blue); color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; }
+    .progress-bar { position:fixed; top:60px; left:0; width:0%; height:3px; background:var(--accent); z-index:199; transition:width 0.1s; }
+    .series-hero { background:linear-gradient(135deg,#2d1b69 0%,#4c1d95 100%); color:#fff; padding:4rem 2rem 3rem; }
+    .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:#c4b5fd; margin-bottom:1.25rem; }
+    .series-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(1.9rem,4vw,3rem); font-weight:400; line-height:1.2; margin-bottom:0.75rem; max-width:760px; }
+    .series-hero h1 em { font-style:italic; color:#c4b5fd; }
+    .series-sub { font-size:16px; color:#ddd6fe; max-width:620px; line-height:1.7; margin-bottom:2rem; }
+    .series-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#a78bfa; }
+    .part-nav { background:var(--white); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; gap:0; overflow-x:auto; }
+    .part-link { padding:14px 20px; font-size:13px; font-weight:500; color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; }
+    .part-link.active { color:var(--accent); border-bottom-color:var(--accent); }
+    .part-link.done { color:var(--success); }
+    .article-layout { display:grid; grid-template-columns:220px 1fr; gap:2rem; max-width:1080px; margin:0 auto; padding:2.5rem 1.5rem; align-items:start; }
+    .toc { position:sticky; top:105px; background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.25rem; }
+    .toc-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--muted); margin-bottom:0.875rem; }
+    .toc-list { list-style:none; }
+    .toc-list a { font-size:12.5px; color:var(--muted); text-decoration:none; display:block; padding:5px 8px; border-radius:6px; transition:all 0.15s; border-left:2px solid transparent; }
+    .toc-list a:hover,.toc-list a.active { color:var(--accent); background:var(--accent-light); border-left-color:var(--accent); }
+    .toc-progress { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); }
+    .toc-progress-label { font-size:11px; color:var(--muted); margin-bottom:6px; display:flex; justify-content:space-between; }
+    .toc-bar { height:4px; background:var(--border); border-radius:99px; overflow:hidden; }
+    .toc-fill { height:100%; background:var(--accent); border-radius:99px; transition:width 0.2s; width:0%; }
+    .series-nav { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); }
+    .sn-link { display:block; font-size:12px; color:var(--muted); text-decoration:none; padding:5px 8px; border-radius:6px; margin-bottom:3px; }
+    .sn-link:hover { color:var(--accent); background:var(--accent-light); }
+    .sn-link.done { color:var(--success); }
+    .sn-link.active { color:var(--accent); font-weight:600; }
+    .article-body { min-width:0; }
+    .article-section { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:2.25rem; margin-bottom:1.25rem; }
+    .section-num { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--accent); margin-bottom:0.5rem; }
+    .article-section h2 { font-family:'DM Serif Display',Georgia,serif; font-size:24px; font-weight:400; color:var(--navy); margin-bottom:1rem; line-height:1.3; }
+    .article-section h3 { font-size:16px; font-weight:600; color:var(--navy); margin:1.75rem 0 0.65rem; }
+    .article-section p { font-size:14.5px; color:#374151; margin-bottom:0.9rem; line-height:1.75; }
+    .article-section ul,.article-section ol { padding-left:1.5rem; margin-bottom:0.9rem; }
+    .article-section li { font-size:14.5px; color:#374151; margin-bottom:0.45rem; line-height:1.65; }
+    .article-section a { color:var(--blue); text-decoration:none; }
+    .article-section a:hover { text-decoration:underline; }
+    .callout { border-radius:10px; padding:1.1rem 1.4rem; margin:1.25rem 0; display:flex; gap:12px; }
+    .callout-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+    .callout-body { flex:1; }
+    .callout-title { font-size:12px; font-weight:700; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.4px; }
+    .callout-text { font-size:13.5px; line-height:1.6; }
+    .callout.info { background:#eff6ff; border:1px solid #bfdbfe; }
+    .callout.info .callout-title { color:#1e40af; }
+    .callout.info .callout-text { color:#1e3a8a; }
+    .callout.warning { background:#fffbeb; border:1px solid #fde68a; }
+    .callout.warning .callout-title { color:#92400e; }
+    .callout.warning .callout-text { color:#78350f; }
+    .callout.danger { background:#fff5f5; border:1px solid #fca5a5; }
+    .callout.danger .callout-title { color:#991b1b; }
+    .callout.danger .callout-text { color:#7f1d1d; }
+    .callout.purple { background:var(--accent-light); border:1px solid var(--accent-border); }
+    .callout.purple .callout-title { color:#5b21b6; }
+    .callout.purple .callout-text { color:#4c1d95; }
+    .callout.success { background:#f0fdf4; border:1px solid #86efac; }
+    .callout.success .callout-title { color:#166534; }
+    .callout.success .callout-text { color:#14532d; }
+    .data-table { width:100%; border-collapse:collapse; margin:1.25rem 0; font-size:13.5px; }
+    .data-table th { background:var(--navy); color:#fff; padding:9px 13px; text-align:left; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; }
+    .data-table th:first-child { border-radius:8px 0 0 0; }
+    .data-table th:last-child { border-radius:0 8px 0 0; }
+    .data-table td { padding:9px 13px; border-bottom:1px solid var(--border); color:var(--text); vertical-align:top; }
+    .data-table tr:last-child td { border-bottom:none; }
+    .data-table tr:nth-child(even) td { background:var(--off); }
+    .steps { margin:1.5rem 0; }
+    .step { display:flex; gap:14px; margin-bottom:1rem; align-items:flex-start; }
+    .step-n { width:30px; height:30px; border-radius:50%; background:var(--accent); color:#fff; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+    .step-body h4 { font-size:14px; font-weight:600; color:var(--navy); margin-bottom:3px; }
+    .step-body p { font-size:13px; color:var(--muted); margin:0; line-height:1.55; }
+    .sow-sof { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:1.5rem 0; }
+    .sow-card { border-radius:10px; padding:1.25rem; }
+    .sow-card.sof { background:#fff5f5; border:1px solid #fca5a5; border-top:3px solid var(--danger); }
+    .sow-card.sow { background:var(--accent-light); border:1px solid var(--accent-border); border-top:3px solid var(--accent); }
+    .sow-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:6px; }
+    .sof .sow-label { color:var(--danger); }
+    .sow .sow-label { color:var(--accent); }
+    .sow-title { font-size:15px; font-weight:600; color:var(--navy); margin-bottom:8px; }
+    .sow-desc { font-size:13px; line-height:1.55; margin-bottom:8px; }
+    .sof .sow-desc { color:#7f1d1d; }
+    .sow .sow-desc { color:#4c1d95; }
+    .sow-eg { font-size:12px; color:var(--muted); }
+    .try-tool { background:linear-gradient(135deg,#2d1b69 0%,#4c1d95 100%); border-radius:12px; padding:1.5rem 1.75rem; margin:1.75rem 0; display:flex; align-items:center; justify-content:space-between; gap:1.25rem; flex-wrap:wrap; }
+    .try-tool .tl { flex:1; }
+    .try-tool .tl-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:#c4b5fd; margin-bottom:5px; }
+    .try-tool .tl-title { font-size:16px; font-weight:600; color:#fff; margin-bottom:4px; line-height:1.4; }
+    .try-tool .tl-sub { font-size:13px; color:#a78bfa; }
+    .try-tool .tl-btn { padding:10px 20px; background:var(--accent); color:#fff; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap; transition:all 0.15s; }
+    .try-tool .tl-btn:hover { background:var(--accent-h); transform:translateY(-1px); }
+    .quiz { background:var(--accent-light); border:1px solid var(--accent-border); border-radius:12px; padding:1.4rem; margin:1.5rem 0; }
+    .quiz-label { font-size:11px; font-weight:700; color:#5b21b6; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:0.65rem; }
+    .quiz-q { font-size:15px; font-weight:600; color:var(--navy); margin-bottom:0.875rem; }
+    .quiz-opts { display:flex; flex-direction:column; gap:7px; }
+    .quiz-opt { padding:9px 13px; border:1.5px solid var(--accent-border); border-radius:7px; font-size:13.5px; cursor:pointer; background:var(--white); color:var(--text); transition:all 0.15s; text-align:left; font-family:'Inter',sans-serif; }
+    .quiz-opt:hover { border-color:var(--accent); color:var(--accent); }
+    .quiz-opt.correct { border-color:var(--success); background:#f0fdf4; color:var(--success); }
+    .quiz-opt.wrong { border-color:var(--danger); background:#fff5f5; color:var(--danger); }
+    .quiz-feedback { display:none; margin-top:0.875rem; font-size:13.5px; padding:10px 13px; border-radius:7px; }
+    .quiz-feedback.show { display:block; }
+    .quiz-feedback.correct { background:#f0fdf4; color:#166534; border:1px solid #86efac; }
+    .quiz-feedback.wrong { background:#fff5f5; color:#991b1b; border:1px solid #fca5a5; }
+    .faq-item { border:1px solid var(--border); border-radius:10px; margin-bottom:7px; overflow:hidden; }
+    .faq-q { padding:0.9rem 1.1rem; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-size:14px; font-weight:500; color:var(--navy); background:var(--white); user-select:none; }
+    .faq-q:hover { background:var(--off); }
+    .faq-icon { font-size:17px; color:var(--muted); transition:transform 0.2s; flex-shrink:0; }
+    .faq-icon.open { transform:rotate(45deg); }
+    .faq-a { display:none; padding:0 1.1rem 0.9rem; font-size:13.5px; color:#374151; line-height:1.7; border-top:1px solid var(--border); background:#fafafa; }
+    .faq-a.open { display:block; padding-top:0.9rem; }
+    .pull-quote { font-family:'DM Serif Display',Georgia,serif; font-size:18px; font-style:italic; color:var(--navy); border-left:3px solid var(--accent); padding-left:1.25rem; margin:1.5rem 0; line-height:1.6; }
+    .red-flags { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:10px; margin:1.25rem 0; }
+    .rf-card { background:#fff5f5; border:1px solid #fca5a5; border-radius:10px; padding:1rem; }
+    .rf-icon { font-size:18px; margin-bottom:5px; }
+    .rf-title { font-size:13px; font-weight:600; color:var(--danger); margin-bottom:3px; }
+    .rf-desc { font-size:12px; color:#7f1d1d; line-height:1.45; }
+    .part-footer { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-top:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    .pf-prev,.pf-next { display:flex; flex-direction:column; gap:4px; }
+    .pf-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--muted); }
+    .pf-link { font-size:14px; font-weight:600; color:var(--blue); text-decoration:none; }
+    .pf-link:hover { text-decoration:underline; }
+    .pf-next { text-align:right; }
+    .pf-center { font-size:13px; color:var(--muted); }
+    footer { background:var(--white); border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:12px; color:var(--muted); margin-top:2rem; }
+    footer a { color:var(--muted); text-decoration:none; margin:0 8px; }
+    footer a:hover { color:var(--blue); }
+    @media (max-width:768px) {
+      .article-layout { grid-template-columns:1fr; }
+      .toc { display:none; }
+      .series-hero { padding:2.5rem 1.25rem 2rem; }
+      .article-section { padding:1.5rem; }
+      .try-tool { flex-direction:column; }
+      .sow-sof { grid-template-columns:1fr; }
+      nav { padding:0 1rem; }
+      .nav-links .hm { display:none; }
+    }
+  </style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav>
+  <a class="nav-brand" href="/">
+    <svg class="nav-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="14" stroke="#1d5fc4" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="9" stroke="#1d5fc4" stroke-width="1" stroke-dasharray="3 2"/>
+      <circle cx="16" cy="16" r="4" stroke="#1d5fc4" stroke-width="0.75" stroke-dasharray="2 2"/>
+      <circle cx="16" cy="16" r="1.5" fill="#1d5fc4"/>
+      <line x1="16" y1="16" x2="25" y2="7" stroke="#1d5fc4" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="22" cy="10" r="2" fill="#dc2626"/>
+    </svg>
+    <span class="nav-name">Fin<span>Crime</span>Radar</span>
+  </a>
+  <div class="nav-links">
+    <a href="/knowledge.html" class="hm">Knowledge Hub</a>
+    <a href="/screen.html" class="hm">Screen</a>
+    <a href="/screen.html" class="nav-cta">Try the tool →</a>
+  </div>
+</nav>
+
+<div class="series-hero">
+  <div class="series-tag">🔍 PEP Screening Handbook · Part 2 of 3</div>
+  <h1>PEP Due Diligence: <em>What good looks like</em></h1>
+  <p class="series-sub">Source of funds, source of wealth, senior management approval, ongoing monitoring, and the EDD checklist — the complete operational guide to managing PEP relationships compliantly.</p>
+  <div class="series-meta">
+    <span>📖 22 min read</span>
+    <span>🔍 MLR 2017 · FG25/3</span>
+    <span>🇬🇧 UK-focused</span>
+  </div>
+</div>
+
+<div class="part-nav">
+  <a href="/pep-guide-part1.html" class="part-link done">✓ Part 1: Who is a PEP?</a>
+  <a href="/pep-guide-part2.html" class="part-link active">Part 2: PEP Due Diligence</a>
+  <a href="/pep-guide-part3.html" class="part-link">Part 3: Case Studies & Application</a>
+</div>
+
+<div class="article-layout">
+  <aside>
+    <div class="toc">
+      <div class="toc-title">In this part</div>
+      <ul class="toc-list">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#edd-trigger">EDD triggers</a></li>
+        <li><a href="#sof-sow">Source of funds & wealth</a></li>
+        <li><a href="#approval">Senior management approval</a></li>
+        <li><a href="#monitoring">Ongoing monitoring</a></li>
+        <li><a href="#red-flags">PEP red flags</a></li>
+        <li><a href="#exit">Exiting PEP relationships</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="toc-progress">
+        <div class="toc-progress-label"><span>Progress</span><span id="pct">0%</span></div>
+        <div class="toc-bar"><div class="toc-fill" id="fill"></div></div>
+      </div>
+      <div class="series-nav">
+        <div class="toc-title">Series</div>
+        <a href="/pep-guide-part1.html" class="sn-link done">✓ Part 1: Who is a PEP?</a>
+        <a href="/pep-guide-part2.html" class="sn-link active">Part 2: PEP Due Diligence</a>
+        <a href="/pep-guide-part3.html" class="sn-link">Part 3: Case Studies</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="article-body">
+
+    <section class="article-section" id="overview">
+      <div class="section-num">Introduction</div>
+      <h2>From identification to action — the EDD obligation</h2>
+      <p>Identifying a customer as a PEP is only the beginning. The real compliance work lies in what happens next: the Enhanced Due Diligence process that transforms a PEP identification into a documented, risk-proportionate assessment of whether — and how — the firm should maintain the relationship.</p>
+      <p>MLR 2017 Regulation 35 sets out four mandatory EDD measures that must be applied to PEP relationships. These are not a checklist to complete and file away — they are ongoing obligations that must be actively maintained for the life of the relationship and beyond.</p>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-body"><h4>Obtain senior management approval</h4><p>The business relationship must be approved by a senior manager before proceeding — or, for existing customers who become PEPs, as soon as reasonably practicable.</p></div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-body"><h4>Establish source of wealth</h4><p>Take adequate measures to establish the source of the PEP's wealth — how they accumulated their overall net worth.</p></div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-body"><h4>Establish source of funds</h4><p>Establish the source of funds involved in the specific business relationship or transaction.</p></div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-body"><h4>Enhanced ongoing monitoring</h4><p>Conduct enhanced ongoing monitoring of the business relationship — more frequent and more intensive than for standard customers.</p></div></div>
+      </div>
+      <div class="pull-quote">"EDD for PEPs is not a one-time exercise at onboarding. It is a continuous process of understanding, monitoring, and documenting — for the life of the relationship and beyond."</div>
+    </section>
+
+    <section class="article-section" id="edd-trigger">
+      <div class="section-num">Section 01</div>
+      <h2>When does EDD kick in?</h2>
+      <p>EDD must be applied at the point a customer is identified as a PEP — and must continue for as long as the PEP obligation exists. The trigger points are:</p>
+      <table class="data-table">
+        <thead><tr><th>Trigger</th><th>EDD required by when?</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>New customer identified as PEP at onboarding</td><td>Before relationship commences</td><td>Senior management approval must be obtained before proceeding</td></tr>
+          <tr><td>Existing customer becomes a PEP (e.g. wins election)</td><td>As soon as reasonably practicable</td><td>Suspend or restrict activity until EDD completed if necessary</td></tr>
+          <tr><td>Existing customer identified as RCA of a PEP</td><td>As soon as reasonably practicable</td><td>Same EDD obligations as direct PEP apply</td></tr>
+          <tr><td>Periodic review triggers PEP identification</td><td>Within review cycle</td><td>Update CDD file and obtain fresh senior management approval</td></tr>
+          <tr><td>Transaction screening produces PEP match</td><td>Before transaction proceeds</td><td>Investigate and apply EDD measures before allowing transaction</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <div class="callout-title">The ongoing customer trap</div>
+          <div class="callout-text">Many firms focus EDD effort on onboarding new PEP customers but fail to identify when existing customers become PEPs. A customer who is elected to Parliament, appointed to a senior government role, or becomes the CEO of a state-owned enterprise after onboarding must be identified and subject to EDD as soon as practicable. Ongoing monitoring systems must include triggers for changes in customer status — not just transaction monitoring.</div>
+        </div>
+      </div>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">🔍 Ongoing PEP monitoring in practice</div>
+          <div class="tl-title">FinCrimeRadar demonstrates what rescreening a customer against PEP data looks like</div>
+          <div class="tl-sub">Try screening a name that might have changed status recently — such as a newly appointed minister or official.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Screen now →</a>
+      </div>
+    </section>
+
+    <section class="article-section" id="sof-sow">
+      <div class="section-num">Section 02</div>
+      <h2>Source of funds vs source of wealth — understanding the difference</h2>
+      <p>Source of funds (SoF) and source of wealth (SoW) are two distinct concepts that are frequently confused — even by experienced compliance professionals. Getting the distinction right is essential because they address different risks and require different evidence.</p>
+
+      <div class="sow-sof">
+        <div class="sow-card sof">
+          <div class="sow-label">💰 Source of Funds (SoF)</div>
+          <div class="sow-title">Where did this specific money come from?</div>
+          <div class="sow-desc">SoF refers to the origin of the specific funds being used in the transaction or business relationship. It is narrow and transaction-specific.</div>
+          <div class="sow-eg"><strong>Examples:</strong> Sale of a property, salary payment, dividend from a company, inheritance receipt, proceeds of an investment sale.</div>
+        </div>
+        <div class="sow-card sow">
+          <div class="sow-label">🏦 Source of Wealth (SoW)</div>
+          <div class="sow-title">How did they accumulate their overall wealth?</div>
+          <div class="sow-desc">SoW refers to how the PEP accumulated their total net worth over their lifetime. It is broad and biographical.</div>
+          <div class="sow-eg"><strong>Examples:</strong> Career history and salary progression, business ownership and sale proceeds, inheritance, investments, property portfolio built over time.</div>
+        </div>
+      </div>
+
+      <h3>Why both matter for PEPs</h3>
+      <p>For standard customers, SoF alone may be sufficient. For PEPs, both are required because the risk being mitigated is fundamentally different: the concern is not just where these specific funds came from, but whether the PEP's overall wealth may include proceeds of corruption or abuse of public office.</p>
+      <p>A PEP who can explain where a specific £500,000 wire transfer came from (SoF: sale of shares) but cannot explain how they accumulated £10 million on a public sector salary (SoW: unclear) presents a very different risk profile to one who can document both clearly.</p>
+
+      <h3>What evidence is acceptable?</h3>
+      <table class="data-table">
+        <thead><tr><th>Source</th><th>Acceptable SoF evidence</th><th>Acceptable SoW evidence</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Employment/salary</strong></td><td>Payslips, employment contract, bank statements showing salary credits</td><td>Career history, salary history, tax returns over time</td></tr>
+          <tr><td><strong>Business ownership</strong></td><td>Dividend payment records, company accounts, shareholder agreements</td><td>Business ownership history, company valuations, sale agreements</td></tr>
+          <tr><td><strong>Property</strong></td><td>Sale completion statement, solicitor confirmation</td><td>Property purchase history, mortgage records, rental income history</td></tr>
+          <tr><td><strong>Inheritance</strong></td><td>Grant of probate, solicitor confirmation of distribution</td><td>Estate valuation, relationship to deceased, timing</td></tr>
+          <tr><td><strong>Investment returns</strong></td><td>Broker statements, portfolio valuations, sale confirmations</td><td>Investment history, initial source of invested capital</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout danger">
+        <div class="callout-icon">🚨</div>
+        <div class="callout-body">
+          <div class="callout-title">The salary consistency test</div>
+          <div class="callout-text">For PEPs — particularly foreign officials — the most basic SoW check is consistency between the PEP's declared wealth and their official salary history. A Nigerian state governor on a government salary of $100,000 per year who has accumulated $50 million in assets should face intensive scrutiny. Accepting SoW at face value without testing it against publicly available information about official remuneration is a common EDD failure the FCA has cited in enforcement action.</div>
+        </div>
+      </div>
+
+      <div class="quiz" id="q1">
+        <div class="quiz-label">🧠 Knowledge check</div>
+        <div class="quiz-q">A PEP customer is depositing £2 million described as "proceeds from sale of family home." Which of the following best describes the correct EDD approach?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">A) Obtain a conveyancer's confirmation of the sale — this satisfies SoF requirements</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,true)">B) Obtain conveyancer's confirmation (SoF) AND investigate how the PEP came to own a property worth £2m+ given their public sector salary history (SoW)</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">C) Accept the customer's explanation — property sales are legitimate sources of funds</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">D) Only SoW is required for PEP transactions — SoF is a standard CDD measure</button>
+        </div>
+        <div class="quiz-feedback" id="q1-fb"></div>
+      </div>
+    </section>
+
+    <section class="article-section" id="approval">
+      <div class="section-num">Section 03</div>
+      <h2>Senior management approval</h2>
+      <p>MLR 2017 Regulation 35(5) requires that the establishment of a business relationship with a PEP must be approved by senior management. This is a mandatory control — not a best practice recommendation.</p>
+
+      <h3>What does "senior management" mean?</h3>
+      <p>The MLR 2017 does not define a specific seniority level for the approving manager. The FCA's expectation is that the seniority of the approver should be proportionate to the risk presented by the specific PEP relationship:</p>
+      <ul>
+        <li><strong>Standard domestic PEP</strong> — a senior compliance manager or MLRO may be appropriate</li>
+        <li><strong>High-risk foreign PEP</strong> — MLRO plus a senior business line manager or board-level sign-off</li>
+        <li><strong>Very high-risk PEP</strong> (e.g. head of state from high-corruption country) — board-level approval may be required, with documented rationale for accepting the relationship at all</li>
+      </ul>
+
+      <div class="callout purple">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <div class="callout-title">FG25/3 change — MLRO approval no longer automatic for domestic PEPs</div>
+          <div class="callout-text">Under the previous FCA position, MLRO sign-off was expected for all PEP relationships. FG25/3 (July 2025) clarifies that MLRO approval is not required automatically for every domestic PEP relationship. However, MLRO oversight of all PEP relationships remains required — the distinction is between automatic individual approval and oversight of the overall PEP programme. Firms should update their PEP policies to reflect this nuance.</div>
+        </div>
+      </div>
+
+      <h3>What the approval must consider</h3>
+      <p>Senior management approval is not a rubber stamp. The approver must genuinely consider:</p>
+      <ul>
+        <li>The nature and purpose of the relationship</li>
+        <li>The PEP's role and the associated risk of corruption</li>
+        <li>The adequacy of the SoF and SoW evidence obtained</li>
+        <li>Whether the proposed business relationship is consistent with the firm's risk appetite</li>
+        <li>Whether adequate ongoing monitoring can be maintained</li>
+        <li>The reputational risk to the firm of the association</li>
+      </ul>
+      <p>All of this must be documented. A one-line approval note is unlikely to satisfy the FCA — the file should show that senior management genuinely engaged with the risk.</p>
+    </section>
+
+    <section class="article-section" id="monitoring">
+      <div class="section-num">Section 04</div>
+      <h2>Enhanced ongoing monitoring of PEP relationships</h2>
+      <p>PEP monitoring must be more intensive than standard customer monitoring. MLR 2017 Regulation 35(5)(d) requires "enhanced ongoing monitoring" — but does not prescribe exactly what this means, leaving it to the firm's risk-based judgement.</p>
+
+      <h3>What enhanced monitoring looks like in practice</h3>
+      <table class="data-table">
+        <thead><tr><th>Monitoring type</th><th>Standard customer</th><th>PEP customer</th></tr></thead>
+        <tbody>
+          <tr><td>Periodic CDD review</td><td>Every 3–5 years (low risk)</td><td>Annually minimum — more frequent for high-risk PEPs</td></tr>
+          <tr><td>Transaction monitoring thresholds</td><td>Standard rule set</td><td>Lower thresholds — more alerts generated</td></tr>
+          <tr><td>Adverse media screening</td><td>At onboarding and periodic</td><td>Ongoing — quarterly or more frequent for high-risk</td></tr>
+          <tr><td>Sanctions rescreening</td><td>When lists update</td><td>Real-time or daily — PEPs are more likely to be sanctioned</td></tr>
+          <tr><td>Source of funds review</td><td>At onboarding</td><td>Per transaction for significant amounts</td></tr>
+          <tr><td>Senior management review</td><td>Not required routinely</td><td>Annual review of relationship continuance</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Ongoing adverse media monitoring</h3>
+      <p>Adverse media monitoring is a critical component of PEP ongoing monitoring. A PEP who appears clean at onboarding may subsequently be implicated in a corruption investigation, sanctions designation, or criminal prosecution. Your monitoring must be capable of detecting this.</p>
+      <p>For high-risk PEPs, many firms now use automated adverse media monitoring tools that alert compliance staff when a monitored name appears in relevant news sources. FinCrimeRadar's adverse media engine — powered by BBC, OCCRP, AP and DW — demonstrates how this works in practice.</p>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">📰 Adverse media monitoring</div>
+          <div class="tl-title">See how adverse media screening works for PEP ongoing monitoring</div>
+          <div class="tl-sub">Search for a PEP name and switch to "Adverse Media" only — see what financial crime coverage appears from live news sources.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Try adverse media →</a>
+      </div>
+    </section>
+
+    <section class="article-section" id="red-flags">
+      <div class="section-num">Section 05</div>
+      <h2>PEP red flags — when to escalate</h2>
+      <p>Beyond the standard EDD measures, compliance teams must be alert to specific red flags that indicate a PEP relationship may involve financial crime. These should trigger immediate escalation to the MLRO and consideration of a SAR.</p>
+
+      <div class="red-flags">
+        <div class="rf-card">
+          <div class="rf-icon">💸</div>
+          <div class="rf-title">Unexplained wealth</div>
+          <div class="rf-desc">Assets or transactions significantly disproportionate to the PEP's known salary and legitimate income sources.</div>
+        </div>
+        <div class="rf-card">
+          <div class="rf-icon">🏢</div>
+          <div class="rf-title">Complex ownership structures</div>
+          <div class="rf-desc">Funds channelled through multiple shell companies, trusts, or nominee arrangements with no clear business rationale.</div>
+        </div>
+        <div class="rf-card">
+          <div class="rf-icon">🌍</div>
+          <div class="rf-title">High-risk jurisdiction flows</div>
+          <div class="rf-desc">Funds originating from or transiting through jurisdictions with weak AML controls or high corruption.</div>
+        </div>
+        <div class="rf-card">
+          <div class="rf-icon">🔄</div>
+          <div class="rf-title">Rapid fund movement</div>
+          <div class="rf-desc">Large funds received and immediately transferred onwards — classic layering behaviour.</div>
+        </div>
+        <div class="rf-card">
+          <div class="rf-icon">🔒</div>
+          <div class="rf-title">Reluctance to provide information</div>
+          <div class="rf-desc">PEP or RCA refuses or delays providing SoF/SoW documentation without plausible explanation.</div>
+        </div>
+        <div class="rf-card">
+          <div class="rf-icon">📰</div>
+          <div class="rf-title">Adverse media emergence</div>
+          <div class="rf-desc">PEP named in corruption investigation, regulatory action, or criminal proceedings after onboarding.</div>
+        </div>
+        <div class="rf-card">
+          <div class="rf-icon">🔗</div>
+          <div class="rf-title">Connected to sanctioned persons</div>
+          <div class="rf-desc">PEP has known business or personal relationships with sanctioned individuals or entities.</div>
+        </div>
+        <div class="rf-card">
+          <div class="rf-icon">📋</div>
+          <div class="rf-title">Inconsistent explanations</div>
+          <div class="rf-desc">Different explanations provided for the same funds at different points — SoF narrative changes over time.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section" id="exit">
+      <div class="section-num">Section 06</div>
+      <h2>Exiting PEP relationships — doing it right</h2>
+      <p>Sometimes the right decision is to exit a PEP relationship — because the risk cannot be adequately managed, the firm cannot obtain satisfactory EDD documentation, or the reputational risk is unacceptable. Exiting a PEP relationship correctly requires as much care as managing it.</p>
+      <h3>The tipping-off risk on exit</h3>
+      <p>If a SAR has been filed — or is being considered — the firm must not exit the relationship in a way that tips off the customer that they are under investigation. A sudden account closure following a SAR filing can constitute tipping off under Section 333A POCA. Exits must be managed carefully with legal advice where a SAR is involved.</p>
+      <h3>Documenting the exit decision</h3>
+      <p>The decision to exit a PEP relationship — like the decision to accept one — must be documented. The file should record:</p>
+      <ul>
+        <li>The reason for the exit decision</li>
+        <li>Whether a SAR was considered or filed</li>
+        <li>Senior management sign-off on the exit</li>
+        <li>The manner and timeline of exit</li>
+        <li>Ongoing record-keeping obligations (5 years from exit)</li>
+      </ul>
+
+      <div class="quiz" id="q2">
+        <div class="quiz-label">🧠 Knowledge check</div>
+        <div class="quiz-q">You have filed a SAR on a PEP customer and received NCA consent to proceed. Shortly after, the customer asks why their account has been restricted. What should you do?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="doQuiz('q2',this,false)">A) Explain that a SAR has been filed and the NCA was involved</button>
+          <button class="quiz-opt" onclick="doQuiz('q2',this,true)">B) Do not disclose the SAR — give a neutral explanation for any restriction if required, seek legal advice, and maintain normal business conduct</button>
+          <button class="quiz-opt" onclick="doQuiz('q2',this,false)">C) Close the account immediately to end the risk</button>
+          <button class="quiz-opt" onclick="doQuiz('q2',this,false)">D) Tell the customer you cannot discuss compliance matters</button>
+        </div>
+        <div class="quiz-feedback" id="q2-fb"></div>
+      </div>
+    </section>
+
+    <section class="article-section" id="faq">
+      <div class="section-num">FAQ</div>
+      <h2>Frequently asked questions</h2>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How do we obtain source of wealth evidence without offending the PEP customer? <span class="faq-icon">+</span></div>
+        <div class="faq-a">This is one of the most common practical challenges in PEP compliance. The key is framing — SoW requests should be presented as a standard part of the firm's onboarding process for all high-value customers, not as a specific accusation. Many firms provide a PEP questionnaire that covers career history, business interests, and asset origins in a structured, professional format. For very high-profile PEPs (heads of state, cabinet ministers), much of the SoW information may be publicly available through official disclosures, parliamentary registers of interests, and reliable media sources — reducing the burden on the customer.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What if the PEP refuses to provide source of wealth information? <span class="faq-icon">+</span></div>
+        <div class="faq-a">If a PEP refuses to provide SoW information, the firm cannot complete its EDD obligations. Under Regulation 31 MLR 2017, where a firm cannot complete EDD measures, it must not carry out the transaction or establish the business relationship, and must consider whether to file a SAR. For existing customers, the relationship must be terminated (carefully, to avoid tipping off). A PEP's refusal to provide SoW is itself a significant red flag that should be reported to the MLRO for SAR consideration.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How frequently should we rescreen PEP customers against sanctions lists? <span class="faq-icon">+</span></div>
+        <div class="faq-a">For PEP customers, sanctions rescreening should be more frequent than for standard customers — because PEPs are materially more likely to be added to sanctions lists. Best practice is real-time or daily rescreening for active PEP relationships, particularly for foreign PEPs. Given the pace of Russia-related sanctions designations since 2022, firms with Russian or Belarusian PEP customers should have real-time screening in place. A PEP who is sanctioned while an existing customer creates an immediate obligation to freeze assets and report to OFSI — delayed identification of a designation is a serious compliance failure.</div>
+      </div>
+
+      <div class="part-footer">
+        <div class="pf-prev">
+          <div class="pf-label">← Previous</div>
+          <a href="/pep-guide-part1.html" class="pf-link">Part 1: Who is a PEP?</a>
+        </div>
+        <div class="pf-center">Part 2 of 3</div>
+        <div class="pf-next">
+          <div class="pf-label">Next →</div>
+          <a href="/pep-guide-part3.html" class="pf-link">Part 3: Case Studies →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  © 2026 FinCrimeRadar · <a href="/">Home</a> · <a href="/knowledge.html">Knowledge Hub</a> · <a href="/screen.html">Screen</a> · <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
+  <br><br>
+  <span style="font-size:11px;color:#9ca3af;">Educational purposes only. Not legal advice. Last updated July 2025.</span>
+</footer>
+
+<script>
+  function updateProgress() {
+    const pct = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('fill').style.width = pct + '%';
+    document.getElementById('pct').textContent = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+  document.querySelectorAll('section[id]').forEach(s => {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          document.querySelectorAll('.toc-list a').forEach(l => l.classList.remove('active'));
+          const a = document.querySelector(`.toc-list a[href="#${e.target.id}"]`);
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin:'-20% 0px -70% 0px' }).observe(s);
+  });
+  function doQuiz(id, btn, correct) {
+    const fb = document.getElementById(id+'-fb');
+    document.querySelectorAll(`#${id} .quiz-opt`).forEach(b => b.disabled = true);
+    btn.classList.add(correct ? 'correct' : 'wrong');
+    fb.classList.add('show', correct ? 'correct' : 'wrong');
+    if (id==='q1') fb.textContent = correct ? '✅ Correct! For PEPs, both SoF AND SoW are required. The conveyancer confirmation addresses SoF (where these specific funds came from) but you must also investigate how the PEP came to own a £2m+ property on a public sector salary — that is the SoW question.' : '❌ Not quite. For PEPs, SoF alone is insufficient. You need both: SoF (evidence of the property sale) and SoW (how they accumulated sufficient wealth to own a £2m+ property in the first place given their official salary history).';
+    if (id==='q2') fb.textContent = correct ? '✅ Correct! Tipping off (s333A POCA) prohibits disclosing that a SAR has been filed. Maintain normal business conduct, do not mention the SAR, give a neutral explanation for any restriction if necessary, and seek legal advice on managing the exit if required.' : '❌ Incorrect. Disclosing a SAR to the customer is tipping off — a criminal offence under s333A POCA. Do not close the account suddenly (this may itself tip off) and do not explain the restriction by referencing the SAR. Seek legal advice.';
+  }
+  function toggleFaq(el) {
+    el.nextElementSibling.classList.toggle('open');
+    el.querySelector('.faq-icon').classList.toggle('open');
+  }
+</script>
+</body>
+</html>

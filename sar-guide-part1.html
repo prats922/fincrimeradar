@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suspicious Activity Reports Part 1: The SAR Regime | FinCrimeRadar</title>
+  <meta name="description" content="Part 1 of the complete guide to Suspicious Activity Reports. Covers the legal basis under POCA, who must file, the MLRO's role, DAML, and the UK SAR regime." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --white:#ffffff; --off:#f7f8fa; --border:#e4e7ec;
+      --muted:#6b7280; --text:#111827; --navy:#0f2044;
+      --accent:#d97706; --accent-h:#b45309; --accent-light:#fffbeb;
+      --accent-border:#fde68a;
+      --danger:#dc2626; --success:#16a34a; --warning:#d97706;
+      --blue:#1d5fc4; --purple:#7c3aed;
+    }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
+    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:60px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-logo { width:26px; height:26px; }
+    .nav-name { font-size:15px; font-weight:600; color:var(--navy); }
+    .nav-name span { color:var(--blue); }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:var(--muted); text-decoration:none; }
+    .nav-links a:hover { color:var(--navy); }
+    .nav-cta { padding:7px 16px; background:var(--blue); color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; }
+    .progress-bar { position:fixed; top:60px; left:0; width:0%; height:3px; background:var(--accent); z-index:199; transition:width 0.1s; }
+    .series-hero { background:linear-gradient(135deg,#78350f 0%,#b45309 100%); color:#fff; padding:4rem 2rem 3rem; }
+    .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:#fde68a; margin-bottom:1.25rem; }
+    .series-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(1.9rem,4vw,3rem); font-weight:400; line-height:1.2; margin-bottom:0.75rem; max-width:760px; }
+    .series-hero h1 em { font-style:italic; color:#fde68a; }
+    .series-sub { font-size:16px; color:#fef3c7; max-width:620px; line-height:1.7; margin-bottom:2rem; }
+    .series-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#fcd34d; }
+    .part-nav { background:var(--white); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; gap:0; overflow-x:auto; }
+    .part-link { padding:14px 20px; font-size:13px; font-weight:500; color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; }
+    .part-link.active { color:var(--accent); border-bottom-color:var(--accent); }
+    .part-link.done { color:var(--success); }
+    .article-layout { display:grid; grid-template-columns:220px 1fr; gap:2rem; max-width:1080px; margin:0 auto; padding:2.5rem 1.5rem; align-items:start; }
+    .toc { position:sticky; top:105px; background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.25rem; }
+    .toc-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--muted); margin-bottom:0.875rem; }
+    .toc-list { list-style:none; }
+    .toc-list a { font-size:12.5px; color:var(--muted); text-decoration:none; display:block; padding:5px 8px; border-radius:6px; transition:all 0.15s; border-left:2px solid transparent; }
+    .toc-list a:hover,.toc-list a.active { color:var(--accent); background:var(--accent-light); border-left-color:var(--accent); }
+    .toc-progress { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); }
+    .toc-progress-label { font-size:11px; color:var(--muted); margin-bottom:6px; display:flex; justify-content:space-between; }
+    .toc-bar { height:4px; background:var(--border); border-radius:99px; overflow:hidden; }
+    .toc-fill { height:100%; background:var(--accent); border-radius:99px; transition:width 0.2s; width:0%; }
+    .next-part { margin-top:1rem; padding:10px; background:var(--accent-light); border:1px solid var(--accent-border); border-radius:8px; }
+    .next-part-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--accent); margin-bottom:4px; }
+    .next-part a { font-size:12px; font-weight:600; color:var(--accent); text-decoration:none; }
+    .article-body { min-width:0; }
+    .article-section { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:2.25rem; margin-bottom:1.25rem; }
+    .section-num { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--accent); margin-bottom:0.5rem; }
+    .article-section h2 { font-family:'DM Serif Display',Georgia,serif; font-size:24px; font-weight:400; color:var(--navy); margin-bottom:1rem; line-height:1.3; }
+    .article-section h3 { font-size:16px; font-weight:600; color:var(--navy); margin:1.75rem 0 0.65rem; }
+    .article-section p { font-size:14.5px; color:#374151; margin-bottom:0.9rem; line-height:1.75; }
+    .article-section ul,.article-section ol { padding-left:1.5rem; margin-bottom:0.9rem; }
+    .article-section li { font-size:14.5px; color:#374151; margin-bottom:0.45rem; line-height:1.65; }
+    .article-section a { color:var(--blue); text-decoration:none; }
+    .article-section a:hover { text-decoration:underline; }
+    .callout { border-radius:10px; padding:1.1rem 1.4rem; margin:1.25rem 0; display:flex; gap:12px; }
+    .callout-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+    .callout-body { flex:1; }
+    .callout-title { font-size:12px; font-weight:700; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.4px; }
+    .callout-text { font-size:13.5px; line-height:1.6; }
+    .callout.info { background:#eff6ff; border:1px solid #bfdbfe; }
+    .callout.info .callout-title { color:#1e40af; }
+    .callout.info .callout-text { color:#1e3a8a; }
+    .callout.warning { background:#fffbeb; border:1px solid #fde68a; }
+    .callout.warning .callout-title { color:#92400e; }
+    .callout.warning .callout-text { color:#78350f; }
+    .callout.danger { background:#fff5f5; border:1px solid #fca5a5; }
+    .callout.danger .callout-title { color:#991b1b; }
+    .callout.danger .callout-text { color:#7f1d1d; }
+    .callout.amber { background:var(--accent-light); border:1px solid var(--accent-border); }
+    .callout.amber .callout-title { color:#92400e; }
+    .callout.amber .callout-text { color:#78350f; }
+    .callout.success { background:#f0fdf4; border:1px solid #86efac; }
+    .callout.success .callout-title { color:#166534; }
+    .callout.success .callout-text { color:#14532d; }
+    .data-table { width:100%; border-collapse:collapse; margin:1.25rem 0; font-size:13.5px; }
+    .data-table th { background:var(--navy); color:#fff; padding:9px 13px; text-align:left; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; }
+    .data-table th:first-child { border-radius:8px 0 0 0; }
+    .data-table th:last-child { border-radius:0 8px 0 0; }
+    .data-table td { padding:9px 13px; border-bottom:1px solid var(--border); color:var(--text); vertical-align:top; }
+    .data-table tr:last-child td { border-bottom:none; }
+    .data-table tr:nth-child(even) td { background:var(--off); }
+    .offence-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:10px; margin:1.5rem 0; }
+    .offence-card { border-radius:10px; padding:1.1rem; }
+    .offence-card.primary { background:#fff5f5; border:1px solid #fca5a5; border-top:3px solid var(--danger); }
+    .offence-card.secondary { background:var(--accent-light); border:1px solid var(--accent-border); border-top:3px solid var(--accent); }
+    .oc-section { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:5px; }
+    .primary .oc-section { color:var(--danger); }
+    .secondary .oc-section { color:var(--accent); }
+    .oc-title { font-size:13px; font-weight:600; color:var(--navy); margin-bottom:4px; }
+    .oc-desc { font-size:12px; line-height:1.45; margin-bottom:4px; }
+    .primary .oc-desc { color:#7f1d1d; }
+    .secondary .oc-desc { color:#78350f; }
+    .oc-penalty { font-size:11px; font-weight:700; }
+    .primary .oc-penalty { color:var(--danger); }
+    .secondary .oc-penalty { color:var(--accent); }
+    .flow-steps { margin:1.5rem 0; }
+    .flow-step { display:flex; gap:14px; margin-bottom:6px; align-items:flex-start; }
+    .fs-dot { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; margin-top:2px; }
+    .fs-body { flex:1; background:var(--off); border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; }
+    .fs-body h4 { font-size:13px; font-weight:600; color:var(--navy); margin-bottom:3px; }
+    .fs-body p { font-size:12.5px; color:var(--muted); margin:0; line-height:1.5; }
+    .fs-time { display:inline-block; font-size:11px; font-weight:600; background:#fee2e2; color:var(--danger); padding:2px 7px; border-radius:4px; margin-top:4px; }
+    .flow-arrow { text-align:center; color:var(--muted); margin:2px 0 2px 16px; font-size:16px; }
+    .try-tool { background:linear-gradient(135deg,#78350f 0%,#b45309 100%); border-radius:12px; padding:1.5rem 1.75rem; margin:1.75rem 0; display:flex; align-items:center; justify-content:space-between; gap:1.25rem; flex-wrap:wrap; }
+    .try-tool .tl { flex:1; }
+    .try-tool .tl-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:#fde68a; margin-bottom:5px; }
+    .try-tool .tl-title { font-size:16px; font-weight:600; color:#fff; margin-bottom:4px; line-height:1.4; }
+    .try-tool .tl-sub { font-size:13px; color:#fcd34d; }
+    .try-tool .tl-btn { padding:10px 20px; background:var(--accent); color:#fff; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap; transition:all 0.15s; }
+    .try-tool .tl-btn:hover { background:var(--accent-h); transform:translateY(-1px); }
+    .quiz { background:var(--accent-light); border:1px solid var(--accent-border); border-radius:12px; padding:1.4rem; margin:1.5rem 0; }
+    .quiz-label { font-size:11px; font-weight:700; color:#92400e; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:0.65rem; }
+    .quiz-q { font-size:15px; font-weight:600; color:var(--navy); margin-bottom:0.875rem; }
+    .quiz-opts { display:flex; flex-direction:column; gap:7px; }
+    .quiz-opt { padding:9px 13px; border:1.5px solid var(--accent-border); border-radius:7px; font-size:13.5px; cursor:pointer; background:var(--white); color:var(--text); transition:all 0.15s; text-align:left; font-family:'Inter',sans-serif; }
+    .quiz-opt:hover { border-color:var(--accent); color:var(--accent); }
+    .quiz-opt.correct { border-color:var(--success); background:#f0fdf4; color:var(--success); }
+    .quiz-opt.wrong { border-color:var(--danger); background:#fff5f5; color:var(--danger); }
+    .quiz-feedback { display:none; margin-top:0.875rem; font-size:13.5px; padding:10px 13px; border-radius:7px; }
+    .quiz-feedback.show { display:block; }
+    .quiz-feedback.correct { background:#f0fdf4; color:#166534; border:1px solid #86efac; }
+    .quiz-feedback.wrong { background:#fff5f5; color:#991b1b; border:1px solid #fca5a5; }
+    .faq-item { border:1px solid var(--border); border-radius:10px; margin-bottom:7px; overflow:hidden; }
+    .faq-q { padding:0.9rem 1.1rem; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-size:14px; font-weight:500; color:var(--navy); background:var(--white); user-select:none; }
+    .faq-q:hover { background:var(--off); }
+    .faq-icon { font-size:17px; color:var(--muted); transition:transform 0.2s; flex-shrink:0; }
+    .faq-icon.open { transform:rotate(45deg); }
+    .faq-a { display:none; padding:0 1.1rem 0.9rem; font-size:13.5px; color:#374151; line-height:1.7; border-top:1px solid var(--border); background:#fafafa; }
+    .faq-a.open { display:block; padding-top:0.9rem; }
+    .pull-quote { font-family:'DM Serif Display',Georgia,serif; font-size:18px; font-style:italic; color:var(--navy); border-left:3px solid var(--accent); padding-left:1.25rem; margin:1.5rem 0; line-height:1.6; }
+    .stats-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:10px; margin:1.25rem 0; }
+    .stat { background:var(--off); border:1px solid var(--border); border-radius:10px; padding:1rem; text-align:center; }
+    .stat-num { font-size:22px; font-weight:700; color:var(--navy); }
+    .stat-label { font-size:11px; color:var(--muted); margin-top:3px; line-height:1.3; }
+    .part-footer { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-top:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    .pf-prev,.pf-next { display:flex; flex-direction:column; gap:4px; }
+    .pf-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--muted); }
+    .pf-link { font-size:14px; font-weight:600; color:var(--blue); text-decoration:none; }
+    .pf-link:hover { text-decoration:underline; }
+    .pf-next { text-align:right; }
+    .pf-center { font-size:13px; color:var(--muted); }
+    footer { background:var(--white); border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:12px; color:var(--muted); margin-top:2rem; }
+    footer a { color:var(--muted); text-decoration:none; margin:0 8px; }
+    footer a:hover { color:var(--blue); }
+    @media (max-width:768px) {
+      .article-layout { grid-template-columns:1fr; }
+      .toc { display:none; }
+      .series-hero { padding:2.5rem 1.25rem 2rem; }
+      .article-section { padding:1.5rem; }
+      .try-tool { flex-direction:column; }
+      nav { padding:0 1rem; }
+      .nav-links .hm { display:none; }
+    }
+  </style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav>
+  <a class="nav-brand" href="/">
+    <svg class="nav-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="14" stroke="#1d5fc4" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="9" stroke="#1d5fc4" stroke-width="1" stroke-dasharray="3 2"/>
+      <circle cx="16" cy="16" r="4" stroke="#1d5fc4" stroke-width="0.75" stroke-dasharray="2 2"/>
+      <circle cx="16" cy="16" r="1.5" fill="#1d5fc4"/>
+      <line x1="16" y1="16" x2="25" y2="7" stroke="#1d5fc4" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="22" cy="10" r="2" fill="#dc2626"/>
+    </svg>
+    <span class="nav-name">Fin<span>Crime</span>Radar</span>
+  </a>
+  <div class="nav-links">
+    <a href="/knowledge.html" class="hm">Knowledge Hub</a>
+    <a href="/screen.html" class="hm">Screen</a>
+    <a href="/screen.html" class="nav-cta">Try the tool →</a>
+  </div>
+</nav>
+
+<div class="series-hero">
+  <div class="series-tag">📝 SAR Complete Guide · Part 1 of 3</div>
+  <h1>Suspicious Activity Reports: <em>The Legal Regime</em></h1>
+  <p class="series-sub">The legal basis for SARs under POCA 2002, who must file, the MLRO's statutory role, the Defence Against Money Laundering process, tipping off, and how the UK SAR regime works in practice.</p>
+  <div class="series-meta">
+    <span>📖 20 min read</span>
+    <span>⚖️ POCA 2002 · MLR 2017</span>
+    <span>🇬🇧 UK-specific</span>
+    <span>🏛️ NCA · UKFIU</span>
+  </div>
+</div>
+
+<div class="part-nav">
+  <a href="/sar-guide-part1.html" class="part-link active">Part 1: The Legal Regime</a>
+  <a href="/sar-guide-part2.html" class="part-link">Part 2: Writing Better SARs</a>
+  <a href="/sar-guide-part3.html" class="part-link">Part 3: Quality, Intelligence & NCA</a>
+</div>
+
+<div class="article-layout">
+  <aside>
+    <div class="toc">
+      <div class="toc-title">In this part</div>
+      <ul class="toc-list">
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#legal-basis">Legal basis</a></li>
+        <li><a href="#offences">The offences</a></li>
+        <li><a href="#who-files">Who must file</a></li>
+        <li><a href="#mlro-role">The MLRO's role</a></li>
+        <li><a href="#daml">DAML process</a></li>
+        <li><a href="#tipping-off">Tipping off</a></li>
+        <li><a href="#ukfiu">UKFIU & the NCA</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="toc-progress">
+        <div class="toc-progress-label"><span>Progress</span><span id="pct">0%</span></div>
+        <div class="toc-bar"><div class="toc-fill" id="fill"></div></div>
+      </div>
+      <div class="next-part">
+        <div class="next-part-label">Next →</div>
+        <a href="/sar-guide-part2.html">Part 2: Writing Better SARs →</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="article-body">
+
+    <section class="article-section" id="intro">
+      <div class="section-num">Introduction</div>
+      <h2>The SAR — the financial system's most powerful intelligence tool</h2>
+      <p>The Suspicious Activity Report (SAR) is one of the most important instruments in the fight against financial crime. Every year, over 900,000 SARs are submitted to the UK's National Crime Agency by regulated firms — representing the collective financial intelligence of the banking system, translated into actionable information for law enforcement.</p>
+      <p>Yet the SAR regime is also one of the most legally exposed aspects of AML compliance. Filing a SAR incorrectly, failing to file when required, or tipping off a customer that a SAR has been filed can all result in criminal prosecution. For MLROs, SARs represent both the most important professional responsibility and the most significant personal legal risk in the compliance function.</p>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-num">900K+</div><div class="stat-label">SARs submitted to UKFIU 2023/24</div></div>
+        <div class="stat"><div class="stat-num">£258M+</div><div class="stat-label">Assets refused under DAML 2023/24</div></div>
+        <div class="stat"><div class="stat-num">5 years</div><div class="stat-label">Max sentence for failure to disclose</div></div>
+        <div class="stat"><div class="stat-num">7 days</div><div class="stat-label">NCA moratorium period for DAML SARs</div></div>
+      </div>
+      <div class="pull-quote">"A SAR is not a compliance form. It is a piece of financial intelligence that could prevent a terrorist attack, dismantle a drug network, or recover stolen public funds. The quality of what we file matters as much as the act of filing."</div>
+    </section>
+
+    <section class="article-section" id="legal-basis">
+      <div class="section-num">Section 01</div>
+      <h2>The legal basis — POCA 2002 and the Terrorism Act 2000</h2>
+      <p>The SAR regime in the UK is established by two pieces of legislation that run in parallel — the Proceeds of Crime Act 2002 (POCA) for money laundering, and the Terrorism Act 2000 (TA 2000) for terrorist financing. Both create disclosure obligations, though the POCA regime is the primary framework for most regulated firms.</p>
+
+      <div class="callout amber">
+        <div class="callout-icon">📋</div>
+        <div class="callout-body">
+          <div class="callout-title">The two SAR regimes</div>
+          <div class="callout-text">POCA Part 7: covers money laundering and proceeds of crime. The offence of "failure to disclose" under Section 330 applies to the regulated sector. Terrorism Act 2000: covers terrorist financing. Section 21A creates the parallel obligation for the regulated sector to disclose suspicions of terrorist financing. Both regimes use the same SAR Online system — the same report covers both.</div>
+        </div>
+      </div>
+
+      <h3>Key POCA provisions</h3>
+      <table class="data-table">
+        <thead><tr><th>Section</th><th>Provision</th><th>Key point</th></tr></thead>
+        <tbody>
+          <tr><td><strong>S.327</strong></td><td>Concealing criminal property</td><td>Principal offence — concealing, disguising, converting or transferring</td></tr>
+          <tr><td><strong>S.328</strong></td><td>Arrangements</td><td>Principal offence — facilitating acquisition, retention or control of criminal property</td></tr>
+          <tr><td><strong>S.329</strong></td><td>Acquisition, use, possession</td><td>Principal offence — acquiring, using or possessing criminal property</td></tr>
+          <tr><td><strong>S.330</strong></td><td>Failure to disclose (regulated sector)</td><td>The SAR obligation — failure to report is a criminal offence</td></tr>
+          <tr><td><strong>S.331</strong></td><td>Failure to disclose (nominated officers)</td><td>MLRO-specific — failure to disclose after receiving internal report</td></tr>
+          <tr><td><strong>S.333A</strong></td><td>Tipping off (regulated sector)</td><td>Criminal offence to disclose that a SAR has been filed</td></tr>
+          <tr><td><strong>S.335</strong></td><td>Appropriate consent (DAML)</td><td>The consent/DAML regime — seeking NCA permission to proceed</td></tr>
+          <tr><td><strong>S.336</strong></td><td>Nominated officer's consent</td><td>MLRO can seek NCA consent on behalf of the firm</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="article-section" id="offences">
+      <div class="section-num">Section 02</div>
+      <h2>The disclosure offences — what you must avoid</h2>
+      <p>The SAR regime creates criminal liability in two directions — for failing to report when you should, and for reporting in a way that prejudices an investigation. Understanding both is essential.</p>
+
+      <div class="offence-grid">
+        <div class="offence-card primary">
+          <div class="oc-section">Section 330 POCA</div>
+          <div class="oc-title">Failure to disclose</div>
+          <div class="oc-desc">In the regulated sector: failing to disclose when you know or suspect — or have reasonable grounds to know or suspect — that another person is engaged in money laundering.</div>
+          <div class="oc-penalty">Max: 5 years imprisonment</div>
+        </div>
+        <div class="offence-card primary">
+          <div class="oc-section">Section 331 POCA</div>
+          <div class="oc-title">Nominated officer failure</div>
+          <div class="oc-desc">MLRO-specific: the MLRO receives an internal SAR, knows or suspects ML, and fails to disclose to the NCA without reasonable excuse.</div>
+          <div class="oc-penalty">Max: 5 years imprisonment</div>
+        </div>
+        <div class="offence-card secondary">
+          <div class="oc-section">Section 333A POCA</div>
+          <div class="oc-title">Tipping off</div>
+          <div class="oc-desc">Disclosing to a third party that a disclosure has been made, or that an investigation is underway, where that disclosure is likely to prejudice the investigation.</div>
+          <div class="oc-penalty">Max: 2 years imprisonment</div>
+        </div>
+        <div class="offence-card secondary">
+          <div class="oc-section">Section 342 POCA</div>
+          <div class="oc-title">Prejudicing investigation</div>
+          <div class="oc-desc">Knowingly making a false or misleading disclosure, or concealing, destroying or falsifying documents relevant to a confiscation investigation.</div>
+          <div class="oc-penalty">Max: 5 years imprisonment</div>
+        </div>
+      </div>
+
+      <h3>The "reasonable grounds" standard</h3>
+      <p>The Section 330 obligation is triggered when a person knows or suspects — or has <strong>reasonable grounds to know or suspect</strong> — that another person is engaged in money laundering. The "reasonable grounds" limb is objective: it asks what a reasonable person in the same position, with the same information, would suspect — regardless of what the individual actually thought.</p>
+      <p>This means the obligation can be triggered even if the individual genuinely did not suspect money laundering, if a reasonable compliance professional would have done so given the information available. Ignorance is not a defence if reasonable steps to identify suspicion were not taken.</p>
+
+      <div class="callout danger">
+        <div class="callout-icon">🚨</div>
+        <div class="callout-body">
+          <div class="callout-title">The "ostrich" problem</div>
+          <div class="callout-text">Deliberately avoiding knowledge of suspicious circumstances — turning a blind eye — does not provide a defence against the Section 330 offence. A person who had reasonable grounds to suspect ML/TF but chose not to investigate cannot rely on their lack of actual suspicion. The FCA has taken enforcement action against firms whose staff were trained to avoid asking questions that might reveal suspicious activity — a practice sometimes called "wilful blindness."</div>
+        </div>
+      </div>
+
+      <div class="quiz" id="q1">
+        <div class="quiz-label">🧠 Knowledge check</div>
+        <div class="quiz-q">A compliance officer reviews a transaction that has features consistent with structuring (multiple cash deposits just below £10,000). They decide not to investigate further because they "don't want to assume the worst." Is this adequate?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">A) Yes — the officer has no actual suspicion so S.330 is not triggered</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,true)">B) No — a reasonable compliance professional would have suspected ML given structuring indicators; failing to investigate may amount to wilful blindness</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">C) Only if the deposits exceed £10,000 individually does the obligation arise</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">D) Yes — there is no legal obligation to investigate suspicions, only to report known facts</button>
+        </div>
+        <div class="quiz-feedback" id="q1-fb"></div>
+      </div>
+    </section>
+
+    <section class="article-section" id="who-files">
+      <div class="section-num">Section 03</div>
+      <h2>Who must file a SAR?</h2>
+      <p>The Section 330 obligation applies to persons in the "regulated sector" — the same broad category as those subject to MLR 2017 obligations. However, anyone (not just those in the regulated sector) who handles the proceeds of crime can commit the principal POCA offences under Sections 327–329.</p>
+
+      <h3>The two-track system</h3>
+      <p>The SAR regime operates on two tracks:</p>
+      <ul>
+        <li><strong>Track 1 — Regulated sector obligation (S.330)</strong>: Employees of regulated firms who encounter suspicious activity in the course of their work must make an internal report to the MLRO. This is a personal obligation on the individual employee — they cannot delegate it.</li>
+        <li><strong>Track 2 — MLRO obligation (S.331)</strong>: The MLRO receives internal reports and decides whether to disclose to the NCA. This is the MLRO's personal statutory obligation — they cannot simply delegate the filing decision to someone else.</li>
+      </ul>
+
+      <h3>The internal SAR process</h3>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="fs-dot" style="background:#dbeafe; color:#1e40af;">👤</div>
+          <div class="fs-body"><h4>Employee identifies suspicious activity</h4><p>During CDD, transaction monitoring, customer interaction, or any other business activity. Suspicion arises — the employee cannot ignore it.</p><div class="fs-time">Immediately on identification</div></div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+          <div class="fs-dot" style="background:#fef3c7; color:#92400e;">📝</div>
+          <div class="fs-body"><h4>Employee submits internal SAR (ISAR) to MLRO</h4><p>Via the firm's internal reporting system. Must include all relevant information — who, what, when, where, why suspicious. Do NOT tell the customer or colleagues outside the need-to-know chain.</p><div class="fs-time">As soon as practicable</div></div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+          <div class="fs-dot" style="background:#ede9fe; color:#5b21b6;">🔍</div>
+          <div class="fs-body"><h4>MLRO investigates and makes decision</h4><p>MLRO reviews the ISAR, considers all available information, may request further details. Makes decision: file with NCA, or document reasons for not filing. Both outcomes must be recorded.</p></div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+          <div class="fs-dot" style="background:#dcfce7; color:#166534;">📤</div>
+          <div class="fs-body"><h4>External SAR submitted to NCA (if required)</h4><p>Via SAR Online system. If a transaction is pending, submit as a DAML (consent) SAR and await NCA response before proceeding.</p><div class="fs-time">As soon as practicable</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section" id="mlro-role">
+      <div class="section-num">Section 04</div>
+      <h2>The MLRO's role — personal statutory accountability</h2>
+      <p>The Money Laundering Reporting Officer occupies a uniquely exposed position in the SAR regime. Unlike most compliance functions where responsibility flows through the organisation, the MLRO's Section 331 obligation is personal — and cannot be discharged by delegation.</p>
+
+      <h3>What the MLRO must do</h3>
+      <ul>
+        <li><strong>Receive all internal SAR reports</strong> — the MLRO is the single point through which all internal suspicions must flow</li>
+        <li><strong>Investigate adequately</strong> — the MLRO must consider all available information before making a filing decision</li>
+        <li><strong>Make the filing decision</strong> — file with the NCA, or document reasons for not filing. Both are legally valid outcomes but both must be documented</li>
+        <li><strong>Decide on DAML requests</strong> — where a transaction is pending, decide whether to request NCA consent before proceeding</li>
+        <li><strong>Maintain adequate records</strong> — all ISARs received, all filing decisions, all reasons for not filing</li>
+        <li><strong>Report to senior management</strong> — the MLRO must report regularly to the board or senior management on SAR activity and the firm's AML position</li>
+      </ul>
+
+      <div class="callout warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <div class="callout-title">Documenting non-filing decisions</div>
+          <div class="callout-text">One of the most commonly missed obligations: the MLRO must document reasons for NOT filing a SAR, not just for filing one. An ISAR that is received and then disappears from the record with no filing and no documented reason creates significant personal liability for the MLRO. The FCA's review of SAR processes frequently finds inadequate documentation of non-filing decisions.</div>
+        </div>
+      </div>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">🛡️ Screening as part of the MLRO's investigation</div>
+          <div class="tl-title">When investigating a potential SAR, screening is an essential tool</div>
+          <div class="tl-sub">Before deciding whether to file a SAR, the MLRO should screen the subject against sanctions lists, PEP databases, and adverse media. FinCrimeRadar demonstrates this process.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Screen a name →</a>
+      </div>
+    </section>
+
+    <section class="article-section" id="daml">
+      <div class="section-num">Section 05</div>
+      <h2>Defence Against Money Laundering (DAML)</h2>
+      <p>The DAML regime — sometimes called the "consent" regime — allows regulated firms to seek the NCA's permission before completing a transaction they suspect may involve criminal property. It provides a statutory defence against the principal POCA offences if the firm proceeds after receiving consent (or after the moratorium period expires).</p>
+
+      <h3>How the DAML process works</h3>
+      <table class="data-table">
+        <thead><tr><th>Stage</th><th>What happens</th><th>Timeframe</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1. SAR filed</strong></td><td>MLRO submits a DAML SAR to the NCA via SAR Online, requesting consent to proceed with the transaction</td><td>Before transaction</td></tr>
+          <tr><td><strong>2. Notice period</strong></td><td>NCA has 7 working days to provide a "notice of refusal" — if no notice is received, consent is deemed given</td><td>7 working days</td></tr>
+          <tr><td><strong>3. Consent given</strong></td><td>NCA issues written consent — firm may proceed with the transaction</td><td>Within 7 working days</td></tr>
+          <tr><td><strong>4. Consent refused</strong></td><td>NCA issues notice of refusal — firm cannot proceed for a further 31 calendar days (the "moratorium period")</td><td>31 days from notice</td></tr>
+          <tr><td><strong>5. Moratorium expires</strong></td><td>After 31 days, if no further restraint order obtained, the firm may proceed — the defence applies</td><td>31 days</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <div class="callout-title">DAML — the practical challenge</div>
+          <div class="callout-text">In practice, most DAMLs relate to situations where a firm has identified a suspicious transaction but the customer is expecting it to proceed — for example, a large payment, an account closure, or a withdrawal. The firm cannot tell the customer why there is a delay (tipping-off risk) while simultaneously waiting up to 7 working days for the NCA to respond. Managing this "awkward gap" without tipping off the customer is one of the most challenging aspects of SAR compliance. Legal advice and a careful communication strategy are essential for high-value DAML situations.</div>
+        </div>
+      </div>
+
+      <div class="quiz" id="q2">
+        <div class="quiz-label">🧠 Knowledge check</div>
+        <div class="quiz-q">A firm submits a DAML SAR on a Monday morning. By the following Wednesday afternoon (7 working days later), they have received no response from the NCA. Can they proceed with the transaction?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="doQuiz('q2',this,true)">A) Yes — no response within 7 working days means consent is deemed given</button>
+          <button class="quiz-opt" onclick="doQuiz('q2',this,false)">B) No — they must wait for explicit written consent before proceeding</button>
+          <button class="quiz-opt" onclick="doQuiz('q2',this,false)">C) No — they must wait a further 31 days regardless</button>
+          <button class="quiz-opt" onclick="doQuiz('q2',this,false)">D) Yes — but only if the amount is under £10,000</button>
+        </div>
+        <div class="quiz-feedback" id="q2-fb"></div>
+      </div>
+    </section>
+
+    <section class="article-section" id="tipping-off">
+      <div class="section-num">Section 06</div>
+      <h2>Tipping off — the most dangerous compliance mistake</h2>
+      <p>Section 333A POCA makes it a criminal offence to disclose that a SAR has been made, or that a money laundering investigation is underway, where that disclosure is likely to prejudice the investigation. With a maximum sentence of 2 years imprisonment and unlimited fine, tipping off is one of the most serious compliance mistakes a firm can make.</p>
+
+      <h3>What constitutes tipping off?</h3>
+      <ul>
+        <li>Telling the customer directly that a SAR has been filed</li>
+        <li>Telling the customer that their account is "under AML investigation"</li>
+        <li>Closing an account immediately after filing a SAR without adequate cover story</li>
+        <li>Asking the customer for additional information in a way that reveals the nature of the concern</li>
+        <li>Discussing the SAR with third parties (agents, introducers, counterparties) who don't need to know</li>
+        <li>Responding to a solicitor's letter by confirming or denying a SAR exists</li>
+      </ul>
+
+      <h3>What is NOT tipping off?</h3>
+      <ul>
+        <li>Discussing the SAR within the firm on a need-to-know basis</li>
+        <li>Obtaining legal advice about whether to file a SAR</li>
+        <li>Disclosing within the same group of companies for the purpose of preventing ML/TF</li>
+        <li>Disclosures between regulated firms in the same sector for AML purposes (subject to conditions)</li>
+        <li>Telling a customer that a transaction cannot proceed — without explaining why</li>
+      </ul>
+
+      <div class="callout danger">
+        <div class="callout-icon">🚨</div>
+        <div class="callout-body">
+          <div class="callout-title">The solicitor's letter trap</div>
+          <div class="callout-text">A common tipping-off scenario: the subject of a SAR instructs a solicitor who then writes to the firm asking whether a SAR has been filed and requesting details of any restrictions on the account. Confirming or denying the existence of a SAR in response to such a letter may constitute tipping off. The standard response is to say that the firm cannot confirm or deny the existence of any suspicious activity report, and to seek legal advice before responding further. Never be pressured by solicitors' letters into confirming SAR activity.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section" id="ukfiu">
+      <div class="section-num">Section 07</div>
+      <h2>The UKFIU and the NCA — what happens to your SAR</h2>
+      <p>Once a SAR is submitted via SAR Online, it enters the UK Financial Intelligence Unit (UKFIU) — a specialist unit within the National Crime Agency. Understanding what happens next helps MLROs write better SARs and manage the process more effectively.</p>
+
+      <h3>What the UKFIU does with SARs</h3>
+      <ul>
+        <li><strong>Triage</strong> — SARs are categorised by type, risk level, and urgency. High-priority SARs (DAML requests, terrorism-related) are prioritised for immediate review.</li>
+        <li><strong>Analysis</strong> — the UKFIU's analysts add value to SARs by combining them with other intelligence sources, law enforcement databases, and open-source information.</li>
+        <li><strong>Dissemination</strong> — relevant intelligence is shared with appropriate law enforcement and partner agencies — police forces, HMRC, the FCA, overseas partners.</li>
+        <li><strong>Feedback</strong> — the UKFIU publishes aggregate statistics and typologies but provides limited individual SAR feedback to submitters (for operational reasons).</li>
+      </ul>
+
+      <div class="callout success">
+        <div class="callout-icon">✅</div>
+        <div class="callout-body">
+          <div class="callout-title">Quality matters more than quantity</div>
+          <div class="callout-text">The NCA and FCA have been explicit: the UK SAR regime suffers from an excess of defensive, low-quality SARs filed to avoid prosecution rather than to provide genuine financial intelligence. A well-researched SAR that clearly explains the suspicion, identifies the subject fully, and provides detailed transaction information is far more valuable than five defensive SARs with minimal content. MLROs should prioritise SAR quality — even if that means filing fewer SARs overall.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can we withdraw a SAR after filing it? <span class="faq-icon">+</span></div>
+        <div class="faq-a">No — once a SAR has been submitted to the NCA, it cannot be withdrawn. If you submitted a SAR in error, or if additional information changes the picture, you can submit a supplemental report via SAR Online to provide clarification or correction. Keep a record of the error and the corrective action taken. This is one reason why SAR quality control before submission is so important — errors cannot be undone.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Does filing a SAR provide complete protection from POCA liability? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Filing a SAR provides a statutory defence against the principal POCA offences (ss327–329) and the failure to disclose offence (s330), provided the disclosure was made as soon as practicable and in the prescribed form. However, filing a SAR does not provide blanket immunity. If a firm continues to assist money laundering after filing a SAR — for example, by continuing to process transactions while knowing they are suspicious — the defence may not apply. And filing a knowingly false or misleading SAR is itself a criminal offence (s342 POCA).</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How do we handle a customer who demands to know why their account is restricted? <span class="faq-icon">+</span></div>
+        <div class="faq-a">This is one of the most operationally challenging aspects of the SAR regime. The firm cannot reveal that a SAR has been filed or that a DAML is pending (tipping off risk). Standard practice is to give a neutral explanation — for example, "we are conducting routine verification checks" or "your account is under our standard review process" — that does not reveal the true reason. For high-value or time-sensitive situations, seek legal advice before communicating with the customer. The goal is to maintain the customer relationship (if appropriate) or effect an orderly exit, without disclosing the SAR activity.</div>
+      </div>
+
+      <div class="part-footer">
+        <div class="pf-prev">
+          <div class="pf-label">← Previous series</div>
+          <a href="/pep-guide-part3.html" class="pf-link">PEP Guide: Part 3</a>
+        </div>
+        <div class="pf-center">Part 1 of 3</div>
+        <div class="pf-next">
+          <div class="pf-label">Next →</div>
+          <a href="/sar-guide-part2.html" class="pf-link">Part 2: Writing Better SARs →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  © 2026 FinCrimeRadar · <a href="/">Home</a> · <a href="/knowledge.html">Knowledge Hub</a> · <a href="/screen.html">Screen</a> · <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
+  <br><br>
+  <span style="font-size:11px;color:#9ca3af;">Educational purposes only. Not legal advice. Last updated 2026.</span>
+</footer>
+
+<script>
+  function updateProgress() {
+    const pct = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('fill').style.width = pct + '%';
+    document.getElementById('pct').textContent = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+  document.querySelectorAll('section[id]').forEach(s => {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          document.querySelectorAll('.toc-list a').forEach(l => l.classList.remove('active'));
+          const a = document.querySelector(`.toc-list a[href="#${e.target.id}"]`);
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin:'-20% 0px -70% 0px' }).observe(s);
+  });
+  function doQuiz(id, btn, correct) {
+    const fb = document.getElementById(id+'-fb');
+    document.querySelectorAll(`#${id} .quiz-opt`).forEach(b => b.disabled = true);
+    btn.classList.add(correct ? 'correct' : 'wrong');
+    fb.classList.add('show', correct ? 'correct' : 'wrong');
+    if (id==='q1') fb.textContent = correct ? '✅ Correct! The "reasonable grounds" standard in s330 POCA is objective. Structuring indicators are well-known red flags — a reasonable compliance professional would have suspected ML and investigated. Choosing not to investigate may constitute wilful blindness.' : '❌ Not quite. The s330 obligation uses an objective "reasonable grounds" test — it is not enough that the individual had no actual suspicion. If a reasonable compliance professional would have suspected ML given the indicators, the obligation is triggered.';
+    if (id==='q2') fb.textContent = correct ? '✅ Correct! Under s335 POCA, if the NCA does not issue a notice of refusal within 7 working days, consent is deemed to have been given and the firm may proceed. Always document when the 7-day period expires and obtain confirmation.' : '❌ Not quite. Under the DAML regime, silence from the NCA after 7 working days constitutes deemed consent — the firm may proceed. Explicit written consent is not required (though some NCA offices do provide it).';
+  }
+  function toggleFaq(el) {
+    el.nextElementSibling.classList.toggle('open');
+    el.querySelector('.faq-icon').classList.toggle('open');
+  }
+</script>
+</body>
+</html>
