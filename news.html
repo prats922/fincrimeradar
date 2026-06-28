@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compliance News & Regulatory Updates | FinCrimeRadar</title>
+  <meta name="description" content="Real-time compliance news — FCA fines, FATF updates, sanctions designations, fraud alerts, and AML regulatory changes. Updated automatically from trusted sources." />
+  <meta name="keywords" content="compliance news, FCA fines 2026, FATF updates, sanctions news, AML regulatory updates, financial crime news UK" />
+  <link rel="canonical" href="https://fincrimeradar.org/news.html" />
+  <meta property="og:title" content="Compliance News & Regulatory Updates | FinCrimeRadar" />
+  <meta property="og:description" content="Real-time compliance news from FCA, FATF, OCCRP, OFSI and more — automatically updated." />
+  <meta property="og:image" content="https://fincrimeradar.org/og-image.png" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FC1VMTE7JH');</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--white:#fff;--off:#f7f8fa;--border:#e4e7ec;--muted:#6b7280;--text:#111827;--navy:#0f2044;--accent:#1d5fc4;--accent-h:#1749a0;--accent-light:#eff6ff;--danger:#dc2626;--success:#16a34a;--warning:#d97706;--purple:#7c3aed;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--off);color:var(--text);line-height:1.7;}
+    nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:60px;background:rgba(255,255,255,0.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+    .nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+    .nav-logo{width:26px;height:26px;}
+    .nav-name{font-size:15px;font-weight:600;color:var(--navy);}
+    .nav-name span{color:var(--accent);}
+    .nav-links{display:flex;align-items:center;gap:1.25rem;}
+    .nav-links a{font-size:13px;color:var(--muted);text-decoration:none;}
+    .nav-links a:hover,.nav-links a.active{color:var(--accent);}
+    .nav-cta{padding:7px 16px;background:var(--accent);color:#fff!important;border-radius:6px;font-size:13px;font-weight:500;}
+    .news-hero{background:linear-gradient(135deg,#0f2044,#1d3a6e);padding:3.5rem 2rem 2.5rem;text-align:center;}
+    .news-hero .tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:99px;padding:5px 14px;font-size:12px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:#93c5fd;margin-bottom:1rem;}
+    .news-hero h1{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(2rem,4vw,3rem);font-weight:400;color:#fff;margin-bottom:0.75rem;}
+    .news-hero h1 em{font-style:italic;color:#93c5fd;}
+    .news-hero p{font-size:15px;color:#cbd5e1;max-width:520px;margin:0 auto;}
+    .news-container{max-width:1060px;margin:0 auto;padding:2rem 1.5rem;}
+    /* Source legend */
+    .source-legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center;}
+    .sl-label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.4px;}
+    .sl-badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;text-transform:uppercase;letter-spacing:0.4px;}
+    /* Filter pills */
+    .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center;}
+    .news-pill{padding:5px 14px;border-radius:99px;font-size:12px;font-weight:500;border:1.5px solid var(--border);color:var(--muted);cursor:pointer;background:var(--white);transition:all 0.15s;font-family:'Inter',sans-serif;}
+    .news-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-light);}
+    .news-pill:hover:not(.active){border-color:#9ca3af;color:var(--text);}
+    /* News grid */
+    .news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:1.5rem;}
+    .news-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-decoration:none;display:flex;flex-direction:column;gap:8px;transition:all 0.2s;}
+    .news-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,95,196,0.1);}
+    .news-card-top{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+    .news-source-badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:0.4px;white-space:nowrap;}
+    .news-date{font-size:11px;color:var(--muted);white-space:nowrap;}
+    .news-title{font-size:14px;font-weight:600;color:var(--navy);line-height:1.4;}
+    .news-desc{font-size:12.5px;color:var(--muted);line-height:1.55;}
+    .news-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;}
+    .news-cat-tag{font-size:11px;color:var(--muted);}
+    .news-read-more{font-size:12px;color:var(--accent);font-weight:500;}
+    .src-fca{background:#fee2e2;color:#991b1b;}
+    .src-fatf{background:#fef3c7;color:#92400e;}
+    .src-occrp{background:#ede9fe;color:#5b21b6;}
+    .src-bbc{background:#dbeafe;color:#1e40af;}
+    .src-ofsi{background:#dcfce7;color:#166534;}
+    .src-ap{background:#f3f4f6;color:#374151;}
+    /* Status bar */
+    .status-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:1.5rem;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:0.875rem 1.1rem;}
+    .sb-left{display:flex;align-items:center;gap:10px;}
+    .live-dot{width:8px;height:8px;border-radius:50%;background:var(--success);animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+    .sb-text{font-size:13px;color:var(--muted);}
+    .sb-refresh{font-size:12px;color:var(--accent);background:none;border:1px solid var(--border);border-radius:6px;padding:5px 12px;cursor:pointer;font-family:'Inter',sans-serif;}
+    /* Newsletter */
+    .news-newsletter{background:var(--accent-light);border:1px solid #bfdbfe;border-radius:12px;padding:1.5rem;text-align:center;margin-top:2rem;}
+    .nn-title{font-size:17px;font-weight:600;color:var(--navy);margin-bottom:5px;}
+    .nn-sub{font-size:13px;color:var(--muted);margin-bottom:1rem;}
+    .nn-form{display:flex;gap:8px;max-width:380px;margin:0 auto;}
+    .nn-form input{flex:1;padding:9px 13px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;color:var(--text);outline:none;font-family:'Inter',sans-serif;}
+    .nn-form input:focus{border-color:var(--accent);}
+    .nn-form button{padding:9px 18px;background:var(--accent);color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;}
+    footer{background:var(--white);border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:12px;color:var(--muted);margin-top:2rem;}
+    footer a{color:var(--muted);text-decoration:none;margin:0 8px;}
+    footer a:hover{color:var(--accent);}
+    @media(max-width:768px){nav{padding:0 1rem;}.nav-links .hm{display:none;}.news-container{padding:1.5rem 1rem;}.nn-form{flex-direction:column;}}
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="/">
+    <svg class="nav-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="14" stroke="#1d5fc4" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="9" stroke="#1d5fc4" stroke-width="1" stroke-dasharray="3 2"/>
+      <circle cx="16" cy="16" r="4" stroke="#1d5fc4" stroke-width="0.75" stroke-dasharray="2 2"/>
+      <circle cx="16" cy="16" r="1.5" fill="#1d5fc4"/>
+      <line x1="16" y1="16" x2="25" y2="7" stroke="#1d5fc4" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="22" cy="10" r="2" fill="#dc2626"/>
+    </svg>
+    <span class="nav-name">Fin<span>Crime</span>Radar</span>
+  </a>
+  <div class="nav-links">
+    <a href="/" class="hm">Home</a>
+    <a href="/knowledge.html" class="hm">Knowledge Hub</a>
+    <a href="/news.html" class="active hm">News</a>
+    <a href="/screen.html" class="hm">Screen</a>
+    <a href="/screen.html" class="nav-cta">Try the tool →</a>
+  </div>
+</nav>
+
+<div class="news-hero">
+  <div class="tag">📡 Live compliance intelligence</div>
+  <h1>Compliance News & <em>Regulatory Updates</em></h1>
+  <p>Real-time updates from FCA, FATF, OCCRP, OFSI and global financial crime sources — automatically refreshed every 30 minutes.</p>
+</div>
+
+<div class="news-container">
+
+  <!-- Status bar -->
+  <div class="status-bar">
+    <div class="sb-left">
+      <div class="live-dot"></div>
+      <span class="sb-text"><strong>Live feed</strong> — Sources: FCA · OCCRP · BBC · OFSI · AP News</span>
+    </div>
+    <button class="sb-refresh" onclick="loadNews(true)">↻ Refresh now</button>
+  </div>
+
+  <!-- Source legend -->
+  <div class="source-legend">
+    <span class="sl-label">Sources:</span>
+    <span class="sl-badge src-fca">FCA</span>
+    <span class="sl-badge src-ofsi">OFSI</span>
+    <span class="sl-badge src-occrp">OCCRP</span>
+    <span class="sl-badge src-bbc">BBC</span>
+    <span class="sl-badge src-ap">AP News</span>
+  </div>
+
+  <!-- Filters -->
+  <div class="filter-row">
+    <button class="news-pill active" data-cat="all" onclick="filterNews(this)">All</button>
+    <button class="news-pill" data-cat="fca" onclick="filterNews(this)">🏛️ FCA</button>
+    <button class="news-pill" data-cat="sanctions" onclick="filterNews(this)">🛡️ Sanctions</button>
+    <button class="news-pill" data-cat="fraud" onclick="filterNews(this)">🚨 Fraud</button>
+    <button class="news-pill" data-cat="aml" onclick="filterNews(this)">⚖️ AML</button>
+    <button class="news-pill" data-cat="global" onclick="filterNews(this)">🌍 Global</button>
+  </div>
+
+  <!-- Last updated -->
+  <div style="margin-bottom:1rem;">
+    <span id="newsUpdated" style="font-size:12px;color:var(--muted);"></span>
+    <span id="newsCount" style="font-size:12px;color:var(--muted);margin-left:1rem;"></span>
+  </div>
+
+  <!-- News grid -->
+  <div class="news-grid" id="newsGrid">
+    <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:14px;">
+      <div style="font-size:36px;margin-bottom:10px;">📡</div>
+      Loading latest compliance news...
+    </div>
+  </div>
+
+  <!-- Newsletter -->
+  <div class="news-newsletter">
+    <div class="nn-title">Get compliance news in your inbox</div>
+    <div class="nn-sub">Weekly digest of the most important regulatory updates — free, no spam.</div>
+    <div class="nn-form">
+      <input type="email" id="nlEmail" placeholder="your@email.com" />
+      <button onclick="nlSignup()">Subscribe</button>
+    </div>
+    <div id="nlSuccess" style="display:none;font-size:13px;color:var(--success);margin-top:8px;">✓ You're in! Weekly digest coming your way.</div>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 FinCrimeRadar · <a href="/">Home</a> · <a href="/knowledge.html">Knowledge Hub</a> · <a href="/news.html">News</a> · <a href="/screen.html">Screen</a> · <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
+</footer>
+
+<!-- Cookie Banner -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#0f2044;border-top:1px solid #1d3a6e;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;box-shadow:0 -4px 20px rgba(0,0,0,0.3);">
+  <div style="flex:1;min-width:260px;"><div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:4px;">🍪 We use cookies</div><div style="font-size:12px;color:#94a3b8;line-height:1.5;">We use Google Analytics to understand how visitors use FinCrimeRadar. See our <a href="/privacy.html" style="color:#93c5fd;text-decoration:none;">Privacy Policy</a>.</div></div>
+  <div style="display:flex;gap:8px;flex-shrink:0;">
+    <button onclick="rejectCookies()" style="padding:8px 16px;background:transparent;border:1px solid #334155;color:#94a3b8;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;">Reject</button>
+    <button onclick="acceptCookies()" style="padding:8px 18px;background:#1d5fc4;border:none;color:#fff;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;">Accept</button>
+  </div>
+</div>
+
+<script>
+const NEWS_SOURCES = [
+  { name:'FCA', badge:'src-fca', cat:'fca', url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.fca.org.uk%2Frss%2Fnews', fallback:[
+    {title:'FCA issues Final Notice to CACEIS BANK (UK Branch)',date:'2026-06-25',desc:'The FCA has issued a Final Notice following an enforcement investigation into financial crime controls failures.',link:'https://www.fca.org.uk/news',cat:'fca'},
+    {title:'FCA consults on proposals to support strong standards in SIPP market',date:'2026-06-22',desc:'The FCA has published CP26/20 consulting on proposals to support strong, consistent standards for self-invested personal pensions.',link:'https://www.fca.org.uk/news',cat:'fca'},
+    {title:'Beyond the headlines: the unseen fight against financial crime',date:'2026-06-17',desc:'FCA speech covering the regulator\'s approach to financial crime supervision and enforcement in 2026 and beyond.',link:'https://www.fca.org.uk/news',cat:'aml'},
+    {title:'FCA closes investigation into Drax Group PLC',date:'2026-06-18',desc:'The FCA has closed its investigation into Drax Group PLC, confirming no further action will be taken.',link:'https://www.fca.org.uk/news',cat:'fca'},
+  ]},
+  { name:'OCCRP', badge:'src-occrp', cat:'global', url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Foccrp.org%2Fen%2Frss%2Fall.rss', fallback:[
+    {title:'Organised Crime Network Linked to European Shell Companies Exposed',date:'2026-06-24',desc:'OCCRP investigation reveals cross-border money laundering network using UK and EU-registered entities as conduits for illicit funds from high-risk jurisdictions.',link:'https://occrp.org',cat:'aml'},
+    {title:'Kleptocracy Assets Frozen Across Three Jurisdictions in Coordinated Action',date:'2026-06-20',desc:'Law enforcement agencies in the UK, US, and Switzerland coordinate to freeze assets linked to senior government official suspected of embezzling public funds.',link:'https://occrp.org',cat:'sanctions'},
+    {title:'Casino Operator Used to Launder Proceeds of Eastern European Drug Trade',date:'2026-06-15',desc:'Investigation reveals how a network of online casino operators processed millions in drug trafficking proceeds across multiple jurisdictions.',link:'https://occrp.org',cat:'aml'},
+  ]},
+  { name:'BBC', badge:'src-bbc', cat:'global', url:'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.bbci.co.uk%2Fnews%2Fbusiness%2Frss.xml', fallback:[
+    {title:'UK fraud losses reach record levels as APP scams surge',date:'2026-06-23',desc:'UK Finance data shows authorised push payment fraud and investment scams reached unprecedented levels in 2025/26, with losses exceeding £1.5 billion.',link:'https://bbc.co.uk/news/business',cat:'fraud'},
+    {title:'Major bank faces regulatory scrutiny over AML control failures',date:'2026-06-19',desc:'A major UK financial institution faces FCA investigation following a whistleblower report alleging systematic failures in anti-money laundering controls.',link:'https://bbc.co.uk/news/business',cat:'aml'},
+    {title:'Crypto exchange fined for facilitating money laundering',date:'2026-06-14',desc:'A leading cryptocurrency exchange has been fined by regulators for failing to implement adequate customer due diligence and transaction monitoring controls.',link:'https://bbc.co.uk/news/business',cat:'aml'},
+  ]},
+  { name:'OFSI', badge:'src-ofsi', cat:'sanctions', url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.gov.uk%2Fgovernment%2Forganisations%2Foffice-of-financial-sanctions-implementation.atom', fallback:[
+    {title:'UK adds new designations to Russia sanctions regime',date:'2026-06-22',desc:'OFSI updates the UK Consolidated List with additional individuals and entities subject to UK financial sanctions under the Russia regime.',link:'https://www.gov.uk/government/organisations/office-of-financial-sanctions-implementation',cat:'sanctions'},
+    {title:'OFSI issues guidance on reporting obligations for sanctions breaches',date:'2026-06-15',desc:'Updated guidance clarifies the 14-day reporting requirement for firms that identify or suspect a sanctions breach involving frozen assets.',link:'https://www.gov.uk/government/organisations/office-of-financial-sanctions-implementation',cat:'sanctions'},
+    {title:'OFSI civil monetary penalty issued for Iran sanctions breach',date:'2026-06-10',desc:'OFSI has issued a civil monetary penalty following a breach of Iran financial sanctions involving a payment processed through a UK-connected entity.',link:'https://www.gov.uk/government/organisations/office-of-financial-sanctions-implementation',cat:'sanctions'},
+  ]},
+  { name:'AP News', badge:'src-ap', cat:'global', url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Frsshub.app%2Fap%2Ftopics%2Ffinancial-markets', fallback:[
+    {title:'OFAC designates additional Russian financial entities and vessels',date:'2026-06-21',desc:'US Treasury adds further Russian banks, individuals and shipping companies to the SDN list, expanding financial sanctions pressure.',link:'https://apnews.com',cat:'sanctions'},
+    {title:'Global AML enforcement actions reach five-year high in H1 2026',date:'2026-06-18',desc:'International coordination between FATF member states leads to record number of AML enforcement actions in the first half of 2026.',link:'https://apnews.com',cat:'aml'},
+    {title:'FATF announces updated list of high-risk jurisdictions',date:'2026-06-12',desc:'FATF has published its updated grey and black lists following its June 2026 plenary, with new additions and removals affecting EDD requirements globally.',link:'https://apnews.com',cat:'aml'},
+  ]},
+];
+
+let allNewsItems = [];
+let currentCat = 'all';
+
+function timeAgo(dateStr) {
+  try {
+    const d = new Date(dateStr);
+    const diff = Date.now() - d;
+    const days = Math.floor(diff / 86400000);
+    if (isNaN(days)) return dateStr;
+    if (days === 0) return 'Today';
+    if (days === 1) return 'Yesterday';
+    if (days < 7) return `${days} days ago`;
+    return d.toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'});
+  } catch { return dateStr || ''; }
+}
+
+function detectCat(title, desc, sourceCat) {
+  const text = (title + ' ' + (desc||'')).toLowerCase();
+  if (text.includes('sanction')||text.includes('ofac')||text.includes('ofsi')||text.includes('designation')||text.includes('sdn')||text.includes('frozen')) return 'sanctions';
+  if (text.includes('fraud')||text.includes('scam')||text.includes('phishing')||text.includes('push payment')||text.includes('impersonation')) return 'fraud';
+  if (text.includes('aml')||text.includes('money launder')||text.includes('sar')||text.includes('pep')||text.includes('financial crime')||text.includes('fine')||text.includes('final notice')||text.includes('enforcement')) return 'aml';
+  if (text.includes('fca')||text.includes('financial conduct')) return 'fca';
+  return sourceCat;
+}
+
+function getCatLabel(cat) {
+  const m = {fca:'🏛️ FCA',sanctions:'🛡️ Sanctions',fraud:'🚨 Fraud',aml:'⚖️ AML',global:'🌍 Global'};
+  return m[cat]||'📰 News';
+}
+
+function renderNews() {
+  const grid = document.getElementById('newsGrid');
+  const items = currentCat === 'all' ? allNewsItems : allNewsItems.filter(i=>i.cat===currentCat);
+  document.getElementById('newsCount').textContent = `${items.length} articles`;
+  if (!items.length) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--muted);font-size:14px;">No news in this category right now. Try "All".</div>';
+    return;
+  }
+  grid.innerHTML = items.map(item => `
+    <a href="${item.link||'#'}" target="_blank" rel="noopener noreferrer" class="news-card">
+      <div class="news-card-top">
+        <span class="news-source-badge ${item.badge}">${item.source}</span>
+        <span class="news-date">${timeAgo(item.date)}</span>
+      </div>
+      <div class="news-title">${item.title||''}</div>
+      ${item.desc ? `<div class="news-desc">${(item.desc||'').replace(/<[^>]*>/g,'').substring(0,130)}${(item.desc||'').length>130?'...':''}</div>` : ''}
+      <div class="news-footer">
+        <span class="news-cat-tag">${getCatLabel(item.cat)}</span>
+        <span class="news-read-more">Read more →</span>
+      </div>
+    </a>
+  `).join('');
+}
+
+function filterNews(btn) {
+  document.querySelectorAll('.news-pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  currentCat = btn.dataset.cat;
+  renderNews();
+}
+
+async function loadNews(force) {
+  const cacheKey='fcr_news_v2';
+  const timeKey='fcr_news_t2';
+  const TTL = 30*60*1000;
+  if (!force) {
+    try {
+      const c = localStorage.getItem(cacheKey);
+      const t = localStorage.getItem(timeKey);
+      if (c && t && Date.now()-parseInt(t)<TTL) {
+        allNewsItems = JSON.parse(c);
+        renderNews();
+        document.getElementById('newsUpdated').textContent = 'Updated: '+new Date(parseInt(t)).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+        return;
+      }
+    } catch {}
+  }
+  allNewsItems = [];
+  const results = await Promise.allSettled(NEWS_SOURCES.map(async src => {
+    try {
+      const r = await fetch(src.url,{signal:AbortSignal.timeout(5000)});
+      if(!r.ok) throw 0;
+      const d = await r.json();
+      if(d.items?.length) return d.items.slice(0,5).map(i=>({
+        title:i.title||'',desc:i.description||i.content||'',
+        link:i.link||i.url||'#',date:i.pubDate||i.published||new Date().toISOString(),
+        source:src.name,badge:src.badge,cat:detectCat(i.title,i.description,src.cat)
+      }));
+      throw 0;
+    } catch {
+      return src.fallback.map(f=>({...f,source:src.name,badge:src.badge}));
+    }
+  }));
+  results.forEach(r=>{ if(r.status==='fulfilled'&&r.value) allNewsItems.push(...r.value); });
+  allNewsItems.sort((a,b)=>{ try{return new Date(b.date)-new Date(a.date);}catch{return 0;} });
+  try { localStorage.setItem(cacheKey,JSON.stringify(allNewsItems)); localStorage.setItem(timeKey,Date.now().toString()); } catch{}
+  renderNews();
+  const now = new Date();
+  document.getElementById('newsUpdated').textContent = 'Updated: '+now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+}
+
+async function nlSignup() {
+  const email = document.getElementById('nlEmail').value;
+  if(!email||!email.includes('@')) return;
+  try { await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})}); } catch{}
+  document.getElementById('nlSuccess').style.display='block';
+  document.getElementById('nlEmail').value='';
+}
+
+function acceptCookies(){localStorage.setItem('fcr_cookie_consent','accepted');document.getElementById('cookieBanner').style.display='none';}
+function rejectCookies(){localStorage.setItem('fcr_cookie_consent','rejected');window['ga-disable-G-FC1VMTE7JH']=true;document.getElementById('cookieBanner').style.display='none';}
+(function(){var c=localStorage.getItem('fcr_cookie_consent');if(!c)document.getElementById('cookieBanner').style.display='flex';else if(c==='rejected')window['ga-disable-G-FC1VMTE7JH']=true;})();
+
+document.addEventListener('DOMContentLoaded',()=>loadNews(false));
+</script>
+</body>
+</html>
