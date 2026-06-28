@@ -119,4 +119,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Transaction Monitoring Deep Dive -->
+  <url>
+    <loc>https://fincrimeradar.org/tm-guide.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 </urlset>
