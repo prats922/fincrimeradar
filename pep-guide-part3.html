@@ -46,7 +46,7 @@
     }
     html { scroll-behavior:smooth; }
     body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
-    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:72px; background:#0d1b2a; backdrop-filter:blur(8px); border-bottom:1px solid rgba(255,255,255,0.08); }
+    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:72px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
     .nav-brand { display:flex; align-items:center; gap:8px; text-decoration:none; }
     .nav-logo { width:26px; height:26px; }
     .nav-name { font-size:15px; font-weight:600; color:var(--navy); }
@@ -62,7 +62,7 @@
     .series-hero h1 em { font-style:italic; color:#c4b5fd; }
     .series-sub { font-size:16px; color:#ddd6fe; max-width:620px; line-height:1.7; margin-bottom:2rem; }
     .series-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#a78bfa; }
-    .part-nav { background:var(--white); border-bottom:1px solid rgba(255,255,255,0.08); padding:0 2rem; display:flex; gap:0; overflow-x:auto; }
+    .part-nav { background:var(--white); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; gap:0; overflow-x:auto; }
     .part-link { padding:14px 20px; font-size:13px; font-weight:500; color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; }
     .part-link.active { color:var(--accent); border-bottom-color:var(--accent); }
     .part-link.done { color:var(--success); }
@@ -130,7 +130,7 @@
     /* CHECKLIST */
     .checklist { margin:1.5rem 0; }
     .cl-section { margin-bottom:1.25rem; }
-    .cl-section-title { font-size:13px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:0.4px; margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid rgba(255,255,255,0.08); }
+    .cl-section-title { font-size:13px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:0.4px; margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid var(--border); }
     .cl-item { display:flex; align-items:flex-start; gap:10px; padding:8px 0; border-bottom:1px solid var(--off); }
     .cl-item:last-child { border-bottom:none; }
     .cl-box { width:18px; height:18px; border:2px solid var(--accent-border); border-radius:4px; flex-shrink:0; cursor:pointer; margin-top:1px; display:flex; align-items:center; justify-content:center; transition:all 0.15s; }
