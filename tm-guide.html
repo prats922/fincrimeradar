@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FC1VMTE7JH');
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transaction Monitoring: From Rules to AI — The Practitioner's Deep Dive | FinCrimeRadar</title>
+  <meta name="description" content="A practitioner's deep dive into transaction monitoring — how rule-based systems work, why they fail, how AI changes the game, and what analysts actually do when alerts fire. Updated 2026." />
+  <meta name="keywords" content="transaction monitoring AML, TM rules alert triage, AI transaction monitoring, false positives AML, typologies financial crime, FCA transaction monitoring, suspicious activity reporting, threshold calibration, ML AML detection" />
+  <link rel="canonical" href="https://fincrimeradar.org/tm-guide.html" />
+  <meta property="og:title" content="Transaction Monitoring: From Rules to AI — The Practitioner's Deep Dive | FinCrimeRadar" />
+  <meta property="og:description" content="A practitioner's deep dive into transaction monitoring — how rule-based systems work, why they fail, how AI changes the game, and what analysts actually do when alerts fire." />
+  <meta property="og:url" content="https://fincrimeradar.org/tm-guide.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://fincrimeradar.org/og-image.png" />
+  <meta property="og:site_name" content="FinCrimeRadar" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Transaction Monitoring: From Rules to AI — The Practitioner's Deep Dive | FinCrimeRadar" />
+  <meta name="twitter:description" content="A practitioner's deep dive into transaction monitoring — how rule-based systems work, why they fail, how AI changes the game, and what analysts actually do when alerts fire." />
+  <meta name="twitter:image" content="https://fincrimeradar.org/og-image.png" />
+  <meta name="author" content="Pratik Zanke — FinCrimeRadar" />
+  <meta name="robots" content="index, follow" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Transaction Monitoring: From Rules to AI — The Practitioner's Deep Dive",
+    "description": "A practitioner's deep dive into transaction monitoring — how rule-based systems work, why they fail, how AI changes the game, and what analysts actually do when alerts fire.",
+    "author": { "@type": "Person", "name": "Pratik Zanke" },
+    "publisher": { "@type": "Organization", "name": "FinCrimeRadar", "url": "https://fincrimeradar.org" },
+    "datePublished": "2026-06-28",
+    "dateModified": "2026-06-28",
+    "url": "https://fincrimeradar.org/tm-guide.html"
+  }
+  </script>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:#ffffff; --off:#f7f8fa; --border:#e4e7ec;
+      --muted:#6b7280; --text:#111827; --navy:#0f2044;
+      --accent:#00c4a7; --accent-h:#00a892; --accent-light:#f0fdf9;
+      --danger:#dc2626; --success:#16a34a; --warning:#d97706;
+      --tm-color:#7c3aed;
+      --tm-light:#f5f3ff;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
+
+    /* NAV */
+    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:72px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:8px; text-decoration:none; }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:#374151; text-decoration:none; transition:color 0.15s; }
+    .nav-links a:hover { color:#00c4a7; }
+    .nav-cta { padding:7px 16px; background:#00c4a7; color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; text-decoration:none; }
+    .nav-hamburger { display:none; background:none; border:none; font-size:22px; cursor:pointer; color:var(--navy); padding:4px 6px; }
+    .mobile-nav { display:none; position:fixed; top:72px; left:0; right:0; background:#fff; border-bottom:1px solid #e4e7ec; flex-direction:column; z-index:99; padding:0.5rem 0; box-shadow:0 8px 24px rgba(0,0,0,0.08); }
+    .mobile-nav.open { display:flex; }
+    .mobile-nav a { padding:14px 1.5rem; font-size:15px; color:#374151; text-decoration:none; font-weight:500; border-bottom:1px solid #f3f4f6; }
+    .mobile-nav .mobile-nav-cta { margin:0.75rem 1.5rem 0.5rem; background:#00c4a7; color:#fff !important; border-radius:8px; text-align:center; border-bottom:none; }
+
+    /* PROGRESS */
+    .progress-bar { position:fixed; top:72px; left:0; width:0%; height:3px; background:var(--tm-color); z-index:199; transition:width 0.1s; }
+
+    /* HERO */
+    .article-hero {
+      background:linear-gradient(135deg, #1e0a4e 0%, #3b1a8f 50%, #1a1a4e 100%);
+      color:#fff; padding:4rem 2rem 3rem; position:relative; overflow:hidden;
+    }
+    .article-hero::before {
+      content:'';
+      position:absolute; top:0; left:0; right:0; bottom:0;
+      background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity:0.4;
+    }
+    .hero-inner { max-width:860px; margin:0 auto; position:relative; }
+    .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(124,58,237,0.3); border:1px solid rgba(167,139,250,0.4); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:#c4b5fd; margin-bottom:1.25rem; }
+    .article-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(1.9rem,4vw,3rem); font-weight:400; line-height:1.2; margin-bottom:0.75rem; }
+    .article-hero h1 em { font-style:italic; color:#c4b5fd; }
+    .hero-sub { font-size:16px; color:#c4b5fd; max-width:640px; line-height:1.7; margin-bottom:2rem; }
+    .hero-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#a78bfa; }
+    .hero-meta span { display:flex; align-items:center; gap:5px; }
+
+    /* LAYOUT */
+    .article-layout { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 280px; gap:2rem; padding:2rem 1.5rem; align-items:start; }
+    .article-body { min-width:0; }
+    .article-sidebar { position:sticky; top:90px; }
+
+    /* TOC */
+    .toc { background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.25rem; }
+    .toc-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); margin-bottom:0.75rem; }
+    .toc a { display:block; font-size:13px; color:var(--muted); text-decoration:none; padding:4px 0; border-left:2px solid transparent; padding-left:10px; transition:all 0.15s; line-height:1.4; }
+    .toc a:hover { color:var(--tm-color); border-left-color:var(--tm-color); }
+    .toc a.active { color:var(--tm-color); border-left-color:var(--tm-color); font-weight:600; }
+    .toc-sub { padding-left:20px !important; font-size:12px; }
+
+    /* ARTICLE SECTIONS */
+    .article-section { background:#fff; border:1px solid var(--border); border-radius:12px; padding:2rem; margin-bottom:1.5rem; }
+    .article-section h2 { font-family:'DM Serif Display',Georgia,serif; font-size:1.7rem; color:var(--navy); margin-bottom:0.5rem; line-height:1.3; }
+    .article-section h3 { font-size:1.05rem; font-weight:700; color:var(--navy); margin:1.5rem 0 0.5rem; }
+    .article-section p { color:#374151; margin-bottom:1rem; font-size:15px; }
+    .article-section ul, .article-section ol { padding-left:1.4rem; margin-bottom:1rem; }
+    .article-section li { font-size:15px; color:#374151; margin-bottom:0.4rem; }
+    .section-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--tm-color); margin-bottom:0.5rem; }
+
+    /* CALLOUT BOXES */
+    .callout { border-radius:10px; padding:1.1rem 1.25rem; margin:1.25rem 0; border-left:4px solid; }
+    .callout-purple { background:#f5f3ff; border-color:#7c3aed; }
+    .callout-amber { background:#fffbeb; border-color:#d97706; }
+    .callout-teal { background:#f0fdf9; border-color:#00c4a7; }
+    .callout-red { background:#fef2f2; border-color:#dc2626; }
+    .callout-navy { background:#f0f4ff; border-color:#0f2044; }
+    .callout strong { display:block; font-size:13px; font-weight:700; margin-bottom:4px; }
+    .callout p { font-size:14px; margin:0; color:#374151; }
+
+    /* STAT HIGHLIGHT */
+    .stat-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:1.5rem 0; }
+    .stat-box { background:var(--tm-light); border:1px solid #ddd6fe; border-radius:10px; padding:1rem; text-align:center; }
+    .stat-box .num { font-family:'DM Serif Display',Georgia,serif; font-size:2rem; color:var(--tm-color); line-height:1; margin-bottom:4px; }
+    .stat-box .lbl { font-size:12px; color:var(--muted); line-height:1.4; }
+
+    /* RULE ANATOMY VISUAL */
+    .rule-anatomy { background:#0f2044; border-radius:12px; padding:1.5rem; margin:1.5rem 0; font-family:'Courier New',monospace; color:#e2e8f0; font-size:13px; line-height:1.8; overflow-x:auto; }
+    .rule-anatomy .comment { color:#64748b; }
+    .rule-anatomy .keyword { color:#c4b5fd; }
+    .rule-anatomy .value { color:#86efac; }
+    .rule-anatomy .trigger { color:#fbbf24; }
+    .rule-anatomy .label { display:inline-block; background:#1e3a5f; border-radius:4px; padding:1px 6px; font-size:11px; font-family:'Inter',sans-serif; color:#93c5fd; margin-left:8px; vertical-align:middle; }
+
+    /* ALERT LIFECYCLE FLOW */
+    .flow-container { margin:1.5rem 0; }
+    .flow-steps { display:flex; flex-direction:column; gap:0; }
+    .flow-step { display:flex; gap:1rem; align-items:flex-start; padding:1rem 0; border-left:2px solid #e4e7ec; padding-left:1.25rem; margin-left:14px; position:relative; }
+    .flow-step::before { content:''; position:absolute; left:-7px; top:18px; width:12px; height:12px; border-radius:50%; background:#fff; border:2px solid var(--tm-color); }
+    .flow-step.done::before { background:var(--tm-color); }
+    .flow-step.escalate::before { background:#dc2626; border-color:#dc2626; }
+    .flow-step.sar::before { background:#d97706; border-color:#d97706; }
+    .flow-step:last-child { border-left-color:transparent; }
+    .flow-step-num { font-size:11px; font-weight:700; color:var(--tm-color); white-space:nowrap; padding-top:2px; }
+    .flow-step-body strong { display:block; font-size:14px; color:var(--navy); margin-bottom:2px; }
+    .flow-step-body p { font-size:13px; color:var(--muted); margin:0; line-height:1.5; }
+
+    /* TYPOLOGY CARDS — Interactive */
+    .typology-tabs { margin:1.5rem 0; }
+    .tab-buttons { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:1rem; }
+    .tab-btn { padding:7px 14px; border:1.5px solid var(--border); border-radius:8px; font-size:13px; font-weight:500; color:var(--muted); cursor:pointer; background:#fff; transition:all 0.15s; font-family:'Inter',sans-serif; }
+    .tab-btn:hover { border-color:var(--tm-color); color:var(--tm-color); }
+    .tab-btn.active { background:var(--tm-color); border-color:var(--tm-color); color:#fff; }
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; }
+    .typology-card { background:#fff; border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+    .tc-header { background:linear-gradient(135deg, #1e0a4e, #3b1a8f); color:#fff; padding:1.25rem 1.5rem; }
+    .tc-header h4 { font-size:16px; font-weight:700; margin-bottom:4px; }
+    .tc-header p { font-size:13px; color:#c4b5fd; margin:0; }
+    .tc-body { padding:1.25rem 1.5rem; }
+    .tc-signals { margin:0.75rem 0; }
+    .tc-signals li { font-size:13.5px; color:#374151; padding:6px 0; border-bottom:1px solid #f3f4f6; display:flex; align-items:flex-start; gap:8px; list-style:none; }
+    .tc-signals li::before { content:'🚩'; font-size:12px; flex-shrink:0; margin-top:2px; }
+    .tc-rule { background:#f8fafc; border:1px solid #e4e7ec; border-radius:8px; padding:0.75rem 1rem; margin-top:0.75rem; font-size:12px; font-family:'Courier New',monospace; color:#374151; }
+    .tc-rule strong { font-family:'Inter',sans-serif; font-size:11px; color:var(--muted); display:block; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.4px; }
+    .tc-verdict { display:inline-flex; align-items:center; gap:6px; margin-top:0.75rem; padding:5px 12px; border-radius:99px; font-size:12px; font-weight:600; }
+    .verdict-high { background:#fef2f2; color:#dc2626; }
+    .verdict-med { background:#fffbeb; color:#d97706; }
+    .verdict-low { background:#f0fdf4; color:#16a34a; }
+
+    /* COMPARISON TABLE */
+    .compare-table { width:100%; border-collapse:collapse; margin:1.25rem 0; font-size:14px; }
+    .compare-table th { background:#0f2044; color:#fff; padding:10px 14px; text-align:left; font-size:12px; font-weight:600; letter-spacing:0.3px; }
+    .compare-table td { padding:10px 14px; border-bottom:1px solid var(--border); color:#374151; vertical-align:top; }
+    .compare-table tr:last-child td { border-bottom:none; }
+    .compare-table tr:nth-child(even) td { background:#f8fafc; }
+    .compare-table .good { color:#16a34a; font-weight:600; }
+    .compare-table .bad { color:#dc2626; font-weight:600; }
+    .compare-table .ok { color:#d97706; font-weight:600; }
+
+    /* ALERT SIMULATOR */
+    .simulator { background:#0f2044; border-radius:12px; padding:1.5rem; margin:1.5rem 0; color:#e2e8f0; }
+    .sim-title { font-size:14px; font-weight:700; color:#c4b5fd; margin-bottom:1rem; display:flex; align-items:center; gap:8px; }
+    .sim-alert { background:#1a2d4e; border-radius:8px; padding:1rem 1.25rem; margin-bottom:0.75rem; border-left:3px solid #fbbf24; }
+    .sim-alert-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+    .sim-alert-id { font-size:11px; font-family:'Courier New',monospace; color:#64748b; }
+    .sim-alert-score { font-size:12px; font-weight:700; color:#fbbf24; }
+    .sim-alert-desc { font-size:13px; color:#cbd5e1; margin-bottom:8px; line-height:1.5; }
+    .sim-btns { display:flex; gap:8px; flex-wrap:wrap; }
+    .sim-btn { padding:5px 12px; border-radius:6px; font-size:12px; font-weight:600; border:none; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s; }
+    .sim-btn-close { background:#1e3a2e; color:#4ade80; }
+    .sim-btn-close:hover { background:#16a34a; color:#fff; }
+    .sim-btn-escalate { background:#3a1e1e; color:#f87171; }
+    .sim-btn-escalate:hover { background:#dc2626; color:#fff; }
+    .sim-btn-info { background:#1e2f4e; color:#93c5fd; }
+    .sim-btn-info:hover { background:#1d5fc4; color:#fff; }
+    .sim-feedback { margin-top:10px; padding:8px 12px; border-radius:6px; font-size:12px; display:none; }
+    .sim-feedback.show { display:block; }
+    .sim-feedback.correct { background:#1e3a2e; color:#4ade80; }
+    .sim-feedback.wrong { background:#3a1e1e; color:#f87171; }
+    .sim-score-display { text-align:right; font-size:13px; color:#94a3b8; margin-bottom:0.75rem; }
+    .sim-score-display span { color:#c4b5fd; font-weight:700; }
+
+    /* AI EVOLUTION TIMELINE */
+    .timeline { margin:1.5rem 0; }
+    .tl-item { display:flex; gap:1.25rem; padding-bottom:1.5rem; position:relative; }
+    .tl-item::before { content:''; position:absolute; left:19px; top:40px; bottom:0; width:2px; background:#e4e7ec; }
+    .tl-item:last-child::before { display:none; }
+    .tl-dot { width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; border:2px solid #e4e7ec; background:#fff; }
+    .tl-era { font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:2px; }
+    .tl-title { font-size:15px; font-weight:700; color:var(--navy); margin-bottom:4px; }
+    .tl-body { font-size:14px; color:#374151; line-height:1.6; }
+    .tl-tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:600; margin-top:6px; }
+    .tl-tag-old { background:#fee2e2; color:#dc2626; }
+    .tl-tag-current { background:#dcfce7; color:#16a34a; }
+    .tl-tag-emerging { background:#f5f3ff; color:#7c3aed; }
+
+    /* FP RATE VISUALISER */
+    .fp-visual { margin:1.5rem 0; background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.25rem; }
+    .fp-bar-container { margin:1rem 0; }
+    .fp-label { display:flex; justify-content:space-between; font-size:13px; color:var(--muted); margin-bottom:6px; }
+    .fp-label strong { color:var(--navy); }
+    .fp-bar { height:28px; border-radius:6px; background:#f3f4f6; overflow:hidden; display:flex; }
+    .fp-real { background:var(--tm-color); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#fff; transition:width 1s ease; }
+    .fp-false { background:#e5e7eb; display:flex; align-items:center; justify-content:center; font-size:11px; color:#9ca3af; transition:width 1s ease; }
+
+    /* KEY TERM TOOLTIP */
+    .term { border-bottom:1px dashed #00c4a7; cursor:help; color:#0f2044; font-weight:500; }
+
+    /* QUIZ */
+    .quiz { background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin:1.5rem 0; }
+    .quiz-q { font-size:15px; font-weight:600; color:var(--navy); margin-bottom:1rem; }
+    .quiz-options { display:flex; flex-direction:column; gap:8px; }
+    .quiz-opt { padding:10px 14px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; cursor:pointer; transition:all 0.15s; background:#fff; text-align:left; font-family:'Inter',sans-serif; color:#374151; }
+    .quiz-opt:hover { border-color:var(--tm-color); background:var(--tm-light); }
+    .quiz-opt.correct { border-color:#16a34a; background:#dcfce7; color:#15803d; font-weight:600; }
+    .quiz-opt.wrong { border-color:#dc2626; background:#fef2f2; color:#dc2626; }
+    .quiz-explain { margin-top:0.75rem; padding:10px 14px; background:#f8fafc; border-radius:8px; font-size:13px; color:#374151; display:none; line-height:1.6; }
+    .quiz-explain.show { display:block; }
+
+    /* SIDEBAR EXTRAS */
+    .sidebar-card { background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.1rem; margin-bottom:1rem; }
+    .sidebar-card-title { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--muted); margin-bottom:0.6rem; }
+    .sidebar-card a { display:block; font-size:13px; color:var(--navy); text-decoration:none; padding:4px 0; transition:color 0.15s; }
+    .sidebar-card a:hover { color:var(--tm-color); }
+    .try-tool-sidebar { background:linear-gradient(135deg,#0f2044,#1d5fc4); border-radius:12px; padding:1.25rem; text-align:center; color:#fff; }
+    .try-tool-sidebar h4 { font-size:15px; margin-bottom:6px; }
+    .try-tool-sidebar p { font-size:12px; color:#93c5fd; margin-bottom:1rem; }
+    .try-tool-sidebar a { display:block; background:#00c4a7; color:#fff; padding:9px; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; }
+
+    /* FOOTER */
+    .article-footer { max-width:1100px; margin:0 auto; padding:1.5rem; }
+    .next-up { background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.5rem; display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; }
+    .next-up h4 { font-size:14px; color:var(--muted); margin-bottom:4px; }
+    .next-up p { font-size:16px; font-weight:600; color:var(--navy); }
+    .next-up a { padding:9px 20px; background:var(--tm-color); color:#fff; border-radius:8px; text-decoration:none; font-size:14px; font-weight:600; white-space:nowrap; }
+    footer { background:var(--navy); color:#94a3b8; padding:2rem; text-align:center; font-size:13px; margin-top:2rem; }
+    footer a { color:#cbd5e1; text-decoration:none; }
+    footer a:hover { color:#fff; }
+
+    /* ===== MOBILE RESPONSIVE ===== */
+    .nav-hamburger { display:none; background:none; border:none; font-size:22px; cursor:pointer; color:var(--navy); padding:4px 6px; }
+    @media (max-width:768px) {
+      nav { padding:0 1rem; }
+      .nav-hamburger { display:block; }
+      .nav-links { display:none; }
+      .nav-brand img { height:40px !important; max-width:160px !important; }
+      .article-layout { grid-template-columns:1fr; padding:1rem; }
+      .article-sidebar { position:static; }
+      .toc { display:none; }
+      .article-hero { padding:2.5rem 1.25rem 2rem; }
+      .stat-row { grid-template-columns:1fr 1fr; }
+      .tab-buttons { gap:4px; }
+      .tab-btn { font-size:12px; padding:6px 10px; }
+      .compare-table { font-size:13px; }
+      .next-up { flex-direction:column; align-items:flex-start; }
+      footer { flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <a class="nav-brand" href="/">
+    <img src="/logo.png" alt="FinCrimeRadar" style="height:56px;width:220px;object-fit:contain;object-position:left center;display:block;" />
+  </a>
+  <div class="nav-links">
+    <a href="/knowledge.html">Knowledge Hub</a>
+    <a href="/news.html">News</a>
+    <a href="/learn.html">Learn</a>
+    <a href="/about.html">About</a>
+    <a href="/screen.html" class="nav-cta">Try the tool →</a>
+  </div>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/knowledge.html">Knowledge Hub</a>
+  <a href="/news.html">News</a>
+  <a href="/learn.html">Learn</a>
+  <a href="/about.html">About</a>
+  <a href="/screen.html" class="mobile-nav-cta">Try the tool →</a>
+</div>
+
+<!-- HERO -->
+<div class="article-hero">
+  <div class="hero-inner">
+    <div class="series-tag">⚡ Deep Dive · Transaction Monitoring</div>
+    <h1>Transaction Monitoring:<br><em>From Rules to AI</em></h1>
+    <p class="hero-sub">A practitioner's guide to how TM systems actually work — the logic behind the rules, why 95% of alerts are false positives, how machine learning is rewriting the playbook, and what analysts actually do when the queue hits 400.</p>
+    <div class="hero-meta">
+      <span>✍️ Pratik Zanke</span>
+      <span>📅 June 2026</span>
+      <span>⏱️ 20 min read</span>
+      <span>🎯 Practitioner-level</span>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE LAYOUT -->
+<div class="article-layout">
+
+  <!-- MAIN BODY -->
+  <div class="article-body">
+
+    <!-- SECTION 1: THE HONEST OPENER -->
+    <div class="article-section" id="honest-truth">
+      <div class="section-eyebrow">The Reality Check</div>
+      <h2>The dirty secret nobody puts in the vendor deck</h2>
+      <p>Transaction monitoring is, on paper, one of the most powerful tools in the financial crime compliance arsenal. In practice, at most firms, it spends most of its time generating noise.</p>
+      <p>The average rule-based TM system fires between <strong>85–97% false positives</strong>. That means for every 100 alerts your analysts review, three to fifteen actually matter. The rest are your salaried compliance team doing elaborate paperwork to confirm that a retired schoolteacher in Solihull did, in fact, make their usual monthly transfer to their daughter.</p>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="num">95%</div>
+          <div class="lbl">Average false positive rate in rule-based TM</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">30–40%</div>
+          <div class="lbl">Of compliance team capacity consumed by alert triage</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">$80M</div>
+          <div class="lbl">FinCEN penalty on Canaccord Genuity — March 2026 — for TM failures</div>
+        </div>
+      </div>
+
+      <p>And yet, get it wrong — let the real signals slip through — and the consequences are existential. The Canaccord Genuity consent order, issued in March 2026, found at least 160 SARs unfiled and thousands of suspicious transactions flowing undetected, all because TM design relied on static reports reviewed by overwhelmed staff.</p>
+
+      <div class="callout callout-purple">
+        <strong>💡 The Central Tension</strong>
+        <p>Transaction monitoring must be sensitive enough to catch criminals, specific enough not to drown analysts in noise, fast enough to be real-time, and explainable enough to satisfy regulators. Building something that does all four at once is genuinely hard. This guide explains how the industry has tried — and what the AI-era answer actually looks like.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 2: WHAT TM ACTUALLY IS -->
+    <div class="article-section" id="what-is-tm">
+      <div class="section-eyebrow">Foundations</div>
+      <h2>What transaction monitoring actually does</h2>
+      <p>At its core, TM is a surveillance function. Every transaction your customers make passes through a detection engine that compares it against a library of scenarios — behavioural patterns associated with financial crime. When a transaction (or a pattern of transactions) matches a scenario beyond a defined threshold, it generates an alert for a human analyst to review.</p>
+
+      <h3>The anatomy of a TM rule</h3>
+      <p>Rules are the building blocks of every TM system. Each rule is essentially a hypothesis: "if a customer does X, it might mean Y." Here's what a real-world rule looks like under the hood:</p>
+
+      <div class="rule-anatomy">
+        <span class="comment">-- RULE: High-frequency low-value structuring (smurfing indicator)</span><br>
+        <span class="comment">-- Typology: Customer splits large amount into multiple sub-threshold transactions</span><br><br>
+        <span class="keyword">TRIGGER WHEN</span>:<br>
+        &nbsp;&nbsp;transaction_count <span class="keyword">>=</span> <span class="value">5</span> <span class="label">within 72 hours</span><br>
+        &nbsp;&nbsp;<span class="keyword">AND</span> each_amount <span class="keyword"><</span> <span class="value">£9,500</span> <span class="label">sub-threshold</span><br>
+        &nbsp;&nbsp;<span class="keyword">AND</span> total_amount <span class="keyword">>=</span> <span class="value">£20,000</span> <span class="label">aggregate</span><br>
+        &nbsp;&nbsp;<span class="keyword">AND</span> transaction_type <span class="keyword">IN</span> <span class="value">(CASH_IN, ATM, BRANCH)</span><br><br>
+        <span class="keyword">EXCLUDE IF</span>:<br>
+        &nbsp;&nbsp;customer_risk_tier <span class="keyword">=</span> <span class="value">LOW</span><br>
+        &nbsp;&nbsp;<span class="keyword">AND</span> historical_pattern_match <span class="keyword">=</span> <span class="value">TRUE</span> <span class="label">known behaviour</span><br><br>
+        <span class="trigger">ALERT SCORE: HIGH (72)</span> &nbsp;&nbsp;<span class="comment">→ Route to Senior Analyst queue</span>
+      </div>
+
+      <p>Most banks run <strong>200–500 rules simultaneously</strong>, each designed for a different typology. The problem: rules are static. They can't learn. And criminals have learned to live below them.</p>
+
+      <h3>The four inputs every TM system uses</h3>
+      <ul>
+        <li><strong>Transaction data</strong> — amount, currency, channel, counterparty, timestamp, reference</li>
+        <li><strong>Customer profile</strong> — risk tier, business type, onboarding CDD, historical behaviour, PEP/sanctions status</li>
+        <li><strong>Peer group benchmarking</strong> — is this customer's behaviour unusual compared to similar profiles?</li>
+        <li><strong>External intelligence</strong> — typology reports from FATF, NCA, FCA; jurisdiction risk; sanctions list updates</li>
+      </ul>
+
+      <div class="callout callout-navy">
+        <strong>📋 The FCA's Expectations (SYSC 6.3)</strong>
+        <p>The FCA requires firms to have "automated systems to help detect suspicious transactions." Critically, FG25/3 (2025) clarified that rule-based TM alone may not meet the standard for complex or high-volume payment flows — firms should evidence they have considered whether ML-enhanced detection is appropriate for their risk profile.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 3: ALERT LIFECYCLE -->
+    <div class="article-section" id="alert-lifecycle">
+      <div class="section-eyebrow">Inside the Engine Room</div>
+      <h2>What happens when an alert fires</h2>
+      <p>The alert is just the beginning. What happens next is a structured workflow that most compliance teams have quietly customised into something the textbooks wouldn't recognise. Here's the actual journey:</p>
+
+      <div class="flow-container">
+        <div class="flow-steps">
+          <div class="flow-step done">
+            <div class="flow-step-num">01</div>
+            <div class="flow-step-body">
+              <strong>Alert generation</strong>
+              <p>TM engine fires. Alert created with score, triggering rule ID, customer data snapshot, and transaction detail. Routed to queue based on risk score — high scores go to senior analysts, standard scores to L1 triage.</p>
+            </div>
+          </div>
+          <div class="flow-step done">
+            <div class="flow-step-num">02</div>
+            <div class="flow-step-body">
+              <strong>L1 Triage (the 30-second decision)</strong>
+              <p>Analyst opens the alert. Reviews triggering transaction, customer risk profile, previous alert history, and account activity. The key question: is this consistent with what I know about this customer? Most alerts end here — closed as false positive with documented rationale.</p>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-step-num">03</div>
+            <div class="flow-step-body">
+              <strong>L2 Investigation</strong>
+              <p>Alert escalated because something didn't add up. Analyst builds a 360° picture — runs PEP/sanctions check, reviews linked accounts, maps counterparty network, checks open-source information, reviews any previous SARs. Usually a 2–4 hour process.</p>
+            </div>
+          </div>
+          <div class="flow-step escalate">
+            <div class="flow-step-num">04a</div>
+            <div class="flow-step-body">
+              <strong>Escalation to MLRO</strong>
+              <p>If L2 finds credible grounds for suspicion, analyst prepares an internal escalation pack — summary of facts, timeline, risk indicators, and recommended action. MLRO reviews and decides: SAR or no SAR. Clock starts here — NCA requires a DAML SAR within 7 working days if assets need to be frozen.</p>
+            </div>
+          </div>
+          <div class="flow-step sar">
+            <div class="flow-step-num">04b</div>
+            <div class="flow-step-body">
+              <strong>SAR Filing</strong>
+              <p>If MLRO agrees suspicion exists, a Suspicious Activity Report is filed with the NCA via SARs Online. The firm enters a "consent period" — cannot process the transaction until NCA grants consent (or 7 working days elapse). Full audit trail maintained for 5 years minimum.</p>
+            </div>
+          </div>
+          <div class="flow-step done">
+            <div class="flow-step-num">05</div>
+            <div class="flow-step-body">
+              <strong>Feedback loop (the step most firms skip)</strong>
+              <p>Alert outcome is fed back into the TM system. Was this a true positive? Did it lead to a SAR? This data should drive rule tuning — adjusting thresholds, refining exclusion logic, retiring dead rules. Without this loop, TM programmes degrade over time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: TYPOLOGIES INTERACTIVE -->
+    <div class="article-section" id="typologies">
+      <div class="section-eyebrow">Typology Spotlight</div>
+      <h2>The financial crime patterns TM systems are hunting</h2>
+      <p>TM rules are only as good as the typologies they're built to detect. Each card below shows a real typology, the red flags that appear in transaction data, and the rule logic that catches it — or tries to.</p>
+
+      <div class="typology-tabs">
+        <div class="tab-buttons">
+          <button class="tab-btn active" onclick="showTypology('structuring')">🏦 Structuring</button>
+          <button class="tab-btn" onclick="showTypology('layering')">🔄 Layering</button>
+          <button class="tab-btn" onclick="showTypology('mule')">🫏 Mule Networks</button>
+          <button class="tab-btn" onclick="showTypology('tradebasedml')">🚢 Trade-Based ML</button>
+          <button class="tab-btn" onclick="showTypology('crypto')">₿ Crypto</button>
+        </div>
+
+        <div id="typo-structuring" class="tab-panel active">
+          <div class="typology-card">
+            <div class="tc-header">
+              <h4>Structuring (Smurfing)</h4>
+              <p>Breaking up large sums into multiple sub-threshold deposits to avoid reporting triggers</p>
+            </div>
+            <div class="tc-body">
+              <div class="tc-signals">
+                <li>Multiple cash deposits just below £10,000 across consecutive days</li>
+                <li>Same customer uses different branches or ATMs to deposit</li>
+                <li>Deposit pattern inconsistent with stated business activity</li>
+                <li>Funds consolidated rapidly after series of sub-threshold deposits</li>
+              </div>
+              <div class="tc-rule">
+                <strong>Rule Logic</strong>
+                IF sum(deposits, 72h) ≥ £20,000 AND count(deposits, 72h) ≥ 4 AND max(single_deposit) &lt; £9,500 → ALERT
+              </div>
+              <div><span class="tc-verdict verdict-high">🔴 High Detection Difficulty — Easily mimicked by legitimate salary splits</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="typo-layering" class="tab-panel">
+          <div class="typology-card">
+            <div class="tc-header">
+              <h4>Layering via Rapid Fund Movement</h4>
+              <p>Passing funds through chains of accounts to obscure the trail between placement and integration</p>
+            </div>
+            <div class="tc-body">
+              <div class="tc-signals">
+                <li>Funds received and transferred out within hours, leaving near-zero balance</li>
+                <li>Multiple hops across different banks, jurisdictions, or currency conversions</li>
+                <li>Counterparties in high-risk jurisdictions with no apparent business reason</li>
+                <li>Round-figure transfers — £50,000 → £49,800 → £49,600 (fee deduction pattern)</li>
+              </div>
+              <div class="tc-rule">
+                <strong>Rule Logic</strong>
+                IF (outbound / inbound ratio) &gt; 0.85 AND velocity ≤ 24h AND counterparty_country IN (high_risk_list) → ALERT
+              </div>
+              <div><span class="tc-verdict verdict-med">🟡 Medium Detection Difficulty — Harder at volume, good at catching intermediary accounts</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="typo-mule" class="tab-panel">
+          <div class="typology-card">
+            <div class="tc-header">
+              <h4>Money Mule Networks</h4>
+              <p>Using third-party accounts (often unwitting or recruited victims) to receive and forward funds, adding a layer of deniability</p>
+            </div>
+            <div class="tc-body">
+              <div class="tc-signals">
+                <li>Account dormant for months, then suddenly receives large inflow</li>
+                <li>Inbound funds from multiple unrelated sources, immediately forwarded onward</li>
+                <li>Customer profile inconsistent with transaction values (student/unemployed receiving £40k)</li>
+                <li>Same device fingerprint or IP used across multiple accounts</li>
+              </div>
+              <div class="tc-rule">
+                <strong>Rule Logic</strong>
+                IF account_dormancy ≥ 90d AND sudden_inflow ≥ £5,000 AND outbound_within = 48h AND sender_count ≥ 3 → ALERT
+              </div>
+              <div><span class="tc-verdict verdict-high">🔴 High Detection Difficulty — AI outperforms rules significantly here due to network analysis</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="typo-tradebasedml" class="tab-panel">
+          <div class="typology-card">
+            <div class="tc-header">
+              <h4>Trade-Based Money Laundering</h4>
+              <p>Manipulating international trade invoices to move value across borders under the guise of legitimate commerce</p>
+            </div>
+            <div class="tc-body">
+              <div class="tc-signals">
+                <li>Invoice values significantly above or below market price for the stated goods</li>
+                <li>Payments to counterparties in jurisdictions inconsistent with stated trade routes</li>
+                <li>Multiple amendments to same trade document before payment</li>
+                <li>Goods description vague, mismatched, or involving dual-use items</li>
+              </div>
+              <div class="tc-rule">
+                <strong>Rule Logic</strong>
+                IF trade_payment = TRUE AND counterparty_jurisdiction IN (high_risk) AND invoice_currency ≠ counterparty_currency AND amendment_count ≥ 2 → ALERT
+              </div>
+              <div><span class="tc-verdict verdict-low">🟢 Lower Volume — Hard to detect without trade finance data integration, but high-value when caught</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="typo-crypto" class="tab-panel">
+          <div class="typology-card">
+            <div class="tc-header">
+              <h4>Crypto-to-Fiat Laundering</h4>
+              <p>Converting illicit cryptocurrency proceeds into clean fiat currency via exchanges, P2P platforms, or OTC desks</p>
+            </div>
+            <div class="tc-body">
+              <div class="tc-signals">
+                <li>Customer deposits funds sourced from crypto exchange with no prior relationship</li>
+                <li>Rapid conversion and withdrawal — buy fiat, move out within hours</li>
+                <li>Use of privacy coins (Monero, Zcash) or mixers prior to exchange deposit</li>
+                <li>On-chain analysis shows funds passed through darknet market wallets</li>
+              </div>
+              <div class="tc-rule">
+                <strong>Rule Logic</strong>
+                IF source = CRYPTO_EXCHANGE AND withdrawal_within ≤ 6h AND on_chain_risk_score ≥ HIGH (via Chainalysis/Elliptic API) → ALERT
+              </div>
+              <div><span class="tc-verdict verdict-high">🔴 Fast-evolving — Chain-hopping and mixer use require on-chain analytics beyond standard TM</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5: WHY RULES FAIL -->
+    <div class="article-section" id="why-rules-fail">
+      <div class="section-eyebrow">The Core Problem</div>
+      <h2>Why rule-based systems are losing the arms race</h2>
+      <p>Rule-based TM was fit for purpose in an era when financial crime was slower, simpler, and less global. That era is over. Here's the structural breakdown:</p>
+
+      <div class="fp-visual">
+        <h3 style="font-size:14px; font-weight:700; color:var(--navy); margin-bottom:0.5rem;">The False Positive Problem — visualised</h3>
+        <p style="font-size:13px; color:var(--muted); margin-bottom:1rem;">Of 1,000 alerts generated in a typical rule-based TM system:</p>
+
+        <div class="fp-bar-container">
+          <div class="fp-label"><span>Legacy rules-only system</span><strong>5% real risk / 95% noise</strong></div>
+          <div class="fp-bar">
+            <div class="fp-real" style="width:5%;" id="fpReal1">50</div>
+            <div class="fp-false" style="width:95%;" id="fpFalse1">950 false positives</div>
+          </div>
+        </div>
+        <div class="fp-bar-container" style="margin-top:1rem;">
+          <div class="fp-label"><span>ML-augmented system (typical)</span><strong>25–40% real risk</strong></div>
+          <div class="fp-bar">
+            <div class="fp-real" style="width:32%;" id="fpReal2">320</div>
+            <div class="fp-false" style="width:68%;" id="fpFalse2">680 false positives</div>
+          </div>
+        </div>
+        <div class="fp-bar-container" style="margin-top:1rem;">
+          <div class="fp-label"><span>Fully AI-native system (emerging leaders)</span><strong>60–70% real risk</strong></div>
+          <div class="fp-bar">
+            <div class="fp-real" style="width:65%;" id="fpReal3">650</div>
+            <div class="fp-false" style="width:35%;" id="fpFalse3">350 false positives</div>
+          </div>
+        </div>
+        <p style="font-size:11px; color:var(--muted); margin-top:0.75rem;">Source: Industry benchmarks, ACAMS survey data, vendor performance claims (independently validated figures vary)</p>
+      </div>
+
+      <h3>The five structural failures</h3>
+      <ul>
+        <li><strong>Threshold rigidity</strong> — A rule that fires at £9,999 will not fire at £9,998. Criminals know this. They also know you know, but they do it anyway because compliance teams rarely adjust thresholds quickly.</li>
+        <li><strong>No memory</strong> — Each transaction is assessed in isolation unless the rule specifically looks at historical patterns. A criminal who spaces out suspicious activity over months can stay invisible.</li>
+        <li><strong>No context</strong> — A rule can't know that a spike in outbound transfers is because your customer just sold their house. Analysts have to figure that out manually.</li>
+        <li><strong>Typology lag</strong> — New crime methods emerge constantly. Building and validating a new rule takes weeks or months. By then, criminals have moved on.</li>
+        <li><strong>Tuning debt</strong> — Every rule that isn't regularly reviewed accumulates stale logic. Firms with 300+ rules rarely review all of them annually. Dead rules generate false positives forever.</li>
+      </ul>
+
+      <div class="callout callout-red">
+        <strong>⚠️ The Regulatory Tipping Point</strong>
+        <p>FinCEN's June 2024 guidance explicitly cited machine learning as a tool that can improve customer risk assessment and reduce false positives. The FCA's FG25/3 flagged that over-reliance on legacy TM may not constitute an adequate programme for complex payment firms. Rule-only systems are no longer just inefficient — they're increasingly hard to defend under examination.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 6: AI EVOLUTION TIMELINE -->
+    <div class="article-section" id="ai-evolution">
+      <div class="section-eyebrow">The AI Revolution</div>
+      <h2>How machine learning is rewriting the TM playbook</h2>
+      <p>The shift from rules to AI isn't a single switch — it's a spectrum. Most firms are somewhere in the middle. Here's how the technology has evolved:</p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot">📋</div>
+          <div>
+            <div class="tl-era">Pre-2015</div>
+            <div class="tl-title">Static Rules Era</div>
+            <div class="tl-body">Firms ran 50–200 hand-coded rules. Alert volumes manageable. Financial crime simpler. Global payments slower. The rules kept up — mostly.</div>
+            <span class="tl-tag tl-tag-old">Largely obsolete for complex firms</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">📊</div>
+          <div>
+            <div class="tl-era">2015–2020</div>
+            <div class="tl-title">Statistical Scoring & Peer Grouping</div>
+            <div class="tl-body">Rules stayed, but firms added statistical baselines. Customers grouped by similar profiles. Transactions scored against peer-group norms rather than absolute thresholds. False positive rates improved modestly. Alert volumes rose as firms added more rules to catch more typologies.</div>
+            <span class="tl-tag tl-tag-old">Still widely deployed</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">🤖</div>
+          <div>
+            <div class="tl-era">2020–2024</div>
+            <div class="tl-title">Hybrid ML Augmentation</div>
+            <div class="tl-body">Machine learning models deployed <em>above</em> existing rule layers. Rules still generate alerts, but an ML model scores them — suppressing likely false positives before they hit analyst queues. Typical false positive reduction: 30–50%. Regulatory explainability maintained because rules still drive alerts; ML is a filter.</div>
+            <span class="tl-tag tl-tag-current">Current best practice for mid-size firms</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">🧠</div>
+          <div>
+            <div class="tl-era">2024–Now</div>
+            <div class="tl-title">Behavioural AI & Network Detection</div>
+            <div class="tl-body">Models that learn individual customer behaviour baselines and flag deviations — without needing a rule. Graph neural networks that map relationships between accounts, counterparties, and beneficial owners to detect mule networks and layering structures invisible to single-account rules. Real-time scoring. Explainability built in via SHAP values.</div>
+            <span class="tl-tag tl-tag-current">Deployed at large banks and FinTechs</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">✨</div>
+          <div>
+            <div class="tl-era">Emerging</div>
+            <div class="tl-title">LLM-Assisted Investigation & Autonomous Triage</div>
+            <div class="tl-body">Large language models that can read an alert, pull contextual data, summarise the risk case, and draft a SAR narrative — leaving the analyst to approve rather than write from scratch. Autonomous L1 triage for lower-risk alerts, with full audit trail. Still nascent; regulatory acceptance varies. The firms testing this are reporting 60–70%+ reductions in analyst time per alert.</div>
+            <span class="tl-tag tl-tag-emerging">Pilots underway at Tier 1 banks</span>
+          </div>
+        </div>
+      </div>
+
+      <h3>What AI does that rules can't</h3>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>Rule-Based</th>
+            <th>ML-Augmented</th>
+            <th>AI-Native</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Detect known typologies</td>
+            <td class="good">✓ Strong</td>
+            <td class="good">✓ Strong</td>
+            <td class="good">✓ Strong</td>
+          </tr>
+          <tr>
+            <td>Adapt to new crime patterns</td>
+            <td class="bad">✗ Weeks/months</td>
+            <td class="ok">~ Partial</td>
+            <td class="good">✓ Real-time</td>
+          </tr>
+          <tr>
+            <td>Reduce false positives</td>
+            <td class="bad">✗ 85–97% FP rate</td>
+            <td class="ok">~ 50–70% FP rate</td>
+            <td class="good">✓ 30–40% FP rate</td>
+          </tr>
+          <tr>
+            <td>Network / relationship analysis</td>
+            <td class="bad">✗ Single-account only</td>
+            <td class="ok">~ Limited</td>
+            <td class="good">✓ Graph-level</td>
+          </tr>
+          <tr>
+            <td>Regulatory explainability</td>
+            <td class="good">✓ Fully explainable</td>
+            <td class="good">✓ Rules still visible</td>
+            <td class="ok">~ Requires SHAP/LIME</td>
+          </tr>
+          <tr>
+            <td>Implementation cost</td>
+            <td class="good">✓ Low</td>
+            <td class="ok">~ Medium</td>
+            <td class="bad">✗ High</td>
+          </tr>
+          <tr>
+            <td>Handles real-time payments</td>
+            <td class="bad">✗ Batch typically</td>
+            <td class="ok">~ Partially</td>
+            <td class="good">✓ Millisecond scoring</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION 7: ALERT SIMULATOR -->
+    <div class="article-section" id="triage-simulator">
+      <div class="section-eyebrow">Interactive</div>
+      <h2>Try it: The alert triage simulator</h2>
+      <p>This is what an analyst sees. Three alerts, each with a customer profile and transaction pattern. You decide: close as false positive, request more information, or escalate. Then see how a seasoned analyst would call it.</p>
+
+      <div class="simulator">
+        <div class="sim-score-display">Your score: <span id="simScore">0</span> / 3</div>
+        <div class="sim-title">⚡ ALERT QUEUE — 3 pending</div>
+
+        <!-- Alert 1 -->
+        <div class="sim-alert" id="alert1">
+          <div class="sim-alert-header">
+            <span class="sim-alert-id">ALT-2026-00441 · Rule: HIGH_FREQ_CASH · Score: 74</span>
+            <span class="sim-alert-score">HIGH RISK</span>
+          </div>
+          <div class="sim-alert-desc">
+            <strong style="color:#e2e8f0;">Customer:</strong> Maria S., 67, retired teacher. Account 4 years old. Previously low activity.<br>
+            <strong style="color:#e2e8f0;">Trigger:</strong> 5 cash deposits in 3 days totalling £18,400. Largest single: £4,100. All branch deposits, different locations.<br>
+            <strong style="color:#e2e8f0;">Context note:</strong> Account notes show customer called in last week — "selling personal items after house clearance."
+          </div>
+          <div class="sim-btns">
+            <button class="sim-btn sim-btn-close" onclick="checkAnswer(1, 'close')">✓ Close — False Positive</button>
+            <button class="sim-btn sim-btn-info" onclick="checkAnswer(1, 'info')">📋 Request More Info</button>
+            <button class="sim-btn sim-btn-escalate" onclick="checkAnswer(1, 'escalate')">⬆ Escalate</button>
+          </div>
+          <div class="sim-feedback" id="fb1"></div>
+        </div>
+
+        <!-- Alert 2 -->
+        <div class="sim-alert" id="alert2">
+          <div class="sim-alert-header">
+            <span class="sim-alert-id">ALT-2026-00442 · Rule: RAPID_OUTBOUND · Score: 68</span>
+            <span class="sim-alert-score">HIGH RISK</span>
+          </div>
+          <div class="sim-alert-desc">
+            <strong style="color:#e2e8f0;">Customer:</strong> Tech startup, incorporated 6 months ago. No transaction history prior to this month.<br>
+            <strong style="color:#e2e8f0;">Trigger:</strong> £85,000 received from 3 different UK companies. £82,000 transferred out within 6 hours to accounts in UAE and Hong Kong. Balance: £3,000.<br>
+            <strong style="color:#e2e8f0;">Context note:</strong> No CDD notes on counterparties. Director is a PEP (local councillor).
+          </div>
+          <div class="sim-btns">
+            <button class="sim-btn sim-btn-close" onclick="checkAnswer(2, 'close')">✓ Close — False Positive</button>
+            <button class="sim-btn sim-btn-info" onclick="checkAnswer(2, 'info')">📋 Request More Info</button>
+            <button class="sim-btn sim-btn-escalate" onclick="checkAnswer(2, 'escalate')">⬆ Escalate</button>
+          </div>
+          <div class="sim-feedback" id="fb2"></div>
+        </div>
+
+        <!-- Alert 3 -->
+        <div class="sim-alert" id="alert3">
+          <div class="sim-alert-header">
+            <span class="sim-alert-id">ALT-2026-00443 · Rule: DORMANT_SPIKE · Score: 61</span>
+            <span class="sim-alert-score">MEDIUM RISK</span>
+          </div>
+          <div class="sim-alert-desc">
+            <strong style="color:#e2e8f0;">Customer:</strong> University student, 21. Account 2 years old, average monthly credit £800 (maintenance loan pattern).<br>
+            <strong style="color:#e2e8f0;">Trigger:</strong> £6,200 received from 4 different individuals (varying amounts: £800, £1,400, £2,100, £1,900). No money transferred out yet.<br>
+            <strong style="color:#e2e8f0;">Context note:</strong> Sender accounts are all personal current accounts. Student recently updated their address — moved back to home city.
+          </div>
+          <div class="sim-btns">
+            <button class="sim-btn sim-btn-close" onclick="checkAnswer(3, 'close')">✓ Close — False Positive</button>
+            <button class="sim-btn sim-btn-info" onclick="checkAnswer(3, 'info')">📋 Request More Info</button>
+            <button class="sim-btn sim-btn-escalate" onclick="checkAnswer(3, 'escalate')">⬆ Escalate</button>
+          </div>
+          <div class="sim-feedback" id="fb3"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 8: WHAT GOOD LOOKS LIKE -->
+    <div class="article-section" id="what-good-looks-like">
+      <div class="section-eyebrow">Best Practice</div>
+      <h2>What a well-run TM programme actually looks like</h2>
+      <p>Most published frameworks describe what firms should do. Very few describe what it looks like when they do it well. Here's the difference between a TM programme that works and one that just exists:</p>
+
+      <h3>1. Rule inventory with documented rationale</h3>
+      <p>Every rule has a written typology mapping, performance metrics (alert volume, true positive rate, false positive rate, SAR yield), and a review date. Rules that haven't generated a true positive in 18 months are challenged, not just retained.</p>
+
+      <h3>2. Tiered analyst routing</h3>
+      <p>Not all alerts go to the same queue. High-score complex alerts go to experienced analysts. Low-score routine alerts go to L1 triage with structured decision aids. This preserves experienced analyst capacity for the cases that need it.</p>
+
+      <h3>3. Tuning cycles, not tuning panic</h3>
+      <p>Threshold adjustments happen on a documented cycle — quarterly or after significant product changes — not reactively when an examiner asks why alert volume is 800% above industry benchmark. Every tuning decision has a rationale memo.</p>
+
+      <h3>4. The feedback loop is closed</h3>
+      <p>SAR outcomes, case dispositions, and law enforcement feedback (where received) feed back into rule calibration. TM systems that don't learn from their own outputs degrade year on year.</p>
+
+      <h3>5. TM is integrated with CDD</h3>
+      <p>Customer risk scores aren't static. A TM alert that's closed as a false positive should still update the customer's behavioural profile. A pattern of false-positive alerts from the same customer may itself be a signal worth investigating.</p>
+
+      <div class="callout callout-teal">
+        <strong>✅ The FCA's TMER (Transaction Monitoring Effectiveness Review)</strong>
+        <p>The FCA has increasingly used skilled persons reviews (Section 166 reviews) to assess TM effectiveness at individual firms. The key metrics they examine: alert volume vs. SAR yield, time-to-close on escalated alerts, documentation quality on closed alerts, and evidence that rules are reviewed and updated against current typologies. A TM programme with a 97% false positive rate and no documented tuning history is a regulatory liability.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 9: KNOWLEDGE CHECK QUIZ -->
+    <div class="article-section" id="knowledge-check">
+      <div class="section-eyebrow">Test Your Knowledge</div>
+      <h2>Knowledge check</h2>
+
+      <div class="quiz" id="q1">
+        <div class="quiz-q">1. A TM rule fires at transactions above £10,000 but a customer consistently deposits £9,800. What is this behaviour called?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerQ('q1','a','a')">a) Layering</button>
+          <button class="quiz-opt" onclick="answerQ('q1','b','b')">b) Structuring (smurfing)</button>
+          <button class="quiz-opt" onclick="answerQ('q1','c','b')">c) Integration</button>
+          <button class="quiz-opt" onclick="answerQ('q1','d','b')">d) Threshold arbitrage — but not technically a typology</button>
+        </div>
+        <div class="quiz-explain" id="q1-explain">
+          <strong>Answer: b) Structuring (smurfing)</strong> — Breaking transactions into amounts below reporting or rule-trigger thresholds is called structuring. It's a classic money laundering technique and a criminal offence under POCA 2002. Note that deliberately staying just below a known threshold is itself a red flag — good TM systems look for this pattern, not just the threshold breach.
+        </div>
+      </div>
+
+      <div class="quiz" id="q2" style="margin-top:1rem;">
+        <div class="quiz-q">2. Your TM system generates 1,000 alerts per month. 15 result in SARs. What is the SAR yield rate, and is this good?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerQ('q2','a','b')">a) 1.5% — this is excellent</button>
+          <button class="quiz-opt" onclick="answerQ('q2','b','b')">b) 1.5% — this is typical but not a sign of a healthy programme</button>
+          <button class="quiz-opt" onclick="answerQ('q2','c','b')">c) 15% — this suggests the system is well-tuned</button>
+          <button class="quiz-opt" onclick="answerQ('q2','d','b')">d) You can't assess this without knowing the false positive rate</button>
+        </div>
+        <div class="quiz-explain" id="q2-explain">
+          <strong>Answer: b)</strong> — A 1.5% SAR yield means 98.5% of alerts were closed as false positives. This is sadly common, but it is not good. It suggests rules are miscalibrated or thresholds are too low. A well-tuned programme should aim for significantly higher yield — some best-in-class TM operations report 10–20%+ true positive rates. The FCA views consistently low SAR yield as a signal that TM design needs review.
+        </div>
+      </div>
+
+      <div class="quiz" id="q3" style="margin-top:1rem;">
+        <div class="quiz-q">3. Which of these is the biggest regulatory risk of using AI for TM alert disposition (closing alerts)?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerQ('q3','a','c')">a) AI is too expensive to justify for compliance use</button>
+          <button class="quiz-opt" onclick="answerQ('q3','b','c')">b) AI might generate too many false positives</button>
+          <button class="quiz-opt" onclick="answerQ('q3','c','c')">c) Unexplainable AI decisions may mean the firm can't demonstrate why a SAR was not filed</button>
+          <button class="quiz-opt" onclick="answerQ('q3','d','c')">d) Regulators have banned AI for SAR decisions</button>
+        </div>
+        <div class="quiz-explain" id="q3-explain">
+          <strong>Answer: c)</strong> — The core regulatory risk is explainability. If an AI model closes an alert (deciding it's a false positive) and that customer later appears in a law enforcement investigation, the firm must be able to explain why the alert was not escalated. "The model said no" is not a defensible answer. This is why most firms deploy AI as a filter or scoring layer — humans still make the final call, especially on escalations. SHAP values and model documentation are the current best-practice approach.
+        </div>
+      </div>
+    </div>
+
+    <!-- CLOSING -->
+    <div class="article-section" id="conclusion">
+      <div class="section-eyebrow">Wrapping Up</div>
+      <h2>The practitioner's honest verdict</h2>
+      <p>Transaction monitoring is not a solved problem. It is a continuous calibration exercise between detection sensitivity, analyst capacity, and regulatory expectation — played against an adversary who is actively trying to stay invisible.</p>
+      <p>Rule-based systems built the foundations. They're auditable, explainable, and understood by examiners. They'll remain part of the picture for years. But they are no longer sufficient on their own for firms processing complex or high-volume payment flows.</p>
+      <p>The firms doing this well aren't the ones who have replaced rules with AI. They're the ones who have built a feedback loop — rules that learn, thresholds that move, analysts who spend their time on genuine risk rather than noise, and a clear audit trail that tells regulators a coherent story.</p>
+      <p>That's the standard. Most firms aren't there yet. The ones who will get there fastest are the ones who understand that TM effectiveness is a design problem, not a headcount problem.</p>
+
+      <div class="callout callout-purple">
+        <strong>🛡️ Try it yourself</strong>
+        <p>FinCrimeRadar's free screening tool lets you run live sanctions, PEP, and adverse media checks — the same type of data that feeds context into TM alert triage. See how real-world screening works.</p>
+      </div>
+
+      <div style="text-align:center; margin-top:1.5rem;">
+        <a href="/screen.html" style="display:inline-block; background:#00c4a7; color:#fff; padding:12px 28px; border-radius:8px; font-weight:600; text-decoration:none; font-size:15px;">🛡️ Try the free screening tool →</a>
+      </div>
+    </div>
+
+  </div><!-- end article-body -->
+
+  <!-- SIDEBAR -->
+  <aside class="article-sidebar">
+    <div class="toc" id="tocBox">
+      <div class="toc-title">In this guide</div>
+      <a href="#honest-truth" class="toc-link">The dirty secret</a>
+      <a href="#what-is-tm" class="toc-link">What TM actually does</a>
+      <a href="#alert-lifecycle" class="toc-link">The alert lifecycle</a>
+      <a href="#typologies" class="toc-link">Typology spotlight</a>
+      <a href="#why-rules-fail" class="toc-link">Why rules are losing</a>
+      <a href="#ai-evolution" class="toc-link">The AI evolution</a>
+      <a href="#triage-simulator" class="toc-link">Alert triage simulator</a>
+      <a href="#what-good-looks-like" class="toc-link">What good looks like</a>
+      <a href="#knowledge-check" class="toc-link">Knowledge check</a>
+      <a href="#conclusion" class="toc-link">Practitioner's verdict</a>
+    </div>
+
+    <div class="sidebar-card" style="margin-top:1rem;">
+      <div class="sidebar-card-title">Related Guides</div>
+      <a href="/sar-guide-part1.html">SAR Complete Guide Part 1 →</a>
+      <a href="/pep-guide-part1.html">PEP Screening Handbook →</a>
+      <a href="/aml-guide-part1.html">UK AML Legal Framework →</a>
+      <a href="/screening-alerts-guide.html">Alert Survival Guide →</a>
+    </div>
+
+    <div class="try-tool-sidebar" style="margin-top:1rem;">
+      <h4>🛡️ Free Screening Tool</h4>
+      <p>Run live sanctions, PEP & adverse media checks</p>
+      <a href="/screen.html">Try it free →</a>
+    </div>
+  </aside>
+
+</div><!-- end article-layout -->
+
+<!-- FOOTER NAV -->
+<div class="article-footer">
+  <div class="next-up">
+    <div>
+      <h4>Read next</h4>
+      <p>The SAR Complete Guide — writing SARs that the NCA actually uses</p>
+    </div>
+    <a href="/sar-guide-part1.html">SAR Guide Part 1 →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 FinCrimeRadar · Built by <a href="/about.html">Pratik Zanke</a> · <a href="/privacy.html">Privacy Policy</a> · <a href="https://github.com/prats922/fincrimeradar" target="_blank">GitHub</a></p>
+</footer>
+
+<script>
+// Progress bar
+window.addEventListener('scroll', function() {
+  var scrollTop = window.scrollY;
+  var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  document.getElementById('progressBar').style.width = pct + '%';
+});
+
+// TOC active state
+var sections = document.querySelectorAll('.article-section[id]');
+var tocLinks = document.querySelectorAll('.toc-link');
+window.addEventListener('scroll', function() {
+  var scrollPos = window.scrollY + 100;
+  sections.forEach(function(s) {
+    if (s.offsetTop <= scrollPos && s.offsetTop + s.offsetHeight > scrollPos) {
+      tocLinks.forEach(function(l) { l.classList.remove('active'); });
+      var match = document.querySelector('.toc-link[href="#' + s.id + '"]');
+      if (match) match.classList.add('active');
+    }
+  });
+});
+
+// Typology tabs
+function showTypology(id) {
+  document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById('typo-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// Alert simulator
+var simScore = 0;
+var answered = {};
+// Correct answers: 1=close (context explains it), 2=escalate (PEP + rapid outbound), 3=info (ambiguous — could be mule)
+var correctAnswers = { 1: 'close', 2: 'escalate', 3: 'info' };
+var feedbackText = {
+  1: {
+    close: { cls: 'correct', msg: '✅ Correct. The account note explains the behaviour — house clearance proceeds. The amounts are below threshold and the context is plausible. Document the rationale and close. Classic example of how context kills what looks like a structuring alert.' },
+    info: { cls: 'wrong', msg: '⚠️ Defensible, but the account note already provides context. In a high-volume environment, requesting more info when the answer is in the CRM adds friction and delays. Review the note more carefully before escalating to info-request.' },
+    escalate: { cls: 'wrong', msg: '❌ Escalation here without reviewing the account context is premature. There is a documented explanation from the customer. Escalating every cash deposit pattern without reading the notes creates noise and erodes MLRO trust in analyst triage.' }
+  },
+  2: {
+    close: { cls: 'wrong', msg: '❌ Wrong call. Six-month-old company, PEP director, £82k out to high-risk jurisdictions within 6 hours, no counterparty CDD on file. This has multiple serious red flags that require proper investigation. Closing this alert would be a significant failure.' },
+    info: { cls: 'wrong', msg: '⚠️ Closer, but the PEP connection and rapid outbound to UAE/HK in a new account with no history warrants immediate escalation, not an information request loop. Time is a factor if funds need to be frozen. Go straight to L2.' },
+    escalate: { cls: 'correct', msg: '✅ Correct. PEP director, new entity, rapid layering-style outbound to high-risk jurisdictions with no CDD on counterparties. This needs L2 investigation now. If L2 confirms suspicion, MLRO should be briefed within the same working day. This is exactly what TM is for.' }
+  },
+  3: {
+    close: { cls: 'wrong', msg: '❌ Too fast. Multiple senders of varying amounts to a student account is a classic money mule red flag. The fact that funds haven\'t moved out yet is actually more suspicious — the account may be being set up. Do not close without asking why four people sent money to a student.' },
+    info: { cls: 'correct', msg: '✅ Good call. This is genuinely ambiguous. Could be a shared house deposit, could be a mule account being primed. The right move is to contact the customer (carefully — no tipping off) or review device/IP data before deciding. Document the ambiguity and your reasoning.' },
+    escalate: { cls: 'wrong', msg: '⚠️ Defensible, but premature without gathering more context. A 61-score alert with ambiguous signals is a request-more-info case, not an immediate escalation. Escalating without additional context makes the MLRO\'s job harder and may not be proportionate.' }
+  }
+};
+
+function checkAnswer(alertNum, answer) {
+  if (answered[alertNum]) return;
+  answered[alertNum] = true;
+  var correct = correctAnswers[alertNum];
+  var fb = feedbackText[alertNum][answer];
+  var fbEl = document.getElementById('fb' + alertNum);
+  fbEl.className = 'sim-feedback show ' + fb.cls;
+  fbEl.textContent = fb.msg;
+  if (answer === correct) {
+    simScore++;
+    document.getElementById('simScore').textContent = simScore;
+  }
+  // Disable buttons
+  var btns = document.querySelectorAll('#alert' + alertNum + ' .sim-btn');
+  btns.forEach(function(b) { b.disabled = true; b.style.opacity = '0.5'; });
+}
+
+// Quiz
+function answerQ(qId, chosen, correct) {
+  var opts = document.querySelectorAll('#' + qId + ' .quiz-opt');
+  opts.forEach(function(o) { o.disabled = true; });
+  event.target.classList.add(chosen === correct ? 'correct' : 'wrong');
+  document.getElementById(qId + '-explain').classList.add('show');
+}
+
+// Mobile nav
+function toggleMobileNav() {
+  var nav = document.getElementById('mobileNav');
+  var btn = document.getElementById('navHamburger');
+  if (!nav) return;
+  var open = nav.classList.toggle('open');
+  btn.innerHTML = open ? '&#10005;' : '&#9776;';
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+document.addEventListener('click', function(e) {
+  var nav = document.getElementById('mobileNav');
+  var btn = document.getElementById('navHamburger');
+  if (nav && nav.classList.contains('open') && !nav.contains(e.target) && e.target !== btn) {
+    nav.classList.remove('open');
+    btn.innerHTML = '&#9776;';
+    document.body.style.overflow = '';
+  }
+});
+</script>
+
+</body>
+</html>
