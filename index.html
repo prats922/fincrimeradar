@@ -69,7 +69,7 @@
     nav {
       position: sticky; top: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2rem; height: 60px;
+      padding: 0 2rem; height: 68px;
       background: rgba(255,255,255,0.97);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border);
@@ -79,7 +79,7 @@
     .nav-name { font-size: 16px; font-weight: 600; color: var(--navy); letter-spacing: -0.3px; }
     .nav-name span { color: var(--accent); }
     .nav-links { display: flex; align-items: center; gap: 1.5rem; }
-    .nav-links a { font-size: 14px; color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .nav-links a { font-size: 14px; color: #374151; text-decoration: none; transition: color 0.15s; }
     .nav-links a:hover { color: #00c4a7; }
     .nav-cta {
       padding: 7px 16px; background: var(--accent); color: #fff;
@@ -212,13 +212,13 @@
 
 <nav>
   <a class="nav-brand" href="/">
-    <img src="/logo.png" alt="FinCrimeRadar" style="height:52px;width:auto;object-fit:contain;display:block;" /></span></span>
+    <img src="/logo.png" alt="FinCrimeRadar" style="height:48px;width:auto;object-fit:contain;display:block;" />
   </a>
   <div class="nav-links">
     <a href="/knowledge.html" class="hide-mobile" style="color:#00c4a7;font-weight:600;">Knowledge Hub</a>
-    <a href="/news.html" class="hide-mobile" style="color:rgba(255,255,255,0.8);">News</a>
-    <a href="/learn.html" class="hide-mobile" style="color:rgba(255,255,255,0.8);">Learn</a>
-    <a href="/about.html" class="hide-mobile" style="color:rgba(255,255,255,0.8);">About</a>
+    <a href="/news.html" class="hide-mobile">News</a>
+    <a href="/learn.html" class="hide-mobile">Learn</a>
+    <a href="/about.html" class="hide-mobile">About</a>
     <a href="/screen.html" class="nav-cta" style="background:#00c4a7;color:#fff;font-weight:600;">Try the tool →</a>
   </div>
 </nav>
