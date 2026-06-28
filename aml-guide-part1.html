@@ -242,16 +242,125 @@
     footer { background:var(--white); border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:12px; color:var(--muted); margin-top:2rem; }
     footer a { color:var(--muted); text-decoration:none; margin:0 8px; }
     footer a:hover { color:#00c4a7; }
+    /* ===== MOBILE RESPONSIVE ===== */
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--navy, #0f2044);
+      padding: 4px 6px;
+      line-height: 1;
+    }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0; right: 0;
+      background: #fff;
+      border-bottom: 1px solid #e4e7ec;
+      flex-direction: column;
+      z-index: 99;
+      padding: 0.5rem 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      padding: 14px 1.5rem;
+      font-size: 15px;
+      color: #374151;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #f3f4f6;
+      transition: background 0.1s;
+    }
+    .mobile-nav a:hover { background: #f9fafb; }
+    .mobile-nav .mobile-nav-cta {
+      margin: 0.75rem 1.5rem 0.5rem;
+      background: #00c4a7;
+      color: #fff !important;
+      border-radius: 8px;
+      text-align: center;
+      border-bottom: none;
+    }
 
-    @media (max-width:768px) {
-      .article-layout { grid-template-columns:1fr; }
-      .toc { display:none; }
-      .series-hero { padding:2.5rem 1.25rem 2rem; }
-      .article-section { padding:1.5rem; }
-      .try-tool { flex-direction:column; }
-      .penalty-scale { grid-template-columns:1fr; }
-      nav { padding:0 1rem; }
-      .nav-links .hm { display:none; }
+    @media (max-width: 768px) {
+      /* NAV */
+      nav { padding: 0 1rem; }
+      .nav-hamburger { display: block; }
+      .nav-links { display: none; }
+      .nav-logo img,
+      .nav-brand img { height: 40px !important; width: auto !important; max-width: 160px !important; }
+
+      /* HERO */
+      .hero { padding: 2.5rem 1.25rem 2rem; }
+      .hero h1, h1 { font-size: clamp(1.6rem, 7vw, 2.2rem) !important; }
+      .hero-sub, .hero p { font-size: 15px !important; }
+      .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; }
+      .hero-actions a, .hero-actions button { width: 100%; text-align: center; justify-content: center; }
+      .signup-row { flex-direction: column; }
+      .signup-row input { width: 100%; }
+
+      /* STATS */
+      .stats-bar { flex-wrap: wrap; gap: 1rem; justify-content: center; }
+      .stat { min-width: 80px; text-align: center; }
+
+      /* SECTIONS */
+      .section { padding: 2rem 1.25rem; }
+      .section-title { font-size: clamp(1.3rem, 5vw, 1.8rem) !important; }
+
+      /* GRIDS — collapse all multi-col to single col */
+      [style*="grid-template-columns: repeat(3"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns:repeat(3"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns: repeat(2"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns:repeat(2"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns: 1fr 340px"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns:1fr 340px"] { grid-template-columns: 1fr !important; }
+
+      /* ARTICLE PAGES */
+      .article-layout { grid-template-columns: 1fr !important; }
+      .toc { display: none !important; }
+      .series-hero, .article-hero { padding: 2rem 1.25rem 1.5rem !important; }
+      .article-section { padding: 1.25rem !important; }
+      .try-tool, .try-tool-cta { flex-direction: column !important; }
+      .penalty-scale { grid-template-columns: 1fr !important; }
+      .risk-matrix { grid-template-columns: 1fr !important; }
+
+      /* KNOWLEDGE HUB */
+      .hub-hero { padding: 2.5rem 1.25rem 2rem !important; }
+      .hub-container { padding: 1rem !important; }
+      .series-card { grid-template-columns: 1fr !important; }
+      .sc-cta { display: none !important; }
+      .filter-bar { padding: 1rem 1rem 0 !important; }
+      .search-inner { flex-direction: column !important; }
+      .tool-banner { flex-direction: column !important; }
+      .nl-form { flex-direction: column !important; }
+
+      /* SCREEN PAGE */
+      .search-row { flex-direction: column !important; }
+      .btn-search { width: 100% !important; }
+      .summary-bar { grid-template-columns: repeat(2, 1fr) !important; }
+
+      /* ABOUT PAGE */
+      .hero-inner { grid-template-columns: 1fr !important; }
+      .jurisdiction-grid { grid-template-columns: 1fr !important; }
+
+      /* CONTACT PAGE */
+      .contact-layout { grid-template-columns: 1fr !important; padding: 1.5rem 1rem !important; }
+
+      /* NEWS PAGE */
+      .news-container { padding: 1.5rem 1rem !important; }
+      .nn-form { flex-direction: column !important; }
+
+      /* FOOTER */
+      footer { flex-direction: column !important; align-items: flex-start !important; gap: 1rem !important; }
+      .footer-links { flex-wrap: wrap !important; gap: 0.75rem !important; }
+
+      /* NEWS PILLS — horizontal scroll */
+      .filter-pills, [style*="flex-wrap:wrap"] { flex-wrap: nowrap !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; padding-bottom: 4px !important; }
     }
   </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
@@ -262,7 +371,7 @@
 
 <nav>
   <a class="nav-brand" href="/">
-    <img src="/logo.png" alt="FinCrimeRadar" style="height:56px;width:220px;object-fit:contain;object-position:left center;display:block;" />
+    <img src="/logo.png" alt="FinCrimeRadar" style="height:44px;width:auto;max-width:180px;object-fit:contain;object-position:left center;display:block;" />
   </a>
   <div class="nav-links">
     <a href="/learn.html" class="hm">Learn</a>
@@ -270,7 +379,15 @@
     <a href="/screen.html" class="hm">Screen</a>
     <a href="/screen.html" class="nav-cta" style="background:#00c4a7;color:#fff;font-weight:600;">Try the tool →</a>
   </div>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
 </nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/knowledge.html">Knowledge Hub</a>
+  <a href="/news.html">News</a>
+  <a href="/learn.html">Learn</a>
+  <a href="/about.html">About</a>
+  <a href="/screen.html" class="mobile-nav-cta">Try the tool →</a>
+</div>
 
 <!-- HERO -->
 <div class="series-hero">
@@ -926,6 +1043,25 @@
     window['ga-disable-G-FC1VMTE7JH'] = true;
     document.getElementById('cookieBanner').style.display = 'none';
   }
+</script>
+<script>
+function toggleMobileNav(){
+  var nav=document.getElementById('mobileNav');
+  var btn=document.getElementById('navHamburger');
+  if(!nav) return;
+  var open=nav.classList.toggle('open');
+  btn.innerHTML=open?'&#10005;':'&#9776;';
+  document.body.style.overflow=open?'hidden':'';
+}
+document.addEventListener('click',function(e){
+  var nav=document.getElementById('mobileNav');
+  var btn=document.getElementById('navHamburger');
+  if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==btn){
+    nav.classList.remove('open');
+    btn.innerHTML='&#9776;';
+    document.body.style.overflow='';
+  }
+});
 </script>
 </body>
 </html>
