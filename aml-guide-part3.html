@@ -47,7 +47,7 @@
     html { scroll-behavior:smooth; }
     body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
 
-    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:72px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:72px; background:#0d1b2a; backdrop-filter:blur(8px); border-bottom:1px solid rgba(255,255,255,0.08); }
     .nav-brand { display:flex; align-items:center; gap:8px; text-decoration:none; }
     .nav-logo { width:26px; height:26px; }
     .nav-name { font-size:15px; font-weight:600; color:var(--navy); }
@@ -66,7 +66,7 @@
     .series-sub { font-size:16px; color:#99f6e4; max-width:620px; line-height:1.7; margin-bottom:2rem; }
     .series-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#2dd4bf; }
 
-    .part-nav { background:var(--white); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; gap:0; overflow-x:auto; }
+    .part-nav { background:var(--white); border-bottom:1px solid rgba(255,255,255,0.08); padding:0 2rem; display:flex; gap:0; overflow-x:auto; }
     .part-link { padding:14px 20px; font-size:13px; font-weight:500; color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; }
     .part-link:hover { color:var(--navy); }
     .part-link.done { color:var(--success); }
@@ -135,7 +135,7 @@
     .data-table th { background:var(--navy); color:#fff; padding:9px 13px; text-align:left; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; }
     .data-table th:first-child { border-radius:8px 0 0 0; }
     .data-table th:last-child { border-radius:0 8px 0 0; }
-    .data-table td { padding:9px 13px; border-bottom:1px solid var(--border); color:var(--text); vertical-align:top; }
+    .data-table td { padding:9px 13px; border-bottom:1px solid rgba(255,255,255,0.08); color:var(--text); vertical-align:top; }
     .data-table tr:last-child td { border-bottom:none; }
     .data-table tr:nth-child(even) td { background:var(--off); }
 
