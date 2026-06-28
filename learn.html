@@ -52,8 +52,8 @@
       position: sticky; top: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 2rem; height: 60px;
-      background: rgba(13,27,42,0.98); backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
     }
     .nav-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
     .nav-logo { width: 26px; height: 26px; }
@@ -61,7 +61,7 @@
     .nav-name span { color: var(--accent); }
     .nav-links { display: flex; align-items: center; gap: 1.25rem; }
     .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.15s; }
-    .nav-links a:hover { color:#00c4a7; }
+    .nav-links a:hover { color:#00a892; }
     .nav-cta { padding: 7px 16px; background: var(--accent); color: #fff; border-radius: 6px; font-size: 13px; font-weight: 500; text-decoration: none; }
     .nav-cta:hover { background: var(--accent-h); color: #fff; }
 
@@ -257,7 +257,7 @@
   <div class="nav-links">
     <a href="/" class="hide-mobile">Home</a>
     <a href="/screen.html" class="hide-mobile">Screen</a>
-    <a href="/screen.html" class="nav-cta" style="background:#00c4a7;color:#0d1b2a;font-weight:700;">Try the tool →</a>
+    <a href="/screen.html" class="nav-cta" style="background:#00c4a7;color:#fff;font-weight:600;">Try the tool →</a>
   </div>
 </nav>
 
