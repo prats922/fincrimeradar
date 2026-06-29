@@ -492,14 +492,36 @@
     btn.disabled = false; btn.textContent = 'Screen';
   }
 
+  function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = 90; // account for sticky nav height
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  }
+
   function renderResults(data) {
     const s = data.summary;
     const riskLabel = {high:'🔴 High Risk',medium:'🟡 Medium Risk',low:'🟢 Low Risk',clear:'✅ Clear'}[s.risk_level]||'Unknown';
+    const hasResults = s.total_hits > 0 || s.adverse_hits > 0;
+    const cardStyle = hasResults ? 'cursor:pointer;transition:transform 0.15s,box-shadow 0.15s;' : '';
+    const cardHover = hasResults ? `onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,0.12)'" onmouseleave="this.style.transform='';this.style.boxShadow=''"` : '';
+
     let html = `<div class="summary-bar">
       <div class="summary-card risk-${s.risk_level}"><div class="summary-num">${riskLabel}</div><div class="summary-label">Overall risk</div></div>
-      <div class="summary-card"><div class="summary-num" style="color:var(--danger)">${s.sanctions_hits}</div><div class="summary-label">Sanctions hits</div></div>
-      <div class="summary-card"><div class="summary-num" style="color:var(--purple)">${s.pep_hits}</div><div class="summary-label">PEP matches</div></div>
-      <div class="summary-card"><div class="summary-num" style="color:var(--warning)">${s.adverse_hits}</div><div class="summary-label">Adverse media</div></div>
+      <div class="summary-card" style="${cardStyle}" onclick="scrollToSection('section-sanctions')" ${cardHover} title="Click to jump to Sanctions">
+        <div class="summary-num" style="color:var(--danger)">${s.sanctions_hits}</div>
+        <div class="summary-label">Sanctions hits ${s.sanctions_hits>0?'↓':''}</div>
+      </div>
+      <div class="summary-card" style="${cardStyle}" onclick="scrollToSection('section-pep')" ${cardHover} title="Click to jump to PEP matches">
+        <div class="summary-num" style="color:var(--purple)">${s.pep_hits}</div>
+        <div class="summary-label">PEP matches ${s.pep_hits>0?'↓':''}</div>
+      </div>
+      <div class="summary-card" style="${cardStyle}" onclick="scrollToSection('section-adverse')" ${cardHover} title="Click to jump to Adverse media">
+        <div class="summary-num" style="color:var(--warning)">${s.adverse_hits}</div>
+        <div class="summary-label">Adverse media ${s.adverse_hits>0?'↓':''}</div>
+      </div>
       ${s.highest_score?`<div class="summary-card"><div class="summary-num" style="color:var(--accent)">${s.highest_score}%</div><div class="summary-label">Highest score</div></div>`:''}
     </div>`;
 
@@ -507,15 +529,15 @@
       html += `<div class="clear-result"><div class="icon">✅</div><h3>No matches found</h3><p>No sanctions, PEP or adverse media hits at ${document.getElementById('threshold').value}% threshold.</p><p style="margin-top:6px;font-size:12px">Try lowering the threshold or check spelling variations.</p></div>`;
     } else {
       if (currentType==='all'||currentType==='sanctions') {
-        html += `<div class="section-label">Sanctions <span class="count">${data.sanctions.length} hit${data.sanctions.length!==1?'s':''}</span></div>`;
+        html += `<div id="section-sanctions" class="section-label">Sanctions <span class="count">${data.sanctions.length} hit${data.sanctions.length!==1?'s':''}</span></div>`;
         html += renderSanctions(data.sanctions);
       }
       if (currentType==='all'||currentType==='pep') {
-        html += `<div class="section-label">PEP screening <span class="count">${data.pep.length} hit${data.pep.length!==1?'s':''}</span></div>`;
+        html += `<div id="section-pep" class="section-label">PEP screening <span class="count">${data.pep.length} hit${data.pep.length!==1?'s':''}</span></div>`;
         html += renderPEP(data.pep);
       }
       if (currentType==='all'||currentType==='adverse') {
-        html += `<div class="section-label">Adverse media <span class="count">${data.adverse_media.length} article${data.adverse_media.length!==1?'s':''}</span></div>`;
+        html += `<div id="section-adverse" class="section-label">Adverse media <span class="count">${data.adverse_media.length} article${data.adverse_media.length!==1?'s':''}</span></div>`;
         html += renderAdverse(data.adverse_media);
       }
     }
