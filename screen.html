@@ -374,6 +374,14 @@
 
 <script>
   const API_BASE = 'https://fincrimeradar-api.onrender.com';
+
+  // Keep-alive ping — fires silently on page load to wake the API
+  // so it is ready by the time the user clicks Screen
+  (function pingAPI() {
+    fetch(API_BASE + '/api/health', { method: 'GET', cache: 'no-cache' })
+      .then(() => console.log('API warm'))
+      .catch(() => console.log('API warming up...'));
+  })();
   let currentType = 'all';
 
   function setType(el) {
@@ -476,17 +484,41 @@
     const btn = document.getElementById('searchBtn');
     btn.disabled = true; btn.textContent = 'Screening...';
 
-    document.getElementById('results').innerHTML = `<div class="loading">
+    document.getElementById('results').innerHTML = `<div class="loading" id="loadingBlock">
       <div class="spinner"></div>
-      <div>Screening across sanctions lists, PEP databases and adverse media...</div>
-      <div style="font-size:12px;color:#9ca3af;margin-top:6px">May take up to 30 seconds if the API is waking up.</div>
+      <div id="loadingMsg" style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px;">Screening in progress...</div>
+      <div id="loadingSub" style="font-size:12px;color:#9ca3af;margin-top:4px;">Searching sanctions lists, PEP databases and adverse media.</div>
+      <div id="loadingTimer" style="font-size:12px;color:#9ca3af;margin-top:4px;display:none;">⏱ <span id="timerCount">0</span>s elapsed — API is warming up, almost there...</div>
     </div>`;
+
+    // Live timer — show warm-up message after 8 seconds
+    let elapsed = 0;
+    const timerInterval = setInterval(() => {
+      elapsed++;
+      const timerEl = document.getElementById('timerCount');
+      const timerBlock = document.getElementById('loadingTimer');
+      const msgEl = document.getElementById('loadingMsg');
+      const subEl = document.getElementById('loadingSub');
+      if (!timerEl) { clearInterval(timerInterval); return; }
+      timerEl.textContent = elapsed;
+      if (elapsed >= 8) {
+        timerBlock.style.display = 'block';
+        msgEl.textContent = 'API is waking up...';
+        subEl.textContent = 'First search of the day takes up to 60 seconds. Subsequent searches are instant.';
+      }
+      if (elapsed >= 30) {
+        msgEl.textContent = 'Still loading — almost there...';
+        subEl.textContent = 'The API is a free-tier service. It can take up to 60 seconds on first load. Thank you for your patience.';
+      }
+    }, 1000);
 
     try {
       const url = `${API_BASE}/api/screen?q=${encodeURIComponent(query)}&type=${currentType}&threshold=${threshold}`;
+      clearInterval(timerInterval);
       const data = await fetch(url).then(r=>r.json());
       renderResults(data);
     } catch {
+      clearInterval(timerInterval);
       document.getElementById('results').innerHTML = `<div class="empty" style="color:var(--danger)">Could not connect to the screening API. Please try again shortly.</div>`;
     }
     btn.disabled = false; btn.textContent = 'Screen';
