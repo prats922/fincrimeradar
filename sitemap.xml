@@ -127,4 +127,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- KYC KYB CDD EDD Onboarding Dilemma -->
+  <url>
+    <loc>https://fincrimeradar.org/kyc-onboarding-dilemma.html</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 </urlset>

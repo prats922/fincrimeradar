@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Onboarding Dilemma: KYC, KYB, CDD & EDD Explained | FinCrimeRadar</title>
+  <meta name="description" content="From a lone individual to a sovereign wealth fund — the practitioner's interactive guide to choosing the right due diligence framework at every onboarding decision point." />
+  <meta name="keywords" content="KYC, KYB, CDD, EDD, onboarding, AML, due diligence, UBO, beneficial ownership, financial crime compliance" />
+  <meta name="author" content="FinCrimeRadar" />
+  <link rel="canonical" href="https://fincrimeradar.org/kyc-onboarding-dilemma.html" />
+  <meta property="og:title" content="The Onboarding Dilemma: KYC, KYB, CDD & EDD" />
+  <meta property="og:description" content="Six archetypes. Six dilemmas. One practitioner's guide to making the right call every time." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://fincrimeradar.org/kyc-onboarding-dilemma.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The Onboarding Dilemma: KYC, KYB, CDD & EDD",
+    "description": "From a lone individual to a sovereign wealth fund — the practitioner's interactive guide to choosing the right due diligence framework at every onboarding decision point.",
+    "author": {"@type": "Organization", "name": "FinCrimeRadar"},
+    "publisher": {"@type": "Organization", "name": "FinCrimeRadar", "url": "https://fincrimeradar.org"},
+    "url": "https://fincrimeradar.org/kyc-onboarding-dilemma.html",
+    "datePublished": "2026-06-29"
+  }
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FC1VMTE7JH');</script>
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:#ffffff; --off:#f7f8fa; --border:#e4e7ec;
+      --muted:#6b7280; --text:#111827; --navy:#0f2044;
+      --accent:#00c4a7; --accent-h:#00a892; --accent-light:#f0fdf9;
+      --danger:#dc2626; --success:#16a34a; --warning:#d97706;
+      --kyc:#2563eb; --kyc-light:#eff6ff;
+      --kyb:#7c3aed; --kyb-light:#f5f3ff;
+      --cdd:#0891b2; --cdd-light:#ecfeff;
+      --edd:#dc2626; --edd-light:#fef2f2;
+      --sdd:#16a34a; --sdd-light:#f0fdf4;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
+
+    /* NAV */
+    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:72px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:8px; text-decoration:none; }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:#374151; text-decoration:none; transition:color 0.15s; }
+    .nav-links a:hover { color:var(--accent); }
+    .nav-cta { padding:7px 16px; background:var(--accent); color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; text-decoration:none; }
+    .nav-hamburger { display:none; background:none; border:none; font-size:22px; cursor:pointer; color:var(--navy); padding:4px 6px; }
+    .mobile-nav { display:none; position:fixed; top:72px; left:0; right:0; background:#fff; border-bottom:1px solid #e4e7ec; flex-direction:column; z-index:99; padding:0.5rem 0; box-shadow:0 8px 24px rgba(0,0,0,0.08); }
+    .mobile-nav.open { display:flex; }
+    .mobile-nav a { padding:14px 1.5rem; font-size:15px; color:#374151; text-decoration:none; font-weight:500; border-bottom:1px solid #f3f4f6; }
+    .mobile-nav .mobile-nav-cta { margin:0.75rem 1.5rem 0.5rem; background:var(--accent); color:#fff !important; border-radius:8px; text-align:center; border-bottom:none; }
+
+    /* PROGRESS */
+    .progress-bar { position:fixed; top:72px; left:0; width:0%; height:3px; background:var(--kyb); z-index:199; transition:width 0.1s; }
+
+    /* HERO */
+    .article-hero {
+      background:linear-gradient(135deg, #0a1628 0%, #1a2a4a 40%, #0f2044 70%, #1a1040 100%);
+      color:#fff; padding:4rem 2rem 3rem; position:relative; overflow:hidden;
+    }
+    .article-hero::before {
+      content:'';
+      position:absolute; inset:0;
+      background-image: radial-gradient(ellipse at 20% 50%, rgba(37,99,235,0.15) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 20%, rgba(124,58,237,0.15) 0%, transparent 60%);
+    }
+    /* Animated decision nodes in hero */
+    .hero-nodes { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+    .hero-node { position:absolute; border-radius:50%; opacity:0.08; animation:pulse-node 4s ease-in-out infinite; }
+    .hero-node:nth-child(1) { width:300px; height:300px; background:var(--kyc); top:-80px; right:10%; animation-delay:0s; }
+    .hero-node:nth-child(2) { width:200px; height:200px; background:var(--kyb); bottom:20px; right:30%; animation-delay:1s; }
+    .hero-node:nth-child(3) { width:150px; height:150px; background:var(--edd); top:40%; left:5%; animation-delay:2s; }
+    @keyframes pulse-node { 0%,100%{transform:scale(1);opacity:0.08} 50%{transform:scale(1.2);opacity:0.14} }
+    .hero-inner { max-width:860px; margin:0 auto; position:relative; z-index:1; }
+    .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(37,99,235,0.25); border:1px solid rgba(96,165,250,0.4); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:#93c5fd; margin-bottom:1.25rem; }
+    .article-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(1.9rem,4vw,3rem); font-weight:400; line-height:1.2; margin-bottom:0.75rem; }
+    .article-hero h1 em { font-style:italic; color:#93c5fd; }
+    .hero-sub { font-size:16px; color:#93c5fd; max-width:640px; line-height:1.7; margin-bottom:2rem; }
+    .hero-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#60a5fa; }
+    .hero-meta span { display:flex; align-items:center; gap:5px; }
+
+    /* DECISION WATERFALL VISUAL */
+    .waterfall { background:#fff; border:1px solid var(--border); border-radius:12px; padding:2rem; margin-bottom:1.5rem; overflow-x:auto; }
+    .waterfall-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); margin-bottom:1.25rem; }
+    .wf-tree { display:flex; flex-direction:column; gap:0; }
+    .wf-row { display:flex; align-items:center; gap:0; }
+    .wf-node { border-radius:8px; padding:10px 16px; font-size:13px; font-weight:600; text-align:center; min-width:140px; cursor:default; transition:transform 0.15s; }
+    .wf-node:hover { transform:translateY(-2px); }
+    .wf-node.root { background:var(--navy); color:#fff; margin:0 auto; }
+    .wf-node.kyc { background:var(--kyc); color:#fff; }
+    .wf-node.kyb { background:var(--kyb); color:#fff; }
+    .wf-node.sdd { background:var(--sdd); color:#fff; font-size:12px; }
+    .wf-node.cdd { background:var(--cdd); color:#fff; font-size:12px; }
+    .wf-node.edd { background:var(--edd); color:#fff; font-size:12px; }
+    .wf-arrow { font-size:20px; color:var(--muted); margin:0 6px; }
+    .wf-branch { display:flex; justify-content:center; gap:2rem; margin-top:1rem; flex-wrap:wrap; }
+    .wf-branch-item { display:flex; flex-direction:column; align-items:center; gap:8px; }
+    .wf-connector { width:2px; height:24px; background:var(--border); margin:0 auto; }
+    .wf-label { font-size:11px; color:var(--muted); font-style:italic; text-align:center; max-width:130px; }
+    .wf-tier { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:6px; }
+
+    /* LAYOUT */
+    .article-layout { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 280px; gap:2rem; padding:2rem 1.5rem; align-items:start; }
+    .article-body { min-width:0; }
+    .article-sidebar { position:sticky; top:90px; }
+
+    /* TOC */
+    .toc { background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.25rem; margin-bottom:1rem; }
+    .toc-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); margin-bottom:0.75rem; }
+    .toc a { display:block; font-size:13px; color:var(--muted); text-decoration:none; padding:4px 0; border-left:2px solid transparent; padding-left:10px; transition:all 0.15s; line-height:1.4; }
+    .toc a:hover { color:var(--kyb); border-left-color:var(--kyb); }
+    .toc a.active { color:var(--kyb); border-left-color:var(--kyb); font-weight:600; }
+    .toc-archetype { display:flex; align-items:center; gap:5px; }
+    .toc-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+
+    /* SIDEBAR SCORE */
+    .score-card { background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.25rem; margin-bottom:1rem; }
+    .score-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); margin-bottom:1rem; }
+    .score-stat { display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid #f3f4f6; font-size:13px; }
+    .score-stat:last-child { border-bottom:none; }
+    .score-badge { font-weight:700; font-size:13px; }
+
+    /* TOOL CTA */
+    .tool-cta { background:linear-gradient(135deg, #0f2044, #1a3a6e); color:#fff; border-radius:12px; padding:1.25rem; text-align:center; }
+    .tool-cta p { font-size:13px; color:#93c5fd; margin-bottom:0.75rem; line-height:1.5; }
+    .tool-cta a { display:block; background:var(--accent); color:#fff; text-decoration:none; border-radius:8px; padding:10px; font-size:14px; font-weight:600; transition:background 0.15s; }
+    .tool-cta a:hover { background:var(--accent-h); }
+
+    /* ARTICLE SECTIONS */
+    .article-section { background:#fff; border:1px solid var(--border); border-radius:12px; padding:2rem; margin-bottom:1.5rem; }
+    .article-section h2 { font-family:'DM Serif Display',Georgia,serif; font-size:1.7rem; color:var(--navy); margin-bottom:0.5rem; line-height:1.3; }
+    .article-section h3 { font-size:1.05rem; font-weight:700; color:var(--navy); margin:1.5rem 0 0.5rem; }
+    .article-section p { color:#374151; margin-bottom:1rem; font-size:15px; }
+    .article-section ul, .article-section ol { padding-left:1.4rem; margin-bottom:1rem; }
+    .article-section li { font-size:15px; color:#374151; margin-bottom:0.4rem; }
+    .section-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:0.5rem; }
+
+    /* FRAMEWORK BADGES */
+    .badge { display:inline-flex; align-items:center; gap:5px; border-radius:99px; padding:3px 12px; font-size:12px; font-weight:700; }
+    .badge-kyc { background:var(--kyc-light); color:var(--kyc); border:1px solid #bfdbfe; }
+    .badge-kyb { background:var(--kyb-light); color:var(--kyb); border:1px solid #ddd6fe; }
+    .badge-cdd { background:var(--cdd-light); color:var(--cdd); border:1px solid #a5f3fc; }
+    .badge-edd { background:var(--edd-light); color:var(--edd); border:1px solid #fecaca; }
+    .badge-sdd { background:var(--sdd-light); color:var(--sdd); border:1px solid #bbf7d0; }
+
+    /* ARCHETYPE HEADER */
+    .archetype-header { display:flex; align-items:center; gap:14px; margin-bottom:1.25rem; padding-bottom:1rem; border-bottom:1px solid var(--border); }
+    .archetype-icon { width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:26px; flex-shrink:0; }
+    .archetype-num { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); }
+    .archetype-name { font-family:'DM Serif Display',Georgia,serif; font-size:1.4rem; color:var(--navy); line-height:1.2; }
+
+    /* OWNERSHIP TREE */
+    .ownership-tree { background:#f8fafc; border:1px solid var(--border); border-radius:10px; padding:1.25rem; margin:1.25rem 0; overflow-x:auto; }
+    .tree-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); margin-bottom:1rem; }
+    .tree-visual { display:flex; flex-direction:column; align-items:center; gap:0; min-width:320px; }
+    .tree-row { display:flex; justify-content:center; gap:1.5rem; }
+    .tree-node { background:#fff; border:1.5px solid var(--border); border-radius:8px; padding:8px 14px; font-size:12px; font-weight:600; text-align:center; min-width:100px; position:relative; }
+    .tree-node.individual { border-color:var(--kyc); color:var(--kyc); }
+    .tree-node.entity { border-color:var(--kyb); color:var(--kyb); }
+    .tree-node.high-risk { border-color:var(--edd); color:var(--edd); background:var(--edd-light); }
+    .tree-node.flagged { border-color:var(--warning); color:var(--warning); background:#fffbeb; }
+    .tree-node.trust { border-color:#6b7280; color:#6b7280; }
+    .tree-connector { width:2px; height:20px; background:#cbd5e1; margin:0 auto; }
+    .tree-h-line { display:flex; align-items:center; gap:0; justify-content:center; margin:0; }
+    .tree-h { height:2px; background:#cbd5e1; flex:1; max-width:80px; }
+    .tree-v-mini { width:2px; height:16px; background:#cbd5e1; margin:0 auto; }
+    .tree-label { font-size:10px; color:var(--muted); font-style:italic; text-align:center; margin-top:2px; }
+
+    /* DILEMMA CARD */
+    .dilemma-card { border:2px solid #e4e7ec; border-radius:12px; overflow:hidden; margin:1.25rem 0; }
+    .dilemma-header { background:var(--navy); color:#fff; padding:1rem 1.25rem; display:flex; align-items:center; gap:10px; }
+    .dilemma-header .icon { font-size:20px; }
+    .dilemma-header strong { font-size:14px; font-weight:700; }
+    .dilemma-header span { font-size:12px; color:#93c5fd; }
+    .dilemma-scenario { padding:1.25rem; background:#f8fafc; border-bottom:1px solid var(--border); }
+    .dilemma-scenario p { font-size:14px; color:#374151; margin:0; font-style:italic; line-height:1.6; }
+    .dilemma-options { padding:1.25rem; display:flex; flex-direction:column; gap:8px; }
+    .dilemma-option { border:1.5px solid var(--border); border-radius:8px; padding:12px 16px; cursor:pointer; transition:all 0.2s; font-size:14px; color:#374151; display:flex; align-items:flex-start; gap:10px; background:#fff; text-align:left; width:100%; }
+    .dilemma-option:hover { border-color:var(--kyb); background:var(--kyb-light); }
+    .dilemma-option .opt-label { font-weight:700; font-size:13px; min-width:20px; color:var(--muted); }
+    .dilemma-option.correct { border-color:var(--success); background:var(--sdd-light); }
+    .dilemma-option.wrong { border-color:var(--danger); background:var(--edd-light); }
+    .dilemma-option.partial { border-color:var(--warning); background:#fffbeb; }
+    .dilemma-option:disabled { cursor:default; }
+    .dilemma-verdict { padding:1.25rem; border-top:1px solid var(--border); display:none; }
+    .dilemma-verdict.show { display:block; }
+    .verdict-correct { background:var(--sdd-light); border-radius:8px; padding:1rem; }
+    .verdict-wrong { background:var(--edd-light); border-radius:8px; padding:1rem; }
+    .verdict-partial { background:#fffbeb; border-radius:8px; padding:1rem; }
+    .verdict-icon { font-size:20px; margin-bottom:6px; }
+    .verdict-title { font-weight:700; font-size:15px; margin-bottom:6px; }
+    .verdict-body { font-size:14px; color:#374151; line-height:1.6; }
+    .try-again-btn { margin-top:10px; padding:8px 16px; background:var(--navy); color:#fff; border:none; border-radius:6px; font-size:13px; font-weight:600; cursor:pointer; }
+
+    /* CALLOUTS */
+    .callout { border-radius:10px; padding:1.1rem 1.25rem; margin:1.25rem 0; border-left:4px solid; }
+    .callout-blue { background:var(--kyc-light); border-color:var(--kyc); }
+    .callout-purple { background:var(--kyb-light); border-color:var(--kyb); }
+    .callout-teal { background:var(--accent-light); border-color:var(--accent); }
+    .callout-red { background:var(--edd-light); border-color:var(--edd); }
+    .callout-navy { background:#f0f4ff; border-color:var(--navy); }
+    .callout-amber { background:#fffbeb; border-color:var(--warning); }
+    .callout strong { display:block; font-size:13px; font-weight:700; margin-bottom:4px; }
+    .callout p { font-size:14px; margin:0; color:#374151; }
+
+    /* INLINE TOOL PROMO */
+    .inline-tool-promo { background:linear-gradient(135deg, #f0fdf9, #ecfeff); border:1px solid var(--accent); border-radius:12px; padding:1.25rem 1.5rem; margin:1.5rem 0; display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap; }
+    .itp-text { flex:1; min-width:220px; }
+    .itp-text strong { display:block; font-size:15px; color:var(--navy); margin-bottom:4px; }
+    .itp-text span { font-size:13px; color:var(--muted); }
+    .itp-btn { background:var(--accent); color:#fff; text-decoration:none; border-radius:8px; padding:10px 18px; font-size:14px; font-weight:600; white-space:nowrap; transition:background 0.15s; }
+    .itp-btn:hover { background:var(--accent-h); }
+
+    /* STAT ROW */
+    .stat-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:1.5rem 0; }
+    .stat-box { background:var(--kyb-light); border:1px solid #ddd6fe; border-radius:10px; padding:1rem; text-align:center; }
+    .stat-box .num { font-family:'DM Serif Display',Georgia,serif; font-size:2rem; color:var(--kyb); line-height:1; margin-bottom:4px; }
+    .stat-box .lbl { font-size:12px; color:var(--muted); line-height:1.4; }
+
+    /* COMPLEXITY METER */
+    .complexity-meter { display:flex; align-items:center; gap:8px; margin:0.5rem 0; }
+    .complexity-label { font-size:12px; color:var(--muted); min-width:80px; }
+    .complexity-track { flex:1; height:6px; background:#e4e7ec; border-radius:99px; overflow:hidden; }
+    .complexity-fill { height:100%; border-radius:99px; transition:width 0.8s ease; }
+    .complexity-text { font-size:12px; font-weight:700; min-width:30px; }
+
+    /* QUIZ */
+    .quiz-section { background:var(--navy); border-radius:12px; padding:2rem; margin:1.5rem 0; color:#fff; }
+    .quiz-title { font-family:'DM Serif Display',Georgia,serif; font-size:1.3rem; margin-bottom:0.5rem; }
+    .quiz-sub { font-size:13px; color:#93c5fd; margin-bottom:1.5rem; }
+    .quiz-q { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:1.25rem; margin-bottom:1rem; }
+    .quiz-q-text { font-size:14px; font-weight:600; margin-bottom:0.75rem; }
+    .quiz-opts { display:flex; flex-direction:column; gap:6px; }
+    .quiz-opt { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:6px; padding:10px 14px; cursor:pointer; font-size:13px; color:#e2e8f0; transition:all 0.15s; text-align:left; width:100%; }
+    .quiz-opt:hover { background:rgba(255,255,255,0.15); border-color:rgba(255,255,255,0.3); }
+    .quiz-opt.q-correct { background:rgba(22,163,74,0.25); border-color:#4ade80; color:#86efac; }
+    .quiz-opt.q-wrong { background:rgba(220,38,38,0.25); border-color:#f87171; color:#fca5a5; }
+    .quiz-feedback { font-size:13px; margin-top:8px; padding:8px 12px; border-radius:6px; display:none; }
+    .quiz-feedback.show { display:block; }
+    .quiz-score-display { text-align:center; padding:1.5rem; background:rgba(255,255,255,0.05); border-radius:10px; margin-top:1rem; display:none; }
+    .quiz-score-display.show { display:block; }
+    .quiz-score-num { font-family:'DM Serif Display',Georgia,serif; font-size:3rem; color:#86efac; }
+    .quiz-score-label { font-size:14px; color:#93c5fd; margin-top:4px; }
+
+    /* MOBILE */
+    @media(max-width:768px) {
+      .article-layout { grid-template-columns:1fr; }
+      .article-sidebar { position:static; }
+      .stat-row { grid-template-columns:repeat(2,1fr); }
+      .nav-hamburger { display:block; }
+      .nav-links { display:none; }
+      .nav-brand img { height:40px !important; max-width:160px !important; }
+      .wf-branch { gap:1rem; }
+      .wf-node { min-width:100px; font-size:12px; }
+      .tree-row { gap:0.75rem; }
+      .tree-node { min-width:80px; font-size:11px; padding:6px 10px; }
+      .inline-tool-promo { flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <a class="nav-brand" href="/">
+    <img src="/logo.png" alt="FinCrimeRadar" style="height:72px;width:260px;object-fit:contain;object-position:left center;display:block;" />
+  </a>
+  <div class="nav-links">
+    <a href="/knowledge.html">Knowledge Hub</a>
+    <a href="/news.html">News</a>
+    <a href="/learn.html">Learn</a>
+    <a href="/about.html">About</a>
+    <a href="/screen.html" class="nav-cta">Try the tool →</a>
+  </div>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/knowledge.html">Knowledge Hub</a>
+  <a href="/news.html">News</a>
+  <a href="/learn.html">Learn</a>
+  <a href="/about.html">About</a>
+  <a href="/screen.html" class="mobile-nav-cta">Try the tool →</a>
+</div>
+
+<!-- HERO -->
+<div class="article-hero">
+  <div class="hero-nodes">
+    <div class="hero-node"></div>
+    <div class="hero-node"></div>
+    <div class="hero-node"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="series-tag">🧭 Interactive Deep Dive · Onboarding</div>
+    <h1>KYC / KYB / CDD / EDD:<br><em>The Onboarding Dilemma</em></h1>
+    <p class="hero-sub">Six archetypes. Six real dilemmas. From a lone individual with no fixed address to a sovereign wealth fund with 14 corporate layers — the practitioner's guide to making the right call at every onboarding decision point.</p>
+    <div class="hero-meta">
+      <span>⏱ 25 min read</span>
+      <span>🧭 Interactive</span>
+      <span>🎓 Practitioner Level</span>
+      <span>📋 6 Dilemmas</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="article-layout">
+  <div class="article-body">
+
+    <!-- INTRO -->
+    <div class="article-section" id="intro">
+      <div class="section-eyebrow" style="color:var(--kyb)">The Problem Nobody Talks About</div>
+      <h2>The acronyms are easy. The decisions are not.</h2>
+      <p>Every compliance professional can recite the definitions. KYC verifies the individual. KYB verifies the business. CDD assesses the risk. EDD goes deeper when it needs to. Simple enough on paper.</p>
+      <p>What nobody tells you is what happens when a new customer walks in and the answer is not obvious. Is this sole trader a KYC case or a KYB case? Does this charity with cash donations need SDD or EDD? Who exactly is the "beneficial owner" of a sovereign wealth fund?</p>
+      <p>These are the dilemmas that separate a functional compliance programme from one that creates regulatory exposure. This guide walks through six real-world archetypes — each with a decision point where the wrong call carries consequences. At each stop, you will make the call yourself before seeing the correct answer and the reasoning behind it.</p>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="num">£3.8bn</div>
+          <div class="lbl">global AML fines in 2024, many linked to onboarding failures</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">68%</div>
+          <div class="lbl">of SAR reporters cite inadequate CDD at onboarding as a root cause</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">4 layers</div>
+          <div class="lbl">average corporate structure depth before the true UBO is reached</div>
+        </div>
+      </div>
+
+      <div class="callout callout-navy">
+        <strong>How to use this guide</strong>
+        <p>Read the archetype. Examine the ownership tree. Face the dilemma. Choose your answer. Then read the verdict. Each section builds on the previous one — complexity increases as you go. Do not skip ahead.</p>
+      </div>
+    </div>
+
+    <!-- DECISION WATERFALL -->
+    <div class="waterfall" id="framework">
+      <div class="waterfall-title">The Master Decision Framework — Which Process Applies?</div>
+      <div class="wf-tree">
+        <div style="display:flex;justify-content:center;">
+          <div class="wf-node root">New Customer Arrives</div>
+        </div>
+        <div class="wf-connector"></div>
+        <div style="display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;">
+          <div class="wf-branch-item">
+            <div class="wf-node kyc">Natural Person → KYC</div>
+            <div class="wf-connector"></div>
+            <div class="wf-label">Individual, sole trader under own name, personal account</div>
+            <div class="wf-connector"></div>
+            <div class="wf-tier">
+              <div class="wf-node sdd" style="font-size:11px;min-width:90px;">SDD<br><span style="font-weight:400">Low risk</span></div>
+              <div class="wf-node cdd" style="font-size:11px;min-width:90px;">CDD<br><span style="font-weight:400">Standard</span></div>
+              <div class="wf-node edd" style="font-size:11px;min-width:90px;">EDD<br><span style="font-weight:400">PEP / High risk</span></div>
+            </div>
+          </div>
+          <div class="wf-branch-item">
+            <div class="wf-node kyb">Legal Entity → KYB + KYC</div>
+            <div class="wf-connector"></div>
+            <div class="wf-label">Company, charity, trust, fund, partnership, state body</div>
+            <div class="wf-connector"></div>
+            <div class="wf-tier">
+              <div class="wf-node sdd" style="font-size:11px;min-width:90px;">SDD<br><span style="font-weight:400">Listed / Regulated</span></div>
+              <div class="wf-node cdd" style="font-size:11px;min-width:90px;">CDD<br><span style="font-weight:400">Standard SME</span></div>
+              <div class="wf-node edd" style="font-size:11px;min-width:90px;">EDD<br><span style="font-weight:400">Complex / Offshore</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:1.25rem;">Note: KYB always contains KYC. Every UBO identified through KYB must be individually verified using KYC procedures.</p>
+    </div>
+
+    <!-- ARCHETYPE 1: INDIVIDUAL -->
+    <div class="article-section" id="arch1">
+      <div class="archetype-header">
+        <div class="archetype-icon" style="background:var(--kyc-light);">👤</div>
+        <div>
+          <div class="archetype-num">Archetype 01 · Simplest case</div>
+          <div class="archetype-name">The Individual with a Complication</div>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="badge badge-kyc">KYC</span>
+        </div>
+      </div>
+
+      <p>James is a 34-year-old freelance graphic designer. He wants to open a business current account at your fintech. He is a British citizen, has a UK passport, and has been operating under his own name for three years. No limited company. No employees. No offshore connections.</p>
+      <p>On paper, James is a straightforward KYC case. Identity check: passport plus selfie. Risk assessment: low. Sanctions and PEP check: clear. SDD applies. Onboarding time: four minutes. Done.</p>
+      <p>But then the system flags something: James has no fixed address. He moved out of his flat six months ago and has been staying with various friends. His passport shows an address that no longer matches anything verifiable. He cannot provide a utility bill or bank statement at his current location.</p>
+
+      <div class="ownership-tree">
+        <div class="tree-title">Ownership Structure</div>
+        <div class="tree-visual">
+          <div class="tree-row">
+            <div class="tree-node individual">James Chen<br><span style="font-weight:400;font-size:10px;">Sole Trader</span></div>
+          </div>
+          <div class="tree-connector"></div>
+          <div class="tree-row">
+            <div class="tree-node flagged">⚠ Address<br>Unverifiable</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="complexity-meter">
+        <span class="complexity-label">Complexity</span>
+        <div class="complexity-track"><div class="complexity-fill" style="width:20%;background:var(--sdd);"></div></div>
+        <span class="complexity-text" style="color:var(--sdd);">Low</span>
+      </div>
+
+      <h3>What does KYC actually require for address verification?</h3>
+      <p>Under the UK Money Laundering Regulations 2017, firms must verify identity — name and date of birth — from a reliable, independent source. Address is a customer identification requirement under most firms' CIP policies, but the regulation does not specify that address must be verified through a utility bill. The important distinction is between identifying someone and verifying their current residential address.</p>
+      <p>Alternative address verification methods that satisfy the risk-based approach include: credit reference agency checks (Experian, Equifax, TransUnion), electoral roll search, HMRC correspondence, or a declaration supported by a professional (solicitor, accountant, employer). For genuinely nomadic individuals, some firms will accept a care-of address at a trusted third party with appropriate documentation.</p>
+
+      <div class="callout callout-blue">
+        <strong>The SDD Trap</strong>
+        <p>SDD (Simplified Due Diligence) allows lighter verification for demonstrably low-risk customers. It does not mean you can skip address verification entirely. A customer who cannot satisfy basic CIP requirements does not qualify for SDD — they need more scrutiny, not less, until the identification gap is resolved.</p>
+      </div>
+
+      <!-- DILEMMA 1 -->
+      <div class="dilemma-card" id="dilemma1">
+        <div class="dilemma-header">
+          <span class="icon">⚖️</span>
+          <div>
+            <strong>Dilemma 01: The No Fixed Address Problem</strong>
+            <span>— What do you do?</span>
+          </div>
+        </div>
+        <div class="dilemma-scenario">
+          <p>James has passed your identity check (passport verified). His name is clear on sanctions and PEP databases. He has submitted a letter from his friend confirming he is staying there, but this is not an official document. He needs the account urgently for an invoicing deadline this week. What is your call?</p>
+        </div>
+        <div class="dilemma-options">
+          <button class="dilemma-option" onclick="showVerdict('d1','wrong',this)" data-answer="A">
+            <span class="opt-label">A</span>
+            <span>Decline the application. You cannot satisfy address verification and therefore cannot onboard James under your CIP policy.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('d1','partial',this)" data-answer="B">
+            <span class="opt-label">B</span>
+            <span>Onboard James provisionally with transaction limits, escalate to a senior compliance officer, and request a credit reference agency check within 5 business days to verify address.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('d1','correct',this)" data-answer="C">
+            <span class="opt-label">C</span>
+            <span>Apply SDD given that identity is verified and risk is low, document the address gap, and move to standard CDD once James obtains a permanent address within an agreed timeframe.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('d1','wrong',this)" data-answer="D">
+            <span class="opt-label">D</span>
+            <span>Onboard James fully with no restrictions. Identity is verified, risk is low, and the address issue is a documentation technicality that can be resolved at the next periodic review.</span>
+          </button>
+        </div>
+        <div class="dilemma-verdict" id="d1-verdict">
+          <div id="d1-content"></div>
+        </div>
+      </div>
+
+      <div class="inline-tool-promo">
+        <div class="itp-text">
+          <strong>Screening an individual like James?</strong>
+          <span>Run a free PEP, sanctions, and adverse media check on any individual — no account required.</span>
+        </div>
+        <a href="/screen.html" class="itp-btn">Screen an individual →</a>
+      </div>
+    </div>
+
+    <!-- ARCHETYPE 2: SOLE TRADER -->
+    <div class="article-section" id="arch2">
+      <div class="archetype-header">
+        <div class="archetype-icon" style="background:#fff7ed;">🔧</div>
+        <div>
+          <div class="archetype-num">Archetype 02 · The grey zone</div>
+          <div class="archetype-name">The Sole Trader at the KYC / KYB Boundary</div>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="badge badge-kyc">KYC</span>
+          <span class="badge badge-kyb">KYB?</span>
+        </div>
+      </div>
+
+      <p>Sarah runs a plumbing business. She trades as "Sarah Williams Plumbing" — not a limited company, not an LLP, just her own name with the word Plumbing appended. Her annual turnover is £180,000. She employs two part-time assistants paid through payroll. She has a business bank account, a VAT number, and a website.</p>
+      <p>Does Sarah require KYC or KYB? This is one of the most misapplied questions in onboarding. The answer determines whether you need company registration documents, beneficial ownership analysis, and a separate entity risk rating — or whether a passport and utility bill will do.</p>
+
+      <div class="ownership-tree">
+        <div class="tree-title">What is the legal structure here?</div>
+        <div class="tree-visual">
+          <div class="tree-row">
+            <div class="tree-node individual">Sarah Williams<br><span style="font-weight:400;font-size:10px;">Natural person</span></div>
+          </div>
+          <div class="tree-connector"></div>
+          <div class="tree-row">
+            <div class="tree-node individual" style="border-style:dashed;">"Sarah Williams Plumbing"<br><span style="font-weight:400;font-size:10px;">Trading name — not a legal entity</span></div>
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--muted);margin-top:10px;text-align:center;">A sole trader is not a separate legal entity. The individual and the business are the same legal person.</p>
+      </div>
+
+      <div class="complexity-meter">
+        <span class="complexity-label">Complexity</span>
+        <div class="complexity-track"><div class="complexity-fill" style="width:35%;background:var(--warning);"></div></div>
+        <span class="complexity-text" style="color:var(--warning);">Medium</span>
+      </div>
+
+      <h3>The legal entity test</h3>
+      <p>The determining factor is not how the business looks from the outside — it is whether a separate legal entity exists. A sole trader, regardless of trading name, employees, turnover, or VAT registration, is a natural person operating under their own name. There is no separate legal entity. There are no directors. There are no shareholders. There is no company number.</p>
+      <p>This means: KYC applies, not KYB. You verify Sarah as an individual. You assess her personal risk profile. You run PEP and sanctions checks on Sarah Williams the person. The trading name is commercially relevant but legally irrelevant to your onboarding framework.</p>
+      <p>However — and this is where firms frequently make errors — you should also understand the nature of the business activity for your CDD risk assessment. A sole trader turning over £180,000 in cash-intensive plumbing work warrants a different risk profile than a sole trader who invoices six corporate clients electronically. The KYC process is the same. The risk rating is not.</p>
+
+      <div class="callout callout-amber">
+        <strong>The Common Error</strong>
+        <p>Applying KYB procedures to sole traders adds unnecessary friction, delays onboarding, and wastes analyst time requesting documents that do not exist (company registration numbers, articles of association). If your firm's policy treats sole traders as corporate entities, that policy needs to be revisited.</p>
+      </div>
+
+      <!-- DILEMMA 2 -->
+      <div class="dilemma-card" id="dilemma2">
+        <div class="dilemma-header">
+          <span class="icon">⚖️</span>
+          <div>
+            <strong>Dilemma 02: Sole Trader or Business Entity?</strong>
+            <span>— Make the call</span>
+          </div>
+        </div>
+        <div class="dilemma-scenario">
+          <p>Sarah applies for a business account. During onboarding she mentions she is "planning to set up a limited company next year." She also mentions her husband helps with the admin and occasionally handles cash from customers. Which framework applies today, and does the husband's involvement change anything?</p>
+        </div>
+        <div class="dilemma-options">
+          <button class="dilemma-option" onclick="showVerdict('d2','wrong',this)">
+            <span class="opt-label">A</span>
+            <span>Apply KYB now because the husband's involvement creates a second beneficial owner that must be identified and verified separately.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('d2','correct',this)">
+            <span class="opt-label">B</span>
+            <span>Apply KYC for Sarah today. The husband should be noted in the file as an associated person handling cash, triggering enhanced transaction monitoring. Revisit the framework when the Ltd company is formed.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('d2','wrong',this)">
+            <span class="opt-label">C</span>
+            <span>Apply SDD — sole traders are low risk by definition and the structure is simple enough to waive full CDD.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('d2','partial',this)">
+            <span class="opt-label">D</span>
+            <span>Apply KYC for Sarah and also run a full KYC check on the husband since he handles cash on behalf of the business.</span>
+          </button>
+        </div>
+        <div class="dilemma-verdict" id="d2-verdict">
+          <div id="d2-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARCHETYPE 3: SME -->
+    <div class="article-section" id="arch3">
+      <div class="archetype-header">
+        <div class="archetype-icon" style="background:var(--kyb-light);">🏢</div>
+        <div>
+          <div class="archetype-num">Archetype 03 · Standard corporate case</div>
+          <div class="archetype-name">The Clean SME — Where KYB Gets Its Footing</div>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="badge badge-kyb">KYB</span>
+          <span class="badge badge-cdd">CDD</span>
+        </div>
+      </div>
+
+      <p>Meridian Creative Ltd is a two-year-old marketing agency based in Bristol. Incorporated at Companies House, registered for VAT, two directors who are also the only shareholders. Turnover £450,000. All revenue from UK-based corporate clients. No cash. Clean adverse media. No PEP connections.</p>
+      <p>This is the textbook KYB case. But "textbook" does not mean "skip the steps." Many onboarding failures happen precisely here — with the cases that look clean — because analysts apply shortcuts that leave documentation gaps.</p>
+
+      <div class="ownership-tree">
+        <div class="tree-title">Ownership Structure — Meridian Creative Ltd</div>
+        <div class="tree-visual">
+          <div class="tree-row">
+            <div class="tree-node entity">Meridian Creative Ltd<br><span style="font-weight:400;font-size:10px;">Registered UK Ltd Co</span></div>
+          </div>
+          <div class="tree-connector"></div>
+          <div style="display:flex;gap:40px;justify-content:center;">
+            <div style="text-align:center;">
+              <div class="tree-v-mini"></div>
+              <div class="tree-node individual">Director A<br><span style="font-weight:400;font-size:10px;">50% shareholder</span></div>
+            </div>
+            <div style="text-align:center;">
+              <div class="tree-v-mini"></div>
+              <div class="tree-node individual">Director B<br><span style="font-weight:400;font-size:10px;">50% shareholder</span></div>
+            </div>
+          </div>
+          <div style="margin-top:8px;font-size:11px;color:var(--sdd);font-weight:600;">✓ Both UBOs clearly identified — KYC required for each</div>
+        </div>
+      </div>
+
+      <div class="complexity-meter">
+        <span class="complexity-label">Complexity</span>
+        <div class="complexity-track"><div class="complexity-fill" style="width:45%;background:var(--cdd);"></div></div>
+        <span class="complexity-text" style="color:var(--cdd);">Moderate</span>
+      </div>
+
+      <h3>The KYB checklist for a clean UK Ltd company</h3>
+      <p>Even for a straightforward SME, your KYB file should contain all of the following before the account is opened:</p>
+      <ul>
+        <li>Certificate of Incorporation (Companies House verification is acceptable as a primary source)</li>
+        <li>Confirmation of current registered address and trading address if different</li>
+        <li>Memorandum and Articles of Association (or confirmation of model articles)</li>
+        <li>Full register of directors — verified against Companies House PSC register</li>
+        <li>UBO identification: all individuals with more than 25% ownership or control</li>
+        <li>KYC on each UBO individually: identity document, PEP check, sanctions check, adverse media search</li>
+        <li>Nature of business and expected transaction profile documented</li>
+        <li>Source of funds: where is the business revenue coming from?</li>
+      </ul>
+
+      <div class="callout callout-purple">
+        <strong>The 25% Threshold — and What It Misses</strong>
+        <p>FATF and UK MLRs define a UBO as someone owning or controlling more than 25% of the entity. But control can exist without ownership. A director with veto rights over all transactions, a contractual controlling party, or a shadow director can all exercise effective control without holding a single share. Your policy must address control as well as ownership.</p>
+      </div>
+
+      <!-- DILEMMA 3 -->
+      <div class="dilemma-card" id="dilemma3">
+        <div class="dilemma-header">
+          <span class="icon">⚖️</span>
+          <div>
+            <strong>Dilemma 03: The Missing Shareholder</strong>
+            <span>— How far do you go?</span>
+          </div>
+        </div>
+        <div class="dilemma-scenario">
+          <p>Midway through onboarding Meridian Creative, the Companies House PSC register shows a third individual listed as a "Person with Significant Control" — a 26% shareholder not mentioned during the application. The directors say this person is a silent investor who has had no involvement for 18 months and they "forgot" to mention them. The account opening is needed urgently for a client contract starting Monday. What do you do?</p>
+        </div>
+        <div class="dilemma-options">
+          <button class="dilemma-option" onclick="showVerdict('d3','wrong',this)">
+            <span class="opt-label">A</span>
+            <span>Accept the directors' explanation. A silent investor with no involvement is low risk. Open the account with a note to follow up on the PSC at the next annual review.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('d3','wrong',this)">
+            <span class="opt-label">B</span>
+            <span>Open the account immediately — the contract urgency is a legitimate commercial need and you have verified the two active directors.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('d3','correct',this)">
+            <span class="opt-label">C</span>
+            <span>Halt onboarding. The third PSC must be identified and fully KYC'd before the account opens. Urgency does not override UBO identification requirements. Explain this to the directors and set a clear deadline.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('d3','partial',this)">
+            <span class="opt-label">D</span>
+            <span>Open the account with restricted functionality (receiving only, no outward payments) while you complete KYC on the third PSC within 48 hours.</span>
+          </button>
+        </div>
+        <div class="dilemma-verdict" id="d3-verdict">
+          <div id="d3-content"></div>
+        </div>
+      </div>
+
+      <div class="inline-tool-promo">
+        <div class="itp-text">
+          <strong>Screening all three directors of Meridian Creative?</strong>
+          <span>Run PEP, sanctions, and adverse media on each UBO individually before you open the file.</span>
+        </div>
+        <a href="/screen.html" class="itp-btn">Screen a director now →</a>
+      </div>
+    </div>
+
+    <!-- ARCHETYPE 4: COMPLEX CORPORATE -->
+    <div class="article-section" id="arch4">
+      <div class="archetype-header">
+        <div class="archetype-icon" style="background:#fef3c7;">🌐</div>
+        <div>
+          <div class="archetype-num">Archetype 04 · High complexity</div>
+          <div class="archetype-name">The Layered Corporate — Where Shell Structures Hide</div>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="badge badge-kyb">KYB</span>
+          <span class="badge badge-edd">EDD</span>
+        </div>
+      </div>
+
+      <p>Greystone Holdings Ltd presents for onboarding at your payment institution. UK-registered. The application says it is a property investment vehicle. Turnover: £12 million last year. The applying director is a Mr. Okafor based in Lagos, who holds a power of attorney to act on behalf of the company.</p>
+      <p>The shareholder register shows one shareholder: Greystone Capital S.A., registered in Luxembourg. That entity is owned by a trust registered in the British Virgin Islands. The trustee is a corporate trustee. The named beneficiaries of the trust are "members of the Okafor family" — unspecified.</p>
+
+      <div class="ownership-tree">
+        <div class="tree-title">Ownership Structure — Greystone Holdings Ltd</div>
+        <div class="tree-visual">
+          <div class="tree-row">
+            <div class="tree-node entity">Greystone Holdings Ltd<br><span style="font-weight:400;font-size:10px;">UK Ltd · Property Investment</span></div>
+          </div>
+          <div class="tree-connector"></div>
+          <div class="tree-row">
+            <div class="tree-node entity">Greystone Capital S.A.<br><span style="font-weight:400;font-size:10px;">Luxembourg · 100% shareholder</span></div>
+          </div>
+          <div class="tree-connector"></div>
+          <div class="tree-row">
+            <div class="tree-node high-risk">BVI Trust<br><span style="font-weight:400;font-size:10px;">Corporate Trustee · Beneficiaries unknown</span></div>
+          </div>
+          <div class="tree-connector"></div>
+          <div class="tree-row">
+            <div class="tree-node high-risk">? Okafor Family<br><span style="font-weight:400;font-size:10px;">Natural persons — unidentified</span></div>
+          </div>
+          <div style="margin-top:10px;font-size:11px;color:var(--edd);font-weight:600;">⚠ UBO layer not yet reached — EDD mandatory</div>
+        </div>
+      </div>
+
+      <div class="complexity-meter">
+        <span class="complexity-label">Complexity</span>
+        <div class="complexity-track"><div class="complexity-fill" style="width:85%;background:var(--edd);"></div></div>
+        <span class="complexity-text" style="color:var(--edd);">Very High</span>
+      </div>
+
+      <h3>Why this structure demands EDD before anything else</h3>
+      <p>Four red flags activate EDD simultaneously here. First: a high-risk jurisdiction in the ownership chain (BVI is on the FATF and OFSI monitoring list for corporate opacity). Second: an unidentified beneficiary class — "family members" is not a UBO. Third: a power of attorney arrangement, which creates a control layer that bypasses normal governance. Fourth: the business activity (property investment) is a known typology for layered money laundering.</p>
+      <p>EDD in this context means: requesting the trust deed, identifying every named beneficiary, running full KYC on each natural person in the Okafor family who benefits from the trust, obtaining an intelligence report on the Okafor family from a specialist provider, verifying source of wealth for the £12 million property portfolio, and obtaining senior management approval before the account is opened — regardless of how straightforward the directors present the arrangement.</p>
+
+      <div class="callout callout-red">
+        <strong>The Power of Attorney Trap</strong>
+        <p>A POA holder acting on behalf of a corporate entity is not the beneficial owner. They are an authorised signatory. Your obligation is still to identify who ultimately owns or controls the entity — not just who is sitting in front of you completing the forms. An articulate, cooperative POA holder is not evidence of a clean structure behind them.</p>
+      </div>
+
+      <!-- DILEMMA 4 -->
+      <div class="dilemma-card" id="dilemma4">
+        <div class="dilemma-header">
+          <span class="icon">⚖️</span>
+          <div>
+            <strong>Dilemma 04: Senior Management Won't Approve Without a Business Case</strong>
+            <span>— Your escalation is challenged</span>
+          </div>
+        </div>
+        <div class="dilemma-scenario">
+          <p>You have escalated Greystone for EDD and senior management approval. The relationship manager tells you this client will generate £180,000 in annual fees. Your Head of Compliance says the structure is "unusual but not prohibited" and wants you to proceed with standard CDD and enhanced monitoring post-onboarding. You believe EDD is mandatory here. What do you do?</p>
+        </div>
+        <div class="dilemma-options">
+          <button class="dilemma-option" onclick="showVerdict('d4','wrong',this)">
+            <span class="opt-label">A</span>
+            <span>Defer to the Head of Compliance. They have ultimate accountability and have made a risk-based decision. Document your concern in the file and proceed.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('d4','correct',this)">
+            <span class="opt-label">B</span>
+            <span>Put your EDD recommendation in writing to the Head of Compliance, citing the specific MLR 2017 regulation and FATF guidance that mandates EDD for this structure. Request a written decision from them overriding your assessment. Do not proceed until you have that in writing.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('d4','wrong',this)">
+            <span class="opt-label">C</span>
+            <span>Agree to proceed with enhanced post-onboarding monitoring as a compromise — this is a risk-based approach that gives the firm the commercial relationship while managing exposure.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('d4','partial',this)">
+            <span class="opt-label">D</span>
+            <span>Refuse to sign off on the onboarding file and refer the matter to the MLRO directly, bypassing the Head of Compliance.</span>
+          </button>
+        </div>
+        <div class="dilemma-verdict" id="d4-verdict">
+          <div id="d4-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARCHETYPE 5: CHARITY / NGO -->
+    <div class="article-section" id="arch5">
+      <div class="archetype-header">
+        <div class="archetype-icon" style="background:#f0fdf4;">🏛️</div>
+        <div>
+          <div class="archetype-num">Archetype 05 · The overlooked sector</div>
+          <div class="archetype-name">The Charity, Society & NGO — A Sector Built for Exploitation</div>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:6px;flex-wrap:wall;">
+          <span class="badge badge-kyb">KYB</span>
+          <span class="badge badge-edd">EDD triggers</span>
+        </div>
+      </div>
+
+      <p>Helping Hands UK is a registered charity. Charity Commission registration: confirmed. Purpose: humanitarian aid to conflict zones in the Middle East and North Africa. They want to open an account to receive donations and send funds to partner organisations in Lebanon, Jordan, and Libya.</p>
+      <p>Charities are legal entities. They require KYB. But the KYB framework for a charity looks materially different from a Ltd company — because the governance structure, the source of funds, and the destination of funds are all categorically different. And the sector carries elevated financial crime risk that regulators have documented extensively.</p>
+
+      <div class="ownership-tree">
+        <div class="tree-title">Governance Structure — Helping Hands UK</div>
+        <div class="tree-visual">
+          <div class="tree-row">
+            <div class="tree-node entity">Helping Hands UK<br><span style="font-weight:400;font-size:10px;">Registered Charity · Charity Commission</span></div>
+          </div>
+          <div class="tree-connector"></div>
+          <div class="tree-row" style="gap:12px;flex-wrap:wrap;">
+            <div style="text-align:center;">
+              <div class="tree-v-mini"></div>
+              <div class="tree-node individual" style="font-size:10px;">Trustee 1<br>Chair</div>
+            </div>
+            <div style="text-align:center;">
+              <div class="tree-v-mini"></div>
+              <div class="tree-node individual" style="font-size:10px;">Trustee 2<br>Treasurer</div>
+            </div>
+            <div style="text-align:center;">
+              <div class="tree-v-mini"></div>
+              <div class="tree-node individual" style="font-size:10px;">Trustee 3<br>Secretary</div>
+            </div>
+          </div>
+          <div class="tree-connector"></div>
+          <div class="tree-row">
+            <div class="tree-node high-risk">Partner Orgs<br><span style="font-weight:400;font-size:10px;">Lebanon · Jordan · Libya — High-risk jurisdictions</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="complexity-meter">
+        <span class="complexity-label">Complexity</span>
+        <div class="complexity-track"><div class="complexity-fill" style="width:70%;background:var(--warning);"></div></div>
+        <span class="complexity-text" style="color:var(--warning);">High</span>
+      </div>
+
+      <h3>Why charities are not low-risk by default</h3>
+      <p>The FATF Typologies Report and the Charity Commission's own guidance make this explicit: the charity sector is actively exploited for terrorist financing, not because charities are complicit, but because the features that make charities legitimate — public trust, cash donations, international remittance, informal governance — also make them attractive to those seeking to move funds through them without detection.</p>
+      <p>Three specific risk factors activate EDD triggers here. One: the fund destination includes Libya, which is a FATF-identified jurisdiction with significant financial crime risk. Two: the funding model relies on anonymous cash donations, which cannot be source-of-funds verified. Three: the partner organisations in the destination countries require their own due diligence as downstream recipients of your customer's funds.</p>
+
+      <h3>Who is the UBO of a charity?</h3>
+      <p>This is a question that trips up many onboarding teams. Charities do not have shareholders. They do not have beneficial owners in the corporate sense. Under UK MLRs, for charities and other non-profit legal arrangements, the equivalent obligation is to identify the senior managing officials — the trustees — and verify their identities individually. Each trustee requires a KYC check. The charity's governing documents must be reviewed. And the nature of the charitable purpose must be assessed for financial crime risk, not just accepted at face value because a Charity Commission number exists.</p>
+
+      <div class="callout callout-amber">
+        <strong>Charity Commission Registration is Not Due Diligence</strong>
+        <p>A Charity Commission number confirms registration. It does not confirm the legitimacy of the people running the charity, the true destination of funds, or whether the charity's activities match its stated purpose. Registration is the beginning of your due diligence, not the end of it.</p>
+      </div>
+
+      <!-- DILEMMA 5 -->
+      <div class="dilemma-card" id="dilemma5">
+        <div class="dilemma-header">
+          <span class="icon">⚖️</span>
+          <div>
+            <strong>Dilemma 05: The Charity With Cash Donations and High-Risk Destinations</strong>
+            <span>— Where does SDD end and EDD begin?</span>
+          </div>
+        </div>
+        <div class="dilemma-scenario">
+          <p>Helping Hands UK is fully registered with the Charity Commission, three trustees are KYC'd and clear on all databases, and their stated purpose is genuine humanitarian aid. However, one of their three partner organisations in Libya cannot be verified — it is a local NGO with no digital footprint, no registered address, and no formal documentation. The charity says they work through informal community networks "because that is how aid reaches people in conflict zones." What is your decision?</p>
+        </div>
+        <div class="dilemma-options">
+          <button class="dilemma-option" onclick="showVerdict('d5','wrong',this)">
+            <span class="opt-label">A</span>
+            <span>Accept the explanation — informal aid networks are a recognised feature of humanitarian work in conflict zones. Onboard the charity and monitor transactions to the Libya partner closely.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('d5','partial',this)">
+            <span class="opt-label">B</span>
+            <span>Onboard the charity but add a specific transaction block for payments to the unverifiable Libyan partner. They can use the account for the Lebanon and Jordan operations.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('d5','correct',this)">
+            <span class="opt-label">C</span>
+            <span>Escalate to the MLRO. The unverifiable partner in a high-risk jurisdiction is a terrorist financing red flag that requires a deliberate decision at the highest level, documented in writing, before any onboarding decision is made. The MLRO may also need to consider a Defence Against Money Laundering (DAML) SAR before proceeding.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('d5','wrong',this)">
+            <span class="opt-label">D</span>
+            <span>Decline immediately. Any unverifiable counterparty in a high-risk jurisdiction is an automatic rejection under your risk appetite.</span>
+          </button>
+        </div>
+        <div class="dilemma-verdict" id="d5-verdict">
+          <div id="d5-content"></div>
+        </div>
+      </div>
+
+      <div class="inline-tool-promo">
+        <div class="itp-text">
+          <strong>Screening the trustees and partner organisations?</strong>
+          <span>Run free adverse media and sanctions checks on all individuals and entities connected to this onboarding.</span>
+        </div>
+        <a href="/screen.html" class="itp-btn">Run a screening check →</a>
+      </div>
+    </div>
+
+    <!-- ARCHETYPE 6: SOVEREIGN / STATE-OWNED -->
+    <div class="article-section" id="arch6">
+      <div class="archetype-header">
+        <div class="archetype-icon" style="background:#fef2f2;">🏦</div>
+        <div>
+          <div class="archetype-num">Archetype 06 · Maximum complexity</div>
+          <div class="archetype-name">The Sovereign & State-Owned Entity — Who Owns a Government?</div>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="badge badge-kyb">KYB</span>
+          <span class="badge badge-edd">EDD Mandatory</span>
+        </div>
+      </div>
+
+      <p>Gulf National Infrastructure Fund (GNIF) is a sovereign wealth fund established by a Gulf state government. It is looking to open a relationship with your institution for UK real estate acquisition. The fund manages $340 billion in assets. It is wholly owned by the government. The government is wholly controlled by a ruling family whose members hold all key positions of state.</p>
+      <p>This is the most complex onboarding case in financial services. And it is one that many institutions get wrong — either by over-complicating it into paralysis, or by under-applying EDD because "it's a government entity, how risky can it be?"</p>
+
+      <div class="ownership-tree">
+        <div class="tree-title">Ownership Structure — Gulf National Infrastructure Fund</div>
+        <div class="tree-visual">
+          <div class="tree-row">
+            <div class="tree-node entity">GNIF<br><span style="font-weight:400;font-size:10px;">Sovereign Wealth Fund</span></div>
+          </div>
+          <div class="tree-connector"></div>
+          <div class="tree-row">
+            <div class="tree-node entity">Government of [Gulf State]<br><span style="font-weight:400;font-size:10px;">100% ownership</span></div>
+          </div>
+          <div class="tree-connector"></div>
+          <div class="tree-row">
+            <div class="tree-node high-risk">Ruling Family<br><span style="font-weight:400;font-size:10px;">All key state positions — PEP exposure: systemic</span></div>
+          </div>
+          <div style="margin-top:10px;font-size:11px;color:var(--edd);font-weight:600;">⚠ No individual UBO exists — but PEP exposure is pervasive</div>
+        </div>
+      </div>
+
+      <div class="complexity-meter">
+        <span class="complexity-label">Complexity</span>
+        <div class="complexity-track"><div class="complexity-fill" style="width:100%;background:var(--edd);"></div></div>
+        <span class="complexity-text" style="color:var(--edd);">Maximum</span>
+      </div>
+
+      <h3>The UBO problem that has no clean answer</h3>
+      <p>Sovereign entities and state-owned enterprises present a structural problem in the FATF framework: it was built to trace ownership back to natural persons, but the natural person behind a government is either a head of state (always a PEP), a ruling family (multiple PEPs), or the population of the country (not a practical verification target). The framework breaks down at the top of the chain.</p>
+      <p>FATF guidance acknowledges this. For sovereign wealth funds and state-owned entities, the applicable approach is to: identify the entity's mandate and legal basis, identify the senior managing officials (fund directors, board members, controlling ministers), subject each to PEP screening as a matter of course, assess the jurisdiction risk of the home country, and apply EDD based on the combination of PEP exposure and jurisdiction risk — not to attempt to "solve" the beneficial ownership question by identifying the head of state as a UBO.</p>
+
+      <h3>SDD for listed governments — when it applies</h3>
+      <p>There is one scenario where SDD applies to government-related entities: when the entity itself is a publicly listed company on a regulated exchange in a FATF-compliant jurisdiction, or when the entity is a regulated financial institution subject to equivalent AML obligations. A sovereign wealth fund that is not listed and operates in a jurisdiction with elevated FATF risk does not qualify for SDD. The SDD carve-out for government bodies applies to the government itself as a counterparty in low-risk, transparent transactional relationships — not to sovereign funds managing hundreds of billions in global investments.</p>
+
+      <div class="callout callout-red">
+        <strong>The Prestige Trap</strong>
+        <p>Sovereign wealth funds represent enormous commercial opportunity. The institutional prestige of onboarding a government fund can cause firms to apply lighter scrutiny than they would to a private offshore structure of identical risk profile. This is a documented regulatory failure mode. The FATF mutual evaluation process has cited exactly this pattern in multiple jurisdictions.</p>
+      </div>
+
+      <!-- DILEMMA 6 -->
+      <div class="dilemma-card" id="dilemma6">
+        <div class="dilemma-header">
+          <span class="icon">⚖️</span>
+          <div>
+            <strong>Dilemma 06: The Sovereign Fund — Who Signs Off?</strong>
+            <span>— The final and hardest call</span>
+          </div>
+        </div>
+        <div class="dilemma-scenario">
+          <p>Your EDD on GNIF is complete. The fund directors are all PEPs. The jurisdiction has a FATF Mutual Evaluation rating of "largely compliant" — not on any list, but not exemplary either. The proposed transaction is UK commercial real estate — a sector with documented laundering typologies. Your EDD file is thorough. Now: who has the authority to approve this onboarding, and what additional step is legally required under UK law before you proceed?</p>
+        </div>
+        <div class="dilemma-options">
+          <button class="dilemma-option" onclick="showVerdict('d6','wrong',this)">
+            <span class="opt-label">A</span>
+            <span>The Head of Compliance can approve — they have overall responsibility for the AML programme and the EDD file is thorough enough to satisfy regulatory scrutiny.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('d6','wrong',this)">
+            <span class="opt-label">B</span>
+            <span>The MLRO approves, and no further legal step is required — EDD is the highest level of due diligence and completing it satisfies the obligation.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('d6','correct',this)">
+            <span class="opt-label">C</span>
+            <span>Senior management approval is legally required under Regulation 35 of the UK MLRs 2017 for any business relationship involving a PEP. This means board-level or equivalent sign-off — not just MLRO or Head of Compliance. Additionally, ongoing enhanced monitoring and senior approval for each significant transaction is required for the life of the relationship.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('d6','partial',this)">
+            <span class="opt-label">D</span>
+            <span>The MLRO approves as the designated officer, and you file a Suspicious Activity Report as a precaution given the PEP exposure, then proceed if no response is received within 7 days.</span>
+          </button>
+        </div>
+        <div class="dilemma-verdict" id="d6-verdict">
+          <div id="d6-content"></div>
+        </div>
+      </div>
+
+      <div class="inline-tool-promo">
+        <div class="itp-text">
+          <strong>Screening GNIF fund directors and government officials?</strong>
+          <span>PEP identification is a mandatory first step. Run your checks here before escalating.</span>
+        </div>
+        <a href="/screen.html" class="itp-btn">Screen PEPs and officials →</a>
+      </div>
+    </div>
+
+    <!-- KNOWLEDGE CHECK QUIZ -->
+    <div class="quiz-section" id="quiz">
+      <div class="quiz-title">Knowledge Check — The Onboarding Dilemma</div>
+      <div class="quiz-sub">Six questions. No re-sits. How well do you know the framework?</div>
+
+      <div class="quiz-q" id="qq1">
+        <div class="quiz-q-text">1. A sole trader using a trading name employing two staff members — which framework applies?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="answerQuiz('qq1','A','B')">A — KYB, because the trading name and employees create a business entity</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq1','B','B')">B — KYC, because a sole trader is a natural person with no separate legal entity</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq1','C','B')">C — Both KYC and KYB must be applied simultaneously</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq1','D','B')">D — SDD only, because sole traders are inherently low risk</button>
+        </div>
+        <div class="quiz-feedback" id="qq1-fb"></div>
+      </div>
+
+      <div class="quiz-q" id="qq2">
+        <div class="quiz-q-text">2. Under UK MLRs 2017, what is the UBO ownership threshold that triggers identification and verification?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="answerQuiz('qq2','A','C')">A — 10%</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq2','B','C')">B — 20%</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq2','C','C')">C — 25%</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq2','D','C')">D — 51%</button>
+        </div>
+        <div class="quiz-feedback" id="qq2-fb"></div>
+      </div>
+
+      <div class="quiz-q" id="qq3">
+        <div class="quiz-q-text">3. Which regulation in the UK MLRs 2017 specifically requires senior management approval for PEP relationships?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="answerQuiz('qq3','A','B')">A — Regulation 28</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq3','B','B')">B — Regulation 35</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq3','C','B')">C — Regulation 19</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq3','D','B')">D — Regulation 42</button>
+        </div>
+        <div class="quiz-feedback" id="qq3-fb"></div>
+      </div>
+
+      <div class="quiz-q" id="qq4">
+        <div class="quiz-q-text">4. A charity is registered with the Charity Commission. Which of the following is the correct equivalent of "UBO" for a charity?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="answerQuiz('qq4','A','C')">A — The largest individual donor</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq4','B','C')">B — The Charity Commission itself</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq4','C','C')">C — Senior managing officials — the trustees</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq4','D','C')">D — The charity's beneficiaries (the people receiving aid)</button>
+        </div>
+        <div class="quiz-feedback" id="qq4-fb"></div>
+      </div>
+
+      <div class="quiz-q" id="qq5">
+        <div class="quiz-q-text">5. A corporate client has a 26% PSC not mentioned on the application. When should you complete KYC on that person?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="answerQuiz('qq5','A','B')">A — At the next periodic review, within 12 months</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq5','B','B')">B — Before the account is opened</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq5','C','B')">C — Within 48 hours of account opening</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq5','D','B')">D — Only if that individual will be transacting on the account</button>
+        </div>
+        <div class="quiz-feedback" id="qq5-fb"></div>
+      </div>
+
+      <div class="quiz-q" id="qq6">
+        <div class="quiz-q-text">6. A sovereign wealth fund owned by a Gulf state government applies for onboarding. Which due diligence tier applies by default?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="answerQuiz('qq6','A','C')">A — SDD — government entities are explicitly low risk under FATF guidance</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq6','B','C')">B — Standard CDD — the fund is a regulated institutional investor</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq6','C','C')">C — EDD — PEP exposure at the controlling level is systemic and mandatory EDD applies</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq6','D','C')">D — No due diligence required — sovereign immunity applies to state entities</button>
+        </div>
+        <div class="quiz-feedback" id="qq6-fb"></div>
+      </div>
+
+      <div class="quiz-score-display" id="quiz-score">
+        <div class="quiz-score-num" id="quiz-score-num">0/6</div>
+        <div class="quiz-score-label" id="quiz-score-label"></div>
+      </div>
+    </div>
+
+    <!-- CONCLUSION -->
+    <div class="article-section" id="conclusion">
+      <div class="section-eyebrow" style="color:var(--kyb)">What Every Onboarding Decision Comes Down To</div>
+      <h2>The dilemma is always the same. The facts change.</h2>
+      <p>Across six archetypes — from a freelancer with no fixed address to a sovereign wealth fund controlling hundreds of billions — the core challenge never changes: you must identify who you are really dealing with, understand what risk they present, and apply a proportionate response that your documentation can defend.</p>
+      <p>KYC, KYB, CDD, SDD, and EDD are not competing frameworks. They are layers of the same obligation applied at different depths. The skill is knowing which layer applies, when to go deeper, and when going deeper would be disproportionate to the risk.</p>
+      <p>The practitioners who get this right are not the ones who memorise the definitions. They are the ones who understand that the definitions exist to serve a purpose: keeping financial crime out of the system, one onboarding decision at a time.</p>
+
+      <div class="callout callout-teal">
+        <strong>Put It Into Practice</strong>
+        <p>Every individual and entity in this guide would benefit from a real-time screening check before onboarding. FinCrimeRadar's free screening tool covers PEPs, sanctions lists, and adverse media — the three data sources that activate EDD in almost every case above.</p>
+      </div>
+
+      <div class="inline-tool-promo">
+        <div class="itp-text">
+          <strong>Ready to screen your next onboarding case?</strong>
+          <span>Free. No account needed. PEPs, sanctions, and adverse media in one search.</span>
+        </div>
+        <a href="/screen.html" class="itp-btn">Open the screening tool →</a>
+      </div>
+    </div>
+
+  </div><!-- /article-body -->
+
+  <!-- SIDEBAR -->
+  <div class="article-sidebar">
+    <div class="toc">
+      <div class="toc-title">Contents</div>
+      <a href="#intro">The Problem Nobody Talks About</a>
+      <a href="#framework">The Master Decision Framework</a>
+      <a href="#arch1" class="toc-archetype"><span class="toc-dot" style="background:var(--kyc);"></span> 01 · The Individual</a>
+      <a href="#arch2" class="toc-archetype"><span class="toc-dot" style="background:#f59e0b;"></span> 02 · The Sole Trader</a>
+      <a href="#arch3" class="toc-archetype"><span class="toc-dot" style="background:var(--kyb);"></span> 03 · The Clean SME</a>
+      <a href="#arch4" class="toc-archetype"><span class="toc-dot" style="background:var(--edd);"></span> 04 · The Layered Corporate</a>
+      <a href="#arch5" class="toc-archetype"><span class="toc-dot" style="background:var(--warning);"></span> 05 · The Charity / NGO</a>
+      <a href="#arch6" class="toc-archetype"><span class="toc-dot" style="background:#dc2626;"></span> 06 · The Sovereign Entity</a>
+      <a href="#quiz">Knowledge Check</a>
+      <a href="#conclusion">Conclusion</a>
+    </div>
+
+    <div class="score-card">
+      <div class="score-title">Your Dilemma Score</div>
+      <div class="score-stat"><span>Dilemmas attempted</span><span class="score-badge" id="score-attempted" style="color:var(--muted);">0 / 6</span></div>
+      <div class="score-stat"><span>Correct answers</span><span class="score-badge" id="score-correct" style="color:var(--sdd);">0</span></div>
+      <div class="score-stat"><span>Partial credit</span><span class="score-badge" id="score-partial" style="color:var(--warning);">0</span></div>
+      <div class="score-stat"><span>Wrong answers</span><span class="score-badge" id="score-wrong" style="color:var(--edd);">0</span></div>
+    </div>
+
+    <div class="tool-cta">
+      <p>Screen any individual or entity from your onboarding pipeline — free, instant, no account required.</p>
+      <a href="/screen.html">Try the screening tool →</a>
+    </div>
+  </div>
+</div><!-- /article-layout -->
+
+<!-- FOOTER -->
+<footer style="background:var(--navy);color:#94a3b8;padding:2.5rem 2rem;text-align:center;margin-top:2rem;">
+  <div style="max-width:900px;margin:0 auto;">
+    <a href="/" style="display:inline-block;margin-bottom:1rem;"><img src="/logo.png" alt="FinCrimeRadar" style="height:44px;object-fit:contain;opacity:0.85;" /></a>
+    <p style="font-size:13px;margin-bottom:0.5rem;">Free, open-source AML and financial crime compliance resources.</p>
+    <div style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin:1rem 0;font-size:13px;">
+      <a href="/knowledge.html" style="color:#94a3b8;text-decoration:none;">Knowledge Hub</a>
+      <a href="/screen.html" style="color:#94a3b8;text-decoration:none;">Screening Tool</a>
+      <a href="/about.html" style="color:#94a3b8;text-decoration:none;">About</a>
+      <a href="/privacy.html" style="color:#94a3b8;text-decoration:none;">Privacy</a>
+      <a href="/contact.html" style="color:#94a3b8;text-decoration:none;">Contact</a>
+    </div>
+    <p style="font-size:12px;">© 2026 FinCrimeRadar. For educational purposes only. Not legal advice.</p>
+  </div>
+</footer>
+
+<script>
+// PROGRESS BAR
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const scrolled = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progressBar').style.width = scrolled + '%';
+});
+
+// TOC ACTIVE STATE
+const tocLinks = document.querySelectorAll('.toc a');
+const sections = document.querySelectorAll('[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+  tocLinks.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + current); });
+});
+
+// MOBILE NAV
+function toggleMobileNav() {
+  document.getElementById('mobileNav').classList.toggle('open');
+}
+
+// SCORE TRACKING
+let dilemmaResults = {};
+let quizResults = {};
+let quizAnswered = 0;
+let quizCorrect = 0;
+
+function updateScoreCard() {
+  const attempted = Object.keys(dilemmaResults).length;
+  const correct = Object.values(dilemmaResults).filter(v => v === 'correct').length;
+  const partial = Object.values(dilemmaResults).filter(v => v === 'partial').length;
+  const wrong = Object.values(dilemmaResults).filter(v => v === 'wrong').length;
+  document.getElementById('score-attempted').textContent = attempted + ' / 6';
+  document.getElementById('score-correct').textContent = correct;
+  document.getElementById('score-partial').textContent = partial;
+  document.getElementById('score-wrong').textContent = wrong;
+}
+
+// DILEMMA VERDICTS
+const verdicts = {
+  d1: {
+    correct: {
+      title: '✅ Correct — SDD with documented exception',
+      body: 'Option B is technically more defensible but option C is the correct risk-based approach for a genuinely low-risk individual where identity is verified but address is incomplete. Under a risk-based approach, SDD can be applied where the customer is demonstrably low risk and the identification gap is documented with a remediation plan. Key: you must record the gap, set a timeframe for resolution, and not leave it open indefinitely. The common mistake is treating address verification as binary — it is a risk factor to be managed, not an absolute gate for low-risk individuals.',
+      hint: 'The risk-based approach allows flexibility where identity is clear and risk is genuinely low.'
+    },
+    wrong: {
+      title: '❌ Incorrect',
+      body: 'Option A (decline) is disproportionate for a clear, low-risk individual with a minor documentation gap. Option D (open fully with no restrictions) creates a compliance gap you cannot defend — you have documented that address verification is incomplete. The risk-based approach requires proportionality: match the response to the actual risk, not to the most convenient or most restrictive outcome.',
+      hint: 'Neither automatic rejection nor unrestricted onboarding is appropriate here.'
+    },
+    partial: {
+      title: '🟡 Close — but the mechanism is wrong',
+      body: 'Option B (provisional onboarding with limits) is a commercially pragmatic approach and some firms do apply it. However, applying SDD and then requesting CDD information is procedurally inverted. The cleaner approach is to document the gap, apply SDD as the initial tier given the low risk, and set a defined remediation deadline — rather than opening provisionally under an undefined intermediate state. Your file needs a clear documented rationale, not a pending flag.',
+      hint: 'Provisional onboarding creates ambiguity in your file. A documented SDD approach with a remediation plan is cleaner.'
+    }
+  },
+  d2: {
+    correct: {
+      title: '✅ Correct — KYC for Sarah, note on the husband',
+      body: 'Sarah is a sole trader. No separate legal entity exists. KYC applies. The husband is not a UBO — he is an associated person who handles cash. The correct response is to note this in the customer file as a connected party who requires monitoring (specifically cash-handling activity), and to flag the account for enhanced transaction monitoring. When Sarah forms the Ltd company, you start a fresh KYB process at that point. The mention of "planning to set up a Ltd company" is not a trigger for KYB today — it is a trigger to schedule a review when that event occurs.',
+      hint: 'Legal status today determines the framework today. Future intent does not change the current obligation.'
+    },
+    wrong: {
+      title: '❌ Incorrect',
+      body: 'Option A incorrectly applies KYB. A sole trader has no separate legal entity and no UBOs in the corporate sense. Option C is wrong — SDD is not automatically appropriate just because the structure is simple; the cash-handling activity and the husband\'s involvement are risk factors that require at minimum standard CDD risk assessment.',
+      hint: 'The determining factor is always legal entity status, not commercial appearance.'
+    },
+    partial: {
+      title: '🟡 Partially right — but the KYC on the husband is disproportionate',
+      body: 'Running a full KYC check on the husband is not proportionate at this stage. He is not a party to the account. He is not a UBO. Noting his involvement in the file and applying appropriate transaction monitoring is sufficient. Full KYC on associated persons who are not account holders or controllers is resource-intensive and creates data protection considerations without a proportionate risk benefit.',
+      hint: 'Associated persons who do not hold or control the account require notation and monitoring, not full KYC.'
+    }
+  },
+  d3: {
+    correct: {
+      title: '✅ Correct — Halt. No exceptions.',
+      body: 'A PSC holding 26% is above the 25% threshold that triggers mandatory UBO identification under UK MLRs 2017. Commercial urgency does not create a regulatory exemption. The correct call is to halt onboarding, explain the legal requirement clearly to the directors, and set a firm deadline for the third PSC to provide the required KYC documents. The "forgot to mention" explanation warrants scrutiny — it is a yellow flag that should be noted in the file. If the directors withdraw the application rather than provide the information, that itself is a potential indicator of suspicion that should be considered for SAR purposes.',
+      hint: 'Urgency is a pressure tactic, not a compliance exemption. The 25% threshold is a hard rule.'
+    },
+    wrong: {
+      title: '❌ Incorrect',
+      body: 'Option A (accept the explanation and defer) and Option B (open immediately) both create a documented compliance failure. You know a PSC exists. You know they have not been verified. Opening the account in either scenario means you have knowingly onboarded a customer with an unresolved UBO — which is a breach of MLR 2017 that the FCA has fined firms for repeatedly.',
+      hint: 'A known, unresolved UBO is not a documentation gap — it is a breach of your legal obligation.'
+    },
+    partial: {
+      title: '🟡 Better — but "restricted functionality" has limits',
+      body: 'Option D (restricted account pending 48-hour KYC) is a pragmatic approach some firms use. It is defensible if: the restriction genuinely prevents the account from being used in a way that creates risk, the 48-hour deadline is firm and enforced, and the file clearly documents the basis for the restriction. However, it relies on perfect execution of the follow-up. If the 48 hours becomes 2 weeks, you have created a worse compliance position than simply halting the onboarding.',
+      hint: 'Provisional onboarding with restrictions is only as strong as the enforcement of the deadline.'
+    }
+  },
+  d4: {
+    correct: {
+      title: '✅ Correct — Get the override in writing',
+      body: 'This is the most important professional protection available to you. If your EDD assessment is that this case requires enhanced due diligence and the regulatory framework supports that position, you must communicate it in writing. Cite the specific regulation (MLR 2017, Reg 33 for EDD triggers including complex structures and high-risk third countries). Request that the Head of Compliance provide a written rationale for overriding your assessment. This creates a paper trail that protects you personally and creates accountability at the right level. The MLRO is the correct escalation point if the Head of Compliance is also applying pressure to override — but approach that in writing too.',
+      hint: 'Your written assessment is your professional protection. Oral overrides create no accountability trail.'
+    },
+    wrong: {
+      title: '❌ Incorrect',
+      body: 'Option A (defer silently) leaves you professionally exposed and creates no accountability at the right level. Option C (enhanced monitoring as a compromise) is the most common commercial capitulation in compliance — it substitutes reactive controls for preventive ones and does not satisfy the EDD obligation before onboarding. EDD must be completed before the relationship begins, not promised as a post-onboarding activity.',
+      hint: 'Post-onboarding monitoring does not satisfy a pre-onboarding EDD obligation.'
+    },
+    partial: {
+      title: '🟡 Escalating to the MLRO is right — but method matters',
+      body: 'Escalating to the MLRO is appropriate when the Head of Compliance is the source of override pressure. However, bypassing the Head of Compliance entirely without first documenting your position in writing to them creates internal relationship damage and may not follow your firm\'s escalation policy. The sequence should be: written position to Head of Compliance, request written override decision, and if that override is made, escalate to the MLRO with the full documented chain.',
+      hint: 'Follow the escalation sequence. Each level should have the documented chain before them.'
+    }
+  },
+  d5: {
+    correct: {
+      title: '✅ Correct — MLRO escalation, possible DAML SAR',
+      body: 'An unverifiable partner organisation in a FATF high-risk jurisdiction that is receiving charitable funds is one of the most documented terrorist financing typologies in FATF and NCA guidance. This is not a CDD decision or even an EDD decision at analyst level — it is an MLRO decision. The MLRO needs to assess whether the circumstances give rise to knowledge or suspicion of terrorist financing. If they do, a Defence Against Money Laundering (DAML) SAR must be filed with the NCA before any funds are sent, and the firm must await the NCA\'s response before proceeding. Proceeding without that analysis creates personal criminal liability for those involved.',
+      hint: 'Unverifiable fund recipients in high-risk jurisdictions are a terrorist financing red flag requiring MLRO assessment.'
+    },
+    wrong: {
+      title: '❌ Incorrect',
+      body: 'Option A (accept and monitor) is the most common and most dangerous response to this scenario. Post-onboarding monitoring does not address the known risk of an unverifiable counterparty — it simply creates evidence that funds were sent after you knew the recipient could not be verified. Option D (automatic rejection) is procedurally clean but misses the MLRO obligation: the circumstances may require a SAR regardless of whether you onboard, and rejecting without a SAR analysis could itself be a failure to report.',
+      hint: 'Knowing and rejecting without SAR analysis is not always the right answer either.'
+    },
+    partial: {
+      title: '🟡 Pragmatic — but it sidesteps the core obligation',
+      body: 'Option B (block the Libya partner, allow Lebanon and Jordan) is commercially pragmatic and operationally possible. However, it does not address the underlying MLRO obligation: if the circumstances give rise to suspicion of terrorist financing, a SAR analysis is required regardless of whether the Libya payments are blocked. You may end up needing to file a SAR on the charity even if you only onboard them for the lower-risk jurisdictions.',
+      hint: 'Restricting a relationship does not replace the obligation to assess whether a SAR is required.'
+    }
+  },
+  d6: {
+    correct: {
+      title: '✅ Correct — Board-level senior management approval, mandatory',
+      body: 'Regulation 35 of the UK MLRs 2017 is explicit: before entering into or continuing a business relationship with a PEP, or immediately after a customer becomes a PEP during the relationship, senior management approval is required. The regulation does not define "senior management" as MLRO or Head of Compliance — it means a member of senior management at board level or equivalent. For a relationship involving systemic PEP exposure at the controlling level of a $340 billion fund, this means board sign-off is the correct interpretation. Additionally, ongoing enhanced monitoring of the relationship and senior management approval for each significant transaction are required for the life of the relationship under Reg 35(3).',
+      hint: 'Regulation 35 MLRs 2017 — senior management approval for PEPs is a legal requirement, not a best practice.'
+    },
+    wrong: {
+      title: '❌ Incorrect',
+      body: 'Option A (Head of Compliance) and Option B (MLRO alone) both under-calibrate the seniority of approval required by Regulation 35. The EDD file being thorough satisfies the documentation obligation but not the approval obligation — these are separate requirements. Neither the MLRO nor the Head of Compliance is "senior management" for the purposes of Regulation 35 in most firms, unless they sit on the board. This is a documented area of regulatory misapplication.',
+      hint: 'EDD documentation and senior management approval are two separate regulatory requirements under Regulation 35.'
+    },
+    partial: {
+      title: '🟡 The DAML SAR instinct is wrong here',
+      body: 'A DAML SAR is filed when you have knowledge or suspicion of money laundering or terrorist financing and you want to proceed with a transaction. It is not a precautionary filing for a relationship that has passed EDD scrutiny. Filing an unnecessary DAML SAR when you have no grounds for suspicion is a misuse of the SAR regime and burdens the NCA with noise. The correct additional step here is senior management approval under Regulation 35, not a precautionary SAR.',
+      hint: 'SARs are filed on grounds of suspicion, not as precautionary compliance cover.'
+    }
+  }
+};
+
+function showVerdict(dilemmaId, type, btn) {
+  const card = document.getElementById('dilemmaId' + dilemmaId);
+  const verdictDiv = document.getElementById(dilemmaId + '-verdict');
+  const contentDiv = document.getElementById(dilemmaId + '-content');
+
+  // Disable all buttons in this dilemma
+  const allBtns = btn.closest('.dilemma-options').querySelectorAll('button');
+  allBtns.forEach(b => {
+    b.disabled = true;
+    b.style.opacity = '0.6';
+    b.style.cursor = 'default';
+  });
+
+  // Style clicked button
+  btn.style.opacity = '1';
+  btn.classList.add(type === 'correct' ? 'correct' : type === 'partial' ? 'partial' : 'wrong');
+
+  const v = verdicts[dilemmaId][type];
+  const bgClass = type === 'correct' ? 'verdict-correct' : type === 'partial' ? 'verdict-partial' : 'verdict-wrong';
+
+  contentDiv.innerHTML = `
+    <div class="${bgClass}">
+      <div class="verdict-title">${v.title}</div>
+      <div class="verdict-body">${v.body}</div>
+      ${v.hint ? `<div style="margin-top:10px;font-size:12px;font-style:italic;color:var(--muted);">💡 ${v.hint}</div>` : ''}
+    </div>
+  `;
+
+  verdictDiv.classList.add('show');
+  dilemmaResults[dilemmaId] = type;
+  updateScoreCard();
+}
+
+// QUIZ LOGIC
+const quizFeedback = {
+  qq1: { correct: 'B', fb: 'A sole trader is a natural person — no separate legal entity exists regardless of trading name, employees, or turnover. KYC applies.' },
+  qq2: { correct: 'C', fb: '25% is the international FATF standard, implemented in UK MLRs 2017. Some jurisdictions set it lower, but 25% is the baseline.' },
+  qq3: { correct: 'B', fb: 'Regulation 35 MLRs 2017 specifically governs PEP relationships and requires senior management approval before establishing or continuing the relationship.' },
+  qq4: { correct: 'C', fb: 'For charities, the equivalent obligation is to identify and verify senior managing officials — the trustees. There are no shareholders or beneficial owners in the corporate sense.' },
+  qq5: { correct: 'B', fb: 'UBO identification and verification must be completed before the account is opened. There is no regulatory provision for post-opening UBO completion.' },
+  qq6: { correct: 'C', fb: 'PEP exposure at the controlling level of a sovereign fund is systemic. EDD is mandatory under Regulation 33 MLRs 2017, and senior management approval under Regulation 35 is required before proceeding.' }
+};
+
+function answerQuiz(questionId, chosen, correct) {
+  const questionDiv = document.getElementById(questionId);
+  const fbDiv = document.getElementById(questionId + '-fb');
+  const opts = questionDiv.querySelectorAll('.quiz-opt');
+  const data = quizFeedback[questionId];
+
+  opts.forEach(o => o.disabled = true);
+  const isCorrect = chosen === data.correct;
+
+  opts.forEach(o => {
+    if (o.textContent.trim().startsWith(data.correct)) o.classList.add('q-correct');
+    else if (o.textContent.trim().startsWith(chosen) && !isCorrect) o.classList.add('q-wrong');
+  });
+
+  fbDiv.textContent = data.fb;
+  fbDiv.style.background = isCorrect ? 'rgba(22,163,74,0.2)' : 'rgba(220,38,38,0.2)';
+  fbDiv.style.padding = '8px 12px';
+  fbDiv.style.borderRadius = '6px';
+  fbDiv.style.color = isCorrect ? '#86efac' : '#fca5a5';
+  fbDiv.classList.add('show');
+
+  quizAnswered++;
+  if (isCorrect) quizCorrect++;
+
+  if (quizAnswered === 6) {
+    const scoreDiv = document.getElementById('quiz-score');
+    const scoreNum = document.getElementById('quiz-score-num');
+    const scoreLbl = document.getElementById('quiz-score-label');
+    scoreDiv.classList.add('show');
+    scoreNum.textContent = quizCorrect + '/6';
+    const labels = ['Keep studying — the details matter here.','Getting there — revisit the MLR 2017 specifics.','Solid foundation — a few gaps to close.','Good grasp — you know the framework well.','Excellent — practitioner-level knowledge.','Perfect — you are ready for anything the regulator throws at you.'];
+    scoreLbl.textContent = labels[quizCorrect] || labels[5];
+  }
+}
+
+// ANIMATE COMPLEXITY METERS ON SCROLL
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.complexity-fill').forEach(f => {
+        const w = f.style.width;
+        f.style.width = '0%';
+        setTimeout(() => f.style.width = w, 100);
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.article-section').forEach(s => observer.observe(s));
+</script>
+
+<!-- Cookie Consent -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#0f2044;color:#e2e8f0;padding:1rem 1.5rem;z-index:9999;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:13px;">
+  <span>We use cookies for analytics. <a href="/privacy.html" style="color:#00c4a7;">Privacy Policy</a></span>
+  <div style="display:flex;gap:8px;">
+    <button onclick="acceptCookies()" style="background:#00c4a7;color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:13px;font-weight:600;">Accept</button>
+    <button onclick="rejectCookies()" style="background:transparent;color:#94a3b8;border:1px solid #374151;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:13px;">Decline</button>
+  </div>
+</div>
+<script>
+if (!localStorage.getItem('cookieConsent')) document.getElementById('cookieBanner').style.display='flex';
+function acceptCookies() { localStorage.setItem('cookieConsent','accepted'); document.getElementById('cookieBanner').style.display='none'; }
+function rejectCookies() { localStorage.setItem('cookieConsent','rejected'); window['ga-disable-G-FC1VMTE7JH']=true; document.getElementById('cookieBanner').style.display='none'; }
+if (localStorage.getItem('cookieConsent')==='rejected') window['ga-disable-G-FC1VMTE7JH']=true;
+</script>
+
+</body>
+</html>
