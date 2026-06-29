@@ -69,6 +69,7 @@
     .nav-links { display: flex; align-items: center; gap: 1.25rem; }
     .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.15s; }
     .nav-links a:hover, .nav-links a.active { color: var(--accent); font-weight: 500; }
+    .nav-cta { padding: 7px 16px; background: var(--accent); color: #fff !important; border-radius: 6px; font-size: 13px; font-weight: 500; }
 
     .container { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem; }
 
@@ -320,9 +321,11 @@
     <img src="/logo.png" alt="FinCrimeRadar" style="height:44px;width:auto;max-width:200px;object-fit:contain;object-position:left center;display:block;" />
   </a>
   <div class="nav-links">
-    <a href="/">Home</a>
-    <a href="/screen.html" class="active">Screen</a>
-    <a href="https://github.com/prats922/fincrimeradar" target="_blank" rel="noopener">GitHub</a>
+    <a href="/knowledge.html">Knowledge Hub</a>
+    <a href="/news.html">News</a>
+    <a href="/learn.html">Learn</a>
+    <a href="/about.html">About</a>
+    <a href="/screen.html" class="nav-cta active">Try the tool →</a>
   </div>
   <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
 </nav>
