@@ -83,6 +83,9 @@
     .filter-pill { padding:5px 14px; border-radius:99px; font-size:12px; font-weight:500; border:1.5px solid var(--border); color:var(--muted); cursor:pointer; background:var(--white); transition:all 0.15s; font-family:'Inter',sans-serif; }
     .filter-pill.active { border-color:var(--accent); color:var(--accent); background:var(--accent-light); }
     .filter-pill:hover:not(.active) { border-color:#9ca3af; color:var(--text); }
+    .pill-soon { display:inline-flex; align-items:center; gap:5px; opacity:0.75; }
+    .pill-soon.active { opacity:1; }
+    .soon-tag { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; background:#f59e0b; color:#fff; padding:1px 6px; border-radius:99px; }
 
     /* MAIN GRID */
     .hub-container { max-width:1060px; margin:0 auto; padding:1.5rem; }
@@ -333,11 +336,12 @@
 <div class="filter-bar">
   <span class="filter-label">Filter:</span>
   <button class="filter-pill active" data-cat="all" onclick="setFilter(this)">All</button>
-  <button class="filter-pill" data-cat="screening" onclick="setFilter(this)">Screening</button>
-  <button class="filter-pill" data-cat="law" onclick="setFilter(this)">UK Law</button>
-  <button class="filter-pill" data-cat="aml" onclick="setFilter(this)">AML</button>
-  <button class="filter-pill" data-cat="pep" onclick="setFilter(this)">PEP</button>
-  <button class="filter-pill" data-cat="sanctions" onclick="setFilter(this)">Sanctions</button>
+  <button class="filter-pill" data-cat="onboarding" onclick="setFilter(this)">Onboarding & CDD</button>
+  <button class="filter-pill" data-cat="aml-programme" onclick="setFilter(this)">AML Programme</button>
+  <button class="filter-pill" data-cat="tm-fraud" onclick="setFilter(this)">TM & Fraud</button>
+  <button class="filter-pill" data-cat="screening-pep" onclick="setFilter(this)">Sanctions & PEP</button>
+  <button class="filter-pill" data-cat="sars" onclick="setFilter(this)">Reporting & SARs</button>
+  <button class="filter-pill pill-soon" data-cat="crypto" onclick="setFilter(this)">Crypto <span class="soon-tag">Soon</span></button>
 </div>
 
 <div class="hub-container">
@@ -411,7 +415,7 @@
   <div class="articles-grid" id="articlesGrid">
 
     <!-- Card TM: Transaction Monitoring Deep Dive -->
-    <a href="/tm-guide.html" class="article-card card-new" data-cats="aml screening" data-title="transaction monitoring rules AI machine learning false positives typologies alert triage SAR financial crime">
+    <a href="/tm-guide.html" class="article-card card-new" data-cats="tm-fraud" data-title="transaction monitoring rules AI machine learning false positives typologies alert triage SAR financial crime">
       <div class="card-top">
         <div class="card-meta">
           <span class="card-category cat-aml">Transaction Monitoring</span>
@@ -432,7 +436,7 @@
     </a>
 
     <!-- Card: Screening Alert Survival Guide -->
-    <a href="/screening-alerts-guide.html" class="article-card card-new" data-cats="screening aml" data-title="screening alert challenges false positive analyst burnout alert fatigue name matching compliance">
+    <a href="/screening-alerts-guide.html" class="article-card card-new" data-cats="screening-pep" data-title="screening alert challenges false positive analyst burnout alert fatigue name matching compliance">
       <div class="card-top">
         <div class="card-meta">
           <span class="card-category cat-screening">Screening</span>
@@ -452,7 +456,7 @@
     </a>
 
     <!-- Card: What is Financial Crime Screening -->
-    <a href="/learn.html" class="article-card card-new" data-cats="screening aml" data-title="financial crime screening sanctions pep adverse media complete guide">
+    <a href="/learn.html" class="article-card card-new" data-cats="screening-pep" data-title="financial crime screening sanctions pep adverse media complete guide">
       <div class="card-top">
         <div class="card-meta">
           <span class="card-category cat-screening">Screening</span>
@@ -472,7 +476,7 @@
     </a>
 
     <!-- KYC Onboarding Dilemma -->
-    <a href="/kyc-onboarding-dilemma.html" class="article-card card-new" data-cats="aml screening law" data-title="kyc kyb cdd edd onboarding dilemma individual corporate charity sovereign UBO beneficial ownership due diligence">
+    <a href="/kyc-onboarding-dilemma.html" class="article-card card-new" data-cats="onboarding" data-title="kyc kyb cdd edd onboarding dilemma individual corporate charity sovereign UBO beneficial ownership due diligence">
       <div class="card-top">
         <div class="card-meta">
           <span class="card-category cat-aml">Onboarding</span>
@@ -494,7 +498,7 @@
     </a>
 
     <!-- UK AML Series -->
-    <a href="/aml-guide-part1.html" class="article-card card-series card-new" data-cats="law aml" data-title="uk aml compliance guide legal framework mlr 2017 poca terrorism act samla fca">
+    <a href="/aml-guide-part1.html" class="article-card card-series card-new" data-cats="aml-programme" data-title="uk aml compliance guide legal framework mlr 2017 poca terrorism act samla fca">
       <div class="card-top">
         <div class="card-meta">
           <span class="card-category cat-law">UK Law</span>
@@ -512,7 +516,7 @@
         <span class="card-arrow">→</span>
       </div>
     </a>
-    <a href="/aml-guide-part2.html" class="article-card card-series card-new" data-cats="law aml" data-title="uk aml core obligations risk assessment cdd customer due diligence sar reporting controls">
+    <a href="/aml-guide-part2.html" class="article-card card-series card-new" data-cats="aml-programme" data-title="uk aml core obligations risk assessment cdd customer due diligence sar reporting controls">
       <div class="card-top">
         <div class="card-meta">
           <span class="card-category cat-law">UK Law</span>
@@ -530,7 +534,7 @@
         <span class="card-arrow">→</span>
       </div>
     </a>
-    <a href="/aml-guide-part3.html" class="article-card card-series card-new" data-cats="law aml" data-title="uk aml controls enforcement staff training mlro fca enforcement 2026 horizon">
+    <a href="/aml-guide-part3.html" class="article-card card-series card-new" data-cats="aml-programme" data-title="uk aml controls enforcement staff training mlro fca enforcement 2026 horizon">
       <div class="card-top">
         <div class="card-meta">
           <span class="card-category cat-law">UK Law</span>
@@ -550,7 +554,7 @@
     </a>
 
     <!-- PEP Series -->
-    <a href="/pep-guide-part1.html" class="article-card card-series card-new" data-cats="pep aml law" data-title="pep screening handbook who is a pep politically exposed person fatf fg253">
+    <a href="/pep-guide-part1.html" class="article-card card-series card-new" data-cats="screening-pep" data-title="pep screening handbook who is a pep politically exposed person fatf fg253">
       <div class="card-top">
         <div class="card-meta">
           <span class="card-category cat-pep">PEP</span>
@@ -568,7 +572,7 @@
         <span class="card-arrow">→</span>
       </div>
     </a>
-    <a href="/pep-guide-part2.html" class="article-card card-series card-new" data-cats="pep aml" data-title="pep due diligence edd source of funds source of wealth senior management approval monitoring">
+    <a href="/pep-guide-part2.html" class="article-card card-series card-new" data-cats="screening-pep" data-title="pep due diligence edd source of funds source of wealth senior management approval monitoring">
       <div class="card-top">
         <div class="card-meta">
           <span class="card-category cat-pep">PEP</span>
@@ -586,7 +590,7 @@
         <span class="card-arrow">→</span>
       </div>
     </a>
-    <a href="/pep-guide-part3.html" class="article-card card-series card-new" data-cats="pep aml" data-title="pep case studies enforcement danske bank standard chartered edd checklist programme">
+    <a href="/pep-guide-part3.html" class="article-card card-series card-new" data-cats="screening-pep" data-title="pep case studies enforcement danske bank standard chartered edd checklist programme">
       <div class="card-top">
         <div class="card-meta">
           <span class="card-category cat-pep">PEP</span>
@@ -606,7 +610,7 @@
     </a>
 
     <!-- SAR Series -->
-    <a href="/sar-guide-part1.html" class="article-card card-series card-new" data-cats="aml law" data-title="suspicious activity reports sar legal regime poca mlro daml tipping off ukfiu nca">
+    <a href="/sar-guide-part1.html" class="article-card card-series card-new" data-cats="sars" data-title="suspicious activity reports sar legal regime poca mlro daml tipping off ukfiu nca">
       <div class="card-top">
         <div class="card-meta">
           <span class="card-category cat-aml">AML</span>
@@ -624,7 +628,7 @@
         <span class="card-arrow">→</span>
       </div>
     </a>
-    <a href="/sar-guide-part2.html" class="article-card card-series card-new" data-cats="aml" data-title="writing better sars sar narrative 5w framework subject information typologies mistakes">
+    <a href="/sar-guide-part2.html" class="article-card card-series card-new" data-cats="sars" data-title="writing better sars sar narrative 5w framework subject information typologies mistakes">
       <div class="card-top">
         <div class="card-meta">
           <span class="card-category cat-aml">AML</span>
@@ -642,7 +646,7 @@
         <span class="card-arrow">→</span>
       </div>
     </a>
-    <a href="/sar-guide-part3.html" class="article-card card-series card-new" data-cats="aml" data-title="sar quality intelligence nca ukfiu programme mlro governance reform fipp jmlit">
+    <a href="/sar-guide-part3.html" class="article-card card-series card-new" data-cats="sars" data-title="sar quality intelligence nca ukfiu programme mlro governance reform fipp jmlit">
       <div class="card-top">
         <div class="card-meta">
           <span class="card-category cat-aml">AML</span>
@@ -662,22 +666,28 @@
     </a>
 
     <!-- COMING SOON — all grouped at the bottom -->
-    <div class="coming-card" data-cats="sanctions" data-title="sanctions compliance guide ofac ofsi un eu">
+    <div class="coming-card" data-cats="screening-pep" data-title="sanctions compliance guide ofac ofsi un eu">
       <div class="coming-badge">Coming soon</div>
       <div class="coming-title">Sanctions Compliance: OFAC, OFSI & Beyond</div>
       <div class="coming-desc">How sanctions lists work, extraterritorial reach, the Russia sanctions wave, and how to build a sanctions screening programme.</div>
     </div>
 
-    <div class="coming-card" data-cats="law" data-title="fatf grey list black list high risk countries">
+    <div class="coming-card" data-cats="screening-pep" data-title="fatf grey list black list high risk countries">
       <div class="coming-badge">Coming soon</div>
       <div class="coming-title">The FATF Lists Explained</div>
       <div class="coming-desc">Grey list vs black list, what being listed means for firms dealing with those jurisdictions, and how to apply EDD for high-risk third countries.</div>
     </div>
 
-    <div class="coming-card" data-cats="aml" data-title="mlro guide money laundering reporting officer smf17">
+    <div class="coming-card" data-cats="aml-programme" data-title="mlro guide money laundering reporting officer smf17">
       <div class="coming-badge">Coming soon</div>
       <div class="coming-title">The MLRO Handbook</div>
       <div class="coming-desc">SMF17 responsibilities, personal liability, the annual board report, managing the FCA relationship, and what good MLRO governance looks like.</div>
+    </div>
+
+    <div class="coming-card" data-cats="crypto" data-title="crypto virtual assets travel rule virtual asset service provider vasp">
+      <div class="coming-badge">Coming soon</div>
+      <div class="coming-title">Crypto & Virtual Assets: The AML Frontier</div>
+      <div class="coming-desc">VASP registration, the Travel Rule, mixer and bridge typologies, and how compliance teams are adapting screening to on-chain risk.</div>
     </div>
 
   </div>
