@@ -98,6 +98,7 @@
     .nn-form input{flex:1;padding:9px 13px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;color:var(--text);outline:none;font-family:'Inter',sans-serif;}
     .nn-form input:focus{border-color:var(--accent);}
     .nn-form button{padding:9px 18px;background:var(--accent);color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;}
+    @keyframes spin{to{transform:rotate(360deg);}}
     footer{background:var(--white);border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:12px;color:var(--muted);margin-top:2rem;}
     footer a{color:var(--muted);text-decoration:none;margin:0 8px;}
     footer a:hover{color:var(--accent);}
@@ -297,9 +298,9 @@
 
   <!-- News grid -->
   <div class="news-grid" id="newsGrid">
-    <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:14px;">
-      <div style="font-size:36px;margin-bottom:10px;">📡</div>
-      Loading latest compliance news...
+    <div id="newsLoadingState" style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:14px;">
+      <div style="display:inline-block;width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--teal);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:12px;"></div>
+      <div style="font-size:14px;color:var(--muted);">Fetching latest compliance news...</div>
     </div>
   </div>
 
@@ -623,15 +624,21 @@ async function loadNews(force) {
   const cacheKey='fcr_news_v4';
   const timeKey='fcr_news_t4';
   const TTL = 30*60*1000;
+  // Show spinner immediately so there is always feedback
+  const loadingEl = document.getElementById('newsLoadingState');
+  if (loadingEl) loadingEl.style.display = 'block';
   if (!force) {
     try {
       const c = localStorage.getItem(cacheKey);
       const t = localStorage.getItem(timeKey);
       if (c && t && Date.now()-parseInt(t)<TTL) {
         allNewsItems = JSON.parse(c);
-        renderNews();
-        document.getElementById('newsUpdated').textContent = 'Updated: '+new Date(parseInt(t)).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
-        return;
+        if (allNewsItems.length > 0) {
+          renderNews();
+          if (loadingEl) loadingEl.style.display = 'none';
+          document.getElementById('newsUpdated').textContent = 'Updated: '+new Date(parseInt(t)).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+          return;
+        }
       }
     } catch {}
   }
@@ -662,6 +669,8 @@ async function loadNews(force) {
   results.forEach(r=>{ if(r.status==='fulfilled'&&r.value) allNewsItems.push(...r.value); });
   allNewsItems.sort((a,b)=>{ try{return new Date(b.date)-new Date(a.date);}catch{return 0;} });
   try { localStorage.setItem(cacheKey,JSON.stringify(allNewsItems)); localStorage.setItem(timeKey,Date.now().toString()); } catch{}
+  const loadEl = document.getElementById('newsLoadingState');
+  if (loadEl) loadEl.style.display = 'none';
   renderNews();
   const now = new Date();
   document.getElementById('newsUpdated').textContent = 'Updated: '+now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
