@@ -143,4 +143,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- FATF Guide Part 2 -->
+  <url>
+    <loc>https://fincrimeradar.org/fatf-guide-part2.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 </urlset>

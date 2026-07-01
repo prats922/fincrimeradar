@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FATF Grey List, Black List & Country Risk: The Compliance Playbook | FinCrimeRadar</title>
+  <meta name="description" content="The 2026 FATF grey list and black list decoded — how countries get listed, what it means for your EDD obligations, the current 22 grey-listed jurisdictions with a visual risk map, and the compliance decisions that flow from each." />
+  <meta name="keywords" content="FATF grey list 2026, FATF black list, FATF country risk, enhanced due diligence, FATF mutual evaluation, high risk jurisdictions, AML compliance" />
+  <meta name="author" content="FinCrimeRadar" />
+  <link rel="canonical" href="https://fincrimeradar.org/fatf-guide-part2.html" />
+  <meta property="og:title" content="FATF Grey List, Black List & Country Risk: The Compliance Playbook" />
+  <meta property="og:description" content="How countries get listed, what it means for your EDD, and the 2026 current lists with visual risk map." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://fincrimeradar.org/fatf-guide-part2.html" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"FATF Grey List, Black List & Country Risk: The Compliance Playbook","description":"The 2026 FATF lists decoded with visual risk map and EDD obligations guide.","author":{"@type":"Organization","name":"FinCrimeRadar"},"publisher":{"@type":"Organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org"},"url":"https://fincrimeradar.org/fatf-guide-part2.html","datePublished":"2026-07-01"}
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FC1VMTE7JH');</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
+
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --navy:#002850;--navy-mid:#0f3460;--navy-light:#1a4a7a;
+      --teal:#00a892;--teal-light:#e0faf6;--teal-dark:#007d6d;
+      --gold:#f59e0b;--gold-light:#fffbeb;
+      --red:#dc2626;--red-light:#fef2f2;--red-dark:#7f1d1d;
+      --green:#16a34a;--green-light:#f0fdf4;
+      --purple:#7c3aed;--purple-light:#f5f3ff;
+      --blue:#2563eb;--blue-light:#eff6ff;
+      --orange:#ea580c;--orange-light:#fff7ed;
+      --off:#f7f8fa;--white:#fff;--border:#e4e7ec;
+      --text:#111827;--muted:#6b7280;--slate:#374151;
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--off);color:var(--text);line-height:1.7;}
+
+    .progress-bar{position:fixed;top:72px;left:0;width:0%;height:3px;background:var(--red);z-index:199;transition:width .1s;}
+
+    nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:72px;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+    .nav-brand{display:flex;align-items:center;gap:8px;text-decoration:none;}
+    .nav-links{display:flex;align-items:center;gap:1.25rem;}
+    .nav-links a{font-size:13px;color:#374151;text-decoration:none;transition:color .15s;}
+    .nav-links a:hover{color:var(--teal);}
+    .nav-cta{padding:7px 16px;background:var(--teal);color:#fff!important;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;}
+    .nav-hamburger{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:var(--navy);padding:4px 6px;}
+    .mobile-nav{display:none;position:fixed;top:72px;left:0;right:0;background:#fff;border-bottom:1px solid #e4e7ec;flex-direction:column;z-index:99;padding:.5rem 0;box-shadow:0 8px 24px rgba(0,0,0,.08);}
+    .mobile-nav.open{display:flex;}
+    .mobile-nav a{padding:14px 1.5rem;font-size:15px;color:#374151;text-decoration:none;font-weight:500;border-bottom:1px solid #f3f4f6;}
+    .mobile-nav .mobile-nav-cta{margin:.75rem 1.5rem .5rem;background:var(--teal);color:#fff!important;border-radius:8px;text-align:center;border-bottom:none;}
+
+    .article-hero{background:linear-gradient(135deg,#1a0505 0%,#3d0a0a 40%,#1a1010 70%,#0f1830 100%);color:#fff;padding:4rem 2rem 3rem;position:relative;overflow:hidden;}
+    .article-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(ellipse at 20% 60%,rgba(220,38,38,.15) 0%,transparent 55%),radial-gradient(ellipse at 80% 20%,rgba(245,158,11,.1) 0%,transparent 55%);}
+    .hero-inner{max-width:860px;margin:0 auto;position:relative;z-index:1;}
+    .series-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(220,38,38,.2);border:1px solid rgba(220,38,38,.4);border-radius:99px;padding:5px 14px;font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#fca5a5;margin-bottom:1.25rem;}
+    .article-hero h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.9rem,4vw,3rem);font-weight:900;line-height:1.15;margin-bottom:.75rem;}
+    .article-hero h1 em{font-style:italic;color:#fca5a5;font-weight:700;}
+    .hero-sub{font-size:16px;color:#fca5a5;max-width:640px;line-height:1.7;margin-bottom:2rem;opacity:.9;}
+    .hero-meta{display:flex;gap:1.5rem;flex-wrap:wrap;font-size:13px;color:#fca5a5;}
+
+    .article-layout{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 280px;gap:2rem;padding:2rem 1.5rem;align-items:start;}
+    .article-body{min-width:0;}
+    .article-sidebar{position:sticky;top:90px;}
+
+    .toc{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.25rem;margin-bottom:1rem;}
+    .toc-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:.75rem;}
+    .toc a{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);text-decoration:none;padding:5px 0;border-left:2px solid transparent;padding-left:10px;transition:all .15s;line-height:1.4;}
+    .toc a:hover,.toc a.active{color:var(--red);border-left-color:var(--red);}
+
+    .part-nav{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1rem;margin-bottom:1rem;}
+    .part-nav-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:.5rem;}
+    .part-link{display:block;padding:8px 10px;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;margin-bottom:4px;transition:all .15s;}
+    .part-link.prev{background:var(--off);color:var(--muted);border:1px solid var(--border);}
+    .part-link.prev:hover{background:var(--gold-light);color:#92400e;border-color:var(--gold);}
+    .part-link.active{background:var(--red-light);color:var(--red-dark);border:1px solid #fecaca;}
+
+    .tool-cta{background:linear-gradient(135deg,#0f2044,#1a3a6e);color:#fff;border-radius:12px;padding:1.25rem;text-align:center;}
+    .tool-cta p{font-size:13px;color:#93c5fd;margin-bottom:.75rem;line-height:1.5;}
+    .tool-cta a{display:block;background:var(--teal);color:#fff;text-decoration:none;border-radius:8px;padding:10px;font-size:14px;font-weight:600;}
+    .tool-cta a:hover{background:var(--teal-dark);}
+
+    .article-section{background:#fff;border:1px solid var(--border);border-radius:12px;padding:2rem;margin-bottom:1.5rem;}
+    .article-section h2{font-family:'DM Serif Display',Georgia,serif;font-size:1.7rem;color:var(--navy);margin-bottom:.5rem;line-height:1.3;}
+    .article-section h3{font-size:1.05rem;font-weight:700;color:var(--navy);margin:1.5rem 0 .5rem;}
+    .article-section p{color:var(--slate);margin-bottom:1rem;font-size:15px;}
+    .section-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:.5rem;}
+
+    /* STAT ROW */
+    .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:1.5rem 0;}
+    .stat-box{border-radius:10px;padding:1rem;text-align:center;}
+    .stat-box .num{font-family:'Playfair Display',Georgia,serif;font-size:2.2rem;line-height:1;margin-bottom:4px;}
+    .stat-box .lbl{font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* LIST DISTINCTION VISUAL */
+    .list-compare{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0;}
+    .list-panel{border-radius:12px;overflow:hidden;}
+    .list-panel-header{padding:1.25rem 1.5rem;color:#fff;}
+    .list-panel-body{padding:1.25rem 1.5rem;background:#fff;border:1px solid var(--border);border-top:none;border-radius:0 0 12px 12px;}
+    .list-panel-body li{font-size:14px;color:var(--slate);padding:5px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:8px;}
+    .list-panel-body li:last-child{border-bottom:none;}
+    .list-panel-body li::before{font-size:12px;margin-top:3px;flex-shrink:0;}
+    .grey-panel .list-panel-header{background:linear-gradient(135deg,#374151,#6b7280);}
+    .grey-panel .list-panel-body li::before{content:'⚠';color:var(--gold);}
+    .black-panel .list-panel-header{background:linear-gradient(135deg,#1a0000,#7f1d1d);}
+    .black-panel .list-panel-body li::before{content:'🚫';color:var(--red);}
+
+    /* MUTUAL EVALUATION TIMELINE */
+    .me-timeline{background:var(--navy);border-radius:12px;padding:2rem;margin:1.5rem 0;color:#fff;}
+    .me-title{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#93c5fd;margin-bottom:1.5rem;}
+    .me-steps{display:flex;flex-direction:column;gap:0;}
+    .me-step{display:flex;gap:1.25rem;position:relative;}
+    .me-step::before{content:'';position:absolute;left:17px;top:44px;width:2px;height:calc(100% - 20px);background:rgba(255,255,255,.15);}
+    .me-step:last-child::before{display:none;}
+    .me-dot{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;margin-top:5px;}
+    .me-content{padding-bottom:1.5rem;}
+    .me-step-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;}
+    .me-step-desc{font-size:13px;color:#93c5fd;line-height:1.5;}
+
+    /* JURISDICTION GRID */
+    .jurisdiction-grid{margin:1.5rem 0;}
+    .jg-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:1rem;}
+    .blacklist-banner{background:linear-gradient(135deg,#1a0000,#7f1d1d);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;}
+    .blacklist-banner .skull{font-size:32px;}
+    .blacklist-banner-content h4{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;}
+    .blacklist-countries{display:flex;gap:10px;flex-wrap:wrap;}
+    .black-chip{background:rgba(220,38,38,.25);border:1px solid rgba(220,38,38,.5);border-radius:8px;padding:6px 14px;font-size:13px;font-weight:700;color:#fca5a5;}
+
+    .greylist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px;margin-top:1rem;}
+    .grey-chip{background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:13px;color:var(--slate);display:flex;align-items:center;gap:8px;transition:all .2s;}
+    .grey-chip:hover{border-color:var(--gold);background:var(--gold-light);}
+    .grey-chip .flag{font-size:18px;}
+    .grey-chip .info{flex:1;}
+    .grey-chip .name{font-weight:600;font-size:13px;color:var(--navy);line-height:1.2;}
+    .grey-chip .sub{font-size:10px;color:var(--muted);}
+    .grey-chip.new-add{border-color:#f59e0b;background:var(--gold-light);}
+    .grey-chip.new-add .name{color:#92400e;}
+
+    /* WHAT GETS YOU LISTED */
+    .listing-reasons{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:1.5rem 0;}
+    .reason-card{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:14px;}
+    .reason-icon{font-size:24px;margin-bottom:8px;}
+    .reason-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+    .reason-desc{font-size:13px;color:var(--slate);line-height:1.5;}
+
+    /* EDD DECISION TREE */
+    .edd-tree{background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin:1.5rem 0;}
+    .edd-tree-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:1rem;}
+    .edd-node{border-radius:8px;padding:10px 14px;font-size:13px;font-weight:600;text-align:center;}
+    .edd-connector{display:flex;justify-content:center;margin:4px 0;}
+    .edd-connector svg{color:var(--muted);}
+    .edd-branch{display:flex;gap:1rem;margin:6px 0;justify-content:center;}
+    .edd-branch-item{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;max-width:200px;}
+    .edd-label{font-size:11px;color:var(--muted);font-style:italic;text-align:center;margin-top:2px;}
+
+    /* DESK SCENARIOS */
+    .desk-scenario{background:#f8fafc;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:1.25rem 0;}
+    .desk-header{background:var(--navy);padding:.75rem 1.25rem;display:flex;align-items:center;gap:10px;}
+    .desk-header span{font-size:13px;font-weight:700;color:#fff;}
+    .desk-header .tag{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;background:rgba(220,38,38,.3);color:#fca5a5;border-radius:99px;padding:2px 10px;}
+    .desk-body{padding:1.25rem;}
+    .desk-body p{font-size:14px;color:var(--slate);margin-bottom:.75rem;line-height:1.6;}
+    .desk-body p:last-child{margin-bottom:0;}
+    .desk-action{background:var(--teal-light);border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:.75rem 1rem;margin-top:.75rem;}
+    .desk-action strong{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--teal-dark);display:block;margin-bottom:3px;}
+    .desk-action p{font-size:13px;color:var(--slate);margin:0;}
+
+    /* CALLOUTS */
+    .callout{border-radius:10px;padding:1.1rem 1.25rem;margin:1.25rem 0;border-left:4px solid;}
+    .callout-red{background:var(--red-light);border-color:var(--red);}
+    .callout-gold{background:var(--gold-light);border-color:var(--gold);}
+    .callout-navy{background:#f0f4ff;border-color:var(--navy);}
+    .callout-teal{background:var(--teal-light);border-color:var(--teal);}
+    .callout strong{display:block;font-size:13px;font-weight:700;margin-bottom:4px;}
+    .callout p{font-size:14px;margin:0;color:var(--slate);}
+
+    /* CHECKLIST */
+    .checklist{list-style:none;margin:1rem 0;}
+    .checklist li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--slate);}
+    .checklist li:last-child{border-bottom:none;}
+    .checklist li::before{content:'✓';font-weight:700;font-size:13px;color:var(--green);margin-top:2px;flex-shrink:0;}
+
+    /* COUNTERMEASURES TABLE */
+    .measures-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:14px;}
+    .measures-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;}
+    .measures-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--slate);vertical-align:top;}
+    .measures-table tr:nth-child(even) td{background:#f8fafc;}
+    .measures-table .badge{display:inline-block;border-radius:99px;padding:2px 10px;font-size:11px;font-weight:700;}
+    .badge-red{background:var(--red-light);color:var(--red);}
+    .badge-gold{background:var(--gold-light);color:#92400e;}
+    .badge-green{background:var(--green-light);color:var(--green);}
+
+    /* QUIZ */
+    .quiz-section{background:var(--navy);border-radius:12px;padding:2rem;margin:1.5rem 0;color:#fff;}
+    .quiz-title{font-family:'DM Serif Display',Georgia,serif;font-size:1.3rem;margin-bottom:.5rem;}
+    .quiz-sub{font-size:13px;color:#93c5fd;margin-bottom:1.5rem;}
+    .quiz-q{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:1.25rem;margin-bottom:1rem;}
+    .quiz-q-text{font-size:14px;font-weight:600;margin-bottom:.75rem;}
+    .quiz-opts{display:flex;flex-direction:column;gap:6px;}
+    .quiz-opt{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:10px 14px;cursor:pointer;font-size:13px;color:#e2e8f0;transition:all .15s;text-align:left;width:100%;}
+    .quiz-opt:hover{background:rgba(255,255,255,.15);}
+    .quiz-opt.q-correct{background:rgba(22,163,74,.25);border-color:#4ade80;color:#86efac;}
+    .quiz-opt.q-wrong{background:rgba(220,38,38,.25);border-color:#f87171;color:#fca5a5;}
+    .quiz-fb{font-size:13px;margin-top:8px;padding:8px 12px;border-radius:6px;display:none;}
+    .quiz-fb.show{display:block;}
+    .quiz-score{text-align:center;padding:1.5rem;background:rgba(255,255,255,.05);border-radius:10px;margin-top:1rem;display:none;}
+    .quiz-score.show{display:block;}
+    .quiz-score-num{font-family:'Playfair Display',Georgia,serif;font-size:3rem;color:#86efac;}
+
+    /* INLINE CTA */
+    .inline-cta{background:linear-gradient(135deg,#f0fdf9,#ecfeff);border:1px solid var(--teal);border-radius:12px;padding:1.25rem 1.5rem;margin:1.5rem 0;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;}
+    .inline-cta-text{flex:1;min-width:220px;}
+    .inline-cta-text strong{display:block;font-size:15px;color:var(--navy);margin-bottom:4px;}
+    .inline-cta-text span{font-size:13px;color:var(--muted);}
+    .inline-cta-btn{background:var(--teal);color:#fff;text-decoration:none;border-radius:8px;padding:10px 18px;font-size:14px;font-weight:600;white-space:nowrap;}
+    .inline-cta-btn:hover{background:var(--teal-dark);}
+
+    /* PATH TO DELISTING */
+    .delisting-steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:1.5rem 0;}
+    .delisting-step{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1rem;position:relative;}
+    .delisting-step-num{font-family:'Playfair Display',Georgia,serif;font-size:2rem;font-weight:900;color:#e4e7ec;position:absolute;top:8px;right:12px;line-height:1;}
+    .delisting-step-icon{font-size:22px;margin-bottom:6px;}
+    .delisting-step-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+    .delisting-step-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+
+    @media(max-width:768px){
+      .article-layout{grid-template-columns:1fr;}
+      .article-sidebar{position:static;}
+      .stat-row{grid-template-columns:repeat(2,1fr);}
+      .list-compare{grid-template-columns:1fr;}
+      .nav-hamburger{display:block;}
+      .nav-links{display:none;}
+      .greylist-grid{grid-template-columns:repeat(2,1fr);}
+      .inline-cta{flex-direction:column;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <a class="nav-brand" href="/">
+    <img src="/logo.png" alt="FinCrimeRadar" style="height:44px;width:auto;max-width:200px;object-fit:contain;object-position:left center;display:block;" />
+  </a>
+  <div class="nav-links">
+    <a href="/knowledge.html">Knowledge Hub</a>
+    <a href="/news.html">News</a>
+    <a href="/learn.html">Learn</a>
+    <a href="/about.html">About</a>
+    <a href="/screen.html" class="nav-cta">Try the tool →</a>
+  </div>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/knowledge.html">Knowledge Hub</a>
+  <a href="/news.html">News</a>
+  <a href="/learn.html">Learn</a>
+  <a href="/about.html">About</a>
+  <a href="/screen.html" class="mobile-nav-cta">Try the tool →</a>
+</div>
+
+<!-- HERO -->
+<div class="article-hero">
+  <div class="hero-inner">
+    <div class="series-tag">🌍 FATF Series · Part 2 of 2</div>
+    <h1>Grey List. Black List.<br><em>The Compliance Playbook.</em></h1>
+    <p class="hero-sub">How countries end up on the FATF lists, what the lists actually mean for your EDD obligations, the complete June 2026 current lists, and the real compliance decisions that flow from dealing with listed jurisdictions.</p>
+    <div class="hero-meta">
+      <span>⏱ 25 min read</span>
+      <span>🗺 Visual Risk Map</span>
+      <span>📋 June 2026 Updated</span>
+      <span>🎓 Practitioner Level</span>
+    </div>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="article-layout">
+<div class="article-body">
+
+  <!-- INTRO -->
+  <div class="article-section" id="intro">
+    <div class="section-eyebrow" style="color:var(--red)">Why the Lists Matter to Your Desk</div>
+    <h2>A country on the FATF grey list does not mean you cannot do business. It means you must look harder.</h2>
+    <p>The FATF lists are among the most misunderstood tools in AML compliance. Many practitioners treat grey-listed status as an automatic trigger for transaction refusal or relationship exit. Many others barely engage with the lists at all, treating them as a national policy problem rather than an operational one. Neither approach is correct.</p>
+    <p>The grey list is a risk signal, not a prohibition. The black list is a risk signal with countermeasure expectations, not an automatic ban. Understanding the difference, knowing what the lists actually require of you as a compliance professional, and being able to make and document proportionate decisions — that is what this guide is built to deliver.</p>
+    <p>This is Part 2 of the FinCrimeRadar FATF series. If you have not read Part 1, it covers the seven recommendations that drive your daily operational compliance decisions, including the risk-based approach that underpins everything in this article.</p>
+
+    <div class="stat-row">
+      <div class="stat-box" style="background:var(--red-light);border:1px solid #fecaca;">
+        <div class="num" style="color:var(--red);">3</div>
+        <div class="lbl">Countries on the FATF black list — Iran, North Korea, Myanmar — June 2026</div>
+      </div>
+      <div class="stat-box" style="background:var(--gold-light);border:1px solid #fcd34d;">
+        <div class="num" style="color:#92400e;">22</div>
+        <div class="lbl">Jurisdictions on the FATF grey list as of 19 June 2026</div>
+      </div>
+      <div class="stat-box" style="background:var(--blue-light);border:1px solid #bfdbfe;">
+        <div class="num" style="color:var(--blue);">3×</div>
+        <div class="lbl">Times per year FATF updates the lists — February, June, October</div>
+      </div>
+    </div>
+
+    <div class="callout callout-navy">
+      <strong>June 2026 update — what just changed</strong>
+      <p>At the June 2026 Plenary (17–19 June 2026): Iraq and Bosnia and Herzegovina were added to the grey list. Algeria and Namibia were removed after successful on-site visits confirmed they had completed their action plans. The black list remains unchanged at three countries. Giles Thomson of the United Kingdom became FATF President on 1 July 2026, with stated priorities on fraud, the risk-based approach, and information sharing.</p>
+    </div>
+  </div>
+
+  <!-- HOW THE LISTS WORK -->
+  <div class="article-section" id="howlists">
+    <div class="section-eyebrow" style="color:var(--red)">The Mechanics</div>
+    <h2>The Grey List and the Black List — What Actually Distinguishes Them</h2>
+    <p>These two lists are formally distinct instruments with different official names, different compliance expectations, and different regulatory consequences. They are commonly confused — including by compliance professionals who should know better.</p>
+
+    <div class="list-compare">
+      <div class="list-panel grey-panel">
+        <div class="list-panel-header">
+          <div style="font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;opacity:.8;margin-bottom:6px;">Official Name</div>
+          <div style="font-size:18px;font-weight:700;">Jurisdictions Under Increased Monitoring</div>
+          <div style="font-size:13px;opacity:.75;margin-top:4px;">Informally: The Grey List</div>
+        </div>
+        <ul class="list-panel-body">
+          <li>Country has identified strategic deficiencies in its AML/CFT/CPF framework</li>
+          <li>Country has made a high-level political commitment to address deficiencies</li>
+          <li>Country is actively working with FATF under an agreed action plan</li>
+          <li>FATF does NOT call for mandatory EDD — it says take the listing into account in your risk analysis</li>
+          <li>The listing is a factor in your risk assessment, not a blanket prohibition</li>
+          <li>Discourages indiscriminate de-risking — proportionate response required</li>
+        </ul>
+      </div>
+
+      <div class="list-panel black-panel">
+        <div class="list-panel-header">
+          <div style="font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;opacity:.8;margin-bottom:6px;">Official Name</div>
+          <div style="font-size:18px;font-weight:700;">High-Risk Jurisdictions Subject to a Call for Action</div>
+          <div style="font-size:13px;opacity:.75;margin-top:4px;">Informally: The Black List</div>
+        </div>
+        <ul class="list-panel-body">
+          <li>Significant strategic deficiencies — not merely identified, but unresolved and serious</li>
+          <li>Country is non-cooperative with FATF or has refused to address deficiencies</li>
+          <li>FATF explicitly calls on members to apply enhanced due diligence</li>
+          <li>In the most serious cases: countermeasures required to protect the international financial system</li>
+          <li>For Iran and North Korea: UN Security Council sanctions compound FATF listing — maximum compliance friction</li>
+          <li>Correspondent banks routinely restrict or refuse transactions with blacklisted jurisdictions entirely</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout callout-gold">
+      <strong>The critical distinction most guides get wrong</strong>
+      <p>The FATF itself explicitly states that grey list status alone does not require firms to apply enhanced due diligence. It is an input to your risk assessment under the risk-based approach. However, in practice, virtually every major bank, payment institution, and compliance programme treats grey-listed counterparties as requiring EDD by default — because the risk-based approach, properly applied, almost always produces that outcome when a jurisdiction has documented AML/CFT deficiencies. Understanding the technical position and the operational reality are both necessary.</p>
+    </div>
+  </div>
+
+  <!-- MUTUAL EVALUATION PROCESS -->
+  <div class="article-section" id="meval">
+    <div class="section-eyebrow" style="color:var(--red)">How Countries Get Listed</div>
+    <h2>The Mutual Evaluation Process — From Assessment to Action Plan</h2>
+    <p>Countries do not end up on the FATF lists by accident or political decision. They arrive there through a structured peer assessment process called a Mutual Evaluation, which takes several years to complete and measures both technical compliance with the 40 Recommendations and the effectiveness of the country's AML/CFT regime in practice.</p>
+
+    <div class="me-timeline">
+      <div class="me-title">The Mutual Evaluation Journey</div>
+      <div class="me-steps">
+        <div class="me-step">
+          <div class="me-dot">📋</div>
+          <div class="me-content">
+            <div class="me-step-title">Step 1 — Questionnaire and Self-Assessment</div>
+            <div class="me-step-desc">The country under assessment completes a detailed technical compliance questionnaire covering all 40 Recommendations. This takes 12–18 months. The country also submits statistical data on SARs, prosecutions, convictions, asset freezing and confiscation.</div>
+          </div>
+        </div>
+        <div class="me-step">
+          <div class="me-dot">🔍</div>
+          <div class="me-content">
+            <div class="me-step-title">Step 2 — On-Site Visit by Assessors</div>
+            <div class="me-step-desc">A team of expert assessors — typically 10–15 people from FATF member countries — conducts an intensive on-site visit lasting 2–3 weeks. They meet with supervisors, law enforcement, prosecutors, financial intelligence units, and private sector representatives. They test whether the laws and regulations on paper actually function in practice.</div>
+          </div>
+        </div>
+        <div class="me-step">
+          <div class="me-dot">📊</div>
+          <div class="me-content">
+            <div class="me-step-title">Step 3 — Mutual Evaluation Report</div>
+            <div class="me-step-desc">The assessors produce a Mutual Evaluation Report (MER) covering 11 Immediate Outcomes — the specific effectiveness measures FATF uses to determine whether a country's regime actually works. The MER rates technical compliance for each recommendation as Compliant, Largely Compliant, Partially Compliant, or Non-Compliant. Effectiveness is rated as High, Substantial, Moderate, or Low across the 11 outcomes.</div>
+          </div>
+        </div>
+        <div class="me-step">
+          <div class="me-dot">⚖️</div>
+          <div class="me-content">
+            <div class="me-step-title">Step 4 — FATF Plenary Discussion and Adoption</div>
+            <div class="me-step-desc">The MER is discussed and formally adopted at a FATF Plenary. The country has an opportunity to respond. After adoption, the report is published — typically running to several hundred pages — and available on the FATF website. A country with serious deficiencies enters enhanced follow-up, which is the mechanism that can lead to grey-listing.</div>
+          </div>
+        </div>
+        <div class="me-step">
+          <div class="me-dot">🚨</div>
+          <div class="me-content">
+            <div class="me-step-title">Step 5 — Action Plan and Grey List</div>
+            <div class="me-step-desc">Countries with significant deficiencies are required to agree an action plan with FATF — a specific set of measures to be implemented within agreed timeframes. When a country makes a high-level political commitment to that action plan, it is placed under Increased Monitoring — the grey list. The country then reports to FATF on progress at each Plenary session.</div>
+          </div>
+        </div>
+        <div class="me-step">
+          <div class="me-dot">✅</div>
+          <div class="me-content">
+            <div class="me-step-title">Step 6 — On-Site Verification and Removal</div>
+            <div class="me-step-desc">Once a country has substantially completed its action plan, FATF makes an initial determination and conducts an on-site assessment to verify that reforms are genuine and being sustained. If satisfied, the country is removed from the grey list at the following Plenary. Algeria and Namibia were both removed in June 2026 following this process.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>What actually gets a country listed — the six most common deficiencies</h3>
+    <div class="listing-reasons">
+      <div class="reason-card">
+        <div class="reason-icon">🔭</div>
+        <div class="reason-title">Weak Risk Understanding</div>
+        <div class="reason-desc">The country cannot demonstrate that its authorities understand the actual ML/TF risks it faces. Its national risk assessment is superficial, outdated, or contradicted by its own data.</div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-icon">👁️</div>
+        <div class="reason-title">Inadequate Supervision</div>
+        <div class="reason-desc">Financial institutions and DNFBPs are not effectively supervised for AML/CFT compliance. Supervisors lack powers, resources, or willingness to enforce. Regulatory examinations are infrequent and non-dissuasive.</div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-icon">🌳</div>
+        <div class="reason-title">Beneficial Ownership Gaps</div>
+        <div class="reason-desc">The country does not have adequate mechanisms to identify who ultimately owns and controls legal entities and arrangements. Corporate opacity is a primary enabler of money laundering through the jurisdiction.</div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-icon">⚖️</div>
+        <div class="reason-title">Low Prosecution and Conviction Rates</div>
+        <div class="reason-desc">The country has adequate ML/TF laws on paper but fails to use them — conviction rates are low, prosecutions are rare, and confiscation of criminal proceeds is minimal relative to the scale of known criminal activity.</div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-icon">🎯</div>
+        <div class="reason-title">Targeted Financial Sanctions Failure</div>
+        <div class="reason-desc">The country does not effectively implement UN Security Council targeted financial sanctions — there are delays in designation, gaps in enforcement, or institutions are not screening against the designated list in real time.</div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-icon">🤝</div>
+        <div class="reason-title">International Cooperation Failures</div>
+        <div class="reason-desc">The country is unresponsive or slow in responding to MLA requests, refuses to share financial intelligence with foreign counterparts, or imposes restrictions that prevent effective cross-border AML/CFT cooperation.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CURRENT LISTS JUNE 2026 -->
+  <div class="article-section" id="currentlists">
+    <div class="section-eyebrow" style="color:var(--red)">The Lists — June 2026</div>
+    <h2>The Current Lists — Updated 19 June 2026</h2>
+    <p>These are the lists as formally published by the FATF following the June 2026 Plenary in Paris. FATF updates its lists three times per year. Always verify against <strong>fatf-gafi.org</strong> before making a compliance decision — this guide is current as of publication but the lists change.</p>
+
+    <div class="jurisdiction-grid">
+      <div class="jg-title">The Black List — 3 Countries — Unchanged since October 2022</div>
+      <div class="blacklist-banner">
+        <div class="skull">☠️</div>
+        <div class="blacklist-banner-content">
+          <h4>High-Risk Jurisdictions Subject to a Call for Action</h4>
+          <p style="font-size:13px;color:#fca5a5;margin-bottom:10px;">FATF calls on all members to apply enhanced due diligence. In the most serious cases: countermeasures are required.</p>
+          <div class="blacklist-countries">
+            <div class="black-chip">🇮🇷 Iran</div>
+            <div class="black-chip">🇰🇵 North Korea (DPRK)</div>
+            <div class="black-chip">🇲🇲 Myanmar</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jg-title" style="margin-top:1.5rem;">The Grey List — 22 Jurisdictions — Updated 19 June 2026</div>
+      <p style="font-size:14px;color:var(--slate);margin-bottom:1rem;">Jurisdictions Under Increased Monitoring. Two added at June 2026 Plenary are marked. Countries are listed alphabetically as per FATF's official publication.</p>
+
+      <div class="greylist-grid">
+        <div class="grey-chip"><div class="flag">🇦🇴</div><div class="info"><div class="name">Angola</div><div class="sub">Since Oct 2024</div></div></div>
+        <div class="grey-chip"><div class="flag">🇧🇴</div><div class="info"><div class="name">Bolivia</div><div class="sub">Since Jun 2024</div></div></div>
+        <div class="grey-chip new-add"><div class="flag">🇧🇦</div><div class="info"><div class="name">Bosnia & Herzegovina</div><div class="sub">⭐ Added Jun 2026</div></div></div>
+        <div class="grey-chip"><div class="flag">🇧🇬</div><div class="info"><div class="name">Bulgaria</div><div class="sub">Since Oct 2023</div></div></div>
+        <div class="grey-chip"><div class="flag">🇨🇲</div><div class="info"><div class="name">Cameroon</div><div class="sub">Since Oct 2023</div></div></div>
+        <div class="grey-chip"><div class="flag">🇨🇮</div><div class="info"><div class="name">Côte d'Ivoire</div><div class="sub">Since Jun 2022</div></div></div>
+        <div class="grey-chip"><div class="flag">🇨🇩</div><div class="info"><div class="name">DR Congo</div><div class="sub">Since Oct 2022</div></div></div>
+        <div class="grey-chip"><div class="flag">🇭🇹</div><div class="info"><div class="name">Haiti</div><div class="sub">Since Jun 2021</div></div></div>
+        <div class="grey-chip new-add"><div class="flag">🇮🇶</div><div class="info"><div class="name">Iraq</div><div class="sub">⭐ Added Jun 2026</div></div></div>
+        <div class="grey-chip"><div class="flag">🇰🇪</div><div class="info"><div class="name">Kenya</div><div class="sub">Since Jun 2024</div></div></div>
+        <div class="grey-chip"><div class="flag">🇰🇼</div><div class="info"><div class="name">Kuwait</div><div class="sub">Since Feb 2026</div></div></div>
+        <div class="grey-chip"><div class="flag">🇱🇦</div><div class="info"><div class="name">Laos</div><div class="sub">Since Jun 2021</div></div></div>
+        <div class="grey-chip"><div class="flag">🇱🇧</div><div class="info"><div class="name">Lebanon</div><div class="sub">Since Jun 2024</div></div></div>
+        <div class="grey-chip"><div class="flag">🇲🇨</div><div class="info"><div class="name">Monaco</div><div class="sub">Since Jun 2024</div></div></div>
+        <div class="grey-chip"><div class="flag">🇳🇵</div><div class="info"><div class="name">Nepal</div><div class="sub">Since Jun 2024</div></div></div>
+        <div class="grey-chip"><div class="flag">🇵🇬</div><div class="info"><div class="name">Papua New Guinea</div><div class="sub">Since Feb 2026</div></div></div>
+        <div class="grey-chip"><div class="flag">🇸🇸</div><div class="info"><div class="name">South Sudan</div><div class="sub">Since Jun 2021</div></div></div>
+        <div class="grey-chip"><div class="flag">🇸🇾</div><div class="info"><div class="name">Syria</div><div class="sub">Since Jun 2021</div></div></div>
+        <div class="grey-chip"><div class="flag">🇻🇪</div><div class="info"><div class="name">Venezuela</div><div class="sub">Since Jun 2024</div></div></div>
+        <div class="grey-chip"><div class="flag">🇻🇳</div><div class="info"><div class="name">Vietnam</div><div class="sub">Since Jun 2023</div></div></div>
+        <div class="grey-chip"><div class="flag">🇻🇬</div><div class="info"><div class="name">Virgin Islands (UK)</div><div class="sub">Since Feb 2024</div></div></div>
+        <div class="grey-chip"><div class="flag">🇾🇪</div><div class="info"><div class="name">Yemen</div><div class="sub">Since Jun 2021</div></div></div>
+      </div>
+
+      <div class="callout callout-teal" style="margin-top:1.25rem;">
+        <strong>Notable recent removals — what success looks like</strong>
+        <p>Algeria and Namibia were removed in June 2026 after completing their action plans and passing on-site verification. South Africa was removed in October 2025 — notably quickly, having only been listed since 2023, reflecting robust reforms to its AML framework. The UAE was removed in February 2024. These examples show that listing is not permanent and is responsive to genuine reform.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT EACH LIST MEANS FOR YOUR COMPLIANCE PROGRAMME -->
+  <div class="article-section" id="eddobs">
+    <div class="section-eyebrow" style="color:var(--red)">The Compliance Obligations</div>
+    <h2>What Each List Actually Requires From Your Compliance Programme</h2>
+
+    <h3>Grey List — the risk-based response</h3>
+    <p>When a counterparty, customer, or transaction is connected to a grey-listed jurisdiction, your compliance programme must incorporate that fact into its risk assessment. The FATF standard does not mandate automatic EDD — but it does require you to demonstrate that you have considered the listing and that your response is proportionate to the actual risk presented.</p>
+
+    <div class="edd-tree">
+      <div class="edd-tree-title">Grey List Risk Decision Framework</div>
+      <div style="text-align:center;">
+        <div class="edd-node" style="background:var(--navy);color:#fff;display:inline-block;margin-bottom:8px;">Customer or transaction connected to grey-listed jurisdiction</div>
+        <div class="edd-connector">↓</div>
+        <div class="edd-node" style="background:#f0f4ff;border:1px solid var(--navy);color:var(--navy);display:inline-block;margin-bottom:8px;">Assess: What is the nature of the connection?</div>
+        <div class="edd-branch" style="margin-top:8px;">
+          <div class="edd-branch-item">
+            <div class="edd-node" style="background:var(--gold-light);border:1px solid var(--gold);color:#92400e;font-size:12px;">Customer IS from grey-listed country — primary nexus</div>
+            <div class="edd-label">Treat as high risk. EDD almost always warranted. Document thoroughly.</div>
+          </div>
+          <div class="edd-branch-item">
+            <div class="edd-node" style="background:#f0f4ff;border:1px solid var(--blue);color:var(--blue);font-size:12px;">Transaction routes through or to grey-listed country</div>
+            <div class="edd-label">Assess purpose. Standard CDD may be sufficient if legitimate commercial reason is clear and documented.</div>
+          </div>
+          <div class="edd-branch-item">
+            <div class="edd-node" style="background:var(--green-light);border:1px solid var(--green);color:var(--green);font-size:12px;">Incidental connection — e.g. correspondent bank is located there</div>
+            <div class="edd-label">Factor into correspondent banking EDD. Does not automatically elevate transaction risk.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Black List — the countermeasure expectation</h3>
+    <p>For black-listed jurisdictions the FATF expectation is materially different. FATF calls on members to apply enhanced due diligence. In the most serious cases — currently Iran and North Korea — FATF calls for countermeasures.</p>
+
+    <table class="measures-table">
+      <thead>
+        <tr>
+          <th>Countermeasure</th>
+          <th>What It Means in Practice</th>
+          <th>Applicability</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Enhanced Due Diligence</strong></td>
+          <td>Full EDD on any customer, counterparty or transaction with a nexus to the jurisdiction. Source of funds, source of wealth, beneficial ownership, senior management approval, enhanced monitoring.</td>
+          <td><span class="badge badge-red">All 3 Black-Listed</span></td>
+        </tr>
+        <tr>
+          <td><strong>Introducing EDD for Business Relationships</strong></td>
+          <td>Treating any new or existing relationship with a nexus to the jurisdiction as presumptively high risk. Reviewing existing business relationships for exposure.</td>
+          <td><span class="badge badge-red">All 3 Black-Listed</span></td>
+        </tr>
+        <tr>
+          <td><strong>Targeted Financial Sanctions</strong></td>
+          <td>For Iran and North Korea: UN Security Council targeted sanctions compound the FATF obligations. Any transaction connected to designated parties is prohibited, not merely EDD-subject.</td>
+          <td><span class="badge badge-red">Iran & DPRK</span></td>
+        </tr>
+        <tr>
+          <td><strong>Limiting or Severing Business Relationships</strong></td>
+          <td>FATF permits — and in extreme cases calls for — limiting new business from or with the jurisdiction, or exiting existing relationships where risk cannot be managed adequately through EDD.</td>
+          <td><span class="badge badge-gold">Discretionary / Risk-Based</span></td>
+        </tr>
+        <tr>
+          <td><strong>Subsidiary Transactions</strong></td>
+          <td>Enhanced oversight of financial groups' transactions through subsidiaries or branches in the jurisdiction, where the jurisdiction's AML/CFT framework is inadequate to the risk.</td>
+          <td><span class="badge badge-gold">For Financial Groups</span></td>
+        </tr>
+        <tr>
+          <td><strong>Refusing Transactions</strong></td>
+          <td>For the most serious jurisdictions, FATF standards permit — in extreme cases — outright refusal of transactions. This is rare and requires documented proportionate justification.</td>
+          <td><span class="badge badge-gold">Discretionary</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-red">
+      <strong>The de-risking problem the FATF specifically warns against</strong>
+      <p>The FATF explicitly discourages indiscriminate de-risking — blanket refusal to deal with entire classes of customers, transaction types, or countries without individual risk assessment. A policy of refusing all customers from grey-listed countries regardless of individual circumstances is not a proportionate risk-based response. It is the kind of systemic over-reaction that pushes legitimate transactions into informal channels and damages financial inclusion. The risk-based approach requires you to assess individuals and transactions — not countries as homogenous blocks.</p>
+    </div>
+  </div>
+
+  <!-- DESK SCENARIOS -->
+  <div class="article-section" id="scenarios">
+    <div class="section-eyebrow" style="color:var(--red)">At Your Desk</div>
+    <h2>Three Real Scenarios — Making the Call</h2>
+
+    <div class="desk-scenario">
+      <div class="desk-header"><span>📋 Scenario 1</span><div class="tag">Grey List Customer</div></div>
+      <div class="desk-body">
+        <p>A new customer applies to open a business account. He is a Bulgarian national — Bulgaria was added to the FATF grey list in October 2023. He is a director of a legitimate UK-registered software company, has a stable employment history, straightforward business model, and all transactions are expected to be electronic B2B payments to UK clients.</p>
+        <p>Bulgaria's grey-listing relates to systemic deficiencies in its supervision of DNFBPs and beneficial ownership transparency — not a finding that all Bulgarian businesses are high-risk.</p>
+        <div class="desk-action">
+          <strong>The proportionate response</strong>
+          <p>Standard CDD is the starting point. The customer's Bulgarian nationality is a risk factor to document — but by itself, it does not trigger EDD. Your risk assessment should note the grey-listing, apply enhanced scrutiny to source of funds and beneficial ownership verification (given Bulgaria's specific deficiencies in beneficial ownership), and calibrate transaction monitoring accordingly. This is not an automatic EDD case. Document your reasoning and move on.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="desk-scenario">
+      <div class="desk-header"><span>📋 Scenario 2</span><div class="tag">Black List Transaction</div></div>
+      <div class="desk-body">
+        <p>A UK-based customer — fully onboarded, clean profile, no prior issues — requests a transfer of £45,000 to a company registered in Myanmar. The stated purpose is payment for goods under a trade contract. Myanmar has been on the FATF black list since October 2022.</p>
+        <p>Myanmar's listing also overlaps with UK sanctions — HM Treasury has Myanmar-specific sanctions in place relating to the military regime. The transaction requires both a FATF countermeasure assessment and a sanctions screening pass before proceeding.</p>
+        <div class="desk-action">
+          <strong>The required response</strong>
+          <p>Step one: sanctions screen the Myanmar recipient against OFSI and UN lists. Step two: if clear, apply EDD to the transaction — full source of funds documentation, counterparty verification, understanding of the Myanmar company's beneficial ownership and the goods being traded. Step three: escalate to the MLRO for senior sign-off before executing. If any element cannot be satisfactorily verified, the MLRO must assess whether a DAML SAR is required before the funds move. This is not a routine transaction, even if the customer's overall profile is clean.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="desk-scenario">
+      <div class="desk-header"><span>📋 Scenario 3</span><div class="tag">Newly Listed Jurisdiction — Iraq</div></div>
+      <div class="desk-body">
+        <p>Iraq was added to the FATF grey list on 19 June 2026. You have fifteen existing customers with Iraqi connections — some Iraqi nationals, some UK-based businesses with Iraqi trading partners. You receive a new application from an Iraqi citizen the day after the listing is published.</p>
+        <p>The question your head of compliance is asking: "What do we do with existing relationships, and what do we do with the new application?"</p>
+        <div class="desk-action">
+          <strong>The required response</strong>
+          <p>For existing relationships: conduct a triggered review. Flag all fifteen customer files for reassessment within a risk-proportionate timeframe — higher-risk customers immediately, lower-risk within your standard periodic review cycle. Update risk ratings to reflect the listing. Increase monitoring sensitivity for Iraqi-nexus transactions. For the new application: process normally but ensure your standard CDD incorporates Iraq's grey-listed status as an elevated risk factor. Document that you have considered the listing in your risk assessment. Do not refuse the application solely on the basis of nationality — that is de-risking, not risk management.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="inline-cta">
+      <div class="inline-cta-text">
+        <strong>Screening customers connected to listed jurisdictions?</strong>
+        <span>Run free PEP, sanctions, and adverse media checks on any individual or entity — no account required.</span>
+      </div>
+      <a href="/screen.html" class="inline-cta-btn">Open the screening tool →</a>
+    </div>
+  </div>
+
+  <!-- PATH TO DELISTING -->
+  <div class="article-section" id="delisting">
+    <div class="section-eyebrow" style="color:var(--red)">The Road Back</div>
+    <h2>What FATF Expects on the Path to Delisting</h2>
+    <p>Understanding what a country must do to be removed from the grey list is useful for two reasons: it tells you what FATF considers a functioning AML/CFT regime, and it tells you how long grey-listed status is likely to last for specific jurisdictions — which informs your medium-term risk planning for customer portfolios with those exposures.</p>
+
+    <div class="delisting-steps">
+      <div class="delisting-step">
+        <div class="delisting-step-num">1</div>
+        <div class="delisting-step-icon">🏛️</div>
+        <div class="delisting-step-title">Legislative Reform</div>
+        <div class="delisting-step-desc">Pass or amend AML/CFT laws to meet the technical requirements of the 40 Recommendations — the specific gaps identified in the mutual evaluation report.</div>
+      </div>
+      <div class="delisting-step">
+        <div class="delisting-step-num">2</div>
+        <div class="delisting-step-icon">👁️</div>
+        <div class="delisting-step-title">Supervision Improvement</div>
+        <div class="delisting-step-desc">Demonstrate that supervisors are actively and effectively examining financial institutions and DNFBPs for AML/CFT compliance — with meaningful sanctions for failures.</div>
+      </div>
+      <div class="delisting-step">
+        <div class="delisting-step-num">3</div>
+        <div class="delisting-step-icon">🌳</div>
+        <div class="delisting-step-title">Beneficial Ownership Register</div>
+        <div class="delisting-step-desc">Establish and maintain an accurate, accessible beneficial ownership register — and demonstrate that it is actually used in practice by supervisors and law enforcement.</div>
+      </div>
+      <div class="delisting-step">
+        <div class="delisting-step-num">4</div>
+        <div class="delisting-step-icon">⚖️</div>
+        <div class="delisting-step-title">Prosecutions and Convictions</div>
+        <div class="delisting-step-desc">Increase money laundering investigations, prosecutions, and convictions to a level commensurate with the country's risk profile. Confiscation of criminal proceeds must also improve.</div>
+      </div>
+      <div class="delisting-step">
+        <div class="delisting-step-num">5</div>
+        <div class="delisting-step-icon">🎯</div>
+        <div class="delisting-step-title">TFS Implementation</div>
+        <div class="delisting-step-desc">Demonstrate real-time, effective implementation of targeted financial sanctions — including screening by financial institutions, timely domestic designations, and enforcement.</div>
+      </div>
+      <div class="delisting-step">
+        <div class="delisting-step-num">6</div>
+        <div class="delisting-step-icon">✅</div>
+        <div class="delisting-step-title">On-Site Verification</div>
+        <div class="delisting-step-desc">FATF must verify reforms are genuine, operational, and being sustained — not just legislated. A country can pass all the laws it likes; if they are not implemented effectively, it stays listed.</div>
+      </div>
+    </div>
+
+    <div class="callout callout-navy">
+      <strong>Average time on the grey list: 2 to 4 years</strong>
+      <p>Most countries complete their action plans and are removed within two to four years. Some have remained listed for over a decade — typically where the deficiencies are structural or where political commitment to reform is inconsistent. When planning your medium-term risk appetite for grey-listed jurisdiction exposure, this timeframe is your working assumption unless specific intelligence about the country's reform trajectory suggests otherwise.</p>
+    </div>
+  </div>
+
+  <!-- KNOWLEDGE CHECK -->
+  <div class="quiz-section" id="quiz">
+    <div class="quiz-title">Knowledge Check — Country Risk & the FATF Lists</div>
+    <div class="quiz-sub">Five questions. Testing operational understanding, not just recall.</div>
+
+    <div class="quiz-q" id="qq1">
+      <div class="quiz-q-text">1. The FATF formally calls its grey list by which name?</div>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="answerQ('qq1','A','C')">A — High-Risk Jurisdictions Subject to a Call for Action</button>
+        <button class="quiz-opt" onclick="answerQ('qq1','B','C')">B — Enhanced Monitoring Jurisdictions</button>
+        <button class="quiz-opt" onclick="answerQ('qq1','C','C')">C — Jurisdictions Under Increased Monitoring</button>
+        <button class="quiz-opt" onclick="answerQ('qq1','D','C')">D — Non-Cooperative Countries and Territories</button>
+      </div>
+      <div class="quiz-fb" id="qq1-fb"></div>
+    </div>
+
+    <div class="quiz-q" id="qq2">
+      <div class="quiz-q-text">2. A customer from a grey-listed jurisdiction applies for a standard business account. Which of the following is the correct FATF-aligned response?</div>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="answerQ('qq2','A','C')">A — Decline the application — grey-listed nationals cannot be onboarded</button>
+        <button class="quiz-opt" onclick="answerQ('qq2','B','C')">B — Onboard without any changes — the grey list only applies to governments, not individuals</button>
+        <button class="quiz-opt" onclick="answerQ('qq2','C','C')">C — Incorporate the grey-listing into your risk assessment, apply proportionate CDD or EDD based on the individual's profile, and document your reasoning</button>
+        <button class="quiz-opt" onclick="answerQ('qq2','D','C')">D — Automatic EDD is required for all customers from grey-listed jurisdictions under the FATF standard</button>
+      </div>
+      <div class="quiz-fb" id="qq2-fb"></div>
+    </div>
+
+    <div class="quiz-q" id="qq3">
+      <div class="quiz-q-text">3. Which two jurisdictions were added to the FATF grey list at the June 2026 Plenary?</div>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="answerQ('qq3','A','C')">A — Kuwait and Papua New Guinea</button>
+        <button class="quiz-opt" onclick="answerQ('qq3','B','C')">B — Algeria and Namibia</button>
+        <button class="quiz-opt" onclick="answerQ('qq3','C','C')">C — Iraq and Bosnia and Herzegovina</button>
+        <button class="quiz-opt" onclick="answerQ('qq3','D','C')">D — Lebanon and Syria</button>
+      </div>
+      <div class="quiz-fb" id="qq3-fb"></div>
+    </div>
+
+    <div class="quiz-q" id="qq4">
+      <div class="quiz-q-text">4. A Mutual Evaluation assesses a country across how many "Immediate Outcomes" to determine effectiveness?</div>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="answerQ('qq4','A','C')">A — 40 (one per recommendation)</button>
+        <button class="quiz-opt" onclick="answerQ('qq4','B','C')">B — 7</button>
+        <button class="quiz-opt" onclick="answerQ('qq4','C','C')">C — 11</button>
+        <button class="quiz-opt" onclick="answerQ('qq4','D','C')">D — 20</button>
+      </div>
+      <div class="quiz-fb" id="qq4-fb"></div>
+    </div>
+
+    <div class="quiz-q" id="qq5">
+      <div class="quiz-q-text">5. How often does FATF formally update its grey and black lists?</div>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="answerQ('qq5','A','C')">A — Annually, in January</button>
+        <button class="quiz-opt" onclick="answerQ('qq5','B','C')">B — Twice a year, in June and December</button>
+        <button class="quiz-opt" onclick="answerQ('qq5','C','C')">C — Three times a year, following Plenary sessions in February, June and October</button>
+        <button class="quiz-opt" onclick="answerQ('qq5','D','C')">D — Continuously, with real-time updates on the FATF website</button>
+      </div>
+      <div class="quiz-fb" id="qq5-fb"></div>
+    </div>
+
+    <div class="quiz-score" id="quiz-score">
+      <div class="quiz-score-num" id="quiz-score-num">0/5</div>
+      <div id="quiz-score-label" style="font-size:14px;color:#93c5fd;margin-top:4px;"></div>
+    </div>
+  </div>
+
+  <!-- CONCLUSION -->
+  <div class="article-section" id="conclusion">
+    <div class="section-eyebrow" style="color:var(--red)">What to Take Away</div>
+    <h2>The FATF lists are a risk input. Your judgement is still required.</h2>
+    <p>The grey list and the black list are two of the most powerful public tools in financial crime compliance — but they are tools, not answers. A country being grey-listed tells you that FATF has identified systemic deficiencies. It does not tell you which specific customers, transactions, or counterparties connected to that country pose an elevated risk to your firm. That determination requires the risk-based approach — your judgement, your documented reasoning, and your proportionate response.</p>
+    <p>The most competent compliance professionals are not those who apply the most rules mechanically. They are those who understand why the rules exist — and can make defensible, proportionate decisions when the rules and the facts of an individual case pull in different directions. That is the standard this guide, and the FATF framework it explains, is asking you to meet.</p>
+
+    <div class="inline-cta">
+      <div class="inline-cta-text">
+        <strong>Build on this guide</strong>
+        <span>Go back to Part 1 — the seven recommendations that drive your daily compliance decisions, with visual memory cards and desk scenarios.</span>
+      </div>
+      <a href="/fatf-guide-part1.html" class="inline-cta-btn">Read Part 1 →</a>
+    </div>
+
+    <div class="inline-cta" style="margin-top:1rem;">
+      <div class="inline-cta-text">
+        <strong>Screen any counterparty connected to a listed jurisdiction</strong>
+        <span>Free PEP, sanctions, and adverse media checks — no account required.</span>
+      </div>
+      <a href="/screen.html" class="inline-cta-btn">Open the screening tool →</a>
+    </div>
+  </div>
+
+</div><!-- /article-body -->
+
+<!-- SIDEBAR -->
+<div class="article-sidebar">
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <a href="#intro">Introduction</a>
+    <a href="#howlists">Grey vs Black — The Distinction</a>
+    <a href="#meval">How Countries Get Listed</a>
+    <a href="#currentlists">The Lists — June 2026</a>
+    <a href="#eddobs">Your EDD Obligations</a>
+    <a href="#scenarios">Desk Scenarios</a>
+    <a href="#delisting">Path to Delisting</a>
+    <a href="#quiz">Knowledge Check</a>
+    <a href="#conclusion">Key Takeaways</a>
+  </div>
+
+  <div class="part-nav">
+    <div class="part-nav-title">FATF Series</div>
+    <a class="part-link prev" href="/fatf-guide-part1.html">← Part 1 — The 40 Recommendations</a>
+    <a class="part-link active" href="/fatf-guide-part2.html">✓ Part 2 — Grey List & Country Risk</a>
+  </div>
+
+  <div class="tool-cta">
+    <p>Screen any individual or entity — PEPs, sanctions, and adverse media in one search.</p>
+    <a href="/screen.html">Try the screening tool →</a>
+  </div>
+</div>
+</div><!-- /article-layout -->
+
+<!-- FOOTER -->
+<footer style="background:#F7F8FA;color:var(--muted);border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;margin-top:2rem;">
+  <div style="max-width:900px;margin:0 auto;">
+    <a href="/" style="display:inline-block;margin-bottom:1rem;"><img src="/logo.png" alt="FinCrimeRadar" style="height:44px;object-fit:contain;" /></a>
+    <p style="font-size:13px;margin-bottom:.5rem;">Free, open-source AML and financial crime compliance resources.</p>
+    <div style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin:1rem 0;font-size:13px;">
+      <a href="/knowledge.html" style="color:var(--navy);text-decoration:none;">Knowledge Hub</a>
+      <a href="/screen.html" style="color:var(--navy);text-decoration:none;">Screening Tool</a>
+      <a href="/about.html" style="color:var(--navy);text-decoration:none;">About</a>
+      <a href="/privacy.html" style="color:var(--navy);text-decoration:none;">Privacy</a>
+      <a href="/contact.html" style="color:var(--navy);text-decoration:none;">Contact</a>
+    </div>
+    <p style="font-size:12px;">© 2026 FinCrimeRadar. For educational purposes only. Not legal advice. FATF list data correct as of 19 June 2026 — always verify at fatf-gafi.org before making compliance decisions.</p>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const doc=document.documentElement;
+  document.getElementById('progressBar').style.width=(doc.scrollTop/(doc.scrollHeight-doc.clientHeight)*100)+'%';
+});
+const tocLinks=document.querySelectorAll('.toc a');
+const sections=document.querySelectorAll('[id]');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id;});
+  tocLinks.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+cur);});
+});
+function toggleMobileNav(){document.getElementById('mobileNav').classList.toggle('open');}
+
+const qAnswers={
+  qq1:{correct:'C',fb:'The formal FATF name for the grey list is "Jurisdictions Under Increased Monitoring." "High-Risk Jurisdictions Subject to a Call for Action" is the black list. "Non-Cooperative Countries and Territories" was used in an earlier iteration of the FATF framework, no longer the current official designation.'},
+  qq2:{correct:'C',fb:'The FATF explicitly discourages automatic EDD solely on the basis of grey-list status. The correct approach is to incorporate the listing into your risk assessment and apply a proportionate response based on the individual customer\'s profile. Blanket refusal of grey-listed nationals is indiscriminate de-risking, which FATF specifically warns against.'},
+  qq3:{correct:'C',fb:'Iraq and Bosnia and Herzegovina were added at the June 2026 Plenary. Kuwait and Papua New Guinea were added at the February 2026 Plenary. Algeria and Namibia were removed at the June 2026 Plenary. Lebanon and Syria have been on the grey list since 2021 and 2024 respectively — they were not newly added.'},
+  qq4:{correct:'C',fb:'FATF assesses effectiveness across 11 Immediate Outcomes. These cover areas including risk understanding, international cooperation, supervision, preventive measures, legal persons, financial intelligence, ML investigation, confiscation, TF investigation, TF preventive measures, and PF sanctions. Technical compliance is separately assessed against the 40 Recommendations themselves.'},
+  qq5:{correct:'C',fb:'FATF holds three Plenary sessions per year — in February, June and October — and updates its lists at the conclusion of each Plenary. The lists are not updated continuously or annually. This is why compliance programmes should review their country risk assessments at minimum three times per year to reflect any changes in FATF listing status.'}
+};
+let answered=0,correct=0;
+function answerQ(qid,chosen,correctOpt){
+  const qDiv=document.getElementById(qid);
+  if(qDiv.dataset.answered)return;
+  qDiv.dataset.answered=true;
+  const fb=document.getElementById(qid+'-fb');
+  const isCorrect=chosen===correctOpt;
+  qDiv.querySelectorAll('.quiz-opt').forEach(b=>{
+    b.disabled=true;
+    if(b.textContent.trim().startsWith(correctOpt+' '))b.classList.add('q-correct');
+    else if(b.textContent.trim().startsWith(chosen+' ')&&!isCorrect)b.classList.add('q-wrong');
+  });
+  fb.textContent=qAnswers[qid].fb;
+  fb.style.background=isCorrect?'rgba(22,163,74,.2)':'rgba(220,38,38,.2)';
+  fb.style.padding='8px 12px';
+  fb.style.borderRadius='6px';
+  fb.style.color=isCorrect?'#86efac':'#fca5a5';
+  fb.classList.add('show');
+  answered++;
+  if(isCorrect)correct++;
+  if(answered===5){
+    const sc=document.getElementById('quiz-score');
+    document.getElementById('quiz-score-num').textContent=correct+'/5';
+    const labels=['Keep studying — the operational details matter here.','Getting there — revisit the desk scenarios.','Solid grasp of country risk fundamentals.','Strong knowledge — nearly there.','Perfect — you understand both the framework and the practice.'];
+    sc.querySelector('div:last-child').textContent=labels[correct];
+    sc.classList.add('show');
+  }
+}
+</script>
+
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#0f2044;border-top:1px solid #1d3a6e;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;box-shadow:0 -4px 20px rgba(0,0,0,.3);">
+  <div style="flex:1;min-width:260px;"><div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:4px;">🍪 We use cookies</div><div style="font-size:12px;color:#94a3b8;line-height:1.5;">We use Google Analytics. <a href="/privacy.html" style="color:#93c5fd;text-decoration:none;">Privacy Policy</a></div></div>
+  <div style="display:flex;gap:8px;flex-shrink:0;">
+    <button onclick="rejectCookies()" style="padding:8px 16px;background:transparent;border:1px solid #334155;color:#94a3b8;border-radius:6px;font-size:12px;cursor:pointer;">Reject</button>
+    <button onclick="acceptCookies()" style="padding:8px 18px;background:#00c4a7;border:none;color:#fff;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;">Accept</button>
+  </div>
+</div>
+<script>
+(function(){var c=localStorage.getItem('fcr_cookie_consent');if(!c)document.getElementById('cookieBanner').style.display='flex';else if(c==='rejected')window['ga-disable-G-FC1VMTE7JH']=true;})();
+function acceptCookies(){localStorage.setItem('fcr_cookie_consent','accepted');document.getElementById('cookieBanner').style.display='none';}
+function rejectCookies(){localStorage.setItem('fcr_cookie_consent','rejected');window['ga-disable-G-FC1VMTE7JH']=true;document.getElementById('cookieBanner').style.display='none';}
+</script>
+</body>
+</html>
