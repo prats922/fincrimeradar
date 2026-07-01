@@ -42,28 +42,40 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --white:    #ffffff;
-      --off:      #f7f8fa;
-      --border:   #e4e7ec;
-      --muted:    #6b7280;
-      --text:     #111827;
-      --navy:     #0f2044;
-      --accent:   #1d5fc4;
-      --accent-h: #1749a0;
-      --danger:   #dc2626;
-      --success:  #16a34a;
-      --warning:  #d97706;
-      --purple:   #7c3aed;
-      --tag-bg:   #eff6ff;
-      --tag-text: #1d4ed8;
-    }
+  --teal:var(--teal);--teal-h:var(--teal-h);--teal-deep:var(--teal-deep);--teal-soft:var(--teal-soft);--teal-mid:var(--teal-mid);
+  --navy:var(--navy);--navy-mid:var(--navy-mid);--navy-light:var(--navy-light);
+  --danger:var(--danger);--danger-bg:var(--danger-bg);--warning:var(--warning);--warning-bg:var(--warning-bg);
+  --success:var(--success);--success-bg:var(--success-bg);--purple:var(--purple);--purple-bg:var(--purple-bg);
+  --blue:var(--blue);--blue-bg:var(--blue-bg);
+  --white:var(--white);--off:var(--off);--border:var(--border);--border-mid:var(--border-mid);
+  --text:var(--text);--slate:var(--slate);--muted:var(--muted);--light:var(--light);--faint:var(--faint);
+  --badge-fca-bg:#fee2e2;--badge-fca-text:#991b1b;
+  --badge-occrp-bg:var(--purple-bg);--badge-occrp-text:#5b21b6;
+  --badge-bbc-bg:var(--blue-bg);--badge-bbc-text:#1e40af;
+  --badge-ofsi-bg:var(--success-bg);--badge-ofsi-text:#166534;
+  --badge-gold-bg:var(--warning-bg);--badge-gold-text:#92400e;
+  --r-sm:6px;--r-md:10px;--r-lg:14px;--r-pill:99px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 12px rgba(0,0,0,.08);--shadow-lg:0 8px 24px rgba(0,0,0,.10);
+  --transition:all 0.15s ease;
+  /* EXTENDED BADGE COLOURS */
+  --badge-fca-text2:#991b1b;--badge-occrp-text2:#5b21b6;--badge-bbc-text2:#1e40af;
+  --badge-ofsi-text2:#166534;--badge-gold-text2:#92400e;
+  --slate-light:#94a3b8;--slate-mid:#64748b;--faint2:#f3f4f6;
+  --gold-text:#92400e;--gold-dark:#78350f;
+  --danger-dark:#7f1d1d;--danger-mid:#b91c1c;
+  --purple-mid:#6d28d9;--purple-dark:#5b21b6;
+  --teal-accent:#5eead4;--border-light:#bfdbfe;
+  --warning-light:#fcd34d;
+  /* Legacy aliases kept for backward compat */
+  --accent:var(--teal);--accent-h:var(--teal-h);--accent-light:var(--teal-mid);
+}
 
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', system-ui, sans-serif;
       background: var(--white);
       color: var(--text);
-      line-height: 1.6;
+      line-height:1.7;
     }
 
     /* NAV */
@@ -80,20 +92,20 @@
     .nav-name { font-size: 16px; font-weight: 600; color: var(--navy); letter-spacing: -0.3px; }
     .nav-name span { color: var(--accent); }
     .nav-links { display: flex; align-items: center; gap: 1.5rem; }
-    .nav-links a { font-size: 14px; color: #374151; text-decoration: none; transition: color 0.15s; }
-    .nav-links a:hover { color: #00c4a7; }
+    .nav-links a { font-size: 14px; color: var(--slate); text-decoration: none; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--teal); }
     .nav-cta {
-      padding: 7px 16px; background: #00c4a7; color: #fff;
+      padding: 7px 16px; background: var(--teal); color: var(--white);
       border-radius: 6px; font-size: 14px; font-weight: 500;
       text-decoration: none; transition: background 0.15s;
     }
-    .nav-cta:hover { background: #00a88e; color: #fff; }
+    .nav-cta:hover { background: #00a88e; color: var(--white); }
 
     /* HERO */
     .hero {
       padding: 5rem 2rem 4rem;
       text-align: center;
-      background: linear-gradient(180deg, #f0f5ff 0%, #ffffff 100%);
+      background: linear-gradient(180deg, #f0f5ff 0%, var(--white) 100%);
       border-bottom: 1px solid var(--border);
     }
     .hero-badge {
@@ -109,7 +121,7 @@
     h1 {
       font-family: 'DM Serif Display', Georgia, serif;
       font-size: clamp(2.2rem, 5vw, 3.5rem);
-      font-weight: 400; line-height: 1.15;
+      font-weight: 400; line-height:1.25;
       color: var(--navy); letter-spacing: -0.5px;
       max-width: 680px; margin: 0 auto 1.25rem;
     }
@@ -122,7 +134,7 @@
 
     .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
     .btn-primary {
-      padding: 13px 28px; background: var(--accent); color: #fff;
+      padding: 13px 28px; background: var(--accent); color: var(--white);
       border: none; border-radius: 8px; font-size: 15px; font-weight: 600;
       cursor: pointer; text-decoration: none; transition: all 0.15s;
       display: inline-flex; align-items: center; gap: 8px;
@@ -144,8 +156,8 @@
       transition: border-color 0.15s; background: var(--white);
     }
     .signup-row input:focus { border-color: var(--accent); }
-    .signup-row input::placeholder { color: #9ca3af; }
-    .form-hint { font-size: 12px; color: #9ca3af; margin-top: 8px; }
+    .signup-row input::placeholder { color: var(--light); }
+    .form-hint { font-size: 12px; color: var(--light); margin-top: 8px; }
     .form-success { display: none; font-size: 13px; color: var(--success); margin-top: 8px; }
 
     /* STATS BAR */
@@ -162,7 +174,7 @@
     .section { padding: 4rem 2rem; max-width: 1000px; margin: 0 auto; }
     .section-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
     .section-title { font-family: 'DM Serif Display', Georgia, serif; font-size: 28px; font-weight: 400; color: var(--navy); margin-bottom: 0.75rem; }
-    .section-sub { font-size: 15px; color: var(--muted); max-width: 480px; line-height: 1.65; }
+    .section-sub { font-size: 15px; color: var(--muted); max-width: 480px; line-height:1.7; }
     .divider { border: none; border-top: 1px solid var(--border); }
 
     .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 2.5rem; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--border); }
@@ -170,7 +182,7 @@
     .feature:hover { background: #f8faff; }
     .feature-icon { font-size: 24px; margin-bottom: 12px; }
     .feature h3 { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
-    .feature p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+    .feature p { font-size: 13px; color: var(--muted); line-height:1.7; }
 
     /* SOURCES */
     .sources { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.5rem; }
@@ -180,15 +192,15 @@
     .roadmap { margin-top: 2rem; display: flex; flex-direction: column; gap: 8px; }
     .phase { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 8px; background: var(--off); border: 1px solid var(--border); }
     .phase.done { opacity: 0.65; }
-    .phase.active { background: #eff6ff; border-color: #bfdbfe; }
+    .phase.active { background: var(--blue-bg); border-color: #bfdbfe; }
     .phase-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
     .phase.done .phase-dot { background: var(--success); }
     .phase.active .phase-dot { background: var(--accent); animation: pulse 2s infinite; }
     .phase.upcoming .phase-dot { background: var(--border); }
     .phase-text { flex: 1; font-size: 13px; color: var(--text); }
     .phase-pill { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 99px; }
-    .phase.done .phase-pill { background: #dcfce7; color: var(--success); }
-    .phase.active .phase-pill { background: #dbeafe; color: var(--accent); }
+    .phase.done .phase-pill { background: var(--success-bg); color: var(--success); }
+    .phase.active .phase-pill { background: var(--blue-bg); color: var(--accent); }
     .phase.upcoming .phase-pill { background: var(--border); color: var(--muted); }
 
     /* FOOTER */
@@ -204,7 +216,7 @@
       border: none;
       font-size: 22px;
       cursor: pointer;
-      color: var(--navy, #0f2044);
+      color: var(--navy, var(--navy-mid));
       padding: 4px 6px;
       line-height: 1;
     }
@@ -213,8 +225,8 @@
       position: fixed;
       top: 72px;
       left: 0; right: 0;
-      background: #fff;
-      border-bottom: 1px solid #e4e7ec;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
       flex-direction: column;
       z-index: 99;
       padding: 0.5rem 0;
@@ -224,17 +236,17 @@
     .mobile-nav a {
       padding: 14px 1.5rem;
       font-size: 15px;
-      color: #374151;
+      color: var(--slate);
       text-decoration: none;
       font-weight: 500;
       border-bottom: 1px solid #f3f4f6;
       transition: background 0.1s;
     }
-    .mobile-nav a:hover { background: #f9fafb; }
+    .mobile-nav a:hover { background: var(--off); }
     .mobile-nav .mobile-nav-cta {
       margin: 0.75rem 1.5rem 0.5rem;
-      background: #00c4a7;
-      color: #fff !important;
+      background: var(--teal);
+      color: var(--white) !important;
       border-radius: 8px;
       text-align: center;
       border-bottom: none;
@@ -329,11 +341,11 @@
     <img src="/logo.png" alt="FinCrimeRadar" style="height:44px;width:auto;max-width:200px;object-fit:contain;object-position:left center;display:block;" />
   </a>
   <div class="nav-links">
-    <a href="/knowledge.html" class="hide-mobile" style="color:#00c4a7;font-weight:600;">Knowledge Hub</a>
+    <a href="/knowledge.html" class="hide-mobile" style="color:var(--teal);font-weight:600;">Knowledge Hub</a>
     <a href="/news.html" class="hide-mobile">News</a>
     <a href="/learn.html" class="hide-mobile">Learn</a>
     <a href="/about.html" class="hide-mobile">About</a>
-    <a href="/screen.html" class="nav-cta" style="background:#00c4a7;color:#fff;font-weight:600;">Try the tool →</a>
+    <a href="/screen.html" class="nav-cta" style="background:var(--teal);color:var(--white);font-weight:600;">Try the tool →</a>
   </div>
   <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
 </nav>
@@ -348,9 +360,9 @@
 <section class="hero">
   <div style="margin-bottom:0.75rem;line-height:1;">
     <div style="font-size:clamp(1.9rem,4.8vw,2.6rem);font-weight:900;line-height:1;margin-bottom:9px;font-family:'Playfair Display',Georgia,serif;letter-spacing:-0.3px;">
-      <span style="color:#002850;">FinCrime</span><span style="color:#00a892;">Radar</span>
+      <span style="color:var(--navy);">FinCrime</span><span style="color:var(--teal-h);">Radar</span>
     </div>
-    <div style="font-family:'DM Serif Display',Georgia,serif;font-size:clamp(1rem,2.5vw,1.25rem);font-style:italic;color:#002850;letter-spacing:0.2px;">Open Financial Crime Intelligence Platform</div>
+    <div style="font-family:'DM Serif Display',Georgia,serif;font-size:clamp(1rem,2.5vw,1.25rem);font-style:italic;color:var(--navy);letter-spacing:0.2px;">Open Financial Crime Intelligence Platform</div>
   </div>
   <div class="hero-badge"><span class="pulse"></span> Now live</div>
   <h1>Financial crime screening, <em>free for everyone</em></h1>
@@ -407,7 +419,7 @@
 <style>
 .news-pill { padding:5px 14px; border-radius:99px; font-size:12px; font-weight:500; border:1.5px solid var(--border); color:var(--muted); cursor:pointer; background:var(--white); transition:all 0.15s; font-family:'Inter',sans-serif; }
 .news-pill.active { border-color:var(--accent); color:var(--accent); background:var(--accent-light); }
-.news-pill:hover:not(.active) { border-color:#9ca3af; color:var(--text); }
+.news-pill:hover:not(.active) { border-color:var(--light); color:var(--text); }
 .news-card { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1rem 1.1rem; text-decoration:none; display:flex; flex-direction:column; gap:6px; transition:all 0.2s; }
 .news-card:hover { border-color:var(--accent); transform:translateY(-1px); box-shadow:0 4px 12px rgba(29,95,196,0.08); }
 .news-card-top { display:flex; align-items:center; justify-content:space-between; gap:8px; }
@@ -419,10 +431,10 @@
 .news-cat-tag { font-size:11px; color:var(--muted); }
 .news-read { font-size:11px; color:var(--accent); font-weight:500; }
 .src-fca { background:#fee2e2; color:#991b1b; }
-.src-occrp { background:#ede9fe; color:#5b21b6; }
-.src-bbc { background:#dbeafe; color:#1e40af; }
-.src-ofsi { background:#dcfce7; color:#166534; }
-.src-ap { background:#f3f4f6; color:#374151; }
+.src-occrp { background:var(--purple-bg); color:#5b21b6; }
+.src-bbc { background:var(--blue-bg); color:#1e40af; }
+.src-ofsi { background:var(--success-bg); color:#166534; }
+.src-ap { background:#f3f4f6; color:var(--slate); }
 </style>
 
 <script>
@@ -572,19 +584,19 @@ document.addEventListener('DOMContentLoaded', function(){ loadNews(false); });
       <div style="font-size:22px; margin-bottom:10px;">🛡️</div>
       <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--danger); margin-bottom:6px;">Sanctions</div>
       <h3 style="font-size:15px; font-weight:600; color:var(--navy); margin-bottom:6px;">Sanctions screening</h3>
-      <p style="font-size:13px; color:var(--muted); line-height:1.55; margin:0;">Search OFAC, UN, EU, OFSI and 40+ global lists in real time.</p>
+      <p style="font-size:13px; color:var(--muted); line-height:1.7; margin:0;">Search OFAC, UN, EU, OFSI and 40+ global lists in real time.</p>
     </div>
     <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; border-top:3px solid var(--purple);">
       <div style="font-size:22px; margin-bottom:10px;">🔍</div>
       <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--purple); margin-bottom:6px;">PEP</div>
       <h3 style="font-size:15px; font-weight:600; color:var(--navy); margin-bottom:6px;">PEP screening</h3>
-      <p style="font-size:13px; color:var(--muted); line-height:1.55; margin:0;">Identify politically exposed persons — heads of state, ministers, central bank governors.</p>
+      <p style="font-size:13px; color:var(--muted); line-height:1.7; margin:0;">Identify politically exposed persons — heads of state, ministers, central bank governors.</p>
     </div>
     <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; border-top:3px solid var(--warning);">
       <div style="font-size:22px; margin-bottom:10px;">📰</div>
       <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--warning); margin-bottom:6px;">Adverse Media</div>
       <h3 style="font-size:15px; font-weight:600; color:var(--navy); margin-bottom:6px;">Adverse media</h3>
-      <p style="font-size:13px; color:var(--muted); line-height:1.55; margin:0;">Surface financial crime coverage from BBC, OCCRP, AP and trusted news sources.</p>
+      <p style="font-size:13px; color:var(--muted); line-height:1.7; margin:0;">Surface financial crime coverage from BBC, OCCRP, AP and trusted news sources.</p>
     </div>
   </div>
 
@@ -608,7 +620,7 @@ document.addEventListener('DOMContentLoaded', function(){ loadNews(false); });
       <div style="font-size:20px; flex-shrink:0;">📚</div>
       <div>
         <h3 style="font-size:14px; font-weight:600; color:var(--navy); margin-bottom:4px;">Knowledge hub</h3>
-        <p style="font-size:13px; color:var(--muted); line-height:1.5; margin:0;"><a href="/learn.html" style="color:#00c4a7; text-decoration:none; font-weight:500;">Read the complete guide →</a></p>
+        <p style="font-size:13px; color:var(--muted); line-height:1.5; margin:0;"><a href="/learn.html" style="color:var(--teal); text-decoration:none; font-weight:500;">Read the complete guide →</a></p>
       </div>
     </div>
   </div>
@@ -647,11 +659,11 @@ document.addEventListener('DOMContentLoaded', function(){ loadNews(false); });
   <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:2rem;">
 
     <!-- Big card: Screening guide -->
-    <a href="/learn.html" style="text-decoration:none; background:linear-gradient(135deg,#0f2044 0%,#1d3a6e 100%); border-radius:12px; padding:1.75rem; display:flex; flex-direction:column; justify-content:space-between; min-height:200px; transition:transform 0.15s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+    <a href="/learn.html" style="text-decoration:none; background:linear-gradient(135deg,var(--navy-mid) 0%,var(--navy-light) 100%); border-radius:12px; padding:1.75rem; display:flex; flex-direction:column; justify-content:space-between; min-height:200px; transition:transform 0.15s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
       <div>
         <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#93c5fd; margin-bottom:8px;">🛡️ Screening guide · 25 min</div>
-        <div style="font-family:'DM Serif Display',Georgia,serif; font-size:20px; color:#fff; line-height:1.3; margin-bottom:8px;">What is Financial Crime Screening?</div>
-        <div style="font-size:13px; color:#cbd5e1; line-height:1.55;">Sanctions, PEP, adverse media — interactive guide with quizzes and live tool access.</div>
+        <div style="font-family:'DM Serif Display',Georgia,serif; font-size:20px; color:var(--white); line-height:1.3; margin-bottom:8px;">What is Financial Crime Screening?</div>
+        <div style="font-size:13px; color:#cbd5e1; line-height:1.7;">Sanctions, PEP, adverse media — interactive guide with quizzes and live tool access.</div>
       </div>
       <div style="margin-top:1.25rem; font-size:13px; font-weight:600; color:#93c5fd;">Read the guide →</div>
     </a>
@@ -668,8 +680,8 @@ document.addEventListener('DOMContentLoaded', function(){ loadNews(false); });
         <div style="font-size:14px; font-weight:600; color:var(--navy); margin-bottom:3px;">Core Obligations: CDD, SARs & Records</div>
         <div style="font-size:12px; color:var(--muted);">Risk assessment · CDD/EDD · SARs · Record keeping</div>
       </a>
-      <a href="/aml-guide-part3.html" style="text-decoration:none; background:var(--white); border:1px solid var(--border); border-left:3px solid var(--teal,#0d9488); border-radius:12px; padding:1.1rem 1.25rem; display:block; transition:all 0.15s;" onmouseover="this.style.borderColor='#5eead4'" onmouseout="this.style.borderColor='var(--border)'">
-        <div style="font-size:11px; font-weight:700; color:#0d9488; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:4px;">🏛️ Controls · Part 3 of 3</div>
+      <a href="/aml-guide-part3.html" style="text-decoration:none; background:var(--white); border:1px solid var(--border); border-left:3px solid var(--teal,var(--teal-deep)); border-radius:12px; padding:1.1rem 1.25rem; display:block; transition:all 0.15s;" onmouseover="this.style.borderColor='#5eead4'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-size:11px; font-weight:700; color:var(--teal-deep); text-transform:uppercase; letter-spacing:0.4px; margin-bottom:4px;">🏛️ Controls · Part 3 of 3</div>
         <div style="font-size:14px; font-weight:600; color:var(--navy); margin-bottom:3px;">Controls, Training & FCA Enforcement</div>
         <div style="font-size:12px; color:var(--muted);">Training · TM · MLRO · 2026 outlook</div>
       </a>
@@ -677,7 +689,7 @@ document.addEventListener('DOMContentLoaded', function(){ loadNews(false); });
   </div>
 
   <div style="margin-top:1.25rem; text-align:center;">
-    <a href="/knowledge.html" style="display:inline-flex; align-items:center; gap:8px; padding:11px 24px; background:var(--navy); color:#fff; border-radius:8px; font-size:14px; font-weight:600; text-decoration:none; transition:all 0.15s;" onmouseover="this.style.background='var(--accent)'" onmouseout="this.style.background='var(--navy)'">
+    <a href="/knowledge.html" style="display:inline-flex; align-items:center; gap:8px; padding:11px 24px; background:var(--navy); color:var(--white); border-radius:8px; font-size:14px; font-weight:600; text-decoration:none; transition:all 0.15s;" onmouseover="this.style.background='var(--accent)'" onmouseout="this.style.background='var(--navy)'">
       📚 Browse all guides in the AML Knowledge Hub →
     </a>
   </div>
@@ -731,14 +743,14 @@ async function handleSignup() {
 </script>
 
 <!-- Cookie Consent Banner -->
-<div id="cookieBanner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; background:#0f2044; border-top:1px solid #1d3a6e; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; box-shadow:0 -4px 20px rgba(0,0,0,0.3);">
+<div id="cookieBanner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; background:var(--navy-mid); border-top:1px solid var(--navy-light); padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; box-shadow:0 -4px 20px rgba(0,0,0,0.3);">
   <div style="flex:1; min-width:260px;">
-    <div style="font-size:13px; font-weight:600; color:#fff; margin-bottom:4px;">🍪 We use cookies</div>
+    <div style="font-size:13px; font-weight:600; color:var(--white); margin-bottom:4px;">🍪 We use cookies</div>
     <div style="font-size:12px; color:#94a3b8; line-height:1.5;">We use Google Analytics to understand how visitors use FinCrimeRadar. No personal data is sold. See our <a href="/privacy.html" style="color:#93c5fd; text-decoration:none;">Privacy Policy</a>.</div>
   </div>
   <div style="display:flex; gap:8px; flex-shrink:0;">
     <button onclick="rejectCookies()" style="padding:8px 16px; background:transparent; border:1px solid #334155; color:#94a3b8; border-radius:6px; font-size:12px; font-weight:500; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Reject non-essential</button>
-    <button onclick="acceptCookies()" style="padding:8px 18px; background:#00c4a7; border:none; color:#fff; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Accept all</button>
+    <button onclick="acceptCookies()" style="padding:8px 18px; background:var(--teal); border:none; color:var(--white); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Accept all</button>
   </div>
 </div>
 <script>
