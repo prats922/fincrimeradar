@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FATF 40 Recommendations: The Practitioner's Handbook | FinCrimeRadar</title>
+  <meta name="description" content="The only FATF guide written from the analyst's desk. Seven critical recommendations decoded — with visual memory cards, real-world scenarios, and the compliance decisions they drive daily." />
+  <meta name="keywords" content="FATF 40 recommendations, FATF risk-based approach, CDD, PEP, SAR, beneficial ownership, AML compliance, FATF guide" />
+  <meta name="author" content="FinCrimeRadar" />
+  <link rel="canonical" href="https://fincrimeradar.org/fatf-guide-part1.html" />
+  <meta property="og:title" content="FATF 40 Recommendations: The Practitioner's Handbook" />
+  <meta property="og:description" content="Seven critical recommendations decoded from the analyst's desk — not the regulator's podium." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://fincrimeradar.org/fatf-guide-part1.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"FATF 40 Recommendations: The Practitioner's Handbook Part 1","description":"Seven critical FATF recommendations decoded from the analyst's desk.","author":{"@type":"Organization","name":"FinCrimeRadar"},"publisher":{"@type":"Organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org"},"url":"https://fincrimeradar.org/fatf-guide-part1.html","datePublished":"2026-07-01"}
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FC1VMTE7JH');</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
+
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root {
+      --navy:#002850; --navy-mid:#0f3460; --navy-light:#1a4a7a;
+      --teal:#00a892; --teal-light:#e0faf6; --teal-dark:#007d6d;
+      --gold:#f59e0b; --gold-light:#fffbeb;
+      --red:#dc2626; --red-light:#fef2f2;
+      --green:#16a34a; --green-light:#f0fdf4;
+      --purple:#7c3aed; --purple-light:#f5f3ff;
+      --blue:#2563eb; --blue-light:#eff6ff;
+      --off:#f7f8fa; --white:#fff; --border:#e4e7ec;
+      --text:#111827; --muted:#6b7280; --slate:#374151;
+      /* Rec colours */
+      --r1:#0f3460; --r10:#7c3aed; --r11:#16a34a;
+      --r12:#dc2626; --r18:#f59e0b; --r20:#0891b2; --r24:#be185d;
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--off);color:var(--text);line-height:1.7;}
+
+    /* PROGRESS */
+    .progress-bar{position:fixed;top:72px;left:0;width:0%;height:3px;background:var(--gold);z-index:199;transition:width .1s;}
+
+    /* NAV */
+    nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:72px;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+    .nav-brand{display:flex;align-items:center;gap:8px;text-decoration:none;}
+    .nav-links{display:flex;align-items:center;gap:1.25rem;}
+    .nav-links a{font-size:13px;color:#374151;text-decoration:none;transition:color .15s;}
+    .nav-links a:hover{color:var(--teal);}
+    .nav-cta{padding:7px 16px;background:var(--teal);color:#fff!important;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;}
+    .nav-hamburger{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:var(--navy);padding:4px 6px;}
+    .mobile-nav{display:none;position:fixed;top:72px;left:0;right:0;background:#fff;border-bottom:1px solid #e4e7ec;flex-direction:column;z-index:99;padding:.5rem 0;box-shadow:0 8px 24px rgba(0,0,0,.08);}
+    .mobile-nav.open{display:flex;}
+    .mobile-nav a{padding:14px 1.5rem;font-size:15px;color:#374151;text-decoration:none;font-weight:500;border-bottom:1px solid #f3f4f6;}
+    .mobile-nav .mobile-nav-cta{margin:.75rem 1.5rem .5rem;background:var(--teal);color:#fff!important;border-radius:8px;text-align:center;border-bottom:none;}
+
+    /* HERO */
+    .article-hero{background:linear-gradient(135deg,#001830 0%,#0f2044 50%,#1a0a30 100%);color:#fff;padding:4rem 2rem 3rem;position:relative;overflow:hidden;}
+    .article-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(ellipse at 15% 50%,rgba(245,158,11,.12) 0%,transparent 60%),radial-gradient(ellipse at 85% 20%,rgba(0,168,146,.12) 0%,transparent 60%);}
+    .hero-inner{max-width:860px;margin:0 auto;position:relative;z-index:1;}
+    .series-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,.2);border:1px solid rgba(245,158,11,.4);border-radius:99px;padding:5px 14px;font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#fcd34d;margin-bottom:1.25rem;}
+    .article-hero h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.9rem,4vw,3rem);font-weight:900;line-height:1.15;margin-bottom:.75rem;}
+    .article-hero h1 em{font-style:italic;color:#fcd34d;font-weight:700;}
+    .hero-sub{font-size:16px;color:#93c5fd;max-width:640px;line-height:1.7;margin-bottom:2rem;}
+    .hero-meta{display:flex;gap:1.5rem;flex-wrap:wrap;font-size:13px;color:#60a5fa;}
+    .hero-meta span{display:flex;align-items:center;gap:5px;}
+
+    /* LAYOUT */
+    .article-layout{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 280px;gap:2rem;padding:2rem 1.5rem;align-items:start;}
+    .article-body{min-width:0;}
+    .article-sidebar{position:sticky;top:90px;}
+
+    /* TOC */
+    .toc{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.25rem;margin-bottom:1rem;}
+    .toc-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:.75rem;}
+    .toc a{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);text-decoration:none;padding:5px 0;border-left:2px solid transparent;padding-left:10px;transition:all .15s;line-height:1.4;}
+    .toc a:hover,.toc a.active{color:var(--gold);border-left-color:var(--gold);}
+    .toc-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+
+    /* TOOL CTA */
+    .tool-cta{background:linear-gradient(135deg,#0f2044,#1a3a6e);color:#fff;border-radius:12px;padding:1.25rem;text-align:center;margin-bottom:1rem;}
+    .tool-cta p{font-size:13px;color:#93c5fd;margin-bottom:.75rem;line-height:1.5;}
+    .tool-cta a{display:block;background:var(--teal);color:#fff;text-decoration:none;border-radius:8px;padding:10px;font-size:14px;font-weight:600;transition:background .15s;}
+    .tool-cta a:hover{background:var(--teal-dark);}
+
+    /* PART NAV */
+    .part-nav{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1rem;}
+    .part-nav-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:.5rem;}
+    .part-link{display:block;padding:8px 10px;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;margin-bottom:4px;transition:all .15s;}
+    .part-link.active{background:var(--gold-light);color:#92400e;border:1px solid #fcd34d;}
+    .part-link.next{background:var(--off);color:var(--muted);border:1px solid var(--border);}
+    .part-link.next:hover{background:var(--teal-light);color:var(--teal-dark);border-color:var(--teal);}
+
+    /* SECTIONS */
+    .article-section{background:#fff;border:1px solid var(--border);border-radius:12px;padding:2rem;margin-bottom:1.5rem;}
+    .article-section h2{font-family:'DM Serif Display',Georgia,serif;font-size:1.7rem;color:var(--navy);margin-bottom:.5rem;line-height:1.3;}
+    .article-section h3{font-size:1.05rem;font-weight:700;color:var(--navy);margin:1.5rem 0 .5rem;}
+    .article-section p{color:var(--slate);margin-bottom:1rem;font-size:15px;}
+    .section-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:.5rem;}
+
+    /* FATF OVERVIEW WHEEL */
+    .fatf-wheel{background:var(--navy);border-radius:16px;padding:2rem;margin:1.5rem 0;overflow:hidden;position:relative;}
+    .fatf-wheel::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:rgba(245,158,11,.08);}
+    .wheel-title{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#fcd34d;margin-bottom:1.5rem;}
+    .wheel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;}
+    .wheel-cell{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px;cursor:default;transition:all .2s;}
+    .wheel-cell:hover{background:rgba(255,255,255,.12);transform:translateY(-2px);}
+    .wheel-cell-num{font-size:20px;font-weight:900;color:#fcd34d;font-family:'Playfair Display',Georgia,serif;line-height:1;margin-bottom:4px;}
+    .wheel-cell-label{font-size:11px;color:#93c5fd;line-height:1.4;}
+    .wheel-cell.highlighted{background:rgba(245,158,11,.2);border-color:rgba(245,158,11,.5);}
+    .wheel-cell.highlighted .wheel-cell-label{color:#fcd34d;}
+
+    /* RECOMMENDATION CARDS — the signature element */
+    .rec-card{border-radius:16px;overflow:hidden;margin:1.5rem 0;box-shadow:0 4px 24px rgba(0,0,0,.08);}
+    .rec-header{padding:1.5rem 1.75rem 1.25rem;display:flex;align-items:flex-start;gap:1.25rem;position:relative;overflow:hidden;}
+    .rec-header::after{content:'R';position:absolute;right:-10px;top:-20px;font-size:120px;font-weight:900;opacity:.06;font-family:'Playfair Display',Georgia,serif;color:#fff;line-height:1;}
+    .rec-badge{display:flex;flex-direction:column;align-items:center;flex-shrink:0;background:rgba(255,255,255,.15);border-radius:12px;padding:10px 14px;min-width:72px;}
+    .rec-badge-num{font-size:28px;font-weight:900;color:#fff;font-family:'Playfair Display',Georgia,serif;line-height:1;}
+    .rec-badge-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.7);margin-top:2px;}
+    .rec-title{font-size:1.3rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:6px;}
+    .rec-tagline{font-size:13px;color:rgba(255,255,255,.75);font-style:italic;}
+
+    .rec-body{padding:1.5rem 1.75rem;}
+    .rec-body p{font-size:15px;color:var(--slate);margin-bottom:1rem;}
+    .rec-body h4{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin:1.25rem 0 .5rem;}
+
+    /* VISUAL MEMORY CARD */
+    .memory-card{border-radius:12px;padding:1.25rem;margin:1rem 0;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;}
+    .memory-icon{font-size:32px;line-height:1;}
+    .memory-title{font-size:13px;font-weight:700;margin-bottom:4px;}
+    .memory-text{font-size:13px;color:var(--slate);line-height:1.5;}
+
+    /* DESK SCENARIO */
+    .desk-scenario{background:#f8fafc;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:1.25rem 0;}
+    .desk-header{background:var(--navy);padding:.75rem 1.25rem;display:flex;align-items:center;gap:10px;}
+    .desk-header span{font-size:13px;font-weight:700;color:#fff;}
+    .desk-header .tag{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;background:rgba(245,158,11,.25);color:#fcd34d;border-radius:99px;padding:2px 10px;}
+    .desk-body{padding:1.25rem;}
+    .desk-body p{font-size:14px;color:var(--slate);margin-bottom:.75rem;line-height:1.6;}
+    .desk-body p:last-child{margin-bottom:0;}
+    .desk-action{background:var(--teal-light);border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:.75rem 1rem;margin-top:.75rem;}
+    .desk-action strong{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--teal-dark);display:block;margin-bottom:3px;}
+    .desk-action p{font-size:13px;color:var(--slate);margin:0;}
+
+    /* COMPLIANCE CHECKLIST */
+    .checklist{list-style:none;margin:1rem 0;}
+    .checklist li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--slate);}
+    .checklist li:last-child{border-bottom:none;}
+    .checklist li::before{content:'✓';font-weight:700;font-size:13px;color:var(--green);margin-top:2px;flex-shrink:0;}
+
+    /* WHAT GOES WRONG */
+    .failure-box{background:var(--red-light);border:1px solid #fecaca;border-radius:10px;padding:1.1rem 1.25rem;margin:1rem 0;}
+    .failure-box strong{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--red);margin-bottom:4px;}
+    .failure-box p{font-size:14px;color:#7f1d1d;margin:0;}
+
+    /* CALLOUTS */
+    .callout{border-radius:10px;padding:1.1rem 1.25rem;margin:1.25rem 0;border-left:4px solid;}
+    .callout-gold{background:var(--gold-light);border-color:var(--gold);}
+    .callout-navy{background:#f0f4ff;border-color:var(--navy);}
+    .callout-teal{background:var(--teal-light);border-color:var(--teal);}
+    .callout strong{display:block;font-size:13px;font-weight:700;margin-bottom:4px;}
+    .callout p{font-size:14px;margin:0;color:var(--slate);}
+
+    /* STAT ROW */
+    .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:1.5rem 0;}
+    .stat-box{background:var(--gold-light);border:1px solid #fcd34d;border-radius:10px;padding:1rem;text-align:center;}
+    .stat-box .num{font-family:'Playfair Display',Georgia,serif;font-size:2rem;color:#92400e;line-height:1;margin-bottom:4px;}
+    .stat-box .lbl{font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* QUIZ */
+    .quiz-section{background:var(--navy);border-radius:12px;padding:2rem;margin:1.5rem 0;color:#fff;}
+    .quiz-title{font-family:'DM Serif Display',Georgia,serif;font-size:1.3rem;margin-bottom:.5rem;}
+    .quiz-sub{font-size:13px;color:#93c5fd;margin-bottom:1.5rem;}
+    .quiz-q{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:1.25rem;margin-bottom:1rem;}
+    .quiz-q-text{font-size:14px;font-weight:600;margin-bottom:.75rem;}
+    .quiz-opts{display:flex;flex-direction:column;gap:6px;}
+    .quiz-opt{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:10px 14px;cursor:pointer;font-size:13px;color:#e2e8f0;transition:all .15s;text-align:left;width:100%;}
+    .quiz-opt:hover{background:rgba(255,255,255,.15);}
+    .quiz-opt.q-correct{background:rgba(22,163,74,.25);border-color:#4ade80;color:#86efac;}
+    .quiz-opt.q-wrong{background:rgba(220,38,38,.25);border-color:#f87171;color:#fca5a5;}
+    .quiz-fb{font-size:13px;margin-top:8px;padding:8px 12px;border-radius:6px;display:none;}
+    .quiz-fb.show{display:block;}
+    .quiz-score{text-align:center;padding:1.5rem;background:rgba(255,255,255,.05);border-radius:10px;margin-top:1rem;display:none;}
+    .quiz-score.show{display:block;}
+    .quiz-score-num{font-family:'Playfair Display',Georgia,serif;font-size:3rem;color:#86efac;}
+
+    /* INLINE CTA */
+    .inline-cta{background:linear-gradient(135deg,#f0fdf9,#ecfeff);border:1px solid var(--teal);border-radius:12px;padding:1.25rem 1.5rem;margin:1.5rem 0;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;}
+    .inline-cta-text{flex:1;min-width:220px;}
+    .inline-cta-text strong{display:block;font-size:15px;color:var(--navy);margin-bottom:4px;}
+    .inline-cta-text span{font-size:13px;color:var(--muted);}
+    .inline-cta-btn{background:var(--teal);color:#fff;text-decoration:none;border-radius:8px;padding:10px 18px;font-size:14px;font-weight:600;white-space:nowrap;transition:background .15s;}
+    .inline-cta-btn:hover{background:var(--teal-dark);}
+
+    /* MOBILE */
+    @media(max-width:768px){
+      .article-layout{grid-template-columns:1fr;}
+      .article-sidebar{position:static;}
+      .stat-row{grid-template-columns:repeat(2,1fr);}
+      .nav-hamburger{display:block;}
+      .nav-links{display:none;}
+      .rec-header{flex-direction:column;gap:.75rem;}
+      .wheel-grid{grid-template-columns:repeat(2,1fr);}
+      .inline-cta{flex-direction:column;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <a class="nav-brand" href="/">
+    <img src="/logo.png" alt="FinCrimeRadar" style="height:44px;width:auto;max-width:200px;object-fit:contain;object-position:left center;display:block;" />
+  </a>
+  <div class="nav-links">
+    <a href="/knowledge.html">Knowledge Hub</a>
+    <a href="/news.html">News</a>
+    <a href="/learn.html">Learn</a>
+    <a href="/about.html">About</a>
+    <a href="/screen.html" class="nav-cta">Try the tool →</a>
+  </div>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/knowledge.html">Knowledge Hub</a>
+  <a href="/news.html">News</a>
+  <a href="/learn.html">Learn</a>
+  <a href="/about.html">About</a>
+  <a href="/screen.html" class="mobile-nav-cta">Try the tool →</a>
+</div>
+
+<!-- HERO -->
+<div class="article-hero">
+  <div class="hero-inner">
+    <div class="series-tag">📋 FATF Series · Part 1 of 2</div>
+    <h1>The FATF 40 Recommendations:<br><em>The Practitioner's Handbook</em></h1>
+    <p class="hero-sub">Every compliance professional knows the FATF Recommendations exist. Almost none have read all forty. This guide decodes the seven that drive 90% of your daily decisions — with visual memory cards, real desk scenarios, and the hard questions regulators actually ask.</p>
+    <div class="hero-meta">
+      <span>⏱ 28 min read</span>
+      <span>🗺 Visual</span>
+      <span>🎓 Practitioner Level</span>
+      <span>📋 7 Recommendations Decoded</span>
+    </div>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="article-layout">
+<div class="article-body">
+
+  <!-- INTRO -->
+  <div class="article-section" id="intro">
+    <div class="section-eyebrow" style="color:var(--gold)">The Problem With Every Other Guide</div>
+    <h2>The 40 Recommendations are not a reading list. They are a decision framework.</h2>
+    <p>Every guide to the FATF 40 Recommendations does the same thing: lists all forty in order, writes two sentences about each, and calls it a handbook. The result is a document that satisfies a Google search but teaches you nothing about how to make a compliance decision under pressure.</p>
+    <p>The truth is that a compliance analyst, MLRO, or risk officer does not need to memorise forty items. They need to deeply understand the handful of recommendations that determine the outcome of every customer onboarding, every alert clearance, every SAR decision, and every regulatory examination.</p>
+    <p>This guide identifies those seven recommendations, explains what they actually require in operational terms, gives you a visual memory card for each, and then drops you into a real scenario from the analyst's desk so you can see how the recommendation plays out when it matters.</p>
+    <p>Part 2 of this series covers the FATF lists: grey list, black list, how countries get listed, what it means for your screening programme, and the EDD obligations that follow. For now, let's start with the foundation.</p>
+
+    <div class="stat-row">
+      <div class="stat-box"><div class="num">40</div><div class="lbl">recommendations, first issued 1990, last updated June 2026</div></div>
+      <div class="stat-box"><div class="num">7</div><div class="lbl">recommendations that drive 90% of operational compliance decisions</div></div>
+      <div class="stat-box"><div class="num">206</div><div class="lbl">jurisdictions assessed against the FATF standards globally</div></div>
+    </div>
+
+    <div class="callout callout-gold">
+      <strong>Who the FATF is — in one sentence</strong>
+      <p>The Financial Action Task Force is an intergovernmental policy-making body established in 1989 by the G7, whose 40 Recommendations form the global standard against which every country's AML and CFT regime is assessed. The Recommendations are not law, but countries that fail to implement them risk landing on the FATF grey or black list — which triggers EDD obligations from every bank and financial institution in the world dealing with them.</p>
+    </div>
+  </div>
+
+  <!-- FULL 40 OVERVIEW -->
+  <div class="fatf-wheel" id="overview">
+    <div class="wheel-title">All 40 Recommendations — Your Seven in Context</div>
+    <div class="wheel-grid">
+      <div class="wheel-cell highlighted"><div class="wheel-cell-num">R.1</div><div class="wheel-cell-label">Risk-Based Approach ★</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.2</div><div class="wheel-cell-label">National Cooperation</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.3</div><div class="wheel-cell-label">ML Offence</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.4</div><div class="wheel-cell-label">Confiscation</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.5</div><div class="wheel-cell-label">TF Offence</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.6</div><div class="wheel-cell-label">Targeted Sanctions</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.7</div><div class="wheel-cell-label">WMD Sanctions</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.8</div><div class="wheel-cell-label">Non-Profits</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.9</div><div class="wheel-cell-label">Financial Secrecy</div></div>
+      <div class="wheel-cell highlighted"><div class="wheel-cell-num">R.10</div><div class="wheel-cell-label">CDD ★</div></div>
+      <div class="wheel-cell highlighted"><div class="wheel-cell-num">R.11</div><div class="wheel-cell-label">Record Keeping ★</div></div>
+      <div class="wheel-cell highlighted"><div class="wheel-cell-num">R.12</div><div class="wheel-cell-label">PEPs ★</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.13</div><div class="wheel-cell-label">Correspondent Banking</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.14</div><div class="wheel-cell-label">Money Services</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.15</div><div class="wheel-cell-label">New Technologies</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.16</div><div class="wheel-cell-label">Wire Transfers</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.17</div><div class="wheel-cell-label">Third Parties</div></div>
+      <div class="wheel-cell highlighted"><div class="wheel-cell-num">R.18</div><div class="wheel-cell-label">Internal Controls ★</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.19</div><div class="wheel-cell-label">High-Risk Countries</div></div>
+      <div class="wheel-cell highlighted"><div class="wheel-cell-num">R.20</div><div class="wheel-cell-label">SAR / STR ★</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.21</div><div class="wheel-cell-label">Tipping Off</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.22</div><div class="wheel-cell-label">DNFBPs: CDD</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.23</div><div class="wheel-cell-label">DNFBPs: Other</div></div>
+      <div class="wheel-cell highlighted"><div class="wheel-cell-num">R.24</div><div class="wheel-cell-label">Beneficial Ownership ★</div></div>
+      <div class="wheel-cell highlighted"><div class="wheel-cell-num">R.25</div><div class="wheel-cell-label">Legal Arrangements ★</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.26</div><div class="wheel-cell-label">FI Regulation</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.27</div><div class="wheel-cell-label">Supervisor Powers</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.28</div><div class="wheel-cell-label">DNFBPs Regulation</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.29</div><div class="wheel-cell-label">FIUs</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.30</div><div class="wheel-cell-label">Law Enforcement</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.31</div><div class="wheel-cell-label">Powers of LE</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.32</div><div class="wheel-cell-label">Cash Couriers</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.33</div><div class="wheel-cell-label">Statistics</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.34</div><div class="wheel-cell-label">Guidance</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.35</div><div class="wheel-cell-label">Sanctions</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.36</div><div class="wheel-cell-label">Int'l Instruments</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.37</div><div class="wheel-cell-label">MLA</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.38</div><div class="wheel-cell-label">MLA: Freezing</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.39</div><div class="wheel-cell-label">Extradition</div></div>
+      <div class="wheel-cell"><div class="wheel-cell-num">R.40</div><div class="wheel-cell-label">Other Forms of Cooperation</div></div>
+    </div>
+    <p style="font-size:12px;color:#64748b;margin-top:1rem;text-align:center;">★ Highlighted recommendations are the seven covered in detail in this guide.</p>
+  </div>
+
+  <!-- R.1: RBA -->
+  <div class="article-section" id="rec1">
+    <div class="rec-card">
+      <div class="rec-header" style="background:linear-gradient(135deg,#0f3460,#1a4a7a);">
+        <div class="rec-badge"><div class="rec-badge-num">1</div><div class="rec-badge-label">Rec.</div></div>
+        <div>
+          <div class="rec-title">Risk-Based Approach</div>
+          <div class="rec-tagline">"The foundation on which every other recommendation is built."</div>
+        </div>
+      </div>
+      <div class="rec-body">
+        <div class="memory-card" style="background:#f0f4ff;border:1px solid #bfdbfe;">
+          <div class="memory-icon">⚖️</div>
+          <div>
+            <div class="memory-title" style="color:#1e40af;">Visual Memory: The Scales</div>
+            <div class="memory-text">Imagine a set of scales. On one side: the risk of a customer or transaction. On the other: the controls you apply. Recommendation 1 says the scales must always balance. Low risk = lighter controls. High risk = heavier scrutiny. Equal treatment for all = regulatory failure. The RBA is not permission to do less — it is a requirement to do the right amount in the right places.</div>
+          </div>
+        </div>
+
+        <h4>What it actually requires</h4>
+        <p>Recommendation 1 requires countries — and through their domestic legislation, regulated firms — to identify, assess, and understand the money laundering and terrorist financing risks they face, and to take action proportionate to those risks. The critical word is proportionate. This is not a licence to do less for low-risk customers; it is an obligation to do more for high-risk ones and to be able to document why you made each decision.</p>
+        <p>In practice this means every firm subject to AML obligations must have a documented risk assessment covering its customers, products, delivery channels, and geography. That risk assessment must then translate directly into the way CDD, transaction monitoring, and suspicious activity reporting are calibrated. An FCA examination will not just ask "do you have a risk assessment?" They will ask "show me how this risk assessment changes the way you treat a customer from a high-risk jurisdiction versus a domestic retail customer."</p>
+
+        <h4>The three tiers the RBA creates</h4>
+        <ul class="checklist">
+          <li><strong>Simplified Due Diligence (SDD):</strong> Applied where risk is demonstrably low and specific conditions are met. Not a shortcut — a deliberate, documented risk-based decision.</li>
+          <li><strong>Standard CDD:</strong> The baseline for customers where no specific risk factors trigger either SDD or EDD. Still requires identification, verification, and ongoing monitoring.</li>
+          <li><strong>Enhanced Due Diligence (EDD):</strong> Mandatory for high-risk customers, relationships, and transactions. PEPs, correspondent banking, high-risk jurisdictions, complex structures all trigger EDD as a minimum.</li>
+        </ul>
+
+        <div class="desk-scenario">
+          <div class="desk-header"><span>📋 At Your Desk</span><div class="tag">RBA in Action</div></div>
+          <div class="desk-body">
+            <p>Your bank onboards a retired teacher from Birmingham who wants a current account. She has a fixed income, a UK passport, no adverse media, no PEP connection, no complex source of funds. Under the RBA, the proportionate response is standard CDD with low-intensity monitoring. You do not run a full EDD file because there is no basis for it.</p>
+            <p>The same week, you onboard a director of a company incorporated in a FATF grey-listed jurisdiction, whose business involves cash-intensive services and who will be sending regular international transfers. The RBA demands EDD — source of funds, source of wealth, enhanced monitoring, senior management sign-off. The same firm treating both customers identically would fail a risk-based examination.</p>
+            <div class="desk-action"><strong>The regulator's question</strong><p>"How does your risk assessment change the way you actually treat different customers?" If you cannot answer with specific, documented examples from your own portfolio, you have an RBA gap.</p></div>
+          </div>
+        </div>
+
+        <div class="failure-box">
+          <strong>The Most Common RBA Failure</strong>
+          <p>Building a risk assessment that lives in a policy document but never changes how analysts actually screen, onboard, or monitor customers. The FCA's enforcement cases on AML repeatedly cite firms where the documented risk appetite bore no resemblance to operational reality. A risk assessment that doesn't change behaviour isn't a risk assessment — it's a liability.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- R.10: CDD -->
+  <div class="article-section" id="rec10">
+    <div class="rec-card">
+      <div class="rec-header" style="background:linear-gradient(135deg,#5b21b6,#7c3aed);">
+        <div class="rec-badge"><div class="rec-badge-num">10</div><div class="rec-badge-label">Rec.</div></div>
+        <div>
+          <div class="rec-title">Customer Due Diligence</div>
+          <div class="rec-tagline">"Know who you are actually dealing with — not just who they say they are."</div>
+        </div>
+      </div>
+      <div class="rec-body">
+        <div class="memory-card" style="background:var(--purple-light);border:1px solid #ddd6fe;">
+          <div class="memory-icon">🔦</div>
+          <div>
+            <div class="memory-title" style="color:var(--purple);">Visual Memory: The Torch</div>
+            <div class="memory-text">CDD is a torch you shine at a customer before they enter the building. It answers four questions: Who are you? Who owns and controls you? What are you here to do? And does any of this match what I expect? Recommendation 10 says you must shine this torch at the start of the relationship, and again throughout it whenever something changes. A torch you only use at onboarding and never again is not CDD — it is a photo of who the customer used to be.</div>
+          </div>
+        </div>
+
+        <h4>The four core CDD obligations</h4>
+        <ul class="checklist">
+          <li><strong>Identification and verification:</strong> Establish the customer's identity from a reliable, independent source. For a natural person: name, date of birth, address. For a legal entity: name, registration number, registered address, legal form.</li>
+          <li><strong>Beneficial ownership:</strong> Identify the natural persons who ultimately own or control the customer — those with more than 25% ownership or effective control. Verify this is accurate and up to date. This is where CDD most commonly fails.</li>
+          <li><strong>Purpose and intended nature:</strong> Understand why the customer is opening the account, what transactions they expect to conduct, and what the business relationship is expected to look like. This baseline is what makes transaction monitoring meaningful later.</li>
+          <li><strong>Ongoing monitoring:</strong> CDD is not a one-time event. It requires reviewing existing information when it changes, when suspicious activity is identified, or at periodic intervals based on risk level. High-risk customers require more frequent review.</li>
+        </ul>
+
+        <h4>When CDD must be applied</h4>
+        <p>The FATF standard requires CDD at the point of establishing a business relationship, when carrying out occasional transactions above applicable thresholds, when there is a suspicion of money laundering or terrorist financing, and when there is doubt about the accuracy of previously obtained identification data.</p>
+
+        <div class="desk-scenario">
+          <div class="desk-header"><span>📋 At Your Desk</span><div class="tag">CDD Failure Mode</div></div>
+          <div class="desk-body">
+            <p>A company opens a business account. The onboarding analyst verifies the two directors who present themselves. Two years later, a new director joins following a corporate restructure. The account continues operating. The new director is not verified. The beneficial ownership register at Companies House shows that director now holds 40% of shares.</p>
+            <p>This is a textbook Recommendation 10 failure — CDD that was performed once but never updated despite a material change in beneficial ownership. The FCA has cited exactly this pattern in enforcement actions.</p>
+            <div class="desk-action"><strong>The fix</strong><p>Ongoing monitoring under R.10 requires triggers that flag material changes in corporate structure, director changes, and ownership threshold breaches. A manual annual review is not sufficient for higher-risk customers.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- R.11: Record Keeping -->
+  <div class="article-section" id="rec11">
+    <div class="rec-card">
+      <div class="rec-header" style="background:linear-gradient(135deg,#14532d,#16a34a);">
+        <div class="rec-badge"><div class="rec-badge-num">11</div><div class="rec-badge-label">Rec.</div></div>
+        <div>
+          <div class="rec-title">Record Keeping</div>
+          <div class="rec-tagline">"If it isn't documented, it didn't happen."</div>
+        </div>
+      </div>
+      <div class="rec-body">
+        <div class="memory-card" style="background:var(--green-light);border:1px solid #bbf7d0;">
+          <div class="memory-icon">🗄️</div>
+          <div>
+            <div class="memory-title" style="color:var(--green);">Visual Memory: The Evidence Locker</div>
+            <div class="memory-text">Every compliance decision you make today is a piece of evidence that either supports or undermines your firm's regulatory standing five years from now. Recommendation 11 requires you to build and maintain that evidence locker. Transaction records for five years from the date of transaction. CDD documents for five years from the end of the relationship. The question you should ask before closing any file: "Could I defend this decision to a regulator from the documentation alone, without anyone's verbal explanation?" If the answer is no, the file is not complete.</div>
+          </div>
+        </div>
+
+        <h4>What must be kept and for how long</h4>
+        <ul class="checklist">
+          <li><strong>Transaction records:</strong> Sufficient to permit reconstruction of individual transactions, including the amount, currency, and parties involved. Minimum five years from the date of transaction.</li>
+          <li><strong>CDD records:</strong> All documents obtained during the due diligence process, including copies of identification documents, verification records, beneficial ownership information, and risk assessments. Minimum five years from the end of the business relationship.</li>
+          <li><strong>Account files and business correspondence:</strong> Including the rationale for decisions made, escalations, and any determinations about suspicious activity. These are what allow a regulator or law enforcement agency to reconstruct the compliance decision-making process.</li>
+          <li><strong>SAR documentation:</strong> Internal SAR reports, MLRO decisions, and DAML consent records must be retained separately and securely, with strict access controls to protect tipping-off obligations.</li>
+        </ul>
+
+        <div class="callout callout-navy">
+          <strong>The UK-specific position</strong>
+          <p>Under the UK Money Laundering Regulations 2017, the five-year retention requirement begins from the date the business relationship ends, not from the date the document was created. This means an identification document obtained in 2018 for a relationship that ended in 2024 must be retained until 2029. Systems that automatically delete records on a five-year rolling basis from creation date — rather than relationship end date — are a compliance gap that survives quietly until an enforcement inquiry surfaces it.</p>
+        </div>
+
+        <div class="failure-box">
+          <strong>The Silent Record Keeping Failure</strong>
+          <p>Firms frequently retain records but in formats or locations that render them unusable under time pressure. A regulator requiring transaction records to be produced within 24 hours will expose whether your record architecture is actually functional or whether everything technically exists but takes three weeks to reconstruct from legacy systems, paper files, and spreadsheets. Retention is a technical obligation; retrievability is the operational one that matters when it counts.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- R.12: PEPs -->
+  <div class="article-section" id="rec12">
+    <div class="rec-card">
+      <div class="rec-header" style="background:linear-gradient(135deg,#7f1d1d,#dc2626);">
+        <div class="rec-badge"><div class="rec-badge-num">12</div><div class="rec-badge-label">Rec.</div></div>
+        <div>
+          <div class="rec-title">Politically Exposed Persons</div>
+          <div class="rec-tagline">"Public trust equals public risk. Not a reason to refuse — a reason to look harder."</div>
+        </div>
+      </div>
+      <div class="rec-body">
+        <div class="memory-card" style="background:var(--red-light);border:1px solid #fecaca;">
+          <div class="memory-icon">🏛️</div>
+          <div>
+            <div class="memory-title" style="color:var(--red);">Visual Memory: The Public Trust Premium</div>
+            <div class="memory-text">A PEP holds — or has held — a position of public trust. That trust gives them access to state resources, decisions over contracts, and influence over policy. Recommendation 12 exists because that access creates a specific and documented risk of corruption, bribery, and embezzlement of state funds. The EDD obligation under R.12 is not a presumption of guilt. It is a recognition that the position itself creates a risk profile that requires more scrutiny, not less, to satisfy yourself that the relationship is clean.</div>
+          </div>
+        </div>
+
+        <h4>The three PEP categories under FATF</h4>
+        <ul class="checklist">
+          <li><strong>Foreign PEPs:</strong> Senior officials in a foreign government, head of state or government, senior politician, senior judicial or military official, senior executive of a state-owned enterprise, or senior official of an international organisation. Foreign PEPs are always high risk — there is no risk-based discretion to apply SDD to a foreign PEP.</li>
+          <li><strong>Domestic PEPs:</strong> The same categories of public function but in the firm's own country. The FATF standard requires a risk-based approach for domestic PEPs — they are not automatically treated as high risk but must be assessed. In practice the FCA's FG25/3 guidance (July 2025) clarifies that domestic PEPs should not automatically receive EDD treatment but must be assessed proportionately.</li>
+          <li><strong>RCAs — Relatives and Close Associates:</strong> Family members and known close associates of PEPs are subject to the same EDD requirements. The "known close associate" category is deliberately broad — it includes business partners and others with whom the PEP has a significant relationship that creates a risk of benefit from their position.</li>
+        </ul>
+
+        <h4>What EDD for PEPs actually requires</h4>
+        <ul class="checklist">
+          <li>Senior management approval before establishing or continuing the relationship</li>
+          <li>Reasonable measures to establish source of wealth and source of funds</li>
+          <li>Enhanced ongoing monitoring of the relationship throughout its duration</li>
+          <li>Periodic review of the relationship with documented rationale for continuation</li>
+        </ul>
+
+        <div class="desk-scenario">
+          <div class="desk-header"><span>📋 At Your Desk</span><div class="tag">The PEP Identification Problem</div></div>
+          <div class="desk-body">
+            <p>A customer was onboarded three years ago as a standard retail customer. Last month, they were appointed as a non-executive director of a government-owned enterprise. Under R.12, this customer is now a domestic PEP. Your screening system will only flag this if it is running a live PEP check against a current database, not if it relied solely on a point-in-time check at onboarding.</p>
+            <p>The obligation under Recommendation 12 is not just to screen for PEPs at onboarding. It is to have a system that identifies when an existing customer becomes a PEP during the course of the relationship. This requires either ongoing periodic screening against live PEP data, or transaction monitoring rules that flag activity patterns consistent with a newly exposed public role.</p>
+            <div class="desk-action"><strong>The regulator's question</strong><p>"How would you know if a customer became a PEP after onboarding?" If your answer is "we wouldn't" — that is a Recommendation 12 gap.</p></div>
+          </div>
+        </div>
+
+        <div class="inline-cta">
+          <div class="inline-cta-text">
+            <strong>Screen for PEPs right now — free</strong>
+            <span>FinCrimeRadar's screening tool runs live PEP checks alongside sanctions and adverse media. No account required.</span>
+          </div>
+          <a href="/screen.html" class="inline-cta-btn">Run a PEP check →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- R.18: Internal Controls -->
+  <div class="article-section" id="rec18">
+    <div class="rec-card">
+      <div class="rec-header" style="background:linear-gradient(135deg,#78350f,#f59e0b);">
+        <div class="rec-badge"><div class="rec-badge-num">18</div><div class="rec-badge-label">Rec.</div></div>
+        <div>
+          <div class="rec-title">Internal Controls</div>
+          <div class="rec-tagline">"Policy without infrastructure is theatre."</div>
+        </div>
+      </div>
+      <div class="rec-body">
+        <div class="memory-card" style="background:var(--gold-light);border:1px solid #fcd34d;">
+          <div class="memory-icon">🏗️</div>
+          <div>
+            <div class="memory-title" style="color:#92400e;">Visual Memory: The Building's Skeleton</div>
+            <div class="memory-text">Recommendations 1 through 17 tell you what compliance needs to achieve. Recommendation 18 is the skeleton that holds the building up. Without internal controls — a named MLRO, AML policies and procedures, staff training, independent audit — the other recommendations float on air. You cannot have a functioning risk-based approach if no one is accountable for it, no one has been trained to apply it, and no one has checked whether it works.</div>
+          </div>
+        </div>
+
+        <h4>The five pillars of R.18 internal controls</h4>
+        <ul class="checklist">
+          <li><strong>Policies, controls and procedures:</strong> Documented AML/CFT policies approved by senior management, covering all aspects of the firm's obligations. These must be implemented in practice, not just on paper.</li>
+          <li><strong>Designated compliance officer (MLRO):</strong> A named individual with the authority, resources, and independence to implement and oversee the AML programme. In the UK this is the SMF17 function — a Senior Manager Function carrying personal accountability.</li>
+          <li><strong>Staff screening:</strong> Ensuring that employees in positions that could be abused for financial crime purposes meet appropriate integrity standards before and during employment.</li>
+          <li><strong>Training:</strong> Regular, documented training for all relevant staff on AML obligations, typologies, red flags, and the firm's internal procedures. One-size-fits-all annual compliance training is unlikely to be sufficient for high-risk roles.</li>
+          <li><strong>Independent audit function:</strong> Regular review of the adequacy and effectiveness of the AML programme by a function independent of the first and second lines of defence. The audit must test whether controls are working in practice, not just whether procedures exist.</li>
+        </ul>
+
+        <div class="callout callout-gold">
+          <strong>The MLRO accountability trap</strong>
+          <p>Recommendation 18 requires a "compliance officer at management level." In the UK, this translates to the SMF17 function under the Senior Managers and Certification Regime. The MLRO carries personal regulatory accountability for the adequacy of the AML programme. This is not a delegation of accountability from senior management — it is a specific regulatory responsibility that sits with a named individual who can be held personally liable for systemic failures. Appointing a compliance officer without giving them the budget, authority, and access to information they need to do the job is a structural failure under R.18, even if the box is technically ticked.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- R.20: SAR -->
+  <div class="article-section" id="rec20">
+    <div class="rec-card">
+      <div class="rec-header" style="background:linear-gradient(135deg,#164e63,#0891b2);">
+        <div class="rec-badge"><div class="rec-badge-num">20</div><div class="rec-badge-label">Rec.</div></div>
+        <div>
+          <div class="rec-title">Suspicious Transaction Reporting</div>
+          <div class="rec-tagline">"You don't need to prove it. You need to suspect it."</div>
+        </div>
+      </div>
+      <div class="rec-body">
+        <div class="memory-card" style="background:var(--blue-light);border:1px solid #bfdbfe;">
+          <div class="memory-icon">🚨</div>
+          <div>
+            <div class="memory-title" style="color:var(--blue);">Visual Memory: The Red Button</div>
+            <div class="memory-text">Recommendation 20 is the red button that connects the financial sector to law enforcement intelligence. When a firm suspects — not knows, but suspects — that funds are the proceeds of crime or that a transaction is connected to terrorist financing, Recommendation 20 requires that suspicion to be reported to the Financial Intelligence Unit without delay and without tipping off the subject. The threshold for reporting is suspicion, not certainty. A firm waiting for proof before filing a SAR has misunderstood the obligation.</div>
+          </div>
+        </div>
+
+        <h4>The obligation in operational terms</h4>
+        <p>Recommendation 20 requires firms to report suspicious transactions to the relevant Financial Intelligence Unit promptly, regardless of the amount involved, and regardless of whether the transaction has been completed or abandoned. In the UK, this is the SAR regime administered by the UKFIU at the NCA. The reporting obligation applies to all employees, but in practice it flows through the MLRO who makes the final determination on whether to submit.</p>
+
+        <h4>What makes a transaction suspicious — the four lenses</h4>
+        <ul class="checklist">
+          <li><strong>Inconsistency:</strong> The transaction does not match the customer's stated profile, expected transaction pattern, or business purpose. A cash-intensive deposit from a customer who described their business as wholly electronic invoicing is inconsistent.</li>
+          <li><strong>Unexplained complexity:</strong> The transaction involves unnecessary complexity — multiple jurisdictions, unusual routing, or layered structures — that has no obvious legitimate commercial reason.</li>
+          <li><strong>Behaviour:</strong> The customer's behaviour during the transaction raises concern — unusual urgency, reluctance to provide information, attempts to avoid identification, or direct reference to evading reporting requirements.</li>
+          <li><strong>Third-party intelligence:</strong> Information from law enforcement, a SAR received from another institution, adverse media, or a FATF typology report that connects the customer or transaction to known financial crime patterns.</li>
+        </ul>
+
+        <div class="desk-scenario">
+          <div class="desk-header"><span>📋 At Your Desk</span><div class="tag">The DAML Situation</div></div>
+          <div class="desk-body">
+            <p>A customer requests a large international transfer to a jurisdiction you know is high risk. You suspect the funds may be linked to fraud based on inconsistencies in the account activity over the past month. The transfer is scheduled for tomorrow.</p>
+            <p>In the UK, where you need to conduct a transaction you suspect is connected to criminal property, you must file a Defence Against Money Laundering SAR with the NCA and await their consent before proceeding. You have a seven-working-day moratorium from the date of filing in which the NCA can either grant consent, refuse it, or allow it to expire and the transfer to proceed.</p>
+            <div class="desk-action"><strong>The tipping-off obligation</strong><p>Recommendation 20 sits alongside the tipping-off prohibition in Recommendation 21. You must file the SAR without informing the customer that you have done so or that they are under investigation. The DAML process must be managed without any communication to the customer that would alert them to the reporting or the investigation.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- R.24 & 25: Beneficial Ownership -->
+  <div class="article-section" id="rec24">
+    <div class="rec-card">
+      <div class="rec-header" style="background:linear-gradient(135deg,#831843,#be185d);">
+        <div class="rec-badge"><div class="rec-badge-num">24 & 25</div><div class="rec-badge-label">Rec.</div></div>
+        <div>
+          <div class="rec-title">Beneficial Ownership</div>
+          <div class="rec-tagline">"Every entity is owned by a human being. Find them."</div>
+        </div>
+      </div>
+      <div class="rec-body">
+        <div class="memory-card" style="background:#fdf2f8;border:1px solid #f9a8d4;">
+          <div class="memory-icon">🌳</div>
+          <div>
+            <div class="memory-title" style="color:#831843;">Visual Memory: The Ownership Tree</div>
+            <div class="memory-text">Every corporate entity is a tree. The leaves are the shares and legal structures. The trunk is the registered company. The roots — buried underground, sometimes deliberately — are the natural persons who ultimately own and control the entity. Recommendations 24 and 25 say: you must find the roots. Not just the leaves, not just the trunk, but the actual humans at the bottom of the ownership chain. Until you reach a natural person, you have not completed your UBO analysis.</div>
+          </div>
+        </div>
+
+        <h4>Recommendation 24 — Companies</h4>
+        <p>Countries must ensure that accurate and up-to-date beneficial ownership information on legal persons is accessible to competent authorities without delay. For firms, this translates into the obligation to identify all natural persons who own or control more than 25% of a company, or who otherwise exercise effective control over it. The 25% threshold is a floor — effective control can exist without reaching it, and your policy must address this.</p>
+
+        <h4>Recommendation 25 — Legal Arrangements</h4>
+        <p>Recommendation 25 extends the beneficial ownership obligation to trusts and other legal arrangements. For a trust, this means identifying the settlor, the trustees, the protector (if any), the beneficiaries or class of beneficiaries, and any other natural person exercising effective control. This is the recommendation that most compliance programmes underserve — trust structures are genuinely more complex to unwind than corporate ones, and the temptation to accept trustee-level information without looking further is a documented compliance gap.</p>
+
+        <h4>The four UBO identification failures</h4>
+        <ul class="checklist">
+          <li><strong>Accepting nominee directors as controllers:</strong> A nominee director listed in the registration documents who has no real decision-making power is not the beneficial owner. The real controller must be identified.</li>
+          <li><strong>Stopping at one corporate layer:</strong> Where a company is owned by another company, the analysis must continue until natural persons are reached, regardless of how many layers it takes.</li>
+          <li><strong>Accepting "members of the family" as beneficiaries:</strong> An unspecified beneficiary class is not an identified beneficial owner. Each member of the class that can receive benefit must be individually identified where practicable.</li>
+          <li><strong>Treating Companies House as sufficient verification:</strong> The PSC register is a useful starting point, not a sufficient endpoint. It must be independently verified against the information provided by the customer and any discrepancies investigated.</li>
+        </ul>
+
+        <div class="failure-box">
+          <strong>The Updated June 2026 FATF Standard</strong>
+          <p>The FATF updated its Recommendations in June 2026, with the most significant changes affecting R.24 and R.25. The revised standard now explicitly addresses nominee arrangements and requires countries to ensure that beneficial ownership information is verified, not merely declared. Firms relying solely on customer declarations of beneficial ownership without independent verification steps have a gap under the updated standard.</p>
+        </div>
+
+        <div class="inline-cta">
+          <div class="inline-cta-text">
+            <strong>Screening beneficial owners?</strong>
+            <span>Each UBO you identify through your corporate structure analysis needs a PEP and sanctions check. Run them here for free.</span>
+          </div>
+          <a href="/screen.html" class="inline-cta-btn">Screen a UBO →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KNOWLEDGE CHECK -->
+  <div class="quiz-section" id="quiz">
+    <div class="quiz-title">Knowledge Check — The Seven Recommendations</div>
+    <div class="quiz-sub">Five questions. Can you apply the recommendations under pressure?</div>
+
+    <div class="quiz-q" id="qq1">
+      <div class="quiz-q-text">1. A customer from a low-risk domestic background wants to open a basic savings account. Under Recommendation 1, what is the correct CDD response?</div>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="answerQ('qq1','A','C')">A — Apply EDD as a precaution regardless of risk level</button>
+        <button class="quiz-opt" onclick="answerQ('qq1','B','C')">B — No CDD is required for clearly low-risk domestic customers</button>
+        <button class="quiz-opt" onclick="answerQ('qq1','C','C')">C — Apply proportionate standard CDD, with SDD only if specific qualifying conditions are met and documented</button>
+        <button class="quiz-opt" onclick="answerQ('qq1','D','C')">D — Apply EDD for all new customers regardless of risk, then step down</button>
+      </div>
+      <div class="quiz-fb" id="qq1-fb"></div>
+    </div>
+
+    <div class="quiz-q" id="qq2">
+      <div class="quiz-q-text">2. Under Recommendation 11, how long must CDD records be retained after a business relationship ends?</div>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="answerQ('qq2','A','B')">A — Three years from relationship end</button>
+        <button class="quiz-opt" onclick="answerQ('qq2','B','B')">B — Five years from the date the relationship ends</button>
+        <button class="quiz-opt" onclick="answerQ('qq2','C','B')">C — Five years from the date the document was created</button>
+        <button class="quiz-opt" onclick="answerQ('qq2','D','B')">D — Seven years from the last transaction</button>
+      </div>
+      <div class="quiz-fb" id="qq2-fb"></div>
+    </div>
+
+    <div class="quiz-q" id="qq3">
+      <div class="quiz-q-text">3. A customer who was onboarded two years ago has just been appointed Minister of Energy in a foreign government. What does Recommendation 12 require?</div>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="answerQ('qq3','A','C')">A — Nothing — the CDD was completed at onboarding and remains valid</button>
+        <button class="quiz-opt" onclick="answerQ('qq3','B','C')">B — File a SAR, since the customer's new role creates inherent suspicion</button>
+        <button class="quiz-opt" onclick="answerQ('qq3','C','C')">C — Trigger EDD, obtain senior management approval, assess source of wealth and funds, and apply enhanced ongoing monitoring going forward</button>
+        <button class="quiz-opt" onclick="answerQ('qq3','D','C')">D — Exit the relationship — foreign PEPs cannot be retained</button>
+      </div>
+      <div class="quiz-fb" id="qq3-fb"></div>
+    </div>
+
+    <div class="quiz-q" id="qq4">
+      <div class="quiz-q-text">4. Under Recommendation 20, what is the threshold for filing a Suspicious Activity Report?</div>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="answerQ('qq4','A','B')">A — Proof that the funds are proceeds of crime</button>
+        <button class="quiz-opt" onclick="answerQ('qq4','B','B')">B — Suspicion that the transaction or funds may be connected to money laundering or terrorist financing</button>
+        <button class="quiz-opt" onclick="answerQ('qq4','C','B')">C — A transaction above a defined monetary threshold</button>
+        <button class="quiz-opt" onclick="answerQ('qq4','D','B')">D — Confirmation from law enforcement that the customer is under investigation</button>
+      </div>
+      <div class="quiz-fb" id="qq4-fb"></div>
+    </div>
+
+    <div class="quiz-q" id="qq5">
+      <div class="quiz-q-text">5. A company is owned by a holding company, which is itself owned by a trust with unspecified "family member" beneficiaries. Under Recommendations 24 and 25, what must you do?</div>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="answerQ('qq5','A','C')">A — Accept the trust structure as the beneficial owner since trusts are legitimate legal arrangements</button>
+        <button class="quiz-opt" onclick="answerQ('qq5','B','C')">B — Identify the holding company's directors as the UBOs since they are the immediate controlling layer</button>
+        <button class="quiz-opt" onclick="answerQ('qq5','C','C')">C — Continue tracing through every corporate layer, identify the settlor, trustees, and each identifiable beneficiary of the trust, and apply EDD given the complexity</button>
+        <button class="quiz-opt" onclick="answerQ('qq5','D','C')">D — File a SAR because layered structures are inherently suspicious</button>
+      </div>
+      <div class="quiz-fb" id="qq5-fb"></div>
+    </div>
+
+    <div class="quiz-score" id="quiz-score">
+      <div class="quiz-score-num" id="quiz-score-num">0/5</div>
+      <div id="quiz-score-label" style="font-size:14px;color:#93c5fd;margin-top:4px;"></div>
+    </div>
+  </div>
+
+  <!-- CONCLUSION -->
+  <div class="article-section" id="conclusion">
+    <div class="section-eyebrow" style="color:var(--gold)">What Part 2 Covers</div>
+    <h2>Now that you know the rules — Part 2 covers the consequences of breaking them.</h2>
+    <p>Part 2 of this series focuses on the FATF lists: how countries end up on the grey list and black list, what distinguishes them, what the real-world business and compliance consequences are, and what FATF expects from listed countries on the path to delisting. It also covers your EDD obligations when dealing with counterparties, customers, or transactions connected to listed jurisdictions, and includes the current 2026 grey and black list with a visual jurisdiction risk map.</p>
+    <div class="inline-cta">
+      <div class="inline-cta-text">
+        <strong>While you're here</strong>
+        <span>The FinCrimeRadar screening tool covers PEPs, sanctions, and adverse media — the three data sources that activate the EDD requirements in every recommendation above.</span>
+      </div>
+      <a href="/screen.html" class="inline-cta-btn">Try the tool →</a>
+    </div>
+  </div>
+
+</div><!-- /article-body -->
+
+<!-- SIDEBAR -->
+<div class="article-sidebar">
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <a href="#intro">Introduction</a>
+    <a href="#overview">All 40 at a Glance</a>
+    <a href="#rec1"><span class="toc-dot" style="background:#0f3460;"></span> R.1 — Risk-Based Approach</a>
+    <a href="#rec10"><span class="toc-dot" style="background:#7c3aed;"></span> R.10 — CDD</a>
+    <a href="#rec11"><span class="toc-dot" style="background:#16a34a;"></span> R.11 — Record Keeping</a>
+    <a href="#rec12"><span class="toc-dot" style="background:#dc2626;"></span> R.12 — PEPs</a>
+    <a href="#rec18"><span class="toc-dot" style="background:#f59e0b;"></span> R.18 — Internal Controls</a>
+    <a href="#rec20"><span class="toc-dot" style="background:#0891b2;"></span> R.20 — SARs</a>
+    <a href="#rec24"><span class="toc-dot" style="background:#be185d;"></span> R.24/25 — Beneficial Ownership</a>
+    <a href="#quiz">Knowledge Check</a>
+    <a href="#conclusion">Part 2 Preview</a>
+  </div>
+
+  <div class="part-nav">
+    <div class="part-nav-title">FATF Series</div>
+    <a class="part-link active" href="/fatf-guide-part1.html">✓ Part 1 — The 40 Recommendations</a>
+    <a class="part-link next" href="/fatf-guide-part2.html">→ Part 2 — Grey List, Black List & Country Risk</a>
+  </div>
+
+  <div class="tool-cta">
+    <p>Screen any individual or entity from your compliance pipeline — PEPs, sanctions, and adverse media in one search.</p>
+    <a href="/screen.html">Try the screening tool →</a>
+  </div>
+</div>
+</div><!-- /article-layout -->
+
+<!-- FOOTER -->
+<footer style="background:#F7F8FA;color:var(--muted);border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;margin-top:2rem;">
+  <div style="max-width:900px;margin:0 auto;">
+    <a href="/" style="display:inline-block;margin-bottom:1rem;"><img src="/logo.png" alt="FinCrimeRadar" style="height:44px;object-fit:contain;" /></a>
+    <p style="font-size:13px;margin-bottom:.5rem;">Free, open-source AML and financial crime compliance resources.</p>
+    <div style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin:1rem 0;font-size:13px;">
+      <a href="/knowledge.html" style="color:var(--navy);text-decoration:none;">Knowledge Hub</a>
+      <a href="/screen.html" style="color:var(--navy);text-decoration:none;">Screening Tool</a>
+      <a href="/about.html" style="color:var(--navy);text-decoration:none;">About</a>
+      <a href="/privacy.html" style="color:var(--navy);text-decoration:none;">Privacy</a>
+      <a href="/contact.html" style="color:var(--navy);text-decoration:none;">Contact</a>
+    </div>
+    <p style="font-size:12px;">© 2026 FinCrimeRadar. For educational purposes only. Not legal advice.</p>
+  </div>
+</footer>
+
+<script>
+// Progress bar
+window.addEventListener('scroll',()=>{
+  const doc=document.documentElement;
+  document.getElementById('progressBar').style.width=(doc.scrollTop/(doc.scrollHeight-doc.clientHeight)*100)+'%';
+});
+
+// TOC
+const tocLinks=document.querySelectorAll('.toc a');
+const sections=document.querySelectorAll('[id]');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id;});
+  tocLinks.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+cur);});
+});
+
+// Mobile nav
+function toggleMobileNav(){document.getElementById('mobileNav').classList.toggle('open');}
+
+// Quiz
+const qAnswers={
+  qq1:{correct:'C',fb:'The RBA requires proportionality. Standard CDD is the baseline for a low-risk domestic customer. SDD can only be applied where specific qualifying conditions are met and documented — it is never automatic. EDD would be disproportionate here.'},
+  qq2:{correct:'B',fb:'Recommendation 11 requires retention for five years from the date the business relationship ends — not from when the document was created. Systems that use document creation date as the timer are a common compliance gap.'},
+  qq3:{correct:'C',fb:'A customer becoming a foreign PEP during a relationship triggers full R.12 obligations: EDD, senior management approval, enhanced monitoring. The original CDD is no longer adequate. Foreign PEPs are always high risk — this is not discretionary.'},
+  qq4:{correct:'B',fb:'The threshold under R.20 is suspicion, not proof. Waiting for certainty before filing a SAR is a fundamental misunderstanding of the reporting obligation. The SAR regime exists precisely because regulated firms often see fragments of activity that, when reported, allow the FIU to build a wider intelligence picture.'},
+  qq5:{correct:'C',fb:'R.24 and R.25 require tracing through every corporate and trust layer until natural persons are identified. "Family member beneficiaries" is not an identified beneficial owner. The complexity itself is a risk factor requiring EDD under the risk-based approach.'}
+};
+let answered=0,correct=0;
+function answerQ(qid,chosen,correctOpt){
+  const qDiv=document.getElementById(qid);
+  if(qDiv.dataset.answered)return;
+  qDiv.dataset.answered=true;
+  const fb=document.getElementById(qid+'-fb');
+  const isCorrect=chosen===correctOpt;
+  qDiv.querySelectorAll('.quiz-opt').forEach(b=>{
+    b.disabled=true;
+    if(b.textContent.trim().startsWith(correctOpt+' '))b.classList.add('q-correct');
+    else if(b.textContent.trim().startsWith(chosen+' ')&&!isCorrect)b.classList.add('q-wrong');
+  });
+  fb.textContent=qAnswers[qid].fb;
+  fb.style.background=isCorrect?'rgba(22,163,74,.2)':'rgba(220,38,38,.2)';
+  fb.style.padding='8px 12px';
+  fb.style.borderRadius='6px';
+  fb.style.color=isCorrect?'#86efac':'#fca5a5';
+  fb.classList.add('show');
+  answered++;
+  if(isCorrect)correct++;
+  if(answered===5){
+    const sc=document.getElementById('quiz-score');
+    document.getElementById('quiz-score-num').textContent=correct+'/5';
+    const labels=['Keep going — the detail matters here.','Getting there — revisit the desk scenarios.','Solid — a few gaps remain.','Strong practitioner knowledge.','Perfect. You understand the standard.'];
+    sc.querySelector('div:last-child').textContent=labels[correct];
+    sc.classList.add('show');
+  }
+}
+</script>
+
+<!-- Cookie consent -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#0f2044;border-top:1px solid #1d3a6e;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;box-shadow:0 -4px 20px rgba(0,0,0,.3);">
+  <div style="flex:1;min-width:260px;"><div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:4px;">🍪 We use cookies</div><div style="font-size:12px;color:#94a3b8;line-height:1.5;">We use Google Analytics to understand how visitors use FinCrimeRadar. <a href="/privacy.html" style="color:#93c5fd;text-decoration:none;">Privacy Policy</a></div></div>
+  <div style="display:flex;gap:8px;flex-shrink:0;">
+    <button onclick="rejectCookies()" style="padding:8px 16px;background:transparent;border:1px solid #334155;color:#94a3b8;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;">Reject non-essential</button>
+    <button onclick="acceptCookies()" style="padding:8px 18px;background:#00c4a7;border:none;color:#fff;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;">Accept all</button>
+  </div>
+</div>
+<script>
+(function(){var c=localStorage.getItem('fcr_cookie_consent');if(!c)document.getElementById('cookieBanner').style.display='flex';else if(c==='rejected')window['ga-disable-G-FC1VMTE7JH']=true;})();
+function acceptCookies(){localStorage.setItem('fcr_cookie_consent','accepted');document.getElementById('cookieBanner').style.display='none';}
+function rejectCookies(){localStorage.setItem('fcr_cookie_consent','rejected');window['ga-disable-G-FC1VMTE7JH']=true;document.getElementById('cookieBanner').style.display='none';}
+</script>
+</body>
+</html>
