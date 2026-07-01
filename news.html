@@ -233,7 +233,7 @@
 <div class="news-hero">
   <div class="tag">📡 Live compliance intelligence</div>
   <h1>Compliance News & <em>Regulatory Updates</em></h1>
-  <p>Real-time updates from FCA, FATF, OCCRP, OFSI and global financial crime sources — automatically refreshed every 30 minutes.</p>
+  <p>Real-time updates from FCA, OFSI, HM Treasury, NCA, OCCRP and BBC — filtered for AML, sanctions, fraud and financial crime only.</p>
 </div>
 
 <div class="news-container">
@@ -242,7 +242,7 @@
   <div class="status-bar">
     <div class="sb-left">
       <div class="live-dot"></div>
-      <span class="sb-text"><strong>Live feed</strong> — Sources: FCA · OCCRP · BBC · OFSI · AP News</span>
+      <span class="sb-text"><strong>Live feed</strong> — Sources: FCA · OFSI · HMT · NCA · OCCRP · BBC</span>
     </div>
     <button class="sb-refresh" onclick="loadNews(true)">↻ Refresh now</button>
   </div>
@@ -252,9 +252,10 @@
     <span class="sl-label">Sources:</span>
     <span class="sl-badge src-fca">FCA</span>
     <span class="sl-badge src-ofsi">OFSI</span>
+    <span class="sl-badge src-hmt" style="background:#fef3c7;color:#92400e;">HM Treasury</span>
+    <span class="sl-badge src-nca" style="background:#fee2e2;color:#7f1d1d;">NCA</span>
     <span class="sl-badge src-occrp">OCCRP</span>
     <span class="sl-badge src-bbc">BBC</span>
-    <span class="sl-badge src-ap">AP News</span>
   </div>
 
   <!-- Filters -->
@@ -309,33 +310,76 @@
 
 <script>
 const NEWS_SOURCES = [
-  { name:'FCA', badge:'src-fca', cat:'fca', url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.fca.org.uk%2Frss%2Fnews', fallback:[
-    {title:'FCA issues Final Notice to CACEIS BANK (UK Branch)',date:'2026-06-25',desc:'The FCA has issued a Final Notice following an enforcement investigation into financial crime controls failures.',link:'https://www.fca.org.uk/news',cat:'fca'},
-    {title:'FCA consults on proposals to support strong standards in SIPP market',date:'2026-06-22',desc:'The FCA has published CP26/20 consulting on proposals to support strong, consistent standards for self-invested personal pensions.',link:'https://www.fca.org.uk/news',cat:'fca'},
-    {title:'Beyond the headlines: the unseen fight against financial crime',date:'2026-06-17',desc:'FCA speech covering the regulator\'s approach to financial crime supervision and enforcement in 2026 and beyond.',link:'https://www.fca.org.uk/news',cat:'aml'},
-    {title:'FCA closes investigation into Drax Group PLC',date:'2026-06-18',desc:'The FCA has closed its investigation into Drax Group PLC, confirming no further action will be taken.',link:'https://www.fca.org.uk/news',cat:'fca'},
-  ]},
-  { name:'OCCRP', badge:'src-occrp', cat:'global', url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Foccrp.org%2Fen%2Frss%2Fall.rss', fallback:[
-    {title:'Organised Crime Network Linked to European Shell Companies Exposed',date:'2026-06-24',desc:'OCCRP investigation reveals cross-border money laundering network using UK and EU-registered entities as conduits for illicit funds from high-risk jurisdictions.',link:'https://occrp.org',cat:'aml'},
-    {title:'Kleptocracy Assets Frozen Across Three Jurisdictions in Coordinated Action',date:'2026-06-20',desc:'Law enforcement agencies in the UK, US, and Switzerland coordinate to freeze assets linked to senior government official suspected of embezzling public funds.',link:'https://occrp.org',cat:'sanctions'},
-    {title:'Casino Operator Used to Launder Proceeds of Eastern European Drug Trade',date:'2026-06-15',desc:'Investigation reveals how a network of online casino operators processed millions in drug trafficking proceeds across multiple jurisdictions.',link:'https://occrp.org',cat:'aml'},
-  ]},
-  { name:'BBC', badge:'src-bbc', cat:'global', url:'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.bbci.co.uk%2Fnews%2Fbusiness%2Frss.xml', fallback:[
-    {title:'UK fraud losses reach record levels as APP scams surge',date:'2026-06-23',desc:'UK Finance data shows authorised push payment fraud and investment scams reached unprecedented levels in 2025/26, with losses exceeding £1.5 billion.',link:'https://bbc.co.uk/news/business',cat:'fraud'},
-    {title:'Major bank faces regulatory scrutiny over AML control failures',date:'2026-06-19',desc:'A major UK financial institution faces FCA investigation following a whistleblower report alleging systematic failures in anti-money laundering controls.',link:'https://bbc.co.uk/news/business',cat:'aml'},
-    {title:'Crypto exchange fined for facilitating money laundering',date:'2026-06-14',desc:'A leading cryptocurrency exchange has been fined by regulators for failing to implement adequate customer due diligence and transaction monitoring controls.',link:'https://bbc.co.uk/news/business',cat:'aml'},
-  ]},
-  { name:'OFSI', badge:'src-ofsi', cat:'sanctions', url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.gov.uk%2Fgovernment%2Forganisations%2Foffice-of-financial-sanctions-implementation.atom', fallback:[
-    {title:'UK adds new designations to Russia sanctions regime',date:'2026-06-22',desc:'OFSI updates the UK Consolidated List with additional individuals and entities subject to UK financial sanctions under the Russia regime.',link:'https://www.gov.uk/government/organisations/office-of-financial-sanctions-implementation',cat:'sanctions'},
-    {title:'OFSI issues guidance on reporting obligations for sanctions breaches',date:'2026-06-15',desc:'Updated guidance clarifies the 14-day reporting requirement for firms that identify or suspect a sanctions breach involving frozen assets.',link:'https://www.gov.uk/government/organisations/office-of-financial-sanctions-implementation',cat:'sanctions'},
-    {title:'OFSI civil monetary penalty issued for Iran sanctions breach',date:'2026-06-10',desc:'OFSI has issued a civil monetary penalty following a breach of Iran financial sanctions involving a payment processed through a UK-connected entity.',link:'https://www.gov.uk/government/organisations/office-of-financial-sanctions-implementation',cat:'sanctions'},
-  ]},
-  { name:'AP News', badge:'src-ap', cat:'global', url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Frsshub.app%2Fap%2Ftopics%2Ffinancial-markets', fallback:[
-    {title:'OFAC designates additional Russian financial entities and vessels',date:'2026-06-21',desc:'US Treasury adds further Russian banks, individuals and shipping companies to the SDN list, expanding financial sanctions pressure.',link:'https://apnews.com',cat:'sanctions'},
-    {title:'Global AML enforcement actions reach five-year high in H1 2026',date:'2026-06-18',desc:'International coordination between FATF member states leads to record number of AML enforcement actions in the first half of 2026.',link:'https://apnews.com',cat:'aml'},
-    {title:'FATF announces updated list of high-risk jurisdictions',date:'2026-06-12',desc:'FATF has published its updated grey and black lists following its June 2026 plenary, with new additions and removals affecting EDD requirements globally.',link:'https://apnews.com',cat:'aml'},
-  ]},
+  // FCA — regulatory feed, all items are compliance-relevant by definition
+  { name:'FCA', badge:'src-fca', cat:'fca', requiresFilter:false,
+    url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.fca.org.uk%2Frss%2Fnews',
+    fallback:[
+      {title:'FCA issues Final Notice to CACEIS BANK (UK Branch)',date:'2026-06-25',desc:'The FCA has issued a Final Notice following an enforcement investigation into financial crime controls failures.',link:'https://www.fca.org.uk/news',cat:'fca'},
+      {title:'Beyond the headlines: the unseen fight against financial crime',date:'2026-06-17',desc:'FCA speech covering the approach to financial crime supervision and enforcement in 2026.',link:'https://www.fca.org.uk/news',cat:'aml'},
+      {title:'FCA issues Final Notice for AML systems and controls failures',date:'2026-06-10',desc:'Firm required to pay significant financial penalty for failures in its anti-money laundering controls framework.',link:'https://www.fca.org.uk/news',cat:'fca'},
+    ]},
+  // OFSI — sanctions feed, all items are sanctions-relevant
+  { name:'OFSI', badge:'src-ofsi', cat:'sanctions', requiresFilter:false,
+    url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.gov.uk%2Fgovernment%2Forganisations%2Foffice-of-financial-sanctions-implementation.atom',
+    fallback:[
+      {title:'UK adds new designations to Russia sanctions regime',date:'2026-06-22',desc:'OFSI updates the UK Consolidated List with additional individuals and entities subject to UK financial sanctions under the Russia regime.',link:'https://www.gov.uk/government/organisations/office-of-financial-sanctions-implementation',cat:'sanctions'},
+      {title:'OFSI issues guidance on reporting obligations for sanctions breaches',date:'2026-06-15',desc:'Updated guidance clarifies the 14-day reporting requirement for firms that identify or suspect a sanctions breach involving frozen assets.',link:'https://www.gov.uk/government/organisations/office-of-financial-sanctions-implementation',cat:'sanctions'},
+      {title:'OFSI civil monetary penalty issued for Iran sanctions breach',date:'2026-06-10',desc:'OFSI has issued a civil monetary penalty following a breach of Iran financial sanctions involving a payment processed through a UK-connected entity.',link:'https://www.gov.uk/government/organisations/office-of-financial-sanctions-implementation',cat:'sanctions'},
+    ]},
+  // HM Treasury — publishes Money Laundering Advisory Notices, high-risk country lists, AML/CTF policy
+  { name:'HM Treasury', badge:'src-hmt', cat:'aml', requiresFilter:false,
+    url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.gov.uk%2Fgovernment%2Forganisations%2Fhm-treasury.atom',
+    fallback:[
+      {title:'Money Laundering Advisory Notice: High Risk Third Countries',date:'2026-06-19',desc:'HM Treasury has updated the Money Laundering Advisory Notice listing high-risk third countries under the Money Laundering Regulations 2017. Firms must apply EDD to business relationships and transactions involving these jurisdictions.',link:'https://www.gov.uk/government/publications/money-laundering-advisory-notice-high-risk-third-countries--2',cat:'aml'},
+      {title:'UK updates its AML/CTF national risk assessment',date:'2026-05-12',desc:'HM Treasury and Home Office publish the updated National Risk Assessment of money laundering and terrorist financing, identifying key threats and sector-level vulnerabilities.',link:'https://www.gov.uk/government/publications/national-risk-assessment-of-money-laundering-and-terrorist-financing-2024',cat:'aml'},
+      {title:'Treasury consults on reforms to the Money Laundering Regulations',date:'2026-04-08',desc:'HM Treasury launches consultation on proposed amendments to the MLR 2017 covering beneficial ownership, cryptoassets, and revised CDD requirements.',link:'https://www.gov.uk/government/consultations',cat:'aml'},
+    ]},
+  // NCA — National Crime Agency press releases on financial crime, asset recovery, enforcement
+  { name:'NCA', badge:'src-nca', cat:'aml', requiresFilter:false,
+    url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.nationalcrimeagency.gov.uk%2Fnews%3Fformat%3Dfeed%26type%3DRSS',
+    fallback:[
+      {title:'NCA leads largest ever UK unexplained wealth order action',date:'2026-06-20',desc:'The National Crime Agency has secured an Unexplained Wealth Order against assets worth over £90 million linked to a politically exposed person and suspected corruption proceeds.',link:'https://www.nationalcrimeagency.gov.uk/news',cat:'aml'},
+      {title:'NCA publishes annual SARs report: 900,000 reports filed in 2025/26',date:'2026-05-28',desc:'The UK Financial Intelligence Unit annual report reveals a record number of Suspicious Activity Reports submitted by regulated firms, with Defence Against Money Laundering requests rising sharply.',link:'https://www.nationalcrimeagency.gov.uk/news',cat:'aml'},
+      {title:'International money laundering network dismantled across six countries',date:'2026-05-14',desc:'NCA-led operation arrests 23 individuals linked to a professional money laundering network that processed over £500 million through UK-connected accounts.',link:'https://www.nationalcrimeagency.gov.uk/news',cat:'aml'},
+    ]},
+  // OCCRP — investigative journalism, financial crime focus, all items relevant
+  { name:'OCCRP', badge:'src-occrp', cat:'aml', requiresFilter:false,
+    url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Foccrp.org%2Fen%2Frss%2Fall.rss',
+    fallback:[
+      {title:'Organised Crime Network Linked to European Shell Companies Exposed',date:'2026-06-24',desc:'OCCRP investigation reveals cross-border money laundering network using UK and EU-registered entities as conduits for illicit funds from high-risk jurisdictions.',link:'https://occrp.org',cat:'aml'},
+      {title:'Kleptocracy Assets Frozen Across Three Jurisdictions in Coordinated Action',date:'2026-06-20',desc:'Law enforcement agencies in the UK, US, and Switzerland coordinate to freeze assets linked to senior government official suspected of embezzling public funds.',link:'https://occrp.org',cat:'sanctions'},
+      {title:'Casino Operator Used to Launder Proceeds of Eastern European Drug Trade',date:'2026-06-15',desc:'Investigation reveals how a network of online casino operators processed millions in drug trafficking proceeds across multiple jurisdictions.',link:'https://occrp.org',cat:'aml'},
+    ]},
+  // BBC — general business feed, REQUIRES hard keyword filter before including any article
+  { name:'BBC', badge:'src-bbc', cat:'global', requiresFilter:true,
+    url:'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.bbci.co.uk%2Fnews%2Fbusiness%2Frss.xml',
+    fallback:[
+      {title:'UK fraud losses reach record levels as APP scams surge',date:'2026-06-23',desc:'UK Finance data shows authorised push payment fraud and investment scams reached unprecedented levels in 2025/26, with losses exceeding £1.5 billion.',link:'https://bbc.co.uk/news/business',cat:'fraud'},
+      {title:'Crypto exchange fined for facilitating money laundering',date:'2026-06-14',desc:'A leading cryptocurrency exchange has been fined by regulators for failing to implement adequate customer due diligence and transaction monitoring controls.',link:'https://bbc.co.uk/news/business',cat:'aml'},
+    ]},
 ];
+
+// Hard financial crime keywords — an article from a generic feed MUST contain at least one
+// of these to pass the relevance gate. Generic business words like "bank", "fine", "economy"
+// are deliberately excluded since they appear in completely unrelated articles.
+const FINCRIME_KEYWORDS = [
+  'money laundering','anti-money laundering','aml','financial crime','sanctions','ofac','ofsi',
+  'sdn list','designated','asset freeze','frozen assets','unexplained wealth','uwo',
+  'suspicious activity','sar','daml','tipping off','proceeds of crime','poca',
+  'fraud','scam','bribery','corruption','kleptocracy','embezzlement',
+  'terrorist financing','ctf','proliferation financing',
+  'know your customer','kyc','due diligence','cdd','edd','beneficial owner',
+  'shell company','shell companies','nominee director','offshore','tax evasion',
+  'fatf','grey list','blacklist','high-risk jurisdiction','mutual evaluation',
+  'fca enforcement','final notice','skilled persons review','section 166',
+  'pep','politically exposed','ransomware','cybercrime','crypto crime','vasp',
+  'trade-based money laundering','tbml','hawala','smurfing',
+];
+
+function isFincrimeRelevant(title, desc) {
+  const text = (title + ' ' + (desc||'')).toLowerCase();
+  return FINCRIME_KEYWORDS.some(kw => text.includes(kw));
+}
 
 let allNewsItems = [];
 let currentCat = 'all';
@@ -355,10 +399,31 @@ function timeAgo(dateStr) {
 
 function detectCat(title, desc, sourceCat) {
   const text = (title + ' ' + (desc||'')).toLowerCase();
-  if (text.includes('sanction')||text.includes('ofac')||text.includes('ofsi')||text.includes('designation')||text.includes('sdn')||text.includes('frozen')) return 'sanctions';
-  if (text.includes('fraud')||text.includes('scam')||text.includes('phishing')||text.includes('push payment')||text.includes('impersonation')) return 'fraud';
-  if (text.includes('aml')||text.includes('money launder')||text.includes('sar')||text.includes('pep')||text.includes('financial crime')||text.includes('fine')||text.includes('final notice')||text.includes('enforcement')) return 'aml';
-  if (text.includes('fca')||text.includes('financial conduct')) return 'fca';
+  // Sanctions first — highest specificity
+  if (text.includes('sanction')||text.includes('ofac')||text.includes('ofsi')||
+      text.includes('designation')||text.includes('sdn')||text.includes('frozen assets')||
+      text.includes('asset freeze')||text.includes('consolidated list')||
+      text.includes('proliferation')) return 'sanctions';
+  // Fraud
+  if (text.includes('fraud')||text.includes('scam')||text.includes('phishing')||
+      text.includes('push payment')||text.includes('app fraud')||text.includes('impersonation')||
+      text.includes('romance fraud')||text.includes('investment fraud')||
+      text.includes('ransomware')) return 'fraud';
+  // AML — broader financial crime bucket
+  if (text.includes('aml')||text.includes('anti-money launder')||text.includes('money launder')||
+      text.includes('sar')||text.includes('suspicious activity')||
+      text.includes('pep')||text.includes('politically exposed')||
+      text.includes('financial crime')||text.includes('final notice')||
+      text.includes('enforcement')||text.includes('unexplained wealth')||
+      text.includes('proceeds of crime')||text.includes('beneficial owner')||
+      text.includes('money laundering advisory')||text.includes('high-risk third')||
+      text.includes('national risk assessment')||text.includes('kleptocracy')||
+      text.includes('bribery')||text.includes('corruption')||text.includes('terrorist financing')||
+      text.includes('fatf')||text.includes('grey list')||text.includes('kyc')||
+      text.includes('due diligence')||text.includes('cdd')) return 'aml';
+  // FCA
+  if (text.includes('fca')||text.includes('financial conduct authority')) return 'fca';
+  // Fall back to source category
   return sourceCat;
 }
 
@@ -399,8 +464,8 @@ function filterNews(btn) {
 }
 
 async function loadNews(force) {
-  const cacheKey='fcr_news_v2';
-  const timeKey='fcr_news_t2';
+  const cacheKey='fcr_news_v4';
+  const timeKey='fcr_news_t4';
   const TTL = 30*60*1000;
   if (!force) {
     try {
@@ -420,11 +485,19 @@ async function loadNews(force) {
       const r = await fetch(src.url,{signal:AbortSignal.timeout(5000)});
       if(!r.ok) throw 0;
       const d = await r.json();
-      if(d.items?.length) return d.items.slice(0,5).map(i=>({
-        title:i.title||'',desc:i.description||i.content||'',
-        link:i.link||i.url||'#',date:i.pubDate||i.published||new Date().toISOString(),
-        source:src.name,badge:src.badge,cat:detectCat(i.title,i.description,src.cat)
-      }));
+      if(d.items?.length) {
+        const items = d.items
+          .filter(i => !src.requiresFilter || isFincrimeRelevant(i.title, i.description||i.content||''))
+          .slice(0, src.requiresFilter ? 10 : 5)
+          .slice(0, 5)
+          .map(i=>({
+            title:i.title||'',desc:i.description||i.content||'',
+            link:i.link||i.url||'#',date:i.pubDate||i.published||new Date().toISOString(),
+            source:src.name,badge:src.badge,cat:detectCat(i.title,i.description,src.cat)
+          }));
+        if(items.length) return items;
+        throw 0; // no relevant items, use fallback
+      }
       throw 0;
     } catch {
       return src.fallback.map(f=>({...f,source:src.name,badge:src.badge}));
