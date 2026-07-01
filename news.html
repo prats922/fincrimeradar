@@ -624,16 +624,31 @@ async function loadNews(force) {
   const cacheKey='fcr_news_v4';
   const timeKey='fcr_news_t4';
   const TTL = 30*60*1000;
-  // Show spinner immediately so there is always feedback
   const loadingEl = document.getElementById('newsLoadingState');
-  if (loadingEl) loadingEl.style.display = 'block';
+
+  // STEP 1: Always show fallback articles immediately so the page is never blank.
+  // This renders in milliseconds regardless of network state.
+  const fallbackItems = [];
+  NEWS_SOURCES.forEach(src => {
+    src.fallback.forEach(f => fallbackItems.push({...f, source:src.name, badge:src.badge}));
+  });
+  fallbackItems.sort((a,b)=>{ try{return new Date(b.date)-new Date(a.date);}catch{return 0;} });
+  if (allNewsItems.length === 0) {
+    allNewsItems = fallbackItems;
+    renderNews();
+    if (loadingEl) loadingEl.style.display = 'none';
+    document.getElementById('newsUpdated').textContent = 'Showing cached articles — fetching live...';
+  }
+
+  // STEP 2: Check localStorage cache
   if (!force) {
     try {
       const c = localStorage.getItem(cacheKey);
       const t = localStorage.getItem(timeKey);
       if (c && t && Date.now()-parseInt(t)<TTL) {
-        allNewsItems = JSON.parse(c);
-        if (allNewsItems.length > 0) {
+        const cached = JSON.parse(c);
+        if (cached && cached.length > 0) {
+          allNewsItems = cached;
           renderNews();
           if (loadingEl) loadingEl.style.display = 'none';
           document.getElementById('newsUpdated').textContent = 'Updated: '+new Date(parseInt(t)).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
@@ -645,7 +660,7 @@ async function loadNews(force) {
   allNewsItems = [];
   const results = await Promise.allSettled(NEWS_SOURCES.map(async src => {
     try {
-      const r = await fetch(src.url,{signal:AbortSignal.timeout(5000)});
+      const r = await fetch(src.url,{signal:AbortSignal.timeout(3000)});
       if(!r.ok) throw 0;
       const d = await r.json();
       if(d.items?.length) {
@@ -671,9 +686,16 @@ async function loadNews(force) {
   try { localStorage.setItem(cacheKey,JSON.stringify(allNewsItems)); localStorage.setItem(timeKey,Date.now().toString()); } catch{}
   const loadEl = document.getElementById('newsLoadingState');
   if (loadEl) loadEl.style.display = 'none';
+  if (allNewsItems.length === 0) {
+    // Live fetch returned nothing — keep fallback already showing
+    allNewsItems = fallbackItems;
+  }
   renderNews();
   const now = new Date();
-  document.getElementById('newsUpdated').textContent = 'Updated: '+now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  const liveCount = allNewsItems.filter(i => !fallbackItems.some(f => f.title === i.title)).length;
+  document.getElementById('newsUpdated').textContent = liveCount > 0
+    ? 'Updated: '+now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})
+    : 'Showing curated articles · Live feed temporarily unavailable';
 }
 
 ,body:JSON.stringify({email})}); } catch{}
