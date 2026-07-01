@@ -38,32 +38,22 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-  --teal:var(--teal);--teal-h:var(--teal-h);--teal-deep:var(--teal-deep);--teal-soft:var(--teal-soft);--teal-mid:var(--teal-mid);
-  --navy:var(--navy);--navy-mid:var(--navy-mid);--navy-light:var(--navy-light);
-  --danger:var(--danger);--danger-bg:var(--danger-bg);--warning:var(--warning);--warning-bg:var(--warning-bg);
-  --success:var(--success);--success-bg:var(--success-bg);--purple:var(--purple);--purple-bg:var(--purple-bg);
-  --blue:var(--blue);--blue-bg:var(--blue-bg);
-  --white:var(--white);--off:var(--off);--border:var(--border);--border-mid:var(--border-mid);
-  --text:var(--text);--slate:var(--slate);--muted:var(--muted);--light:var(--light);--faint:var(--faint);
+  --teal:#00c4a7;--teal-h:#00a892;--teal-deep:#007d6d;--teal-soft:#e0faf6;--teal-mid:#f0fdf9;
+  --navy:#002850;--navy-mid:#0f2044;--navy-light:#1a3a6e;
+  --danger:#dc2626;--danger-bg:#fef2f2;--warning:#d97706;--warning-bg:#fffbeb;
+  --success:#16a34a;--success-bg:#f0fdf4;--purple:#7c3aed;--purple-bg:#f5f3ff;
+  --blue:#1d5fc4;--blue-bg:#eff6ff;
+  --white:#ffffff;--off:#f7f8fa;--border:#e4e7ec;--border-mid:#d1d5db;
+  --text:#111827;--slate:#374151;--muted:#6b7280;--light:#9ca3af;--faint:#e5e7eb;
   --badge-fca-bg:#fee2e2;--badge-fca-text:#991b1b;
-  --badge-occrp-bg:var(--purple-bg);--badge-occrp-text:#5b21b6;
-  --badge-bbc-bg:var(--blue-bg);--badge-bbc-text:#1e40af;
-  --badge-ofsi-bg:var(--success-bg);--badge-ofsi-text:#166534;
-  --badge-gold-bg:var(--warning-bg);--badge-gold-text:#92400e;
+  --badge-occrp-bg:#ede9fe;--badge-occrp-text:#5b21b6;
+  --badge-bbc-bg:#dbeafe;--badge-bbc-text:#1e40af;
+  --badge-ofsi-bg:#dcfce7;--badge-ofsi-text:#166534;
+  --badge-gold-bg:#fef3c7;--badge-gold-text:#92400e;
   --r-sm:6px;--r-md:10px;--r-lg:14px;--r-pill:99px;
   --shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 12px rgba(0,0,0,.08);--shadow-lg:0 8px 24px rgba(0,0,0,.10);
   --transition:all 0.15s ease;
-  /* EXTENDED BADGE COLOURS */
-  --badge-fca-text2:#991b1b;--badge-occrp-text2:#5b21b6;--badge-bbc-text2:#1e40af;
-  --badge-ofsi-text2:#166534;--badge-gold-text2:#92400e;
-  --slate-light:#94a3b8;--slate-mid:#64748b;--faint2:#f3f4f6;
-  --gold-text:#92400e;--gold-dark:#78350f;
-  --danger-dark:#7f1d1d;--danger-mid:#b91c1c;
-  --purple-mid:#6d28d9;--purple-dark:#5b21b6;
-  --teal-accent:#5eead4;--border-light:#bfdbfe;
-  --warning-light:#fcd34d;
-  /* Legacy aliases kept for backward compat */
-  --accent:var(--teal);--accent-h:var(--teal-h);--accent-light:var(--teal-mid);
+  --accent:#00c4a7;--accent-h:#00a892;--accent-light:#f0fdf9;--accent-light2:#e0faf6;
 }
     html { scroll-behavior:smooth; }
     body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
@@ -77,18 +67,18 @@
     .nav-links a { font-size:13px; color:var(--slate); text-decoration:none; transition:color 0.15s; }
     .nav-links a:hover { color:var(--teal); }
     .nav-links a.active { color:var(--accent); font-weight:500; }
-    .nav-cta { padding:7px 16px; background:var(--teal); color:var(--white) !important; border-radius:6px; font-size:13px; font-weight:500; }
+    .nav-cta { padding:7px 16px; background:var(--teal); color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; }
 
     /* HERO */
     .about-hero { background:linear-gradient(135deg,var(--navy-mid) 0%,var(--navy-light) 100%); padding:4.5rem 2rem 3.5rem; }
     .hero-inner { max-width:860px; margin:0 auto; display:grid; grid-template-columns:1fr auto; gap:3rem; align-items:center; }
     .hero-text .eyebrow { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:#93c5fd; margin-bottom:1rem; }
-    .hero-text h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(2rem,4vw,3rem); font-weight:400; color:var(--white); line-height:1.25; margin-bottom:1rem; }
+    .hero-text h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(2rem,4vw,3rem); font-weight:400; color:#fff; line-height:1.2; margin-bottom:1rem; }
     .hero-text h1 em { font-style:italic; color:#93c5fd; }
     .hero-text p { font-size:16px; color:#cbd5e1; line-height:1.7; max-width:520px; }
-    .founder-card { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:var(--r-lg); padding:1.75rem; text-align:center; flex-shrink:0; width:230px; }
+    .founder-card { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:16px; padding:1.75rem; text-align:center; flex-shrink:0; width:230px; }
     .founder-avatar { width:96px; height:96px; border-radius:50%; background:linear-gradient(135deg,var(--blue),var(--purple)); display:flex; align-items:center; justify-content:center; font-size:28px; margin:0 auto 14px; border:4px solid rgba(255,255,255,0.6); overflow:hidden; box-shadow:0 0 0 2px rgba(255,255,255,0.15); }
-    .founder-name { font-size:15px; font-weight:600; color:var(--white); margin-bottom:3px; }
+    .founder-name { font-size:15px; font-weight:600; color:#fff; margin-bottom:3px; }
     .founder-title { font-size:11.5px; color:#94a3b8; line-height:1.5; margin-bottom:12px; }
     .founder-links { display:flex; flex-direction:column; gap:6px; }
     .founder-link { display:block; font-size:12px; padding:5px 10px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15); border-radius:6px; color:#e2e8f0; text-decoration:none; transition:all 0.15s; }
@@ -140,13 +130,13 @@
     .tool-highlight { background:linear-gradient(135deg,var(--navy-mid) 0%,var(--navy-light) 100%); border-radius:12px; padding:1.75rem; display:flex; align-items:center; justify-content:space-between; gap:1.25rem; flex-wrap:wrap; margin:1.25rem 0; }
     .th-left { flex:1; }
     .th-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:#93c5fd; margin-bottom:5px; }
-    .th-title { font-size:16px; font-weight:600; color:var(--white); margin-bottom:4px; }
+    .th-title { font-size:16px; font-weight:600; color:#fff; margin-bottom:4px; }
     .th-sub { font-size:13px; color:#94a3b8; }
-    .th-btn { padding:10px 20px; background:var(--accent); color:var(--white); border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap; transition:all 0.15s; }
+    .th-btn { padding:10px 20px; background:var(--accent); color:#fff; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap; transition:all 0.15s; }
     .th-btn:hover { background:var(--accent-h); }
 
     /* DISCLAIMER */
-    .disclaimer { background:var(--warning-bg); border:1px solid #fde68a; border-radius:10px; padding:1.1rem 1.4rem; font-size:13px; color:#78350f; line-height:1.7; }
+    .disclaimer { background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:1.1rem 1.4rem; font-size:13px; color:#78350f; line-height:1.6; }
     .disclaimer strong { color:#92400e; }
 
     footer { background:var(--white); border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:12px; color:var(--muted); margin-top:2rem; }
@@ -168,7 +158,7 @@
       position: fixed;
       top: 72px;
       left: 0; right: 0;
-      background: var(--white);
+      background: #fff;
       border-bottom: 1px solid var(--border);
       flex-direction: column;
       z-index: 99;
@@ -189,7 +179,7 @@
     .mobile-nav .mobile-nav-cta {
       margin: 0.75rem 1.5rem 0.5rem;
       background: var(--teal);
-      color: var(--white) !important;
+      color: #fff !important;
       border-radius: 8px;
       text-align: center;
       border-bottom: none;
@@ -289,7 +279,7 @@
     <a href="/news.html" class="hm">News</a>
     <a href="/screen.html" class="hm">Screen</a>
     <a href="/about.html" class="active hm">About</a>
-    <a href="/screen.html" class="nav-cta" style="background:var(--teal);color:var(--white);font-weight:600;">Try the tool →</a>
+    <a href="/screen.html" class="nav-cta" style="background:var(--teal);color:#fff;font-weight:600;">Try the tool →</a>
   </div>
   <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
 </nav>
@@ -458,12 +448,12 @@
 <!-- Cookie Consent Banner -->
 <div id="cookieBanner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; background:var(--navy-mid); border-top:1px solid var(--navy-light); padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; box-shadow:0 -4px 20px rgba(0,0,0,0.3);">
   <div style="flex:1; min-width:260px;">
-    <div style="font-size:13px; font-weight:600; color:var(--white); margin-bottom:4px;">🍪 We use cookies</div>
+    <div style="font-size:13px; font-weight:600; color:#fff; margin-bottom:4px;">🍪 We use cookies</div>
     <div style="font-size:12px; color:#94a3b8; line-height:1.5;">We use Google Analytics to understand how visitors use FinCrimeRadar. No personal data is sold. See our <a href="/privacy.html" style="color:#93c5fd; text-decoration:none;">Privacy Policy</a>.</div>
   </div>
   <div style="display:flex; gap:8px; flex-shrink:0;">
     <button onclick="rejectCookies()" style="padding:8px 16px; background:transparent; border:1px solid #334155; color:#94a3b8; border-radius:6px; font-size:12px; font-weight:500; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Reject non-essential</button>
-    <button onclick="acceptCookies()" style="padding:8px 18px; background:var(--teal); border:none; color:var(--white); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Accept all</button>
+    <button onclick="acceptCookies()" style="padding:8px 18px; background:var(--teal); border:none; color:#fff; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Accept all</button>
   </div>
 </div>
 <script>

@@ -22,32 +22,22 @@
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     :root {
-  --teal:var(--teal);--teal-h:var(--teal-h);--teal-deep:var(--teal-deep);--teal-soft:var(--teal-soft);--teal-mid:var(--teal-mid);
-  --navy:var(--navy);--navy-mid:var(--navy-mid);--navy-light:var(--navy-light);
-  --danger:var(--danger);--danger-bg:var(--danger-bg);--warning:var(--warning);--warning-bg:var(--warning-bg);
-  --success:var(--success);--success-bg:var(--success-bg);--purple:var(--purple);--purple-bg:var(--purple-bg);
-  --blue:var(--blue);--blue-bg:var(--blue-bg);
-  --white:var(--white);--off:var(--off);--border:var(--border);--border-mid:var(--border-mid);
-  --text:var(--text);--slate:var(--slate);--muted:var(--muted);--light:var(--light);--faint:var(--faint);
+  --teal:#00c4a7;--teal-h:#00a892;--teal-deep:#007d6d;--teal-soft:#e0faf6;--teal-mid:#f0fdf9;
+  --navy:#002850;--navy-mid:#0f2044;--navy-light:#1a3a6e;
+  --danger:#dc2626;--danger-bg:#fef2f2;--warning:#d97706;--warning-bg:#fffbeb;
+  --success:#16a34a;--success-bg:#f0fdf4;--purple:#7c3aed;--purple-bg:#f5f3ff;
+  --blue:#1d5fc4;--blue-bg:#eff6ff;
+  --white:#ffffff;--off:#f7f8fa;--border:#e4e7ec;--border-mid:#d1d5db;
+  --text:#111827;--slate:#374151;--muted:#6b7280;--light:#9ca3af;--faint:#e5e7eb;
   --badge-fca-bg:#fee2e2;--badge-fca-text:#991b1b;
-  --badge-occrp-bg:var(--purple-bg);--badge-occrp-text:#5b21b6;
-  --badge-bbc-bg:var(--blue-bg);--badge-bbc-text:#1e40af;
-  --badge-ofsi-bg:var(--success-bg);--badge-ofsi-text:#166534;
-  --badge-gold-bg:var(--warning-bg);--badge-gold-text:#92400e;
+  --badge-occrp-bg:#ede9fe;--badge-occrp-text:#5b21b6;
+  --badge-bbc-bg:#dbeafe;--badge-bbc-text:#1e40af;
+  --badge-ofsi-bg:#dcfce7;--badge-ofsi-text:#166534;
+  --badge-gold-bg:#fef3c7;--badge-gold-text:#92400e;
   --r-sm:6px;--r-md:10px;--r-lg:14px;--r-pill:99px;
   --shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 12px rgba(0,0,0,.08);--shadow-lg:0 8px 24px rgba(0,0,0,.10);
   --transition:all 0.15s ease;
-  /* EXTENDED BADGE COLOURS */
-  --badge-fca-text2:#991b1b;--badge-occrp-text2:#5b21b6;--badge-bbc-text2:#1e40af;
-  --badge-ofsi-text2:#166534;--badge-gold-text2:#92400e;
-  --slate-light:#94a3b8;--slate-mid:#64748b;--faint2:#f3f4f6;
-  --gold-text:#92400e;--gold-dark:#78350f;
-  --danger-dark:#7f1d1d;--danger-mid:#b91c1c;
-  --purple-mid:#6d28d9;--purple-dark:#5b21b6;
-  --teal-accent:#5eead4;--border-light:#bfdbfe;
-  --warning-light:#fcd34d;
-  /* Legacy aliases kept for backward compat */
-  --accent:var(--teal);--accent-h:var(--teal-h);--accent-light:var(--teal-mid);
+  --accent:#00c4a7;--accent-h:#00a892;--accent-light:#f0fdf9;--accent-light2:#e0faf6;
 }
     html{scroll-behavior:smooth;}
     body{font-family:'Inter',system-ui,sans-serif;background:var(--off);color:var(--text);line-height:1.7;}
@@ -59,10 +49,10 @@
     .nav-links{display:flex;align-items:center;gap:1.25rem;}
     .nav-links a{font-size:13px;color:var(--muted);text-decoration:none;}
     .nav-links a:hover,.nav-links a.active{color:var(--accent);}
-    .nav-cta{padding:7px 16px;background:var(--teal);color:var(--white)!important;border-radius:6px;font-size:13px;font-weight:500;}
+    .nav-cta{padding:7px 16px;background:var(--teal);color:#fff!important;border-radius:6px;font-size:13px;font-weight:500;}
     .news-hero{background:linear-gradient(135deg,var(--navy-mid),var(--navy-light));padding:3.5rem 2rem 2.5rem;text-align:center;}
     .news-hero .tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:99px;padding:5px 14px;font-size:12px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:#93c5fd;margin-bottom:1rem;}
-    .news-hero h1{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(2rem,4vw,3rem);font-weight:400;color:var(--white);margin-bottom:0.75rem;}
+    .news-hero h1{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(2rem,4vw,3rem);font-weight:400;color:#fff;margin-bottom:0.75rem;}
     .news-hero h1 em{font-style:italic;color:#93c5fd;}
     .news-hero p{font-size:15px;color:#cbd5e1;max-width:520px;margin:0 auto;}
     .news-container{max-width:1060px;margin:0 auto;padding:2rem 1.5rem;}
@@ -88,10 +78,10 @@
     .news-cat-tag{font-size:11px;color:var(--muted);}
     .news-read-more{font-size:12px;color:var(--accent);font-weight:500;}
     .src-fca{background:#fee2e2;color:#991b1b;}
-    .src-fatf{background:var(--warning-bg);color:#92400e;}
-    .src-occrp{background:var(--purple-bg);color:#5b21b6;}
-    .src-bbc{background:var(--blue-bg);color:#1e40af;}
-    .src-ofsi{background:var(--success-bg);color:#166534;}
+    .src-fatf{background:#fef3c7;color:#92400e;}
+    .src-occrp{background:#ede9fe;color:#5b21b6;}
+    .src-bbc{background:#dbeafe;color:#1e40af;}
+    .src-ofsi{background:#dcfce7;color:#166534;}
     .src-ap{background:#f3f4f6;color:var(--slate);}
     /* Status bar */
     .status-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:1.5rem;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:0.875rem 1.1rem;}
@@ -105,9 +95,9 @@
     .nn-title{font-size:17px;font-weight:600;color:var(--navy);margin-bottom:5px;}
     .nn-sub{font-size:13px;color:var(--muted);margin-bottom:1rem;}
     .nn-form{display:flex;gap:8px;max-width:380px;margin:0 auto;}
-    .nn-form input{flex:1;padding:9px 13px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-size:13px;color:var(--text);outline:none;font-family:'Inter',sans-serif;}
+    .nn-form input{flex:1;padding:9px 13px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;color:var(--text);outline:none;font-family:'Inter',sans-serif;}
     .nn-form input:focus{border-color:var(--accent);}
-    .nn-form button{padding:9px 18px;background:var(--accent);color:var(--white);border:none;border-radius:var(--r-sm);font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;}
+    .nn-form button{padding:9px 18px;background:var(--accent);color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;}
     footer{background:var(--white);border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:12px;color:var(--muted);margin-top:2rem;}
     footer a{color:var(--muted);text-decoration:none;margin:0 8px;}
     footer a:hover{color:var(--accent);}
@@ -127,7 +117,7 @@
       position: fixed;
       top: 72px;
       left: 0; right: 0;
-      background: var(--white);
+      background: #fff;
       border-bottom: 1px solid var(--border);
       flex-direction: column;
       z-index: 99;
@@ -148,7 +138,7 @@
     .mobile-nav .mobile-nav-cta {
       margin: 0.75rem 1.5rem 0.5rem;
       background: var(--teal);
-      color: var(--white) !important;
+      color: #fff !important;
       border-radius: 8px;
       text-align: center;
       border-bottom: none;
@@ -245,7 +235,7 @@
     <a href="/knowledge.html" class="hm">Knowledge Hub</a>
     <a href="/news.html" class="active hm" style="color:var(--teal);font-weight:600;">News</a>
     <a href="/screen.html" class="hm">Screen</a>
-    <a href="/screen.html" class="nav-cta" style="background:var(--teal);color:var(--white);font-weight:600;">Try the tool →</a>
+    <a href="/screen.html" class="nav-cta" style="background:var(--teal);color:#fff;font-weight:600;">Try the tool →</a>
   </div>
   <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
 </nav>
@@ -279,7 +269,7 @@
     <span class="sl-label">Sources:</span>
     <span class="sl-badge src-fca">FCA</span>
     <span class="sl-badge src-ofsi">OFSI</span>
-    <span class="sl-badge src-hmt" style="background:var(--warning-bg);color:#92400e;">HM Treasury</span>
+    <span class="sl-badge src-hmt" style="background:#fef3c7;color:#92400e;">HM Treasury</span>
     <span class="sl-badge src-nca" style="background:#fee2e2;color:#7f1d1d;">NCA</span>
     <span class="sl-badge src-occrp">OCCRP</span>
     <span class="sl-badge src-bbc">BBC</span>
@@ -328,10 +318,10 @@
 
 <!-- Cookie Banner -->
 <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:var(--navy-mid);border-top:1px solid var(--navy-light);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;box-shadow:0 -4px 20px rgba(0,0,0,0.3);">
-  <div style="flex:1;min-width:260px;"><div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:4px;">🍪 We use cookies</div><div style="font-size:12px;color:#94a3b8;line-height:1.5;">We use Google Analytics to understand how visitors use FinCrimeRadar. See our <a href="/privacy.html" style="color:#93c5fd;text-decoration:none;">Privacy Policy</a>.</div></div>
+  <div style="flex:1;min-width:260px;"><div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:4px;">🍪 We use cookies</div><div style="font-size:12px;color:#94a3b8;line-height:1.5;">We use Google Analytics to understand how visitors use FinCrimeRadar. See our <a href="/privacy.html" style="color:#93c5fd;text-decoration:none;">Privacy Policy</a>.</div></div>
   <div style="display:flex;gap:8px;flex-shrink:0;">
     <button onclick="rejectCookies()" style="padding:8px 16px;background:transparent;border:1px solid #334155;color:#94a3b8;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;">Reject</button>
-    <button onclick="acceptCookies()" style="padding:8px 18px;background:var(--teal);border:none;color:var(--white);border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;">Accept</button>
+    <button onclick="acceptCookies()" style="padding:8px 18px;background:var(--teal);border:none;color:#fff;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;">Accept</button>
   </div>
 </div>
 
