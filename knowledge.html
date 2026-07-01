@@ -418,6 +418,26 @@
   </div>
 
   <div class="articles-grid" id="articlesGrid">
+  <!-- Empty state: shown when filter/search returns zero results -->
+  <div id="emptyState" style="display:none;grid-column:1/-1;text-align:center;padding:4rem 2rem;">
+    <div style="font-size:48px;margin-bottom:1rem;">🔍</div>
+    <div style="font-family:'DM Serif Display',Georgia,serif;font-size:1.4rem;color:var(--navy);margin-bottom:.5rem;">No guides match that filter</div>
+    <div style="font-size:14px;color:var(--muted);max-width:360px;margin:0 auto 1.5rem;line-height:1.7;">
+      Try clearing the search, switching to <strong>All</strong>, or browsing a different domain.
+    </div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <button onclick="clearFilters()"
+        style="padding:9px 20px;background:var(--teal);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:background .15s;"
+        onmouseover="this.style.background='var(--teal-h)'" onmouseout="this.style.background='var(--teal)'">
+        Show all guides
+      </button>
+      <a href="/screen.html"
+        style="padding:9px 20px;background:transparent;color:var(--navy);border:1.5px solid var(--border);border-radius:var(--r-sm);font-size:13px;font-weight:600;text-decoration:none;font-family:'Inter',sans-serif;transition:all .15s;"
+        onmouseover="this.style.borderColor='var(--navy)'" onmouseout="this.style.borderColor='var(--border)'">
+        Try the screening tool
+      </a>
+    </div>
+  </div>
 
     <!-- Card TM: Transaction Monitoring Deep Dive -->
     <a href="/tm-guide.html" class="article-card card-new" data-cats="tm-fraud" data-title="transaction monitoring rules AI machine learning false positives typologies alert triage SAR financial crime">
@@ -877,6 +897,15 @@ async function footerSignup() {
     filterCards();
   }
 
+  function clearFilters() {
+    document.getElementById('searchInput').value = '';
+    activeFilter = 'all';
+    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    const allPill = document.querySelector('.filter-pill[data-cat="all"]');
+    if (allPill) allPill.classList.add('active');
+    filterCards();
+  }
+
   function filterCards() {
     const q = document.getElementById('searchInput').value.toLowerCase();
     const cards = document.querySelectorAll('#articlesGrid [data-cats]');
@@ -895,6 +924,8 @@ async function footerSignup() {
     });
     const countEl = document.getElementById('card-count');
     if (countEl) countEl.textContent = visible + ' guide' + (visible !== 1 ? 's' : '');
+    const emptyState = document.getElementById('emptyState');
+    if (emptyState) emptyState.style.display = visible === 0 ? 'block' : 'none';
 
     // Show/hide featured section based on filter
     const featured = document.querySelector('.featured-section');
