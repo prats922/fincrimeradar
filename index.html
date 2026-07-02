@@ -384,191 +384,8 @@
 </div>
 
 
-<!-- ===== COMPLIANCE NEWS WIDGET ===== -->
-<section class="section" id="news" style="padding-top:0;">
-  <p class="section-eyebrow">📡 Live Intelligence</p>
-  <h2 class="section-title">Compliance News & Regulatory Updates</h2>
-  <p class="section-sub">Real-time updates from FCA, OCCRP, OFSI, BBC and global financial crime sources — auto-refreshed. Never miss a fine, designation, or regulatory change.</p>
-
-  <div style="display:flex; gap:8px; flex-wrap:wrap; margin:1.25rem 0 1rem;">
-    <button class="news-pill active" data-cat="all" onclick="filterNews(this)">All</button>
-    <button class="news-pill" data-cat="fca" onclick="filterNews(this)">🏛️ FCA</button>
-    <button class="news-pill" data-cat="sanctions" onclick="filterNews(this)">🛡️ Sanctions</button>
-    <button class="news-pill" data-cat="fraud" onclick="filterNews(this)">🚨 Fraud</button>
-    <button class="news-pill" data-cat="aml" onclick="filterNews(this)">⚖️ AML</button>
-    <button class="news-pill" data-cat="global" onclick="filterNews(this)">🌍 Global</button>
-    <a href="/news.html" style="margin-left:auto; font-size:13px; color:var(--accent); text-decoration:none; display:flex; align-items:center; gap:4px; font-weight:500;">View all news →</a>
-  </div>
-
-  <div id="newsGrid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; margin-bottom:1rem;"></div>
-
-  <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
-    <span id="newsUpdated" style="font-size:12px; color:var(--muted);"></span>
-    <button onclick="loadNews(true)" style="font-size:12px; color:var(--accent); background:none; border:1px solid var(--border); border-radius:6px; padding:5px 12px; cursor:pointer; font-family:'Inter',sans-serif;">↻ Refresh</button>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<style>
-.news-pill { padding:5px 14px; border-radius:99px; font-size:12px; font-weight:500; border:1.5px solid var(--border); color:var(--muted); cursor:pointer; background:var(--white); transition:all 0.15s; font-family:'Inter',sans-serif; }
-.news-pill.active { border-color:var(--accent); color:var(--accent); background:var(--accent-light); }
-.news-pill:hover:not(.active) { border-color:var(--light); color:var(--text); }
-.news-card { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1rem 1.1rem; text-decoration:none; display:flex; flex-direction:column; gap:6px; transition:all 0.2s; }
-.news-card:hover { border-color:var(--accent); transform:translateY(-1px); box-shadow:0 4px 12px rgba(29,95,196,0.08); }
-.news-card-top { display:flex; align-items:center; justify-content:space-between; gap:8px; }
-.news-source-badge { font-size:10px; font-weight:700; padding:2px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.4px; white-space:nowrap; }
-.news-date { font-size:11px; color:var(--muted); white-space:nowrap; }
-.news-title { font-size:13.5px; font-weight:600; color:var(--navy); line-height:1.4; }
-.news-desc { font-size:12px; color:var(--muted); line-height:1.5; }
-.news-footer { display:flex; align-items:center; justify-content:space-between; margin-top:auto; }
-.news-cat-tag { font-size:11px; color:var(--muted); }
-.news-read { font-size:11px; color:var(--accent); font-weight:500; }
-.src-fca { background:#fee2e2; color:#991b1b; }
-.src-occrp { background:#ede9fe; color:#5b21b6; }
-.src-bbc { background:#dbeafe; color:#1e40af; }
-.src-ofsi { background:#dcfce7; color:#166534; }
-.src-ap { background:#f3f4f6; color:var(--slate); }
-</style>
-
-<script>
-var _newsItems = [];
-var _newsCat = 'all';
-
-var NEWS_FALLBACK = [
-  {title:'FCA issues Final Notice to CACEIS BANK (UK Branch)',date:'2026-06-25',desc:'FCA enforcement action following investigation into financial crime control failures at a major UK-regulated institution.',link:'https://www.fca.org.uk/news',source:'FCA',badge:'src-fca',cat:'fca'},
-  {title:'UK adds new designations to Russia sanctions regime',date:'2026-06-22',desc:'OFSI updates the UK Consolidated List with additional individuals and entities under the Russia sanctions regime.',link:'https://www.gov.uk/government/organisations/office-of-financial-sanctions-implementation',source:'OFSI',badge:'src-ofsi',cat:'sanctions'},
-  {title:'OCCRP: Kleptocracy assets frozen across three jurisdictions',date:'2026-06-20',desc:'Law enforcement agencies coordinate to freeze assets linked to a senior government official suspected of embezzling public funds.',link:'https://occrp.org',source:'OCCRP',badge:'src-occrp',cat:'aml'},
-  {title:'UK fraud losses hit record levels as APP scams surge',date:'2026-06-23',desc:'UK Finance data shows authorised push payment fraud reached unprecedented levels in 2025/26, exceeding £1.5 billion in losses.',link:'https://bbc.co.uk/news/business',source:'BBC',badge:'src-bbc',cat:'fraud'},
-  {title:'FCA: Beyond the headlines — the unseen fight against financial crime',date:'2026-06-17',desc:'FCA speech covering the regulator\'s approach to financial crime supervision, enforcement priorities, and 2026 outlook.',link:'https://www.fca.org.uk/news',source:'FCA',badge:'src-fca',cat:'fca'},
-  {title:'OFAC designates additional Russian entities and vessels',date:'2026-06-21',desc:'US Treasury expands SDN list with further Russian banks, shipping companies and individuals — global ripple effects for compliance teams.',link:'https://home.treasury.gov/policy-issues/office-of-foreign-assets-control-sanctions-programs-and-information',source:'AP News',badge:'src-ap',cat:'sanctions'},
-  {title:'Crypto exchange fined for AML control failures',date:'2026-06-14',desc:'A leading cryptocurrency exchange has been fined by regulators for failing to implement adequate CDD and transaction monitoring controls.',link:'https://bbc.co.uk/news/business',source:'BBC',badge:'src-bbc',cat:'aml'},
-  {title:'OFSI issues guidance on sanctions breach reporting obligations',date:'2026-06-15',desc:'Updated guidance clarifies the 14-day reporting requirement for firms that identify or suspect a sanctions breach involving frozen assets.',link:'https://www.gov.uk/government/organisations/office-of-financial-sanctions-implementation',source:'OFSI',badge:'src-ofsi',cat:'sanctions'},
-  {title:'OCCRP: Casino operator used to launder drug trafficking proceeds',date:'2026-06-15',desc:'Investigation reveals how a network of online casino operators processed millions in illicit funds across multiple jurisdictions.',link:'https://occrp.org',source:'OCCRP',badge:'src-occrp',cat:'aml'},
-  {title:'Global AML enforcement actions reach five-year high',date:'2026-06-18',desc:'International coordination between FATF member states leads to record number of AML enforcement actions in H1 2026.',link:'https://apnews.com',source:'AP News',badge:'src-ap',cat:'global'},
-  {title:'FCA consults on proposals for SIPP market standards',date:'2026-06-22',desc:'The FCA has published CP26/20 consulting on proposals to support strong, consistent standards for self-invested personal pensions.',link:'https://www.fca.org.uk/news',source:'FCA',badge:'src-fca',cat:'fca'},
-  {title:'FATF announces updated list of high-risk jurisdictions',date:'2026-06-12',desc:'FATF publishes updated grey and black lists following June 2026 plenary — new additions and removals affecting EDD requirements globally.',link:'https://www.fatf-gafi.org',source:'AP News',badge:'src-ap',cat:'aml'},
-];
-
-function _timeAgo(d) {
-  try {
-    var diff = Date.now() - new Date(d);
-    var days = Math.floor(diff/86400000);
-    if(days===0) return 'Today';
-    if(days===1) return 'Yesterday';
-    if(days<7) return days+' days ago';
-    return new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
-  } catch(e){ return d||''; }
-}
-
-function _getCatLabel(c) {
-  return {fca:'🏛️ FCA',sanctions:'🛡️ Sanctions',fraud:'🚨 Fraud',aml:'⚖️ AML',global:'🌍 Global'}[c]||'📰 News';
-}
-
-function renderNews() {
-  var grid = document.getElementById('newsGrid');
-  if(!grid) return;
-  var items = _newsCat==='all' ? _newsItems : _newsItems.filter(function(i){return i.cat===_newsCat;});
-  if(!items.length) {
-    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:1.5rem;color:var(--muted);font-size:13px;">No news in this category.</div>';
-    return;
-  }
-  grid.innerHTML = items.slice(0,9).map(function(item){
-    return '<a href="'+(item.link||'#')+'" target="_blank" rel="noopener" class="news-card">'
-      +'<div class="news-card-top"><span class="news-source-badge '+item.badge+'">'+item.source+'</span><span class="news-date">'+_timeAgo(item.date)+'</span></div>'
-      +'<div class="news-title">'+item.title+'</div>'
-      +(item.desc?'<div class="news-desc">'+item.desc.replace(/<[^>]*>/g,'').substring(0,100)+'...</div>':'')
-      +'<div class="news-footer"><span class="news-cat-tag">'+_getCatLabel(item.cat)+'</span><span class="news-read">Read →</span></div>'
-      +'</a>';
-  }).join('');
-}
-
-function filterNews(btn) {
-  document.querySelectorAll('.news-pill').forEach(function(p){p.classList.remove('active');});
-  btn.classList.add('active');
-  _newsCat = btn.dataset.cat;
-  renderNews();
-}
-
-function detectCat(title, desc, fallback) {
-  var t = (title+' '+(desc||'')).toLowerCase();
-  if(t.includes('sanction')||t.includes('ofac')||t.includes('ofsi')||t.includes('designation')||t.includes('sdn')) return 'sanctions';
-  if(t.includes('fraud')||t.includes('scam')||t.includes('push payment')) return 'fraud';
-  if(t.includes('aml')||t.includes('money launder')||t.includes('financial crime')||t.includes('fine')||t.includes('final notice')||t.includes('enforcement')) return 'aml';
-  if(t.includes('fca')||t.includes('financial conduct')) return 'fca';
-  return fallback;
-}
-
-async function loadNews(force) {
-  var cKey='fcr_news_v3', tKey='fcr_news_t3', TTL=30*60*1000;
-  if(!force) {
-    try {
-      var c=localStorage.getItem(cKey), t=localStorage.getItem(tKey);
-      if(c&&t&&Date.now()-parseInt(t)<TTL){
-        _newsItems=JSON.parse(c); renderNews();
-        document.getElementById('newsUpdated').textContent='Updated: '+new Date(parseInt(t)).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
-        return;
-      }
-    } catch(e){}
-  }
-
-  // Always start with fallback so page isn't empty
-  _newsItems = NEWS_FALLBACK.slice();
-  renderNews();
-
-  // Try to fetch live RSS via rss2json
-  var sources = [
-    {url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.fca.org.uk%2Frss%2Fnews',source:'FCA',badge:'src-fca',cat:'fca'},
-    {url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Foccrp.org%2Fen%2Frss%2Fall.rss',source:'OCCRP',badge:'src-occrp',cat:'global'},
-    {url:'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.bbci.co.uk%2Fnews%2Fbusiness%2Frss.xml',source:'BBC',badge:'src-bbc',cat:'global'},
-    {url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.gov.uk%2Fgovernment%2Forganisations%2Foffice-of-financial-sanctions-implementation.atom',source:'OFSI',badge:'src-ofsi',cat:'sanctions'},
-  ];
-
-  var liveItems = [];
-  var fetched = 0;
-  sources.forEach(function(src){
-    fetch(src.url, {signal: AbortSignal.timeout(6000)})
-      .then(function(r){ return r.json(); })
-      .then(function(d){
-        if(d.items && d.items.length) {
-          d.items.slice(0,4).forEach(function(i){
-            liveItems.push({
-              title: i.title||'',
-              desc: (i.description||i.content||'').replace(/<[^>]*>/g,'').trim(),
-              link: i.link||i.url||'#',
-              date: i.pubDate||i.published||new Date().toISOString(),
-              source: src.source, badge: src.badge,
-              cat: detectCat(i.title, i.description, src.cat)
-            });
-          });
-        }
-      })
-      .catch(function(){})
-      .finally(function(){
-        fetched++;
-        if(fetched === sources.length && liveItems.length > 0) {
-          // Merge live with fallback, dedupe by title
-          var titles = liveItems.map(function(i){return i.title;});
-          NEWS_FALLBACK.forEach(function(f){
-            if(!titles.includes(f.title)) liveItems.push(f);
-          });
-          liveItems.sort(function(a,b){ try{return new Date(b.date)-new Date(a.date);}catch(e){return 0;} });
-          _newsItems = liveItems;
-          renderNews();
-          try{ localStorage.setItem(cKey,JSON.stringify(_newsItems)); localStorage.setItem(tKey,Date.now().toString()); }catch(e){}
-          document.getElementById('newsUpdated').textContent='Updated: '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
-        }
-      });
-  });
-}
-
-document.addEventListener('DOMContentLoaded', function(){ loadNews(false); });
-</script>
-
-<hr class="divider" />
-
 <section class="section" id="features">
-  <p class="section-eyebrow">What's inside</p>
+  <p class="section-eyebrow">⭐ Our core product</p>
   <h2 class="section-title">Everything you need to understand financial crime screening</h2>
   <p class="section-sub">Free, open-source, and built for learning — not selling you a compliance product.</p>
 
@@ -622,30 +439,8 @@ document.addEventListener('DOMContentLoaded', function(){ loadNews(false); });
 
 <hr class="divider" />
 
-<section class="section">
-  <p class="section-eyebrow">Data sources</p>
-  <h2 class="section-title">Real data, open and transparent</h2>
-  <p class="section-sub">Powered by verified, publicly available sanction and PEP datasets — no black boxes.</p>
-  <div class="sources">
-    <span class="source-tag">OFAC SDN</span>
-    <span class="source-tag">UN Consolidated List</span>
-    <span class="source-tag">EU Sanctions</span>
-    <span class="source-tag">OFSI (UK)</span>
-    <span class="source-tag">OpenSanctions</span>
-    <span class="source-tag">DFAT (Australia)</span>
-    <span class="source-tag">OSFI (Canada)</span>
-    <span class="source-tag">SECO (Switzerland)</span>
-    <span class="source-tag">BBC News RSS</span>
-    <span class="source-tag">OCCRP</span>
-    <span class="source-tag">AP News</span>
-    <span class="source-tag">DW News</span>
-  </div>
-</section>
-
-<hr class="divider" />
-
 <section class="section" id="knowledge">
-  <p class="section-eyebrow">AML Knowledge Hub</p>
+  <p class="section-eyebrow">🔥 Most popular · AML Knowledge Hub</p>
   <h2 class="section-title">Learn financial crime compliance — free, in depth</h2>
   <p class="section-sub">From sanctions basics to FCA enforcement — our knowledge hub covers everything a compliance student or professional needs to know.</p>
 
@@ -690,6 +485,158 @@ document.addEventListener('DOMContentLoaded', function(){ loadNews(false); });
 </section>
 
 <hr class="divider" />
+
+<section class="section">
+  <p class="section-eyebrow">Data sources</p>
+  <h2 class="section-title">Real data, open and transparent</h2>
+  <p class="section-sub">Powered by verified, publicly available sanction and PEP datasets — no black boxes.</p>
+  <div class="sources">
+    <span class="source-tag">OFAC SDN</span>
+    <span class="source-tag">UN Consolidated List</span>
+    <span class="source-tag">EU Sanctions</span>
+    <span class="source-tag">OFSI (UK)</span>
+    <span class="source-tag">OpenSanctions</span>
+    <span class="source-tag">DFAT (Australia)</span>
+    <span class="source-tag">OSFI (Canada)</span>
+    <span class="source-tag">SECO (Switzerland)</span>
+    <span class="source-tag">BBC News RSS</span>
+    <span class="source-tag">OCCRP</span>
+    <span class="source-tag">AP News</span>
+    <span class="source-tag">DW News</span>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ===== COMPLIANCE NEWS WIDGET (compact) ===== -->
+<section class="section" id="news" style="padding-top:2.5rem;padding-bottom:2.5rem;">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:1rem;">
+    <div>
+      <p class="section-eyebrow" style="margin-bottom:4px;">📡 Live Intelligence</p>
+      <h2 class="section-title" style="font-size:clamp(1.3rem,2.5vw,1.6rem);margin-bottom:0;">Latest compliance news</h2>
+    </div>
+    <a href="/news.html" style="font-size:13px;color:var(--accent);text-decoration:none;font-weight:600;white-space:nowrap;">View all news →</a>
+  </div>
+
+  <div id="newsGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;"></div>
+</section>
+
+<hr class="divider" />
+
+<style>
+.news-card { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1rem 1.1rem; text-decoration:none; display:flex; flex-direction:column; gap:6px; transition:all 0.2s; }
+.news-card:hover { border-color:var(--accent); transform:translateY(-1px); box-shadow:0 4px 12px rgba(29,95,196,0.08); }
+.news-card-top { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.news-source-badge { font-size:10px; font-weight:700; padding:2px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.4px; white-space:nowrap; }
+.news-date { font-size:11px; color:var(--muted); white-space:nowrap; }
+.news-title { font-size:13.5px; font-weight:600; color:var(--navy); line-height:1.4; }
+.news-read { font-size:11px; color:var(--accent); font-weight:500; margin-top:auto; }
+.src-fca { background:#fee2e2; color:#991b1b; }
+.src-occrp { background:#ede9fe; color:#5b21b6; }
+.src-bbc { background:#dbeafe; color:#1e40af; }
+.src-ofsi { background:#dcfce7; color:#166534; }
+.src-ap { background:#f3f4f6; color:var(--slate); }
+@media (max-width:768px) { #newsGrid { grid-template-columns:1fr !important; } }
+</style>
+
+<script>
+var _newsItems = [];
+
+var NEWS_FALLBACK = [
+  {title:'FCA issues Final Notice to CACEIS BANK (UK Branch)',date:'2026-06-25',link:'https://www.fca.org.uk/news',source:'FCA',badge:'src-fca'},
+  {title:'UK adds new designations to Russia sanctions regime',date:'2026-06-22',link:'https://www.gov.uk/government/organisations/office-of-financial-sanctions-implementation',source:'OFSI',badge:'src-ofsi'},
+  {title:'UK fraud losses hit record levels as APP scams surge',date:'2026-06-23',link:'https://bbc.co.uk/news/business',source:'BBC',badge:'src-bbc'},
+  {title:'OCCRP: Kleptocracy assets frozen across three jurisdictions',date:'2026-06-20',link:'https://occrp.org',source:'OCCRP',badge:'src-occrp'},
+  {title:'OFAC designates additional Russian entities and vessels',date:'2026-06-21',link:'https://home.treasury.gov/policy-issues/office-of-foreign-assets-control-sanctions-programs-and-information',source:'AP News',badge:'src-ap'},
+  {title:'FATF announces updated list of high-risk jurisdictions',date:'2026-06-12',link:'https://www.fatf-gafi.org',source:'AP News',badge:'src-ap'},
+];
+
+function _timeAgo(d) {
+  try {
+    var diff = Date.now() - new Date(d);
+    var days = Math.floor(diff/86400000);
+    if(days===0) return 'Today';
+    if(days===1) return 'Yesterday';
+    if(days<7) return days+' days ago';
+    return new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+  } catch(e){ return d||''; }
+}
+
+function renderNews() {
+  var grid = document.getElementById('newsGrid');
+  if(!grid) return;
+  grid.innerHTML = _newsItems.slice(0,3).map(function(item){
+    return '<a href="'+(item.link||'#')+'" target="_blank" rel="noopener" class="news-card">'
+      +'<div class="news-card-top"><span class="news-source-badge '+item.badge+'">'+item.source+'</span><span class="news-date">'+_timeAgo(item.date)+'</span></div>'
+      +'<div class="news-title">'+item.title+'</div>'
+      +'<span class="news-read">Read →</span>'
+      +'</a>';
+  }).join('');
+}
+
+function detectCat(title, desc) {
+  var t = (title+' '+(desc||'')).toLowerCase();
+  if(t.includes('sanction')||t.includes('ofac')||t.includes('ofsi')||t.includes('designation')||t.includes('sdn')) return 'sanctions';
+  if(t.includes('fraud')||t.includes('scam')||t.includes('push payment')) return 'fraud';
+  if(t.includes('aml')||t.includes('money launder')||t.includes('financial crime')||t.includes('fine')||t.includes('final notice')||t.includes('enforcement')) return 'aml';
+  if(t.includes('fca')||t.includes('financial conduct')) return 'fca';
+  return 'global';
+}
+
+async function loadNews(force) {
+  var cKey='fcr_news_v4_home', tKey='fcr_news_t4_home', TTL=30*60*1000;
+  if(!force) {
+    try {
+      var c=localStorage.getItem(cKey), t=localStorage.getItem(tKey);
+      if(c&&t&&Date.now()-parseInt(t)<TTL){
+        _newsItems=JSON.parse(c); renderNews();
+        return;
+      }
+    } catch(e){}
+  }
+
+  _newsItems = NEWS_FALLBACK.slice();
+  renderNews();
+
+  var sources = [
+    {url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.fca.org.uk%2Frss%2Fnews',source:'FCA',badge:'src-fca'},
+    {url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.gov.uk%2Fgovernment%2Forganisations%2Foffice-of-financial-sanctions-implementation.atom',source:'OFSI',badge:'src-ofsi'},
+    {url:'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.bbci.co.uk%2Fnews%2Fbusiness%2Frss.xml',source:'BBC',badge:'src-bbc'},
+  ];
+
+  var liveItems = [];
+  var fetched = 0;
+  sources.forEach(function(src){
+    fetch(src.url, {signal: AbortSignal.timeout(4000)})
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(d.items && d.items.length) {
+          d.items.slice(0,2).forEach(function(i){
+            liveItems.push({
+              title: i.title||'',
+              link: i.link||i.url||'#',
+              date: i.pubDate||i.published||new Date().toISOString(),
+              source: src.source, badge: src.badge,
+              cat: detectCat(i.title, i.description)
+            });
+          });
+        }
+      })
+      .catch(function(){})
+      .finally(function(){
+        fetched++;
+        if(fetched === sources.length && liveItems.length > 0) {
+          liveItems.sort(function(a,b){ try{return new Date(b.date)-new Date(a.date);}catch(e){return 0;} });
+          _newsItems = liveItems;
+          renderNews();
+          try{ localStorage.setItem(cKey,JSON.stringify(_newsItems)); localStorage.setItem(tKey,Date.now().toString()); }catch(e){}
+        }
+      });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function(){ loadNews(false); });
+</script>
 
 <section class="section" id="roadmap">
   <p class="section-eyebrow">Roadmap</p>
