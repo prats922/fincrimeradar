@@ -317,16 +317,22 @@
       .footer-links { flex-wrap: wrap !important; gap: 0.75rem !important; }
 
       /* NEWS PILLS — horizontal scroll */
-      .filter-pills, [style*="flex-wrap:wrap"] { flex-wrap: nowrap !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; padding-bottom: 4px !important; 
+      .filter-pills, [style*="flex-wrap:wrap"] { flex-wrap: nowrap !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; padding-bottom: 4px !important; }
+
+      /* FOOTER — mobile fix: these were previously nested inside the rule
+         above due to a missing closing brace, which meant they only ever
+         matched ".filter-pills footer > div" (never true) and silently
+         never applied. Restored as top-level rules. */
       footer > div { padding: 2rem 1rem 1.5rem !important; }
       footer > div > div:first-child { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
       footer > div > div:nth-child(2) { grid-template-columns: repeat(2, 1fr) !important; gap: 1.25rem !important; }
-      #footerEmail { font-size: 16px !important; }}
+      #footerEmail { font-size: 16px !important; min-width: 0 !important; }
     }
   </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
 
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"FinCrimeRadar","url":"https://fincrimeradar.org","description":"Free open-source AML and financial crime compliance platform. Sanctions screening, PEP checks, adverse media monitoring.","potentialAction":{"@type":"SearchAction","target":"https://fincrimeradar.org/screen.html?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org","logo":"https://fincrimeradar.org/favicon-32.png","description":"Free, open-source AML and financial crime intelligence platform providing sanctions screening, PEP checks, adverse media monitoring, and compliance education.","founder":{"@type":"Person","name":"Pratik Zanke","sameAs":["https://www.linkedin.com/in/pratik-zanke-749856126/"]},"sameAs":["https://www.linkedin.com/in/pratik-zanke-749856126/","https://github.com/prats922/fincrimeradar"]}</script>
 </head>
 <body>
 

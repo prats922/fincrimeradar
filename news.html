@@ -220,11 +220,14 @@
       .footer-links { flex-wrap: wrap !important; gap: 0.75rem !important; }
 
       /* NEWS PILLS — horizontal scroll */
-      .filter-pills, [style*="flex-wrap:wrap"] { flex-wrap: nowrap !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; padding-bottom: 4px !important; 
+      .filter-pills, [style*="flex-wrap:wrap"] { flex-wrap: nowrap !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; padding-bottom: 4px !important; }
+
+      /* FOOTER — mobile fix: previously nested inside the rule above
+         due to a missing closing brace, so it silently never applied. */
       footer > div { padding: 2rem 1rem 1.5rem !important; }
       footer > div > div:first-child { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
       footer > div > div:nth-child(2) { grid-template-columns: repeat(2, 1fr) !important; gap: 1.25rem !important; }
-      #footerEmail { font-size: 16px !important; }}
+      #footerEmail { font-size: 16px !important; min-width: 0 !important; }
     }
   </style>
 
