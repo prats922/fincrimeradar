@@ -117,3 +117,20 @@ button:active,
   .brv{opacity:1;transform:none}
   button:hover,[class*="btn"]:hover,[class*="card"]:hover{transform:none}
 }
+
+/* ---------- 6. Rich footer normalisation ----------
+   Every page still carries a legacy rule from the old simple footer:
+   footer { padding:2rem; text-align:center; border-top:...; }
+   The rich navy footer is laid out with inline styles, but
+   text-align:center INHERITS into all its columns, which is what
+   made the whole footer centre itself. Scoped to the rich footer
+   only (matched by its inline navy background) so the four pages
+   still using the simple centred footer are untouched. */
+footer[style*="0f2044"]{
+  text-align:left !important;
+  padding:0 !important;
+  border-top:none !important;
+}
+footer[style*="0f2044"] a{
+  margin:0 !important;
+}
