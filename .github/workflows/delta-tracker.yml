@@ -1,0 +1,44 @@
+name: Sanctions Delta Tracker
+
+# Runs daily after OpenSanctions refreshes. Can also be triggered manually
+# from the Actions tab for testing.
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Generate delta pages
+        run: python scripts/generate_delta_pages.py
+
+      - name: Validate generated HTML
+        run: python scripts/validate_output.py
+
+      - name: Commit and push if there are changes
+        run: |
+          git config user.name "fincrimeradar-bot"
+          git config user.email "bot@fincrimeradar.org"
+          git add delta/ data/ sitemap.xml
+          if git diff --cached --quiet; then
+            echo "No sanctions changes today. Nothing to publish."
+          else
+            git commit -m "Delta tracker: $(date -u +%F) watchlist changes"
+            git push
+          fi
