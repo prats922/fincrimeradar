@@ -21,7 +21,7 @@ VERIFY BEFORE FIRST RUN:
     API-driven slim pull. Adjust parse_records() to match its columns.
 """
 
-import csv, io, json, os, sys, html
+import csv, gzip, io, json, os, sys, html
 from datetime import date, datetime, timezone
 
 # ---------------- Configuration ----------------
@@ -29,7 +29,7 @@ DATASET_URL = os.environ.get(
     "DATASET_URL",
     "https://data.opensanctions.org/datasets/latest/sanctions/targets.simple.csv",
 )
-SNAPSHOT_PATH = "data/snapshot.json"
+SNAPSHOT_PATH = "data/snapshot.json.gz"
 DELTA_DIR = "delta"
 SITEMAP_PATH = "sitemap.xml"
 SITE = "https://fincrimeradar.org"
@@ -95,7 +95,7 @@ def parse_records(text):
 def load_snapshot():
     if not os.path.exists(SNAPSHOT_PATH):
         return None
-    with open(SNAPSHOT_PATH) as f:
+    with gzip.open(SNAPSHOT_PATH, "rt", encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -197,7 +197,7 @@ def main():
     old = load_snapshot()
     if old is None:
         # First run: establish baseline only, publish nothing
-        with open(SNAPSHOT_PATH, "w") as f:
+        with gzip.open(SNAPSHOT_PATH, "wt", encoding="utf-8") as f:
             json.dump(new, f)
         print(f"Baseline snapshot created with {len(new)} records. No page published.")
         return
@@ -213,7 +213,7 @@ def main():
     with open(f"{DELTA_DIR}/{TODAY}.html", "w") as f:
         f.write(render_page(changes))
     update_sitemap(f"{SITE}/delta/{TODAY}.html")
-    with open(SNAPSHOT_PATH, "w") as f:
+    with gzip.open(SNAPSHOT_PATH, "wt", encoding="utf-8") as f:
         json.dump(new, f)
     print(f"Published {DELTA_DIR}/{TODAY}.html with {total} changes.")
 
