@@ -73,6 +73,11 @@ def fetch_records():
     import requests
     r = requests.get(DATASET_URL, timeout=120)
     r.raise_for_status()
+    # Force UTF-8 decoding explicitly. requests falls back to Latin-1 per
+    # old HTTP spec when a server does not declare charset in its
+    # Content-Type header, which silently corrupts non-Latin names
+    # (Cyrillic, Arabic, CJK) into mojibake without raising any error.
+    r.encoding = "utf-8"
     return parse_records(r.text)
 
 
@@ -80,14 +85,27 @@ def parse_records(text):
     """Adjust column names here to match the verified export format."""
     records = {}
     reader = csv.DictReader(io.StringIO(text))
+    fieldnames_logged = False
+    # Candidate column names in priority order, since the real export's
+    # naming was not confirmed before first production run and the
+    # original guesses for the lists field did not match, leaving it blank.
+    LIST_FIELDS = ["datasets", "lists", "topics", "sources", "programs", "schemes"]
     for row in reader:
+        if not fieldnames_logged:
+            print("CSV columns detected:", list(row.keys()))
+            fieldnames_logged = True
         rid = row.get("id") or row.get("entity_id")
         if not rid:
             continue
+        lists_val = ""
+        for field in LIST_FIELDS:
+            if row.get(field):
+                lists_val = row[field].strip()
+                break
         records[rid] = {
-            "name": row.get("name", "").strip(),
-            "lists": row.get("datasets", row.get("lists", "")).strip(),
-            "changed": row.get("last_change", row.get("changed", "")).strip(),
+            "name": (row.get("name") or "").strip(),
+            "lists": lists_val,
+            "changed": (row.get("last_change") or row.get("changed") or "").strip(),
         }
     return records
 
