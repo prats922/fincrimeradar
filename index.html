@@ -59,8 +59,6 @@ body{
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
-body.js-smooth{overflow:hidden}
-body.js-smooth #scroller{position:fixed;inset:0 0 auto 0;width:100%;will-change:transform}
 
 ::selection{background:var(--clear);color:#fff}
 img{max-width:100%;display:block}
@@ -366,62 +364,6 @@ body.cursor-on .cursor-dot,body.cursor-on .cursor-ring{display:block}
 .news-src{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;color:var(--muted);display:block;margin-top:3px}
 
 /* ============================================================
-   EXPANDING FEATURE CARDS
-   ============================================================ */
-.features{max-width:1240px;margin:clamp(90px,10vw,140px) auto 0}
-.xcards{display:grid;gap:16px;max-width:900px;margin:0 auto}
-.xcard{
-  border-radius:var(--radius);background:var(--surface);
-  border:1px solid var(--line);overflow:hidden;
-  transition:box-shadow .5s var(--ease),border-color .5s;
-}
-.xcard.open{border-color:rgba(18,185,129,.45);box-shadow:0 18px 50px rgba(12,27,42,.1)}
-.xcard-head{
-  width:100%;background:none;border:none;text-align:left;
-  display:flex;align-items:center;gap:22px;padding:28px 30px;
-}
-.xcard-head .code{
-  font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--clear-deep);
-  padding:6px 12px;border:1px solid rgba(18,185,129,.35);border-radius:8px;flex-shrink:0;
-  background:rgba(18,185,129,.06);
-}
-.xcard-head h3{font-family:var(--display);font-weight:800;font-size:1.2rem;flex:1;letter-spacing:-.01em}
-.xcard-head .plus{
-  width:34px;height:34px;border-radius:50%;flex-shrink:0;position:relative;
-  border:1.5px solid var(--line);transition:all .45s var(--ease);
-}
-.xcard-head .plus::before,.xcard-head .plus::after{
-  content:"";position:absolute;top:50%;left:50%;background:var(--ink);
-  transform:translate(-50%,-50%);transition:all .45s var(--ease);
-}
-.xcard-head .plus::before{width:12px;height:1.5px}
-.xcard-head .plus::after{width:1.5px;height:12px}
-.xcard.open .plus{background:var(--clear);border-color:var(--clear);transform:rotate(180deg)}
-.xcard.open .plus::before{background:#fff}
-.xcard.open .plus::after{opacity:0}
-.xcard-body{
-  display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease);
-}
-.xcard.open .xcard-body{grid-template-rows:1fr}
-.xcard-body>div{overflow:hidden}
-.xcard-content{
-  padding:0 30px 30px 30px;color:var(--ink-soft);line-height:1.7;font-size:.95rem;
-  display:flex;gap:28px;align-items:flex-start;
-}
-.xcard-content .facts{
-  flex-shrink:0;width:220px;font-family:var(--mono);font-size:.72rem;
-  border-left:2px solid var(--clear);padding-left:16px;color:var(--muted);
-  display:flex;flex-direction:column;gap:10px;letter-spacing:.04em;line-height:1.5;
-}
-.xcard-content .facts b{color:var(--ink);font-weight:600}
-@media(max-width:700px){
-  .xcard-content{flex-direction:column;gap:18px}
-  .xcard-content .facts{width:100%}
-  .xcard-head{padding:22px 20px;gap:14px}
-  .xcard-content{padding:0 20px 24px}
-}
-
-/* ============================================================
    CTA STRIP + FOOTER
    ============================================================ */
 .cta-strip{
@@ -510,7 +452,6 @@ gtag('js',new Date());gtag('config','G-FC1VMTE7JH');
   <div class="nav-links">
     <a href="/screen.html" data-hover>Screening</a>
     <a href="/news.html" data-hover>News</a>
-    <a href="#method" data-hover>Methodology</a>
     <a href="/knowledge.html" data-hover>Knowledge Hub</a>
   </div>
   <button class="nav-cta" data-hover onclick="location.href='/screen.html'">Run a free screen</button>
@@ -630,73 +571,6 @@ gtag('js',new Date());gtag('config','G-FC1VMTE7JH');
 
   </div>
 
-  <!-- ================= EXPANDING FEATURES ================= -->
-  <section class="features" id="method">
-    <div class="section-head rv">
-      <span class="eyebrow">Methodology</span>
-      <h2>Open about how the radar works.</h2>
-      <p>Most vendors hide their matching logic behind sales calls. We publish ours. Click any principle to see it in full.</p>
-    </div>
-
-    <div class="xcards rv">
-      <article class="xcard">
-        <button class="xcard-head" data-hover aria-expanded="false">
-          <span class="code">MATCH</span>
-          <h3>Distinctive-word matching, scoped tight</h3>
-          <span class="plus" aria-hidden="true"></span>
-        </button>
-        <div class="xcard-body"><div>
-          <div class="xcard-content">
-            <p>A shared surname is noise. A shared designation like &ldquo;Wagner Group PMC&rdquo; is signal. Our boost logic only fires when the overlapping term dominates the meaningful content of at least one side of the comparison, which is exactly how we eliminated a class of first-name-only false positives without losing a single true match. Every rule change is regression-tested against both the failure case and known true positives before it ships.</p>
-            <div class="facts"><span><b>False positive class</b><br>Root-caused &amp; eliminated</span><span><b>Regression suite</b><br>True + false positive pairs</span></div>
-          </div>
-        </div></div>
-      </article>
-
-      <article class="xcard">
-        <button class="xcard-head" data-hover aria-expanded="false">
-          <span class="code">PEP</span>
-          <h3>Dedicated PEP coverage, position-aware</h3>
-          <span class="plus" aria-hidden="true"></span>
-        </button>
-        <div class="xcard-body"><div>
-          <div class="xcard-content">
-            <p>PEP risk is about the position, not just the name. We run a dedicated PEP dataset of nearly 60,000 profiles with position-text prioritisation, so a head of state and a municipal clerk are never scored as equivalent risks. Family members and close associates are on the roadmap via the OpenSanctions API layer.</p>
-            <div class="facts"><span><b>59,800+ profiles</b><br>Dedicated PEP dataset</span><span><b>Position-weighted</b><br>Role text drives priority</span></div>
-          </div>
-        </div></div>
-      </article>
-
-      <article class="xcard">
-        <button class="xcard-head" data-hover aria-expanded="false">
-          <span class="code">POOL</span>
-          <h3>No silent candidate ceilings</h3>
-          <span class="plus" aria-hidden="true"></span>
-        </button>
-        <div class="xcard-body"><div>
-          <div class="xcard-content">
-            <p>Screening engines quietly fail when the candidate pool is capped before scoring even runs, dropping real entities that never get evaluated. We found and killed that failure mode in our own engine and now verify that known true positives reach the scoring stage on every release. If a name is on a list, it gets scored. Full stop.</p>
-            <div class="facts"><span><b>Pool verification</b><br>Every release</span><span><b>Zero silent drops</b><br>True positives always scored</span></div>
-          </div>
-        </div></div>
-      </article>
-
-      <article class="xcard">
-        <button class="xcard-head" data-hover aria-expanded="false">
-          <span class="code">OPEN</span>
-          <h3>Free by design, open by principle</h3>
-          <span class="plus" aria-hidden="true"></span>
-        </button>
-        <div class="xcard-body"><div>
-          <div class="xcard-content">
-            <p>Compliance knowledge locked behind five-figure licences makes the whole system weaker. The screening tool, the guides and the regulatory feed are free and require no login. A premium API tier is coming for teams that need volume and integration, but the core radar stays open.</p>
-            <div class="facts"><span><b>&pound;0 core access</b><br>No login required</span><span><b>API tier</b><br>Coming for teams</span></div>
-          </div>
-        </div></div>
-      </article>
-    </div>
-  </section>
-
   <!-- ================= CTA ================= -->
   <section class="cta-strip rv">
     <h2>Get the signal, skip the noise.</h2>
@@ -730,8 +604,7 @@ gtag('js',new Date());gtag('config','G-FC1VMTE7JH');
     <div class="fcol">
       <h4>Company</h4>
       <a href="/about.html" data-hover>About</a>
-      <a href="#method" data-hover>Methodology</a>
-      <a href="/contact.html" data-hover>Contact</a>
+        <a href="/contact.html" data-hover>Contact</a>
     </div>
   </footer>
   <div class="footer-base">
@@ -882,24 +755,6 @@ if(!isTouch && !prefersReduced){
   });
 }
 
-/* ============ WEIGHTED SMOOTH SCROLL (desktop only) ============ */
-var scroller = document.getElementById('scroller');
-var useSmooth = !isTouch && !prefersReduced && innerWidth >= 1024;
-if(useSmooth){
-  var current = window.scrollY, target = window.scrollY;
-  function setBodyHeight(){ document.body.style.height = scroller.scrollHeight + 'px'; }
-  document.body.classList.add('js-smooth');
-  setBodyHeight();
-  window.addEventListener('resize', setBodyHeight);
-  new ResizeObserver(setBodyHeight).observe(scroller);
-  window.addEventListener('scroll', function(){ target = window.scrollY; }, {passive:true});
-  (function smoothLoop(){
-    current += (target - current) * 0.085;
-    if(Math.abs(target-current) < 0.05) current = target;
-    scroller.style.transform = 'translate3d(0,' + (-current) + 'px,0)';
-    requestAnimationFrame(smoothLoop);
-  })();
-}
 
 /* ============ NAV STATE ============ */
 var nav = document.getElementById('nav');
@@ -919,21 +774,6 @@ document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
 var track = document.getElementById('mtrack');
 track.innerHTML += track.innerHTML;
 
-/* ============ EXPANDING CARDS ============ */
-document.querySelectorAll('.xcard-head').forEach(function(head){
-  head.addEventListener('click', function(){
-    var card = head.closest('.xcard');
-    var wasOpen = card.classList.contains('open');
-    document.querySelectorAll('.xcard.open').forEach(function(c){
-      c.classList.remove('open');
-      c.querySelector('.xcard-head').setAttribute('aria-expanded','false');
-    });
-    if(!wasOpen){
-      card.classList.add('open');
-      head.setAttribute('aria-expanded','true');
-    }
-  });
-});
 })();
 </script>
 </body>
