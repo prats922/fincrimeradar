@@ -272,8 +272,8 @@
   </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"AboutPage","name":"About FinCrimeRadar","url":"https://fincrimeradar.org/about.html","description":"FinCrimeRadar is a free open-source financial crime compliance platform built by a practitioner with 10 years of AML experience."}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Pratik Zanke","url":"https://fincrimeradar.org/about.html","jobTitle":"Founder, FinCrimeRadar","sameAs":["https://www.linkedin.com/in/pratik-zanke-749856126/"],"worksFor":{"@type":"Organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"AboutPage","name":"About FinCrimeRadar","url":"https://fincrimeradar.org/about.html","description":"FinCrimeRadar is a free open-source financial crime compliance platform built by a practitioner with 10 years of AML experience.","about":{"@id":"https://fincrimeradar.org/#organization"}},{"@type":"Person","@id":"https://fincrimeradar.org/#founder","name":"Pratik Zanke","url":"https://fincrimeradar.org/about.html","jobTitle":"Founder, FinCrimeRadar","sameAs":["https://www.linkedin.com/in/pratik-zanke-749856126/","https://github.com/prats922"],"worksFor":{"@id":"https://fincrimeradar.org/#organization"}}]}</script>
+  
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -565,7 +565,6 @@ async function footerSignup() {
   document.getElementById('footerEmail').value = '';
 }
 </script>
-
 
 <!-- Cookie Consent Banner -->
 <div id="cookieBanner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; background:var(--navy-mid); border-top:1px solid var(--navy-light); padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; box-shadow:0 -4px 20px rgba(0,0,0,0.3);">

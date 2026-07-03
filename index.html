@@ -428,8 +428,8 @@ body.cursor-on .cursor-dot,body.cursor-on .cursor-ring{display:block}
 <meta name="twitter:title" content="FinCrimeRadar | Free AML & Sanctions Screening Tool | UK Financial Crime Compliance" />
 <meta name="twitter:description" content="Free sanctions screening, PEP checks, and adverse media monitoring tool. Plus a comprehensive AML Knowledge Hub covering MLR 2017, POCA 2002, and FCA compliance. Built for compliance professionals." />
 <meta name="twitter:image" content="https://fincrimeradar.org/og-image.png" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"FinCrimeRadar","url":"https://fincrimeradar.org","description":"Free open-source AML and financial crime compliance platform. Sanctions screening, PEP checks, adverse media monitoring.","potentialAction":{"@type":"SearchAction","target":"https://fincrimeradar.org/screen.html?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org","logo":"https://fincrimeradar.org/favicon-32.png","description":"Free, open-source AML and financial crime intelligence platform providing sanctions screening, PEP checks, adverse media monitoring, and compliance education.","founder":{"@type":"Person","name":"Pratik Zanke","sameAs":["https://www.linkedin.com/in/pratik-zanke-749856126/"]},"sameAs":["https://www.linkedin.com/in/pratik-zanke-749856126/","https://github.com/prats922/fincrimeradar"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://fincrimeradar.org/#website","name":"FinCrimeRadar","url":"https://fincrimeradar.org","description":"Free open-source AML and financial crime compliance platform. Sanctions screening, PEP checks, adverse media monitoring.","publisher":{"@id":"https://fincrimeradar.org/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://fincrimeradar.org/screen.html?q={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"Organization","@id":"https://fincrimeradar.org/#organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org","logo":"https://fincrimeradar.org/favicon-32.png","description":"Free, open-source AML and financial crime intelligence platform providing sanctions screening, PEP checks, adverse media monitoring, and compliance education.","founder":{"@id":"https://fincrimeradar.org/#founder"},"sameAs":["https://github.com/prats922/fincrimeradar"]},{"@type":"Person","@id":"https://fincrimeradar.org/#founder","name":"Pratik Zanke","jobTitle":"Founder, FinCrimeRadar","worksFor":{"@id":"https://fincrimeradar.org/#organization"},"sameAs":["https://www.linkedin.com/in/pratik-zanke-749856126/","https://github.com/prats922"]}]}</script>
+
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
 <script>
@@ -754,7 +754,6 @@ if(!isTouch && !prefersReduced){
     el.addEventListener('mouseleave',function(){document.body.classList.remove('cursor-hovering')});
   });
 }
-
 
 /* ============ NAV STATE ============ */
 var nav = document.getElementById('nav');
