@@ -1,851 +1,940 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-FC1VMTE7JH');
-</script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FinCrimeRadar — Free AML & Sanctions Screening Tool | UK Financial Crime Compliance</title>
-  <meta name="description" content="Free sanctions screening, PEP checks, and adverse media monitoring tool. Plus a comprehensive AML Knowledge Hub covering MLR 2017, POCA 2002, and FCA compliance. Built for compliance professionals." />
-  <meta name="keywords" content="AML screening tool, sanctions screening, PEP screening, adverse media monitoring, UK AML compliance, financial crime, OFAC screening, free compliance tool" />
-  <link rel="canonical" href="https://fincrimeradar.org/" />
-  <!-- Open Graph -->
-  <meta property="og:title" content="FinCrimeRadar — Free AML & Sanctions Screening Tool | UK Financial Crime Compliance" />
-  <meta property="og:description" content="Free sanctions screening, PEP checks, and adverse media monitoring tool. Plus a comprehensive AML Knowledge Hub covering MLR 2017, POCA 2002, and FCA compliance. Built for compliance professionals." />
-  <meta property="og:url" content="https://fincrimeradar.org/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://fincrimeradar.org/og-image.png" />
-  <meta property="og:site_name" content="FinCrimeRadar" />
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="FinCrimeRadar — Free AML & Sanctions Screening Tool | UK Financial Crime Compliance" />
-  <meta name="twitter:description" content="Free sanctions screening, PEP checks, and adverse media monitoring tool. Plus a comprehensive AML Knowledge Hub covering MLR 2017, POCA 2002, and FCA compliance. Built for compliance professionals." />
-  <meta name="twitter:image" content="https://fincrimeradar.org/og-image.png" />
-  <!-- Schema.org -->
-  <meta name="author" content="Pratik Zanke — FinCrimeRadar" />
-  <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="FinCrimeRadar — Free AML & Sanctions Screening" />
-  <meta property="og:description" content="Free open-source sanctions, PEP and adverse media screening for students and compliance professionals." />
-  <meta property="og:url" content="https://fincrimeradar.org" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Serif+Display&family=Playfair+Display:wght@800;900&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinCrimeRadar | Open Financial Crime Intelligence</title>
+<meta name="description" content="Free, open financial crime intelligence. Screen names against 131,000+ sanctions and PEP records and learn from practitioner-grade AML guides.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   FINCRIMERADAR DESIGN SYSTEM
+   Palette logic: screening outcomes drive the accent system.
+   Clear = signal green, Review = amber, Match = alert red.
+   Dark void for the hero, porcelain light for the body.
+   ============================================================ */
+:root{
+  /* Void (hero) */
+  --void:#04070C;
+  --void-2:#080D16;
+  --grid-line:rgba(59,232,176,.06);
 
-    :root {
-  --teal:#00c4a7;--teal-h:#00a892;--teal-deep:#007d6d;--teal-soft:#e0faf6;--teal-mid:#f0fdf9;
-  --navy:#002850;--navy-mid:#0f2044;--navy-light:#1a3a6e;
-  --danger:#dc2626;--danger-bg:#fef2f2;--warning:#d97706;--warning-bg:#fffbeb;
-  --success:#16a34a;--success-bg:#f0fdf4;--purple:#7c3aed;--purple-bg:#f5f3ff;
-  --blue:#1d5fc4;--blue-bg:#eff6ff;
-  --white:#ffffff;--off:#f7f8fa;--border:#e4e7ec;--border-mid:#d1d5db;
-  --text:#111827;--slate:#374151;--muted:#6b7280;--light:#9ca3af;--faint:#e5e7eb;
-  --badge-fca-bg:#fee2e2;--badge-fca-text:#991b1b;
-  --badge-occrp-bg:#ede9fe;--badge-occrp-text:#5b21b6;
-  --badge-bbc-bg:#dbeafe;--badge-bbc-text:#1e40af;
-  --badge-ofsi-bg:#dcfce7;--badge-ofsi-text:#166534;
-  --badge-gold-bg:#fef3c7;--badge-gold-text:#92400e;
-  --r-sm:6px;--r-md:10px;--r-lg:14px;--r-pill:99px;
-  --shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 12px rgba(0,0,0,.08);--shadow-lg:0 8px 24px rgba(0,0,0,.10);
-  --transition:all 0.15s ease;
-  --accent:#00c4a7;--accent-h:#00a892;--accent-light:#f0fdf9;--accent-light2:#e0faf6;
+  /* Porcelain (body) */
+  --paper:#F4F6F3;
+  --surface:#FFFFFF;
+  --surface-glass:rgba(255,255,255,.55);
+  --ink:#0C1B2A;
+  --ink-soft:#3D4E5C;
+  --muted:#66757F;
+  --line:rgba(12,27,42,.10);
+
+  /* Outcome accents */
+  --clear:#12B981;
+  --clear-deep:#0B7A57;
+  --review:#E8A33D;
+  --match:#E5484D;
+
+  /* Radar */
+  --radar:#3BE8B0;
+  --radar-dim:rgba(59,232,176,.35);
+
+  /* Type */
+  --display:'Playfair Display',Georgia,serif;
+  --body:'DM Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+
+  --radius:22px;
+  --radius-sm:14px;
+  --ease:cubic-bezier(.22,1,.36,1);
 }
 
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--white);
-      color: var(--text);
-      line-height: 1.6;
-    }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  background:var(--paper);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body.js-smooth{overflow:hidden}
+body.js-smooth #scroller{position:fixed;inset:0 0 auto 0;width:100%;will-change:transform}
 
-    /* NAV */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2rem; height: 72px;
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
-    .nav-logo { width: 28px; height: 28px; }
-    .nav-name { font-size: 16px; font-weight: 600; color: var(--navy); letter-spacing: -0.3px; }
-    .nav-name span { color: var(--accent); }
-    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
-    .nav-links a { font-size: 14px; color: var(--slate); text-decoration: none; transition: color 0.15s; }
-    .nav-links a:hover { color: var(--teal); }
-    .nav-cta {
-      padding: 7px 16px; background: var(--teal); color: #fff;
-      border-radius: 6px; font-size: 14px; font-weight: 500;
-      text-decoration: none; transition: background 0.15s;
-    }
-    .nav-cta:hover { background: #00a88e; color: #fff; }
+::selection{background:var(--clear);color:#fff}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
 
-    /* HERO */
-    .hero {
-      padding: 5rem 2rem 4rem;
-      text-align: center;
-      background: linear-gradient(180deg, #f0f5ff 0%, #ffffff 100%);
-      border-bottom: 1px solid var(--border);
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
-      text-transform: uppercase; color: var(--accent);
-      background: var(--tag-bg); border: 1px solid #bfdbfe;
-      padding: 4px 12px; border-radius: 99px; margin-bottom: 1.5rem;
-    }
-    .pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+/* ---------- Custom cursor ---------- */
+@media (hover:hover) and (pointer:fine){
+  body.cursor-on, body.cursor-on a, body.cursor-on button{cursor:none}
+  .cursor-dot,.cursor-ring{
+    position:fixed;top:0;left:0;z-index:9999;pointer-events:none;
+    border-radius:50%;transform:translate(-50%,-50%);
+  }
+  .cursor-dot{
+    width:8px;height:8px;background:var(--radar);
+    box-shadow:0 0 12px var(--radar),0 0 28px rgba(59,232,176,.5);
+    transition:width .25s var(--ease),height .25s var(--ease),background .25s;
+  }
+  .cursor-ring{
+    width:38px;height:38px;border:1.5px solid rgba(59,232,176,.55);
+    transition:width .3s var(--ease),height .3s var(--ease),border-color .3s,opacity .3s;
+  }
+  body.cursor-hovering .cursor-dot{width:14px;height:14px;background:#fff;box-shadow:0 0 18px rgba(255,255,255,.9)}
+  body.cursor-hovering .cursor-ring{width:56px;height:56px;border-color:rgba(255,255,255,.85)}
+  .light-zone-cursor .cursor-dot{background:var(--ink);box-shadow:0 0 10px rgba(12,27,42,.35)}
+  .light-zone-cursor .cursor-ring{border-color:rgba(12,27,42,.4)}
+}
+.cursor-dot,.cursor-ring{display:none}
+body.cursor-on .cursor-dot,body.cursor-on .cursor-ring{display:block}
 
-    h1 {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
-      font-weight: 400; line-height:1.25;
-      color: var(--navy); letter-spacing: -0.5px;
-      max-width: 680px; margin: 0 auto 1.25rem;
-    }
-    h1 em { font-style: italic; color: var(--accent); }
+/* ---------- Reveal on scroll ---------- */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}.rv-d4{transition-delay:.32s}
 
-    .hero-sub {
-      font-size: 17px; color: var(--muted);
-      max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.7;
-    }
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px clamp(20px,4vw,56px);
+  transition:background .4s,backdrop-filter .4s,box-shadow .4s,padding .4s;
+}
+.nav.scrolled{
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  box-shadow:0 1px 0 var(--line);
+  padding:14px clamp(20px,4vw,56px);
+}
+.nav .brand{
+  font-family:var(--display);font-weight:900;font-size:1.25rem;letter-spacing:.01em;
+  color:#fff;transition:color .4s;display:flex;align-items:center;gap:10px;
+}
+.nav.scrolled .brand{color:var(--ink)}
+.brand-blip{width:10px;height:10px;border-radius:50%;background:var(--clear);box-shadow:0 0 0 0 rgba(18,185,129,.5);animation:blipPulse 2.4s infinite}
+@keyframes blipPulse{
+  0%{box-shadow:0 0 0 0 rgba(18,185,129,.55)}
+  70%{box-shadow:0 0 0 12px rgba(18,185,129,0)}
+  100%{box-shadow:0 0 0 0 rgba(18,185,129,0)}
+}
+.nav-links{display:flex;gap:34px;align-items:center}
+.nav-links a{
+  font-size:.86rem;font-weight:600;letter-spacing:.04em;color:rgba(255,255,255,.75);
+  transition:color .3s;position:relative;
+}
+.nav.scrolled .nav-links a{color:var(--ink-soft)}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;
+  background:var(--clear);transition:width .35s var(--ease);border-radius:2px;
+}
+.nav-links a:hover::after{width:100%}
+.nav-links a:hover{color:#fff}
+.nav.scrolled .nav-links a:hover{color:var(--ink)}
+.nav-cta{
+  font-size:.84rem;font-weight:700;padding:10px 22px;border-radius:999px;
+  background:var(--clear);color:#fff;border:none;letter-spacing:.03em;
+  transition:transform .3s var(--ease),box-shadow .3s;
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(18,185,129,.45)}
+@media(max-width:820px){.nav-links{display:none}}
 
-    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
-    .btn-primary {
-      padding: 13px 28px; background: var(--accent); color: #fff;
-      border: none; border-radius: 8px; font-size: 15px; font-weight: 600;
-      cursor: pointer; text-decoration: none; transition: all 0.15s;
-      display: inline-flex; align-items: center; gap: 8px;
-    }
-    .btn-primary:hover { background: var(--accent-h); transform: translateY(-1px); }
-    .btn-secondary {
-      padding: 13px 28px; background: var(--white); color: var(--text);
-      border: 1.5px solid var(--border); border-radius: 8px;
-      font-size: 15px; font-weight: 500; cursor: pointer;
-      text-decoration: none; transition: all 0.15s;
-    }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+/* ============================================================
+   HERO: pure black void with live radar canvas
+   ============================================================ */
+.hero{
+  position:relative;min-height:100vh;min-height:100svh;
+  background:var(--void);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+#radar{position:absolute;inset:0;width:100%;height:100%}
+.hero-vignette{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 45%,transparent 40%,rgba(4,7,12,.85) 100%),
+    linear-gradient(to bottom,rgba(4,7,12,.4),transparent 25%,transparent 70%,var(--void) 100%);
+}
+.hero-inner{
+  position:relative;z-index:2;text-align:center;
+  padding:0 24px;max-width:1000px;
+}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--radar);opacity:0;animation:fadeUp 1.2s var(--ease) .3s forwards;
+}
+.hero h1{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(2.9rem,7.4vw,6.2rem);
+  line-height:1.04;letter-spacing:-.015em;color:#fff;
+  margin:26px 0 28px;
+  opacity:0;animation:fadeUp 1.4s var(--ease) .55s forwards;
+}
+.hero h1 em{
+  font-style:italic;
+  background:linear-gradient(100deg,var(--radar) 0%,#8FF7D4 55%,var(--radar) 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shine 5s linear infinite;
+}
+@keyframes shine{to{background-position:200% center}}
+.hero-sub{
+  font-size:clamp(1rem,1.6vw,1.2rem);line-height:1.65;color:rgba(255,255,255,.62);
+  max-width:640px;margin:0 auto 44px;font-weight:400;
+  opacity:0;animation:fadeUp 1.4s var(--ease) .85s forwards;
+}
+.hero-sub strong{color:rgba(255,255,255,.92);font-weight:600}
+.hero-actions{
+  display:flex;gap:18px;justify-content:center;flex-wrap:wrap;
+  opacity:0;animation:fadeUp 1.4s var(--ease) 1.1s forwards;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 
-    .signup-row { display: flex; gap: 8px; max-width: 420px; margin: 0 auto; justify-content: center; flex-wrap: wrap; }
-    .signup-row input {
-      flex: 1; min-width: 200px; padding: 11px 14px;
-      border: 1.5px solid var(--border); border-radius: 8px;
-      font-size: 14px; color: var(--text); outline: none;
-      transition: border-color 0.15s; background: var(--white);
-    }
-    .signup-row input:focus { border-color: var(--accent); }
-    .signup-row input::placeholder { color: var(--light); }
-    .form-hint { font-size: 12px; color: var(--light); margin-top: 8px; }
-    .form-success { display: none; font-size: 13px; color: var(--success); margin-top: 8px; }
+/* Flicker + glow buttons */
+.btn{
+  position:relative;display:inline-flex;align-items:center;gap:10px;
+  padding:16px 34px;border-radius:999px;font-weight:700;font-size:.95rem;
+  letter-spacing:.02em;border:none;overflow:hidden;
+  transition:transform .35s var(--ease),box-shadow .35s;
+}
+.btn:hover{transform:translateY(-3px)}
+.btn:active{transform:translateY(-1px)}
+.btn-primary{background:var(--clear);color:#fff}
+.btn-primary:hover{
+  box-shadow:0 0 0 1px rgba(59,232,176,.6),0 10px 34px rgba(18,185,129,.5),0 0 60px rgba(59,232,176,.35);
+  animation:flicker .45s steps(2,end) 1;
+}
+.btn-ghost{
+  background:transparent;color:#fff;
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.28);
+}
+.btn-ghost:hover{
+  box-shadow:inset 0 0 0 1.5px var(--radar),0 0 34px rgba(59,232,176,.3);
+  color:var(--radar);
+  animation:flicker .45s steps(2,end) 1;
+}
+@keyframes flicker{
+  0%{opacity:1}18%{opacity:.55}30%{opacity:1}46%{opacity:.7}60%{opacity:1}
+}
+.btn .arr{transition:transform .35s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
 
-    /* STATS BAR */
-    .stats-bar {
-      display: flex; justify-content: center; gap: 3rem;
-      padding: 2rem; border-bottom: 1px solid var(--border);
-      background: var(--white); flex-wrap: wrap;
-    }
-    .stat { text-align: center; }
-    .stat-num { font-size: 22px; font-weight: 600; color: var(--navy); }
-    .stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.hero-scrollhint{
+  position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:2;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);display:flex;flex-direction:column;align-items:center;gap:12px;
+  opacity:0;animation:fadeUp 1.4s var(--ease) 1.6s forwards;
+}
+.hero-scrollhint .line{width:1px;height:44px;background:linear-gradient(to bottom,var(--radar),transparent);animation:dropLine 2.2s var(--ease) infinite}
+@keyframes dropLine{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
-    /* FEATURES */
-    .section { padding: 4rem 2rem; max-width: 1000px; margin: 0 auto; }
-    .section-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
-    .section-title { font-family: 'DM Serif Display', Georgia, serif; font-size: 28px; font-weight: 400; color: var(--navy); margin-bottom: 0.75rem; }
-    .section-sub { font-size: 15px; color: var(--muted); max-width: 480px; line-height:1.7; }
-    .divider { border: none; border-top: 1px solid var(--border); }
+/* ============================================================
+   SOURCE MARQUEE
+   ============================================================ */
+.marquee-band{
+  background:var(--void);padding:0 0 78px;position:relative;
+}
+.marquee-label{
+  text-align:center;font-family:var(--mono);font-size:.72rem;letter-spacing:.3em;
+  text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:30px;
+}
+.marquee{overflow:hidden;position:relative;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent);
+  mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent);
+}
+.marquee-track{display:flex;gap:64px;width:max-content;animation:scrollX 34s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes scrollX{to{transform:translateX(-50%)}}
+.src{
+  display:flex;align-items:center;gap:12px;white-space:nowrap;
+  font-family:var(--display);font-weight:700;font-size:1.15rem;color:rgba(255,255,255,.45);
+  transition:color .3s;
+}
+.src:hover{color:var(--radar)}
+.src .tick{font-family:var(--mono);font-size:.68rem;color:var(--radar-dim);letter-spacing:.1em}
 
-    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 2.5rem; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--border); }
-    .feature { background: var(--white); padding: 1.5rem; transition: background 0.15s; }
-    .feature:hover { background: #f8faff; }
-    .feature-icon { font-size: 24px; margin-bottom: 12px; }
-    .feature h3 { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
-    .feature p { font-size: 13px; color: var(--muted); line-height:1.7; }
+/* ============================================================
+   LIGHT ZONE
+   ============================================================ */
+.zone-light{
+  background:
+    radial-gradient(1200px 500px at 85% -5%,rgba(18,185,129,.07),transparent 60%),
+    radial-gradient(900px 500px at 8% 30%,rgba(232,163,61,.05),transparent 55%),
+    var(--paper);
+  border-radius:38px 38px 0 0;position:relative;z-index:3;margin-top:-38px;
+  padding:clamp(80px,9vw,130px) clamp(20px,5vw,70px) 0;
+}
+.section-head{max-width:820px;margin:0 auto 60px;text-align:center}
+.eyebrow{
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--clear-deep);display:inline-flex;align-items:center;gap:10px;
+}
+.eyebrow::before,.eyebrow::after{content:"";width:26px;height:1px;background:var(--clear)}
+.section-head h2{
+  font-family:var(--display);font-weight:800;font-size:clamp(2rem,4.4vw,3.3rem);
+  line-height:1.12;letter-spacing:-.01em;margin:20px 0 18px;
+}
+.section-head p{color:var(--muted);font-size:1.06rem;line-height:1.7;max-width:620px;margin:0 auto}
 
-    /* SOURCES */
-    .sources { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.5rem; }
-    .source-tag { font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 6px; background: var(--off); border: 1px solid var(--border); color: var(--muted); }
+/* ---------- Bento grid ---------- */
+.bento{
+  display:grid;gap:22px;max-width:1240px;margin:0 auto;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:minmax(120px,auto);
+}
+.cell{
+  border-radius:var(--radius);position:relative;overflow:hidden;
+  background:var(--surface-glass);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.7);
+  box-shadow:0 1px 2px rgba(12,27,42,.04),0 12px 40px rgba(12,27,42,.06);
+  padding:34px;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+}
+.cell:hover{transform:translateY(-6px);box-shadow:0 2px 4px rgba(12,27,42,.05),0 24px 60px rgba(12,27,42,.11)}
+.cell h3{font-family:var(--display);font-weight:800;font-size:1.45rem;margin:0 0 12px;letter-spacing:-.01em}
+.cell p{color:var(--muted);line-height:1.65;font-size:.95rem}
+.cell .cell-tag{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--clear-deep);display:block;margin-bottom:16px;
+}
+.c-screen{grid-column:span 7;grid-row:span 3;background:linear-gradient(150deg,#0B1622,#0E2233);border:1px solid rgba(59,232,176,.18);color:#fff}
+.c-screen h3{color:#fff}
+.c-screen p{color:rgba(255,255,255,.6)}
+.c-screen .cell-tag{color:var(--radar)}
+.c-records{grid-column:span 5;grid-row:span 2}
+.c-hub{grid-column:span 5;grid-row:span 2}
+.c-news{grid-column:span 4;grid-row:span 2}
+.c-learn{grid-column:span 4;grid-row:span 2}
+.c-founder{grid-column:span 4;grid-row:span 2}
+@media(max-width:1020px){
+  .c-screen{grid-column:span 12}
+  .c-records,.c-hub{grid-column:span 6}
+  .c-news,.c-learn,.c-founder{grid-column:span 12}
+}
+@media(max-width:640px){.c-records,.c-hub{grid-column:span 12}.cell{padding:26px}}
 
-    /* ROADMAP */
-    .roadmap { margin-top: 2rem; display: flex; flex-direction: column; gap: 8px; }
-    .phase { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 8px; background: var(--off); border: 1px solid var(--border); }
-    .phase.done { opacity: 0.65; }
-    .phase.active { background: #eff6ff; border-color: #bfdbfe; }
-    .phase-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .phase.done .phase-dot { background: var(--success); }
-    .phase.active .phase-dot { background: var(--accent); animation: pulse 2s infinite; }
-    .phase.upcoming .phase-dot { background: var(--border); }
-    .phase-text { flex: 1; font-size: 13px; color: var(--text); }
-    .phase-pill { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 99px; }
-    .phase.done .phase-pill { background: #dcfce7; color: var(--success); }
-    .phase.active .phase-pill { background: #dbeafe; color: var(--accent); }
-    .phase.upcoming .phase-pill { background: var(--border); color: var(--muted); }
+/* Screening demo inside dark cell */
+.demo{
+  margin-top:26px;border-radius:var(--radius-sm);
+  background:rgba(4,7,12,.55);border:1px solid rgba(59,232,176,.15);
+  padding:20px;font-family:var(--mono);font-size:.82rem;
+}
+.demo-query{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.85);padding-bottom:14px;border-bottom:1px dashed rgba(255,255,255,.12)}
+.demo-query .prompt{color:var(--radar)}
+.demo-caret{display:inline-block;width:8px;height:16px;background:var(--radar);animation:caret 1s steps(1) infinite;vertical-align:-3px}
+@keyframes caret{50%{opacity:0}}
+.demo-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.demo-row:last-child{border-bottom:none}
+.demo-name{color:rgba(255,255,255,.88)}
+.demo-list{color:rgba(255,255,255,.4);font-size:.72rem}
+.chip{padding:4px 12px;border-radius:999px;font-size:.7rem;font-weight:600;letter-spacing:.06em}
+.chip-match{background:rgba(229,72,77,.16);color:#FF8A8E;border:1px solid rgba(229,72,77,.4);animation:matchPulse 2s infinite}
+@keyframes matchPulse{0%,100%{box-shadow:0 0 0 0 rgba(229,72,77,.25)}50%{box-shadow:0 0 14px 2px rgba(229,72,77,.28)}}
+.chip-review{background:rgba(232,163,61,.14);color:#F5C888;border:1px solid rgba(232,163,61,.4)}
+.chip-clear{background:rgba(18,185,129,.14);color:#7CEBC4;border:1px solid rgba(18,185,129,.4)}
 
-    /* FOOTER */
-    footer { border-top: 1px solid var(--border); padding: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; max-width: 1000px; margin: 0 auto; }
-    .footer-brand { font-size: 13px; color: var(--muted); }
-    .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; }
-    .footer-links a:hover { color: var(--accent); }
-    /* ===== MOBILE RESPONSIVE ===== */
-    .nav-hamburger {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 22px;
-      cursor: pointer;
-      color: var(--navy, var(--navy-mid));
-      padding: 4px 6px;
-      line-height: 1;
-    }
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      top: 72px;
-      left: 0; right: 0;
-      background: #fff;
-      border-bottom: 1px solid var(--border);
-      flex-direction: column;
-      z-index: 99;
-      padding: 0.5rem 0;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    }
-    .mobile-nav.open { display: flex; }
-    .mobile-nav a {
-      padding: 14px 1.5rem;
-      font-size: 15px;
-      color: var(--slate);
-      text-decoration: none;
-      font-weight: 500;
-      border-bottom: 1px solid #f3f4f6;
-      transition: background 0.1s;
-    }
-    .mobile-nav a:hover { background: var(--off); }
-    .mobile-nav .mobile-nav-cta {
-      margin: 0.75rem 1.5rem 0.5rem;
-      background: var(--teal);
-      color: #fff !important;
-      border-radius: 8px;
-      text-align: center;
-      border-bottom: none;
-    }
+/* Stat cells */
+.stat-num{
+  font-family:var(--display);font-weight:900;font-size:clamp(2.6rem,4.6vw,3.8rem);
+  letter-spacing:-.02em;line-height:1;color:var(--ink);
+}
+.stat-num span{color:var(--clear-deep)}
+.stat-sub{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:12px;display:block}
+.stat-split{display:flex;gap:18px;margin-top:22px}
+.stat-split div{flex:1;padding:14px;border-radius:var(--radius-sm);background:rgba(12,27,42,.035);border:1px solid var(--line)}
+.stat-split b{display:block;font-size:1.25rem;font-family:var(--display)}
+.stat-split small{color:var(--muted);font-size:.72rem;font-family:var(--mono);letter-spacing:.08em}
 
-    @media (max-width: 768px) {
-      /* NAV */
-      nav { padding: 0 1rem; }
-      .nav-hamburger { display: block; }
-      .nav-links { display: none; }
-      .nav-logo img,
-      .nav-brand img { height: 40px !important; width: auto !important; max-width: 160px !important; }
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.pill{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;padding:7px 14px;
+  border-radius:999px;border:1px solid var(--line);color:var(--ink-soft);background:rgba(255,255,255,.6);
+  transition:all .3s var(--ease);
+}
+.pill:hover{border-color:var(--clear);color:var(--clear-deep);transform:translateY(-2px)}
 
-      /* HERO */
-      .hero { padding: 2.5rem 1.25rem 2rem; }
-      .hero h1, h1 { font-size: clamp(1.6rem, 7vw, 2.2rem) !important; }
-      .hero-sub, .hero p { font-size: 15px !important; }
-      .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; }
-      .hero-actions a, .hero-actions button { width: 100%; text-align: center; justify-content: center; }
-      .signup-row { flex-direction: column; }
-      .signup-row input { width: 100%; }
+.news-ticker{margin-top:20px;display:flex;flex-direction:column;gap:12px}
+.news-item{display:flex;gap:12px;align-items:flex-start;font-size:.86rem;color:var(--ink-soft);line-height:1.5}
+.news-item .dot{width:7px;height:7px;border-radius:50%;background:var(--review);margin-top:6px;flex-shrink:0}
+.news-item .dot.g{background:var(--clear)}
+.news-item .dot.r{background:var(--match)}
+.news-src{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;color:var(--muted);display:block;margin-top:3px}
 
-      /* STATS */
-      .stats-bar { flex-wrap: wrap; gap: 1rem; justify-content: center; }
-      .stat { min-width: 80px; text-align: center; }
+/* ============================================================
+   EXPANDING FEATURE CARDS
+   ============================================================ */
+.features{max-width:1240px;margin:clamp(90px,10vw,140px) auto 0}
+.xcards{display:grid;gap:16px;max-width:900px;margin:0 auto}
+.xcard{
+  border-radius:var(--radius);background:var(--surface);
+  border:1px solid var(--line);overflow:hidden;
+  transition:box-shadow .5s var(--ease),border-color .5s;
+}
+.xcard.open{border-color:rgba(18,185,129,.45);box-shadow:0 18px 50px rgba(12,27,42,.1)}
+.xcard-head{
+  width:100%;background:none;border:none;text-align:left;
+  display:flex;align-items:center;gap:22px;padding:28px 30px;
+}
+.xcard-head .code{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--clear-deep);
+  padding:6px 12px;border:1px solid rgba(18,185,129,.35);border-radius:8px;flex-shrink:0;
+  background:rgba(18,185,129,.06);
+}
+.xcard-head h3{font-family:var(--display);font-weight:800;font-size:1.2rem;flex:1;letter-spacing:-.01em}
+.xcard-head .plus{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;position:relative;
+  border:1.5px solid var(--line);transition:all .45s var(--ease);
+}
+.xcard-head .plus::before,.xcard-head .plus::after{
+  content:"";position:absolute;top:50%;left:50%;background:var(--ink);
+  transform:translate(-50%,-50%);transition:all .45s var(--ease);
+}
+.xcard-head .plus::before{width:12px;height:1.5px}
+.xcard-head .plus::after{width:1.5px;height:12px}
+.xcard.open .plus{background:var(--clear);border-color:var(--clear);transform:rotate(180deg)}
+.xcard.open .plus::before{background:#fff}
+.xcard.open .plus::after{opacity:0}
+.xcard-body{
+  display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease);
+}
+.xcard.open .xcard-body{grid-template-rows:1fr}
+.xcard-body>div{overflow:hidden}
+.xcard-content{
+  padding:0 30px 30px 30px;color:var(--ink-soft);line-height:1.7;font-size:.95rem;
+  display:flex;gap:28px;align-items:flex-start;
+}
+.xcard-content .facts{
+  flex-shrink:0;width:220px;font-family:var(--mono);font-size:.72rem;
+  border-left:2px solid var(--clear);padding-left:16px;color:var(--muted);
+  display:flex;flex-direction:column;gap:10px;letter-spacing:.04em;line-height:1.5;
+}
+.xcard-content .facts b{color:var(--ink);font-weight:600}
+@media(max-width:700px){
+  .xcard-content{flex-direction:column;gap:18px}
+  .xcard-content .facts{width:100%}
+  .xcard-head{padding:22px 20px;gap:14px}
+  .xcard-content{padding:0 20px 24px}
+}
 
-      /* SECTIONS */
-      .section { padding: 2rem 1.25rem; }
-      .section-title { font-size: clamp(1.3rem, 5vw, 1.8rem) !important; }
+/* ============================================================
+   CTA STRIP + FOOTER
+   ============================================================ */
+.cta-strip{
+  max-width:1240px;margin:clamp(90px,10vw,140px) auto 0;
+  border-radius:var(--radius);overflow:hidden;position:relative;
+  background:linear-gradient(140deg,#0B1622 0%,#0D2331 55%,#0B3A2E 100%);
+  padding:clamp(50px,7vw,90px) clamp(28px,6vw,80px);
+  color:#fff;text-align:center;
+}
+.cta-strip::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(600px 300px at 70% 20%,rgba(59,232,176,.16),transparent 60%);
+  pointer-events:none;
+}
+.cta-strip h2{font-family:var(--display);font-weight:900;font-size:clamp(1.9rem,4vw,3rem);letter-spacing:-.01em;margin-bottom:16px;position:relative}
+.cta-strip p{color:rgba(255,255,255,.6);max-width:540px;margin:0 auto 36px;line-height:1.7;position:relative}
+.cta-form{display:flex;gap:12px;max-width:520px;margin:0 auto;position:relative;flex-wrap:wrap;justify-content:center}
+.cta-form input{
+  flex:1;min-width:240px;padding:16px 22px;border-radius:999px;border:1.5px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.07);color:#fff;font-family:var(--body);font-size:.95rem;outline:none;
+  transition:border-color .3s,box-shadow .3s;
+}
+.cta-form input::placeholder{color:rgba(255,255,255,.4)}
+.cta-form input:focus{border-color:var(--radar);box-shadow:0 0 0 4px rgba(59,232,176,.15)}
+.cta-note{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-top:18px;position:relative}
 
-      /* GRIDS — collapse all multi-col to single col */
-      [style*="grid-template-columns: repeat(3"] { grid-template-columns: 1fr !important; }
-      [style*="grid-template-columns:repeat(3"] { grid-template-columns: 1fr !important; }
-      [style*="grid-template-columns: repeat(2"] { grid-template-columns: 1fr !important; }
-      [style*="grid-template-columns:repeat(2"] { grid-template-columns: 1fr !important; }
-      [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
-      [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
-      [style*="grid-template-columns: 1fr 340px"] { grid-template-columns: 1fr !important; }
-      [style*="grid-template-columns:1fr 340px"] { grid-template-columns: 1fr !important; }
+.footer{
+  margin-top:clamp(80px,9vw,120px);border-top:1px solid var(--line);
+  padding:60px clamp(20px,5vw,70px) 40px;
+  display:flex;flex-wrap:wrap;gap:44px;justify-content:space-between;
+  max-width:1380px;margin-left:auto;margin-right:auto;
+}
+.footer .fbrand{font-family:var(--display);font-weight:900;font-size:1.3rem;margin-bottom:12px}
+.footer p{color:var(--muted);font-size:.85rem;max-width:320px;line-height:1.65}
+.fcol h4{font-family:var(--mono);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.fcol a{display:block;font-size:.9rem;color:var(--ink-soft);margin-bottom:12px;transition:color .3s}
+.fcol a:hover{color:var(--clear-deep)}
+.footer-base{
+  max-width:1380px;margin:0 auto;padding:26px clamp(20px,5vw,70px) 40px;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--muted);
+}
 
-      /* ARTICLE PAGES */
-      .article-layout { grid-template-columns: 1fr !important; }
-      .toc { display: none !important; }
-      .series-hero, .article-hero { padding: 2rem 1.25rem 1.5rem !important; }
-      .article-section { padding: 1.25rem !important; }
-      .try-tool, .try-tool-cta { flex-direction: column !important; }
-      .penalty-scale { grid-template-columns: 1fr !important; }
-      .risk-matrix { grid-template-columns: 1fr !important; }
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .rv{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
 
-      /* KNOWLEDGE HUB */
-      .hub-hero { padding: 2.5rem 1.25rem 2rem !important; }
-      .hub-container { padding: 1rem !important; }
-      .series-card { grid-template-columns: 1fr !important; }
-      .sc-cta { display: none !important; }
-      .filter-bar { padding: 1rem 1rem 0 !important; }
-      .search-inner { flex-direction: column !important; }
-      .tool-banner { flex-direction: column !important; }
-      .nl-form { flex-direction: column !important; }
+<link rel="canonical" href="https://fincrimeradar.org/">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<meta property="og:title" content="FinCrimeRadar | Free AML & Sanctions Screening Tool | UK Financial Crime Compliance" />
+<meta property="og:description" content="Free sanctions screening, PEP checks, and adverse media monitoring tool. Plus a comprehensive AML Knowledge Hub covering MLR 2017, POCA 2002, and FCA compliance. Built for compliance professionals." />
+<meta property="og:url" content="https://fincrimeradar.org/" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://fincrimeradar.org/og-image.png" />
+<meta property="og:site_name" content="FinCrimeRadar" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="FinCrimeRadar | Free AML & Sanctions Screening Tool | UK Financial Crime Compliance" />
+<meta name="twitter:description" content="Free sanctions screening, PEP checks, and adverse media monitoring tool. Plus a comprehensive AML Knowledge Hub covering MLR 2017, POCA 2002, and FCA compliance. Built for compliance professionals." />
+<meta name="twitter:image" content="https://fincrimeradar.org/og-image.png" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"FinCrimeRadar","url":"https://fincrimeradar.org","description":"Free open-source AML and financial crime compliance platform. Sanctions screening, PEP checks, adverse media monitoring.","potentialAction":{"@type":"SearchAction","target":"https://fincrimeradar.org/screen.html?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org","logo":"https://fincrimeradar.org/favicon-32.png","description":"Free, open-source AML and financial crime intelligence platform providing sanctions screening, PEP checks, adverse media monitoring, and compliance education.","founder":{"@type":"Person","name":"Pratik Zanke","sameAs":["https://www.linkedin.com/in/pratik-zanke-749856126/"]},"sameAs":["https://www.linkedin.com/in/pratik-zanke-749856126/","https://github.com/prats922/fincrimeradar"]}</script>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-FC1VMTE7JH');
+</script>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
 
-      /* SCREEN PAGE */
-      .search-row { flex-direction: column !important; }
-      .btn-search { width: 100% !important; }
-      .summary-bar { grid-template-columns: repeat(2, 1fr) !important; }
-
-      /* ABOUT PAGE */
-      .hero-inner { grid-template-columns: 1fr !important; }
-      .jurisdiction-grid { grid-template-columns: 1fr !important; }
-
-      /* CONTACT PAGE */
-      .contact-layout { grid-template-columns: 1fr !important; padding: 1.5rem 1rem !important; }
-
-      /* NEWS PAGE */
-      .news-container { padding: 1.5rem 1rem !important; }
-      .nn-form { flex-direction: column !important; }
-
-      /* FOOTER */
-      footer { flex-direction: column !important; align-items: flex-start !important; gap: 1rem !important; }
-      .footer-links { flex-wrap: wrap !important; gap: 0.75rem !important; }
-
-      /* NEWS PILLS — horizontal scroll */
-      .filter-pills, [style*="flex-wrap:wrap"] { flex-wrap: nowrap !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; padding-bottom: 4px !important; }
-
-      /* FOOTER — mobile fix: these were previously nested inside the rule
-         above due to a missing closing brace, which meant they only ever
-         matched ".filter-pills footer > div" (never true) and silently
-         never applied. Restored as top-level rules. */
-      footer > div { padding: 2rem 1rem 1.5rem !important; }
-      footer > div > div:first-child { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
-      footer > div > div:nth-child(2) { grid-template-columns: repeat(2, 1fr) !important; gap: 1.25rem !important; }
-      #footerEmail { font-size: 16px !important; min-width: 0 !important; }
-    }
-  </style>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
-
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"FinCrimeRadar","url":"https://fincrimeradar.org","description":"Free open-source AML and financial crime compliance platform. Sanctions screening, PEP checks, adverse media monitoring.","potentialAction":{"@type":"SearchAction","target":"https://fincrimeradar.org/screen.html?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org","logo":"https://fincrimeradar.org/favicon-32.png","description":"Free, open-source AML and financial crime intelligence platform providing sanctions screening, PEP checks, adverse media monitoring, and compliance education.","founder":{"@type":"Person","name":"Pratik Zanke","sameAs":["https://www.linkedin.com/in/pratik-zanke-749856126/"]},"sameAs":["https://www.linkedin.com/in/pratik-zanke-749856126/","https://github.com/prats922/fincrimeradar"]}</script>
 </head>
 <body>
 
-<nav>
-  <a class="nav-brand" href="/">
-    <img src="/logo.png" alt="FinCrimeRadar" style="height:44px;width:auto;max-width:200px;object-fit:contain;object-position:left center;display:block;" />
-  </a>
+<div class="cursor-ring"></div>
+<div class="cursor-dot"></div>
+
+<div id="scroller">
+
+<nav class="nav" id="nav">
+  <a class="brand" href="#"><span class="brand-blip"></span>FinCrimeRadar</a>
   <div class="nav-links">
-    <a href="/knowledge.html" class="hide-mobile" style="color:var(--teal);font-weight:600;">Knowledge Hub</a>
-    <a href="/news.html" class="hide-mobile">News</a>
-    <a href="/learn.html" class="hide-mobile">Learn</a>
-    <a href="/about.html" class="hide-mobile">About</a>
-    <a href="/screen.html" class="nav-cta" style="background:var(--teal);color:#fff;font-weight:600;">Try the tool →</a>
+    <a href="/screen.html" data-hover>Screening</a>
+    <a href="/news.html" data-hover>News</a>
+    <a href="#method" data-hover>Methodology</a>
+    <a href="/knowledge.html" data-hover>Knowledge Hub</a>
   </div>
-  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
+  <button class="nav-cta" data-hover onclick="location.href='/screen.html'">Run a free screen</button>
 </nav>
-<div class="mobile-nav" id="mobileNav">
-  <a href="/knowledge.html">Knowledge Hub</a>
-  <a href="/news.html">News</a>
-  <a href="/learn.html">Learn</a>
-  <a href="/about.html">About</a>
-  <a href="/screen.html" class="mobile-nav-cta">Try the tool →</a>
-</div>
 
-<section class="hero">
-  <div style="margin-bottom:0.75rem;line-height:1;">
-    <div style="font-size:clamp(1.9rem,4.8vw,2.6rem);font-weight:900;line-height:1;margin-bottom:9px;font-family:'Playfair Display',Georgia,serif;letter-spacing:-0.3px;">
-      <span style="color:var(--navy);">FinCrime</span><span style="color:var(--teal-h);">Radar</span>
-    </div>
-    <div style="font-family:'DM Serif Display',Georgia,serif;font-size:clamp(1rem,2.5vw,1.25rem);font-style:italic;color:var(--navy);letter-spacing:0.2px;">Open Financial Crime Intelligence Platform</div>
-  </div>
-  <div class="hero-badge"><span class="pulse"></span> Now live</div>
-  <h1>Financial crime screening, <em>free for everyone</em></h1>
-  <p class="hero-sub">An open-source tool for compliance students and professionals to learn how real-world AML screening works — sanctions, PEP checks, and adverse media.</p>
-
-  <div class="hero-actions">
-    <a href="/screen.html" class="btn-primary">🛡️ Try the screening tool</a>
-    <button type="button" class="btn-secondary" onclick="document.getElementById('signupSection').style.display='block';this.style.display='none'">Get early access</button>
-  </div>
-  <div id="signupSection" style="display:none; margin-top:1rem;">
-    <div class="signup-row">
-      <input type="email" id="emailInput" placeholder="your@email.com" />
-      <button type="button" class="btn-primary" id="submitBtn" onclick="handleSignup()">Notify me</button>
-    </div>
-    <p class="form-hint">No spam. We'll notify you when we launch new features.</p>
-    <p class="form-success" id="successMsg">✓ You're on the list!</p>
-  </div>
-</section>
-
-<div class="stats-bar">
-  <div class="stat"><div class="stat-num">72,000+</div><div class="stat-label">Sanctions records</div></div>
-  <div class="stat"><div class="stat-num">59,000+</div><div class="stat-label">PEP profiles</div></div>
-  <div class="stat"><div class="stat-num">40+</div><div class="stat-label">Sanction lists</div></div>
-  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Free forever</div></div>
-</div>
-
-
-<section class="section" id="features">
-  <p class="section-eyebrow">⭐ Our core product</p>
-  <h2 class="section-title">Everything you need to understand financial crime screening</h2>
-  <p class="section-sub">Free, open-source, and built for learning — not selling you a compliance product.</p>
-
-  <!-- Top 3 — primary screening tools -->
-  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:2rem;">
-    <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; border-top:3px solid var(--danger);">
-      <div style="font-size:22px; margin-bottom:10px;">🛡️</div>
-      <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--danger); margin-bottom:6px;">Sanctions</div>
-      <h3 style="font-size:15px; font-weight:600; color:var(--navy); margin-bottom:6px;">Sanctions screening</h3>
-      <p style="font-size:13px; color:var(--muted); line-height:1.7; margin:0;">Search OFAC, UN, EU, OFSI and 40+ global lists in real time.</p>
-    </div>
-    <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; border-top:3px solid var(--purple);">
-      <div style="font-size:22px; margin-bottom:10px;">🔍</div>
-      <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--purple); margin-bottom:6px;">PEP</div>
-      <h3 style="font-size:15px; font-weight:600; color:var(--navy); margin-bottom:6px;">PEP screening</h3>
-      <p style="font-size:13px; color:var(--muted); line-height:1.7; margin:0;">Identify politically exposed persons — heads of state, ministers, central bank governors.</p>
-    </div>
-    <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; border-top:3px solid var(--warning);">
-      <div style="font-size:22px; margin-bottom:10px;">📰</div>
-      <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--warning); margin-bottom:6px;">Adverse Media</div>
-      <h3 style="font-size:15px; font-weight:600; color:var(--navy); margin-bottom:6px;">Adverse media</h3>
-      <p style="font-size:13px; color:var(--muted); line-height:1.7; margin:0;">Surface financial crime coverage from BBC, OCCRP, AP and trusted news sources.</p>
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <canvas id="radar" aria-hidden="true"></canvas>
+  <div class="hero-vignette"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Open financial crime intelligence</p>
+    <h1>See the risk<br>before it <em>clears</em>.</h1>
+    <p class="hero-sub">Free, open name screening across <strong>131,000+ live sanctions and PEP records</strong>, backed by practitioner-grade AML guides written by a working MLRO. No paywall. No login. No excuses.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary" data-hover onclick="location.href='/screen.html'">Run a free screen <span class="arr">&rarr;</span></button>
+      <button class="btn btn-ghost" data-hover onclick="location.href='/knowledge.html'">Explore the Knowledge Hub</button>
     </div>
   </div>
+  <div class="hero-scrollhint"><span>Sweep down</span><span class="line"></span></div>
+</header>
 
-  <!-- Bottom 3 — supporting features -->
-  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:12px;">
-    <div style="background:var(--off); border:1px solid var(--border); border-radius:12px; padding:1.25rem; display:flex; gap:12px; align-items:flex-start;">
-      <div style="font-size:20px; flex-shrink:0;">🎯</div>
-      <div>
-        <h3 style="font-size:14px; font-weight:600; color:var(--navy); margin-bottom:4px;">Fuzzy matching</h3>
-        <p style="font-size:13px; color:var(--muted); line-height:1.5; margin:0;">Catches spelling variations, aliases and transliterations automatically.</p>
-      </div>
-    </div>
-    <div style="background:var(--off); border:1px solid var(--border); border-radius:12px; padding:1.25rem; display:flex; gap:12px; align-items:flex-start;">
-      <div style="font-size:20px; flex-shrink:0;">⚙️</div>
-      <div>
-        <h3 style="font-size:14px; font-weight:600; color:var(--navy); margin-bottom:4px;">Open API</h3>
-        <p style="font-size:13px; color:var(--muted); line-height:1.5; margin:0;">Free API access for developers, researchers, and compliance students.</p>
-      </div>
-    </div>
-    <div style="background:var(--off); border:1px solid var(--border); border-radius:12px; padding:1.25rem; display:flex; gap:12px; align-items:flex-start;">
-      <div style="font-size:20px; flex-shrink:0;">📚</div>
-      <div>
-        <h3 style="font-size:14px; font-weight:600; color:var(--navy); margin-bottom:4px;">Knowledge hub</h3>
-        <p style="font-size:13px; color:var(--muted); line-height:1.5; margin:0;"><a href="/learn.html" style="color:var(--teal); text-decoration:none; font-weight:500;">Read the complete guide →</a></p>
-      </div>
+<!-- ================= SOURCE MARQUEE ================= -->
+<section class="marquee-band">
+  <p class="marquee-label">Intelligence drawn from</p>
+  <div class="marquee" aria-label="Data and intelligence sources">
+    <div class="marquee-track" id="mtrack">
+      <span class="src" data-hover><span class="tick">[SRC]</span>OpenSanctions</span>
+      <span class="src" data-hover><span class="tick">[UK]</span>HM Treasury &middot; OFSI</span>
+      <span class="src" data-hover><span class="tick">[REG]</span>Financial Conduct Authority</span>
+      <span class="src" data-hover><span class="tick">[LE]</span>National Crime Agency</span>
+      <span class="src" data-hover><span class="tick">[INT]</span>OCCRP</span>
+      <span class="src" data-hover><span class="tick">[STD]</span>FATF</span>
+      <span class="src" data-hover><span class="tick">[UN]</span>UN Security Council</span>
+      <span class="src" data-hover><span class="tick">[US]</span>OFAC</span>
+      <span class="src" data-hover><span class="tick">[EU]</span>EU Council</span>
     </div>
   </div>
 </section>
 
-<hr class="divider" />
+<!-- ================= LIGHT ZONE ================= -->
+<main class="zone-light">
 
-<section class="section" id="knowledge">
-  <p class="section-eyebrow">🔥 Most popular · AML Knowledge Hub</p>
-  <h2 class="section-title">Learn financial crime compliance — free, in depth</h2>
-  <p class="section-sub">From sanctions basics to FCA enforcement — our knowledge hub covers everything a compliance student or professional needs to know.</p>
+  <div class="section-head rv" id="intelligence">
+    <span class="eyebrow">The platform</span>
+    <h2>One radar. Every signal that matters.</h2>
+    <p>Screening, regulatory intelligence and deep practitioner education in one open platform, built for analysts, MLROs and compliance leaders who are tired of paywalled mediocrity.</p>
+  </div>
 
-  <!-- Featured guides grid -->
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:2rem;">
+  <div class="bento">
 
-    <!-- Big card: Screening guide -->
-    <a href="/learn.html" style="text-decoration:none; background:linear-gradient(135deg,var(--navy-mid) 0%,var(--navy-light) 100%); border-radius:12px; padding:1.75rem; display:flex; flex-direction:column; justify-content:space-between; min-height:200px; transition:transform 0.15s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
-      <div>
-        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#93c5fd; margin-bottom:8px;">🛡️ Screening guide · 25 min</div>
-        <div style="font-family:'DM Serif Display',Georgia,serif; font-size:20px; color:#fff; line-height:1.3; margin-bottom:8px;">What is Financial Crime Screening?</div>
-        <div style="font-size:13px; color:#cbd5e1; line-height:1.7;">Sanctions, PEP, adverse media — interactive guide with quizzes and live tool access.</div>
+    <div class="cell c-screen rv" id="screening">
+      <span class="cell-tag">Live screening engine</span>
+      <h3>Screen any name against the world's watchlists in seconds.</h3>
+      <p>Fuzzy matching tuned by real MLRO casework, not academic theory. Distinctive-word logic, transliteration handling and risk-scored results across consolidated sanctions and dedicated PEP datasets.</p>
+      <div class="demo" aria-label="Example screening result">
+        <div class="demo-query"><span class="prompt">&gt;</span> screen &ldquo;Wagner Group PMC&rdquo;<span class="demo-caret"></span></div>
+        <div class="demo-row">
+          <div><span class="demo-name">PMC Wagner</span><span class="demo-list">OFSI &middot; EU &middot; OFAC consolidated</span></div>
+          <span class="chip chip-match">MATCH &middot; 96</span>
+        </div>
+        <div class="demo-row">
+          <div><span class="demo-name">Wagner Holdings Ltd</span><span class="demo-list">Corporate registry adjacent</span></div>
+          <span class="chip chip-review">REVIEW &middot; 61</span>
+        </div>
+        <div class="demo-row">
+          <div><span class="demo-name">R. Wagner (composer estate)</span><span class="demo-list">No list presence</span></div>
+          <span class="chip chip-clear">CLEAR &middot; 12</span>
+        </div>
       </div>
-      <div style="margin-top:1.25rem; font-size:13px; font-weight:600; color:#93c5fd;">Read the guide →</div>
-    </a>
-
-    <!-- Right column: AML series -->
-    <div style="display:flex; flex-direction:column; gap:12px;">
-      <a href="/aml-guide-part1.html" style="text-decoration:none; background:var(--white); border:1px solid var(--border); border-left:3px solid var(--danger); border-radius:12px; padding:1.1rem 1.25rem; display:block; transition:all 0.15s;" onmouseover="this.style.borderColor='#fca5a5'" onmouseout="this.style.borderColor='var(--border)'">
-        <div style="font-size:11px; font-weight:700; color:var(--danger); text-transform:uppercase; letter-spacing:0.4px; margin-bottom:4px;">⚖️ UK Law · Part 1 of 3</div>
-        <div style="font-size:14px; font-weight:600; color:var(--navy); margin-bottom:3px;">UK AML Compliance: Legal Framework</div>
-        <div style="font-size:12px; color:var(--muted);">MLR 2017 · POCA · Terrorism Act · SAMLA · FCA</div>
-      </a>
-      <a href="/aml-guide-part2.html" style="text-decoration:none; background:var(--white); border:1px solid var(--border); border-left:3px solid var(--warning); border-radius:12px; padding:1.1rem 1.25rem; display:block; transition:all 0.15s;" onmouseover="this.style.borderColor='#fcd34d'" onmouseout="this.style.borderColor='var(--border)'">
-        <div style="font-size:11px; font-weight:700; color:var(--warning); text-transform:uppercase; letter-spacing:0.4px; margin-bottom:4px;">📋 AML · Part 2 of 3</div>
-        <div style="font-size:14px; font-weight:600; color:var(--navy); margin-bottom:3px;">Core Obligations: CDD, SARs & Records</div>
-        <div style="font-size:12px; color:var(--muted);">Risk assessment · CDD/EDD · SARs · Record keeping</div>
-      </a>
-      <a href="/aml-guide-part3.html" style="text-decoration:none; background:var(--white); border:1px solid var(--border); border-left:3px solid var(--teal,var(--teal-deep)); border-radius:12px; padding:1.1rem 1.25rem; display:block; transition:all 0.15s;" onmouseover="this.style.borderColor='#5eead4'" onmouseout="this.style.borderColor='var(--border)'">
-        <div style="font-size:11px; font-weight:700; color:var(--teal-deep); text-transform:uppercase; letter-spacing:0.4px; margin-bottom:4px;">🏛️ Controls · Part 3 of 3</div>
-        <div style="font-size:14px; font-weight:600; color:var(--navy); margin-bottom:3px;">Controls, Training & FCA Enforcement</div>
-        <div style="font-size:12px; color:var(--muted);">Training · TM · MLRO · 2026 outlook</div>
-      </a>
     </div>
+
+    <div class="cell c-records rv rv-d1">
+      <span class="cell-tag">Coverage</span>
+      <div class="stat-num">131<span>k+</span></div>
+      <span class="stat-sub">Live risk records, refreshed from source</span>
+      <div class="stat-split">
+        <div><b>72,000+</b><small>SANCTIONS</small></div>
+        <div><b>59,800+</b><small>PEP PROFILES</small></div>
+      </div>
+    </div>
+
+    <div class="cell c-hub rv rv-d2" id="hub">
+      <span class="cell-tag">Knowledge Hub</span>
+      <h3>15+ deep practitioner guides.</h3>
+      <p>Not listicles. Full working handbooks with simulators, typology tabs and quizzes across six compliance domains.</p>
+      <div class="pill-row">
+        <span class="pill" data-hover>FATF Standards</span>
+        <span class="pill" data-hover>UK AML</span>
+        <span class="pill" data-hover>PEP Screening</span>
+        <span class="pill" data-hover>SARs</span>
+        <span class="pill" data-hover>Transaction Monitoring</span>
+        <span class="pill" data-hover>Alert Triage</span>
+      </div>
+    </div>
+
+    <div class="cell c-news rv rv-d1">
+      <span class="cell-tag">Regulatory pulse</span>
+      <h3>Curated, filtered, relevant.</h3>
+      <div class="news-ticker">
+        <div class="news-item"><span class="dot r"></span><span>New OFSI designations under the Russia regime<span class="news-src">HM TREASURY</span></span></div>
+        <div class="news-item"><span class="dot"></span><span>FCA thematic review on transaction monitoring effectiveness<span class="news-src">FCA</span></span></div>
+        <div class="news-item"><span class="dot g"></span><span>FATF publishes updated mutual evaluation outcomes<span class="news-src">FATF</span></span></div>
+      </div>
+    </div>
+
+    <div class="cell c-learn rv rv-d2">
+      <span class="cell-tag">Interactive learning</span>
+      <h3>Train the instinct, not just the memory.</h3>
+      <p>Alert triage simulators, false positive visualisers and typology walk-throughs that mirror what analysts face on a live queue.</p>
+    </div>
+
+    <div class="cell c-founder rv rv-d3">
+      <span class="cell-tag">Built by a practitioner</span>
+      <h3>An MLRO built this. It shows.</h3>
+      <p>A decade across FCA, MAS, AUSTRAC, CBUAE and FIU India regimes, distilled into tooling and content that survives contact with real casework.</p>
+    </div>
+
   </div>
 
-  <div style="margin-top:1.25rem; text-align:center;">
-    <a href="/knowledge.html" style="display:inline-flex; align-items:center; gap:8px; padding:11px 24px; background:var(--navy); color:#fff; border-radius:8px; font-size:14px; font-weight:600; text-decoration:none; transition:all 0.15s;" onmouseover="this.style.background='var(--accent)'" onmouseout="this.style.background='var(--navy)'">
-      📚 Browse all guides in the AML Knowledge Hub →
-    </a>
-  </div>
-</section>
+  <!-- ================= EXPANDING FEATURES ================= -->
+  <section class="features" id="method">
+    <div class="section-head rv">
+      <span class="eyebrow">Methodology</span>
+      <h2>Open about how the radar works.</h2>
+      <p>Most vendors hide their matching logic behind sales calls. We publish ours. Click any principle to see it in full.</p>
+    </div>
 
-<hr class="divider" />
+    <div class="xcards rv">
+      <article class="xcard">
+        <button class="xcard-head" data-hover aria-expanded="false">
+          <span class="code">MATCH</span>
+          <h3>Distinctive-word matching, scoped tight</h3>
+          <span class="plus" aria-hidden="true"></span>
+        </button>
+        <div class="xcard-body"><div>
+          <div class="xcard-content">
+            <p>A shared surname is noise. A shared designation like &ldquo;Wagner Group PMC&rdquo; is signal. Our boost logic only fires when the overlapping term dominates the meaningful content of at least one side of the comparison, which is exactly how we eliminated a class of first-name-only false positives without losing a single true match. Every rule change is regression-tested against both the failure case and known true positives before it ships.</p>
+            <div class="facts"><span><b>False positive class</b><br>Root-caused &amp; eliminated</span><span><b>Regression suite</b><br>True + false positive pairs</span></div>
+          </div>
+        </div></div>
+      </article>
 
-<section class="section">
-  <p class="section-eyebrow">Data sources</p>
-  <h2 class="section-title">Real data, open and transparent</h2>
-  <p class="section-sub">Powered by verified, publicly available sanction and PEP datasets — no black boxes.</p>
-  <div class="sources">
-    <span class="source-tag">OFAC SDN</span>
-    <span class="source-tag">UN Consolidated List</span>
-    <span class="source-tag">EU Sanctions</span>
-    <span class="source-tag">OFSI (UK)</span>
-    <span class="source-tag">OpenSanctions</span>
-    <span class="source-tag">DFAT (Australia)</span>
-    <span class="source-tag">OSFI (Canada)</span>
-    <span class="source-tag">SECO (Switzerland)</span>
-    <span class="source-tag">BBC News RSS</span>
-    <span class="source-tag">OCCRP</span>
-    <span class="source-tag">AP News</span>
-    <span class="source-tag">DW News</span>
-  </div>
-</section>
+      <article class="xcard">
+        <button class="xcard-head" data-hover aria-expanded="false">
+          <span class="code">PEP</span>
+          <h3>Dedicated PEP coverage, position-aware</h3>
+          <span class="plus" aria-hidden="true"></span>
+        </button>
+        <div class="xcard-body"><div>
+          <div class="xcard-content">
+            <p>PEP risk is about the position, not just the name. We run a dedicated PEP dataset of nearly 60,000 profiles with position-text prioritisation, so a head of state and a municipal clerk are never scored as equivalent risks. Family members and close associates are on the roadmap via the OpenSanctions API layer.</p>
+            <div class="facts"><span><b>59,800+ profiles</b><br>Dedicated PEP dataset</span><span><b>Position-weighted</b><br>Role text drives priority</span></div>
+          </div>
+        </div></div>
+      </article>
 
-<hr class="divider" />
+      <article class="xcard">
+        <button class="xcard-head" data-hover aria-expanded="false">
+          <span class="code">POOL</span>
+          <h3>No silent candidate ceilings</h3>
+          <span class="plus" aria-hidden="true"></span>
+        </button>
+        <div class="xcard-body"><div>
+          <div class="xcard-content">
+            <p>Screening engines quietly fail when the candidate pool is capped before scoring even runs, dropping real entities that never get evaluated. We found and killed that failure mode in our own engine and now verify that known true positives reach the scoring stage on every release. If a name is on a list, it gets scored. Full stop.</p>
+            <div class="facts"><span><b>Pool verification</b><br>Every release</span><span><b>Zero silent drops</b><br>True positives always scored</span></div>
+          </div>
+        </div></div>
+      </article>
 
-<!-- ===== COMPLIANCE NEWS WIDGET (compact) ===== -->
-<section class="section" id="news" style="padding-top:2.5rem;padding-bottom:2.5rem;">
-  <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:1rem;">
+      <article class="xcard">
+        <button class="xcard-head" data-hover aria-expanded="false">
+          <span class="code">OPEN</span>
+          <h3>Free by design, open by principle</h3>
+          <span class="plus" aria-hidden="true"></span>
+        </button>
+        <div class="xcard-body"><div>
+          <div class="xcard-content">
+            <p>Compliance knowledge locked behind five-figure licences makes the whole system weaker. The screening tool, the guides and the regulatory feed are free and require no login. A premium API tier is coming for teams that need volume and integration, but the core radar stays open.</p>
+            <div class="facts"><span><b>&pound;0 core access</b><br>No login required</span><span><b>API tier</b><br>Coming for teams</span></div>
+          </div>
+        </div></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="cta-strip rv">
+    <h2>Get the signal, skip the noise.</h2>
+    <p>One concise briefing when new guides, datasets or major regulatory shifts land. Written by a practitioner, read in two minutes.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="you@firm.com" aria-label="Email address" data-hover>
+      <button class="btn btn-primary" data-hover onclick="location.href='/learn.html'">Join the briefing <span class="arr">&rarr;</span></button>
+    </div>
+    <p class="cta-note">NO SPAM &middot; UNSUBSCRIBE ANYTIME &middot; GDPR RESPECTED</p>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
     <div>
-      <p class="section-eyebrow" style="margin-bottom:4px;">📡 Live Intelligence</p>
-      <h2 class="section-title" style="font-size:clamp(1.3rem,2.5vw,1.6rem);margin-bottom:0;">Latest compliance news</h2>
+      <div class="fbrand">FinCrimeRadar</div>
+      <p>Open financial crime intelligence for the people who actually fight it. Built in the UK by a working MLRO.</p>
     </div>
-    <a href="/news.html" style="font-size:13px;color:var(--accent);text-decoration:none;font-weight:600;white-space:nowrap;">View all news →</a>
+    <div class="fcol">
+      <h4>Platform</h4>
+      <a href="/screen.html" data-hover>Screening Tool</a>
+      <a href="/knowledge.html" data-hover>Knowledge Hub</a>
+      <a href="/news.html" data-hover>Regulatory News</a>
+    </div>
+    <div class="fcol">
+      <h4>Guides</h4>
+      <a href="/fatf-guide-part1.html" data-hover>FATF Standards</a>
+      <a href="/pep-guide-part1.html" data-hover>PEP Screening Handbook</a>
+      <a href="/sar-guide-part1.html" data-hover>SAR Complete Guide</a>
+      <a href="/tm-guide.html" data-hover>Transaction Monitoring</a>
+    </div>
+    <div class="fcol">
+      <h4>Company</h4>
+      <a href="/about.html" data-hover>About</a>
+      <a href="#method" data-hover>Methodology</a>
+      <a href="/contact.html" data-hover>Contact</a>
+    </div>
+  </footer>
+  <div class="footer-base">
+    <span>&copy; 2026 FINCRIMERADAR &middot; <a href="/privacy.html" data-hover style="text-decoration:underline">PRIVACY</a></span>
+    <span>SCREENING RESULTS ARE DECISION SUPPORT, NOT LEGAL ADVICE</span>
   </div>
 
-  <div id="newsGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;"></div>
-</section>
-
-<hr class="divider" />
-
-<style>
-.news-card { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1rem 1.1rem; text-decoration:none; display:flex; flex-direction:column; gap:6px; transition:all 0.2s; }
-.news-card:hover { border-color:var(--accent); transform:translateY(-1px); box-shadow:0 4px 12px rgba(29,95,196,0.08); }
-.news-card-top { display:flex; align-items:center; justify-content:space-between; gap:8px; }
-.news-source-badge { font-size:10px; font-weight:700; padding:2px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.4px; white-space:nowrap; }
-.news-date { font-size:11px; color:var(--muted); white-space:nowrap; }
-.news-title { font-size:13.5px; font-weight:600; color:var(--navy); line-height:1.4; }
-.news-read { font-size:11px; color:var(--accent); font-weight:500; margin-top:auto; }
-.src-fca { background:#fee2e2; color:#991b1b; }
-.src-occrp { background:#ede9fe; color:#5b21b6; }
-.src-bbc { background:#dbeafe; color:#1e40af; }
-.src-ofsi { background:#dcfce7; color:#166534; }
-.src-ap { background:#f3f4f6; color:var(--slate); }
-@media (max-width:768px) { #newsGrid { grid-template-columns:1fr !important; } }
-</style>
+</main>
+</div><!-- /scroller -->
 
 <script>
-var _newsItems = [];
+(function(){
+"use strict";
+var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
-var NEWS_FALLBACK = [
-  {title:'FCA issues Final Notice to CACEIS BANK (UK Branch)',date:'2026-06-25',link:'https://www.fca.org.uk/news',source:'FCA',badge:'src-fca'},
-  {title:'UK adds new designations to Russia sanctions regime',date:'2026-06-22',link:'https://www.gov.uk/government/organisations/office-of-financial-sanctions-implementation',source:'OFSI',badge:'src-ofsi'},
-  {title:'UK fraud losses hit record levels as APP scams surge',date:'2026-06-23',link:'https://bbc.co.uk/news/business',source:'BBC',badge:'src-bbc'},
-  {title:'OCCRP: Kleptocracy assets frozen across three jurisdictions',date:'2026-06-20',link:'https://occrp.org',source:'OCCRP',badge:'src-occrp'},
-  {title:'OFAC designates additional Russian entities and vessels',date:'2026-06-21',link:'https://home.treasury.gov/policy-issues/office-of-foreign-assets-control-sanctions-programs-and-information',source:'AP News',badge:'src-ap'},
-  {title:'FATF announces updated list of high-risk jurisdictions',date:'2026-06-12',link:'https://www.fatf-gafi.org',source:'AP News',badge:'src-ap'},
-];
+/* ============ RADAR CANVAS ============ */
+var cv = document.getElementById('radar');
+var ctx = cv.getContext('2d');
+var W,H,cx,cy,maxR,dpr;
+var blips = [];
+var sweep = 0;
 
-function _timeAgo(d) {
-  try {
-    var diff = Date.now() - new Date(d);
-    var days = Math.floor(diff/86400000);
-    if(days===0) return 'Today';
-    if(days===1) return 'Yesterday';
-    if(days<7) return days+' days ago';
-    return new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
-  } catch(e){ return d||''; }
+function sizeRadar(){
+  dpr = Math.min(window.devicePixelRatio||1,2);
+  W = cv.clientWidth; H = cv.clientHeight;
+  cv.width = W*dpr; cv.height = H*dpr;
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  cx = W/2; cy = H*0.46;
+  maxR = Math.max(W,H)*0.62;
+  seedBlips();
 }
-
-function renderNews() {
-  var grid = document.getElementById('newsGrid');
-  if(!grid) return;
-  grid.innerHTML = _newsItems.slice(0,3).map(function(item){
-    return '<a href="'+(item.link||'#')+'" target="_blank" rel="noopener" class="news-card">'
-      +'<div class="news-card-top"><span class="news-source-badge '+item.badge+'">'+item.source+'</span><span class="news-date">'+_timeAgo(item.date)+'</span></div>'
-      +'<div class="news-title">'+item.title+'</div>'
-      +'<span class="news-read">Read →</span>'
-      +'</a>';
-  }).join('');
-}
-
-function detectCat(title, desc) {
-  var t = (title+' '+(desc||'')).toLowerCase();
-  if(t.includes('sanction')||t.includes('ofac')||t.includes('ofsi')||t.includes('designation')||t.includes('sdn')) return 'sanctions';
-  if(t.includes('fraud')||t.includes('scam')||t.includes('push payment')) return 'fraud';
-  if(t.includes('aml')||t.includes('money launder')||t.includes('financial crime')||t.includes('fine')||t.includes('final notice')||t.includes('enforcement')) return 'aml';
-  if(t.includes('fca')||t.includes('financial conduct')) return 'fca';
-  return 'global';
-}
-
-async function loadNews(force) {
-  var cKey='fcr_news_v4_home', tKey='fcr_news_t4_home', TTL=30*60*1000;
-  if(!force) {
-    try {
-      var c=localStorage.getItem(cKey), t=localStorage.getItem(tKey);
-      if(c&&t&&Date.now()-parseInt(t)<TTL){
-        _newsItems=JSON.parse(c); renderNews();
-        return;
-      }
-    } catch(e){}
+function seedBlips(){
+  blips = [];
+  var n = W < 700 ? 26 : 46;
+  for(var i=0;i<n;i++){
+    blips.push({
+      a: Math.random()*Math.PI*2,
+      r: (0.12+Math.random()*0.85)*maxR,
+      hot: Math.random() < 0.08,
+      glow: 0
+    });
   }
+}
+function drawRadar(){
+  ctx.clearRect(0,0,W,H);
 
-  _newsItems = NEWS_FALLBACK.slice();
-  renderNews();
+  /* rings */
+  ctx.strokeStyle = 'rgba(59,232,176,0.07)';
+  ctx.lineWidth = 1;
+  for(var i=1;i<=5;i++){
+    ctx.beginPath();
+    ctx.arc(cx,cy,maxR*i/5,0,Math.PI*2);
+    ctx.stroke();
+  }
+  /* cross hairs */
+  ctx.beginPath();
+  ctx.moveTo(cx-maxR,cy); ctx.lineTo(cx+maxR,cy);
+  ctx.moveTo(cx,cy-maxR); ctx.lineTo(cx,cy+maxR);
+  ctx.strokeStyle = 'rgba(59,232,176,0.045)';
+  ctx.stroke();
 
-  var sources = [
-    {url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.fca.org.uk%2Frss%2Fnews',source:'FCA',badge:'src-fca'},
-    {url:'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.gov.uk%2Fgovernment%2Forganisations%2Foffice-of-financial-sanctions-implementation.atom',source:'OFSI',badge:'src-ofsi'},
-    {url:'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.bbci.co.uk%2Fnews%2Fbusiness%2Frss.xml',source:'BBC',badge:'src-bbc'},
-  ];
+  /* sweep wedge */
+  var grad = ctx.createConicGradient
+    ? ctx.createConicGradient(sweep, cx, cy)
+    : null;
+  if(grad){
+    grad.addColorStop(0,'rgba(59,232,176,0.16)');
+    grad.addColorStop(0.08,'rgba(59,232,176,0.0)');
+    grad.addColorStop(1,'rgba(59,232,176,0.0)');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.moveTo(cx,cy);
+    ctx.arc(cx,cy,maxR,0,Math.PI*2);
+    ctx.fill();
+  }
+  /* sweep line */
+  ctx.beginPath();
+  ctx.moveTo(cx,cy);
+  ctx.lineTo(cx+Math.cos(sweep)*maxR, cy+Math.sin(sweep)*maxR);
+  ctx.strokeStyle = 'rgba(59,232,176,0.5)';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
 
-  var liveItems = [];
-  var fetched = 0;
-  sources.forEach(function(src){
-    fetch(src.url, {signal: AbortSignal.timeout(4000)})
-      .then(function(r){ return r.json(); })
-      .then(function(d){
-        if(d.items && d.items.length) {
-          d.items.slice(0,2).forEach(function(i){
-            liveItems.push({
-              title: i.title||'',
-              link: i.link||i.url||'#',
-              date: i.pubDate||i.published||new Date().toISOString(),
-              source: src.source, badge: src.badge,
-              cat: detectCat(i.title, i.description)
-            });
-          });
-        }
-      })
-      .catch(function(){})
-      .finally(function(){
-        fetched++;
-        if(fetched === sources.length && liveItems.length > 0) {
-          liveItems.sort(function(a,b){ try{return new Date(b.date)-new Date(a.date);}catch(e){return 0;} });
-          _newsItems = liveItems;
-          renderNews();
-          try{ localStorage.setItem(cKey,JSON.stringify(_newsItems)); localStorage.setItem(tKey,Date.now().toString()); }catch(e){}
-        }
-      });
+  /* blips */
+  for(var j=0;j<blips.length;j++){
+    var b = blips[j];
+    var da = Math.atan2(Math.sin(b.a - sweep), Math.cos(b.a - sweep));
+    if(Math.abs(da) < 0.05) b.glow = 1;
+    b.glow *= 0.985;
+    if(b.glow < 0.02) continue;
+    var x = cx + Math.cos(b.a)*b.r;
+    var y = cy + Math.sin(b.a)*b.r;
+    var col = b.hot ? '229,72,77' : '59,232,176';
+    ctx.beginPath();
+    ctx.arc(x,y, b.hot?3.4:2.2, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba('+col+','+ (0.85*b.glow) +')';
+    ctx.shadowColor = 'rgba('+col+','+ (0.9*b.glow) +')';
+    ctx.shadowBlur = b.hot? 16 : 9;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+    if(b.hot && b.glow > 0.5){
+      ctx.beginPath();
+      ctx.arc(x,y, 9 + (1-b.glow)*14, 0, Math.PI*2);
+      ctx.strokeStyle = 'rgba('+col+','+ (0.5*b.glow) +')';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+  }
+  sweep += 0.0075;
+}
+sizeRadar();
+window.addEventListener('resize', sizeRadar);
+
+var heroVisible = true;
+new IntersectionObserver(function(en){ heroVisible = en[0].isIntersecting; },{threshold:0})
+  .observe(document.querySelector('.hero'));
+
+if(!prefersReduced){
+  (function loop(){
+    if(heroVisible) drawRadar();
+    requestAnimationFrame(loop);
+  })();
+} else {
+  drawRadar();
+}
+
+/* ============ CUSTOM CURSOR ============ */
+if(!isTouch && !prefersReduced){
+  document.body.classList.add('cursor-on');
+  var dot = document.querySelector('.cursor-dot');
+  var ring = document.querySelector('.cursor-ring');
+  var mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+  window.addEventListener('mousemove',function(e){
+    mx=e.clientX; my=e.clientY;
+    dot.style.left=mx+'px'; dot.style.top=my+'px';
+    var lightTop = document.querySelector('.zone-light').getBoundingClientRect().top;
+    document.body.classList.toggle('light-zone-cursor', lightTop < my);
+  });
+  (function ringLoop(){
+    rx += (mx-rx)*0.16; ry += (my-ry)*0.16;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(ringLoop);
+  })();
+  document.querySelectorAll('[data-hover]').forEach(function(el){
+    el.addEventListener('mouseenter',function(){document.body.classList.add('cursor-hovering')});
+    el.addEventListener('mouseleave',function(){document.body.classList.remove('cursor-hovering')});
   });
 }
 
-document.addEventListener('DOMContentLoaded', function(){ loadNews(false); });
-</script>
-
-<section class="section" id="roadmap">
-  <p class="section-eyebrow">Roadmap</p>
-  <h2 class="section-title">Building in public</h2>
-  <p class="section-sub">Every step open-sourced on GitHub.</p>
-  <div class="roadmap">
-    <div class="phase done"><div class="phase-dot"></div><span class="phase-text">Domain registered — fincrimeradar.org</span><span class="phase-pill">Done</span></div>
-    <div class="phase done"><div class="phase-dot"></div><span class="phase-text">Sanctions + PEP + adverse media screening engine live</span><span class="phase-pill">Done</span></div>
-    <div class="phase done"><div class="phase-dot"></div><span class="phase-text">Public API deployed on Render</span><span class="phase-pill">Done</span></div>
-    <div class="phase active"><div class="phase-dot"></div><span class="phase-text">Knowledge hub — FCA, FATF, fraud frameworks</span><span class="phase-pill">In progress</span></div>
-    <div class="phase upcoming"><div class="phase-dot"></div><span class="phase-text">API documentation page</span><span class="phase-pill">Up next</span></div>
-    <div class="phase upcoming"><div class="phase-dot"></div><span class="phase-text">Extended PEP database — 500+ profiles</span><span class="phase-pill">Up next</span></div>
-    <div class="phase upcoming"><div class="phase-dot"></div><span class="phase-text">Learning modules and case studies</span><span class="phase-pill">Up next</span></div>
-  </div>
-</section>
-
-
-
-<!-- GLOBAL FOOTER -->
-<footer style="background:#0f2044;color:#94a3b8;margin-top:0;">
-  <div style="max-width:1060px;margin:0 auto;padding:3rem 1.5rem 2rem;">
-
-    <!-- Top row: brand + newsletter -->
-    <div style="display:grid;grid-template-columns:1fr 340px;gap:3rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:2.5rem;">
-
-      <!-- Brand column -->
-      <div>
-        <a href="/" style="display:inline-block;margin-bottom:1rem;">
-          <img src="/logo.png" alt="FinCrimeRadar" style="height:44px;width:auto;max-width:220px;object-fit:contain;object-position:left center;display:block;" />
-        </a>
-        <p style="font-size:13.5px;color:#94a3b8;line-height:1.7;max-width:380px;margin-bottom:1.25rem;">
-          Free, open-source financial crime intelligence. Built by a compliance practitioner for compliance professionals, students, and anyone who thinks the best AML knowledge should not live behind a paywall.
-        </p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <a href="https://www.linkedin.com/in/pratikzanke-749856126/" target="_blank" rel="noopener"
-             style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;font-size:12px;color:#cbd5e1;text-decoration:none;transition:all .15s;"
-             onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.06)'">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-            LinkedIn
-          </a>
-          <a href="https://github.com/prats922/fincrimeradar" target="_blank" rel="noopener"
-             style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;font-size:12px;color:#cbd5e1;text-decoration:none;transition:all .15s;"
-             onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.06)'">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-            GitHub
-          </a>
-        </div>
-      </div>
-
-      <!-- Newsletter column -->
-      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:1.5rem;">
-        <div style="font-size:14px;font-weight:600;color:#fff;margin-bottom:4px;">Weekly compliance digest</div>
-        <div style="font-size:12px;color:#64748b;margin-bottom:1rem;line-height:1.5;">Regulatory updates, new guides, and screening tool improvements. No spam. Unsubscribe anytime.</div>
-        <div style="display:flex;gap:8px;">
-          <input type="email" id="footerEmail" placeholder="your@email.com"
-            style="flex:1;padding:9px 12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:6px;font-size:13px;color:#fff;outline:none;font-family:'Inter',sans-serif;min-width:0;"
-            onfocus="this.style.borderColor='#00c4a7'" onblur="this.style.borderColor='rgba(255,255,255,.12)'" />
-          <button onclick="footerSignup()"
-            style="padding:9px 16px;background:#00c4a7;border:none;border-radius:6px;font-size:13px;font-weight:600;color:#fff;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:background .15s;"
-            onmouseover="this.style.background='#00a892'" onmouseout="this.style.background='#00c4a7'">Subscribe</button>
-        </div>
-        <div id="footerNlSuccess" style="display:none;font-size:12px;color:#4ade80;margin-top:8px;">You are in. Weekly digest coming your way.</div>
-      </div>
-    </div>
-
-    <!-- Nav columns -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:2rem;">
-
-      <!-- Platform -->
-      <div>
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#475569;margin-bottom:.875rem;">Platform</div>
-        <div style="display:flex;flex-direction:column;gap:.5rem;">
-          <a href="/screen.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">Screening Tool</a>
-          <a href="/news.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">Live News Feed</a>
-          <a href="/knowledge.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">Knowledge Hub</a>
-          <a href="/learn.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">Learn</a>
-        </div>
-      </div>
-
-      <!-- Guides -->
-      <div>
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#475569;margin-bottom:.875rem;">Key Guides</div>
-        <div style="display:flex;flex-direction:column;gap:.5rem;">
-          <a href="/aml-guide-part1.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">UK AML Compliance</a>
-          <a href="/pep-guide-part1.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">PEP Screening Handbook</a>
-          <a href="/sar-guide-part1.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">SAR Complete Guide</a>
-          <a href="/fatf-guide-part1.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">FATF 40 Recommendations</a>
-          <a href="/tm-guide.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">Transaction Monitoring</a>
-        </div>
-      </div>
-
-      <!-- Data Sources -->
-      <div>
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#475569;margin-bottom:.875rem;">Data Sources</div>
-        <div style="display:flex;flex-direction:column;gap:.5rem;">
-          <span style="font-size:13px;color:#64748b;">OpenSanctions (OFAC, UN, EU)</span>
-          <span style="font-size:13px;color:#64748b;">OFSI (UK Consolidated List)</span>
-          <span style="font-size:13px;color:#64748b;">OpenSanctions PEP Dataset</span>
-          <span style="font-size:13px;color:#64748b;">FCA, NCA, BBC, OCCRP</span>
-          <span style="font-size:13px;color:#64748b;">HM Treasury, FATF</span>
-        </div>
-      </div>
-
-      <!-- Company -->
-      <div>
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#475569;margin-bottom:.875rem;">Company</div>
-        <div style="display:flex;flex-direction:column;gap:.5rem;">
-          <a href="/about.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">About</a>
-          <a href="/contact.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">Contact</a>
-          <a href="/privacy.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">Privacy Policy</a>
-          <a href="https://github.com/prats922/fincrimeradar" target="_blank" rel="noopener" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">Open Source</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bottom bar -->
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
-      <div style="font-size:12px;color:#475569;line-height:1.5;">
-        © 2026 FinCrimeRadar. Built by <a href="/about.html" style="color:#64748b;text-decoration:none;" onmouseover="this.style.color='#94a3b8'" onmouseout="this.style.color='#64748b'">Pratik Zanke</a>, Compliance Operations Analyst. For educational purposes only. Not legal advice.
-      </div>
-      <div style="display:flex;align-items:center;gap:6px;">
-        <div style="width:6px;height:6px;border-radius:50%;background:#16a34a;"></div>
-        <span style="font-size:12px;color:#475569;">All systems operational</span>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<script>
-async function footerSignup() {
-  const email = document.getElementById('footerEmail').value;
-  if (!email || !email.includes('@')) return;
-  try { await fetch('/api/subscribe', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email})}); } catch {}
-  document.getElementById('footerNlSuccess').style.display = 'block';
-  document.getElementById('footerEmail').value = '';
-}
-</script>
-
-<script>
-async function handleSignup() {
-  const btn = document.getElementById('submitBtn');
-  const msg = document.getElementById('successMsg');
-  const email = document.getElementById('emailInput').value;
-  if (!email || !email.includes('@')) return;
-  btn.disabled = true; btn.textContent = 'Joining...';
-  try {
-    const r = await fetch('/api/subscribe', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({email}) });
-    const d = await r.json();
-    if (d.success) { btn.textContent = 'Joined ✓'; msg.style.display = 'block'; }
-    else throw new Error();
-  } catch { btn.disabled = false; btn.textContent = 'Try again'; }
-}
-</script>
-
-<!-- Cookie Consent Banner -->
-<div id="cookieBanner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; background:var(--navy-mid); border-top:1px solid var(--navy-light); padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; box-shadow:0 -4px 20px rgba(0,0,0,0.3);">
-  <div style="flex:1; min-width:260px;">
-    <div style="font-size:13px; font-weight:600; color:#fff; margin-bottom:4px;">🍪 We use cookies</div>
-    <div style="font-size:12px; color:#94a3b8; line-height:1.5;">We use Google Analytics to understand how visitors use FinCrimeRadar. No personal data is sold. See our <a href="/privacy.html" style="color:#93c5fd; text-decoration:none;">Privacy Policy</a>.</div>
-  </div>
-  <div style="display:flex; gap:8px; flex-shrink:0;">
-    <button onclick="rejectCookies()" style="padding:8px 16px; background:transparent; border:1px solid #334155; color:#94a3b8; border-radius:6px; font-size:12px; font-weight:500; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Reject non-essential</button>
-    <button onclick="acceptCookies()" style="padding:8px 18px; background:var(--teal); border:none; color:#fff; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Accept all</button>
-  </div>
-</div>
-<script>
-  (function() {
-    var consent = localStorage.getItem('fcr_cookie_consent');
-    if (!consent) {
-      document.getElementById('cookieBanner').style.display = 'flex';
-    } else if (consent === 'rejected') {
-      // Disable GA if rejected
-      window['ga-disable-G-FC1VMTE7JH'] = true;
-    }
+/* ============ WEIGHTED SMOOTH SCROLL (desktop only) ============ */
+var scroller = document.getElementById('scroller');
+var useSmooth = !isTouch && !prefersReduced && innerWidth >= 1024;
+if(useSmooth){
+  var current = window.scrollY, target = window.scrollY;
+  function setBodyHeight(){ document.body.style.height = scroller.scrollHeight + 'px'; }
+  document.body.classList.add('js-smooth');
+  setBodyHeight();
+  window.addEventListener('resize', setBodyHeight);
+  new ResizeObserver(setBodyHeight).observe(scroller);
+  window.addEventListener('scroll', function(){ target = window.scrollY; }, {passive:true});
+  (function smoothLoop(){
+    current += (target - current) * 0.085;
+    if(Math.abs(target-current) < 0.05) current = target;
+    scroller.style.transform = 'translate3d(0,' + (-current) + 'px,0)';
+    requestAnimationFrame(smoothLoop);
   })();
-  function acceptCookies() {
-    localStorage.setItem('fcr_cookie_consent', 'accepted');
-    document.getElementById('cookieBanner').style.display = 'none';
-  }
-  function rejectCookies() {
-    localStorage.setItem('fcr_cookie_consent', 'rejected');
-    window['ga-disable-G-FC1VMTE7JH'] = true;
-    document.getElementById('cookieBanner').style.display = 'none';
-  }
-</script>
-<script>
-function toggleMobileNav(){
-  var nav=document.getElementById('mobileNav');
-  var btn=document.getElementById('navHamburger');
-  if(!nav) return;
-  var open=nav.classList.toggle('open');
-  btn.innerHTML=open?'&#10005;':'&#9776;';
-  document.body.style.overflow=open?'hidden':'';
 }
-document.addEventListener('click',function(e){
-  var nav=document.getElementById('mobileNav');
-  var btn=document.getElementById('navHamburger');
-  if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==btn){
-    nav.classList.remove('open');
-    btn.innerHTML='&#9776;';
-    document.body.style.overflow='';
-  }
+
+/* ============ NAV STATE ============ */
+var nav = document.getElementById('nav');
+window.addEventListener('scroll', function(){
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+},{passive:true});
+
+/* ============ REVEALS ============ */
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(en){
+    if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+  });
+},{threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+/* ============ MARQUEE: duplicate track for seamless loop ============ */
+var track = document.getElementById('mtrack');
+track.innerHTML += track.innerHTML;
+
+/* ============ EXPANDING CARDS ============ */
+document.querySelectorAll('.xcard-head').forEach(function(head){
+  head.addEventListener('click', function(){
+    var card = head.closest('.xcard');
+    var wasOpen = card.classList.contains('open');
+    document.querySelectorAll('.xcard.open').forEach(function(c){
+      c.classList.remove('open');
+      c.querySelector('.xcard-head').setAttribute('aria-expanded','false');
+    });
+    if(!wasOpen){
+      card.classList.add('open');
+      head.setAttribute('aria-expanded','true');
+    }
+  });
 });
+})();
 </script>
 </body>
 </html>
