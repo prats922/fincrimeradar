@@ -1,0 +1,120 @@
+/* FinCrimeRadar Delta Tracker page styles.
+   Loads after brand.css, inherits its tokens (--teal, --navy, --text,
+   --muted, --border, radii). Purely additive, styles only the
+   delta-page structure that brand.css does not already cover. */
+
+.delta-page{
+  max-width:900px;
+  margin:0 auto;
+  padding:clamp(90px,10vw,130px) clamp(20px,5vw,0px) 100px;
+}
+.delta-page .eyebrow{
+  font-family:'IBM Plex Mono',ui-monospace,monospace;
+  font-size:.74rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--teal-deep);
+}
+.delta-page h1{
+  font-family:'Playfair Display',Georgia,serif;
+  font-weight:800;
+  font-size:clamp(2rem,4.4vw,3rem);
+  letter-spacing:-.01em;
+  margin:16px 0 20px;
+  color:var(--text);
+}
+.delta-lede{
+  color:var(--muted);
+  font-size:1.05rem;
+  line-height:1.7;
+  max-width:640px;
+  margin-bottom:48px;
+}
+
+.delta-group{
+  margin-bottom:56px;
+}
+.delta-group h2{
+  font-family:'Playfair Display',Georgia,serif;
+  font-weight:800;
+  font-size:1.5rem;
+  margin-bottom:18px;
+  color:var(--text);
+}
+.delta-added h2{color:var(--danger,#E5484D)}
+.delta-delisted h2{color:var(--teal-deep)}
+.delta-amended h2{color:var(--warning,#E8A33D)}
+
+.delta-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-bottom:24px;
+  background:var(--white,#fff);
+  border:1px solid var(--border);
+  border-radius:var(--r-md,14px);
+  overflow:hidden;
+}
+.delta-table thead th{
+  text-align:left;
+  font-family:'IBM Plex Mono',ui-monospace,monospace;
+  font-size:.7rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  padding:14px 18px;
+  background:var(--off,#F4F6F3);
+  border-bottom:1px solid var(--border);
+}
+.delta-table td{
+  padding:14px 18px;
+  border-bottom:1px solid var(--border);
+  font-size:.92rem;
+}
+.delta-table tr:last-child td{border-bottom:none}
+.delta-name{
+  color:var(--teal-deep);
+  font-weight:600;
+  text-decoration:none;
+  transition:color .25s;
+}
+.delta-name:hover{color:var(--teal,#12B981);text-decoration:underline}
+
+.delta-actions{
+  background:var(--white,#fff);
+  border:1px solid var(--border);
+  border-radius:var(--r-md,14px);
+  padding:22px 26px;
+}
+.delta-actions h3{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:1.05rem;
+  margin-bottom:12px;
+  color:var(--text);
+}
+.delta-actions ul{
+  padding-left:20px;
+  color:var(--ink-soft,#3D4E5C);
+  line-height:1.7;
+  font-size:.92rem;
+}
+.delta-actions li{margin-bottom:8px}
+.delta-actions li:last-child{margin-bottom:0}
+
+.delta-disclaimer{
+  font-family:'IBM Plex Mono',ui-monospace,monospace;
+  font-size:.72rem;
+  color:var(--muted);
+  border-top:1px solid var(--border);
+  padding-top:24px;
+  margin-top:40px;
+}
+
+@media(max-width:640px){
+  .delta-table thead{display:none}
+  .delta-table, .delta-table tbody, .delta-table tr, .delta-table td{
+    display:block;
+    width:100%;
+  }
+  .delta-table tr{border-bottom:1px solid var(--border);padding:10px 0}
+  .delta-table td{border-bottom:none;padding:6px 18px}
+}
