@@ -1,0 +1,222 @@
+#!/usr/bin/env python3
+"""
+FinCrimeRadar Sanctions Delta Tracker: content factory core.
+
+Daily flow:
+  1. Fetch a slim export of the sanctions dataset (id, name, lists, change date)
+  2. Diff against data/snapshot.json committed in the repo
+  3. Classify: ADDED / DELISTED / AMENDED
+  4. Render ONE grouped daily page at delta/YYYY-MM-DD.html
+     with a practitioner action layer per change type
+  5. Regenerate delta/index.html and append the new URL to sitemap.xml
+  6. Save the new snapshot
+
+Anomaly guardrail: if the diff exceeds MAX_SANE_CHANGES the job aborts
+without publishing, because a huge diff means a source format change,
+not a sanctions event.
+
+VERIFY BEFORE FIRST RUN:
+  - DATASET_URL must point at your slim export. With your OpenSanctions
+    non-commercial key, prefer the per-dataset targets.simple.csv or an
+    API-driven slim pull. Adjust parse_records() to match its columns.
+"""
+
+import csv, io, json, os, sys, html
+from datetime import date, datetime, timezone
+
+# ---------------- Configuration ----------------
+DATASET_URL = os.environ.get(
+    "DATASET_URL",
+    "https://data.opensanctions.org/datasets/latest/sanctions/targets.simple.csv",
+)
+SNAPSHOT_PATH = "data/snapshot.json"
+DELTA_DIR = "delta"
+SITEMAP_PATH = "sitemap.xml"
+SITE = "https://fincrimeradar.org"
+MAX_SANE_CHANGES = 2000  # guardrail: bigger diff = source anomaly, abort
+
+TODAY = date.today().isoformat()
+
+# ---------------- Practitioner action layer ----------------
+# This judgement content is the uniqueness moat. Written once by an MLRO,
+# rendered on every relevant page automatically.
+ACTIONS = {
+    "ADDED": (
+        "Practitioner actions within 24 hours",
+        [
+            "Rescreen your live customer base and payment queues against the new designation, including known aliases.",
+            "Check historic exposure: closed relationships and past transactions may still trigger reporting duties.",
+            "For UK designations, assess whether an OFSI report is required and whether assets must be frozen immediately.",
+            "Document the screening sweep and outcome, even if nil return. The audit trail is the control.",
+        ],
+    ),
+    "DELISTED": (
+        "Practitioner actions on delisting",
+        [
+            "Do not auto-clear. Verify the delisted identity matches your record precisely, including aliases and identifiers.",
+            "Check whether the entity remains listed under any other regime before releasing restrictions.",
+            "Retain all records relating to the prior designation. Delisting does not erase historic obligations.",
+        ],
+    ),
+    "AMENDED": (
+        "Practitioner actions on amendment",
+        [
+            "Review what changed: added aliases and identifiers widen your matching surface and may surface new hits.",
+            "Rerun fuzzy screening if name variants were added. Yesterday's clear result may no longer hold.",
+        ],
+    ),
+}
+
+# ---------------- Data handling ----------------
+
+def fetch_records():
+    import requests
+    r = requests.get(DATASET_URL, timeout=120)
+    r.raise_for_status()
+    return parse_records(r.text)
+
+
+def parse_records(text):
+    """Adjust column names here to match the verified export format."""
+    records = {}
+    reader = csv.DictReader(io.StringIO(text))
+    for row in reader:
+        rid = row.get("id") or row.get("entity_id")
+        if not rid:
+            continue
+        records[rid] = {
+            "name": row.get("name", "").strip(),
+            "lists": row.get("datasets", row.get("lists", "")).strip(),
+            "changed": row.get("last_change", row.get("changed", "")).strip(),
+        }
+    return records
+
+
+def load_snapshot():
+    if not os.path.exists(SNAPSHOT_PATH):
+        return None
+    with open(SNAPSHOT_PATH) as f:
+        return json.load(f)
+
+
+def diff(old, new):
+    added = [dict(id=k, **v) for k, v in new.items() if k not in old]
+    delisted = [dict(id=k, **v) for k, v in old.items() if k not in new]
+    amended = [
+        dict(id=k, **v)
+        for k, v in new.items()
+        if k in old and old[k] != v
+    ]
+    return {"ADDED": added, "DELISTED": delisted, "AMENDED": amended}
+
+
+# ---------------- Rendering ----------------
+
+def esc(s):
+    return html.escape(s or "")
+
+
+def render_group(kind, items):
+    if not items:
+        return ""
+    title, steps = ACTIONS[kind]
+    rows = "\n".join(
+        f'<tr><td><a href="/screen.html?q={esc(i["name"])}" class="delta-name">{esc(i["name"])}</a></td>'
+        f"<td>{esc(i['lists'])}</td></tr>"
+        for i in sorted(items, key=lambda x: x["name"])[:400]
+    )
+    actions = "\n".join(f"<li>{esc(s)}</li>" for s in steps)
+    label = {"ADDED": "New designations", "DELISTED": "Delistings", "AMENDED": "Amendments"}[kind]
+    return f"""
+<section class="delta-group delta-{kind.lower()}">
+  <h2>{label} ({len(items)})</h2>
+  <table class="delta-table">
+    <thead><tr><th>Entity</th><th>Lists</th></tr></thead>
+    <tbody>{rows}</tbody>
+  </table>
+  <div class="delta-actions card">
+    <h3>{esc(title)}</h3>
+    <ul>{actions}</ul>
+  </div>
+</section>"""
+
+
+def render_page(changes):
+    total = sum(len(v) for v in changes.values())
+    body = "".join(render_group(k, changes[k]) for k in ("ADDED", "DELISTED", "AMENDED"))
+    return f"""<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanctions List Changes {TODAY} | FinCrimeRadar Delta Tracker</title>
+<meta name="description" content="Daily record of global sanctions watchlist changes for {TODAY}: {total} designations, delistings and amendments, with MLRO action guidance.">
+<link rel="canonical" href="{SITE}/delta/{TODAY}.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand.css">
+<link rel="stylesheet" href="/delta.css">
+</head>
+<body>
+<main class="delta-page">
+  <p class="eyebrow">Sanctions Delta Tracker</p>
+  <h1>Watchlist changes: {TODAY}</h1>
+  <p class="delta-lede">{total} change{'s' if total != 1 else ''} recorded across monitored regimes today.
+  Compiled automatically from official public sources, with practitioner guidance from a working MLRO.
+  Screen any name directly by clicking it.</p>
+  {body}
+  <p class="delta-disclaimer">Decision support, not legal advice. Always verify against the official source list before acting.</p>
+</main>
+<script defer src="/brand.js"></script>
+</body>
+</html>"""
+
+
+def update_sitemap(url):
+    with open(SITEMAP_PATH) as f:
+        sm = f.read()
+    if url in sm:
+        return
+    entry = f"  <url><loc>{url}</loc><lastmod>{TODAY}</lastmod></url>\n"
+    sm = sm.replace("</urlset>", entry + "</urlset>")
+    with open(SITEMAP_PATH, "w") as f:
+        f.write(sm)
+
+
+# ---------------- Main ----------------
+
+def main():
+    os.makedirs(DELTA_DIR, exist_ok=True)
+    os.makedirs("data", exist_ok=True)
+
+    new = fetch_records()
+    if len(new) < 10000:
+        sys.exit(f"ABORT: fetched only {len(new)} records, source looks broken")
+
+    old = load_snapshot()
+    if old is None:
+        # First run: establish baseline only, publish nothing
+        with open(SNAPSHOT_PATH, "w") as f:
+            json.dump(new, f)
+        print(f"Baseline snapshot created with {len(new)} records. No page published.")
+        return
+
+    changes = diff(old, new)
+    total = sum(len(v) for v in changes.values())
+    if total > MAX_SANE_CHANGES:
+        sys.exit(f"ABORT: {total} changes exceeds sanity threshold. Source anomaly suspected.")
+    if total == 0:
+        print("No changes today.")
+        return
+
+    with open(f"{DELTA_DIR}/{TODAY}.html", "w") as f:
+        f.write(render_page(changes))
+    update_sitemap(f"{SITE}/delta/{TODAY}.html")
+    with open(SNAPSHOT_PATH, "w") as f:
+        json.dump(new, f)
+    print(f"Published {DELTA_DIR}/{TODAY}.html with {total} changes.")
+
+
+if __name__ == "__main__":
+    main()
