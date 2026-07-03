@@ -89,7 +89,11 @@ def parse_records(text):
     # Candidate column names in priority order, since the real export's
     # naming was not confirmed before first production run and the
     # original guesses for the lists field did not match, leaving it blank.
-    LIST_FIELDS = ["datasets", "lists", "topics", "sources", "programs", "schemes"]
+    # Confirmed against a real production fetch log: the export uses
+    # "sanctions" for programme text and "dataset" (singular) for the
+    # collection name. Older guesses (datasets, lists) never matched,
+    # which is why the Lists column previously rendered empty.
+    LIST_FIELDS = ["sanctions", "dataset", "program_ids", "datasets", "lists", "topics", "sources", "programs", "schemes"]
     for row in reader:
         if not fieldnames_logged:
             print("CSV columns detected:", list(row.keys()))
