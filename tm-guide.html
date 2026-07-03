@@ -285,6 +285,10 @@
       footer { flex-direction:column; }
     }
   </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand.css">
 </head>
 <body>
 
@@ -1070,5 +1074,6 @@ document.addEventListener('click', function(e) {
   function acceptCookies() { localStorage.setItem('fcr_cookie_consent','accepted'); document.getElementById('cookieBanner').style.display='none'; }
   function rejectCookies() { localStorage.setItem('fcr_cookie_consent','rejected'); window['ga-disable-G-FC1VMTE7JH']=true; document.getElementById('cookieBanner').style.display='none'; }
 </script>
+<script defer src="/brand.js"></script>
 </body>
 </html>

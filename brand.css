@@ -1,0 +1,119 @@
+/* ============================================================
+   FINCRIMERADAR BRAND LAYER v1
+   Loaded AFTER each page's inline styles. Re-themes the whole
+   site by overriding the existing CSS custom properties, then
+   layers typography and micro-interactions on top.
+   No page markup or component logic is touched.
+   ============================================================ */
+
+/* ---------- 1. Token remap (recolours every component using var()) ---------- */
+:root{
+  /* Accent system: screening outcomes. Clear green, review amber, match red. */
+  --teal:#12B981;
+  --teal-h:#0FA36F;
+  --teal-deep:#0B7A57;
+  --teal-soft:#E3F8EF;
+  --teal-mid:#F2FBF7;
+
+  --accent:#12B981;
+  --accent-h:#0FA36F;
+  --accent-light:#F2FBF7;
+
+  --navy:#0C1B2A;
+  --navy-mid:#0E2233;
+  --navy-light:#1B3A4F;
+
+  --danger:#E5484D;
+  --warning:#E8A33D;
+  --success:#12B981;
+
+  --white:#FFFFFF;
+  --off:#F4F6F3;
+  --border:#E3E8E3;
+  --border-mid:#CFD7D1;
+
+  --text:#0C1B2A;
+  --slate:#3D4E5C;
+  --muted:#66757F;
+  --light:#93A0A8;
+  --faint:#E8ECE9;
+
+  --r-sm:10px;
+  --r-md:14px;
+  --r-lg:20px;
+
+  --brand-ease:cubic-bezier(.22,1,.36,1);
+}
+
+/* ---------- 2. Typography system ---------- */
+body{
+  font-family:'DM Sans',system-ui,sans-serif !important;
+  background:var(--off);
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,
+.hero h1,.page-title,.section-title{
+  font-family:'Playfair Display',Georgia,serif !important;
+  letter-spacing:-.012em;
+}
+code,pre,kbd,samp{
+  font-family:'IBM Plex Mono',ui-monospace,monospace !important;
+}
+::selection{background:var(--teal);color:#fff}
+
+/* ---------- 3. Interactive polish ---------- */
+a{transition:color .25s var(--brand-ease)}
+
+button,
+[class*="btn"]{
+  transition:transform .3s var(--brand-ease),box-shadow .3s var(--brand-ease),
+             background .25s,color .25s,border-color .25s;
+}
+button:hover,
+[class*="btn"]:hover{
+  transform:translateY(-2px);
+}
+button:active,
+[class*="btn"]:active{
+  transform:translateY(0);
+}
+/* Glow on primary-intent buttons */
+.cta-btn:hover,.tl-btn:hover,.sc-btn-primary:hover,.inline-cta-btn:hover{
+  box-shadow:0 8px 26px rgba(18,185,129,.35),0 0 0 1px rgba(18,185,129,.25);
+}
+
+/* Card lift: any component whose class mentions card */
+[class*="card"]{
+  transition:transform .45s var(--brand-ease),box-shadow .45s var(--brand-ease),
+             border-color .3s;
+}
+[class*="card"]:hover{
+  transform:translateY(-4px);
+  box-shadow:0 2px 4px rgba(12,27,42,.04),0 18px 44px rgba(12,27,42,.10);
+}
+
+/* Keyboard focus, always visible */
+:focus-visible{
+  outline:2px solid var(--teal);
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+/* ---------- 4. Scroll reveals (classes applied by brand.js) ---------- */
+.brv{
+  opacity:0;
+  transform:translateY(26px);
+  transition:opacity .85s var(--brand-ease),transform .85s var(--brand-ease);
+  transition-delay:var(--brv-delay,0s);
+}
+.brv.in{opacity:1;transform:none}
+
+/* ---------- 5. Respect reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    transition-duration:.01ms !important;
+  }
+  .brv{opacity:1;transform:none}
+  button:hover,[class*="btn"]:hover,[class*="card"]:hover{transform:none}
+}
