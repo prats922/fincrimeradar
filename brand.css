@@ -139,14 +139,14 @@ footer[style*="0f2044"] a{
 }
 
 /* ---------- 7. Mobile horizontal overflow fix ----------
-   Root cause: the shared footer's brand and newsletter row, and the
-   four column nav row, use inline grid-template-columns with a fixed
-   pixel width or four equal columns, neither of which collapse on a
-   narrow screen. On a phone viewport that pushes the footer wider
-   than 100vw, which shows up as a sliver of content bleeding off the
-   right edge, exactly like the reported screenshot. Two fixes here,
-   a sitewide safety net so no future stray element can do this again,
-   and a targeted override that actually collapses the known cause. */
+   Root cause found on inspection: the outer footer grids already had
+   working overrides, either from the page's own original responsive
+   rules or from this file, so collapsing them changed almost nothing,
+   340px was already close to full mobile width. The actual overflow
+   comes from the newsletter row itself, an email input sitting next
+   to a Subscribe button with no stacking fallback, which is what
+   clips the button on narrower phones. Fixed directly, plus the four
+   column nav row, which had no mobile handling anywhere at all. */
 html, body{
   overflow-x:hidden;
   max-width:100%;
@@ -157,6 +157,13 @@ html, body{
   }
   footer[style*="071912"] div[style*="grid-template-columns:repeat(4,1fr)"]{
     grid-template-columns:repeat(2,1fr) !important;
+  }
+  footer[style*="071912"] div[style*="display:flex;gap:8px;"]{
+    flex-direction:column !important;
+  }
+  footer[style*="071912"] div[style*="display:flex;gap:8px;"] input,
+  footer[style*="071912"] div[style*="display:flex;gap:8px;"] button{
+    width:100% !important;
   }
 }
 @media (max-width:480px){
