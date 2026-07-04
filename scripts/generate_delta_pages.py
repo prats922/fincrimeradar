@@ -21,7 +21,7 @@ VERIFY BEFORE FIRST RUN:
     API-driven slim pull. Adjust parse_records() to match its columns.
 """
 
-import csv, gzip, io, json, os, sys, html
+import csv, gzip, io, json, os, re, sys, html
 from datetime import date, datetime, timezone
 
 # ---------------- Configuration ----------------
@@ -117,8 +117,16 @@ def parse_records(text):
         lists_val = ""
         for field in LIST_FIELDS:
             if row.get(field):
-                lists_val = row[field].strip()
-                break
+                candidate = row[field].strip()
+                # A value made up of nothing but quotes, punctuation or
+                # whitespace is a CSV escaping artifact, not real content,
+                # confirmed on real production data where this leaked
+                # straight onto a live page as a bare pair of quote marks.
+                # Require at least one actual letter or digit before
+                # accepting it.
+                if candidate and re.search(r"[A-Za-z0-9]", candidate):
+                    lists_val = candidate
+                    break
         records[rid] = {
             "name": (row.get("name") or "").strip(),
             "lists": lists_val,
