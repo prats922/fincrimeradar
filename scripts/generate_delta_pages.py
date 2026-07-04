@@ -148,9 +148,26 @@ def _lists_key(rec):
     safe against snapshots written before this normalisation existed,
     a stored version of this field caused a real production bug the
     first time this was tried, exploding AMENDED to the size of nearly
-    the whole dataset because old snapshots simply had no such field."""
+    the whole dataset because old snapshots simply had no such field.
+
+    The source data has two levels of structure, semicolon separated
+    citation blocks, and inside each block, dash separated sub fields
+    such as programme code, description and date. Confirmed on real
+    production data that OpenSanctions reorders both levels between
+    fetches with no actual content change, an outer level only split
+    caught block level reordering but missed reordering of the sub
+    fields inside a single block entirely. Splitting on both levels
+    and sorting the full set of resulting phrases catches a reorder
+    at either level while a genuinely different citation, a changed
+    regulation number or date, still registers as a real difference."""
     raw = rec.get("lists") or ""
-    return tuple(sorted(p.strip() for p in raw.split(";") if p.strip()))
+    tokens = []
+    for block in raw.split(";"):
+        for part in block.split(" - "):
+            part = part.strip()
+            if part:
+                tokens.append(part)
+    return tuple(sorted(tokens))
 
 
 def _content_equal(old_rec, new_rec):
