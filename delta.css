@@ -44,6 +44,7 @@
 .delta-added h2{color:var(--danger,#E5484D)}
 .delta-delisted h2{color:var(--teal-deep)}
 .delta-amended h2{color:var(--warning,#E8A33D)}
+.delta-renamed h2{color:var(--muted,#66757F)}
 
 .delta-table{
   width:100%;
