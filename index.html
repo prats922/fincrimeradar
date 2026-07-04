@@ -284,6 +284,10 @@ body.cursor-on .cursor-dot,body.cursor-on .cursor-ring{display:block}
   grid-template-columns:repeat(12,1fr);
   grid-auto-rows:minmax(120px,auto);
 }
+.card-link{
+  position:absolute;inset:0;z-index:2;
+  text-decoration:none;color:inherit;cursor:pointer;
+}
 .cell{
   border-radius:var(--radius);position:relative;overflow:hidden;
   background:var(--surface-glass);
@@ -503,6 +507,7 @@ gtag('js',new Date());gtag('config','G-FC1VMTE7JH');
   <div class="bento">
 
     <div class="cell c-screen rv" id="screening">
+      <a class="card-link" href="/screen.html" aria-label="Open the screening tool"></a>
       <span class="cell-tag">Live screening engine</span>
       <h3>Screen any name against the world's watchlists in seconds.</h3>
       <p>Fuzzy matching tuned by real MLRO casework, not academic theory. Distinctive-word logic, transliteration handling and risk-scored results across consolidated sanctions and dedicated PEP datasets.</p>
@@ -534,6 +539,7 @@ gtag('js',new Date());gtag('config','G-FC1VMTE7JH');
     </div>
 
     <div class="cell c-hub rv rv-d2" id="hub">
+      <a class="card-link" href="/knowledge.html" aria-label="Visit the Knowledge Hub"></a>
       <span class="cell-tag">Knowledge Hub</span>
       <h3>15+ deep practitioner guides.</h3>
       <p>Not listicles. Full working handbooks with simulators, typology tabs and quizzes across six compliance domains.</p>
@@ -548,6 +554,7 @@ gtag('js',new Date());gtag('config','G-FC1VMTE7JH');
     </div>
 
     <div class="cell c-news rv rv-d1">
+      <a class="card-link" href="/news.html" aria-label="Visit the regulatory news feed"></a>
       <span class="cell-tag">Regulatory pulse</span>
       <h3>Curated, filtered, relevant.</h3>
       <div class="news-ticker">
@@ -564,6 +571,7 @@ gtag('js',new Date());gtag('config','G-FC1VMTE7JH');
     </div>
 
     <div class="cell c-founder rv rv-d3">
+      <a class="card-link" href="/about.html" aria-label="Learn about the founder"></a>
       <span class="cell-tag">Built by a practitioner</span>
       <h3>An MLRO built this. It shows.</h3>
       <p>A decade across FCA, MAS, AUSTRAC, CBUAE and FIU India regimes, distilled into tooling and content that survives contact with real casework.</p>
