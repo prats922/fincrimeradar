@@ -71,7 +71,7 @@
 
     /* HERO */
     .article-hero {
-      background:linear-gradient(135deg, #0a1628 0%, #1a2a4a 40%, #0f2044 70%, #1a1040 100%);
+      background:linear-gradient(135deg,var(--hero-bg-1) 0%,var(--hero-bg-2) 100%);
       color:#fff; padding:4rem 2rem 3rem; position:relative; overflow:hidden;
     }
     .article-hero::before {
@@ -88,7 +88,7 @@
     .hero-node:nth-child(3) { width:150px; height:150px; background:var(--edd); top:40%; left:5%; animation-delay:2s; }
     @keyframes pulse-node { 0%,100%{transform:scale(1);opacity:0.08} 50%{transform:scale(1.2);opacity:0.14} }
     .hero-inner { max-width:860px; margin:0 auto; position:relative; z-index:1; }
-    .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(37,99,235,0.25); border:1px solid rgba(96,165,250,0.4); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:#93c5fd; margin-bottom:1.25rem; }
+    .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(37,99,235,0.25); border:1px solid rgba(96,165,250,0.4); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:var(--hero-accent-em); margin-bottom:1.25rem; }
     .article-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(1.9rem,4vw,3rem); font-weight:400; line-height:1.2; margin-bottom:0.75rem; }
     .article-hero h1 em { font-style:italic; color:#93c5fd; }
     .hero-sub { font-size:16px; color:#93c5fd; max-width:640px; line-height:1.7; margin-bottom:2rem; }

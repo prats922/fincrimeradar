@@ -50,11 +50,11 @@
     .progress-bar { position:fixed; top:60px; left:0; width:0%; height:3px; background:var(--accent); z-index:199; transition:width 0.1s; }
 
     /* HERO — different treatment for this article */
-    .article-hero { background:linear-gradient(135deg,#0f2044 0%,#1a3a6b 100%); padding:4rem 2rem 3rem; position:relative; overflow:hidden; }
+    .article-hero { background:linear-gradient(135deg,var(--hero-bg-1) 0%,var(--hero-bg-2) 100%); padding:4rem 2rem 3rem; position:relative; overflow:hidden; }
     .hero-bg-num { position:absolute; right:-20px; top:-20px; font-size:280px; font-weight:700; color:rgba(255,255,255,0.03); line-height:1; font-family:'DM Serif Display',Georgia,serif; pointer-events:none; }
     .article-hero .eyebrow { display:inline-flex; align-items:center; gap:8px; background:rgba(220,38,38,0.15); border:1px solid rgba(220,38,38,0.3); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:#fca5a5; margin-bottom:1.25rem; }
     .article-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(2rem,4.5vw,3.25rem); font-weight:400; color:#fff; line-height:1.2; margin-bottom:1rem; max-width:760px; }
-    .article-hero h1 em { font-style:italic; color:#93c5fd; }
+    .article-hero h1 em { font-style:italic; color:var(--hero-accent-em); }
     .article-hero .sub { font-size:17px; color:#cbd5e1; max-width:620px; line-height:1.7; margin-bottom:2rem; }
     .hero-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#94a3b8; margin-bottom:2rem; }
     .hero-quote { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-left:3px solid var(--danger); border-radius:0 8px 8px 0; padding:1rem 1.25rem; max-width:600px; font-size:14px; color:#e2e8f0; line-height:1.6; font-style:italic; }
