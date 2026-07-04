@@ -33,7 +33,13 @@ SNAPSHOT_PATH = "data/snapshot.json.gz"
 DELTA_DIR = "delta"
 SITEMAP_PATH = "sitemap.xml"
 SITE = "https://fincrimeradar.org"
-MAX_SANE_CHANGES = 2000  # guardrail: bigger diff = source anomaly, abort
+MAX_SANE_CHANGES = 8000  # raised after confirming ID churn and field reorder
+                          # noise are correctly filtered into RENAMED and out
+                          # of AMENDED. Genuine daily amendment volume on a
+                          # dataset this size, largely licence and designation
+                          # date housekeeping, sits in the low thousands.
+                          # Revisit this number after watching a few more real
+                          # days rather than raising it again blind.
 
 TODAY = date.today().isoformat()
 
