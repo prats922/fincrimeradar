@@ -33,13 +33,22 @@ SNAPSHOT_PATH = "data/snapshot.json.gz"
 DELTA_DIR = "delta"
 SITEMAP_PATH = "sitemap.xml"
 SITE = "https://fincrimeradar.org"
-MAX_SANE_CHANGES = 8000  # raised after confirming ID churn and field reorder
-                          # noise are correctly filtered into RENAMED and out
-                          # of AMENDED. Genuine daily amendment volume on a
-                          # dataset this size, largely licence and designation
-                          # date housekeeping, sits in the low thousands.
-                          # Revisit this number after watching a few more real
-                          # days rather than raising it again blind.
+_override_raw = os.environ.get("MAX_SANE_CHANGES_OVERRIDE", "").strip()
+MAX_SANE_CHANGES = int(_override_raw) if _override_raw else 8000
+# Standing default is 8000, raised earlier after confirming ID churn and
+# field reorder noise are correctly filtered into RENAMED and out of
+# AMENDED. Genuine daily amendment volume on a dataset this size, largely
+# licence and designation date housekeeping, sits in the low thousands.
+# The environment override exists for exactly one situation, a confirmed,
+# evidence based one time backlog correction like the punctuation
+# artifact sweep found tonight, never for silently waving through an
+# anomaly nobody has actually looked at. GitHub sets this variable to an
+# empty string on every scheduled run rather than leaving it absent, so
+# the check above must treat blank the same as missing or every single
+# scheduled run would crash trying to convert an empty string to a
+# number, confirmed by reasoning through the actual workflow trigger
+# behaviour before this shipped, not discovered after it broke in
+# production.
 
 TODAY = date.today().isoformat()
 
