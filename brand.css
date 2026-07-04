@@ -137,3 +137,30 @@ footer[style*="0f2044"]{
 footer[style*="0f2044"] a{
   margin:0 !important;
 }
+
+/* ---------- 7. Mobile horizontal overflow fix ----------
+   Root cause: the shared footer's brand and newsletter row, and the
+   four column nav row, use inline grid-template-columns with a fixed
+   pixel width or four equal columns, neither of which collapse on a
+   narrow screen. On a phone viewport that pushes the footer wider
+   than 100vw, which shows up as a sliver of content bleeding off the
+   right edge, exactly like the reported screenshot. Two fixes here,
+   a sitewide safety net so no future stray element can do this again,
+   and a targeted override that actually collapses the known cause. */
+html, body{
+  overflow-x:hidden;
+  max-width:100%;
+}
+@media (max-width:760px){
+  footer[style*="071912"] div[style*="grid-template-columns:1fr 340px"]{
+    grid-template-columns:1fr !important;
+  }
+  footer[style*="071912"] div[style*="grid-template-columns:repeat(4,1fr)"]{
+    grid-template-columns:repeat(2,1fr) !important;
+  }
+}
+@media (max-width:480px){
+  footer[style*="071912"] div[style*="grid-template-columns:repeat(4,1fr)"]{
+    grid-template-columns:1fr !important;
+  }
+}
