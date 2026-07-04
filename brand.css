@@ -204,3 +204,19 @@ html, body{
   font-size:13px !important;
   line-height:1.4 !important;
 }
+
+/* ---------- 10. Grid child overflow trap fix ----------
+   The genuine reason the table still would not scroll. CSS Grid
+   items default to min-width:auto, meaning a grid column refuses to
+   shrink below its content's natural width. With a wide table inside
+   it, that means the grid column itself grows past the viewport
+   instead of the table's own internal scroll wrapper ever kicking in,
+   and the sitewide overflow-x:hidden safety net then clips that
+   overflow entirely rather than letting anything scroll at all.
+   Forcing min-width:0 on the article layout's direct children lets
+   them actually shrink to viewport width, which is what allows the
+   inner table-scroll div to become the genuinely constrained,
+   scrollable element instead. */
+.article-layout > *{
+  min-width:0;
+}
