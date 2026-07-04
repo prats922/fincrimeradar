@@ -116,12 +116,6 @@ def parse_records(text):
         records[rid] = {
             "name": (row.get("name") or "").strip(),
             "lists": lists_val,
-            # A sorted, order independent view of the same field, used only
-            # for equality comparison in diff(). Confirmed on real production
-            # data that OpenSanctions sometimes reorders the same semicolon
-            # separated entries between fetches with zero actual content
-            # change, which was previously counted as a false amendment.
-            "lists_key": tuple(sorted(p.strip() for p in lists_val.split(";") if p.strip())),
             "changed": (row.get("last_change") or row.get("changed") or "").strip(),
         }
     return records
@@ -134,12 +128,22 @@ def load_snapshot():
         return json.load(f)
 
 
+def _lists_key(rec):
+    """Derived on the fly from the raw lists string every time, never
+    stored in the snapshot itself. This is what makes the comparison
+    safe against snapshots written before this normalisation existed,
+    a stored version of this field caused a real production bug the
+    first time this was tried, exploding AMENDED to the size of nearly
+    the whole dataset because old snapshots simply had no such field."""
+    raw = rec.get("lists") or ""
+    return tuple(sorted(p.strip() for p in raw.split(";") if p.strip()))
+
+
 def _content_equal(old_rec, new_rec):
-    """Compares two records ignoring pure reordering of the lists field
-    and ignoring the internal lists_key helper itself."""
+    """Compares two records ignoring pure reordering of the lists field."""
     if old_rec.get("name") != new_rec.get("name"):
         return False
-    if old_rec.get("lists_key") != new_rec.get("lists_key"):
+    if _lists_key(old_rec) != _lists_key(new_rec):
         return False
     return True
 
