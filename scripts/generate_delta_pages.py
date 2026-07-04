@@ -65,6 +65,13 @@ ACTIONS = {
             "Rerun fuzzy screening if name variants were added. Yesterday's clear result may no longer hold.",
         ],
     ),
+    "RENAMED": (
+        "Practitioner actions on an identifier change",
+        [
+            "No new risk here. The source has reissued this record under a new identifier, the underlying designation has not changed.",
+            "If your case management system references the old identifier, update the cross reference, do not treat this as a new designation event.",
+        ],
+    ),
 }
 
 # ---------------- Data handling ----------------
@@ -109,6 +116,12 @@ def parse_records(text):
         records[rid] = {
             "name": (row.get("name") or "").strip(),
             "lists": lists_val,
+            # A sorted, order independent view of the same field, used only
+            # for equality comparison in diff(). Confirmed on real production
+            # data that OpenSanctions sometimes reorders the same semicolon
+            # separated entries between fetches with zero actual content
+            # change, which was previously counted as a false amendment.
+            "lists_key": tuple(sorted(p.strip() for p in lists_val.split(";") if p.strip())),
             "changed": (row.get("last_change") or row.get("changed") or "").strip(),
         }
     return records
@@ -121,15 +134,55 @@ def load_snapshot():
         return json.load(f)
 
 
+def _content_equal(old_rec, new_rec):
+    """Compares two records ignoring pure reordering of the lists field
+    and ignoring the internal lists_key helper itself."""
+    if old_rec.get("name") != new_rec.get("name"):
+        return False
+    if old_rec.get("lists_key") != new_rec.get("lists_key"):
+        return False
+    return True
+
+
 def diff(old, new):
-    added = [dict(id=k, **v) for k, v in new.items() if k not in old]
-    delisted = [dict(id=k, **v) for k, v in old.items() if k not in new]
-    amended = [
-        dict(id=k, **v)
-        for k, v in new.items()
-        if k in old and old[k] != v
+    added_ids = [k for k in new if k not in old]
+    delisted_ids = [k for k in old if k not in new]
+    amended_ids = [
+        k for k in new
+        if k in old and not _content_equal(old[k], new[k])
     ]
-    return {"ADDED": added, "DELISTED": delisted, "AMENDED": amended}
+
+    # ID churn detection: an entity delisted under one id and added under a
+    # different id with an exactly matching name is almost always the same
+    # real world record being reissued by the source under a new identifier
+    # scheme, confirmed on real production data (OpenSanctions Russia MFA
+    # dataset reissue), not a genuine delisting plus a genuine new
+    # designation. Pull exact name matches into their own category instead
+    # of double counting them as both ADDED and DELISTED.
+    added_by_name = {}
+    for k in added_ids:
+        added_by_name.setdefault(new[k]["name"].strip().lower(), []).append(k)
+
+    renamed_pairs = []
+    still_delisted = []
+    for k in delisted_ids:
+        name_key = old[k]["name"].strip().lower()
+        candidates = added_by_name.get(name_key)
+        if candidates:
+            new_id = candidates.pop()
+            if not candidates:
+                del added_by_name[name_key]
+            renamed_pairs.append({"old_id": k, "new_id": new_id, "name": old[k]["name"]})
+        else:
+            still_delisted.append(k)
+
+    remaining_added_ids = [k for ids in added_by_name.values() for k in ids]
+
+    added = [dict(id=k, **new[k]) for k in remaining_added_ids]
+    delisted = [dict(id=k, **old[k]) for k in still_delisted]
+    amended = [dict(id=k, **new[k]) for k in amended_ids if k not in {p["new_id"] for p in renamed_pairs}]
+
+    return {"ADDED": added, "DELISTED": delisted, "AMENDED": amended, "RENAMED": renamed_pairs}
 
 
 # ---------------- Rendering ----------------
@@ -163,9 +216,34 @@ def render_group(kind, items):
 </section>"""
 
 
+def render_renamed(items):
+    if not items:
+        return ""
+    title, steps = ACTIONS["RENAMED"]
+    rows = "\n".join(
+        f'<tr><td><a href="/screen.html?q={esc(i["name"])}" class="delta-name">{esc(i["name"])}</a></td>'
+        f"<td>{esc(i['old_id'])}</td><td>{esc(i['new_id'])}</td></tr>"
+        for i in sorted(items, key=lambda x: x["name"])[:400]
+    )
+    actions = "\n".join(f"<li>{esc(s)}</li>" for s in steps)
+    return f"""
+<section class="delta-group delta-renamed">
+  <h2>Identifier changes ({len(items)})</h2>
+  <table class="delta-table">
+    <thead><tr><th>Entity</th><th>Old identifier</th><th>New identifier</th></tr></thead>
+    <tbody>{rows}</tbody>
+  </table>
+  <div class="delta-actions card">
+    <h3>{esc(title)}</h3>
+    <ul>{actions}</ul>
+  </div>
+</section>"""
+
+
 def render_page(changes):
     total = sum(len(v) for v in changes.values())
     body = "".join(render_group(k, changes[k]) for k in ("ADDED", "DELISTED", "AMENDED"))
+    body += render_renamed(changes.get("RENAMED", []))
     return f"""<!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -231,11 +309,10 @@ def main():
         sys.exit(
             f"ABORT: {total} changes exceeds sanity threshold. Source anomaly suspected.\n"
             f"Breakdown: {breakdown}\n"
-            f"Check whether this skews toward DELISTED and AMENDED (consistent with a "
-            f"source side cleanup or modernisation event, safer to investigate and "
-            f"manually override) or looks roughly even across all three, or otherwise "
-            f"illogical (consistent with a parsing or encoding fault, do not override "
-            f"without inspecting actual entity names first)."
+            f"Note: identifier churn and pure field reordering are already filtered "
+            f"into RENAMED and excluded from AMENDED before this count runs, so a "
+            f"large ADDED or DELISTED number here is less likely to be noise than it "
+            f"used to be. Inspect actual entity names before overriding regardless."
         )
     if total == 0:
         print("No changes today.")
