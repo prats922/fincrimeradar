@@ -171,3 +171,35 @@ html, body{
     grid-template-columns:1fr !important;
   }
 }
+
+/* ---------- 8. Mobile table overflow fix ----------
+   Comparison tables such as the Domestic vs foreign PEP table on the
+   Learn page have four columns of real sentence length content, which
+   simply cannot fit a phone viewport at full size. No wrapper div
+   exists in the page markup to scroll it, so it was clipping instead.
+   Turning the table itself into a horizontally scrollable block
+   fixes this without touching any page's HTML. */
+@media (max-width:760px){
+  table.compare-table, table.data-table{
+    display:block;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    white-space:nowrap;
+  }
+}
+
+/* ---------- 9. Screening tool CTA button text hardening ----------
+   Reported as an empty green box on the About page with no visible
+   label. Static review did not turn up a definitive single cause,
+   the button already declares white text explicitly, so this is a
+   defensive hardening rule rather than a confirmed root cause fix,
+   forcing text colour, visibility and sizing so the label cannot be
+   suppressed by any conflicting rule loaded elsewhere on the page. */
+.th-btn, .tl-btn, .cta-btn{
+  color:#ffffff !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  overflow:visible !important;
+  font-size:13px !important;
+  line-height:1.4 !important;
+}
