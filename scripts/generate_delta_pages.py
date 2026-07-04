@@ -227,7 +227,16 @@ def main():
     changes = diff(old, new)
     total = sum(len(v) for v in changes.values())
     if total > MAX_SANE_CHANGES:
-        sys.exit(f"ABORT: {total} changes exceeds sanity threshold. Source anomaly suspected.")
+        breakdown = ", ".join(f"{k}={len(v)}" for k, v in changes.items())
+        sys.exit(
+            f"ABORT: {total} changes exceeds sanity threshold. Source anomaly suspected.\n"
+            f"Breakdown: {breakdown}\n"
+            f"Check whether this skews toward DELISTED and AMENDED (consistent with a "
+            f"source side cleanup or modernisation event, safer to investigate and "
+            f"manually override) or looks roughly even across all three, or otherwise "
+            f"illogical (consistent with a parsing or encoding fault, do not override "
+            f"without inspecting actual entity names first)."
+        )
     if total == 0:
         print("No changes today.")
         return
