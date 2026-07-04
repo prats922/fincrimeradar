@@ -6,6 +6,11 @@ on:
   schedule:
     - cron: "0 6 * * *"
   workflow_dispatch:
+    inputs:
+      max_sane_changes_override:
+        description: "One time threshold override for a confirmed, evidence based anomaly. Leave blank for the standing default of 8000."
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -26,6 +31,8 @@ jobs:
         run: pip install requests
 
       - name: Generate delta pages
+        env:
+          MAX_SANE_CHANGES_OVERRIDE: ${{ github.event.inputs.max_sane_changes_override }}
         run: python scripts/generate_delta_pages.py
 
       - name: Validate generated HTML
