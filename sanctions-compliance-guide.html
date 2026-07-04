@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FC1VMTE7JH');
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sanctions Compliance: OFAC, OFSI and Beyond | FinCrimeRadar</title>
+  <meta name="description" content="Sanctions explained simply. What OFAC, OFSI and the UN lists actually do, why analysts wrongly clear real matches as false positives, and the flashcards to remember it all." />
+  <meta name="keywords" content="OFAC sanctions guide, OFSI sanctions guide, sanctions screening false positives, SDN list explained, sanctions compliance for beginners, weak AKA OFAC" />
+  <link rel="canonical" href="https://fincrimeradar.org/sanctions-compliance-guide.html" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sanctions Compliance: OFAC, OFSI and Beyond | FinCrimeRadar" />
+  <meta property="og:description" content="Sanctions explained simply. What OFAC, OFSI and the UN lists actually do, why analysts wrongly clear real matches as false positives, and the flashcards to remember it all." />
+  <meta property="og:url" content="https://fincrimeradar.org/sanctions-compliance-guide.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://fincrimeradar.org/og-image.png" />
+  <meta property="og:site_name" content="FinCrimeRadar" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sanctions Compliance: OFAC, OFSI and Beyond | FinCrimeRadar" />
+  <meta name="twitter:description" content="Sanctions explained simply. What OFAC, OFSI and the UN lists actually do, why analysts wrongly clear real matches as false positives, and the flashcards to remember it all." />
+  <meta name="twitter:image" content="https://fincrimeradar.org/og-image.png" />
+  <meta name="author" content="Pratik Zanke, FinCrimeRadar" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/brand.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:#ffffff; --off:#f7f8fa; --border:#e4e7ec;
+      --muted:#6b7280; --text:#111827; --navy:#0f2044;
+      --accent:#00c4a7; --accent-h:#00a892; --accent-light:#f0fdf9;
+      --danger:#dc2626; --success:#16a34a; --warning:#d97706;
+      --purple:#7c3aed;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
+
+    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:72px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:8px; text-decoration:none; }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:#374151; text-decoration:none; transition:color 0.15s; }
+    .nav-links a:hover { color:var(--accent); }
+    .nav-cta { padding:7px 16px; background:var(--accent); color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; text-decoration:none; }
+    .nav-cta:hover { background:var(--accent-h); }
+    .nav-hamburger { display:none; background:none; border:none; font-size:22px; color:var(--navy); cursor:pointer; }
+    .mobile-nav { display:none; flex-direction:column; position:fixed; top:72px; left:0; right:0; background:#fff; border-bottom:1px solid var(--border); padding:1rem 2rem; z-index:199; gap:0.75rem; }
+    .mobile-nav.open { display:flex; }
+    .mobile-nav a { font-size:14px; color:#374151; text-decoration:none; padding:0.5rem 0; }
+    .mobile-nav-cta { background:var(--accent); color:#fff !important; text-align:center; border-radius:6px; padding:0.6rem !important; }
+    @media (max-width:860px) { .nav-links { display:none; } .nav-hamburger { display:block; } }
+
+    .series-hero { background:linear-gradient(135deg,var(--hero-bg-1) 0%,var(--hero-bg-2) 100%); color:#fff; padding:4rem 2rem 3rem; }
+    .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:var(--hero-accent-em); margin-bottom:1.25rem; }
+    .series-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(1.9rem,4vw,3rem); font-weight:400; line-height:1.2; margin-bottom:0.75rem; max-width:800px; }
+    .series-hero h1 em { font-style:italic; color:var(--hero-accent-em); }
+    .series-sub { font-size:16px; color:#cbd5e1; max-width:640px; line-height:1.7; margin-bottom:2rem; }
+    .series-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#94a3b8; }
+    .series-meta span { display:flex; align-items:center; gap:5px; }
+
+    .article-layout { max-width:1160px; margin:0 auto; padding:2.5rem 2rem 4rem; display:grid; grid-template-columns:220px 1fr; gap:3rem; align-items:start; }
+    @media (max-width:920px) { .article-layout { grid-template-columns:1fr; } aside { display:none; } }
+    .toc { position:sticky; top:96px; background:#fff; border:1px solid var(--border); border-radius:10px; padding:1.25rem; }
+    .toc-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); margin-bottom:0.75rem; }
+    .toc-list { list-style:none; display:flex; flex-direction:column; gap:0.55rem; }
+    .toc-list a { font-size:13px; color:#374151; text-decoration:none; }
+    .toc-list a:hover { color:var(--accent); }
+
+    .article-section { margin-bottom:3rem; }
+    .section-num { display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; color:var(--accent); background:var(--accent-light); padding:4px 10px; border-radius:6px; margin-bottom:0.75rem; }
+    .article-section h2 { font-family:'DM Serif Display',Georgia,serif; font-size:24px; font-weight:400; margin-bottom:1rem; line-height:1.3; }
+    .article-section h3 { font-size:16px; font-weight:600; margin:1.75rem 0 0.65rem; }
+    .article-section p { margin-bottom:1rem; color:#374151; }
+
+    .callout { display:flex; gap:0.85rem; border-radius:10px; padding:1.1rem 1.25rem; margin:1.5rem 0; border:1px solid; }
+    .callout.info { background:#eff6ff; border-color:#bfdbfe; }
+    .callout.warning { background:#fffbeb; border-color:#fde68a; }
+    .callout.danger { background:#fef2f2; border-color:#fecaca; }
+    .callout-icon { font-size:20px; flex-shrink:0; }
+    .callout-title { font-weight:600; font-size:14px; margin-bottom:4px; }
+    .callout-text { font-size:14px; color:#374151; line-height:1.6; }
+
+    .analogy-box { background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin:1.5rem 0; display:flex; gap:1.25rem; align-items:flex-start; }
+    .analogy-icon { font-size:28px; flex-shrink:0; }
+    .analogy-box h4 { font-size:15px; margin-bottom:6px; }
+    .analogy-box p { font-size:14px; color:#374151; margin-bottom:0; }
+
+    .type-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; margin:1.5rem 0; }
+    @media (max-width:640px) { .type-grid { grid-template-columns:1fr; } }
+    .type-card { background:#fff; border:1px solid var(--border); border-radius:10px; padding:1.25rem; cursor:pointer; transition:border-color 0.15s, box-shadow 0.15s; }
+    .type-card:hover { border-color:var(--accent); box-shadow:0 4px 14px rgba(0,0,0,0.06); }
+    .type-card-head { display:flex; align-items:center; gap:10px; margin-bottom:0.5rem; }
+    .type-icon { font-size:20px; }
+    .type-name { font-weight:600; font-size:14.5px; }
+    .type-sub { font-size:12.5px; color:var(--muted); margin-bottom:0.6rem; }
+    .type-detail { font-size:13px; color:#374151; line-height:1.6; display:none; padding-top:0.5rem; border-top:1px solid var(--border); margin-top:0.5rem; }
+    .type-card.open .type-detail { display:block; }
+    .type-card-toggle { font-size:12px; color:var(--accent); font-weight:600; }
+
+    .data-table { width:100%; border-collapse:collapse; margin:1.25rem 0; font-size:13.5px; }
+    .data-table th { background:var(--navy); color:#fff; padding:9px 13px; text-align:left; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; }
+    .data-table td { padding:10px 13px; border-bottom:1px solid var(--border); background:#fff; }
+    .data-table tr:hover td { background:#fafbfc; }
+    .badge-green { display:inline-block; padding:2px 9px; border-radius:99px; font-size:11px; font-weight:600; background:#dcfce7; color:#166534; }
+    .badge-yellow { display:inline-block; padding:2px 9px; border-radius:99px; font-size:11px; font-weight:600; background:#fef9c3; color:#854d0e; }
+    .badge-red { display:inline-block; padding:2px 9px; border-radius:99px; font-size:11px; font-weight:600; background:#fee2e2; color:#991b1b; }
+
+    .case-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin:1.5rem 0; }
+    @media (max-width:760px) { .case-grid { grid-template-columns:1fr; } }
+    .case-card { border-radius:12px; padding:1.5rem; border:1px solid var(--border); background:#fff; }
+    .case-card.known { border-top:4px solid var(--success); }
+    .case-card.obscure { border-top:4px solid var(--danger); }
+    .case-tag { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:0.6rem; display:inline-block; }
+    .case-card.known .case-tag { color:var(--success); }
+    .case-card.obscure .case-tag { color:var(--danger); }
+    .case-name { font-family:'DM Serif Display',Georgia,serif; font-size:20px; margin-bottom:0.5rem; }
+    .case-body { font-size:13.5px; color:#374151; line-height:1.65; }
+    .case-body strong { color:var(--text); }
+
+    .flash-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.9rem; margin:1.5rem 0; }
+    @media (max-width:860px) { .flash-grid { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:480px) { .flash-grid { grid-template-columns:1fr; } }
+    .flash-card { perspective:1000px; height:150px; cursor:pointer; }
+    .flash-inner { position:relative; width:100%; height:100%; text-align:center; transition:transform 0.5s; transform-style:preserve-3d; }
+    .flash-card.flipped .flash-inner { transform:rotateY(180deg); }
+    .flash-face { position:absolute; width:100%; height:100%; backface-visibility:hidden; border-radius:10px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:1rem; }
+    .flash-front { background:var(--navy); color:#fff; }
+    .flash-front .flash-term { font-weight:700; font-size:14.5px; }
+    .flash-front .flash-hint { font-size:11px; color:#93c5fd; margin-top:6px; }
+    .flash-back { background:var(--accent-light); border:1.5px solid var(--accent); color:var(--text); transform:rotateY(180deg); font-size:12.5px; line-height:1.5; }
+
+    .quiz { background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin:1.5rem 0; }
+    .quiz-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--purple); margin-bottom:0.6rem; }
+    .quiz-q { font-size:15px; font-weight:600; margin-bottom:0.875rem; }
+    .quiz-opts { display:flex; flex-direction:column; gap:0.5rem; }
+    .quiz-opt { text-align:left; padding:0.7rem 0.9rem; border:1px solid var(--border); border-radius:8px; background:#fff; font-size:13.5px; cursor:pointer; transition:all 0.15s; font-family:inherit; }
+    .quiz-opt:hover { border-color:var(--accent); }
+    .quiz-opt.correct { background:#dcfce7; border-color:var(--success); }
+    .quiz-opt.wrong { background:#fef2f2; border-color:var(--danger); }
+    .quiz-feedback { font-size:13px; margin-top:0.75rem; font-weight:500; }
+
+    .try-tool { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; background:linear-gradient(135deg,var(--hero-bg-1) 0%,var(--hero-bg-2) 100%); border-radius:12px; padding:1.5rem 1.75rem; margin:2rem 0; flex-wrap:wrap; }
+    .try-tool .tl-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--hero-accent-em); margin-bottom:5px; }
+    .try-tool .tl-title { color:#fff; font-weight:600; font-size:15px; margin-bottom:4px; }
+    .try-tool .tl-sub { color:#cbd5e1; font-size:13px; max-width:440px; }
+    .tl-btn { background:var(--accent); color:#fff; padding:10px 20px; border-radius:8px; font-size:13.5px; font-weight:600; text-decoration:none; white-space:nowrap; flex-shrink:0; }
+    .tl-btn:hover { background:var(--accent-h); }
+
+    .faq-item { border:1px solid var(--border); border-radius:10px; margin-bottom:7px; overflow:hidden; background:#fff; }
+    .faq-q { padding:0.9rem 1.1rem; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-size:14px; font-weight:500; user-select:none; }
+    .faq-icon { transition:transform 0.2s; font-weight:700; color:var(--accent); }
+    .faq-icon.open { transform:rotate(45deg); }
+    .faq-a { max-height:0; overflow:hidden; transition:max-height 0.25s ease; font-size:13.5px; color:#374151; padding:0 1.1rem; }
+    .faq-a.open { max-height:300px; padding:0 1.1rem 1rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="/">
+    <img src="/logo.png" alt="FinCrimeRadar" style="height:44px;width:auto;max-width:200px;object-fit:contain;object-position:left center;display:block;" />
+  </a>
+  <div class="nav-links">
+    <a href="/learn.html">Learn</a>
+    <a href="/news.html">News</a>
+    <a href="/screen.html">Screen</a>
+    <a href="/screen.html" class="nav-cta">Try the tool &rarr;</a>
+  </div>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/knowledge.html">Knowledge Hub</a>
+  <a href="/news.html">News</a>
+  <a href="/learn.html">Learn</a>
+  <a href="/about.html">About</a>
+  <a href="/screen.html" class="mobile-nav-cta">Try the tool &rarr;</a>
+</div>
+
+<div class="series-hero">
+  <div class="series-tag">Free learning resource</div>
+  <h1>Sanctions Compliance: OFAC, OFSI <em>and Beyond</em></h1>
+  <p class="series-sub">What a sanction actually is, why one obscure listing generates more false alerts than a famous one ever will, and the flashcards you actually need to remember it. No jargon left unexplained.</p>
+  <div class="series-meta">
+    <span>15 min read</span>
+    <span>Plain English</span>
+    <span>Global coverage</span>
+    <span>Interactive</span>
+  </div>
+</div>
+
+<div class="article-layout">
+
+  <aside>
+    <div class="toc">
+      <div class="toc-title">In this guide</div>
+      <ul class="toc-list">
+        <li><a href="#what">What is a sanction</a></li>
+        <li><a href="#types">The four types</a></li>
+        <li><a href="#lists">Major and minor lists</a></li>
+        <li><a href="#casestudy">Two real cases</a></li>
+        <li><a href="#whyfail">Why analysts miss it</a></li>
+        <li><a href="#flashcards">Cheat cards</a></li>
+        <li><a href="#quiz">Quick quiz</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <div>
+
+    <section class="article-section" id="what">
+      <div class="section-num">Start here</div>
+      <h2>What a sanction actually is</h2>
+      <p>Strip away the legal language and a sanction is simple. A government decides someone, or some country, should not get access to the financial system, so it publishes a list and tells every bank in its jurisdiction, do not deal with these names. Miss that instruction and process a payment for a listed name anyway, and the bank itself is now breaking the law, not just the sanctioned party.</p>
+
+      <div class="analogy-box">
+        <div class="analogy-icon">🚫</div>
+        <div>
+          <h4>Think of it like a banned customer list, but for the entire global economy</h4>
+          <p>A shop can refuse service to a difficult customer and that is the end of it. A sanctions list works the same idea at national scale, except the shop is every bank, payment processor and exporter in that country, and refusing to comply is not a customer service choice, it is a criminal offence with real prison sentences attached.</p>
+        </div>
+      </div>
+
+      <p>There is no single global sanctions authority. The United Nations, the United States through OFAC, the United Kingdom through OFSI, the European Union, and dozens of other governments each run their own list, their own legal basis, and their own penalties. A name can sit on one list and not another, which is exactly why screening against only one source is a false sense of security, not compliance.</p>
+    </section>
+
+    <section class="article-section" id="types">
+      <div class="section-num">The mechanics</div>
+      <h2>The four types of sanction, click each to expand</h2>
+      <p>Most people think a sanction only means one thing, freeze the money. In practice there are four distinct flavours, and mixing them up is one of the most common mistakes junior analysts make.</p>
+
+      <div class="type-grid">
+        <div class="type-card" onclick="this.classList.toggle('open')">
+          <div class="type-card-head"><span class="type-icon">👤</span><span class="type-name">Individual and entity sanctions</span></div>
+          <div class="type-sub">Named people or companies</div>
+          <span class="type-card-toggle">Tap to expand</span>
+          <div class="type-detail">The most common form. A specific person or company is named, added to a list such as the OFAC SDN list or the OFSI UK Sanctions List, and any asset belonging to them is frozen the moment the designation takes effect. This is what most screening tools check for first.</div>
+        </div>
+        <div class="type-card" onclick="this.classList.toggle('open')">
+          <div class="type-card-head"><span class="type-icon">🏭</span><span class="type-name">Sectoral sanctions</span></div>
+          <div class="type-sub">A whole industry, not a name</div>
+          <span class="type-card-toggle">Tap to expand</span>
+          <div class="type-detail">Instead of naming a person, an entire sector such as Russian defence manufacturing or oil extraction technology is restricted. A company can be perfectly legitimate and still be caught if it operates in a sector on the restricted list, which is why sanctions screening cannot rely on name matching alone.</div>
+        </div>
+        <div class="type-card" onclick="this.classList.toggle('open')">
+          <div class="type-card-head"><span class="type-icon">🌍</span><span class="type-name">Country and comprehensive sanctions</span></div>
+          <div class="type-sub">An entire nation, no exceptions</div>
+          <span class="type-card-toggle">Tap to expand</span>
+          <div class="type-detail">The most severe form. North Korea, Iran, and Cuba have historically faced comprehensive embargoes where almost any transaction connected to the country is prohibited, regardless of who the individual counterparty is or how innocent the transaction looks.</div>
+        </div>
+        <div class="type-card" onclick="this.classList.toggle('open')">
+          <div class="type-card-head"><span class="type-icon">🔗</span><span class="type-name">Secondary sanctions</span></div>
+          <div class="type-sub">Punishing anyone who deals with them</div>
+          <span class="type-card-toggle">Tap to expand</span>
+          <div class="type-detail">The most misunderstood category. A secondary sanction does not target the original sanctioned party at all, it targets any third country business that continues trading with them. A bank in a completely unsanctioned country can still be cut off from the US financial system for facilitating a sanctioned Russian bank's payments, even without breaking its own country's law.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="try-tool">
+      <div class="tl">
+        <div class="tl-eyebrow">See it in action</div>
+        <div class="tl-title">Screen any name against live sanctions data right now</div>
+        <div class="tl-sub">FinCrimeRadar checks consolidated sanctions and PEP data in seconds, completely free.</div>
+      </div>
+      <a href="/screen.html" class="tl-btn">Try the tool &rarr;</a>
+    </div>
+
+    <section class="article-section" id="lists">
+      <div class="section-num">The roster</div>
+      <h2>Every major and minor list you actually need to know</h2>
+      <p>There is no single master list. Below is the practical roster, ranked by how often you will encounter it in real screening work, from the lists that carry direct legal force in most jurisdictions down to the lists that inform risk without being sanctions in the strict legal sense.</p>
+
+      <table class="data-table">
+        <thead>
+          <tr><th>List</th><th>Issued by</th><th>Type</th><th>Legal weight</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>SDN list</td><td>OFAC, United States Treasury</td><td>Individual and entity</td><td><span class="badge-red">Major</span></td></tr>
+          <tr><td>UK Sanctions List</td><td>OFSI, HM Treasury</td><td>Individual and entity</td><td><span class="badge-red">Major</span></td></tr>
+          <tr><td>Consolidated Financial Sanctions List</td><td>European Union</td><td>Individual and entity</td><td><span class="badge-red">Major</span></td></tr>
+          <tr><td>UN Security Council Consolidated List</td><td>United Nations</td><td>Individual and entity</td><td><span class="badge-red">Major</span></td></tr>
+          <tr><td>Non-SDN and sectoral lists</td><td>OFAC, United States Treasury</td><td>Sectoral</td><td><span class="badge-yellow">Major</span></td></tr>
+          <tr><td>Denied Persons and Entity List</td><td>BIS, United States Commerce</td><td>Individual and entity, export control</td><td><span class="badge-yellow">Major</span></td></tr>
+          <tr><td>DFAT Consolidated List</td><td>Australia, Foreign Affairs</td><td>Individual and entity</td><td><span class="badge-yellow">Moderate</span></td></tr>
+          <tr><td>SEMA Consolidated List</td><td>Canada, Global Affairs</td><td>Individual and entity</td><td><span class="badge-yellow">Moderate</span></td></tr>
+          <tr><td>SECO Sanctions List</td><td>Switzerland</td><td>Individual and entity</td><td><span class="badge-yellow">Moderate</span></td></tr>
+          <tr><td>FATF grey and black list</td><td>Financial Action Task Force</td><td>Jurisdictional risk, not a sanction</td><td><span class="badge-green">Minor</span></td></tr>
+          <tr><td>Interpol Red Notices</td><td>Interpol</td><td>Law enforcement alert, not a freeze</td><td><span class="badge-green">Minor</span></td></tr>
+          <tr><td>World Bank debarred parties</td><td>World Bank Group</td><td>Procurement ban only</td><td><span class="badge-green">Minor</span></td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <div class="callout-title">Major does not mean easiest</div>
+          <div class="callout-text">The SDN list carries the heaviest legal consequence, but as the case study below shows, legal weight and screening difficulty are two completely different things. Some of the hardest names to screen correctly sit on the biggest, most authoritative lists.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section" id="casestudy">
+      <div class="section-num">Case study</div>
+      <h2>One name everyone recognises, one name almost nobody does</h2>
+      <p>The best way to understand why sanctions screening is genuinely hard is to put a famous designation next to an obscure one, and watch what actually happens when both hit a screening engine.</p>
+
+      <div class="case-grid">
+        <div class="case-card known">
+          <span class="case-tag">Well known</span>
+          <div class="case-name">Roman Abramovich</div>
+          <div class="case-body">Designated by OFSI on <strong>10 March 2022</strong> under the Russia Sanctions Regulations, for his links to Vladimir Putin and his ownership stake in Evraz. The designation carries a full asset freeze, travel ban and transport sanctions. His name comes with a specific date of birth, place of birth, multiple passport numbers across three nationalities, and one of the most heavily reported business profiles in the world, the former owner of Chelsea Football Club.</div>
+        </div>
+        <div class="case-card obscure">
+          <span class="case-tag">Genuinely obscure</span>
+          <div class="case-name">Jorge Jesus Rodriguez Gomez</div>
+          <div class="case-body">A real entry on the OFAC SDN list. The given name, family name and aliases are all extremely common across Venezuela and dozens of other countries. Screening research has documented that this exact name pattern generates false alerts against completely unrelated real people, including a television doctor, a minor league baseball player, and a business executive who happen to share the same common name.</div>
+        </div>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr><th>What makes it different</th><th>Roman Abramovich</th><th>Jorge Jesus Rodriguez Gomez</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Name uniqueness</td><td><span class="badge-green">Rare</span></td><td><span class="badge-red">Extremely common</span></td></tr>
+          <tr><td>Supporting identifiers on file</td><td>Date of birth, place of birth, three passports</td><td>Sparse, name driven match only</td></tr>
+          <tr><td>Public media coverage</td><td>Global, instantly recognisable</td><td>Effectively none</td></tr>
+          <tr><td>Typical screening outcome</td><td>Confirmed match in seconds</td><td>Dozens of false alerts before any real review</td></tr>
+          <tr><td>Analyst risk</td><td>Low, easy to confirm</td><td>High, genuine hit could hide inside the noise</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="article-section" id="whyfail">
+      <div class="section-num">The real danger</div>
+      <h2>Why analysts start ignoring names like Jorge Rodriguez</h2>
+      <p>OFAC itself has a name for this problem. Some aliases on its own lists are formally tagged as a weak AKA, a name so broad or generic that OFAC does not even expect firms to screen against it directly, because the volume of false hits it produces would swamp any team. That tag exists precisely because names like Jorge Rodriguez are common enough to break a screening programme through sheer noise, not through any fault in the technology.</p>
+
+      <div class="callout warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <div class="callout-title">The boy who cried wolf effect</div>
+          <div class="callout-text">When one common name generates ten false alerts every week, an analyst's brain does exactly what any human brain does under repetition, it starts pattern matching to dismiss rather than pattern matching to investigate. The eleventh alert against that same name gets the same reflexive clear as the first ten, even on the one occasion it is the actual designated person behind a genuine transaction. This is not laziness, it is a predictable, well documented consequence of alert fatigue, and it is exactly why relying on name matching alone is dangerous rather than merely inefficient.</div>
+        </div>
+      </div>
+
+      <p>The fix is not to screen less, it is to screen with more than a name. Date of birth, nationality, address, and transaction context turn a common name collision into a confident decision either way. This is the entire reason a proper screening engine returns a risk score rather than a flat yes or no, the score reflects how much more than the name actually lined up.</p>
+    </section>
+
+    <div class="try-tool">
+      <div class="tl">
+        <div class="tl-eyebrow">Test it yourself</div>
+        <div class="tl-title">Run a common name through the screening tool</div>
+        <div class="tl-sub">See exactly how many results a generic name returns, and how the risk score separates the noise from the real hit.</div>
+      </div>
+      <a href="/screen.html" class="tl-btn">Try the tool &rarr;</a>
+    </div>
+
+    <section class="article-section" id="flashcards">
+      <div class="section-num">Memory aid</div>
+      <h2>Cheat cards, tap each one to flip</h2>
+      <p>Eight terms worth knowing cold. Tap a card to reveal the plain English definition on the back.</p>
+
+      <div class="flash-grid">
+        <div class="flash-card" onclick="this.classList.toggle('flipped')">
+          <div class="flash-inner">
+            <div class="flash-face flash-front"><div class="flash-term">SDN</div><div class="flash-hint">tap to flip</div></div>
+            <div class="flash-face flash-back">Specially Designated National. OFAC's main list of individuals and entities whose assets in the US must be frozen.</div>
+          </div>
+        </div>
+        <div class="flash-card" onclick="this.classList.toggle('flipped')">
+          <div class="flash-inner">
+            <div class="flash-face flash-front"><div class="flash-term">Weak AKA</div><div class="flash-hint">tap to flip</div></div>
+            <div class="flash-face flash-back">An alias OFAC itself flags as too generic to screen against directly, because it produces overwhelming false hits.</div>
+          </div>
+        </div>
+        <div class="flash-card" onclick="this.classList.toggle('flipped')">
+          <div class="flash-inner">
+            <div class="flash-face flash-front"><div class="flash-term">Asset freeze</div><div class="flash-hint">tap to flip</div></div>
+            <div class="flash-face flash-back">Funds belonging to a designated person are locked in place. Not seized, just frozen, until the designation is lifted.</div>
+          </div>
+        </div>
+        <div class="flash-card" onclick="this.classList.toggle('flipped')">
+          <div class="flash-inner">
+            <div class="flash-face flash-front"><div class="flash-term">Sectoral sanction</div><div class="flash-hint">tap to flip</div></div>
+            <div class="flash-face flash-back">Restricts an entire industry or activity, not a named person, meaning legitimate firms can still be caught.</div>
+          </div>
+        </div>
+        <div class="flash-card" onclick="this.classList.toggle('flipped')">
+          <div class="flash-inner">
+            <div class="flash-face flash-front"><div class="flash-term">Designated person</div><div class="flash-hint">tap to flip</div></div>
+            <div class="flash-face flash-back">The formal term for anyone or anything actually named on a sanctions list, as opposed to merely suspected or investigated.</div>
+          </div>
+        </div>
+        <div class="flash-card" onclick="this.classList.toggle('flipped')">
+          <div class="flash-inner">
+            <div class="flash-face flash-front"><div class="flash-term">General licence</div><div class="flash-hint">tap to flip</div></div>
+            <div class="flash-face flash-back">A standing exception that permits a specific type of otherwise prohibited activity, such as paying a sanctioned person's lawyer.</div>
+          </div>
+        </div>
+        <div class="flash-card" onclick="this.classList.toggle('flipped')">
+          <div class="flash-inner">
+            <div class="flash-face flash-front"><div class="flash-term">Fifty percent rule</div><div class="flash-hint">tap to flip</div></div>
+            <div class="flash-face flash-back">A company is treated as sanctioned if designated persons own fifty percent or more of it combined, even if no single owner is listed alone.</div>
+          </div>
+        </div>
+        <div class="flash-card" onclick="this.classList.toggle('flipped')">
+          <div class="flash-inner">
+            <div class="flash-face flash-front"><div class="flash-term">Secondary sanction</div><div class="flash-hint">tap to flip</div></div>
+            <div class="flash-face flash-back">Targets a third party for dealing with a sanctioned entity, rather than targeting the sanctioned entity itself.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section" id="quiz">
+      <div class="section-num">Quick check</div>
+      <h2>Test what stuck</h2>
+
+      <div class="quiz" id="q1">
+        <div class="quiz-label">Question 1</div>
+        <div class="quiz-q">A common name like Jorge Rodriguez generating dozens of false alerts is best solved by</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">A) Removing the name from the list entirely</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,true)">B) Screening with more identifiers than the name alone</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">C) Ignoring alerts against that name going forward</button>
+        </div>
+        <div class="quiz-feedback" id="q1-fb"></div>
+      </div>
+
+      <div class="quiz" id="q2">
+        <div class="quiz-label">Question 2</div>
+        <div class="quiz-q">A sectoral sanction restricts</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="doQuiz('q2',this,false)">A) One named individual only</button>
+          <button class="quiz-opt" onclick="doQuiz('q2',this,true)">B) An entire industry or activity</button>
+          <button class="quiz-opt" onclick="doQuiz('q2',this,false)">C) Only government owned companies</button>
+        </div>
+        <div class="quiz-feedback" id="q2-fb"></div>
+      </div>
+
+      <div class="quiz" id="q3">
+        <div class="quiz-label">Question 3</div>
+        <div class="quiz-q">A secondary sanction primarily targets</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="doQuiz('q3',this,false)">A) The original designated person again</button>
+          <button class="quiz-opt" onclick="doQuiz('q3',this,true)">B) A third party that keeps dealing with them</button>
+          <button class="quiz-opt" onclick="doQuiz('q3',this,false)">C) The country issuing the sanction</button>
+        </div>
+        <div class="quiz-feedback" id="q3-fb"></div>
+      </div>
+    </section>
+
+    <section class="article-section" id="faq">
+      <div class="section-num">FAQ</div>
+      <h2>Quick answers</h2>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Is OFSI the same as OFAC? <span class="faq-icon">+</span></div>
+        <div class="faq-a">No. OFAC is the United States Treasury's sanctions authority. OFSI, the Office of Financial Sanctions Implementation, is its UK equivalent under HM Treasury. Both maintain separate lists with separate legal force, and a name can appear on one without appearing on the other.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">If a name is not on any sanctions list, is it definitely safe? <span class="faq-icon">+</span></div>
+        <div class="faq-a">No. Sanctions screening is one control among several. A name can be entirely unsanctioned and still carry politically exposed person risk, adverse media risk, or ownership ties to a sanctioned entity under the fifty percent rule, none of which show up on a plain name check alone.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Why do sanctions lists update so often? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Geopolitical events move faster than annual review cycles. New designations, delistings and amendments happen on a rolling basis, which is why a one time screen at onboarding is never enough, ongoing rescreening against a live feed is the actual requirement.</div>
+      </div>
+    </section>
+
+    <div class="try-tool">
+      <div class="tl">
+        <div class="tl-eyebrow">Put it into practice</div>
+        <div class="tl-title">Screen a name against live sanctions and PEP data now</div>
+        <div class="tl-sub">Free, no login, results in seconds.</div>
+      </div>
+      <a href="/screen.html" class="tl-btn">Try the tool &rarr;</a>
+    </div>
+
+  </div>
+</div>
+
+<footer style="background:#071912;color:#94a3b8;margin-top:0;">
+  <div style="max-width:1060px;margin:0 auto;padding:3rem 1.5rem 2rem;">
+
+    <div style="display:grid;grid-template-columns:1fr 340px;gap:3rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:2.5rem;">
+
+      <div>
+        <a href="/" style="display:inline-block;margin-bottom:1rem;">
+          <img src="/logo.png" alt="FinCrimeRadar" style="height:44px;width:auto;max-width:220px;object-fit:contain;object-position:left center;display:block;" />
+        </a>
+        <p style="font-size:13.5px;color:#94a3b8;line-height:1.7;max-width:380px;margin-bottom:1.25rem;">
+          Free, open source financial crime intelligence. Built by a compliance practitioner for compliance professionals, students, and anyone who thinks the best AML knowledge should not live behind a paywall.
+        </p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="https://www.linkedin.com/in/pratik-zanke-749856126/" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;font-size:12px;color:#cbd5e1;text-decoration:none;transition:all .15s;"
+             onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.06)'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/prats922/fincrimeradar" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;font-size:12px;color:#cbd5e1;text-decoration:none;transition:all .15s;"
+             onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.06)'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:1.5rem;">
+        <div style="font-size:14px;font-weight:600;color:#fff;margin-bottom:4px;">Weekly compliance digest</div>
+        <div style="font-size:12px;color:#64748b;margin-bottom:1rem;line-height:1.5;">Regulatory updates, new guides, and screening tool improvements. No spam. Unsubscribe anytime.</div>
+        <div style="display:flex;gap:8px;">
+          <input type="email" id="footerEmail" placeholder="your@email.com"
+            style="flex:1;padding:9px 12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:6px;font-size:13px;color:#fff;outline:none;font-family:'Inter',sans-serif;min-width:0;"
+            onfocus="this.style.borderColor='#00c4a7'" onblur="this.style.borderColor='rgba(255,255,255,.12)'" />
+          <button onclick="footerSignup()"
+            style="padding:9px 16px;background:#00c4a7;border:none;border-radius:6px;font-size:13px;font-weight:600;color:#fff;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:background .15s;"
+            onmouseover="this.style.background='#00a892'" onmouseout="this.style.background='#00c4a7'">Subscribe</button>
+        </div>
+        <div id="footerNlSuccess" style="display:none;font-size:12px;color:#4ade80;margin-top:8px;">You are in. Weekly digest coming your way.</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:2rem;">
+
+      <div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#475569;margin-bottom:.875rem;">Platform</div>
+        <div style="display:flex;flex-direction:column;gap:.5rem;">
+          <a href="/screen.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">Screening Tool</a>
+          <a href="/news.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">Live News Feed</a>
+          <a href="/knowledge.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">Knowledge Hub</a>
+          <a href="/learn.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">Learn</a>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#475569;margin-bottom:.875rem;">Key Guides</div>
+        <div style="display:flex;flex-direction:column;gap:.5rem;">
+          <a href="/sanctions-compliance-guide.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">Sanctions Compliance</a>
+          <a href="/aml-guide-part1.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">UK AML Compliance</a>
+          <a href="/pep-guide-part1.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">PEP Screening Handbook</a>
+          <a href="/sar-guide-part1.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">SAR Complete Guide</a>
+          <a href="/fatf-guide-part1.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">FATF 40 Recommendations</a>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#475569;margin-bottom:.875rem;">Data Sources</div>
+        <div style="display:flex;flex-direction:column;gap:.5rem;">
+          <span style="font-size:13px;color:#64748b;">OpenSanctions (OFAC, UN, EU)</span>
+          <span style="font-size:13px;color:#64748b;">OFSI (UK Consolidated List)</span>
+          <span style="font-size:13px;color:#64748b;">OpenSanctions PEP Dataset</span>
+          <span style="font-size:13px;color:#64748b;">FCA, NCA, BBC, OCCRP</span>
+          <span style="font-size:13px;color:#64748b;">HM Treasury, FATF</span>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#475569;margin-bottom:.875rem;">Company</div>
+        <div style="display:flex;flex-direction:column;gap:.5rem;">
+          <a href="/about.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">About</a>
+          <a href="/contact.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">Contact</a>
+          <a href="/privacy.html" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">Privacy Policy</a>
+          <a href="https://github.com/prats922/fincrimeradar" target="_blank" rel="noopener" style="font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#94a3b8'">Open Source</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+      <div style="font-size:12px;color:#475569;line-height:1.5;">
+        &copy; 2026 FinCrimeRadar. Built by <a href="/about.html" style="color:#64748b;text-decoration:none;" onmouseover="this.style.color='#94a3b8'" onmouseout="this.style.color='#64748b'">Pratik Zanke</a>, Compliance Operations Analyst. For educational purposes only. Not legal advice.
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <div style="width:6px;height:6px;border-radius:50%;background:#16a34a;"></div>
+        <span style="font-size:12px;color:#475569;">All systems operational</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMobileNav(){
+  var nav=document.getElementById('mobileNav');
+  var btn=document.getElementById('navHamburger');
+  if(!nav) return;
+  var open=nav.classList.toggle('open');
+  btn.innerHTML=open?'&#10005;':'&#9776;';
+  document.body.style.overflow=open?'hidden':'';
+}
+document.addEventListener('click',function(e){
+  var nav=document.getElementById('mobileNav');
+  var btn=document.getElementById('navHamburger');
+  if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==btn){
+    nav.classList.remove('open');
+    btn.innerHTML='&#9776;';
+    document.body.style.overflow='';
+  }
+});
+
+function toggleFaq(el){
+  el.nextElementSibling.classList.toggle('open');
+  el.querySelector('.faq-icon').classList.toggle('open');
+}
+
+function doQuiz(id, btn, isCorrect){
+  var quiz = document.getElementById(id);
+  var opts = quiz.querySelectorAll('.quiz-opt');
+  var fb = document.getElementById(id + '-fb');
+  opts.forEach(function(o){ o.disabled = true; o.style.cursor = 'default'; });
+  if(isCorrect){
+    btn.classList.add('correct');
+    fb.textContent = 'Correct.';
+    fb.style.color = '#16a34a';
+  } else {
+    btn.classList.add('wrong');
+    opts.forEach(function(o){
+      if(o.getAttribute('onclick').indexOf(',true)') > -1){ o.classList.add('correct'); }
+    });
+    fb.textContent = 'Not quite, correct answer highlighted above.';
+    fb.style.color = '#dc2626';
+  }
+}
+
+function footerSignup(){
+  var email = document.getElementById('footerEmail').value;
+  if(!email || email.indexOf('@') === -1){ return; }
+  document.getElementById('footerNlSuccess').style.display = 'block';
+  document.getElementById('footerEmail').value = '';
+}
+</script>
+<script defer src="/brand.js"></script>
+</body>
+</html>
