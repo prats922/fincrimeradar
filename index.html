@@ -354,9 +354,11 @@ body.cursor-on .cursor-dot,body.cursor-on .cursor-ring{display:block}
 
 .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
 .pill{
+  position:relative;z-index:3;
   font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;padding:7px 14px;
   border-radius:999px;border:1px solid var(--line);color:var(--ink-soft);background:rgba(255,255,255,.6);
   transition:all .3s var(--ease);
+  text-decoration:none;display:inline-block;
 }
 .pill:hover{border-color:var(--clear);color:var(--clear-deep);transform:translateY(-2px)}
 
@@ -544,12 +546,12 @@ gtag('js',new Date());gtag('config','G-FC1VMTE7JH');
       <h3>15+ deep practitioner guides.</h3>
       <p>Not listicles. Full working handbooks with simulators, typology tabs and quizzes across six compliance domains.</p>
       <div class="pill-row">
-        <span class="pill" data-hover>FATF Standards</span>
-        <span class="pill" data-hover>UK AML</span>
-        <span class="pill" data-hover>PEP Screening</span>
-        <span class="pill" data-hover>SARs</span>
-        <span class="pill" data-hover>Transaction Monitoring</span>
-        <span class="pill" data-hover>Alert Triage</span>
+        <a class="pill" href="/fatf-guide-part1.html" data-hover>FATF Standards</a>
+        <a class="pill" href="/aml-guide-part1.html" data-hover>UK AML</a>
+        <a class="pill" href="/pep-guide-part1.html" data-hover>PEP Screening</a>
+        <a class="pill" href="/sar-guide-part1.html" data-hover>SARs</a>
+        <a class="pill" href="/tm-guide.html" data-hover>Transaction Monitoring</a>
+        <a class="pill" href="/screening-alerts-guide.html" data-hover>Alert Triage</a>
       </div>
     </div>
 
