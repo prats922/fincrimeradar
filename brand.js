@@ -33,3 +33,26 @@
     io.observe(el);
   });
 })();
+
+/* Table overflow fix, second attempt.
+   Forcing display:block directly on the table element did not
+   reliably create a scrollable container on the live device it was
+   tested against, a known inconsistency with that technique across
+   browsers. Wrapping the table in a genuine block level div is the
+   reliable version of this fix, so this runs on every page and
+   physically wraps any comparison table in a scrollable container
+   rather than relying on the table's own display mode. */
+(function(){
+  "use strict";
+  var tables = document.querySelectorAll('table.data-table, table.compare-table');
+  tables.forEach(function(t){
+    if(t.parentElement && t.parentElement.classList.contains('table-scroll')) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'table-scroll';
+    wrap.style.overflowX = 'auto';
+    wrap.style.webkitOverflowScrolling = 'touch';
+    wrap.style.maxWidth = '100%';
+    t.parentNode.insertBefore(wrap, t);
+    wrap.appendChild(t);
+  });
+})();

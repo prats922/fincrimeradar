@@ -173,19 +173,20 @@ html, body{
 }
 
 /* ---------- 8. Mobile table overflow fix ----------
-   Comparison tables such as the Domestic vs foreign PEP table on the
-   Learn page have four columns of real sentence length content, which
-   simply cannot fit a phone viewport at full size. No wrapper div
-   exists in the page markup to scroll it, so it was clipping instead.
-   Turning the table itself into a horizontally scrollable block
-   fixes this without touching any page's HTML. */
-@media (max-width:760px){
-  table.compare-table, table.data-table{
-    display:block;
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-    white-space:nowrap;
-  }
+   The first attempt forced display:block directly on the table
+   element with overflow-x:auto, which did not reliably create a
+   scroll container on the actual device this was tested against.
+   brand.js now physically wraps every comparison table in a real
+   div at runtime, this rule only needs to size that wrapper and
+   let long cell content sit on one line so the scroll is genuinely
+   usable rather than the row heights ballooning instead. */
+.table-scroll{
+  max-width:100%;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.table-scroll table{
+  white-space:nowrap;
 }
 
 /* ---------- 9. Screening tool CTA button text hardening ----------
