@@ -341,13 +341,25 @@ def main():
     total = sum(len(v) for v in changes.values())
     if total > MAX_SANE_CHANGES:
         breakdown = ", ".join(f"{k}={len(v)}" for k, v in changes.items())
+        sample_lines = []
+        for rec in changes.get("AMENDED", [])[:5]:
+            rid = rec["id"]
+            old_rec = old.get(rid, {})
+            sample_lines.append(
+                f"  {rid}: {rec.get('name','')[:60]}\n"
+                f"    old: {repr(old_rec.get('lists',''))[:150]}\n"
+                f"    new: {repr(rec.get('lists',''))[:150]}"
+            )
+        samples_text = "\n".join(sample_lines) if sample_lines else "  (no amended samples to show)"
         sys.exit(
             f"ABORT: {total} changes exceeds sanity threshold. Source anomaly suspected.\n"
             f"Breakdown: {breakdown}\n"
             f"Note: identifier churn and pure field reordering are already filtered "
             f"into RENAMED and excluded from AMENDED before this count runs, so a "
             f"large ADDED or DELISTED number here is less likely to be noise than it "
-            f"used to be. Inspect actual entity names before overriding regardless."
+            f"used to be. Inspect actual entity names before overriding regardless.\n"
+            f"Live sample from this exact run, not a separate diagnostic pull:\n"
+            f"{samples_text}"
         )
     if total == 0:
         print("No changes today.")
