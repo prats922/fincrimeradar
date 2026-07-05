@@ -661,7 +661,7 @@ async function footerSignup(){
     });
     var data = await res.json().catch(function(){ return {}; });
 
-    if (res.ok && data.ok) {
+    if (res.ok && data.success) {
       successEl.style.display = 'block';
       emailInput.value = '';
     } else {

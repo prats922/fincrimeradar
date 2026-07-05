@@ -921,7 +921,7 @@ async function footerSignup() {
     });
     const data = await res.json().catch(() => ({}));
 
-    if (res.ok && data.ok) {
+    if (res.ok && data.success) {
       successEl.style.display = 'block';
       emailInput.value = '';
     } else {
