@@ -587,11 +587,51 @@ gtag('js',new Date());gtag('config','G-FC1VMTE7JH');
     <h2>Get the signal, skip the noise.</h2>
     <p>One concise briefing when new guides, datasets or major regulatory shifts land. Written by a practitioner, read in two minutes.</p>
     <div class="cta-form">
-      <input type="email" placeholder="you@firm.com" aria-label="Email address" data-hover>
-      <button class="btn btn-primary" data-hover onclick="location.href='/learn.html'">Join the briefing <span class="arr">&rarr;</span></button>
+      <input type="email" id="heroCtaEmail" placeholder="you@firm.com" aria-label="Email address" data-hover>
+      <button class="btn btn-primary" id="heroCtaBtn" data-hover onclick="heroCtaSignup()">Join the briefing <span class="arr">&rarr;</span></button>
     </div>
-    <p class="cta-note">NO SPAM &middot; UNSUBSCRIBE ANYTIME &middot; GDPR RESPECTED</p>
+    <p class="cta-note" id="heroCtaNote">NO SPAM &middot; UNSUBSCRIBE ANYTIME &middot; GDPR RESPECTED</p>
   </section>
+
+<script>
+async function heroCtaSignup(){
+  var emailInput = document.getElementById('heroCtaEmail');
+  var btn = document.getElementById('heroCtaBtn');
+  var note = document.getElementById('heroCtaNote');
+  var email = emailInput.value.trim();
+
+  if(!email || email.indexOf('@') === -1 || email.indexOf('.') === -1){
+    note.innerHTML = 'Enter a valid email address.';
+    note.style.color = '#f87171';
+    return;
+  }
+
+  btn.disabled = true;
+
+  try {
+    var res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email }),
+    });
+    var data = await res.json().catch(function(){ return {}; });
+
+    if(res.ok && data.success){
+      note.innerHTML = 'You are in. Weekly briefing coming your way.';
+      note.style.color = '#7CEBC4';
+      emailInput.value = '';
+    } else {
+      note.innerHTML = (data && data.error) || 'Signup could not be completed, try again shortly.';
+      note.style.color = '#f87171';
+    }
+  } catch(e){
+    note.innerHTML = 'Signup could not be completed, check your connection and try again.';
+    note.style.color = '#f87171';
+  } finally {
+    btn.disabled = false;
+  }
+}
+</script>
 
   <!-- ================= FOOTER ================= -->
   <footer class="footer">
