@@ -23,8 +23,12 @@ export default async function handler(req, res) {
   const apiKey = process.env.BREVO_API_KEY;
   const listId = process.env.BREVO_LIST_ID;
 
-  if (!apiKey || !listId) {
-    console.error('subscribe: BREVO_API_KEY or BREVO_LIST_ID not configured');
+  if (!apiKey) {
+    console.error('subscribe: BREVO_API_KEY is missing or empty');
+    return res.status(500).json({ error: 'Signup is temporarily unavailable' });
+  }
+  if (!listId) {
+    console.error('subscribe: BREVO_LIST_ID is missing or empty');
     return res.status(500).json({ error: 'Signup is temporarily unavailable' });
   }
 
