@@ -490,6 +490,7 @@
             onmouseover="this.style.background='#00a892'" onmouseout="this.style.background='#00c4a7'">Subscribe</button>
         </div>
         <div id="footerNlSuccess" style="display:none;font-size:12px;color:#4ade80;margin-top:8px;">You are in. Weekly digest coming your way.</div>
+        <div id="footerNlError" style="display:none;font-size:12px;color:#f87171;margin-top:8px;"></div>
       </div>
     </div>
 
@@ -558,11 +559,39 @@
 
 <script>
 async function footerSignup() {
-  const email = document.getElementById('footerEmail').value;
-  if (!email || !email.includes('@')) return;
-  try { await fetch('/api/subscribe', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email})}); } catch {}
-  document.getElementById('footerNlSuccess').style.display = 'block';
-  document.getElementById('footerEmail').value = '';
+  const emailInput = document.getElementById('footerEmail');
+  const successEl = document.getElementById('footerNlSuccess');
+  const errorEl = document.getElementById('footerNlError');
+  const email = emailInput.value.trim();
+
+  successEl.style.display = 'none';
+  errorEl.style.display = 'none';
+
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    errorEl.textContent = 'Enter a valid email address.';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+    const data = await res.json().catch(() => ({}));
+
+    if (res.ok && data.ok) {
+      successEl.style.display = 'block';
+      emailInput.value = '';
+    } else {
+      errorEl.textContent = data.error || 'Signup could not be completed, try again shortly.';
+      errorEl.style.display = 'block';
+    }
+  } catch {
+    errorEl.textContent = 'Signup could not be completed, check your connection and try again.';
+    errorEl.style.display = 'block';
+  }
 }
 </script>
 

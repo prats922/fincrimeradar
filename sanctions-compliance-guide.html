@@ -534,6 +534,7 @@
             onmouseover="this.style.background='#00a892'" onmouseout="this.style.background='#00c4a7'">Subscribe</button>
         </div>
         <div id="footerNlSuccess" style="display:none;font-size:12px;color:#4ade80;margin-top:8px;">You are in. Weekly digest coming your way.</div>
+        <div id="footerNlError" style="display:none;font-size:12px;color:#f87171;margin-top:8px;"></div>
       </div>
     </div>
 
@@ -637,11 +638,40 @@ function doQuiz(id, btn, isCorrect){
   }
 }
 
-function footerSignup(){
-  var email = document.getElementById('footerEmail').value;
-  if(!email || email.indexOf('@') === -1){ return; }
-  document.getElementById('footerNlSuccess').style.display = 'block';
-  document.getElementById('footerEmail').value = '';
+async function footerSignup(){
+  var emailInput = document.getElementById('footerEmail');
+  var successEl = document.getElementById('footerNlSuccess');
+  var errorEl = document.getElementById('footerNlError');
+  var email = emailInput.value.trim();
+
+  successEl.style.display = 'none';
+  errorEl.style.display = 'none';
+
+  if(!email || email.indexOf('@') === -1 || email.indexOf('.') === -1){
+    errorEl.textContent = 'Enter a valid email address.';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  try {
+    var res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email }),
+    });
+    var data = await res.json().catch(function(){ return {}; });
+
+    if (res.ok && data.ok) {
+      successEl.style.display = 'block';
+      emailInput.value = '';
+    } else {
+      errorEl.textContent = (data && data.error) || 'Signup could not be completed, try again shortly.';
+      errorEl.style.display = 'block';
+    }
+  } catch (e) {
+    errorEl.textContent = 'Signup could not be completed, check your connection and try again.';
+    errorEl.style.display = 'block';
+  }
 }
 </script>
 <script defer src="/brand.js"></script>
