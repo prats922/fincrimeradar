@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scenario Lab | FinCrimeRadar</title>
+  <meta
+    name="description"
+    content="Practice real AML investigation decisions. Build ownership trees, screen entities against sanctions and PEP data, and make the call, free."
+  />
+
+  <!-- Existing site design system, load before scenario-lab.css so tokens are available -->
+  <link rel="stylesheet" href="/brand.css" />
+  <link rel="stylesheet" href="/scenario-lab.css" />
+
+  <!-- Google Analytics, matches existing site tag G-FC1VMTE7JH -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-FC1VMTE7JH");
+  </script>
+</head>
+<body>
+  <!-- Existing sitewide nav include goes here, matches your pill navigation pattern -->
+  <div id="site-nav"></div>
+
+  <main id="scenario-lab-root"></main>
+
+  <!-- Existing sitewide footer include goes here -->
+  <div id="site-footer"></div>
+
+  <script src="/brand.js"></script>
+  <script src="/scenario-lab.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const root = document.getElementById("scenario-lab-root");
+      // fetchCases defaults to the local /scenario-lab/data/cases.json payload.
+      // Leave apiBase unset until routes_scenario_lab.py is deployed on Render.
+      // Once live, set: initScenarioLab(root, { apiBase: "https://fincrimeradar-api.onrender.com" });
+      initScenarioLab(root, {});
+    });
+  </script>
+</body>
+</html>
