@@ -24,6 +24,12 @@ Design choices, and why:
     unattended on a schedule and a silent failure here would mean
     subscribers simply never receive anything with nobody noticing,
     exactly the failure mode that broke the signup form for months.
+  - Reads a hidden metadata comment the tracker embeds in every page it
+    writes, recording whether that day's run was a manual override.
+    A subscriber seeing an unusually large amendment count with no
+    explanation has no way to distinguish a deliberate one time
+    correction from a data anomaly or a bug, this closes that gap by
+    naming the exact day and threshold used, directly in the email.
 """
 
 import glob
@@ -38,6 +44,10 @@ import requests
 DELTA_DIR = "delta"
 SITE = "https://fincrimeradar.org"
 WINDOW_DAYS = 7
+
+META_PATTERN = re.compile(
+    r"<!--\s*fincrimeradar-meta:\s*trigger=(\S+)\s+override_active=(yes|no)\s+threshold=(\d+)\s*-->"
+)
 
 
 def recent_delta_files():
@@ -75,6 +85,22 @@ def extract_counts(page_html):
     return counts
 
 
+def extract_meta(page_html):
+    """Reads the tracker's own trigger and override metadata comment.
+    Older pages written before this comment existed simply won't match,
+    defaulting to unknown trigger and no override, which is the correct
+    safe assumption for historical pages rather than a false flag."""
+    m = META_PATTERN.search(page_html)
+    if not m:
+        return {"trigger": "unknown", "override_active": False, "threshold": None}
+    trigger, override_flag, threshold = m.groups()
+    return {
+        "trigger": trigger,
+        "override_active": override_flag == "yes",
+        "threshold": int(threshold),
+    }
+
+
 def build_digest_html(entries):
     if not entries:
         return None
@@ -84,24 +110,46 @@ def build_digest_html(entries):
     total_amended = sum(e["counts"]["AMENDED"] for e in entries)
     total_renamed = sum(e["counts"]["RENAMED"] for e in entries)
 
+    override_days = [e for e in entries if e["meta"]["override_active"]]
+
     rows = ""
     for e in entries:
-        c = e["counts"]
+        flagged = e["meta"]["override_active"]
+        row_note = (
+            ' <span style="color:#B8860B;font-weight:600;">&#9888; manual correction</span>'
+            if flagged else ""
+        )
         rows += f"""
         <tr>
           <td style="padding:10px 14px;border-bottom:1px solid #E3E8E3;">
             <a href="{SITE}/delta/{e['date'].isoformat()}.html" style="color:#0B7A57;text-decoration:none;font-weight:600;">
               {e['date'].strftime('%d %b %Y')}
-            </a>
+            </a>{row_note}
           </td>
-          <td style="padding:10px 14px;border-bottom:1px solid #E3E8E3;">{c['ADDED']}</td>
-          <td style="padding:10px 14px;border-bottom:1px solid #E3E8E3;">{c['DELISTED']}</td>
-          <td style="padding:10px 14px;border-bottom:1px solid #E3E8E3;">{c['AMENDED']}</td>
-          <td style="padding:10px 14px;border-bottom:1px solid #E3E8E3;">{c['RENAMED']}</td>
+          <td style="padding:10px 14px;border-bottom:1px solid #E3E8E3;">{e['counts']['ADDED']}</td>
+          <td style="padding:10px 14px;border-bottom:1px solid #E3E8E3;">{e['counts']['DELISTED']}</td>
+          <td style="padding:10px 14px;border-bottom:1px solid #E3E8E3;">{e['counts']['AMENDED']}</td>
+          <td style="padding:10px 14px;border-bottom:1px solid #E3E8E3;">{e['counts']['RENAMED']}</td>
         </tr>"""
 
     period_start = entries[0]["date"].strftime("%d %b")
     period_end = entries[-1]["date"].strftime("%d %b %Y")
+
+    override_banner = ""
+    if override_days:
+        day_list = ", ".join(
+            f"{e['date'].strftime('%d %b')} (threshold {e['meta']['threshold']})"
+            for e in override_days
+        )
+        plural = "s" if len(override_days) != 1 else ""
+        override_banner = f"""
+      <div style="background:#FDF6E3;border:1px solid #E8D48A;border-radius:8px;padding:14px 18px;margin-top:16px;">
+        <p style="font-size:13px;line-height:1.6;color:#6B5416;margin:0;">
+          <strong>{len(override_days)} manual correction{plural} applied this week:</strong> {day_list}.
+          These figures were reviewed and published deliberately by a working MLRO, not an automated
+          anomaly or a data error. Full detail on each day is on its linked page above.
+        </p>
+      </div>"""
 
     return f"""<!DOCTYPE html>
 <html>
@@ -129,6 +177,7 @@ def build_digest_html(entries):
         </thead>
         <tbody>{rows}</tbody>
       </table>
+      {override_banner}
       <div style="margin-top:24px;">
         <a href="{SITE}/screen.html" style="background:#12B981;color:#ffffff;text-decoration:none;padding:12px 24px;border-radius:8px;font-weight:600;font-size:14px;display:inline-block;">
           Screen a name now
@@ -210,7 +259,15 @@ def main():
     for file_date, path in files:
         with open(path, encoding="utf-8") as f:
             page_html = f.read()
-        entries.append({"date": file_date, "counts": extract_counts(page_html)})
+        entries.append({
+            "date": file_date,
+            "counts": extract_counts(page_html),
+            "meta": extract_meta(page_html),
+        })
+
+    override_count = sum(1 for e in entries if e["meta"]["override_active"])
+    if override_count:
+        print(f"Detected {override_count} manually overridden day(s) in this week's digest window.")
 
     digest_html = build_digest_html(entries)
     if digest_html is None:

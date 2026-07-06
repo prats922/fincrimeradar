@@ -13,7 +13,8 @@ Daily flow:
 
 Anomaly guardrail: if the diff exceeds MAX_SANE_CHANGES the job aborts
 without publishing, because a huge diff means a source format change,
-not a sanctions event.
+not a sanctions event. A deliberate one time correction can override
+this via the workflow_dispatch input, never as a standing repo variable.
 
 VERIFY BEFORE FIRST RUN:
   - DATASET_URL must point at your slim export. With your OpenSanctions
@@ -41,16 +42,25 @@ MAX_SANE_CHANGES = int(_override_raw) if _override_raw else 8000
 # licence and designation date housekeeping, sits in the low thousands.
 # The environment override exists for exactly one situation, a confirmed,
 # evidence based one time backlog correction like the punctuation
-# artifact sweep found tonight, never for silently waving through an
-# anomaly nobody has actually looked at. GitHub sets this variable to an
-# empty string on every scheduled run rather than leaving it absent, so
-# the check above must treat blank the same as missing or every single
-# scheduled run would crash trying to convert an empty string to a
-# number, confirmed by reasoning through the actual workflow trigger
-# behaviour before this shipped, not discovered after it broke in
-# production.
+# artifact sweep, supplied as a workflow_dispatch input so it can never
+# persist between runs, GitHub always repopulates the dispatch form from
+# the workflow file's own blank default, never from a previous value.
+# GitHub sets this variable to an empty string on every scheduled run
+# rather than leaving it absent, so the check above must treat blank the
+# same as missing or every single scheduled run would crash trying to
+# convert an empty string to a number, confirmed by reasoning through the
+# actual workflow trigger behaviour before this shipped, not discovered
+# after it broke in production.
 
 TODAY = date.today().isoformat()
+
+# GitHub Actions sets this automatically on every run, "schedule" for the
+# cron trigger, "workflow_dispatch" for a manual run, no configuration
+# needed to read it. Recorded on every rendered page so the weekly digest
+# can tell a subscriber when a number came from a deliberate manual
+# correction rather than leaving them to wonder.
+TRIGGER_EVENT = os.environ.get("GITHUB_EVENT_NAME", "unknown")
+OVERRIDE_ACTIVE = bool(_override_raw)
 
 # ---------------- Practitioner action layer ----------------
 # This judgement content is the uniqueness moat. Written once by an MLRO,
@@ -288,6 +298,13 @@ def render_page(changes):
     total = sum(len(v) for v in changes.values())
     body = "".join(render_group(k, changes[k]) for k in ("ADDED", "DELISTED", "AMENDED"))
     body += render_renamed(changes.get("RENAMED", []))
+    # Machine readable run context, read back by send_weekly_digest.py so
+    # the weekly email can flag any day in its window that came from a
+    # manual override rather than presenting an unexplained number to
+    # subscribers. Kept as a single line HTML comment, never rendered
+    # visibly, never touched by anything except this writer and the
+    # digest's own regex reader.
+    meta_comment = f'<!-- fincrimeradar-meta: trigger={TRIGGER_EVENT} override_active={"yes" if OVERRIDE_ACTIVE else "no"} threshold={MAX_SANE_CHANGES} -->'
     return f"""<!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -296,6 +313,7 @@ def render_page(changes):
 <title>Sanctions List Changes {TODAY} | FinCrimeRadar Delta Tracker</title>
 <meta name="description" content="Daily record of global sanctions watchlist changes for {TODAY}: {total} designations, delistings and amendments, with MLRO action guidance.">
 <link rel="canonical" href="{SITE}/delta/{TODAY}.html">
+{meta_comment}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -334,9 +352,10 @@ def main():
     os.makedirs(DELTA_DIR, exist_ok=True)
     os.makedirs("data", exist_ok=True)
     print(
-    f"Effective MAX_SANE_CHANGES threshold for this run: {MAX_SANE_CHANGES} "
-    f"(override active: {'yes' if os.environ.get('MAX_SANE_CHANGES_OVERRIDE', '').strip() else 'no'})"
-)
+        f"Effective MAX_SANE_CHANGES threshold for this run: {MAX_SANE_CHANGES} "
+        f"(override active: {'yes' if OVERRIDE_ACTIVE else 'no'}, trigger: {TRIGGER_EVENT})"
+    )
+
     new = fetch_records()
     if len(new) < 10000:
         sys.exit(f"ABORT: fetched only {len(new)} records, source looks broken")
@@ -364,7 +383,7 @@ def main():
             )
         samples_text = "\n".join(sample_lines) if sample_lines else "  (no amended samples to show)"
         sys.exit(
-            f"ABORT: {total} changes exceeds sanity threshold. Source anomaly suspected.\n"
+            f"ABORT: {total} changes exceeds sanity threshold of {MAX_SANE_CHANGES}. Source anomaly suspected.\n"
             f"Breakdown: {breakdown}\n"
             f"Note: identifier churn and pure field reordering are already filtered "
             f"into RENAMED and excluded from AMENDED before this count runs, so a "
