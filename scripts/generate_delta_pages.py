@@ -333,7 +333,10 @@ def update_sitemap(url):
 def main():
     os.makedirs(DELTA_DIR, exist_ok=True)
     os.makedirs("data", exist_ok=True)
-
+    print(
+    f"Effective MAX_SANE_CHANGES threshold for this run: {MAX_SANE_CHANGES} "
+    f"(override active: {'yes' if os.environ.get('MAX_SANE_CHANGES_OVERRIDE', '').strip() else 'no'})"
+)
     new = fetch_records()
     if len(new) < 10000:
         sys.exit(f"ABORT: fetched only {len(new)} records, source looks broken")
