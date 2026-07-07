@@ -4,164 +4,135 @@
   <!-- Core pages -->
   <url>
     <loc>https://fincrimeradar.org/</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://fincrimeradar.org/screen.html</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://fincrimeradar.org/knowledge.html</loc>
-    <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://fincrimeradar.org/screen.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://fincrimeradar.org/news.html</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fincrimeradar.org/about.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <loc>https://fincrimeradar.org/learn.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://fincrimeradar.org/contact.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <loc>https://fincrimeradar.org/about.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://fincrimeradar.org/privacy.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>yearly</changefreq>
+    <loc>https://fincrimeradar.org/contact.html</loc>
+    <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
 
-  <!-- Screening guide -->
+  <!-- Legal -->
   <url>
-    <loc>https://fincrimeradar.org/learn.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <loc>https://fincrimeradar.org/privacy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://fincrimeradar.org/terms.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Standalone deep-dive guides -->
+  <url>
+    <loc>https://fincrimeradar.org/tm-guide.html</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fincrimeradar.org/screening-alerts-guide.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fincrimeradar.org/kyc-onboarding-dilemma.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fincrimeradar.org/sanctions-compliance-guide.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <!-- UK AML Compliance series -->
   <url>
     <loc>https://fincrimeradar.org/aml-guide-part1.html</loc>
-    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://fincrimeradar.org/aml-guide-part2.html</loc>
-    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://fincrimeradar.org/aml-guide-part3.html</loc>
-    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
 
   <!-- PEP Screening Handbook series -->
   <url>
     <loc>https://fincrimeradar.org/pep-guide-part1.html</loc>
-    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://fincrimeradar.org/pep-guide-part2.html</loc>
-    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://fincrimeradar.org/pep-guide-part3.html</loc>
-    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
 
-  <!-- SAR Complete Guide series -->
+  <!-- Suspicious Activity Reports series -->
   <url>
     <loc>https://fincrimeradar.org/sar-guide-part1.html</loc>
-    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://fincrimeradar.org/sar-guide-part2.html</loc>
-    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://fincrimeradar.org/sar-guide-part3.html</loc>
-    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
 
-  <url>
-    <loc>https://fincrimeradar.org/news.html</loc>
-    <lastmod>2026-06-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://fincrimeradar.org/screening-alerts-guide.html</loc>
-    <lastmod>2026-06-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Transaction Monitoring Deep Dive -->
-  <url>
-    <loc>https://fincrimeradar.org/tm-guide.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- KYC KYB CDD EDD Onboarding Dilemma -->
-  <url>
-    <loc>https://fincrimeradar.org/kyc-onboarding-dilemma.html</loc>
-    <lastmod>2026-06-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- FATF Guide Part 1 -->
+  <!-- FATF Handbook series -->
   <url>
     <loc>https://fincrimeradar.org/fatf-guide-part1.html</loc>
-    <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
-
-  <!-- FATF Guide Part 2 -->
   <url>
     <loc>https://fincrimeradar.org/fatf-guide-part2.html</loc>
-    <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
 
-  <!-- Sanctions Compliance Guide -->
-  <url>
-    <loc>https://fincrimeradar.org/sanctions-compliance-guide.html</loc>
-    <lastmod>2026-07-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url><loc>https://fincrimeradar.org/delta/2026-07-03.html</loc><lastmod>2026-07-03</lastmod></url>
-  <url><loc>https://fincrimeradar.org/delta/2026-07-04.html</loc><lastmod>2026-07-04</lastmod></url>
-  <url><loc>https://fincrimeradar.org/delta/2026-07-05.html</loc><lastmod>2026-07-05</lastmod></url>
-  <url><loc>https://fincrimeradar.org/delta/2026-07-06.html</loc><lastmod>2026-07-06</lastmod></url>
-  <url><loc>https://fincrimeradar.org/delta/2026-07-07.html</loc><lastmod>2026-07-07</lastmod></url>
 </urlset>
