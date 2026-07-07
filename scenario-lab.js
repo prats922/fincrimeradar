@@ -360,14 +360,14 @@
       circle.setAttribute("r", 26);
       let cls = "sl-node-circle";
       if (ns.identified) cls += " identified";
-      if (n.flag === "shell_suspected") cls += " shell-flag";
+      if (ns.identified && n.flag === "shell_suspected") cls += " shell-flag";
       if (ns.screened) {
         cls += matchSurfaced(n, state) ? " screened-match" : " screened-clean";
       }
       circle.setAttribute("class", cls);
       g.appendChild(circle);
 
-      if (n.flag === "shell_suspected") {
+      if (ns.identified && n.flag === "shell_suspected") {
         const icon = document.createElementNS(svgns, "path");
         const d =
           "M " + (p.x - 9) + " " + (p.y + 34) + " l 9 -8 l 9 8";
@@ -392,8 +392,10 @@
       g.appendChild(caption);
 
       // PEP hint mode: reveal an inline badge on any node whose screening
-      // data indicates a PEP connection, hidden when the toggle is off.
-      if (state.pepHintOn && isPepConnected(n)) {
+      // data indicates a PEP connection, hidden when the toggle is off, and
+      // never shown before the analyst has identified that node, otherwise
+      // the tree would hand out the answer before any investigation happens.
+      if (ns.identified && state.pepHintOn && isPepConnected(n)) {
         const badge = document.createElementNS(svgns, "text");
         badge.setAttribute("x", p.x + 30);
         badge.setAttribute("y", p.y - 22);
@@ -459,7 +461,7 @@
     const metaParts = [capitalize(node.type.replace(/_/g, " ")), node.jurisdiction];
     if (node.ownership_pct != null) metaParts.push(node.ownership_pct + "% ownership");
     if (node.flag === "shell_suspected") metaParts.push("Shell structure indicators present");
-    meta.textContent = metaParts.join(" · ");
+    meta.textContent = metaParts.join(" \u00b7 ");
     nodeDetail.appendChild(meta);
 
     if (node.screening === null) {
