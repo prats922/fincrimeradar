@@ -134,6 +134,7 @@
     .cat-aml { background:#fef3c7; color:#92400e; }
     .cat-fraud { background:#dcfce7; color:#166534; }
     .cat-sanctions { background:#fff1f2; color:#9f1239; }
+    .cat-crypto { background:#eff6ff; color:#2563eb; }
     .card-read { font-size:11px; color:var(--muted); }
     .card-title { font-size:16px; font-weight:600; color:var(--navy); line-height:1.35; margin-bottom:0.6rem; }
     .card-desc { font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:1rem; }
@@ -362,7 +363,7 @@
   <button class="filter-pill" data-cat="tm-fraud" onclick="setFilter(this)">TM & Fraud</button>
   <button class="filter-pill" data-cat="screening-pep" onclick="setFilter(this)">Sanctions & PEP</button>
   <button class="filter-pill" data-cat="sars" onclick="setFilter(this)">Reporting & SARs</button>
-  <button class="filter-pill pill-soon" data-cat="crypto" onclick="setFilter(this)">Crypto <span class="soon-tag">Soon</span></button>
+  <button class="filter-pill" data-cat="crypto" onclick="setFilter(this)">Crypto</button>
 </div>
 
 <div class="hub-container">
@@ -764,11 +765,24 @@
       <div class="coming-desc">SMF17 responsibilities, personal liability, the annual board report, managing the FCA relationship, and what good MLRO governance looks like.</div>
     </div>
 
-    <div class="coming-card" data-cats="crypto" data-title="crypto virtual assets travel rule virtual asset service provider vasp">
-      <div class="coming-badge">Coming soon</div>
-      <div class="coming-title">Crypto & Virtual Assets: The AML Frontier</div>
-      <div class="coming-desc">VASP registration, the Travel Rule, mixer and bridge typologies, and how compliance teams are adapting screening to on-chain risk.</div>
-    </div>
+    <a href="/crypto-guide-part1.html" class="article-card card-series card-new" data-cats="crypto" data-title="crypto virtual assets travel rule virtual asset service provider vasp cryptoasset compliance fsma">
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="card-category cat-crypto">Crypto</span>
+          <span class="card-read">⏱ 12 min · Part 1 of 5</span>
+        </div>
+        <div class="card-title">Cryptoasset Compliance for AML Practitioners, Part 1</div>
+        <div class="card-desc">What actually changes now for the analyst with a crypto customer: the foundations, the MLR and FSMA regimes running at once, the Travel Rule, and where crypto KYC breaks from the standard onboarding checklist.</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-tags">
+          <span class="card-tag">MLR</span>
+          <span class="card-tag">FSMA</span>
+          <span class="card-tag">Travel Rule</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
 
   </div>
 
