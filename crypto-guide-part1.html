@@ -308,6 +308,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/brand.css">
+  <!-- Loaded after brand.css so the series accent wins the cascade. brand.css
+       defines --accent globally (teal), which would otherwise override the
+       first inline block. --hero-accent-em is intentionally left as brand.css's
+       green, it is a shared hero convention, not a guide specific accent. -->
+  <style>
+    :root {
+      --accent: #2563eb;
+      --accent-h: #1d4ed8;
+      --accent-light: #eff6ff;
+      --accent-border: #bfdbfe;
+    }
+  </style>
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
