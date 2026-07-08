@@ -260,7 +260,6 @@
 .sl-tree-svg {
   width: 100%;
   height: auto;
-  min-height: 260px;
   touch-action: manipulation;
 }
 
@@ -273,6 +272,14 @@
 .sl-tree-svg .sl-edge-label {
   fill: var(--sl-text-muted);
   font-size: 10px;
+}
+
+/* Mobile tree label sizing. On a real device at 375px the SVG scales to
+   roughly 0.6x, so 20px source renders at roughly 12px, matching the
+   desktop design's visual text size rather than rendering below it. */
+@media (max-width: 768px) {
+  .sl-tree-svg text { font-size: 20px; }
+  .sl-tree-svg .sl-edge-label { font-size: 16px; }
 }
 
 .sl-node-circle {
