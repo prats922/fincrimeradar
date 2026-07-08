@@ -8,10 +8,106 @@
     name="description"
     content="Practice real AML investigation decisions. Build ownership trees, screen entities against sanctions and PEP data, and make the call, free."
   />
+  <link rel="canonical" href="https://fincrimeradar.org/scenario-lab.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Scenario Lab | FinCrimeRadar" />
+  <meta property="og:description" content="Practice real AML investigation decisions. Build ownership trees, screen entities against sanctions and PEP data, and make the call, free." />
+  <meta property="og:url" content="https://fincrimeradar.org/scenario-lab.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://fincrimeradar.org/og-image.png" />
+  <meta property="og:site_name" content="FinCrimeRadar" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Scenario Lab | FinCrimeRadar" />
+  <meta name="twitter:description" content="Practice real AML investigation decisions. Build ownership trees, screen entities against sanctions and PEP data, and make the call, free." />
+  <meta name="twitter:image" content="https://fincrimeradar.org/og-image.png" />
+
+  <meta name="author" content="Pratik Zanke | FinCrimeRadar" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
 
   <!-- Existing site design system, load before scenario-lab.css so tokens are available -->
   <link rel="stylesheet" href="/brand.css" />
   <link rel="stylesheet" href="/scenario-lab.css" />
+
+  <!-- Nav / mobile-nav chrome styling. site-chrome.js injects the nav and footer
+       markup at runtime but never their CSS, and these rules are not in brand.css,
+       so they must live here. brand.css supplies the tokens they reference
+       (--teal, --navy, --navy-mid, --slate, --off, --border, --accent, --white,
+       --muted, --light). -->
+  <style>
+    nav { position:sticky; top:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:72px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:8px; text-decoration:none; }
+    .nav-logo { width:26px; height:26px; }
+    .nav-name { font-size:15px; font-weight:600; color:var(--navy); }
+    .nav-name span { color:var(--teal); }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:var(--slate); text-decoration:none; transition:color 0.15s; }
+    .nav-links a:hover { color:var(--teal); }
+    .nav-links a.active { color:var(--accent); font-weight:500; }
+    .nav-cta { padding:7px 16px; background:var(--teal); color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; }
+
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--navy, var(--navy-mid));
+      padding: 4px 6px;
+      line-height: 1;
+    }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0; right: 0;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      z-index: 99;
+      padding: 0.5rem 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      padding: 14px 1.5rem;
+      font-size: 15px;
+      color: var(--slate);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #f3f4f6;
+      transition: background 0.1s;
+    }
+    .mobile-nav a:hover { background: var(--off); }
+    .mobile-nav .mobile-nav-cta {
+      margin: 0.75rem 1.5rem 0.5rem;
+      background: var(--teal);
+      color: #fff !important;
+      border-radius: 8px;
+      text-align: center;
+      border-bottom: none;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1rem; }
+      .nav-hamburger { display: block; }
+      .nav-links { display: none; }
+      .nav-logo img,
+      .nav-brand img { height: 40px !important; width: auto !important; max-width: 160px !important; }
+    }
+
+    footer { background:var(--white); border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:12px; color:var(--muted); margin-top:2rem; }
+    footer a { color:var(--muted); text-decoration:none; margin:0 8px; }
+    footer a:hover { color:var(--teal); }
+    .footer-legal { font-size:11px; color:var(--light); margin-top:8px; }
+  </style>
 
   <!-- Google Analytics, matches existing site tag G-FC1VMTE7JH -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
@@ -23,18 +119,22 @@
     gtag("js", new Date());
     gtag("config", "G-FC1VMTE7JH");
   </script>
+
+  <!-- AdSense, matches sitewide publisher ca-pub-1158691611711023 -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
 </head>
 <body>
-  <!-- Existing sitewide nav include goes here, matches your pill navigation pattern -->
+  <!-- Nav injected at runtime by /js/site-chrome.js -->
   <div id="site-nav"></div>
 
   <main id="scenario-lab-root"></main>
 
-  <!-- Existing sitewide footer include goes here -->
+  <!-- Footer injected at runtime by /js/site-chrome.js -->
   <div id="site-footer"></div>
 
   <script src="/brand.js"></script>
   <script src="/scenario-lab.js"></script>
+  <script defer src="/js/site-chrome.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const root = document.getElementById("scenario-lab-root");
