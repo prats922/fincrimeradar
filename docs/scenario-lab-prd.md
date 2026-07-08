@@ -1,9 +1,9 @@
 # FinCrimeRadar Scenario Lab, Product Requirements Document
 
-**Status:** Approved for Phase 0 build
+**Status:** Approved for Phase 0 build, backend route and data layer confirmed live
 **Owner:** Pratik Zanke
-**Version:** 1.3, guide count corrected to the verified figure, priority accelerated following the Google AI Overview finding
-**Supersedes:** Draft PRD (eight module SaaS vision), PRD v1.0 (separate KYC and AML Screening categories), and PRD v1.1/1.2 (uncorrected guide count), retained below as long term roadmap only, not as a build spec
+**Version:** 1.4, schema addendum added, backend architecture confirmed against actual deployed code, resolved build issues logged, stale open items closed out
+**Supersedes:** Draft PRD (eight module SaaS vision), PRD v1.0 (separate KYC and AML Screening categories), PRD v1.1/1.2 (uncorrected guide count), and PRD v1.3 (schema left implicit, backend framework unconfirmed), retained below as long term roadmap only, not as a build spec
 
 ---
 
@@ -15,7 +15,7 @@ This section exists because the previous draft PRD assumed infrastructure that d
 |---|----------|------------|
 | 1 | UBO tree | Built now, real interactive graph, not a mockup |
 | 2 | Investigation Tools panel | Every toggle wired to real logic, none decorative |
-| 3 | Launch scope | Single live category, three others shown locked |
+| 3 | Launch scope | Single live category, two others shown locked |
 | 4 | Visual identity | Dark forest green, matching the live site, not the light gold theme |
 | 5 | Eight module vision | Retained as the public roadmap graphic, not as build scope |
 | 6 | Launch category, resolved here | Combined KYC and sanctions investigation, because screening a beneficial owner before identifying them is operationally meaningless |
@@ -101,7 +101,15 @@ The `screening` field is `null` until the user triggers the screen action on tha
 Clicking a node surfaces a side panel with jurisdiction risk context, sourced from your existing Knowledge Hub content rather than new copy, this is where the Knowledge Hub integration idea from the old draft PRD earns its place cheaply. No new content commissioning required for launch, link to existing guides. A screen entity button appears on any node that has not yet been screened, revealing its `screening` result once clicked. Nodes without a `screening` object populated in the case data are treated as not applicable and can be marked as such without a screening action being available, this covers cases like Case 2 where only one entity exists to begin with.
 
 **Build approach**
-Client side rendering only, no backend graph storage needed since case data is static and small. A lightweight force directed layout library is sufficient, this does not need D3's full feature set for three fixed cases, but D3 is the correct choice if Phase 1 adds dynamically generated case structures later, so building on D3 now avoids a rewrite.
+Client side rendering only, no backend graph storage needed since case data is static and small. A lightweight force directed layout library is sufficient, this does not need D3's full feature set for three fixed cases, but D3 is the correct choice if Phase 1 adds dynamically generated case structures later, so building on D3 now avoids a rewrite. The shipped build uses a small hand rolled force directed layout rather than D3 itself, functionally equivalent for three fixed cases, revisit only if Phase 1 genuinely needs dynamic layouts D3 handles natively.
+
+**Schema addendum, confirmed against the shipped build, not implicit in the code block above.** The illustrative JSON in this section was only ever a tree shape example, not the full case object. The actual, confirmed, final schema per case:
+
+- `case_number` (integer), `entity_id` (string slug), `name` (string), `title` (string, short case name shown in the case header), `briefing` (string, one or two sentences of scenario framing shown before the analyst starts investigating), `correct_disposition` (array of strings, always an array even for a single valid answer, `["approve"]` not `"approve"`), `rationale` (string, shown after the decision as feedback)
+- Each node in `nodes`, `id`, `label`, `type`, `jurisdiction`, `flag` (optional string, present only where a red flag genuinely applies), `ownership_pct` (optional integer, present only on nodes with a stake to report), `screening` (`null` for entities never meant to be personally screened, such as the applicant entity itself, or a populated object for anyone who is screened, which may additionally carry an optional `pep` boolean, `true` where a disclosed PEP connection is part of the case, confirmed live on Case 3's second founder)
+- Each edge in `edges`, `from`, `to`, `ownership_pct`, using `from`/`to` throughout, never `source`/`target`
+
+**Known issue found and fixed during build.** The tree renderer originally applied its shell company visual flag, the dashed border, and the PEP hint badge based only on the node's own data, with no check on whether the analyst had actually clicked that node yet. That meant the shell structure answer and any PEP connection rendered visibly before any investigation happened, defeating the identify first, screen second mechanic this entire module exists to teach. Both are now gated behind the node's identified state, confirmed by direct test, neither tell appears until the analyst has clicked that specific node.
 
 ### 5.3 Investigation Tools panel, wired logic
 
@@ -145,8 +153,7 @@ This is the section the previous draft PRD got fundamentally wrong. Here is what
 **Frontend**
 Static Vercel deployment, existing brand.css and brand.js design system. Scenario Lab ships as a self contained component, most likely a single JS module using your existing build pipeline, not a new framework. If component complexity in Phase 1 genuinely exceeds what vanilla JS can maintain cleanly, a scoped React island for this page alone is a reasonable escalation, a site wide Next.js migration is not.
 
-**Backend**
-Your Render Python API (fincrimeradar-api) gains one new lightweight endpoint that serves the three fixed case payloads as JSON, including the UBO tree node and edge data above. This is a read only, unauthenticated endpoint, since there is no user specific data involved. No changes to your production sanctions or PEP screening endpoints are required, this is additive.
+**Backend, confirmed against the actual deployed service, not assumed.** `fincrimeradar-api` is FastAPI, not Flask, confirmed by reading `main.py` directly rather than inferring from `render.yaml`. `routes_scenario_lab.py` ships as a FastAPI `APIRouter`, wired into `main.py` via `app.include_router(...)`, exposing `GET /scenario-lab/cases`. It reads a `cases.json` sitting in the same directory as the route file itself, a separate copy from the frontend's `scenario-lab/data/cases.json`, the frontend copy is the source of truth, the backend copy is what actually gets served, propagate changes forward, never backward. Rate limiting is a small self contained in-memory sliding window, sixty requests per minute per client IP, no new dependency added to `requirements.txt`, this is a decision for a future session if `/api/screen` itself needs the same protection, not something to add silently as a side effect of one static fixture route.
 
 **State**
 Held entirely in browser memory for the session. No localStorage, no server side persistence. Refreshing the page resets progress. This is a deliberate Phase 0 constraint, not an oversight, revisit only if usage data from Phase 0 shows people wanting to resume sessions.
@@ -164,7 +171,7 @@ Dark theme, matching your live cinematic homepage, not the light gold and platin
 
 ## 9. Security and data considerations
 
-No real customer data anywhere in this feature, all case data is synthetic and clearly fictional entity names. The new Render endpoint being read only and unauthenticated is acceptable specifically because it returns no sensitive or production screening data, this must not be extended later to expose real sanctions match results without authentication being added first. Standard rate limiting on the new endpoint is sensible given it sits on the same Render service as your production screening API, to prevent it becoming an unintentional load vector against the service that matters.
+No real customer data anywhere in this feature, all case data is synthetic and clearly fictional entity names. The Scenario Lab endpoint being read only and unauthenticated is acceptable specifically because it returns no sensitive or production screening data, this must not be extended later to expose real sanctions match results without authentication being added first. Rate limiting is implemented, not merely recommended, sixty requests per minute per client IP, self contained, no new dependency, confirmed in section 7. This was a deliberate scope decision, the endpoint sits on the same Render service as production screening and must not become an unintentional load vector against the service that actually matters.
 
 ---
 
@@ -177,6 +184,7 @@ Realistic for a static, stateless feature, not enterprise CI/CD theatre this doe
 - Verify each of the three cases scores correctly against all three possible dispositions, nine combinations total, checked manually
 - Verify locked tiles are genuinely unclickable, not just styled to look locked
 - Verify the disposition buttons stay disabled until every node with a screening object in the case data has actually been screened, and that Case 2 and Case 3 correctly treat their single or fully verified entities without a false gate
+- Verify no node's shell flag styling or PEP badge appears before that specific node has been clicked and identified, this was a real, shipped bug once, not a hypothetical risk
 
 ---
 
@@ -202,6 +210,21 @@ Kept exactly as long term direction, not as committed scope.
 
 ## 13. Open items before build starts
 
-- Confirm the Render endpoint naming convention to match your existing API structure
-- Confirm whether the three case JSON files live in the main repo or a separate content directory
-- Confirm final forest green hex values from your existing brand.css so the component inherits rather than redefines them
+All three original items are resolved and confirmed against the live build, removed from this list. Genuinely open now:
+
+- PEP hint mode currently has exactly one node across all three cases carrying a genuine PEP signal, Case 3's second founder. Decide whether that is sufficient for launch or whether a second instance elsewhere would demonstrate the toggle more convincingly
+- `SETUP-NOTES.md`, the original build notes file for this feature, is stale, it describes files that have since been rewritten more than once. Its few genuinely useful decisions, Flask versus FastAPI now resolved in section 7, nav and footer placeholder handling, are captured here now, the file itself can be deleted from the frontend repo once confirmed
+- Confirm the deployed Render endpoint responds correctly in production, not just against a local `uvicorn` run, before announcing this module as live anywhere public
+- `review/filessimulation/` has been deleted, this item exists only to confirm no future session goes looking for it
+
+---
+
+## 14. Build log, issues found and resolved during development
+
+Kept short and factual, this is institutional memory, not a retrospective essay. Full detail on any of these lives in the conversation history that produced them, not duplicated here.
+
+- Pre-identification visual leak in the tree renderer, shell company and PEP indicators rendered before the analyst clicked the node, fixed by gating both behind identified state, see section 5.2
+- Backend cache handling in `screening.py`, unrelated to Scenario Lab itself but discovered while wiring this module in, hardcoded `/tmp` paths broke local Windows testing entirely, and a cache write failure was silently discarding already successfully fetched sanctions and PEP data rather than merely failing to cache it. Both fixed, cross platform paths via `tempfile.gettempdir()`, cache write failures now log and continue rather than discard
+- A CORS wildcard on the production API, unrelated to Scenario Lab, made two named allowed origins meaningless and left `/api/screen` callable from any website. Removed
+- Case schema drift between three different files across two sessions, `source`/`target` versus `from`/`to`, a wrapped `{"cases": [...]}` object versus a bare array, an invented `case_id` versus the real `entity_id`. Resolved by always reading the actual committed file rather than a description of it before making a schema decision, the practice that should continue for any future work on this repo
+
