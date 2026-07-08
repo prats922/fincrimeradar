@@ -42,7 +42,7 @@
     var mount = document.getElementById(mountId);
     if (!mount) return Promise.resolve();
 
-    return fetch(url, { cache: 'force-cache' })
+    return fetch(url, { cache: 'default' })
       .then(function (response) {
         if (!response.ok) {
           throw new Error('Partial fetch failed: ' + url + ' (' + response.status + ')');
