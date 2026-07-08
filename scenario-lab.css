@@ -231,6 +231,8 @@
   gap: 16px;
 }
 
+.sl-main-grid { align-items: start; }
+
 @media (max-width: 860px) {
   .sl-main-grid {
     grid-template-columns: 1fr;
