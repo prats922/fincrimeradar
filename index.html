@@ -179,11 +179,27 @@ body.cursor-on .cursor-dot,body.cursor-on .cursor-ring{display:block}
 <meta name="twitter:image" content="https://fincrimeradar.org/og-image.png" />
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://fincrimeradar.org/#website","name":"FinCrimeRadar","url":"https://fincrimeradar.org","description":"Free open-source AML and financial crime compliance platform. Sanctions screening, PEP checks, adverse media monitoring.","publisher":{"@id":"https://fincrimeradar.org/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://fincrimeradar.org/screen.html?q={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"Organization","@id":"https://fincrimeradar.org/#organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org","logo":"https://fincrimeradar.org/favicon-32.png","description":"Free, open-source AML and financial crime intelligence platform providing sanctions screening, PEP checks, adverse media monitoring, and compliance education.","founder":{"@id":"https://fincrimeradar.org/#founder"},"sameAs":["https://github.com/prats922/fincrimeradar"]},{"@type":"Person","@id":"https://fincrimeradar.org/#founder","name":"Pratik Zanke","jobTitle":"Founder, FinCrimeRadar","worksFor":{"@id":"https://fincrimeradar.org/#organization"},"sameAs":["https://www.linkedin.com/in/pratik-zanke-749856126/","https://github.com/prats922"]}]}</script>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
 <script>
-window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','G-FC1VMTE7JH');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+  gtag('js', new Date());
+  (function () {
+    try {
+      var consent = localStorage.getItem('fcr_cookie_consent');
+      if (consent === 'accepted') {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+  })();
+  gtag('config', 'G-FC1VMTE7JH');
 </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
 
 </head>

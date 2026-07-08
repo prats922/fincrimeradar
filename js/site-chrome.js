@@ -82,25 +82,19 @@
   }
 
   function acceptCookies() {
-    try {
-      localStorage.setItem(COOKIE_CONSENT_KEY, 'accepted');
-    } catch (error) {
-      // localStorage can throw in private browsing modes on some browsers.
-      console.error('Could not persist cookie consent:', error);
+    localStorage.setItem('fcr_cookie_consent', 'accepted');
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { 'analytics_storage': 'granted' });
     }
-    var banner = document.getElementById('cookieBanner');
-    if (banner) banner.style.display = 'none';
+    document.getElementById('cookieBanner').style.display = 'none';
   }
 
   function rejectCookies() {
-    try {
-      localStorage.setItem(COOKIE_CONSENT_KEY, 'rejected');
-    } catch (error) {
-      console.error('Could not persist cookie consent:', error);
+    localStorage.setItem('fcr_cookie_consent', 'rejected');
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { 'analytics_storage': 'denied' });
     }
-    disableGoogleAnalytics();
-    var banner = document.getElementById('cookieBanner');
-    if (banner) banner.style.display = 'none';
+    document.getElementById('cookieBanner').style.display = 'none';
   }
 
   function initCookieBanner() {

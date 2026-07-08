@@ -32,8 +32,27 @@
   </script>
 
   <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FC1VMTE7JH');</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+  gtag('js', new Date());
+  (function () {
+    try {
+      var consent = localStorage.getItem('fcr_cookie_consent');
+      if (consent === 'accepted') {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+  })();
+  gtag('config', 'G-FC1VMTE7JH');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
   <!-- AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
 
@@ -1357,10 +1376,22 @@ document.querySelectorAll('.article-section').forEach(s => observer.observe(s));
   </div>
 </div>
 <script>
-if (!localStorage.getItem('cookieConsent')) document.getElementById('cookieBanner').style.display='flex';
-function acceptCookies() { localStorage.setItem('cookieConsent','accepted'); document.getElementById('cookieBanner').style.display='none'; }
-function rejectCookies() { localStorage.setItem('cookieConsent','rejected'); window['ga-disable-G-FC1VMTE7JH']=true; document.getElementById('cookieBanner').style.display='none'; }
-if (localStorage.getItem('cookieConsent')==='rejected') window['ga-disable-G-FC1VMTE7JH']=true;
+if (!localStorage.getItem('fcr_cookie_consent')) document.getElementById('cookieBanner').style.display='flex';
+function acceptCookies() {
+  localStorage.setItem('fcr_cookie_consent', 'accepted');
+  if (typeof gtag === 'function') {
+    gtag('consent', 'update', { 'analytics_storage': 'granted' });
+  }
+  document.getElementById('cookieBanner').style.display = 'none';
+}
+function rejectCookies() {
+  localStorage.setItem('fcr_cookie_consent', 'rejected');
+  if (typeof gtag === 'function') {
+    gtag('consent', 'update', { 'analytics_storage': 'denied' });
+  }
+  document.getElementById('cookieBanner').style.display = 'none';
+}
+if (localStorage.getItem('fcr_cookie_consent')==='rejected') window['ga-disable-G-FC1VMTE7JH']=true;
 </script>
 
 <script defer src="/brand.js"></script>

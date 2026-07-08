@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
   gtag('js', new Date());
+  (function () {
+    try {
+      var consent = localStorage.getItem('fcr_cookie_consent');
+      if (consent === 'accepted') {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+  })();
   gtag('config', 'G-FC1VMTE7JH');
 </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sanctions Compliance: OFAC, OFSI and Beyond | FinCrimeRadar</title>

@@ -16,14 +16,27 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-FC1VMTE7JH');
-  </script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+  gtag('js', new Date());
+  (function () {
+    try {
+      var consent = localStorage.getItem('fcr_cookie_consent');
+      if (consent === 'accepted') {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+  })();
+  gtag('config', 'G-FC1VMTE7JH');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
   <style>
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
@@ -866,11 +879,16 @@
   }, { threshold: 0.3 }).observe(document.body);
   function acceptCookies() {
     localStorage.setItem('fcr_cookie_consent', 'accepted');
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { 'analytics_storage': 'granted' });
+    }
     document.getElementById('cookieBanner').style.display = 'none';
   }
   function rejectCookies() {
     localStorage.setItem('fcr_cookie_consent', 'rejected');
-    window['ga-disable-G-FC1VMTE7JH'] = true;
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { 'analytics_storage': 'denied' });
+    }
     document.getElementById('cookieBanner').style.display = 'none';
   }
   (function() {
