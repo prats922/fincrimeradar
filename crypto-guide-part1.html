@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FC1VMTE7JH');
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cryptoasset Compliance for AML Practitioners: What Changes for You This Week | FinCrimeRadar</title>
+  <meta name="description" content="Cryptoasset compliance for the analyst with a crypto customer on their desk right now: the MLR and FSMA regimes running at once, the Travel Rule, crypto KYC, and what changes this year under UK rules." />
+  <meta name="keywords" content="cryptoasset compliance UK, crypto AML, MLR crypto registration, FSMA cryptoasset authorisation, Travel Rule crypto, crypto KYC, FCA cryptoasset regime, unhosted wallet due diligence" />
+  <link rel="canonical" href="https://fincrimeradar.org/crypto-guide-part1.html" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cryptoasset Compliance for AML Practitioners: What Changes for You This Week | FinCrimeRadar" />
+  <meta property="og:description" content="Cryptoasset compliance for the analyst with a crypto customer on their desk right now: the MLR and FSMA regimes running at once, the Travel Rule, crypto KYC, and what changes this year under UK rules." />
+  <meta property="og:url" content="https://fincrimeradar.org/crypto-guide-part1.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://fincrimeradar.org/og-image.png" />
+  <meta property="og:site_name" content="FinCrimeRadar" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cryptoasset Compliance for AML Practitioners: What Changes for You This Week | FinCrimeRadar" />
+  <meta name="twitter:description" content="Cryptoasset compliance for the analyst with a crypto customer on their desk right now: the MLR and FSMA regimes running at once, the Travel Rule, crypto KYC, and what changes this year under UK rules." />
+  <meta name="twitter:image" content="https://fincrimeradar.org/og-image.png" />
+  <!-- Schema.org -->
+  <meta name="author" content="Pratik Zanke, FinCrimeRadar" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --white:#ffffff; --off:#f7f8fa; --border:#e4e7ec;
+      --muted:#6b7280; --text:#111827; --navy:#0f2044;
+      --accent:#2563eb; --accent-h:#1d4ed8; --accent-light:#eff6ff;
+      --accent-border:#bfdbfe;
+      --danger:#dc2626; --success:#16a34a; --warning:#d97706;
+      --blue:#1d5fc4; --purple:#7c3aed;
+    }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
+    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:72px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:8px; text-decoration:none; }
+    .nav-logo { width:26px; height:26px; }
+    .nav-name { font-size:15px; font-weight:600; color:var(--navy); }
+    .nav-name span { color:#00c4a7; }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:var(--navy); text-decoration:none; }
+    .nav-links a:hover { color:#00c4a7; }
+    .nav-cta { padding:7px 16px; background:#00c4a7; color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; }
+    .progress-bar { position:fixed; top:60px; left:0; width:0%; height:3px; background:var(--accent); z-index:199; transition:width 0.1s; }
+    .series-hero { background:linear-gradient(135deg,var(--hero-bg-1) 0%,var(--hero-bg-2) 100%); color:#fff; padding:4rem 2rem 3rem; }
+    .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:var(--hero-accent-em); margin-bottom:1.25rem; }
+    .series-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(1.9rem,4vw,3rem); font-weight:400; line-height:1.2; margin-bottom:0.75rem; max-width:760px; }
+    .series-hero h1 em { font-style:italic; color:var(--hero-accent-em); }
+    .series-sub { font-size:16px; color:#dbeafe; max-width:620px; line-height:1.7; margin-bottom:2rem; }
+    .series-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#93c5fd; }
+    .part-nav { background:var(--white); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; gap:0; overflow-x:auto; }
+    .part-link { padding:14px 20px; font-size:13px; font-weight:500; color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; }
+    .part-link.active { color:var(--accent); border-bottom-color:var(--accent); }
+    .part-link.done { color:var(--success); }
+    .article-layout { display:grid; grid-template-columns:220px 1fr; gap:2rem; max-width:1080px; margin:0 auto; padding:2.5rem 1.5rem; align-items:start; }
+    .toc { position:sticky; top:105px; background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.25rem; }
+    .toc-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--muted); margin-bottom:0.875rem; }
+    .toc-list { list-style:none; }
+    .toc-list a { font-size:12.5px; color:var(--muted); text-decoration:none; display:block; padding:5px 8px; border-radius:6px; transition:all 0.15s; border-left:2px solid transparent; }
+    .toc-list a:hover,.toc-list a.active { color:var(--accent); background:var(--accent-light); border-left-color:var(--accent); }
+    .toc-progress { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); }
+    .toc-progress-label { font-size:11px; color:var(--muted); margin-bottom:6px; display:flex; justify-content:space-between; }
+    .toc-bar { height:4px; background:var(--border); border-radius:99px; overflow:hidden; }
+    .toc-fill { height:100%; background:var(--accent); border-radius:99px; transition:width 0.2s; width:0%; }
+    .next-part { margin-top:1rem; padding:10px; background:var(--accent-light); border:1px solid var(--accent-border); border-radius:8px; }
+    .next-part-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--accent); margin-bottom:4px; }
+    .next-part a { font-size:12px; font-weight:600; color:var(--accent); text-decoration:none; }
+    .article-body { min-width:0; }
+    .article-section { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:2.25rem; margin-bottom:1.25rem; }
+    .section-num { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--accent); margin-bottom:0.5rem; }
+    .article-section h2 { font-family:'DM Serif Display',Georgia,serif; font-size:24px; font-weight:400; color:var(--navy); margin-bottom:1rem; line-height:1.3; }
+    .article-section h3 { font-size:16px; font-weight:600; color:var(--navy); margin:1.75rem 0 0.65rem; }
+    .article-section p { font-size:14.5px; color:#374151; margin-bottom:0.9rem; line-height:1.75; }
+    .article-section ul,.article-section ol { padding-left:1.5rem; margin-bottom:0.9rem; }
+    .article-section li { font-size:14.5px; color:#374151; margin-bottom:0.45rem; line-height:1.65; }
+    .article-section a { color:var(--blue); text-decoration:none; }
+    .article-section a:hover { text-decoration:underline; }
+    .callout { border-radius:10px; padding:1.1rem 1.4rem; margin:1.25rem 0; display:flex; gap:12px; }
+    .callout-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+    .callout-body { flex:1; }
+    .callout-title { font-size:12px; font-weight:700; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.4px; }
+    .callout-text { font-size:13.5px; line-height:1.6; }
+    .callout.info { background:#eff6ff; border:1px solid #bfdbfe; }
+    .callout.info .callout-title { color:#1e40af; }
+    .callout.info .callout-text { color:#1e3a8a; }
+    .callout.warning { background:#fffbeb; border:1px solid #fde68a; }
+    .callout.warning .callout-title { color:#92400e; }
+    .callout.warning .callout-text { color:#78350f; }
+    .callout.danger { background:#fff5f5; border:1px solid #fca5a5; }
+    .callout.danger .callout-title { color:#991b1b; }
+    .callout.danger .callout-text { color:#7f1d1d; }
+    .callout.amber { background:var(--accent-light); border:1px solid var(--accent-border); }
+    .callout.amber .callout-title { color:#92400e; }
+    .callout.amber .callout-text { color:#78350f; }
+    .callout.success { background:#f0fdf4; border:1px solid #86efac; }
+    .callout.success .callout-title { color:#166534; }
+    .callout.success .callout-text { color:#14532d; }
+    .data-table { width:100%; border-collapse:collapse; margin:1.25rem 0; font-size:13.5px; }
+    .data-table th { background:var(--navy); color:#fff; padding:9px 13px; text-align:left; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; }
+    .data-table th:first-child { border-radius:8px 0 0 0; }
+    .data-table th:last-child { border-radius:0 8px 0 0; }
+    .data-table td { padding:9px 13px; border-bottom:1px solid var(--border); color:var(--text); vertical-align:top; }
+    .data-table tr:last-child td { border-bottom:none; }
+    .data-table tr:nth-child(even) td { background:var(--off); }
+    .offence-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:10px; margin:1.5rem 0; }
+    .offence-card { border-radius:10px; padding:1.1rem; }
+    .offence-card.primary { background:#fff5f5; border:1px solid #fca5a5; border-top:3px solid var(--danger); }
+    .offence-card.secondary { background:var(--accent-light); border:1px solid var(--accent-border); border-top:3px solid var(--accent); }
+    .oc-section { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:5px; }
+    .primary .oc-section { color:var(--danger); }
+    .secondary .oc-section { color:var(--accent); }
+    .oc-title { font-size:13px; font-weight:600; color:var(--navy); margin-bottom:4px; }
+    .oc-desc { font-size:12px; line-height:1.45; margin-bottom:4px; }
+    .primary .oc-desc { color:#7f1d1d; }
+    .secondary .oc-desc { color:#78350f; }
+    .oc-penalty { font-size:11px; font-weight:700; }
+    .primary .oc-penalty { color:var(--danger); }
+    .secondary .oc-penalty { color:var(--accent); }
+    .flow-steps { margin:1.5rem 0; }
+    .flow-step { display:flex; gap:14px; margin-bottom:6px; align-items:flex-start; }
+    .fs-dot { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; margin-top:2px; }
+    .fs-body { flex:1; background:var(--off); border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; }
+    .fs-body h4 { font-size:13px; font-weight:600; color:var(--navy); margin-bottom:3px; }
+    .fs-body p { font-size:12.5px; color:var(--muted); margin:0; line-height:1.5; }
+    .fs-time { display:inline-block; font-size:11px; font-weight:600; background:#fee2e2; color:var(--danger); padding:2px 7px; border-radius:4px; margin-top:4px; }
+    .flow-arrow { text-align:center; color:var(--muted); margin:2px 0 2px 16px; font-size:16px; }
+    .try-tool { background:linear-gradient(135deg,#1e3a8a 0%,#1d4ed8 100%); border-radius:12px; padding:1.5rem 1.75rem; margin:1.75rem 0; display:flex; align-items:center; justify-content:space-between; gap:1.25rem; flex-wrap:wrap; }
+    .try-tool .tl { flex:1; }
+    .try-tool .tl-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:#bfdbfe; margin-bottom:5px; }
+    .try-tool .tl-title { font-size:16px; font-weight:600; color:#fff; margin-bottom:4px; line-height:1.4; }
+    .try-tool .tl-sub { font-size:13px; color:#93c5fd; }
+    .try-tool .tl-btn { padding:10px 20px; background:var(--accent); color:#fff; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap; transition:all 0.15s; }
+    .try-tool .tl-btn:hover { background:var(--accent-h); transform:translateY(-1px); }
+    .quiz { background:var(--accent-light); border:1px solid var(--accent-border); border-radius:12px; padding:1.4rem; margin:1.5rem 0; }
+    .quiz-label { font-size:11px; font-weight:700; color:#1e40af; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:0.65rem; }
+    .quiz-q { font-size:15px; font-weight:600; color:var(--navy); margin-bottom:0.875rem; }
+    .quiz-opts { display:flex; flex-direction:column; gap:7px; }
+    .quiz-opt { padding:9px 13px; border:1.5px solid var(--accent-border); border-radius:7px; font-size:13.5px; cursor:pointer; background:var(--white); color:var(--text); transition:all 0.15s; text-align:left; font-family:'Inter',sans-serif; }
+    .quiz-opt:hover { border-color:var(--accent); color:var(--accent); }
+    .quiz-opt.correct { border-color:var(--success); background:#f0fdf4; color:var(--success); }
+    .quiz-opt.wrong { border-color:var(--danger); background:#fff5f5; color:var(--danger); }
+    .quiz-feedback { display:none; margin-top:0.875rem; font-size:13.5px; padding:10px 13px; border-radius:7px; }
+    .quiz-feedback.show { display:block; }
+    .quiz-feedback.correct { background:#f0fdf4; color:#166534; border:1px solid #86efac; }
+    .quiz-feedback.wrong { background:#fff5f5; color:#991b1b; border:1px solid #fca5a5; }
+    .faq-item { border:1px solid var(--border); border-radius:10px; margin-bottom:7px; overflow:hidden; }
+    .faq-q { padding:0.9rem 1.1rem; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-size:14px; font-weight:500; color:var(--navy); background:var(--white); user-select:none; }
+    .faq-q:hover { background:var(--off); }
+    .faq-icon { font-size:17px; color:var(--muted); transition:transform 0.2s; flex-shrink:0; }
+    .faq-icon.open { transform:rotate(45deg); }
+    .faq-a { display:none; padding:0 1.1rem 0.9rem; font-size:13.5px; color:#374151; line-height:1.7; border-top:1px solid var(--border); background:#fafafa; }
+    .faq-a.open { display:block; padding-top:0.9rem; }
+    .pull-quote { font-family:'DM Serif Display',Georgia,serif; font-size:18px; font-style:italic; color:var(--navy); border-left:3px solid var(--accent); padding-left:1.25rem; margin:1.5rem 0; line-height:1.6; }
+    .stats-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:10px; margin:1.25rem 0; }
+    .stat { background:var(--off); border:1px solid var(--border); border-radius:10px; padding:1rem; text-align:center; }
+    .stat-num { font-size:22px; font-weight:700; color:var(--navy); }
+    .stat-label { font-size:11px; color:var(--muted); margin-top:3px; line-height:1.3; }
+    .part-footer { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-top:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    .pf-prev,.pf-next { display:flex; flex-direction:column; gap:4px; }
+    .pf-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--muted); }
+    .pf-link { font-size:14px; font-weight:600; color:var(--blue); text-decoration:none; }
+    .pf-link:hover { text-decoration:underline; }
+    .pf-next { text-align:right; }
+    .pf-center { font-size:13px; color:var(--muted); }
+    footer { background:var(--white); border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:12px; color:var(--muted); margin-top:2rem; }
+    footer a { color:var(--muted); text-decoration:none; margin:0 8px; }
+    footer a:hover { color:#00c4a7; }
+    /* ===== MOBILE RESPONSIVE ===== */
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--navy, #0f2044);
+      padding: 4px 6px;
+      line-height: 1;
+    }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0; right: 0;
+      background: #fff;
+      border-bottom: 1px solid #e4e7ec;
+      flex-direction: column;
+      z-index: 99;
+      padding: 0.5rem 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      padding: 14px 1.5rem;
+      font-size: 15px;
+      color: #374151;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #f3f4f6;
+      transition: background 0.1s;
+    }
+    .mobile-nav a:hover { background: #f9fafb; }
+    .mobile-nav .mobile-nav-cta {
+      margin: 0.75rem 1.5rem 0.5rem;
+      background: #00c4a7;
+      color: #fff !important;
+      border-radius: 8px;
+      text-align: center;
+      border-bottom: none;
+    }
+
+    @media (max-width: 768px) {
+      /* NAV */
+      nav { padding: 0 1rem; }
+      .nav-hamburger { display: block; }
+      .nav-links { display: none; }
+      .nav-logo img,
+      .nav-brand img { height: 40px !important; width: auto !important; max-width: 160px !important; }
+
+      /* HERO */
+      .hero { padding: 2.5rem 1.25rem 2rem; }
+      .hero h1, h1 { font-size: clamp(1.6rem, 7vw, 2.2rem) !important; }
+      .hero-sub, .hero p { font-size: 15px !important; }
+      .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; }
+      .hero-actions a, .hero-actions button { width: 100%; text-align: center; justify-content: center; }
+      .signup-row { flex-direction: column; }
+      .signup-row input { width: 100%; }
+
+      /* STATS */
+      .stats-bar { flex-wrap: wrap; gap: 1rem; justify-content: center; }
+      .stat { min-width: 80px; text-align: center; }
+
+      /* SECTIONS */
+      .section { padding: 2rem 1.25rem; }
+      .section-title { font-size: clamp(1.3rem, 5vw, 1.8rem) !important; }
+
+      /* GRIDS, collapse all multi-col to single col */
+      [style*="grid-template-columns: repeat(3"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns:repeat(3"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns: repeat(2"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns:repeat(2"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns: 1fr 340px"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns:1fr 340px"] { grid-template-columns: 1fr !important; }
+
+      /* ARTICLE PAGES */
+      .article-layout { grid-template-columns: 1fr !important; }
+      .toc { display: none !important; }
+      .series-hero, .article-hero { padding: 2rem 1.25rem 1.5rem !important; }
+      .article-section { padding: 1.25rem !important; }
+      .try-tool, .try-tool-cta { flex-direction: column !important; }
+      .penalty-scale { grid-template-columns: 1fr !important; }
+      .risk-matrix { grid-template-columns: 1fr !important; }
+
+      /* KNOWLEDGE HUB */
+      .hub-hero { padding: 2.5rem 1.25rem 2rem !important; }
+      .hub-container { padding: 1rem !important; }
+      .series-card { grid-template-columns: 1fr !important; }
+      .sc-cta { display: none !important; }
+      .filter-bar { padding: 1rem 1rem 0 !important; }
+      .search-inner { flex-direction: column !important; }
+      .tool-banner { flex-direction: column !important; }
+      .nl-form { flex-direction: column !important; }
+
+      /* SCREEN PAGE */
+      .search-row { flex-direction: column !important; }
+      .btn-search { width: 100% !important; }
+      .summary-bar { grid-template-columns: repeat(2, 1fr) !important; }
+
+      /* ABOUT PAGE */
+      .hero-inner { grid-template-columns: 1fr !important; }
+      .jurisdiction-grid { grid-template-columns: 1fr !important; }
+
+      /* CONTACT PAGE */
+      .contact-layout { grid-template-columns: 1fr !important; padding: 1.5rem 1rem !important; }
+
+      /* NEWS PAGE */
+      .news-container { padding: 1.5rem 1rem !important; }
+      .nn-form { flex-direction: column !important; }
+
+      /* FOOTER */
+      footer { flex-direction: column !important; align-items: flex-start !important; gap: 1rem !important; }
+      .footer-links { flex-wrap: wrap !important; gap: 0.75rem !important; }
+
+      /* NEWS PILLS, horizontal scroll */
+      .filter-pills, [style*="flex-wrap:wrap"] { flex-wrap: nowrap !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; padding-bottom: 4px !important; }
+    }
+  </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Cryptoasset Compliance for AML Practitioners Part 1: Foundations","url":"https://fincrimeradar.org/crypto-guide-part1.html","publisher":{"@type":"Organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org"},"datePublished":"2026-07-08"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand.css">
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav>
+  <a class="nav-brand" href="/">
+    <img src="/logo.png" alt="FinCrimeRadar" style="height:44px;width:auto;max-width:200px;object-fit:contain;object-position:left center;display:block;" />
+  </a>
+  <div class="nav-links">
+    <a href="/knowledge.html" class="hm">Knowledge Hub</a>
+    <a href="/news.html" class="hm">News</a>
+    <a href="/screen.html" class="hm">Screen</a>
+    <a href="/screen.html" class="nav-cta" style="background:#00c4a7;color:#fff;font-weight:600;">Try the tool →</a>
+  </div>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/knowledge.html">Knowledge Hub</a>
+  <a href="/news.html">News</a>
+  <a href="/learn.html">Learn</a>
+  <a href="/about.html">About</a>
+  <a href="/screen.html" class="mobile-nav-cta">Try the tool →</a>
+</div>
+
+<div class="series-hero">
+  <div class="series-tag">🪙 Crypto Compliance Guide · Part 1 of 5</div>
+  <h1>Cryptoasset Compliance for AML Practitioners: <em>What Changes for You This Week</em></h1>
+  <p class="series-sub">Not what changes for your firm's project plan. What changes for the analyst who has a crypto touching customer on their desk right now.</p>
+  <div class="series-meta">
+    <span>📖 12 min read</span>
+    <span>⚖️ MLR 2017 · FSMA 2000 (Cryptoassets) Regulations 2026</span>
+    <span>🇬🇧 UK specific</span>
+    <span>🏛️ FCA</span>
+  </div>
+</div>
+
+<div class="part-nav">
+  <a href="/crypto-guide-part1.html" class="part-link active">Part 1: Foundations and the Regulatory Ground Shifting Beneath Them</a>
+  <a href="#" class="part-link">Part 2: Typologies, Mixers, Layering, and Rug Pulls Explained</a>
+  <a href="#" class="part-link">Part 3: How Crypto Wallets Actually End Up Sanctioned</a>
+  <a href="#" class="part-link">Part 4: The Gap Between AML Training and a Real Crypto Case</a>
+  <a href="#" class="part-link">Part 5: Screening Logic and Wallet Addresses, Where It Breaks Down</a>
+</div>
+
+<div class="article-layout">
+  <aside>
+    <div class="toc">
+      <div class="toc-title">In this part</div>
+      <ul class="toc-list">
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#what-is-a-cryptoasset">What counts as a cryptoasset</a></li>
+        <li><a href="#who-is-regulated">Who is regulated</a></li>
+        <li><a href="#the-two-regimes">Two regimes at once</a></li>
+        <li><a href="#aml-sanctions-layer">AML and sanctions layer</a></li>
+        <li><a href="#kyc-angle">The crypto KYC angle</a></li>
+        <li><a href="#quiz">Knowledge check</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="toc-progress">
+        <div class="toc-progress-label"><span>Progress</span><span id="pct">0%</span></div>
+        <div class="toc-bar"><div class="toc-fill" id="fill"></div></div>
+      </div>
+      <div class="next-part">
+        <div class="next-part-label">Next →</div>
+        <a href="#">Part 2: Typologies, Mixers, Layering, and Rug Pulls →</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="article-body">
+
+    <section class="article-section" id="intro">
+      <div class="section-num">Introduction</div>
+      <h2>Written for the analyst with a live decision, not the project team</h2>
+      <p>Most crypto compliance content is written for the person managing the FSMA authorisation project. This is written for the person who has to make a real decision on a real customer before that project finishes. Those are different jobs, and the timeline that matters for one is not the timeline that matters for the other.</p>
+      <div class="callout info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <div class="callout-title">Perimeter uncertainty is becoming a finding, not a grey area</div>
+          <div class="callout-text">As of this year, recent FCA facing legal commentary describes perimeter uncertainty, not knowing whether your firm's activity is in scope of the new regime, as something regulators increasingly treat as a governance and risk management issue, not a neutral grey area to sort out later. Treating this as tomorrow's problem is itself becoming today's finding.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section" id="what-is-a-cryptoasset">
+      <div class="section-num">Section 01</div>
+      <h2>What counts as a cryptoasset, in terms that actually matter to you</h2>
+      <p>Skip the blockchain explainer. For a working analyst, a cryptoasset is defined by what triggers a regulatory duty, not by how the technology functions underneath. Under the Money Laundering Regulations, a cryptoasset is a cryptographically secured digital representation of value or contractual rights, transferable and storable electronically. The definition is wide on purpose: exchange tokens, stablecoins, and a broad range of digital assets all sit inside it. The operative question is never really is this crypto, it is does dealing in this trigger a registration duty.</p>
+    </section>
+
+    <section class="article-section" id="who-is-regulated">
+      <div class="section-num">Section 02</div>
+      <h2>Owning crypto and dealing in crypto are two different questions</h2>
+      <p>These get conflated constantly, and the conflation causes real onboarding mistakes. An individual holding cryptoassets personally, in their own wallet, for their own account, triggers no FCA registration duty at all. Ownership is unregulated.</p>
+      <p>The duty attaches to the business providing the service, not the person holding the asset. Exchange cryptoassets for money or other cryptoassets by way of business, or safeguard cryptoassets or the private keys controlling them on behalf of customers, and you are a cryptoasset exchange provider or custodian wallet provider under the Money Laundering Regulations. That duty has been in force since 10 January 2020. Nothing about that changes this year.</p>
+    </section>
+
+    <section class="article-section" id="the-two-regimes">
+      <div class="section-num">Section 03</div>
+      <h2>Two regimes are live at once right now, and that is the actual complication</h2>
+      <table class="data-table">
+        <thead><tr><th>Regime</th><th>Status now</th><th>What it covers</th><th>Key date</th></tr></thead>
+        <tbody>
+          <tr><td><strong>MLR registration</strong></td><td>In force, has been since 2020</td><td>AML and counter terrorist financing supervision only</td><td>Ongoing</td></tr>
+          <tr><td><strong>FSMA cryptoasset authorisation</strong></td><td>Application gateway opens 30 September 2026</td><td>Full financial services authorisation, stablecoin issuance, safeguarding, arranging deals, staking</td><td>Regime commences 25 October 2027</td></tr>
+        </tbody>
+      </table>
+      <p>Registration under the MLRs does not convert into FSMA authorisation, and does not guarantee it. A firm correctly registered and supervised since 2020 still has to make a fresh case under the new regime. This is not a formality layered on top of what already exists, it is a separate gate.</p>
+      <div class="pull-quote">A firm that has done everything right under the old regime can still fail the new one, because they are not the same test.</div>
+    </section>
+
+    <section class="article-section" id="aml-sanctions-layer">
+      <div class="section-num">Section 04</div>
+      <h2>The AML and sanctions obligations that sit underneath both regimes</h2>
+      <p>A registered cryptoasset business carries the same core duties as any regulated firm: a business wide risk assessment, customer due diligence and enhanced due diligence where warranted, sanctions and PEP screening, ongoing transaction monitoring, staff training, and suspicious activity reporting, with an MLRO who genuinely understands cryptoassets, not a traditional finance background stretched thin to cover it.</p>
+
+      <h3>The Travel Rule, the one obligation that is genuinely crypto specific</h3>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="fs-dot" style="background:#dbeafe; color:#1e40af;">1</div>
+          <div class="fs-body"><h4>Customer initiates a cryptoasset transfer above the applicable threshold</h4><p>The transfer enters the regulated pathway once it clears the threshold at which the information requirement applies.</p></div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+          <div class="fs-dot" style="background:#dbeafe; color:#1e40af;">2</div>
+          <div class="fs-body"><h4>Originator information is attached to the transfer before it leaves</h4><p>Name and account identifier for the originator travel with the transfer itself, not separately after the fact.</p></div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+          <div class="fs-dot" style="background:#dbeafe; color:#1e40af;">3</div>
+          <div class="fs-body"><h4>Receiving cryptoasset business must confirm it can identify the beneficiary</h4><p>The business on the receiving side has to be able to identify who is receiving the value.</p></div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+          <div class="fs-dot" style="background:#fee2e2; color:#991b1b;">4</div>
+          <div class="fs-body"><h4>If the counterparty is an unhosted wallet, there is no regulated party on the other end</h4><p>With no regulated business to exchange this information with, this is where most real friction sits.</p></div>
+        </div>
+      </div>
+      <p>Since 1 September 2023, Part 7A of the Money Laundering Regulations has required this information to travel with certain cryptoasset transfers. It is the direct crypto equivalent of correspondent banking information requirements.</p>
+    </section>
+
+    <section class="article-section" id="kyc-angle">
+      <div class="section-num">Section 05</div>
+      <h2>Why crypto KYC does not map cleanly onto a traditional onboarding checklist</h2>
+      <div class="callout warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <div class="callout-title">Standard due diligence does not tell you where the coins came from</div>
+          <div class="callout-text">Standard due diligence confirms who opened the account. It tells you nothing about where the coins already sitting in that wallet came from before your customer took control of them. Source of funds, for a crypto customer, increasingly means tracing on chain activity backward, not just reading a bank statement.</div>
+        </div>
+      </div>
+      <p>Crypto specific enhanced due diligence requirements for certain correspondent style relationships come into force on 1 February 2027, formalising what many firms already do informally, treating unhosted wallet counterparties and lower transparency jurisdictions with a materially higher bar than a standard retail crypto customer.</p>
+    </section>
+
+    <section class="article-section" id="quiz">
+      <div class="section-num">Knowledge check</div>
+      <h2>Two distinctions that cause real onboarding mistakes</h2>
+      <div class="quiz" id="q1">
+        <div class="quiz-label">🧠 Knowledge check</div>
+        <div class="quiz-q">A customer holds cryptoassets personally in their own wallet and has never exchanged or safeguarded assets for anyone else. Do they need to register with the FCA?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="doQuiz('q1',this,true)">A) No, personal ownership alone triggers no registration duty, the duty attaches to businesses providing exchange or custody services</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">B) Yes, anyone holding cryptoassets above a set threshold must register with the FCA</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">C) Yes, but only once the FSMA regime commences in 2027</button>
+          <button class="quiz-opt" onclick="doQuiz('q1',this,false)">D) Only if the assets are held in an unhosted wallet</button>
+        </div>
+        <div class="quiz-feedback" id="q1-fb"></div>
+      </div>
+      <div class="quiz" id="q2">
+        <div class="quiz-label">🧠 Knowledge check</div>
+        <div class="quiz-q">Your firm is MLR registered and has been since 2021. Does that registration guarantee FSMA authorisation once the new regime commences?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="doQuiz('q2',this,true)">A) No, MLR registration does not convert into or guarantee FSMA authorisation, a fresh application is required</button>
+          <button class="quiz-opt" onclick="doQuiz('q2',this,false)">B) Yes, existing MLR registered firms are automatically grandfathered into FSMA authorisation</button>
+          <button class="quiz-opt" onclick="doQuiz('q2',this,false)">C) Yes, provided the firm has had no enforcement action since registering</button>
+          <button class="quiz-opt" onclick="doQuiz('q2',this,false)">D) Only firms registered before 2020 carry over automatically</button>
+        </div>
+        <div class="quiz-feedback" id="q2-fb"></div>
+      </div>
+    </section>
+
+    <div class="try-tool">
+      <div class="tl">
+        <div class="tl-eyebrow">🛡️ Put it into practice</div>
+        <div class="tl-title">Screen a wallet linked customer's name against live sanctions and PEP data</div>
+        <div class="tl-sub">Free, no login. See how identity screening works before you apply it to a live crypto case.</div>
+      </div>
+      <a href="/screen.html" class="tl-btn">Screen a name →</a>
+    </div>
+
+    <section class="article-section" id="faq">
+      <div class="section-num">FAQ</div>
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Does personally owning crypto require any FCA registration? <span class="faq-icon">+</span></div>
+        <div class="faq-a">No. Registration duties apply to businesses providing exchange or custody services by way of business, not to individuals holding assets for themselves.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">If my firm is already MLR registered, do we need to do anything before 2027? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Yes. Registration under the MLRs does not automatically carry over. Firms should be doing perimeter analysis now to understand which new regulated activities apply to them, ahead of the application gateway opening 30 September 2026.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What is the single most crypto specific AML obligation, separate from standard KYC and screening? <span class="faq-icon">+</span></div>
+        <div class="faq-a">The Travel Rule, in force since 1 September 2023, requiring originator and beneficiary information to travel with qualifying cryptoasset transfers.</div>
+      </div>
+
+      <div class="part-footer">
+        <div class="pf-prev">
+          <div class="pf-label">← Back</div>
+          <a href="/knowledge.html" class="pf-link">Knowledge Hub</a>
+        </div>
+        <div class="pf-center">Part 1 of 5</div>
+        <div class="pf-next">
+          <div class="pf-label">Next →</div>
+          <a href="#" class="pf-link">Part 2: Typologies, Mixers, Layering, and Rug Pulls →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  © 2026 FinCrimeRadar · <a href="/">Home</a> · <a href="/knowledge.html">Knowledge Hub</a> · <a href="/news.html">News</a> · <a href="/screen.html">Screen</a> · <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
+  <br><br>
+  <span style="font-size:11px;color:#9ca3af;">Decision support, not legal advice. Always verify against official FCA and HM Treasury sources before acting on a live case.</span>
+</footer>
+
+<script>
+  function updateProgress() {
+    const pct = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('fill').style.width = pct + '%';
+    document.getElementById('pct').textContent = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+  document.querySelectorAll('section[id]').forEach(s => {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          document.querySelectorAll('.toc-list a').forEach(l => l.classList.remove('active'));
+          const a = document.querySelector(`.toc-list a[href="#${e.target.id}"]`);
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin:'-20% 0px -70% 0px' }).observe(s);
+  });
+  function doQuiz(id, btn, correct) {
+    const fb = document.getElementById(id+'-fb');
+    document.querySelectorAll(`#${id} .quiz-opt`).forEach(b => b.disabled = true);
+    btn.classList.add(correct ? 'correct' : 'wrong');
+    fb.classList.add('show', correct ? 'correct' : 'wrong');
+    if (id==='q1') fb.textContent = correct ? '✅ Correct. Personal ownership of cryptoassets triggers no FCA registration duty. The obligation attaches to businesses that exchange cryptoassets by way of business or safeguard them for customers, not to individuals holding assets for their own account.' : '❌ Not quite. Personal ownership alone is unregulated. Registration duties attach to businesses providing exchange or custody services by way of business, not to individuals holding cryptoassets for themselves.';
+    if (id==='q2') fb.textContent = correct ? '✅ Correct. MLR registration does not convert into FSMA authorisation and does not guarantee it. A firm registered and supervised since 2021 still has to make a fresh case under the new regime, it is a separate gate.' : '❌ Not quite. MLR registration and FSMA authorisation are separate tests. Existing registration does not carry over or guarantee authorisation, a fresh application under the new regime is required.';
+  }
+  function toggleFaq(el) {
+    el.nextElementSibling.classList.toggle('open');
+    el.querySelector('.faq-icon').classList.toggle('open');
+  }
+</script>
+
+<!-- Cookie Consent Banner -->
+<div id="cookieBanner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; background:#0f2044; border-top:1px solid #1d3a6e; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; box-shadow:0 -4px 20px rgba(0,0,0,0.3);">
+  <div style="flex:1; min-width:260px;">
+    <div style="font-size:13px; font-weight:600; color:#fff; margin-bottom:4px;">🍪 We use cookies</div>
+    <div style="font-size:12px; color:#94a3b8; line-height:1.5;">We use Google Analytics to understand how visitors use FinCrimeRadar. No personal data is sold. See our <a href="/privacy.html" style="color:#93c5fd; text-decoration:none;">Privacy Policy</a>.</div>
+  </div>
+  <div style="display:flex; gap:8px; flex-shrink:0;">
+    <button onclick="rejectCookies()" style="padding:8px 16px; background:transparent; border:1px solid #334155; color:#94a3b8; border-radius:6px; font-size:12px; font-weight:500; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Reject non-essential</button>
+    <button onclick="acceptCookies()" style="padding:8px 18px; background:#00c4a7; border:none; color:#fff; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Accept all</button>
+  </div>
+</div>
+<script>
+  (function() {
+    var consent = localStorage.getItem('fcr_cookie_consent');
+    if (!consent) {
+      document.getElementById('cookieBanner').style.display = 'flex';
+    } else if (consent === 'rejected') {
+      window['ga-disable-G-FC1VMTE7JH'] = true;
+    }
+  })();
+  function acceptCookies() {
+    localStorage.setItem('fcr_cookie_consent', 'accepted');
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+  function rejectCookies() {
+    localStorage.setItem('fcr_cookie_consent', 'rejected');
+    window['ga-disable-G-FC1VMTE7JH'] = true;
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+</script>
+<script>
+function toggleMobileNav(){
+  var nav=document.getElementById('mobileNav');
+  var btn=document.getElementById('navHamburger');
+  if(!nav) return;
+  var open=nav.classList.toggle('open');
+  btn.innerHTML=open?'&#10005;':'&#9776;';
+  document.body.style.overflow=open?'hidden':'';
+}
+document.addEventListener('click',function(e){
+  var nav=document.getElementById('mobileNav');
+  var btn=document.getElementById('navHamburger');
+  if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==btn){
+    nav.classList.remove('open');
+    btn.innerHTML='&#9776;';
+    document.body.style.overflow='';
+  }
+});
+</script>
+<script defer src="/brand.js"></script>
+</body>
+</html>
