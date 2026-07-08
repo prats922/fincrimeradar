@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+  gtag('js', new Date());
+  (function () {
+    try {
+      var consent = localStorage.getItem('fcr_cookie_consent');
+      if (consent === 'accepted') {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+  })();
+  gtag('config', 'G-FC1VMTE7JH');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The MLRO Handbook Part 1: Becoming SMF16 or SMF17 | FinCrimeRadar</title>
+  <meta name="description" content="Who can become SMF16 or SMF17, what the FCA's real bar for approval looks like, and how the five stage approval process actually works, including the small firm combination question." />
+  <meta name="keywords" content="SMF16, SMF17, MLRO, Money Laundering Reporting Officer, Compliance Oversight, FCA approval, SM&CR, fit and proper, Form A, Statement of Responsibilities" />
+  <link rel="canonical" href="https://fincrimeradar.org/mlro-handbook-part1.html" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="The MLRO Handbook Part 1: Becoming SMF16 or SMF17 | FinCrimeRadar" />
+  <meta property="og:description" content="Who can become SMF16 or SMF17, what the FCA's real bar for approval looks like, and how the five stage approval process actually works, including the small firm combination question." />
+  <meta property="og:url" content="https://fincrimeradar.org/mlro-handbook-part1.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://fincrimeradar.org/og-image.png" />
+  <meta property="og:site_name" content="FinCrimeRadar" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The MLRO Handbook Part 1: Becoming SMF16 or SMF17 | FinCrimeRadar" />
+  <meta name="twitter:description" content="Who can become SMF16 or SMF17, what the FCA's real bar for approval looks like, and how the five stage approval process actually works, including the small firm combination question." />
+  <meta name="twitter:image" content="https://fincrimeradar.org/og-image.png" />
+  <!-- Schema.org -->
+  <meta name="author" content="Pratik Zanke, FinCrimeRadar" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --white:#ffffff; --off:#f7f8fa; --border:#e4e7ec;
+      --muted:#6b7280; --text:#111827; --navy:#0f2044;
+      --accent:#4f46e5; --accent-h:#4338ca; --accent-light:#eef2ff;
+      --accent-border:#c7d2fe;
+      --danger:#dc2626; --success:#16a34a; --warning:#d97706;
+      --blue:#1d5fc4; --purple:#7c3aed;
+    }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
+    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:72px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:8px; text-decoration:none; }
+    .nav-logo { width:26px; height:26px; }
+    .nav-name { font-size:15px; font-weight:600; color:var(--navy); }
+    .nav-name span { color:#00c4a7; }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:var(--navy); text-decoration:none; }
+    .nav-links a:hover { color:#00c4a7; }
+    .nav-cta { padding:7px 16px; background:#00c4a7; color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; }
+    .progress-bar { position:fixed; top:60px; left:0; width:0%; height:3px; background:var(--accent); z-index:199; transition:width 0.1s; }
+    .series-hero { background:linear-gradient(135deg,var(--hero-bg-1) 0%,var(--hero-bg-2) 100%); color:#fff; padding:4rem 2rem 3rem; }
+    .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:var(--hero-accent-em); margin-bottom:1.25rem; }
+    .series-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(1.9rem,4vw,3rem); font-weight:400; line-height:1.2; margin-bottom:0.75rem; max-width:760px; }
+    .series-hero h1 em { font-style:italic; color:var(--hero-accent-em); }
+    .series-sub { font-size:16px; color:#e0e7ff; max-width:620px; line-height:1.7; margin-bottom:2rem; }
+    .series-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#a5b4fc; }
+    .part-nav { background:var(--white); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; gap:0; overflow-x:auto; }
+    .part-link { padding:14px 20px; font-size:13px; font-weight:500; color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; }
+    .part-link.active { color:var(--accent); border-bottom-color:var(--accent); }
+    .part-link.done { color:var(--success); }
+    .article-layout { display:grid; grid-template-columns:220px 1fr; gap:2rem; max-width:1080px; margin:0 auto; padding:2.5rem 1.5rem; align-items:start; }
+    .toc { position:sticky; top:105px; background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.25rem; }
+    .toc-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--muted); margin-bottom:0.875rem; }
+    .toc-list { list-style:none; }
+    .toc-list a { font-size:12.5px; color:var(--muted); text-decoration:none; display:block; padding:5px 8px; border-radius:6px; transition:all 0.15s; border-left:2px solid transparent; }
+    .toc-list a:hover,.toc-list a.active { color:var(--accent); background:var(--accent-light); border-left-color:var(--accent); }
+    .toc-progress { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); }
+    .toc-progress-label { font-size:11px; color:var(--muted); margin-bottom:6px; display:flex; justify-content:space-between; }
+    .toc-bar { height:4px; background:var(--border); border-radius:99px; overflow:hidden; }
+    .toc-fill { height:100%; background:var(--accent); border-radius:99px; transition:width 0.2s; width:0%; }
+    .next-part { margin-top:1rem; padding:10px; background:var(--accent-light); border:1px solid var(--accent-border); border-radius:8px; }
+    .next-part-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--accent); margin-bottom:4px; }
+    .next-part a { font-size:12px; font-weight:600; color:var(--accent); text-decoration:none; }
+    .article-body { min-width:0; }
+    .article-section { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:2.25rem; margin-bottom:1.25rem; }
+    .section-num { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--accent); margin-bottom:0.5rem; }
+    .article-section h2 { font-family:'DM Serif Display',Georgia,serif; font-size:24px; font-weight:400; color:var(--navy); margin-bottom:1rem; line-height:1.3; }
+    .article-section h3 { font-size:16px; font-weight:600; color:var(--navy); margin:1.75rem 0 0.65rem; }
+    .article-section p { font-size:14.5px; color:#374151; margin-bottom:0.9rem; line-height:1.75; }
+    .article-section ul,.article-section ol { padding-left:1.5rem; margin-bottom:0.9rem; }
+    .article-section li { font-size:14.5px; color:#374151; margin-bottom:0.45rem; line-height:1.65; }
+    .article-section a { color:var(--accent); text-decoration:none; }
+    .article-section a:hover { text-decoration:underline; }
+    .callout { border-radius:10px; padding:1.1rem 1.4rem; margin:1.25rem 0; display:flex; gap:12px; }
+    .callout-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+    .callout-body { flex:1; }
+    .callout-title { font-size:12px; font-weight:700; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.4px; }
+    .callout-text { font-size:13.5px; line-height:1.6; }
+    .callout.info { background:#eff6ff; border:1px solid #bfdbfe; }
+    .callout.info .callout-title { color:#1e40af; }
+    .callout.info .callout-text { color:#1e3a8a; }
+    .callout.warning { background:#fffbeb; border:1px solid #fde68a; }
+    .callout.warning .callout-title { color:#92400e; }
+    .callout.warning .callout-text { color:#78350f; }
+    .callout.danger { background:#fff5f5; border:1px solid #fca5a5; }
+    .callout.danger .callout-title { color:#991b1b; }
+    .callout.danger .callout-text { color:#7f1d1d; }
+    .callout.indigo { background:var(--accent-light); border:1px solid var(--accent-border); }
+    .callout.indigo .callout-title { color:var(--accent-h); }
+    .callout.indigo .callout-text { color:#3730a3; }
+    .pull-quote { font-family:'DM Serif Display',Georgia,serif; font-size:18px; font-style:italic; color:var(--navy); border-left:3px solid var(--accent); padding-left:1.25rem; margin:1.5rem 0; line-height:1.6; }
+    .part-footer { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-top:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    .pf-prev,.pf-next { display:flex; flex-direction:column; gap:4px; }
+    .pf-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--muted); }
+    .pf-link { font-size:14px; font-weight:600; color:var(--accent); text-decoration:none; }
+    .pf-link:hover { text-decoration:underline; }
+    .pf-next { text-align:right; }
+    .pf-center { font-size:13px; color:var(--muted); }
+    footer { background:var(--white); border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:12px; color:var(--muted); margin-top:2rem; }
+    footer a { color:var(--muted); text-decoration:none; margin:0 8px; }
+    footer a:hover { color:#00c4a7; }
+
+    /* FIRM TOGGLE */
+    .firm-toggle { display:inline-flex; background:var(--off); border:1px solid var(--border); border-radius:99px; padding:4px; margin:0.5rem 0 1.25rem; }
+    .ft-btn { padding:8px 18px; border:none; background:transparent; border-radius:99px; font-size:13px; font-weight:600; color:var(--muted); cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s; }
+    .ft-btn.active { background:var(--accent); color:#fff; }
+    .firm-panel { border:1px solid var(--accent-border); background:var(--accent-light); border-radius:10px; padding:1.1rem 1.4rem; margin-bottom:0.5rem; }
+    .firm-panel-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--accent-h); margin-bottom:6px; }
+    .firm-panel p { color:#3730a3 !important; font-size:13.5px !important; margin-bottom:0.5rem !important; }
+    .firm-panel p:last-child { margin-bottom:0 !important; }
+
+    /* SELF ASSESSMENT QUIZ */
+    .self-assess { background:var(--accent-light); border:1px solid var(--accent-border); border-radius:12px; padding:1.4rem; margin:1.5rem 0; }
+    .sa-label { font-size:11px; font-weight:700; color:var(--accent-h); text-transform:uppercase; letter-spacing:0.4px; margin-bottom:0.5rem; }
+    .sa-intro { font-size:13px; color:#3730a3; margin-bottom:1.1rem; line-height:1.6; }
+    .sa-question { margin-bottom:1.1rem; }
+    .sa-q-text { font-size:14px; font-weight:600; color:var(--navy); margin-bottom:0.6rem; }
+    .sa-opts { display:flex; flex-direction:column; gap:6px; }
+    .sa-opt { padding:9px 13px; border:1.5px solid var(--accent-border); border-radius:7px; font-size:13px; cursor:pointer; background:var(--white); color:var(--text); transition:all 0.15s; text-align:left; font-family:'Inter',sans-serif; }
+    .sa-opt:hover { border-color:var(--accent); }
+    .sa-opt.picked { border-color:var(--accent); background:var(--accent); color:#fff; }
+    .sa-submit { margin-top:0.5rem; padding:10px 22px; background:var(--accent); color:#fff; border:none; border-radius:8px; font-size:13.5px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; }
+    .sa-submit:disabled { background:var(--border); color:var(--muted); cursor:not-allowed; }
+    .sa-result { display:none; margin-top:1.1rem; padding:1rem 1.2rem; border-radius:9px; }
+    .sa-result.show { display:block; }
+    .sa-result.sa-strong { background:#f0fdf4; border:1px solid #86efac; }
+    .sa-result.sa-mixed { background:#fffbeb; border:1px solid #fde68a; }
+    .sa-result.sa-gap { background:#fff5f5; border:1px solid #fca5a5; }
+    .sa-result-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:4px; }
+    .sa-strong .sa-result-label { color:#166534; }
+    .sa-mixed .sa-result-label { color:#92400e; }
+    .sa-gap .sa-result-label { color:#991b1b; }
+    .sa-result-text { font-size:13.5px; line-height:1.6; color:#374151; }
+    .sa-disclaimer { font-size:12px; color:var(--muted); margin-top:0.9rem; padding-top:0.9rem; border-top:1px solid var(--accent-border); line-height:1.55; }
+
+    /* STEP TIMELINE */
+    .step-timeline { margin:1.5rem 0; }
+    .step-item { border:1px solid var(--border); border-radius:10px; margin-bottom:8px; overflow:hidden; }
+    .step-head { display:flex; align-items:center; gap:14px; padding:0.95rem 1.1rem; cursor:pointer; background:var(--white); user-select:none; }
+    .step-head:hover { background:var(--off); }
+    .step-num { width:28px; height:28px; border-radius:50%; background:var(--accent); color:#fff; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .step-title { flex:1; font-size:14px; font-weight:600; color:var(--navy); }
+    .step-icon { font-size:17px; color:var(--muted); transition:transform 0.2s; flex-shrink:0; }
+    .step-icon.open { transform:rotate(45deg); }
+    .step-body { display:none; padding:0 1.1rem 1rem 3.4rem; font-size:13.5px; color:#374151; line-height:1.65; border-top:1px solid var(--border); background:#fafafa; }
+    .step-body.open { display:block; padding-top:0.9rem; }
+    .step-body strong { color:var(--navy); }
+
+    /* ===== MOBILE RESPONSIVE ===== */
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--navy, #0f2044);
+      padding: 4px 6px;
+      line-height: 1;
+    }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0; right: 0;
+      background: #fff;
+      border-bottom: 1px solid #e4e7ec;
+      flex-direction: column;
+      z-index: 99;
+      padding: 0.5rem 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      padding: 14px 1.5rem;
+      font-size: 15px;
+      color: #374151;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #f3f4f6;
+      transition: background 0.1s;
+    }
+    .mobile-nav a:hover { background: #f9fafb; }
+    .mobile-nav .mobile-nav-cta {
+      margin: 0.75rem 1.5rem 0.5rem;
+      background: #00c4a7;
+      color: #fff !important;
+      border-radius: 8px;
+      text-align: center;
+      border-bottom: none;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1rem; }
+      .nav-hamburger { display: block; }
+      .nav-links { display: none; }
+      .nav-logo img,
+      .nav-brand img { height: 40px !important; width: auto !important; max-width: 160px !important; }
+      .series-hero { padding: 2.5rem 1.25rem 2rem; }
+      .article-layout { grid-template-columns: 1fr !important; }
+      .toc { display: none !important; }
+      .article-section { padding: 1.25rem !important; }
+      .step-body { padding-left: 1.1rem !important; }
+      footer { flex-direction: column !important; align-items: flex-start !important; gap: 1rem !important; }
+    }
+  </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The MLRO Handbook Part 1: Becoming SMF16 or SMF17","url":"https://fincrimeradar.org/mlro-handbook-part1.html","publisher":{"@type":"Organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org"},"datePublished":"2026-07-08"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand.css">
+  <!-- Loaded after brand.css so the series accent wins the cascade. brand.css
+       defines --accent globally (teal), which would otherwise override the
+       first inline block. --hero-accent-em is intentionally left as brand.css's
+       green, it is a shared hero convention, not a guide specific accent.
+       Indigo chosen as this series' accent: distinct from AML/Crypto (blue),
+       PEP (purple), and SAR/FATF (amber). -->
+  <style>
+    :root {
+      --accent: #4f46e5;
+      --accent-h: #4338ca;
+      --accent-light: #eef2ff;
+      --accent-border: #c7d2fe;
+    }
+  </style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav>
+  <a class="nav-brand" href="/">
+    <img src="/logo.png" alt="FinCrimeRadar" style="height:44px;width:auto;max-width:200px;object-fit:contain;object-position:left center;display:block;" />
+  </a>
+  <div class="nav-links">
+    <a href="/knowledge.html" class="hm">Knowledge Hub</a>
+    <a href="/screen.html" class="hm">Screen</a>
+    <a href="/screen.html" class="nav-cta" style="background:#00c4a7;color:#fff;font-weight:600;">Try the tool →</a>
+  </div>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/knowledge.html">Knowledge Hub</a>
+  <a href="/learn.html">Learn</a>
+  <a href="/about.html">About</a>
+  <a href="/screen.html" class="mobile-nav-cta">Try the tool →</a>
+</div>
+
+<div class="series-hero">
+  <div class="series-tag">📘 MLRO Handbook · Part 1 of 2</div>
+  <h1>The MLRO Handbook: <em>Becoming SMF16 or SMF17</em></h1>
+  <p class="series-sub">Section 1: who can hold the role, what the FCA actually expects, and how the approval process really works, not the theory, the bar the FCA has said it applies in practice.</p>
+  <div class="series-meta">
+    <span>📖 14 min read</span>
+    <span>⚖️ SM&CR · SMF16/SMF17</span>
+    <span>🇬🇧 UK specific</span>
+    <span>🏛️ FCA</span>
+  </div>
+</div>
+
+<div class="part-nav">
+  <a href="/mlro-handbook-part1.html" class="part-link active">Part 1: Eligibility and Approval</a>
+  <a href="#" class="part-link">Part 2: The Role Day to Day, SARs and Enforcement</a>
+</div>
+
+<div class="article-layout">
+  <aside>
+    <div class="toc">
+      <div class="toc-title">In this part</div>
+      <ul class="toc-list">
+        <li><a href="#intro">What SMF16/17 actually are</a></li>
+        <li><a href="#eligibility">Who can become one</a></li>
+        <li><a href="#fca-bar">The FCA's real bar</a></li>
+        <li><a href="#approval-process">The approval process</a></li>
+        <li><a href="#combination">The combination question</a></li>
+      </ul>
+      <div class="toc-progress">
+        <div class="toc-progress-label"><span>Progress</span><span id="pct">0%</span></div>
+        <div class="toc-bar"><div class="toc-fill" id="fill"></div></div>
+      </div>
+      <div class="next-part">
+        <div class="next-part-label">Next →</div>
+        <a href="#">Part 2: The Role Day to Day →</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="article-body">
+
+    <section class="article-section" id="intro">
+      <div class="section-num">Section 1</div>
+      <h2>What SMF16 and SMF17 actually are</h2>
+      <p>Two functions sit at the centre of every regulated firm's defence against financial crime. SMF16, Compliance Oversight, is the senior individual personally accountable for the firm's compliance with FCA rules. SMF17, the Money Laundering Reporting Officer, carries personal accountability for the firm's anti-money laundering controls specifically, the person the FCA and the National Crime Agency expect to be able to name and reach directly.</p>
+      <p>Both are Senior Management Functions under the Senior Managers and Certification Regime. Holding one means FCA approval before you start the role, a Statement of Responsibilities that names exactly what you're accountable for, and a personal Duty of Responsibility under the Financial Services and Markets Act that survives independently of your employer. If the firm gets its AML controls wrong, the question the FCA asks first is not "what did the firm do", it's "what did the SMF17 holder know, and what did they do about it."</p>
+      <div class="pull-quote">"What did the SMF17 holder know, and what did they do about it?"</div>
+      <p>In firms below roughly £20 million in revenue, SMF16 and SMF17 are routinely held by the same person. That's permitted, and it's standard practice, not a compromise. In larger or more complex firms, the workload typically forces a split between the two.</p>
+
+      <div class="firm-toggle">
+        <button class="ft-btn active" data-view="small" onclick="setFirmView('small')">Small firm view</button>
+        <button class="ft-btn" data-view="large" onclick="setFirmView('large')">Larger firm view</button>
+      </div>
+
+      <div class="firm-panel" id="firmSmall">
+        <div class="firm-panel-label">Small firm, roughly under £20m revenue</div>
+        <p>One person holding both SMF16 and SMF17 is standard practice here, not a compromise or a workaround. The practical focus is realistic time allocation across both remits, training that's proportionate to the firm's actual risk profile rather than generic, and being genuinely present and knowledgeable, rather than leaning on external advisers to cover for a thin internal picture.</p>
+        <p>The FCA still expects the same personal accountability either way, combining the roles doesn't lower the bar, it just concentrates it in one person.</p>
+      </div>
+      <div class="firm-panel" id="firmLarge" style="display:none;">
+        <div class="firm-panel-label">Larger or more complex firm</div>
+        <p>Workload typically forces a split between SMF16 and SMF17. The practical focus shifts to clean separation of duties between general compliance oversight and AML specific accountability, clear hand offs and escalation paths between the two role holders, and making sure neither person is stretched across conflicting duties elsewhere in the business.</p>
+        <p>A split doesn't remove the coordination problem, it just moves it from one person's calendar to a working relationship between two.</p>
+      </div>
+    </section>
+
+    <section class="article-section" id="eligibility">
+      <div class="section-num">Section 2</div>
+      <h2>Who can actually become one</h2>
+      <p>There's a persistent myth in compliance circles that you need to have already been an MLRO to become one. The FCA has explicitly said otherwise. Applicants do not need prior head of compliance or MLRO experience, a background in a more junior compliance role, compliance manager, deputy MLRO, or equivalent, is a legitimate and common route in.</p>
+      <p>What the FCA is actually screening for is whether the individual can demonstrate, in their own right, sufficient knowledge and experience to make real compliance decisions for that specific business. That's a functional test, not a credentials checklist. It means:</p>
+      <ul>
+        <li>Diverse professional backgrounds are acceptable. Legal, accountancy, consultancy, and internal audit backgrounds are all considered, provided the person's actual experience maps onto what the role demands at that firm.</li>
+        <li>Front-line experience alone is usually not enough. Someone whose entire career has been sales or operations, with no compliance, risk, or legal grounding, tends to struggle to satisfy the FCA that they understand the regulatory environment they'd be accountable for.</li>
+        <li>Seniority and independence matter as much as technical knowledge. The role needs to sit close enough to real decision making to be effective, and free enough from conflicting duties to exercise independent judgement.</li>
+      </ul>
+
+      <div class="self-assess" id="selfAssess">
+        <div class="sa-label">🧭 Self-check · Educational only</div>
+        <div class="sa-intro">Could you be put forward as SMF16/17? Answer all six questions for a directional read out. This is educational only, it is not a formal fitness and propriety determination.</div>
+
+        <div class="sa-question" data-q="1">
+          <div class="sa-q-text">1. Which best describes your professional background?</div>
+          <div class="sa-opts">
+            <button class="sa-opt" onclick="saSelect(1,this,2)">Compliance, legal, risk, or audit background</button>
+            <button class="sa-opt" onclick="saSelect(1,this,1)">Mixed background with some compliance or risk exposure</button>
+            <button class="sa-opt" onclick="saSelect(1,this,0)">Entirely sales, operations, or front line, no compliance, legal, or risk grounding</button>
+          </div>
+        </div>
+
+        <div class="sa-question" data-q="2">
+          <div class="sa-q-text">2. Would you have genuine authority to challenge business decisions and reach senior management or the board directly?</div>
+          <div class="sa-opts">
+            <button class="sa-opt" onclick="saSelect(2,this,2)">Yes, clearly and directly</button>
+            <button class="sa-opt" onclick="saSelect(2,this,1)">Somewhat, though it would need to be established</button>
+            <button class="sa-opt" onclick="saSelect(2,this,0)">Not really, in the current structure</button>
+          </div>
+        </div>
+
+        <div class="sa-question" data-q="3">
+          <div class="sa-q-text">3. Realistically, how many hours a week could you dedicate to this role?</div>
+          <div class="sa-opts">
+            <button class="sa-opt" onclick="saSelect(3,this,2)">Enough to be proportionate to the firm's actual size and risk</button>
+            <button class="sa-opt" onclick="saSelect(3,this,1)">A few hours, it would be tight</button>
+            <button class="sa-opt" onclick="saSelect(3,this,0)">Only a handful of hours at most</button>
+          </div>
+        </div>
+
+        <div class="sa-question" data-q="4">
+          <div class="sa-q-text">4. Would this role sit alongside another role that could create a conflict of interest, for example sales or client relationship management?</div>
+          <div class="sa-opts">
+            <button class="sa-opt" onclick="saSelect(4,this,2)">No conflicting role</button>
+            <button class="sa-opt" onclick="saSelect(4,this,1)">Some overlap, but manageable</button>
+            <button class="sa-opt" onclick="saSelect(4,this,0)">Yes, a clear potential conflict</button>
+          </div>
+        </div>
+
+        <div class="sa-question" data-q="5">
+          <div class="sa-q-text">5. Would you be working from the firm's actual UK place of business?</div>
+          <div class="sa-opts">
+            <button class="sa-opt" onclick="saSelect(5,this,2)">Yes, based there</button>
+            <button class="sa-opt" onclick="saSelect(5,this,1)">Partly, a hybrid arrangement</button>
+            <button class="sa-opt" onclick="saSelect(5,this,0)">No, fully remote or based overseas</button>
+          </div>
+        </div>
+
+        <div class="sa-question" data-q="6">
+          <div class="sa-q-text">6. Has your compliance or AML training included an assessed or examined component, not just attendance at short introductory courses?</div>
+          <div class="sa-opts">
+            <button class="sa-opt" onclick="saSelect(6,this,2)">Yes, assessed or examined training</button>
+            <button class="sa-opt" onclick="saSelect(6,this,1)">Some, but mostly short courses</button>
+            <button class="sa-opt" onclick="saSelect(6,this,0)">No, attendance only sessions</button>
+          </div>
+        </div>
+
+        <button class="sa-submit" id="saSubmitBtn" onclick="saSubmit()" disabled>See my directional result</button>
+
+        <div class="sa-result" id="saResult">
+          <div class="sa-result-label" id="saResultLabel"></div>
+          <div class="sa-result-text" id="saResultText"></div>
+        </div>
+
+        <div class="sa-disclaimer">Educational self-check only, based on the factors the FCA has said it looks for. This is not a formal fitness and propriety determination. Only your firm's own internal assessment, and ultimately FCA approval, determines whether you meet the fit and proper standard.</div>
+      </div>
+    </section>
+
+    <section class="article-section" id="fca-bar">
+      <div class="section-num">Section 3</div>
+      <h2>What it actually takes: the FCA's real bar</h2>
+      <p>The FCA published explicit guidance on what separates a strong SMF16/17 application from a weak one, drawn from patterns across the applications it reviews. Four things come up consistently.</p>
+
+      <h3>Depth of training, not breadth of certificates</h3>
+      <p>Short introductory courses, on their own, do not provide sufficient coverage for either role, even at the smallest firms. Training with an assessment or examination component demonstrates retained knowledge far better than attendance alone, and the FCA has said as much directly. What matters is whether the training is current, relevant to the firm's actual business type, and substantive enough to hold up under questioning.</p>
+
+      <h3>Genuine, proportionate time commitment</h3>
+      <p>Part-time SMF16/17 roles are accepted, particularly at smaller firms, but the time allocated has to be real. Applications proposing a handful of hours a week have a track record of being rejected outright. If the individual holds another role internally or externally, the FCA will look directly at whether that creates a conflict of interest with the objectivity the role requires.</p>
+
+      <h3>Internal competence, not outsourced competence</h3>
+      <p>External compliance consultants and law firms are a normal and often necessary part of running a compliance function, but the FCA has been clear that reliance on external support alone does not satisfy the requirement. The named individual, not the firm's advisers, has to be able to demonstrate sufficient personal knowledge to make compliance calls. Applications where a firm leans entirely on outside advisers, with no genuinely competent internal person behind the title, have tended not to succeed.</p>
+
+      <h3>Physical and operational presence</h3>
+      <p>Applicants working from the firm's actual UK place of business have a stronger track record of approval than those operating remotely or from overseas, a detail that surprises some fintech and early stage applicants used to fully distributed teams.</p>
+    </section>
+
+    <section class="article-section" id="approval-process">
+      <div class="section-num">Section 4</div>
+      <h2>The approval process, step by step</h2>
+      <p>Click any stage below to see the specific documents or common failure points that apply at that step.</p>
+
+      <div class="step-timeline">
+        <div class="step-item">
+          <div class="step-head" onclick="toggleStep(this)">
+            <div class="step-num">1</div>
+            <div class="step-title">Internal fit and proper assessment</div>
+            <span class="step-icon">+</span>
+          </div>
+          <div class="step-body">The firm identifies a candidate and satisfies itself internally, before ever contacting the FCA, that the person meets the fit and proper standard: <strong>honesty and integrity</strong>, <strong>competence and capability</strong>, and <strong>financial soundness</strong>.</div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-head" onclick="toggleStep(this)">
+            <div class="step-num">2</div>
+            <div class="step-title">Form A and Statement of Responsibilities submitted via Connect</div>
+            <span class="step-icon">+</span>
+          </div>
+          <div class="step-body">A Form A is submitted through the FCA's Connect system, the formal application for approval, alongside a Statement of Responsibilities setting out precisely what the individual will be accountable for. For a new firm going through authorisation, both are submitted as part of the wider application. <strong>Common failure point:</strong> a missing or thin CV, or a vaguely defined responsibility map, is a common cause of an application being marked incomplete before it's even substantively reviewed.</div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-head" onclick="toggleStep(this)">
+            <div class="step-num">3</div>
+            <div class="step-title">FCA review, and possibly an interview</div>
+            <span class="step-icon">+</span>
+          </div>
+          <div class="step-body">The FCA reviews the application and, in a meaningful proportion of cases, does not stop there. This is not a self-certification process. If the FCA has questions about competency, time commitment, independence, or the depth of the candidate's training, it can and does request a formal interview. <strong>Expect:</strong> firms and candidates should be ready to explain, in specific and practical terms, how the AML framework works for that business, not recite policy from memory.</div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-head" onclick="toggleStep(this)">
+            <div class="step-num">4</div>
+            <div class="step-title">Approval, or further questions</div>
+            <span class="step-icon">+</span>
+          </div>
+          <div class="step-body">Approval is granted, or the FCA raises further questions. <strong>Recurring rejection patterns:</strong> insufficient time committed to the role, training that's too shallow or generic for the firm's actual risk profile, unresolved conflicts of interest, or a firm that clearly cannot function without its external advisers standing in for the named individual's own judgement.</div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-head" onclick="toggleStep(this)">
+            <div class="step-num">5</div>
+            <div class="step-title">Ongoing responsibility begins</div>
+            <span class="step-icon">+</span>
+          </div>
+          <div class="step-body">Ongoing responsibility begins immediately on approval. The Statement of Responsibilities and the Duty of Responsibility aren't paperwork exercises, they're the standard the FCA will hold the individual to if something goes wrong later, including in supervisory action or enforcement.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section" id="combination">
+      <div class="section-num">Section 5</div>
+      <h2>The combination question every smaller firm faces</h2>
+      <p>Firms under the Enhanced tier threshold face a genuine, non-trivial decision: one person holding both SMF16 and SMF17, or two. There's no single correct answer, but there is a wrong way to reach it, which is drifting into the combination by default because the firm hasn't actively decided either way. The FCA expects firms to have consciously assessed whether combination is appropriate given the firm's size, complexity, and risk profile, and to revisit that assessment periodically rather than setting it once and forgetting it.</p>
+      <p>Where the roles are combined, the practical risk isn't competence, it's capacity and independence. One person is now the sole point of accountability for both general regulatory compliance and the firm's entire AML defence, with no internal separation of duties if either area comes under scrutiny at the same time.</p>
+
+      <div class="callout indigo">
+        <div class="callout-icon">📘</div>
+        <div class="callout-body">
+          <div class="callout-title">Coming in Part 2</div>
+          <div class="callout-text">This section covers eligibility, requirements, and the formal approval route. The next section in this handbook covers what the role looks like day to day once approved, the SAR process, board reporting lines, and where SMF16/17 liability has actually been tested in enforcement action.</div>
+        </div>
+      </div>
+
+      <div class="part-footer">
+        <div class="pf-prev">
+          <div class="pf-label">← Back</div>
+          <a href="/knowledge.html" class="pf-link">Knowledge Hub</a>
+        </div>
+        <div class="pf-center">Part 1 of 2</div>
+        <div class="pf-next">
+          <div class="pf-label">Next →</div>
+          <a href="#" class="pf-link">Part 2: The Role Day to Day →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  © 2026 FinCrimeRadar · <a href="/">Home</a> · <a href="/knowledge.html">Knowledge Hub</a> · <a href="/screen.html">Screen</a> · <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
+  <br><br>
+  <span style="font-size:11px;color:#9ca3af;">This guide is for educational purposes only and does not constitute legal advice. The self-assessment tool is directional only and is not a fitness and propriety determination. Always consult qualified legal counsel for compliance matters. Last updated July 2026.</span>
+</footer>
+
+<script>
+  function updateProgress() {
+    const pct = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('fill').style.width = pct + '%';
+    document.getElementById('pct').textContent = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+  document.querySelectorAll('section[id]').forEach(s => {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          document.querySelectorAll('.toc-list a').forEach(l => l.classList.remove('active'));
+          const a = document.querySelector(`.toc-list a[href="#${e.target.id}"]`);
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin:'-20% 0px -70% 0px' }).observe(s);
+  });
+
+  function setFirmView(view) {
+    document.querySelectorAll('.ft-btn').forEach(b => b.classList.toggle('active', b.dataset.view === view));
+    document.getElementById('firmSmall').style.display = view === 'small' ? 'block' : 'none';
+    document.getElementById('firmLarge').style.display = view === 'large' ? 'block' : 'none';
+  }
+
+  var saScores = {};
+  function saSelect(q, btn, score) {
+    document.querySelectorAll('.sa-question[data-q="' + q + '"] .sa-opt').forEach(b => b.classList.remove('picked'));
+    btn.classList.add('picked');
+    saScores[q] = score;
+    document.getElementById('saSubmitBtn').disabled = Object.keys(saScores).length < 6;
+  }
+  function saSubmit() {
+    var total = 0;
+    Object.keys(saScores).forEach(k => total += saScores[k]);
+    var result = document.getElementById('saResult');
+    var label = document.getElementById('saResultLabel');
+    var text = document.getElementById('saResultText');
+    result.classList.remove('sa-strong', 'sa-mixed', 'sa-gap');
+    if (total >= 9) {
+      result.classList.add('sa-strong');
+      label.textContent = 'Directional read out: a stronger starting position';
+      text.textContent = 'On the factors the FCA has said it weighs, your answers suggest a stronger starting position. Worth having a proper conversation with your compliance function, or a specialist adviser, about what a real application would need.';
+    } else if (total >= 5) {
+      result.classList.add('sa-mixed');
+      label.textContent = 'Directional read out: a mixed picture';
+      text.textContent = 'A mixed picture. There are areas here, whether time, training, independence, or presence, worth strengthening before this goes anywhere near an FCA application.';
+    } else {
+      result.classList.add('sa-gap');
+      label.textContent = 'Directional read out: significant gaps against the FCA bar';
+      text.textContent = 'Your answers point to significant gaps against what the FCA has said it looks for. That doesn\'t rule anything out, but it\'s worth understanding those gaps, and what would need to change, before this becomes a live conversation.';
+    }
+    result.classList.add('show');
+  }
+
+  function toggleStep(el) {
+    el.querySelector('.step-icon').classList.toggle('open');
+    el.nextElementSibling.classList.toggle('open');
+  }
+</script>
+
+<!-- Cookie Consent Banner -->
+<div id="cookieBanner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; background:#0f2044; border-top:1px solid #1d3a6e; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; box-shadow:0 -4px 20px rgba(0,0,0,0.3);">
+  <div style="flex:1; min-width:260px;">
+    <div style="font-size:13px; font-weight:600; color:#fff; margin-bottom:4px;">🍪 We use cookies</div>
+    <div style="font-size:12px; color:#94a3b8; line-height:1.5;">We use Google Analytics to understand how visitors use FinCrimeRadar. No personal data is sold. See our <a href="/privacy.html" style="color:#93c5fd; text-decoration:none;">Privacy Policy</a>.</div>
+  </div>
+  <div style="display:flex; gap:8px; flex-shrink:0;">
+    <button onclick="rejectCookies()" style="padding:8px 16px; background:transparent; border:1px solid #334155; color:#94a3b8; border-radius:6px; font-size:12px; font-weight:500; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Reject non-essential</button>
+    <button onclick="acceptCookies()" style="padding:8px 18px; background:#00c4a7; border:none; color:#fff; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Accept all</button>
+  </div>
+</div>
+<script>
+  (function() {
+    var consent = localStorage.getItem('fcr_cookie_consent');
+    if (!consent) {
+      document.getElementById('cookieBanner').style.display = 'flex';
+    } else if (consent === 'rejected') {
+      window['ga-disable-G-FC1VMTE7JH'] = true;
+    }
+  })();
+  function acceptCookies() {
+    localStorage.setItem('fcr_cookie_consent', 'accepted');
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { 'analytics_storage': 'granted' });
+    }
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+  function rejectCookies() {
+    localStorage.setItem('fcr_cookie_consent', 'rejected');
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { 'analytics_storage': 'denied' });
+    }
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+</script>
+<script>
+function toggleMobileNav(){
+  var nav=document.getElementById('mobileNav');
+  var btn=document.getElementById('navHamburger');
+  if(!nav) return;
+  var open=nav.classList.toggle('open');
+  btn.innerHTML=open?'&#10005;':'&#9776;';
+  document.body.style.overflow=open?'hidden':'';
+}
+document.addEventListener('click',function(e){
+  var nav=document.getElementById('mobileNav');
+  var btn=document.getElementById('navHamburger');
+  if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==btn){
+    nav.classList.remove('open');
+    btn.innerHTML='&#9776;';
+    document.body.style.overflow='';
+  }
+});
+</script>
+<script defer src="/brand.js"></script>
+</body>
+</html>

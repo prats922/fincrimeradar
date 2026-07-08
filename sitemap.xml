@@ -142,5 +142,12 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- MLRO Handbook series -->
+  <url>
+    <loc>https://fincrimeradar.org/mlro-handbook-part1.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url><loc>https://fincrimeradar.org/delta/2026-07-08.html</loc><lastmod>2026-07-08</lastmod></url>
 </urlset>
