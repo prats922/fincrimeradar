@@ -219,6 +219,54 @@
   }
 
   // ---- Force directed layout, hand rolled, no external dependency ----
+  //
+  // Node captions render as full label text below each circle (see
+  // renderTree), and SVG <text> never wraps on its own. The physics sim
+  // below only ever knew about circle radii, not label width, so two
+  // nodes with long labels (e.g. "Shareholder (Son of Designated
+  // Official)") could end up close enough that their captions collided
+  // even though the circles themselves never touched. SPRING_LENGTH now
+  // scales with the longest label in the case, and a post-simulation
+  // repair pass guarantees no two nodes end up closer than that floor,
+  // regardless of how the spring/repulsion forces settled.
+  function estimateMinSeparation(nodes) {
+    const AVG_CHAR_WIDTH = 5.4; // conservative estimate at 12px DM Sans
+    const maxLabelLen = nodes.reduce((max, n) => Math.max(max, (n.label || "").length), 8);
+    return clamp(maxLabelLen * AVG_CHAR_WIDTH * 0.75, 90, 200);
+  }
+
+  function resolveMinSeparation(nodes, positions, minSeparation, width, height) {
+    const REPAIR_PASSES = 12;
+    for (let pass = 0; pass < REPAIR_PASSES; pass++) {
+      let moved = false;
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = positions[nodes[i].id];
+          const b = positions[nodes[j].id];
+          let dx = b.x - a.x;
+          let dy = b.y - a.y;
+          const dist = Math.sqrt(dx * dx + dy * dy) || 0.01;
+          if (dist < minSeparation) {
+            const push = (minSeparation - dist) / 2;
+            dx /= dist;
+            dy /= dist;
+            a.x -= dx * push;
+            a.y -= dy * push;
+            b.x += dx * push;
+            b.y += dy * push;
+            moved = true;
+          }
+        }
+      }
+      nodes.forEach((n) => {
+        const p = positions[n.id];
+        p.x = Math.max(40, Math.min(width - 40, p.x));
+        p.y = Math.max(40, Math.min(height - 40, p.y));
+      });
+      if (!moved) break;
+    }
+  }
+
   function computeLayout(nodes, edges, width, height) {
     const positions = {};
     nodes.forEach((n, i) => {
@@ -230,7 +278,8 @@
     });
 
     const REPULSION = 2200;
-    const SPRING_LENGTH = Math.min(width, height) * 0.32;
+    const minSeparation = estimateMinSeparation(nodes);
+    const SPRING_LENGTH = Math.max(Math.min(width, height) * 0.32, minSeparation);
     const SPRING_STRENGTH = 0.02;
     const CENTER_STRENGTH = 0.01;
     const ITERATIONS = 250;
@@ -289,7 +338,37 @@
       });
     }
 
+    resolveMinSeparation(nodes, positions, minSeparation, width, height);
+
     return positions;
+  }
+
+  function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+  }
+
+  // Truncates textEl's content to fit within maxWidth, measured against the
+  // font actually applied by CSS (so this adapts automatically to the
+  // desktop vs. mobile font-size media query), rather than guessing from
+  // character count. Returns the text actually rendered. textEl must
+  // already be attached to the document, getBBox() needs live layout.
+  function truncateToWidth(textEl, fullText, maxWidth) {
+    textEl.textContent = fullText;
+    if (textEl.getBBox().width <= maxWidth) return fullText;
+    let lo = 0;
+    let hi = fullText.length;
+    while (lo < hi) {
+      const mid = Math.ceil((lo + hi) / 2);
+      textEl.textContent = fullText.slice(0, mid).trimEnd() + "…";
+      if (textEl.getBBox().width <= maxWidth) {
+        lo = mid;
+      } else {
+        hi = mid - 1;
+      }
+    }
+    const truncated = lo > 0 ? fullText.slice(0, lo).trimEnd() + "…" : "…";
+    textEl.textContent = truncated;
+    return truncated;
   }
 
   // A screening match only surfaces when its confidence clears the current
@@ -316,12 +395,33 @@
     const height = 280;
     const positions = computeLayout(caseData.nodes, caseData.edges, width, height);
 
+    // Distance from each node to its nearest neighbour caps how wide that
+    // node's caption is allowed to render before truncating, so two
+    // adjacent labels can never overlap regardless of length.
+    const nearestDist = {};
+    caseData.nodes.forEach((n) => {
+      let min = Infinity;
+      caseData.nodes.forEach((m) => {
+        if (m.id === n.id) return;
+        const dx = positions[n.id].x - positions[m.id].x;
+        const dy = positions[n.id].y - positions[m.id].y;
+        min = Math.min(min, Math.sqrt(dx * dx + dy * dy));
+      });
+      nearestDist[n.id] = Number.isFinite(min) ? min : width * 0.6;
+    });
+
     const svgns = "http://www.w3.org/2000/svg";
     const svg = document.createElementNS(svgns, "svg");
     svg.setAttribute("viewBox", "0 0 " + width + " " + height);
     svg.setAttribute("class", "sl-tree-svg");
     svg.setAttribute("role", "img");
     svg.setAttribute("aria-label", "Ownership structure diagram");
+
+    // Text elements needing a post-attach measurement pass (getBBox only
+    // returns real values once the SVG is in the live document), collected
+    // while building so we do one pass at the end rather than re-querying.
+    const captionJobs = [];
+    const edgeLabelJobs = [];
 
     caseData.edges.forEach((e) => {
       const a = positions[e.from];
@@ -335,15 +435,32 @@
       line.setAttribute("class", "sl-edge-line");
       svg.appendChild(line);
 
-      const midX = (a.x + b.x) / 2;
-      const midY = (a.y + b.y) / 2;
+      // Unit vector perpendicular to the line's actual angle, used below to
+      // push the label off the stroke on diagonal edges too, not just
+      // near-horizontal ones, and to search outward if that first position
+      // still collides with a node caption once those are finalized.
+      const dx = b.x - a.x;
+      const dy = b.y - a.y;
+      const len = Math.sqrt(dx * dx + dy * dy) || 1;
+      const nx = -dy / len;
+      const ny = dx / len;
+      const baseX = (a.x + b.x) / 2;
+      const baseY = (a.y + b.y) / 2;
+
+      const halo = document.createElementNS(svgns, "rect");
+      halo.setAttribute("class", "sl-edge-label-bg");
+      svg.appendChild(halo);
+
       const label = document.createElementNS(svgns, "text");
-      label.setAttribute("x", midX);
-      label.setAttribute("y", midY - 4);
+      label.setAttribute("x", baseX + nx * 9);
+      label.setAttribute("y", baseY + ny * 9);
       label.setAttribute("text-anchor", "middle");
+      label.setAttribute("dominant-baseline", "central");
       label.setAttribute("class", "sl-edge-label");
       label.textContent = e.ownership_pct + "%";
       svg.appendChild(label);
+
+      edgeLabelJobs.push({ label, halo, baseX, baseY, nx, ny });
     });
 
     caseData.nodes.forEach((n) => {
@@ -353,6 +470,12 @@
       g.setAttribute("tabindex", "0");
       g.setAttribute("role", "button");
       g.setAttribute("aria-label", "Entity node " + (ns.identified ? n.label : "unidentified"));
+
+      // Native SVG tooltip, full label always available on hover/focus,
+      // regardless of whether the on-canvas caption below ends up truncated.
+      const title = document.createElementNS(svgns, "title");
+      title.textContent = ns.identified ? n.label : "Unidentified entity";
+      g.appendChild(title);
 
       const circle = document.createElementNS(svgns, "circle");
       circle.setAttribute("cx", p.x);
@@ -388,8 +511,17 @@
       caption.setAttribute("y", p.y + 44);
       caption.setAttribute("text-anchor", "middle");
       caption.setAttribute("class", "sl-edge-label");
-      caption.textContent = ns.identified ? n.label : "Unidentified entity";
+      const fullCaption = ns.identified ? n.label : "Unidentified entity";
+      caption.textContent = fullCaption;
       g.appendChild(caption);
+
+      // Cap caption width at the gap to the nearest node, minus a small
+      // clearance margin, floored and ceilinged to keep it legible.
+      captionJobs.push({
+        el: caption,
+        full: fullCaption,
+        maxWidth: clamp(nearestDist[n.id] - 16, 60, 170),
+      });
 
       // PEP hint mode: reveal an inline badge on any node whose screening
       // data indicates a PEP connection, hidden when the toggle is off, and
@@ -423,6 +555,95 @@
 
     container.innerHTML = "";
     container.appendChild(svg);
+
+    // Measurement pass, only meaningful once the SVG is attached to the
+    // live document so getBBox() reflects the font CSS actually applied
+    // (desktop 12px vs. the mobile 20px media query bump). Captions are
+    // truncated first, so their final boxes can be treated as fixed
+    // obstacles when placing edge labels next, otherwise a short edge
+    // between two nodes routinely lands its percentage label on top of
+    // one of their captions.
+    captionJobs.forEach((job) => truncateToWidth(job.el, job.full, job.maxWidth));
+
+    const obstacles = caseData.nodes
+      .map((n) => {
+        const p = positions[n.id];
+        return { x: p.x - 26, y: p.y - 26, width: 52, height: 52 };
+      })
+      .concat(
+        captionJobs.map((job) => {
+          const b = job.el.getBBox();
+          return { x: b.x, y: b.y, width: b.width, height: b.height };
+        })
+      );
+
+    // Compass directions searched at each radius, perpendicular-to-edge
+    // first (keeps the common case visually tidy), then the remaining
+    // compass points as fallback for geometries where the perpendicular
+    // axis alone can't clear a wide caption sitting off to one side.
+    function overlapArea(rect, o) {
+      const ox = Math.max(0, Math.min(rect.x + rect.width, o.x + o.width) - Math.max(rect.x, o.x));
+      const oy = Math.max(0, Math.min(rect.y + rect.height, o.y + o.height) - Math.max(rect.y, o.y));
+      return ox * oy;
+    }
+
+    edgeLabelJobs.forEach((job) => {
+      const size = job.label.getBBox(); // width/height only; stable under re-centering since anchor/baseline are both "middle"
+      const halfW = size.width / 2 + 5;
+      const halfH = size.height / 2 + 2;
+      const directions = [
+        { dx: job.nx, dy: job.ny },
+        { dx: -job.nx, dy: -job.ny },
+        { dx: 0, dy: -1 },
+        { dx: 0, dy: 1 },
+        { dx: 1, dy: 0 },
+        { dx: -1, dy: 0 },
+        { dx: 0.707, dy: -0.707 },
+        { dx: -0.707, dy: -0.707 },
+        { dx: 0.707, dy: 0.707 },
+        { dx: -0.707, dy: 0.707 },
+      ];
+      // Ceiling is generous because the mobile media query renders this
+      // same text noticeably larger within the same fixed viewBox, so
+      // obstacles take up proportionally more room and need a wider
+      // search radius to clear at that scale, not just at desktop size.
+      const radii = [9, 16, 24, 34, 46, 60, 76, 94];
+
+      let chosenX = job.baseX + job.nx * 9;
+      let chosenY = job.baseY + job.ny * 9;
+      let bestOverlap = Infinity;
+      let found = false;
+
+      for (let r = 0; r < radii.length && !found; r++) {
+        for (let d = 0; d < directions.length; d++) {
+          const x = job.baseX + directions[d].dx * radii[r];
+          const y = job.baseY + directions[d].dy * radii[r];
+          const rect = { x: x - halfW, y: y - halfH, width: halfW * 2, height: halfH * 2 };
+          const totalOverlap = obstacles.reduce((sum, o) => sum + overlapArea(rect, o), 0);
+          if (totalOverlap < bestOverlap) {
+            bestOverlap = totalOverlap;
+            chosenX = x;
+            chosenY = y;
+          }
+          if (totalOverlap === 0) {
+            found = true;
+            break;
+          }
+        }
+      }
+
+      job.label.setAttribute("x", chosenX);
+      job.label.setAttribute("y", chosenY);
+
+      const box = job.label.getBBox();
+      const padX = 5;
+      const padY = 2;
+      job.halo.setAttribute("x", box.x - padX);
+      job.halo.setAttribute("y", box.y - padY);
+      job.halo.setAttribute("width", box.width + padX * 2);
+      job.halo.setAttribute("height", box.height + padY * 2);
+      job.halo.setAttribute("rx", 3);
+    });
   }
 
   function initials(label) {

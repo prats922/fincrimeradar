@@ -274,6 +274,14 @@
   font-size: 10px;
 }
 
+/* Background chip behind edge percentage labels, sized to the measured
+   text in scenario-lab.js after render, so the label reads clearly
+   against the connector line or a node behind it instead of colliding
+   with it. */
+.sl-tree-svg .sl-edge-label-bg {
+  fill: var(--sl-surface);
+}
+
 /* Mobile tree label sizing. On a real device at 375px the SVG scales to
    roughly 0.6x, so 20px source renders at roughly 12px, matching the
    desktop design's visual text size rather than rendering below it. */
