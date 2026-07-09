@@ -142,5 +142,75 @@
         "ownership_pct": 45
       }
     ]
+  },
+  {
+    "case_number": 4,
+    "entity_id": "apex-consulting-004",
+    "name": "Apex Consulting",
+    "title": "Apex Consulting — Storefront Legitimacy Check",
+    "briefing": "An individual registers as a sole trader offering web design consultation services. The registered business address matches a known corporate virtual mailbox provider in London currently hosting over 4,000 active entities. The associated website domain was registered six days ago and consists almost entirely of template placeholder copy with no verifiable client work shown. The applicant's personal identity documents pass all authenticity checks with no discrepancies.",
+    "correct_disposition": [
+      "request_more_info"
+    ],
+    "rationale": "The applicant's own identity is genuine, this is not a document fraud or impersonation case. The risk sits in the business profile itself: a shared virtual mailbox address hosting thousands of unrelated entities, a domain registered days before onboarding, and no evidence of a functioning business behind the registration. This pattern matches known transaction laundering storefronts, shells used to route card-not-present processing volume that has nothing to do with the stated business. The correct action is to request historical processing history, signed client agreements, or other evidence the business genuinely operates before approving payment processing access.",
+    "nodes": [
+      {
+        "id": "n1",
+        "label": "Apex Consulting (Sole Trader)",
+        "type": "applicant",
+        "jurisdiction": "UK",
+        "flag": "virtual_mailbox_shell_pattern",
+        "screening": {
+          "match_confidence": 0,
+          "list_source": null,
+          "dob_customer": null,
+          "dob_match": null,
+          "result": "no_match"
+        }
+      }
+    ],
+    "edges": []
+  },
+  {
+    "case_number": 5,
+    "entity_id": "horizon-shipping-005",
+    "name": "Horizon Shipping Logistics Ltd",
+    "title": "Horizon Shipping — Relational Sanctions Exposure",
+    "briefing": "A mid-sized shipping logistics operator applies for onboarding. The entity itself screens completely clean against all global sanctions and watchlists. Corporate ownership mapping shows one shareholder, holding a 30% stake, is the adult son of a senior government minister in Ruritania who was designated under an asset-freeze regime eighteen months ago. Direct sanctions screening of the son himself returns no match, he is not named on any designated persons list in his own right.",
+    "correct_disposition": [
+      "request_more_info"
+    ],
+    "rationale": "This case tests whether a clean direct screening result is treated as the end of the analysis or the start of it. The son is not designated, so an automatic reject cannot be justified on sanctions grounds alone, ownership by a family member of a designated person is not itself a listing trigger. But a 30% stake held by the close relative of a currently sanctioned official is a well established nominee and asset-shielding pattern. The correct action is to request further information to establish whether the son is acting as an independent beneficial owner or as a proxy holding the stake on his father's behalf, before any onboarding decision is made. Approving on the strength of a clean screening hit alone ignores the relational risk; rejecting outright on relationship alone is not supported by the facts as they stand.",
+    "nodes": [
+      {
+        "id": "n1",
+        "label": "Horizon Shipping Logistics Ltd",
+        "type": "applicant",
+        "jurisdiction": "UK",
+        "screening": null
+      },
+      {
+        "id": "n2",
+        "label": "Shareholder (Son of Designated Official)",
+        "type": "individual",
+        "jurisdiction": "Ruritania",
+        "ownership_pct": 30,
+        "flag": "close_associate_of_designated_person",
+        "screening": {
+          "match_confidence": 0,
+          "list_source": null,
+          "dob_customer": null,
+          "dob_match": null,
+          "result": "no_match"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "n2",
+        "to": "n1",
+        "ownership_pct": 30
+      }
+    ]
   }
 ]

@@ -92,7 +92,7 @@
     activeTile.innerHTML = [
       "<div>",
       "<h3>KYC and Sanctions Investigation</h3>",
-      "<p>Build the ownership tree, screen every entity, then decide across three fixed cases.</p>",
+      "<p>Build the ownership tree, screen every entity, then decide across five fixed cases.</p>",
       "</div>",
     ].join("");
     activeTile.addEventListener("click", () => startModule(dashboard, workspace, state));
@@ -745,7 +745,7 @@
     complete.className = "sl-complete";
     complete.innerHTML = [
       "<h2>Module complete</h2>",
-      "<p>KYC and Sanctions Investigation, all three cases.</p>",
+      "<p>KYC and Sanctions Investigation, all five cases.</p>",
       '<div class="sl-stats">',
       '<div><div class="sl-stat-value">' + accuracy + '%</div><div class="sl-stat-label">Accuracy</div></div>',
       '<div><div class="sl-stat-value">' +
