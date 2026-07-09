@@ -41,9 +41,9 @@ Knowledge Hub articles and guide series. Ship two to three parts of a series clo
 - ✅ MLRO Handbook, Part 1: Becoming SMF16 or SMF17 (includes cheat sheet component)
 - ✅ MLRO Handbook, Part 2: The Role, SARs and Enforcement
 - ✅ Crypto Guide, Part 1
+- ✅ Crypto Guide, Part 2
 
 **Next up:**
-- [ ] Crypto Guide, Part 2 — include cheat sheet component as standard
 - [ ] **Cross-jurisdictional MLRO/SMF17 comparison (UK + UAE first)** — needs a dedicated scoping session before drafting starts, bigger lift than a standard guide part. Practitioner-grounded comparison of MLRO equivalent roles, personal liability frameworks, and enforcement patterns across FCA (UK) and CBUAE (UAE) to start, scoped to expand toward MAS, AUSTRAC, FIU India, and BNM later if it lands well. Differentiator is the practitioner footprint across all six regimes and that it's free, not the raw concept, similar paid/partial versions exist elsewhere (Comsure's terminology piece, The MLRO Ltd's paid UAE cross-regulatory advisory). Do not start drafting until scoping session defines structure, sourcing standard for non-UK regulatory claims, and how much of each jurisdiction's material is genuinely verifiable versus secondary sourced. Include cheat sheet component.
 - [ ] Possible MLRO Handbook Part 3: resourcing benchmarks by firm size, FCA's move toward AML supervisor for professional services (flagged as a maybe in Part 2's closing note, not committed yet)
 
