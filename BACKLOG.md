@@ -25,6 +25,7 @@ Bug fixes, technical debt, structural cleanup. Nothing here should take more tha
 New tools, features, and platform capability. Naturally slower, needs a dedicated session rather than a squeezed-in half hour.
 
 - [ ] Scenario Lab: continue active build (Phase 0 complete, wired to FastAPI backend)
+- [ ] **Guide chatbot** — needs a full scoping session before build starts. RAG over Knowledge Hub content (MLRO Handbook, AML/PEP/SAR/FATF/Crypto guides), embedded on guide pages so visitors can ask questions answered strictly from FinCrimeRadar's own content, not a general model. Proposed shape: retrieval layer over chunked Knowledge Hub content, new endpoint on `fincrimeradar-api` (FastAPI/Render, reuses existing infra), generation via Claude API, hard constraint to only answer from retrieved content with a visible fallback ("not covered in our guides, consult a professional") when nothing relevant is retrieved. Has ongoing API usage cost, unlike the rest of the stack. Sequence against Scenario Lab before starting, don't run both as concurrent Build loop items.
 - [ ] Freemium API tier with Stripe integration (on the horizon, not yet scoped)
 - [ ] API documentation page (on the horizon, not yet scoped)
 
