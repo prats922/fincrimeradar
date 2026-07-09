@@ -894,7 +894,6 @@
   (function() {
     var consent = localStorage.getItem('fcr_cookie_consent');
     if (!consent) document.getElementById('cookieBanner').style.display = 'flex';
-    else if (consent === 'rejected') window['ga-disable-G-FC1VMTE7JH'] = true;
   })();
   function toggleFaq(el) {
     el.nextElementSibling.classList.toggle('open');

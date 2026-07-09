@@ -9,7 +9,7 @@ if not pages:
     sys.exit(0)
 
 p = pages[-1]
-h = open(p).read()
+h = open(p, encoding='utf-8').read()
 errors = []
 for tag in ("html", "head", "body", "main", "h1"):
     if f"<{tag}" not in h or f"</{tag}>" not in h:

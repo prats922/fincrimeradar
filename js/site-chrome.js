@@ -19,7 +19,6 @@
 
   var NAV_PARTIAL_URL = '/partials/nav.html';
   var FOOTER_PARTIAL_URL = '/partials/footer.html';
-  var GA_MEASUREMENT_ID = 'G-FC1VMTE7JH';
   var COOKIE_CONSENT_KEY = 'fcr_cookie_consent';
 
   // Minimal inline fallbacks used only if a partial fails to load,
@@ -77,10 +76,6 @@
     }
   }
 
-  function disableGoogleAnalytics() {
-    window['ga-disable-' + GA_MEASUREMENT_ID] = true;
-  }
-
   function acceptCookies() {
     localStorage.setItem('fcr_cookie_consent', 'accepted');
     if (typeof gtag === 'function') {
@@ -110,8 +105,6 @@
 
     if (!consent) {
       banner.style.display = 'flex';
-    } else if (consent === 'rejected') {
-      disableGoogleAnalytics();
     }
   }
 
