@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+  gtag('js', new Date());
+  (function () {
+    try {
+      var consent = localStorage.getItem('fcr_cookie_consent');
+      if (consent === 'accepted') {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+  })();
+  gtag('config', 'G-FC1VMTE7JH');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The MLRO Handbook Part 2: Becoming SMF16 or SMF17 | FinCrimeRadar</title>
+  <meta name="description" content="The MLRO role once approved: nominated officer versus compliance steward, the SAR decision process step by step, dual SM&CR and POCA liability, the Annual MLRO Report, and enforcement cases where personal liability has actually been tested." />
+  <meta name="keywords" content="MLRO, SMF16, SMF17, SAR process, Suspicious Activity Report, POCA, tipping off, DAML, Annual MLRO Report, FCA enforcement, personal liability, nominated officer" />
+  <link rel="canonical" href="https://fincrimeradar.org/mlro-handbook-part2.html" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="The MLRO Handbook Part 2: Becoming SMF16 or SMF17 | FinCrimeRadar" />
+  <meta property="og:description" content="The MLRO role once approved: nominated officer versus compliance steward, the SAR decision process step by step, dual SM&CR and POCA liability, the Annual MLRO Report, and enforcement cases where personal liability has actually been tested." />
+  <meta property="og:url" content="https://fincrimeradar.org/mlro-handbook-part2.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://fincrimeradar.org/og-image.png" />
+  <meta property="og:site_name" content="FinCrimeRadar" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The MLRO Handbook Part 2: Becoming SMF16 or SMF17 | FinCrimeRadar" />
+  <meta name="twitter:description" content="The MLRO role once approved: nominated officer versus compliance steward, the SAR decision process step by step, dual SM&CR and POCA liability, the Annual MLRO Report, and enforcement cases where personal liability has actually been tested." />
+  <meta name="twitter:image" content="https://fincrimeradar.org/og-image.png" />
+  <!-- Schema.org -->
+  <meta name="author" content="Pratik Zanke, FinCrimeRadar" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --white:#ffffff; --off:#f7f8fa; --border:#e4e7ec;
+      --muted:#6b7280; --text:#111827; --navy:#0f2044;
+      --accent:#4f46e5; --accent-h:#4338ca; --accent-light:#eef2ff;
+      --accent-border:#c7d2fe;
+      --danger:#dc2626; --success:#16a34a; --warning:#d97706;
+      --blue:#1d5fc4; --purple:#7c3aed;
+    }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
+    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:72px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:8px; text-decoration:none; }
+    .nav-logo { width:26px; height:26px; }
+    .nav-name { font-size:15px; font-weight:600; color:var(--navy); }
+    .nav-name span { color:#00c4a7; }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:var(--navy); text-decoration:none; }
+    .nav-links a:hover { color:#00c4a7; }
+    .nav-cta { padding:7px 16px; background:#00c4a7; color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; }
+    .progress-bar { position:fixed; top:60px; left:0; width:0%; height:3px; background:var(--accent); z-index:199; transition:width 0.1s; }
+    .series-hero { background:linear-gradient(135deg,var(--hero-bg-1) 0%,var(--hero-bg-2) 100%); color:#fff; padding:4rem 2rem 3rem; }
+    .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:var(--hero-accent-em); margin-bottom:1.25rem; }
+    .series-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(1.9rem,4vw,3rem); font-weight:400; line-height:1.2; margin-bottom:0.75rem; max-width:760px; }
+    .series-hero h1 em { font-style:italic; color:var(--hero-accent-em); }
+    .series-sub { font-size:16px; color:#e0e7ff; max-width:620px; line-height:1.7; margin-bottom:2rem; }
+    .series-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#a5b4fc; }
+    .part-nav { background:var(--white); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; gap:0; overflow-x:auto; }
+    .part-link { padding:14px 20px; font-size:13px; font-weight:500; color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; }
+    .part-link.active { color:var(--accent); border-bottom-color:var(--accent); }
+    .part-link.done { color:var(--success); }
+    .article-layout { display:grid; grid-template-columns:220px 1fr; gap:2rem; max-width:1080px; margin:0 auto; padding:2.5rem 1.5rem; align-items:start; }
+    .toc { position:sticky; top:105px; background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.25rem; }
+    .toc-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--muted); margin-bottom:0.875rem; }
+    .toc-list { list-style:none; }
+    .toc-list a { font-size:12.5px; color:var(--muted); text-decoration:none; display:block; padding:5px 8px; border-radius:6px; transition:all 0.15s; border-left:2px solid transparent; }
+    .toc-list a:hover,.toc-list a.active { color:var(--accent); background:var(--accent-light); border-left-color:var(--accent); }
+    .toc-progress { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); }
+    .toc-progress-label { font-size:11px; color:var(--muted); margin-bottom:6px; display:flex; justify-content:space-between; }
+    .toc-bar { height:4px; background:var(--border); border-radius:99px; overflow:hidden; }
+    .toc-fill { height:100%; background:var(--accent); border-radius:99px; transition:width 0.2s; width:0%; }
+    .series-nav-box { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); }
+    .sn-link { display:block; font-size:12px; font-weight:600; color:var(--muted); text-decoration:none; padding:5px 8px; border-radius:6px; }
+    .sn-link.done { color:var(--success); }
+    .sn-link.active { color:var(--accent); background:var(--accent-light); }
+    .article-body { min-width:0; }
+    .article-section { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:2.25rem; margin-bottom:1.25rem; }
+    .section-num { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--accent); margin-bottom:0.5rem; }
+    .article-section h2 { font-family:'DM Serif Display',Georgia,serif; font-size:24px; font-weight:400; color:var(--navy); margin-bottom:1rem; line-height:1.3; }
+    .article-section h3 { font-size:16px; font-weight:600; color:var(--navy); margin:1.75rem 0 0.65rem; }
+    .article-section p { font-size:14.5px; color:#374151; margin-bottom:0.9rem; line-height:1.75; }
+    .article-section ul,.article-section ol { padding-left:1.5rem; margin-bottom:0.9rem; }
+    .article-section li { font-size:14.5px; color:#374151; margin-bottom:0.45rem; line-height:1.65; }
+    .article-section a { color:var(--accent); text-decoration:none; }
+    .article-section a:hover { text-decoration:underline; }
+    .callout { border-radius:10px; padding:1.1rem 1.4rem; margin:1.25rem 0; display:flex; gap:12px; }
+    .callout-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+    .callout-body { flex:1; }
+    .callout-title { font-size:12px; font-weight:700; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.4px; }
+    .callout-text { font-size:13.5px; line-height:1.6; }
+    .callout.info { background:#eff6ff; border:1px solid #bfdbfe; }
+    .callout.info .callout-title { color:#1e40af; }
+    .callout.info .callout-text { color:#1e3a8a; }
+    .callout.warning { background:#fffbeb; border:1px solid #fde68a; }
+    .callout.warning .callout-title { color:#92400e; }
+    .callout.warning .callout-text { color:#78350f; }
+    .callout.danger { background:#fff5f5; border:1px solid #fca5a5; }
+    .callout.danger .callout-title { color:#991b1b; }
+    .callout.danger .callout-text { color:#7f1d1d; }
+    .callout.indigo { background:var(--accent-light); border:1px solid var(--accent-border); }
+    .callout.indigo .callout-title { color:var(--accent-h); }
+    .callout.indigo .callout-text { color:#3730a3; }
+    .pull-quote { font-family:'DM Serif Display',Georgia,serif; font-size:18px; font-style:italic; color:var(--navy); border-left:3px solid var(--accent); padding-left:1.25rem; margin:1.5rem 0; line-height:1.6; }
+    .part-footer { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-top:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    .pf-prev,.pf-next { display:flex; flex-direction:column; gap:4px; }
+    .pf-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--muted); }
+    .pf-link { font-size:14px; font-weight:600; color:var(--accent); text-decoration:none; }
+    .pf-link:hover { text-decoration:underline; }
+    .pf-next { text-align:right; }
+    .pf-center { font-size:13px; color:var(--muted); }
+    footer { background:var(--white); border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:12px; color:var(--muted); margin-top:2rem; }
+    footer a { color:var(--muted); text-decoration:none; margin:0 8px; }
+    footer a:hover { color:#00c4a7; }
+
+    /* ROLE SPLIT (Nominated Officer vs Compliance Steward) */
+    .role-split { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0; }
+    .role-col { border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+    .role-head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:1.1rem 1.3rem; cursor:pointer; background:var(--white); user-select:none; }
+    .role-head:hover { background:var(--off); }
+    .role-head-text { flex:1; }
+    .role-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--accent); margin-bottom:4px; }
+    .role-title { font-size:15px; font-weight:600; color:var(--navy); }
+    .role-icon { font-size:17px; color:var(--muted); transition:transform 0.2s; flex-shrink:0; }
+    .role-icon.open { transform:rotate(45deg); }
+    .role-body { display:none; padding:0 1.3rem 1.1rem; font-size:13.5px; color:#374151; line-height:1.65; border-top:1px solid var(--border); background:#fafafa; }
+    .role-body.open { display:block; padding-top:1rem; }
+    .role-body ul { padding-left:1.15rem; margin-bottom:0; }
+    .role-body li { font-size:13px; margin-bottom:0.5rem; line-height:1.55; }
+    .role-source { font-size:11.5px; color:var(--muted); margin-top:0.7rem; padding-top:0.7rem; border-top:1px dashed var(--border); }
+
+    /* STEP TIMELINE */
+    .step-timeline { margin:1.5rem 0; }
+    .step-item { border:1px solid var(--border); border-radius:10px; margin-bottom:8px; overflow:hidden; }
+    .step-head { display:flex; align-items:center; gap:14px; padding:0.95rem 1.1rem; cursor:pointer; background:var(--white); user-select:none; }
+    .step-head:hover { background:var(--off); }
+    .step-num { width:28px; height:28px; border-radius:50%; background:var(--accent); color:#fff; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .step-title { flex:1; font-size:14px; font-weight:600; color:var(--navy); }
+    .step-icon { font-size:17px; color:var(--muted); transition:transform 0.2s; flex-shrink:0; }
+    .step-icon.open { transform:rotate(45deg); }
+    .step-body { display:none; padding:0 1.1rem 1rem 3.4rem; font-size:13.5px; color:#374151; line-height:1.65; border-top:1px solid var(--border); background:#fafafa; }
+    .step-body.open { display:block; padding-top:0.9rem; }
+    .step-body strong { color:var(--navy); }
+
+    /* LIABILITY SPLIT TABLE-LIKE CARDS */
+    .liability-split { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0 1.5rem; }
+    .liability-card { border-radius:10px; padding:1.2rem 1.3rem; }
+    .liability-card.reg { background:#fffbeb; border:1px solid #fde68a; }
+    .liability-card.crim { background:#fff5f5; border:1px solid #fca5a5; }
+    .liability-card-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:6px; }
+    .liability-card.reg .liability-card-label { color:#92400e; }
+    .liability-card.crim .liability-card-label { color:#991b1b; }
+    .liability-card p { font-size:13.5px !important; margin-bottom:0.5rem !important; }
+    .liability-card.reg p { color:#78350f !important; }
+    .liability-card.crim p { color:#7f1d1d !important; }
+    .liability-card ul { margin-bottom:0 !important; padding-left:1.1rem !important; }
+    .liability-card li { font-size:13px !important; margin-bottom:0.4rem !important; }
+    .liability-card.reg li { color:#78350f !important; }
+    .liability-card.crim li { color:#7f1d1d !important; }
+
+    /* ANNUAL REPORT CHECKLIST */
+    .checklist-box { background:var(--accent-light); border:1px solid var(--accent-border); border-radius:12px; padding:1.4rem; margin:1.5rem 0; }
+    .checklist-label { font-size:11px; font-weight:700; color:var(--accent-h); text-transform:uppercase; letter-spacing:0.4px; margin-bottom:0.5rem; }
+    .checklist-intro { font-size:13px; color:#3730a3; margin-bottom:1rem; line-height:1.6; }
+    .checklist-item { display:flex; align-items:flex-start; gap:11px; padding:10px 4px; border-bottom:1px solid var(--accent-border); cursor:pointer; user-select:none; }
+    .checklist-item:last-of-type { border-bottom:none; }
+    .checklist-box-icon { width:19px; height:19px; margin-top:1px; border:1.5px solid var(--accent); border-radius:5px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:12px; line-height:1; color:transparent; background:var(--white); transition:all 0.15s; }
+    .checklist-item.checked .checklist-box-icon { background:var(--accent); color:#fff; }
+    .checklist-text { font-size:13.5px; color:var(--navy); line-height:1.5; }
+    .checklist-item.checked .checklist-text { color:var(--muted); text-decoration:line-through; }
+    .checklist-progress { margin-top:0.9rem; font-size:12px; color:var(--accent-h); font-weight:600; }
+    .checklist-actions { margin-top:1rem; }
+    .checklist-print { padding:8px 16px; background:var(--white); border:1.5px solid var(--accent-border); color:var(--accent-h); border-radius:7px; font-size:12.5px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; }
+    .checklist-print:hover { border-color:var(--accent); }
+    .checklist-disclaimer { font-size:12px; color:var(--muted); margin-top:0.9rem; padding-top:0.9rem; border-top:1px solid var(--accent-border); line-height:1.55; }
+
+    /* ===== MOBILE RESPONSIVE ===== */
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--navy, #0f2044);
+      padding: 4px 6px;
+      line-height: 1;
+    }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0; right: 0;
+      background: #fff;
+      border-bottom: 1px solid #e4e7ec;
+      flex-direction: column;
+      z-index: 99;
+      padding: 0.5rem 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      padding: 14px 1.5rem;
+      font-size: 15px;
+      color: #374151;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #f3f4f6;
+      transition: background 0.1s;
+    }
+    .mobile-nav a:hover { background: #f9fafb; }
+    .mobile-nav .mobile-nav-cta {
+      margin: 0.75rem 1.5rem 0.5rem;
+      background: #00c4a7;
+      color: #fff !important;
+      border-radius: 8px;
+      text-align: center;
+      border-bottom: none;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1rem; }
+      .nav-hamburger { display: block; }
+      .nav-links { display: none; }
+      .nav-logo img,
+      .nav-brand img { height: 40px !important; width: auto !important; max-width: 160px !important; }
+      .series-hero { padding: 2.5rem 1.25rem 2rem; }
+      .article-layout { grid-template-columns: 1fr !important; }
+      .toc { display: none !important; }
+      .article-section { padding: 1.25rem !important; }
+      .step-body { padding-left: 1.1rem !important; }
+      .role-split { grid-template-columns: 1fr !important; }
+      .liability-split { grid-template-columns: 1fr !important; }
+      footer { flex-direction: column !important; align-items: flex-start !important; gap: 1rem !important; }
+    }
+  </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The MLRO Handbook Part 2: Becoming SMF16 or SMF17","url":"https://fincrimeradar.org/mlro-handbook-part2.html","publisher":{"@type":"Organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org"},"datePublished":"2026-07-09"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand.css">
+  <!-- Loaded after brand.css so the series accent wins the cascade. brand.css
+       defines --accent globally (teal), which would otherwise override the
+       first inline block. --hero-accent-em is intentionally left as brand.css's
+       green, it is a shared hero convention, not a guide specific accent.
+       Indigo carried over from Part 1 so the series reads as one accent. -->
+  <style>
+    :root {
+      --accent: #4f46e5;
+      --accent-h: #4338ca;
+      --accent-light: #eef2ff;
+      --accent-border: #c7d2fe;
+    }
+  </style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav>
+  <a class="nav-brand" href="/">
+    <img src="/logo.png" alt="FinCrimeRadar" style="height:44px;width:auto;max-width:200px;object-fit:contain;object-position:left center;display:block;" />
+  </a>
+  <div class="nav-links">
+    <a href="/knowledge.html" class="hm">Knowledge Hub</a>
+    <a href="/screen.html" class="hm">Screen</a>
+    <a href="/screen.html" class="nav-cta" style="background:#00c4a7;color:#fff;font-weight:600;">Try the tool →</a>
+  </div>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/knowledge.html">Knowledge Hub</a>
+  <a href="/learn.html">Learn</a>
+  <a href="/about.html">About</a>
+  <a href="/screen.html" class="mobile-nav-cta">Try the tool →</a>
+</div>
+
+<div class="series-hero">
+  <div class="series-tag">📘 MLRO Handbook · Part 2 of 2</div>
+  <h1>The MLRO Handbook: <em>Becoming SMF16 or SMF17</em></h1>
+  <p class="series-sub">Section 2: the job once you're approved, and what happens when it goes wrong, the SAR process, dual regulatory and criminal liability, the annual report to the board, and enforcement cases where personal MLRO liability has actually been tested.</p>
+  <div class="series-meta">
+    <span>📖 16 min read</span>
+    <span>⚖️ SM&CR · SMF16/SMF17</span>
+    <span>🇬🇧 UK specific</span>
+    <span>🏛️ FCA · NCA</span>
+  </div>
+</div>
+
+<div class="part-nav">
+  <a href="/mlro-handbook-part1.html" class="part-link done">✓ Part 1: Eligibility and Approval</a>
+  <a href="/mlro-handbook-part2.html" class="part-link active">Part 2: The Role Day to Day, SARs and Enforcement</a>
+</div>
+
+<div class="article-layout">
+  <aside>
+    <div class="toc">
+      <div class="toc-title">In this part</div>
+      <ul class="toc-list">
+        <li><a href="#dual-role">Two jobs in one title</a></li>
+        <li><a href="#sar-process">The SAR decision, step by step</a></li>
+        <li><a href="#dual-liability">The dual liability</a></li>
+        <li><a href="#annual-report">The Annual MLRO Report</a></li>
+        <li><a href="#enforcement-cases">Where liability's been tested</a></li>
+      </ul>
+      <div class="toc-progress">
+        <div class="toc-progress-label"><span>Progress</span><span id="pct">0%</span></div>
+        <div class="toc-bar"><div class="toc-fill" id="fill"></div></div>
+      </div>
+      <div class="series-nav-box">
+        <div class="toc-title">Series</div>
+        <a href="/mlro-handbook-part1.html" class="sn-link done">✓ Part 1: Eligibility and Approval</a>
+        <a href="/mlro-handbook-part2.html" class="sn-link active">Part 2: The Role Day to Day</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="article-body">
+
+    <section class="article-section" id="dual-role">
+      <div class="section-num">Section 1</div>
+      <h2>Two jobs in one title</h2>
+      <p>Most explanations of the MLRO role collapse it into a single function. It isn't one. The role sits across two distinct legal frameworks that happen to be held by the same person.</p>
+      <p>The nominated officer function comes from the Money Laundering Regulations 2017 and the Proceeds of Crime Act 2002. This is the reactive half of the job: receiving internal disclosures from staff who suspect money laundering, deciding whether each one warrants an external Suspicious Activity Report to the National Crime Agency, and acting as the firm's registered point of contact with the NCA.</p>
+      <p>The compliance stewardship function comes from SM&CR itself. This is the preventative half: owning the firm's AML risk assessment, its policies and controls, its training programme, and its overall posture toward financial crime risk.</p>
+      <p>Treating these as one undifferentiated job, or worse, treating the role as purely reactive SAR processing with no strategic ownership, is a structural weakness FCA supervisory teams are specifically trained to spot. If your firm's MLRO can describe last quarter's SAR volume in detail but can't articulate the firm's current AML risk assessment, that gap is visible from the outside.</p>
+
+      <div class="role-split">
+        <div class="role-col">
+          <div class="role-head" onclick="toggleRole(this)">
+            <div class="role-head-text">
+              <div class="role-label">Reactive</div>
+              <div class="role-title">Nominated Officer</div>
+            </div>
+            <span class="role-icon">+</span>
+          </div>
+          <div class="role-body">
+            <ul>
+              <li>Receiving internal disclosures from staff who suspect money laundering</li>
+              <li>Deciding whether each disclosure warrants an external SAR to the NCA</li>
+              <li>Acting as the firm's registered point of contact with the NCA</li>
+              <li>Deciding whether a DAML request is needed before a transaction proceeds</li>
+            </ul>
+            <div class="role-source">Legal source: Money Laundering Regulations 2017; Proceeds of Crime Act 2002</div>
+          </div>
+        </div>
+        <div class="role-col">
+          <div class="role-head" onclick="toggleRole(this)">
+            <div class="role-head-text">
+              <div class="role-label">Preventative</div>
+              <div class="role-title">Compliance Steward</div>
+            </div>
+            <span class="role-icon">+</span>
+          </div>
+          <div class="role-body">
+            <ul>
+              <li>Owning the firm's AML risk assessment</li>
+              <li>Owning the firm's AML policies and controls</li>
+              <li>Owning the firm's AML training programme</li>
+              <li>Owning the firm's overall posture toward financial crime risk</li>
+            </ul>
+            <div class="role-source">Legal source: Senior Managers and Certification Regime (SM&CR)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section" id="sar-process">
+      <div class="section-num">Section 2</div>
+      <h2>The SAR decision, step by step</h2>
+      <p>Click any stage below to see the detail that applies at that step.</p>
+
+      <div class="step-timeline">
+        <div class="step-item">
+          <div class="step-head" onclick="toggleStep(this)">
+            <div class="step-num">1</div>
+            <div class="step-title">A member of staff forms a suspicion</div>
+            <span class="step-icon">+</span>
+          </div>
+          <div class="step-body">Under POCA, this can be knowledge or suspicion. A genuine, honestly held suspicion is enough, certainty is not required, and waiting for certainty is itself a risk.</div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-head" onclick="toggleStep(this)">
+            <div class="step-num">2</div>
+            <div class="step-title">An internal disclosure is made to the MLRO</div>
+            <span class="step-icon">+</span>
+          </div>
+          <div class="step-body">This has to reach the MLRO directly, not get absorbed into a general compliance inbox or handled informally by a line manager.</div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-head" onclick="toggleStep(this)">
+            <div class="step-num">3</div>
+            <div class="step-title">The MLRO assesses whether external disclosure is warranted</div>
+            <span class="step-icon">+</span>
+          </div>
+          <div class="step-body">And, if the underlying transaction needs to proceed before a response is received, whether a Defence Against Money Laundering request is needed to obtain consent from the NCA.</div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-head" onclick="toggleStep(this)">
+            <div class="step-num">4</div>
+            <div class="step-title">The SAR is filed, or the decision not to file is documented</div>
+            <span class="step-icon">+</span>
+          </div>
+          <div class="step-body">The SAR is filed with the NCA, or the MLRO documents, specifically and in writing, why it was not. <strong>"We decided not to file"</strong> with no rationale on file is one of the more common findings in a poor supervisory review.</div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-head" onclick="toggleStep(this)">
+            <div class="step-num">5</div>
+            <div class="step-title">Tipping off risk is managed throughout</div>
+            <span class="step-icon">+</span>
+          </div>
+          <div class="step-body">Telling, or carelessly signalling to, the subject of a SAR that a disclosure has been made or is being considered is a criminal offence under <strong>POCA section 333A</strong>, and it's a risk that spreads easily through account managers, relationship teams, or anyone outside the compliance function who becomes aware a review is underway.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section" id="dual-liability">
+      <div class="section-num">Section 3</div>
+      <h2>The dual liability nobody explains clearly enough</h2>
+      <p>Ask most compliance professionals what SMF17 exposes them to and they'll describe FCA enforcement, financial penalties, prohibition, public censure. That's correct, but it's only half the exposure. SMF17 holders sit under two separate liability regimes simultaneously, and the second one is criminal, not regulatory.</p>
+
+      <div class="liability-split">
+        <div class="liability-card reg">
+          <div class="liability-card-label">⚖️ Regulatory: SM&CR</div>
+          <p>Under sections 66 and 56 of the Financial Services and Markets Act, the FCA can fine, censure, or prohibit an individual. That's a regulatory sanction, serious, career ending in practice, but not a criminal record.</p>
+        </div>
+        <div class="liability-card crim">
+          <div class="liability-card-label">🚨 Criminal: MLR 2017 &amp; POCA</div>
+          <p>Personal and criminal exposure, running in parallel to the regulatory route:</p>
+          <ul>
+            <li><strong>MLR 2017, Regulation 86</strong>: failure to comply with the regulations, up to two years' imprisonment and an unlimited fine</li>
+            <li><strong>POCA section 330</strong>: failure to disclose suspected money laundering when a SAR should have been filed, up to five years' imprisonment</li>
+            <li><strong>POCA section 333A</strong>: tipping off, criminal sanctions for improperly disclosing that a SAR has been made or is being considered</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>These two frameworks run in parallel, not as alternatives. A single failure, not filing a SAR that should have been filed, can trigger an FCA enforcement action under SM&CR and expose the individual to prosecution under POCA at the same time.</p>
+      <div class="pull-quote">A single failure can trigger FCA enforcement and criminal prosecution at the same time.</div>
+      <p>This is the detail that separates SMF17 from almost every other Senior Management Function, and it's worth being explicit about with anyone being asked to take the role, particularly at a small firm where the appointment can otherwise be framed as a title change rather than a genuine shift in personal exposure.</p>
+    </section>
+
+    <section class="article-section" id="annual-report">
+      <div class="section-num">Section 4</div>
+      <h2>The Annual MLRO Report</h2>
+      <p>There's no single prescribed format, but the FCA and industry practice converge on the same expectations. At minimum, annually, the report should cover the items below.</p>
+
+      <div class="checklist-box" id="annualChecklist">
+        <div class="checklist-label">✅ What your Annual MLRO Report should cover</div>
+        <div class="checklist-intro">Click an item to mark it covered. This is illustrative only, it is not a template that substitutes for firm-specific legal advice.</div>
+
+        <div class="checklist-item" onclick="clToggle(this)">
+          <div class="checklist-box-icon">✓</div>
+          <div class="checklist-text">SAR volume, themes, and outcomes over the reporting period</div>
+        </div>
+        <div class="checklist-item" onclick="clToggle(this)">
+          <div class="checklist-box-icon">✓</div>
+          <div class="checklist-text">The current state of the firm's AML risk assessment and any material changes to it</div>
+        </div>
+        <div class="checklist-item" onclick="clToggle(this)">
+          <div class="checklist-box-icon">✓</div>
+          <div class="checklist-text">Training completed across the firm, and any gaps identified</div>
+        </div>
+        <div class="checklist-item" onclick="clToggle(this)">
+          <div class="checklist-box-icon">✓</div>
+          <div class="checklist-text">Resourcing: whether the compliance function has had sufficient capacity for the period</div>
+        </div>
+        <div class="checklist-item" onclick="clToggle(this)">
+          <div class="checklist-box-icon">✓</div>
+          <div class="checklist-text">Any regulatory contact, thematic reviews, or supervisory visits during the period</div>
+        </div>
+
+        <div class="checklist-progress" id="clProgress">0 of 5 covered</div>
+        <div class="checklist-actions">
+          <button class="checklist-print" onclick="window.print()">🖨️ Print or save as PDF</button>
+        </div>
+        <div class="checklist-disclaimer">Illustrative checklist only, based on FCA and industry practice. It is not a template and does not substitute for firm-specific legal advice.</div>
+      </div>
+
+      <p>Waiting a full year to surface material issues to the board is a common failure pattern in itself. Quarterly management information to senior leadership, even informally, is considered good practice precisely because it means the annual report becomes a formal record of things the board already knew about, not the first time anyone heard them.</p>
+    </section>
+
+    <section class="article-section" id="enforcement-cases">
+      <div class="section-num">Section 5</div>
+      <h2>Where personal MLRO liability has actually been tested</h2>
+      <p>Most AML enforcement headlines are about firms, not individuals. Nationwide, Barclays, and Monzo were all fined in 2025 for AML control failures, £44 million, £39 million, and £21 million respectively, but those penalties landed on the firms, not on named MLROs personally. Personal enforcement against a named SMF17 holder is comparatively rare. When it happens, the reasoning in the FCA's decision notice is worth reading closely, because it tells you exactly what the regulator considers unacceptable in practice, not in theory.</p>
+
+      <h3>Sonali Bank (UK), 2016</h3>
+      <p>The firm's MLRO was personally fined for a pattern that's still instructive: no functioning AML monitoring arrangement in place, failure to identify serious weaknesses in operational controls, failure to address known training deficiencies, failure to escalate internal auditors' concerns, and failure to make the case to senior management for more resource. None of these individually sound dramatic. Together, they describe an MLRO who knew about the gaps and didn't force the issue upward, which is precisely the behaviour SM&CR was designed to make personally costly.</p>
+
+      <h3>CFP Management Ltd, 2023</h3>
+      <p>A more unusual and arguably more important case for anyone holding SMF17 alongside another role. The former MLRO here was fined over £630,000, prohibited from any regulated function, and had both his compliance oversight (SMF16) and MLRO (SMF17) approvals withdrawn, not primarily for an AML failure, but for a conflict of interest. He held a second controlled function, benefitted financially from a flawed advice model he was simultaneously supposed to be overseeing, and the FCA found he'd failed to act with integrity as a result. The lesson generalises well beyond pensions advice: holding SMF17 alongside a role with a direct financial stake in the outcomes you're meant to be independently scrutinising is exactly the structural conflict the FCA is trained to look for, and it doesn't need a money laundering failure attached to still end a career.</p>
+
+      <div class="pull-quote">It isn't one dramatic missed SAR that ends an MLRO's career, it's a sustained failure to escalate, to resource, or to remain independent.</div>
+      <p>The pattern across both cases is the same. It isn't one dramatic missed SAR that ends an MLRO's career, it's a sustained failure to escalate, to resource, or to remain independent, that becomes visible only once something else forces the FCA to look closely.</p>
+
+      <div class="callout indigo">
+        <div class="callout-icon">📘</div>
+        <div class="callout-body">
+          <div class="callout-title">This closes the handbook, for now</div>
+          <div class="callout-text">Together, the two parts cover who can hold the role, how approval works, what the job actually involves day to day, and what the regulator has done when it goes wrong. A future addition to this series will look at MLRO resourcing benchmarks by firm size, and how the FCA's shift toward becoming the AML supervisor for professional services firms changes the picture from late 2026.</div>
+        </div>
+      </div>
+
+      <div class="part-footer">
+        <div class="pf-prev">
+          <div class="pf-label">← Back</div>
+          <a href="/mlro-handbook-part1.html" class="pf-link">Part 1: Eligibility and Approval</a>
+        </div>
+        <div class="pf-center">Part 2 of 2</div>
+        <div class="pf-next">
+          <div class="pf-label">Next →</div>
+          <a href="/knowledge.html" class="pf-link">Knowledge Hub</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  © 2026 FinCrimeRadar · <a href="/">Home</a> · <a href="/knowledge.html">Knowledge Hub</a> · <a href="/screen.html">Screen</a> · <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
+  <br><br>
+  <span style="font-size:11px;color:#9ca3af;">This guide is for educational purposes only and does not constitute legal advice. The checklist is illustrative only and is not a template that substitutes for firm-specific legal advice. Always consult qualified legal counsel for compliance matters. Last updated July 2026.</span>
+</footer>
+
+<script>
+  function updateProgress() {
+    const pct = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('fill').style.width = pct + '%';
+    document.getElementById('pct').textContent = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+  document.querySelectorAll('section[id]').forEach(s => {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          document.querySelectorAll('.toc-list a').forEach(l => l.classList.remove('active'));
+          const a = document.querySelector(`.toc-list a[href="#${e.target.id}"]`);
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin:'-20% 0px -70% 0px' }).observe(s);
+  });
+
+  function toggleRole(el) {
+    el.querySelector('.role-icon').classList.toggle('open');
+    el.nextElementSibling.classList.toggle('open');
+  }
+
+  function toggleStep(el) {
+    el.querySelector('.step-icon').classList.toggle('open');
+    el.nextElementSibling.classList.toggle('open');
+  }
+
+  function clToggle(el) {
+    el.classList.toggle('checked');
+    var total = document.querySelectorAll('#annualChecklist .checklist-item').length;
+    var done = document.querySelectorAll('#annualChecklist .checklist-item.checked').length;
+    document.getElementById('clProgress').textContent = done + ' of ' + total + ' covered';
+  }
+</script>
+
+<!-- Cookie Consent Banner -->
+<div id="cookieBanner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; background:#0f2044; border-top:1px solid #1d3a6e; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; box-shadow:0 -4px 20px rgba(0,0,0,0.3);">
+  <div style="flex:1; min-width:260px;">
+    <div style="font-size:13px; font-weight:600; color:#fff; margin-bottom:4px;">🍪 We use cookies</div>
+    <div style="font-size:12px; color:#94a3b8; line-height:1.5;">We use Google Analytics to understand how visitors use FinCrimeRadar. No personal data is sold. See our <a href="/privacy.html" style="color:#93c5fd; text-decoration:none;">Privacy Policy</a>.</div>
+  </div>
+  <div style="display:flex; gap:8px; flex-shrink:0;">
+    <button onclick="rejectCookies()" style="padding:8px 16px; background:transparent; border:1px solid #334155; color:#94a3b8; border-radius:6px; font-size:12px; font-weight:500; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Reject non-essential</button>
+    <button onclick="acceptCookies()" style="padding:8px 18px; background:#00c4a7; border:none; color:#fff; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Accept all</button>
+  </div>
+</div>
+<script>
+  (function() {
+    var consent = localStorage.getItem('fcr_cookie_consent');
+    if (!consent) {
+      document.getElementById('cookieBanner').style.display = 'flex';
+    } else if (consent === 'rejected') {
+      window['ga-disable-G-FC1VMTE7JH'] = true;
+    }
+  })();
+  function acceptCookies() {
+    localStorage.setItem('fcr_cookie_consent', 'accepted');
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { 'analytics_storage': 'granted' });
+    }
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+  function rejectCookies() {
+    localStorage.setItem('fcr_cookie_consent', 'rejected');
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { 'analytics_storage': 'denied' });
+    }
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+</script>
+<script>
+function toggleMobileNav(){
+  var nav=document.getElementById('mobileNav');
+  var btn=document.getElementById('navHamburger');
+  if(!nav) return;
+  var open=nav.classList.toggle('open');
+  btn.innerHTML=open?'&#10005;':'&#9776;';
+  document.body.style.overflow=open?'hidden':'';
+}
+document.addEventListener('click',function(e){
+  var nav=document.getElementById('mobileNav');
+  var btn=document.getElementById('navHamburger');
+  if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==btn){
+    nav.classList.remove('open');
+    btn.innerHTML='&#9776;';
+    document.body.style.overflow='';
+  }
+});
+</script>
+<script defer src="/brand.js"></script>
+</body>
+</html>
