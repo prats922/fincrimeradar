@@ -9,8 +9,11 @@ Suggested cadence: fortnightly rotation, Polish → Build → Content → repeat
 ## 🔧 Polish Loop
 Bug fixes, technical debt, structural cleanup. Nothing here should take more than one session to clear.
 
-- [ ] `scripts/validate_output.py` line 12: add explicit `encoding='utf-8'` to the `open()` call, currently defaults to cp1252 on Windows and fails on UTF-8 delta pages
-- [ ] Remove legacy `ga-disable-G-FC1VMTE7JH` references left in place after the Consent Mode migration, inline page IIFEs, kyc's trailing line, and `disableGoogleAnalytics` in `site-chrome.js`, all redundant now but harmless
+**Done:**
+- ✅ `scripts/validate_output.py` line 12: added explicit `encoding='utf-8'` to the `open()` call, was defaulting to cp1252 on Windows and failing on UTF-8 delta pages
+- ✅ Removed legacy `ga-disable-G-FC1VMTE7JH` references left in place after the Consent Mode migration, inline page IIFEs, kyc's trailing line, and `disableGoogleAnalytics` in `site-chrome.js`, confirmed redundant under Consent Mode (analytics_storage denied already blocks GA) before removing
+
+**Next up:**
 - [ ] `site-chrome.js` consolidation: 24 of 27 pages still hand-inline their nav/footer instead of using the shared partials system, only `terms.html` and `scenario-lab.html` use it. Same root cause as the nav bug and the GA duplication, worth doing once rather than patching each future change 24 times over
 - [ ] Confirm cookie consent banner and GA4 head block are genuinely identical across all pages post Consent Mode migration, spot check a few pages outside the ones already verified
 
