@@ -178,6 +178,27 @@
     .step-body.open { display:block; padding-top:0.9rem; }
     .step-body strong { color:var(--navy); }
 
+    /* CHEAT SHEET (reusable end-of-guide summary component)
+       SVG colors are mapped to brand.css custom properties, not
+       hardcoded hex, so this inherits the live brand palette:
+       background -> --hero-bg-1, card/circle fill -> --hero-bg-2,
+       all borders/dividers/connectors -> --teal-deep (opacity varies
+       for visual hierarchy), accent green -> --teal (not --accent,
+       which this guide series overrides to indigo for its own UI),
+       primary text -> --white, muted/secondary text -> --hero-accent-em. */
+    .cheat-sheet-card { margin:1.75rem 0 0.5rem; }
+    .cheat-sheet-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--accent); margin-bottom:0.75rem; }
+    .cheat-sheet-scroll { max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:16px; box-shadow:0 1px 2px rgba(0,0,0,0.04), 0 18px 44px rgba(7,25,18,0.16); }
+    .cheat-sheet-scroll svg { display:block; width:800px; max-width:none; height:auto; }
+    .cheat-sheet-scroll .cs-bg { fill:var(--hero-bg-1); }
+    .cheat-sheet-scroll .cs-card { fill:var(--hero-bg-2); stroke:var(--teal-deep); stroke-opacity:0.5; }
+    .cheat-sheet-scroll .cs-divider { stroke:var(--teal-deep); stroke-opacity:0.3; }
+    .cheat-sheet-scroll .cs-connector { stroke:var(--teal-deep); stroke-opacity:0.45; }
+    .cheat-sheet-scroll .cs-circle { fill:var(--hero-bg-2); stroke:var(--teal-deep); stroke-opacity:0.75; }
+    .cheat-sheet-scroll .cs-accent { fill:var(--teal); }
+    .cheat-sheet-scroll .cs-primary { fill:var(--white); }
+    .cheat-sheet-scroll .cs-muted { fill:var(--hero-accent-em); }
+
     /* ===== MOBILE RESPONSIVE ===== */
     .nav-hamburger {
       display: none;
@@ -505,6 +526,87 @@
         <div class="callout-body">
           <div class="callout-title">Coming in Part 2</div>
           <div class="callout-text">This section covers eligibility, requirements, and the formal approval route. The next section in this handbook covers what the role looks like day to day once approved, the SAR process, board reporting lines, and where SMF16/17 liability has actually been tested in enforcement action.</div>
+        </div>
+      </div>
+
+      <div class="cheat-sheet-card">
+        <div class="cheat-sheet-label">Quick Reference</div>
+        <div class="cheat-sheet-scroll">
+          <svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img">
+            <title>MLRO / SMF16-17 at a glance, cheat sheet summary</title>
+            <desc>Summary card covering who can apply, what it takes, the five step approval process, and the combination question, for the MLRO Handbook Part 1 guide.</desc>
+
+            <rect width="800" height="520" class="cs-bg" rx="16"/>
+
+            <text x="40" y="52" class="cs-primary" font-family="Arial, sans-serif" font-size="28" font-weight="700">MLRO / SMF16-17</text>
+            <text x="40" y="78" class="cs-muted" font-family="Arial, sans-serif" font-size="15" font-weight="400" letter-spacing="2">AT A GLANCE — CHEAT SHEET</text>
+            <line x1="40" y1="94" x2="760" y2="94" class="cs-divider" stroke-width="1"/>
+
+            <rect x="40" y="116" width="230" height="180" rx="10" class="cs-card" stroke-width="1"/>
+            <text x="60" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">WHO CAN APPLY</text>
+            <text x="60" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">No prior MLRO experience</text>
+            <text x="60" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">required, just proven</text>
+            <text x="60" y="214" class="cs-primary" font-family="Arial, sans-serif" font-size="13">compliance-adjacent judgement</text>
+            <text x="60" y="244" class="cs-muted" font-family="Arial, sans-serif" font-size="13">Legal · accountancy · consultancy</text>
+            <text x="60" y="264" class="cs-muted" font-family="Arial, sans-serif" font-size="13">backgrounds all considered</text>
+
+            <rect x="285" y="116" width="230" height="180" rx="10" class="cs-card" stroke-width="1"/>
+            <text x="305" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">WHAT IT TAKES</text>
+            <text x="305" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Depth of training, not</text>
+            <text x="305" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">breadth of certificates</text>
+            <text x="305" y="222" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Genuine, proportionate</text>
+            <text x="305" y="242" class="cs-primary" font-family="Arial, sans-serif" font-size="13">time commitment</text>
+            <text x="305" y="270" class="cs-muted" font-family="Arial, sans-serif" font-size="13">Internal competence, UK-based</text>
+
+            <rect x="530" y="116" width="230" height="180" rx="10" class="cs-card" stroke-width="1"/>
+            <text x="550" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">COMBINE SMF16/17?</text>
+            <text x="550" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Standard below ~£20m</text>
+            <text x="550" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">revenue, active decision</text>
+            <text x="550" y="214" class="cs-primary" font-family="Arial, sans-serif" font-size="13">not a default</text>
+            <text x="550" y="244" class="cs-muted" font-family="Arial, sans-serif" font-size="13">Risk shifts from competence</text>
+            <text x="550" y="264" class="cs-muted" font-family="Arial, sans-serif" font-size="13">to capacity and independence</text>
+
+            <text x="40" y="336" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">THE FIVE STEP APPROVAL PROCESS</text>
+
+            <g font-family="Arial, sans-serif">
+              <circle cx="70" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="70" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">1</text>
+              <text x="70" y="418" class="cs-muted" font-size="11" text-anchor="middle">Firm assesses</text>
+              <text x="70" y="432" class="cs-muted" font-size="11" text-anchor="middle">fit and proper</text>
+
+              <line x1="98" y1="380" x2="222" y2="380" class="cs-connector" stroke-width="1.5"/>
+
+              <circle cx="250" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="250" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">2</text>
+              <text x="250" y="418" class="cs-muted" font-size="11" text-anchor="middle">Form A +</text>
+              <text x="250" y="432" class="cs-muted" font-size="11" text-anchor="middle">Statement of Resp.</text>
+
+              <line x1="278" y1="380" x2="402" y2="380" class="cs-connector" stroke-width="1.5"/>
+
+              <circle cx="430" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="430" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">3</text>
+              <text x="430" y="418" class="cs-muted" font-size="11" text-anchor="middle">FCA reviews,</text>
+              <text x="430" y="432" class="cs-muted" font-size="11" text-anchor="middle">may interview</text>
+
+              <line x1="458" y1="380" x2="582" y2="380" class="cs-connector" stroke-width="1.5"/>
+
+              <circle cx="610" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="610" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">4</text>
+              <text x="610" y="418" class="cs-muted" font-size="11" text-anchor="middle">Approved or</text>
+              <text x="610" y="432" class="cs-muted" font-size="11" text-anchor="middle">challenged</text>
+
+              <line x1="638" y1="380" x2="702" y2="380" class="cs-connector" stroke-width="1.5"/>
+
+              <circle cx="730" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="730" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">5</text>
+              <text x="730" y="418" class="cs-muted" font-size="11" text-anchor="middle">Personal duty</text>
+              <text x="730" y="432" class="cs-muted" font-size="11" text-anchor="middle">begins immediately</text>
+            </g>
+
+            <line x1="40" y1="466" x2="760" y2="466" class="cs-divider" stroke-width="1"/>
+            <text x="40" y="492" class="cs-muted" font-family="Arial, sans-serif" font-size="12">A summary aid, not a substitute for the full guide or professional advice.</text>
+            <text x="760" y="492" class="cs-accent" font-family="Arial, sans-serif" font-size="12" text-anchor="end">fincrimeradar.org</text>
+          </svg>
         </div>
       </div>
 
