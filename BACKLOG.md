@@ -16,6 +16,7 @@ Bug fixes, technical debt, structural cleanup. Nothing here should take more tha
 **Next up:**
 - [ ] `site-chrome.js` consolidation: 24 of 27 pages still hand-inline their nav/footer instead of using the shared partials system, only `terms.html` and `scenario-lab.html` use it. Same root cause as the nav bug and the GA duplication, worth doing once rather than patching each future change 24 times over
 - [ ] Confirm cookie consent banner and GA4 head block are genuinely identical across all pages post Consent Mode migration, spot check a few pages outside the ones already verified
+- [ ] **Retrofit end-of-guide cheat sheet onto existing guides.** Component proven live on `mlro-handbook-part1.html` (dark forest green brand palette, mapped to real `brand.css` custom properties, verified bit-for-bit). Needs a bespoke populated version, not a copy-paste, on: MLRO Handbook Part 2, Crypto Guide Part 1, and the AML/PEP/SAR/FATF series (8 guides). Each one needs its own 3-4 key point panels and process strip pulled from that guide's actual content, same discipline as building the original. Treat as one guide per work session, not a single big batch edit, quality drops fast on mechanical repetition.
 
 *Add items here the moment a fix is deferred rather than done, don't let them live only in memory notes.*
 
@@ -34,14 +35,16 @@ New tools, features, and platform capability. Naturally slower, needs a dedicate
 ## 📝 Content Loop
 Knowledge Hub articles and guide series. Ship two to three parts of a series close together, then move to the next topic rather than leaving series unfinished.
 
+**Standing requirement, applies to every guide from here on:** every guide ends with a branded cheat sheet summary component (title, 3-4 key point panels, optional process strip), matching the pattern proven on `mlro-handbook-part1.html`. Colors always mapped to `brand.css` custom properties, never hardcoded hex. No emoji in labels, matches the rest of the site's voice. This is not optional for new guides going forward.
+
 **Done:**
-- ✅ MLRO Handbook, Part 1: Becoming SMF16 or SMF17
+- ✅ MLRO Handbook, Part 1: Becoming SMF16 or SMF17 (includes cheat sheet component)
 - ✅ MLRO Handbook, Part 2: The Role, SARs and Enforcement
 - ✅ Crypto Guide, Part 1
 
 **Next up:**
-- [ ] Crypto Guide, Part 2
-- [ ] **Cross-jurisdictional MLRO/SMF17 comparison (UK + UAE first)** — needs a dedicated scoping session before drafting starts, bigger lift than a standard guide part. Practitioner-grounded comparison of MLRO equivalent roles, personal liability frameworks, and enforcement patterns across FCA (UK) and CBUAE (UAE) to start, scoped to expand toward MAS, AUSTRAC, FIU India, and BNM later if it lands well. Differentiator is the practitioner footprint across all six regimes and that it's free, not the raw concept, similar paid/partial versions exist elsewhere (Comsure's terminology piece, The MLRO Ltd's paid UAE cross-regulatory advisory). Do not start drafting until scoping session defines structure, sourcing standard for non-UK regulatory claims, and how much of each jurisdiction's material is genuinely verifiable versus secondary sourced.
+- [ ] Crypto Guide, Part 2 — include cheat sheet component as standard
+- [ ] **Cross-jurisdictional MLRO/SMF17 comparison (UK + UAE first)** — needs a dedicated scoping session before drafting starts, bigger lift than a standard guide part. Practitioner-grounded comparison of MLRO equivalent roles, personal liability frameworks, and enforcement patterns across FCA (UK) and CBUAE (UAE) to start, scoped to expand toward MAS, AUSTRAC, FIU India, and BNM later if it lands well. Differentiator is the practitioner footprint across all six regimes and that it's free, not the raw concept, similar paid/partial versions exist elsewhere (Comsure's terminology piece, The MLRO Ltd's paid UAE cross-regulatory advisory). Do not start drafting until scoping session defines structure, sourcing standard for non-UK regulatory claims, and how much of each jurisdiction's material is genuinely verifiable versus secondary sourced. Include cheat sheet component.
 - [ ] Possible MLRO Handbook Part 3: resourcing benchmarks by firm size, FCA's move toward AML supervisor for professional services (flagged as a maybe in Part 2's closing note, not committed yet)
 
 ---
