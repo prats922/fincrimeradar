@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+  gtag('js', new Date());
+  (function () {
+    try {
+      var consent = localStorage.getItem('fcr_cookie_consent');
+      if (consent === 'accepted') {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+  })();
+  gtag('config', 'G-FC1VMTE7JH');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Crypto Guide Part 2: What to Actually Do Before October 2027 | FinCrimeRadar</title>
+  <meta name="description" content="What changed on 30 June and 3 June 2026, the FSMA cryptoasset authorisation timeline, why MLR registration does not convert into authorisation, what the FCA says good looks like, and a practical starting checklist." />
+  <meta name="keywords" content="FSMA cryptoasset authorisation, FCA cryptoasset gateway, Pre-Application Support Service, MLR to FSMA transition, SYSC 3 crypto, cryptoasset authorisation checklist, FCA cryptoasset rules 2026" />
+  <link rel="canonical" href="https://fincrimeradar.org/crypto-guide-part2.html" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Crypto Guide Part 2: What to Actually Do Before October 2027 | FinCrimeRadar" />
+  <meta property="og:description" content="What changed on 30 June and 3 June 2026, the FSMA cryptoasset authorisation timeline, why MLR registration does not convert into authorisation, what the FCA says good looks like, and a practical starting checklist." />
+  <meta property="og:url" content="https://fincrimeradar.org/crypto-guide-part2.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://fincrimeradar.org/og-image.png" />
+  <meta property="og:site_name" content="FinCrimeRadar" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Crypto Guide Part 2: What to Actually Do Before October 2027 | FinCrimeRadar" />
+  <meta name="twitter:description" content="What changed on 30 June and 3 June 2026, the FSMA cryptoasset authorisation timeline, why MLR registration does not convert into authorisation, what the FCA says good looks like, and a practical starting checklist." />
+  <meta name="twitter:image" content="https://fincrimeradar.org/og-image.png" />
+  <!-- Schema.org -->
+  <meta name="author" content="Pratik Zanke, FinCrimeRadar" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --white:#ffffff; --off:#f7f8fa; --border:#e4e7ec;
+      --muted:#6b7280; --text:#111827; --navy:#0f2044;
+      --accent:#2563eb; --accent-h:#1d4ed8; --accent-light:#eff6ff;
+      --accent-border:#bfdbfe;
+      --danger:#dc2626; --success:#16a34a; --warning:#d97706;
+      --blue:#1d5fc4; --purple:#7c3aed;
+    }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
+    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:72px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:8px; text-decoration:none; }
+    .nav-logo { width:26px; height:26px; }
+    .nav-name { font-size:15px; font-weight:600; color:var(--navy); }
+    .nav-name span { color:#00c4a7; }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:var(--navy); text-decoration:none; }
+    .nav-links a:hover { color:#00c4a7; }
+    .nav-cta { padding:7px 16px; background:#00c4a7; color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; }
+    .progress-bar { position:fixed; top:60px; left:0; width:0%; height:3px; background:var(--accent); z-index:199; transition:width 0.1s; }
+    .series-hero { background:linear-gradient(135deg,var(--hero-bg-1) 0%,var(--hero-bg-2) 100%); color:#fff; padding:4rem 2rem 3rem; }
+    .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:var(--hero-accent-em); margin-bottom:1.25rem; }
+    .series-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(1.9rem,4vw,3rem); font-weight:400; line-height:1.2; margin-bottom:0.75rem; max-width:760px; }
+    .series-hero h1 em { font-style:italic; color:var(--hero-accent-em); }
+    .series-sub { font-size:16px; color:#dbeafe; max-width:620px; line-height:1.7; margin-bottom:2rem; }
+    .series-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#93c5fd; }
+    .part-nav { background:var(--white); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; gap:0; overflow-x:auto; }
+    .part-link { padding:14px 20px; font-size:13px; font-weight:500; color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; }
+    .part-link:hover { color:var(--navy); }
+    .part-link.active { color:var(--accent); border-bottom-color:var(--accent); }
+    .part-link.done { color:var(--success); }
+    .article-layout { display:grid; grid-template-columns:220px 1fr; gap:2rem; max-width:1080px; margin:0 auto; padding:2.5rem 1.5rem; align-items:start; }
+    .toc { position:sticky; top:105px; background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.25rem; }
+    .toc-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--muted); margin-bottom:0.875rem; }
+    .toc-list { list-style:none; }
+    .toc-list a { font-size:12.5px; color:var(--muted); text-decoration:none; display:block; padding:5px 8px; border-radius:6px; transition:all 0.15s; border-left:2px solid transparent; }
+    .toc-list a:hover,.toc-list a.active { color:var(--accent); background:var(--accent-light); border-left-color:var(--accent); }
+    .toc-progress { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); }
+    .toc-progress-label { font-size:11px; color:var(--muted); margin-bottom:6px; display:flex; justify-content:space-between; }
+    .toc-bar { height:4px; background:var(--border); border-radius:99px; overflow:hidden; }
+    .toc-fill { height:100%; background:var(--accent); border-radius:99px; transition:width 0.2s; width:0%; }
+    .series-nav-box { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); }
+    .sn-link { display:block; font-size:12px; font-weight:600; color:var(--muted); text-decoration:none; padding:5px 8px; border-radius:6px; }
+    .sn-link.done { color:var(--success); }
+    .sn-link.active { color:var(--accent); background:var(--accent-light); }
+    .article-body { min-width:0; }
+    .article-section { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:2.25rem; margin-bottom:1.25rem; }
+    .section-num { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--accent); margin-bottom:0.5rem; }
+    .article-section h2 { font-family:'DM Serif Display',Georgia,serif; font-size:24px; font-weight:400; color:var(--navy); margin-bottom:1rem; line-height:1.3; }
+    .article-section h3 { font-size:16px; font-weight:600; color:var(--navy); margin:1.75rem 0 0.65rem; }
+    .article-section p { font-size:14.5px; color:#374151; margin-bottom:0.9rem; line-height:1.75; }
+    .article-section ul,.article-section ol { padding-left:1.5rem; margin-bottom:0.9rem; }
+    .article-section li { font-size:14.5px; color:#374151; margin-bottom:0.45rem; line-height:1.65; }
+    .article-section a { color:var(--blue); text-decoration:none; }
+    .article-section a:hover { text-decoration:underline; }
+    .callout { border-radius:10px; padding:1.1rem 1.4rem; margin:1.25rem 0; display:flex; gap:12px; }
+    .callout-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+    .callout-body { flex:1; }
+    .callout-title { font-size:12px; font-weight:700; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.4px; }
+    .callout-text { font-size:13.5px; line-height:1.6; }
+    .callout.info { background:#eff6ff; border:1px solid #bfdbfe; }
+    .callout.info .callout-title { color:#1e40af; }
+    .callout.info .callout-text { color:#1e3a8a; }
+    .callout.warning { background:#fffbeb; border:1px solid #fde68a; }
+    .callout.warning .callout-title { color:#92400e; }
+    .callout.warning .callout-text { color:#78350f; }
+    .callout.amber { background:var(--accent-light); border:1px solid var(--accent-border); }
+    .callout.amber .callout-title { color:#92400e; }
+    .callout.amber .callout-text { color:#78350f; }
+    .pull-quote { font-family:'DM Serif Display',Georgia,serif; font-size:18px; font-style:italic; color:var(--navy); border-left:3px solid var(--accent); padding-left:1.25rem; margin:1.5rem 0; line-height:1.6; }
+    .try-tool { background:linear-gradient(135deg,#1e3a8a 0%,#1d4ed8 100%); border-radius:12px; padding:1.5rem 1.75rem; margin:1.75rem 0; display:flex; align-items:center; justify-content:space-between; gap:1.25rem; flex-wrap:wrap; }
+    .try-tool .tl { flex:1; }
+    .try-tool .tl-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:#bfdbfe; margin-bottom:5px; }
+    .try-tool .tl-title { font-size:16px; font-weight:600; color:#fff; margin-bottom:4px; line-height:1.4; }
+    .try-tool .tl-sub { font-size:13px; color:#93c5fd; }
+    .try-tool .tl-btn { padding:10px 20px; background:var(--accent); color:#fff; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap; transition:all 0.15s; }
+    .try-tool .tl-btn:hover { background:var(--accent-h); transform:translateY(-1px); }
+    .part-footer { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-top:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    .pf-prev,.pf-next { display:flex; flex-direction:column; gap:4px; }
+    .pf-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--muted); }
+    .pf-link { font-size:14px; font-weight:600; color:var(--blue); text-decoration:none; }
+    .pf-link:hover { text-decoration:underline; }
+    .pf-next { text-align:right; }
+    .pf-center { font-size:13px; color:var(--muted); }
+    footer { background:var(--white); border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:12px; color:var(--muted); margin-top:2rem; }
+    footer a { color:var(--muted); text-decoration:none; margin:0 8px; }
+    footer a:hover { color:#00c4a7; }
+
+    /* MILESTONE STRIP (horizontal timeline, with a "today" marker) */
+    .milestone-strip { overflow-x:auto; -webkit-overflow-scrolling:touch; margin:1.75rem 0; padding-bottom:4px; }
+    .milestone-track { position:relative; min-width:640px; height:132px; }
+    .milestone-line { position:absolute; top:23px; left:3%; right:3%; height:2px; background:var(--border); }
+    .milestone-node { position:absolute; top:0; width:160px; text-align:center; transform:translateX(-50%); }
+    .milestone-dot { width:28px; height:28px; border-radius:50%; background:var(--accent); color:#fff; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; position:relative; z-index:2; }
+    .milestone-date { font-size:11px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:0.4px; margin-bottom:4px; }
+    .milestone-title { font-size:13px; font-weight:600; color:var(--navy); margin-bottom:4px; line-height:1.4; }
+    .milestone-desc { font-size:12px; color:var(--muted); line-height:1.5; }
+    .milestone-today { position:absolute; top:-30px; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; z-index:3; }
+    .milestone-today-pill { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; background:var(--navy); color:#fff; padding:3px 9px; border-radius:99px; white-space:nowrap; margin-bottom:4px; }
+    .milestone-today-line { width:2px; height:56px; background:var(--navy); opacity:0.55; }
+
+    /* MLR VS FSMA EXPECTATIONS (two column expandable comparison) */
+    .role-split { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0; }
+    .role-col { border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+    .role-head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:1.1rem 1.3rem; cursor:pointer; background:var(--white); user-select:none; }
+    .role-head:hover { background:var(--off); }
+    .role-head-text { flex:1; }
+    .role-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--accent); margin-bottom:4px; }
+    .role-title { font-size:15px; font-weight:600; color:var(--navy); }
+    .role-icon { font-size:17px; color:var(--muted); transition:transform 0.2s; flex-shrink:0; }
+    .role-icon.open { transform:rotate(45deg); }
+    .role-body { display:none; padding:0 1.3rem 1.1rem; font-size:13.5px; color:#374151; line-height:1.65; border-top:1px solid var(--border); background:#fafafa; }
+    .role-body.open { display:block; padding-top:1rem; }
+    .role-body ul { padding-left:1.15rem; margin-bottom:0; }
+    .role-body li { font-size:13px; margin-bottom:0.5rem; line-height:1.55; }
+    .role-source { font-size:11.5px; color:var(--muted); margin-top:0.7rem; padding-top:0.7rem; border-top:1px dashed var(--border); }
+
+    /* CHEAT SHEET (reusable end-of-guide summary component)
+       SVG colors are mapped to brand.css custom properties, not
+       hardcoded hex, so this inherits the live brand palette:
+       background -> --hero-bg-1, card/circle fill -> --hero-bg-2,
+       all borders/dividers/connectors -> --teal-deep (opacity varies
+       for visual hierarchy), accent green -> --teal (not --accent,
+       which this guide series overrides to blue for its own UI),
+       primary text -> --white, muted/secondary text -> --hero-accent-em. */
+    .cheat-sheet-card { margin:1.75rem 0 0.5rem; }
+    .cheat-sheet-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--accent); margin-bottom:0.75rem; }
+    .cheat-sheet-scroll { max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:16px; box-shadow:0 1px 2px rgba(0,0,0,0.04), 0 18px 44px rgba(7,25,18,0.16); }
+    .cheat-sheet-scroll svg { display:block; width:800px; max-width:none; height:auto; }
+    .cheat-sheet-scroll .cs-bg { fill:var(--hero-bg-1); }
+    .cheat-sheet-scroll .cs-card { fill:var(--hero-bg-2); stroke:var(--teal-deep); stroke-opacity:0.5; }
+    .cheat-sheet-scroll .cs-divider { stroke:var(--teal-deep); stroke-opacity:0.3; }
+    .cheat-sheet-scroll .cs-connector { stroke:var(--teal-deep); stroke-opacity:0.45; }
+    .cheat-sheet-scroll .cs-circle { fill:var(--hero-bg-2); stroke:var(--teal-deep); stroke-opacity:0.75; }
+    .cheat-sheet-scroll .cs-accent { fill:var(--teal); }
+    .cheat-sheet-scroll .cs-primary { fill:var(--white); }
+    .cheat-sheet-scroll .cs-muted { fill:var(--hero-accent-em); }
+
+    /* ===== MOBILE RESPONSIVE ===== */
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--navy, #0f2044);
+      padding: 4px 6px;
+      line-height: 1;
+    }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0; right: 0;
+      background: #fff;
+      border-bottom: 1px solid #e4e7ec;
+      flex-direction: column;
+      z-index: 99;
+      padding: 0.5rem 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      padding: 14px 1.5rem;
+      font-size: 15px;
+      color: #374151;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #f3f4f6;
+      transition: background 0.1s;
+    }
+    .mobile-nav a:hover { background: #f9fafb; }
+    .mobile-nav .mobile-nav-cta {
+      margin: 0.75rem 1.5rem 0.5rem;
+      background: #00c4a7;
+      color: #fff !important;
+      border-radius: 8px;
+      text-align: center;
+      border-bottom: none;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1rem; }
+      .nav-hamburger { display: block; }
+      .nav-links { display: none; }
+      .nav-logo img,
+      .nav-brand img { height: 40px !important; width: auto !important; max-width: 160px !important; }
+      .series-hero { padding: 2.5rem 1.25rem 2rem; }
+      .article-layout { grid-template-columns: 1fr !important; }
+      .toc { display: none !important; }
+      .article-section { padding: 1.25rem !important; }
+      .try-tool { flex-direction: column !important; }
+      .role-split { grid-template-columns: 1fr !important; }
+      footer { flex-direction: column !important; align-items: flex-start !important; gap: 1rem !important; }
+    }
+  </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Crypto Guide Part 2: What to Actually Do Before October 2027","url":"https://fincrimeradar.org/crypto-guide-part2.html","publisher":{"@type":"Organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org"},"datePublished":"2026-07-09"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand.css">
+  <!-- Loaded after brand.css so the series accent wins the cascade. brand.css
+       defines --accent globally (teal), which would otherwise override the
+       first inline block. --hero-accent-em is intentionally left as brand.css's
+       green, it is a shared hero convention, not a guide specific accent.
+       Blue carried over from Part 1 so the series reads as one accent. -->
+  <style>
+    :root {
+      --accent: #2563eb;
+      --accent-h: #1d4ed8;
+      --accent-light: #eff6ff;
+      --accent-border: #bfdbfe;
+    }
+  </style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav>
+  <a class="nav-brand" href="/">
+    <img src="/logo.png" alt="FinCrimeRadar" style="height:44px;width:auto;max-width:200px;object-fit:contain;object-position:left center;display:block;" />
+  </a>
+  <div class="nav-links">
+    <a href="/knowledge.html" class="hm">Knowledge Hub</a>
+    <a href="/screen.html" class="hm">Screen</a>
+    <a href="/screen.html" class="nav-cta" style="background:#00c4a7;color:#fff;font-weight:600;">Try the tool →</a>
+  </div>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/knowledge.html">Knowledge Hub</a>
+  <a href="/learn.html">Learn</a>
+  <a href="/about.html">About</a>
+  <a href="/screen.html" class="mobile-nav-cta">Try the tool →</a>
+</div>
+
+<div class="series-hero">
+  <div class="series-tag">🪙 Crypto Compliance Guide · Part 2 of 6</div>
+  <h1>The Crypto Guide, Part 2: <em>What to Actually Do Before October 2027</em></h1>
+  <p class="series-sub">Part 1 was the map, what counts as a cryptoasset, and why two regimes are live at once. This part is the route, what's actually happening, in what order, and what to do about it before the window closes.</p>
+  <div class="series-meta">
+    <span>📖 11 min read</span>
+    <span>⚖️ FSMA 2000 (Cryptoassets) Regulations 2026 · MLR 2017</span>
+    <span>🇬🇧 UK specific</span>
+    <span>🏛️ FCA</span>
+  </div>
+</div>
+
+<div class="part-nav">
+  <a href="/crypto-guide-part1.html" class="part-link done">✓ Part 1: Foundations and the Regulatory Ground Shifting Beneath Them</a>
+  <a href="/crypto-guide-part2.html" class="part-link active">Part 2: What to Actually Do Before October 2027</a>
+  <a href="#" class="part-link">Part 3: Typologies, Mixers, Layering, and Rug Pulls Explained</a>
+  <a href="#" class="part-link">Part 4: How Crypto Wallets Actually End Up Sanctioned</a>
+  <a href="#" class="part-link">Part 5: The Gap Between AML Training and a Real Crypto Case</a>
+  <a href="#" class="part-link">Part 6: Screening Logic and Wallet Addresses, Where It Breaks Down</a>
+</div>
+
+<div class="article-layout">
+  <aside>
+    <div class="toc">
+      <div class="toc-title">In this part</div>
+      <ul class="toc-list">
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#timeline">The timeline that matters</a></li>
+        <li><a href="#no-conversion">No automatic conversion</a></li>
+        <li><a href="#good-looks-like">What "good" looks like</a></li>
+        <li><a href="#checklist">Practical starting checklist</a></li>
+      </ul>
+      <div class="toc-progress">
+        <div class="toc-progress-label"><span>Progress</span><span id="pct">0%</span></div>
+        <div class="toc-bar"><div class="toc-fill" id="fill"></div></div>
+      </div>
+      <div class="series-nav-box">
+        <div class="toc-title">Series</div>
+        <a href="/crypto-guide-part1.html" class="sn-link done">✓ Part 1: Foundations</a>
+        <a href="/crypto-guide-part2.html" class="sn-link active">Part 2: What to Do Now</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="article-body">
+
+    <section class="article-section" id="intro">
+      <div class="section-num">Introduction</div>
+      <h2>Written for the person who now has to build a plan, not just understand the regime</h2>
+      <p>Part 1 covered what counts as a cryptoasset, why owning and dealing are different questions, and why two regulatory regimes are live at once. That's the map. This part is the route, what's actually happening, in what order, and what a firm operating in this space needs to be doing right now, not eventually.</p>
+      <p>Two things have happened very recently that change the practical answer to "what do I do". On 30 June 2026, the FCA published its final rules and guidance for the new regime. And on 3 June 2026, the FCA published direct responses to firms' questions on exactly the interaction this guide is about, MLR registration versus FSMA authorisation.</p>
+      <div class="callout info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <div class="callout-title">This reflects the settled position, not the earlier version of the timeline</div>
+          <div class="callout-text">Both the final rules (30 June 2026) and the FCA's direct responses on MLR versus FSMA (3 June 2026) landed within the last few weeks. If you read guidance on this topic from earlier in the year, treat it as superseded, the practical answer has moved.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section" id="timeline">
+      <div class="section-num">Section 01</div>
+      <h2>The timeline that actually matters</h2>
+      <ul>
+        <li><strong>Now (from July 2026):</strong> The FCA's Pre-Application Support Service is open. Firms preparing for authorisation can engage directly with the FCA ahead of the formal window.</li>
+        <li><strong>30 September 2026:</strong> The FSMA cryptoasset authorisation gateway opens. This is when firms can formally submit applications.</li>
+        <li><strong>28 February 2027:</strong> The application window closes.</li>
+        <li><strong>25 October 2027:</strong> The new regime commences. From this date, cryptoasset activities move fully under FSMA authorisation.</li>
+      </ul>
+      <p>The FCA has been explicit that applying inside the window matters. Submit during the application period and the FCA expects to determine the application before the regime commences. Miss it, and a saving provision allows continued operation while the application is pending, but that's a position of ongoing regulatory uncertainty, not a comfortable one to be running a business from.</p>
+
+      <div class="milestone-strip" role="img" aria-label="Timeline from July 2026 to October 2027 showing four key milestones, with today, 9 July 2026, marked just after the Pre-Application Support Service opened">
+        <div class="milestone-track">
+          <div class="milestone-line"></div>
+
+          <div class="milestone-today" style="left:9%;">
+            <div class="milestone-today-pill">Today · 9 Jul 2026</div>
+            <div class="milestone-today-line"></div>
+          </div>
+
+          <div class="milestone-node" style="left:6%;">
+            <div class="milestone-dot">1</div>
+            <div class="milestone-date">Now, from July 2026</div>
+            <div class="milestone-title">Pre-Application Support Service opens</div>
+            <div class="milestone-desc">Engage the FCA directly ahead of the formal window.</div>
+          </div>
+
+          <div class="milestone-node" style="left:37%;">
+            <div class="milestone-dot">2</div>
+            <div class="milestone-date">30 Sep 2026</div>
+            <div class="milestone-title">FSMA gateway opens</div>
+            <div class="milestone-desc">Firms can formally submit authorisation applications.</div>
+          </div>
+
+          <div class="milestone-node" style="left:68%;">
+            <div class="milestone-dot">3</div>
+            <div class="milestone-date">28 Feb 2027</div>
+            <div class="milestone-title">Application window closes</div>
+            <div class="milestone-desc">Apply inside this window and the FCA expects to decide before commencement.</div>
+          </div>
+
+          <div class="milestone-node" style="left:98%;">
+            <div class="milestone-dot">4</div>
+            <div class="milestone-date">25 Oct 2027</div>
+            <div class="milestone-title">Regime commences</div>
+            <div class="milestone-desc">Cryptoasset activities move fully under FSMA authorisation.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section" id="no-conversion">
+      <div class="section-num">Section 02</div>
+      <h2>The fact that changes everything for MLR-registered firms</h2>
+      <p>There is no automatic conversion from MLR registration to FSMA authorisation. The FCA has stated this plainly and repeatedly. A firm currently registered under the Money Laundering Regulations, and compliant, and operating without issue, does not carry that status forward. It has to apply for FSMA authorisation as a genuinely new process.</p>
+      <div class="pull-quote">There is no automatic conversion from MLR registration to FSMA authorisation.</div>
+      <p>The FCA's own steer, published 3 June 2026, goes further: new firms are encouraged to focus on securing FSMA authorisation directly, rather than pursuing MLR registration in the meantime. If your firm is only now entering this space, MLR registration is increasingly a detour, not a stepping stone, given the transition already underway. Firms that still want to apply for MLR registration after 30 September 2026 are directed to contact the FCA's Pre-Application Support Service first to explain the rationale, that's not a formality, it's the FCA asking firms to justify why they're pursuing a route the regulator has already signalled is being phased out.</p>
+    </section>
+
+    <section class="article-section" id="good-looks-like">
+      <div class="section-num">Section 03</div>
+      <h2>What "good" actually looks like to the FCA</h2>
+      <p>The FCA has set out, specifically, what separates a strong FSMA cryptoasset application from a weak one. This isn't generic authorisation guidance, it's stated in relation to this exact regime.</p>
+
+      <h3>A financial crime assessment broader than MLR registration currently requires</h3>
+      <p>Firms should expect the authorisation process to examine governance, systems and controls, resourcing, and overall readiness, not just whether AML policies exist on paper. Innovative or "pure on-chain" business models are expected to demonstrate a risk-based approach calibrated to their actual transaction flows, not a template lifted from a traditional payments firm.</p>
+
+      <h3>Explicit governance and MLRO competency expectations</h3>
+      <p>The FCA has directly referenced SYSC 3, its senior management arrangements, systems and controls sourcebook, in relation to crypto authorisation. Individuals in key AML roles, including the MLRO, need to be competent and appropriately experienced for the specific activities and risks the firm is running, with genuinely sufficient time and resource to do the job. If Part 1 of <a href="/mlro-handbook-part1.html">the MLRO Handbook</a> sounded familiar reading this, that's not a coincidence, the same fit and proper bar that applies to any FCA authorised firm applies here, with crypto specific risk layered on top.</p>
+
+      <h3>Travel Rule obligations continue to run alongside FSMA, not instead of it</h3>
+      <p>The Travel Rule sits within the MLRs and operates concurrently with the new regime. Firms shouldn't assume that FSMA authorisation replaces MLR obligations wholesale, applicability is assessed firm by firm, based on the actual business and operating model.</p>
+
+      <h3>Sanctions and fraud controls sit inside the same picture, not beside it</h3>
+      <p>The FCA has been explicit that it expects AML, counter-terrorist financing, and counter-proliferation financing controls to be considered alongside sanctions and fraud risk, reflected end to end in governance, risk assessment, monitoring, and escalation, not run as separate, disconnected workstreams.</p>
+
+      <div class="role-split">
+        <div class="role-col">
+          <div class="role-head" onclick="toggleRole(this)">
+            <div class="role-head-text">
+              <div class="role-label">Existing</div>
+              <div class="role-title">MLR Registration Expectations</div>
+            </div>
+            <span class="role-icon">+</span>
+          </div>
+          <div class="role-body">
+            <ul>
+              <li>Anti-money laundering and counter terrorist financing supervision only</li>
+              <li>Business wide risk assessment, CDD and EDD as currently required</li>
+              <li>In force and ongoing since 10 January 2020</li>
+              <li>Does not, on its own, satisfy the new authorisation bar</li>
+            </ul>
+            <div class="role-source">Legal source: Money Laundering Regulations 2017</div>
+          </div>
+        </div>
+        <div class="role-col">
+          <div class="role-head" onclick="toggleRole(this)">
+            <div class="role-head-text">
+              <div class="role-label">New, broader</div>
+              <div class="role-title">FSMA Authorisation Expectations</div>
+            </div>
+            <span class="role-icon">+</span>
+          </div>
+          <div class="role-body">
+            <ul>
+              <li>Full financial crime assessment: governance, systems and controls, resourcing, and readiness, not just policies on paper</li>
+              <li>Explicit SYSC 3 governance and MLRO competency, with sufficient time and experience for the firm's actual risk</li>
+              <li>Risk based approach calibrated to actual transaction flows, not a template from traditional payments</li>
+              <li>AML, CTF, CPF, sanctions, and fraud controls reflected end to end, not run as separate workstreams</li>
+            </ul>
+            <div class="role-source">Legal source: FSMA 2000 (Cryptoassets) Regulations 2026; SYSC 3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">Put it into practice</div>
+          <div class="tl-title">Screen a director or beneficial owner name during your authorisation prep</div>
+          <div class="tl-sub">Free, no login. Check sanctions and PEP exposure before it surfaces in the FCA's own review.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Screen a name →</a>
+      </div>
+    </section>
+
+    <section class="article-section" id="checklist">
+      <div class="section-num">Section 04</div>
+      <h2>A practical starting checklist</h2>
+      <p>For a firm currently MLR registered, or actively preparing to enter the UK cryptoasset market, five things worth actioning now rather than in Q1 2027:</p>
+      <ol>
+        <li><strong>Revisit your perimeter assessment.</strong> Not every MLR registered firm will be carrying out a regulated activity under the new framework, and some firms currently outside scope may find they're inside it. Don't assume last year's analysis still holds.</li>
+        <li><strong>Engage the Pre-Application Support Service early.</strong> It's open now. Early engagement, gap analysis, and operational planning are explicitly what the FCA has said it wants to see, not a completed application arriving cold.</li>
+        <li><strong>Stress test governance against SYSC 3, specifically for crypto risk.</strong> A generic AML governance structure inherited from a different regulated activity won't automatically satisfy this bar.</li>
+        <li><strong>Confirm your MLRO, or whoever will hold the equivalent function, genuinely has crypto specific competency and capacity.</strong> Not a general AML background stretched to cover a business model it wasn't built for.</li>
+        <li><strong>Map your Travel Rule exposure independently of the FSMA timeline.</strong> It's a live, current obligation regardless of where a firm sits in the authorisation process.</li>
+      </ol>
+
+      <div class="callout amber">
+        <div class="callout-icon">📘</div>
+        <div class="callout-body">
+          <div class="callout-title">Coming next in the series</div>
+          <div class="callout-text">This part covered the current timeline, why MLR registration doesn't carry over, and what the FCA says separates a strong application from a weak one. Part 3 turns to typologies, mixers, layering, and rug pulls, the patterns that show up once a crypto touching customer is actually on your desk.</div>
+        </div>
+      </div>
+
+      <div class="cheat-sheet-card">
+        <div class="cheat-sheet-label">Quick Reference</div>
+        <div class="cheat-sheet-scroll">
+          <svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img">
+            <title>FSMA cryptoasset authorisation at a glance, cheat sheet summary</title>
+            <desc>Summary card covering key dates, the MLR to FSMA transition, what the FCA says good looks like, and the four milestone timeline, for the Crypto Guide Part 2 guide.</desc>
+
+            <rect width="800" height="520" class="cs-bg" rx="16"/>
+
+            <text x="40" y="52" class="cs-primary" font-family="Arial, sans-serif" font-size="28" font-weight="700">FSMA Cryptoasset Authorisation</text>
+            <text x="40" y="78" class="cs-muted" font-family="Arial, sans-serif" font-size="15" font-weight="400" letter-spacing="2">AT A GLANCE — CHEAT SHEET</text>
+            <line x1="40" y1="94" x2="760" y2="94" class="cs-divider" stroke-width="1"/>
+
+            <rect x="40" y="116" width="230" height="180" rx="10" class="cs-card" stroke-width="1"/>
+            <text x="60" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">KEY DATES</text>
+            <text x="60" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Gateway opens 30 Sep 2026</text>
+            <text x="60" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Window closes 28 Feb 2027</text>
+            <text x="60" y="214" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Regime starts 25 Oct 2027</text>
+            <text x="60" y="244" class="cs-muted" font-family="Arial, sans-serif" font-size="13">Pre-Application Support</text>
+            <text x="60" y="264" class="cs-muted" font-family="Arial, sans-serif" font-size="13">Service open now</text>
+
+            <rect x="285" y="116" width="230" height="180" rx="10" class="cs-card" stroke-width="1"/>
+            <text x="305" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">MLR TO FSMA</text>
+            <text x="305" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">No automatic conversion,</text>
+            <text x="305" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">fresh application required</text>
+            <text x="305" y="222" class="cs-primary" font-family="Arial, sans-serif" font-size="13">New firms steered toward</text>
+            <text x="305" y="242" class="cs-primary" font-family="Arial, sans-serif" font-size="13">FSMA directly</text>
+            <text x="305" y="270" class="cs-muted" font-family="Arial, sans-serif" font-size="13">FCA position as of 3 Jun 2026</text>
+
+            <rect x="530" y="116" width="230" height="180" rx="10" class="cs-card" stroke-width="1"/>
+            <text x="550" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">WHAT GOOD LOOKS LIKE</text>
+            <text x="550" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Full financial crime</text>
+            <text x="550" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">assessment, not just policy</text>
+            <text x="550" y="222" class="cs-primary" font-family="Arial, sans-serif" font-size="13">SYSC 3 governance and</text>
+            <text x="550" y="242" class="cs-primary" font-family="Arial, sans-serif" font-size="13">MLRO competency</text>
+            <text x="550" y="270" class="cs-muted" font-family="Arial, sans-serif" font-size="13">Travel Rule runs alongside FSMA</text>
+
+            <text x="40" y="336" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">THE TIMELINE</text>
+
+            <g font-family="Arial, sans-serif">
+              <circle cx="90" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="90" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">1</text>
+              <text x="90" y="418" class="cs-muted" font-size="11" text-anchor="middle">PASS Service</text>
+              <text x="90" y="432" class="cs-muted" font-size="11" text-anchor="middle">open, Jul 2026</text>
+
+              <line x1="118" y1="380" x2="272" y2="380" class="cs-connector" stroke-width="1.5"/>
+
+              <circle cx="300" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="300" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">2</text>
+              <text x="300" y="418" class="cs-muted" font-size="11" text-anchor="middle">Gateway opens</text>
+              <text x="300" y="432" class="cs-muted" font-size="11" text-anchor="middle">30 Sep 2026</text>
+
+              <line x1="328" y1="380" x2="482" y2="380" class="cs-connector" stroke-width="1.5"/>
+
+              <circle cx="510" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="510" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">3</text>
+              <text x="510" y="418" class="cs-muted" font-size="11" text-anchor="middle">Window closes</text>
+              <text x="510" y="432" class="cs-muted" font-size="11" text-anchor="middle">28 Feb 2027</text>
+
+              <line x1="538" y1="380" x2="692" y2="380" class="cs-connector" stroke-width="1.5"/>
+
+              <circle cx="720" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="720" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">4</text>
+              <text x="720" y="418" class="cs-muted" font-size="11" text-anchor="middle">Regime starts</text>
+              <text x="720" y="432" class="cs-muted" font-size="11" text-anchor="middle">25 Oct 2027</text>
+            </g>
+
+            <line x1="40" y1="466" x2="760" y2="466" class="cs-divider" stroke-width="1"/>
+            <text x="40" y="492" class="cs-muted" font-family="Arial, sans-serif" font-size="12">A summary aid, not a substitute for the full guide or professional advice.</text>
+            <text x="760" y="492" class="cs-accent" font-family="Arial, sans-serif" font-size="12" text-anchor="end">fincrimeradar.org</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="part-footer">
+        <div class="pf-prev">
+          <div class="pf-label">← Back</div>
+          <a href="/crypto-guide-part1.html" class="pf-link">Part 1: Foundations</a>
+        </div>
+        <div class="pf-center">Part 2 of 6</div>
+        <div class="pf-next">
+          <div class="pf-label">Next →</div>
+          <a href="#" class="pf-link">Part 3: Typologies, Mixers, Layering, and Rug Pulls →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  © 2026 FinCrimeRadar · <a href="/">Home</a> · <a href="/knowledge.html">Knowledge Hub</a> · <a href="/screen.html">Screen</a> · <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
+  <br><br>
+  <span style="font-size:11px;color:#9ca3af;">Decision support, not legal advice. Always verify against official FCA and HM Treasury sources before acting on a live case. Last updated July 2026.</span>
+</footer>
+
+<script>
+  function updateProgress() {
+    const pct = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('fill').style.width = pct + '%';
+    document.getElementById('pct').textContent = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+  document.querySelectorAll('section[id]').forEach(s => {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          document.querySelectorAll('.toc-list a').forEach(l => l.classList.remove('active'));
+          const a = document.querySelector(`.toc-list a[href="#${e.target.id}"]`);
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin:'-20% 0px -70% 0px' }).observe(s);
+  });
+
+  function toggleRole(el) {
+    el.querySelector('.role-icon').classList.toggle('open');
+    el.nextElementSibling.classList.toggle('open');
+  }
+</script>
+
+<!-- Cookie Consent Banner -->
+<div id="cookieBanner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; background:#0f2044; border-top:1px solid #1d3a6e; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; box-shadow:0 -4px 20px rgba(0,0,0,0.3);">
+  <div style="flex:1; min-width:260px;">
+    <div style="font-size:13px; font-weight:600; color:#fff; margin-bottom:4px;">🍪 We use cookies</div>
+    <div style="font-size:12px; color:#94a3b8; line-height:1.5;">We use Google Analytics to understand how visitors use FinCrimeRadar. No personal data is sold. See our <a href="/privacy.html" style="color:#93c5fd; text-decoration:none;">Privacy Policy</a>.</div>
+  </div>
+  <div style="display:flex; gap:8px; flex-shrink:0;">
+    <button onclick="rejectCookies()" style="padding:8px 16px; background:transparent; border:1px solid #334155; color:#94a3b8; border-radius:6px; font-size:12px; font-weight:500; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Reject non-essential</button>
+    <button onclick="acceptCookies()" style="padding:8px 18px; background:#00c4a7; border:none; color:#fff; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Accept all</button>
+  </div>
+</div>
+<script>
+  (function() {
+    var consent = localStorage.getItem('fcr_cookie_consent');
+    if (!consent) {
+      document.getElementById('cookieBanner').style.display = 'flex';
+    }
+  })();
+  function acceptCookies() {
+    localStorage.setItem('fcr_cookie_consent', 'accepted');
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { 'analytics_storage': 'granted' });
+    }
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+  function rejectCookies() {
+    localStorage.setItem('fcr_cookie_consent', 'rejected');
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { 'analytics_storage': 'denied' });
+    }
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+</script>
+<script>
+function toggleMobileNav(){
+  var nav=document.getElementById('mobileNav');
+  var btn=document.getElementById('navHamburger');
+  if(!nav) return;
+  var open=nav.classList.toggle('open');
+  btn.innerHTML=open?'&#10005;':'&#9776;';
+  document.body.style.overflow=open?'hidden':'';
+}
+document.addEventListener('click',function(e){
+  var nav=document.getElementById('mobileNav');
+  var btn=document.getElementById('navHamburger');
+  if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==btn){
+    nav.classList.remove('open');
+    btn.innerHTML='&#9776;';
+    document.body.style.overflow='';
+  }
+});
+</script>
+<script defer src="/brand.js"></script>
+</body>
+</html>
