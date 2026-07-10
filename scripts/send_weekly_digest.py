@@ -49,6 +49,31 @@ META_PATTERN = re.compile(
     r"<!--\s*fincrimeradar-meta:\s*trigger=(\S+)\s+override_active=(yes|no)\s+threshold=(\d+)\s*-->"
 )
 
+# Append new guides to the end of this list when they ship. get_featured_guides()
+# always returns the last 3, so the newest guide rotates in and the oldest
+# of the three rotates out automatically.
+GUIDE_LIBRARY = [
+    {
+        "title": "The MLRO Handbook",
+        "hook": "Who can become SMF16/17, the FCA's real approval bar, and where personal MLRO liability has actually been tested.",
+        "url": "https://www.fincrimeradar.org/mlro-handbook-part1.html",
+    },
+    {
+        "title": "The Crypto Guide",
+        "hook": "What actually changes under the incoming FSMA cryptoasset regime, and what to do before the October 2027 deadline.",
+        "url": "https://www.fincrimeradar.org/crypto-guide-part1.html",
+    },
+    {
+        "title": "Knowledge Hub",
+        "hook": "Practitioner-written guides on AML, sanctions, PEPs, and financial crime compliance, all free.",
+        "url": "https://www.fincrimeradar.org/knowledge.html",
+    },
+]
+
+
+def get_featured_guides():
+    return GUIDE_LIBRARY[-3:]
+
 
 def recent_delta_files():
     """Every delta/YYYY-MM-DD.html file dated within the trailing window."""
@@ -101,6 +126,24 @@ def extract_meta(page_html):
     }
 
 
+def generate_snapshot_narrative(added, delisted, amended, renamed):
+    if added == 0 and delisted == 0:
+        return ("Quiet week for new sanctions activity, no new designations "
+                "or delistings recorded. Most movement was administrative, "
+                "alias and identifier updates on existing listings, which "
+                "can still change match outcomes on names you've already "
+                "screened.")
+    parts = []
+    if added > 0:
+        parts.append(f"{added} new designation{'s' if added != 1 else ''}")
+    if delisted > 0:
+        parts.append(f"{delisted} delisting{'s' if delisted != 1 else ''}")
+    headline = " and ".join(parts) + " this week, worth checking against your existing book."
+    if amended > 500:
+        headline += " The bulk of amendment volume typically reflects one or two regimes doing routine updates, not widespread new risk."
+    return headline
+
+
 def build_digest_html(entries):
     if not entries:
         return None
@@ -151,6 +194,19 @@ def build_digest_html(entries):
         </p>
       </div>"""
 
+    guides_html = ""
+    for g in get_featured_guides():
+        guides_html += f"""
+        <div style="border:1px solid #E3E8E3;border-radius:8px;padding:16px 18px;margin-top:12px;">
+          <div style="font-size:15px;font-weight:700;color:#0B7A57;">{g['title']}</div>
+          <p style="font-size:13px;line-height:1.6;color:#3D4E5C;margin:6px 0 10px 0;">{g['hook']}</p>
+          <a href="{g['url']}" style="color:#0B7A57;text-decoration:none;font-weight:600;font-size:13px;">Read the guide &rarr;</a>
+        </div>"""
+
+    snapshot_narrative = generate_snapshot_narrative(
+        total_added, total_delisted, total_amended, total_renamed
+    )
+
     return f"""<!DOCTYPE html>
 <html>
 <body style="font-family:Arial,sans-serif;background:#F4F6F3;padding:24px;color:#0C1B2A;">
@@ -160,28 +216,34 @@ def build_digest_html(entries):
       <div style="color:#ffffff;font-size:22px;font-weight:700;margin-top:8px;">{period_start} to {period_end}</div>
     </div>
     <div style="padding:28px 32px;">
-      <p style="font-size:14px;line-height:1.6;color:#3D4E5C;">
-        {len(entries)} tracked day{'s' if len(entries) != 1 else ''} this week, {total_added} new designations,
-        {total_delisted} delistings, {total_amended} amendments and {total_renamed} identifier changes recorded
-        across monitored sanctions regimes.
-      </p>
-      <table style="width:100%;border-collapse:collapse;font-size:13px;margin-top:16px;">
-        <thead>
-          <tr style="background:#F4F6F3;">
-            <th style="padding:8px 14px;text-align:left;">Date</th>
-            <th style="padding:8px 14px;text-align:left;">Added</th>
-            <th style="padding:8px 14px;text-align:left;">Delisted</th>
-            <th style="padding:8px 14px;text-align:left;">Amended</th>
-            <th style="padding:8px 14px;text-align:left;">Renamed</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </table>
-      {override_banner}
-      <div style="margin-top:24px;">
-        <a href="{SITE}/screen.html" style="background:#12B981;color:#ffffff;text-decoration:none;padding:12px 24px;border-radius:8px;font-weight:600;font-size:14px;display:inline-block;">
-          Screen a name now
-        </a>
+      <div>
+        <div style="color:#0B7A57;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;">This week's guides</div>
+        {guides_html}
+      </div>
+      <!-- RESERVED: "This week in financial crime" news roundup section goes here in a future update. Do not build yet. -->
+      <div style="margin-top:28px;">
+        <div style="color:#0B7A57;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;">Sanctions snapshot</div>
+        <p style="font-size:14px;line-height:1.6;color:#3D4E5C;margin-top:10px;">
+          {snapshot_narrative}
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;margin-top:16px;">
+          <thead>
+            <tr style="background:#F4F6F3;">
+              <th style="padding:8px 14px;text-align:left;">Date</th>
+              <th style="padding:8px 14px;text-align:left;">Added</th>
+              <th style="padding:8px 14px;text-align:left;">Delisted</th>
+              <th style="padding:8px 14px;text-align:left;">Amended</th>
+              <th style="padding:8px 14px;text-align:left;">Renamed</th>
+            </tr>
+          </thead>
+          <tbody>{rows}</tbody>
+        </table>
+        {override_banner}
+        <div style="margin-top:24px;">
+          <a href="{SITE}/screen.html" style="background:#12B981;color:#ffffff;text-decoration:none;padding:12px 24px;border-radius:8px;font-weight:600;font-size:14px;display:inline-block;">
+            Screen a name now
+          </a>
+        </div>
       </div>
       <p style="font-size:12px;color:#66757F;margin-top:28px;">
         You are receiving this because you subscribed at fincrimeradar.org.
