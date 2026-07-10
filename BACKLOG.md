@@ -57,7 +57,7 @@ Business and legal items that don't fit the dev/content rotation, tracked here s
 - Trademark filing for FinCrimeRadar, once resources allow
 - LinkedIn slug reclaim (depends on trademark)
 - AdSense re-review, once genuine content depth exists, not on an arbitrary schedule
-- Anthropic Claude for Open Source Programme application
+- ✅ Anthropic Claude for Open Source Programme application, submitted
 
 ---
 
