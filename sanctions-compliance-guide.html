@@ -684,6 +684,40 @@ async function footerSignup(){
   }
 }
 </script>
+
+<!-- Cookie Consent Banner -->
+<div id="cookieBanner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; background:#0f2044; border-top:1px solid #1a3a6e; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; box-shadow:0 -4px 20px rgba(0,0,0,0.3);">
+  <div style="flex:1; min-width:260px;">
+    <div style="font-size:13px; font-weight:600; color:#fff; margin-bottom:4px;">🍪 We use cookies</div>
+    <div style="font-size:12px; color:#94a3b8; line-height:1.5;">We use Google Analytics to understand how visitors use FinCrimeRadar. No personal data is sold. See our <a href="/privacy.html" style="color:#93c5fd; text-decoration:none;">Privacy Policy</a>.</div>
+  </div>
+  <div style="display:flex; gap:8px; flex-shrink:0;">
+    <button onclick="rejectCookies()" style="padding:8px 16px; background:transparent; border:1px solid #334155; color:#94a3b8; border-radius:6px; font-size:12px; font-weight:500; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Reject non-essential</button>
+    <button onclick="acceptCookies()" style="padding:8px 18px; background:#00c4a7; border:none; color:#fff; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Accept all</button>
+  </div>
+</div>
+<script>
+  (function() {
+    var consent = localStorage.getItem('fcr_cookie_consent');
+    if (!consent) {
+      document.getElementById('cookieBanner').style.display = 'flex';
+    }
+  })();
+  function acceptCookies() {
+    localStorage.setItem('fcr_cookie_consent', 'accepted');
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { 'analytics_storage': 'granted' });
+    }
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+  function rejectCookies() {
+    localStorage.setItem('fcr_cookie_consent', 'rejected');
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { 'analytics_storage': 'denied' });
+    }
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+</script>
 <script defer src="/brand.js"></script>
 </body>
 </html>
