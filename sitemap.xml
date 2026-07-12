@@ -50,6 +50,18 @@
     <priority>0.3</priority>
   </url>
 
+  <!-- Trust & Reference -->
+  <url>
+    <loc>https://fincrimeradar.org/editorial-standards.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fincrimeradar.org/methodology.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
   <!-- Standalone deep-dive guides -->
   <url>
     <loc>https://fincrimeradar.org/tm-guide.html</loc>

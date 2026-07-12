@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+  gtag('js', new Date());
+  (function () {
+    try {
+      var consent = localStorage.getItem('fcr_cookie_consent');
+      if (consent === 'accepted') {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+  })();
+  gtag('config', 'G-FC1VMTE7JH');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editorial Standards | FinCrimeRadar</title>
+  <meta name="description" content="How FinCrimeRadar's guides and reference content get researched, sourced, and kept current, plus how corrections work and how the site is funded." />
+  <meta name="keywords" content="FinCrimeRadar editorial standards, content sourcing policy, corrections policy" />
+  <link rel="canonical" href="https://fincrimeradar.org/editorial-standards.html" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Editorial Standards | FinCrimeRadar" />
+  <meta property="og:description" content="How FinCrimeRadar's guides and reference content get researched, sourced, and kept current, plus how corrections work and how the site is funded." />
+  <meta property="og:url" content="https://fincrimeradar.org/editorial-standards.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://fincrimeradar.org/og-image.png" />
+  <meta property="og:site_name" content="FinCrimeRadar" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Editorial Standards | FinCrimeRadar" />
+  <meta name="twitter:description" content="How FinCrimeRadar's guides and reference content get researched, sourced, and kept current, plus how corrections work and how the site is funded." />
+  <meta name="twitter:image" content="https://fincrimeradar.org/og-image.png" />
+  <!-- Schema.org -->
+  <meta name="author" content="Pratik Zanke — FinCrimeRadar" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white: #ffffff; --off: #f7f8fa; --border: #e4e7ec;
+      --muted: #6b7280; --text: #111827; --navy: #0f2044;
+      --accent: #1d5fc4;
+    }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--off); color: var(--text); line-height: 1.7; }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 72px;
+      background: rgba(255,255,255,0.97); border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .nav-logo { width: 26px; height: 26px; }
+    .nav-name { font-size: 15px; font-weight: 600; color: var(--navy); }
+    .nav-name span { color: var(--accent); }
+    .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; }
+    .nav-links a:hover { color:#00c4a7; }
+
+    .container { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+    .doc-header { margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .doc-header h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: 32px; font-weight: 400; color: var(--navy); margin-bottom: 8px; }
+    .doc-meta { font-size: 13px; color: var(--muted); }
+
+    .policy-body { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 2rem 2.5rem; }
+
+    h2 { font-size: 17px; font-weight: 600; color: var(--navy); margin: 2rem 0 0.75rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+    p { font-size: 14px; color: var(--text); margin-bottom: 0.85rem; }
+    ul { padding-left: 1.25rem; margin-bottom: 0.85rem; }
+    ul li { font-size: 14px; color: var(--text); margin-bottom: 0.4rem; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .highlight { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 1rem 1.25rem; margin: 1rem 0; font-size: 13px; color: #1e40af; }
+
+    footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 2rem; background: var(--white); }
+    /* ===== MOBILE RESPONSIVE ===== */
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--navy, #0f2044);
+      padding: 4px 6px;
+      line-height: 1;
+    }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0; right: 0;
+      background: #fff;
+      border-bottom: 1px solid #e4e7ec;
+      flex-direction: column;
+      z-index: 99;
+      padding: 0.5rem 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      padding: 14px 1.5rem;
+      font-size: 15px;
+      color: #374151;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #f3f4f6;
+      transition: background 0.1s;
+    }
+    .mobile-nav a:hover { background: #f9fafb; }
+    .mobile-nav .mobile-nav-cta {
+      margin: 0.75rem 1.5rem 0.5rem;
+      background: #00c4a7;
+      color: #fff !important;
+      border-radius: 8px;
+      text-align: center;
+      border-bottom: none;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1rem; }
+      .nav-hamburger { display: block; }
+      .nav-links { display: none; }
+      .nav-logo img,
+      .nav-brand img { height: 40px !important; width: auto !important; max-width: 160px !important; }
+
+      footer { flex-direction: column !important; align-items: flex-start !important; gap: 1rem !important; }
+      .footer-links { flex-wrap: wrap !important; gap: 0.75rem !important; }
+    }
+  </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Editorial Standards","url":"https://fincrimeradar.org/editorial-standards.html"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="/">
+    <img src="/logo.png" alt="FinCrimeRadar" style="height:44px;width:auto;max-width:200px;object-fit:contain;object-position:left center;display:block;" />
+  </a>
+  <div class="nav-links">
+    <a href="/">← Back to home</a>
+  </div>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/knowledge.html">Knowledge Hub</a>
+  <a href="/learn.html">Learn</a>
+  <a href="/about.html">About</a>
+  <a href="/screen.html" class="mobile-nav-cta">Try the tool →</a>
+</div>
+
+<div class="container">
+  <div class="doc-header">
+    <h1>Editorial Standards</h1>
+    <p class="doc-meta">Last updated: 12 July 2026 · Applies to fincrimeradar.org</p>
+  </div>
+
+  <div class="policy-body">
+
+    <div class="highlight">
+      How content on FinCrimeRadar gets researched, written, and kept current.
+    </div>
+
+    <h2>1. Who writes this</h2>
+    <p>Every guide, case study, and reference page on FinCrimeRadar is written by Pratik Zanke, a compliance professional with around a decade of AML and financial crime experience across UK, APAC, CEMEA, and South Asian regulatory regimes, currently working in FCA-regulated payments compliance. This isn't outsourced or ghostwritten content. Full background is on the <a href="/about.html">About</a> page.</p>
+
+    <h2>2. Sourcing standard</h2>
+    <p>Every regulatory claim on this site is checked against a primary source before publication, not a secondary summary of one. That means:</p>
+    <ul>
+      <li>FCA Handbook and published guidance, not third-party interpretations of it</li>
+      <li>UK legislation directly (<a href="https://www.legislation.gov.uk" target="_blank" rel="noopener">legislation.gov.uk</a>), not paraphrased summaries</li>
+      <li>FCA decision notices and enforcement outcomes, read in full, not taken from a headline or a press release</li>
+      <li>Official regulator publications (gov.uk, HM Treasury, OFSI, NCA) for anything outside the FCA's own remit</li>
+    </ul>
+    <p>Where a claim can't be verified against a primary source, either the content isn't published, or the limitation is stated plainly rather than smoothed over.</p>
+
+    <h2>3. What this site doesn't do</h2>
+    <ul>
+      <li>No content is published purely to fill a word count or hit a publishing schedule</li>
+      <li>No AI-generated content goes live unreviewed. Where AI tools assist with drafting or research, every regulatory claim is independently verified against the primary source before publication, the same standard as content written without AI assistance</li>
+      <li>No fabricated statistics, invented case studies, or composite "typical scenarios" presented as real cases</li>
+      <li>No reproduction of other sites' content, summarised or otherwise. Original analysis only</li>
+    </ul>
+
+    <h2>4. Currency and updates</h2>
+    <p>Regulatory content dates fast. Where a guide references a live regulatory timeline, deadlines, gateway dates, or an evolving regime, that's stated explicitly with the date the content was last checked. When a regulatory development materially changes something already published, the relevant page gets updated, not silently, the change is reflected in the content itself.</p>
+
+    <h2>5. Corrections</h2>
+    <p>If something on this site is wrong, factually incorrect, outdated, or misattributed, get in touch via the <a href="/contact.html">Contact</a> page. Genuine errors get corrected as soon as they're confirmed. This isn't a hypothetical policy: an internal case example in the <a href="/scenario-lab.html">Scenario Lab</a> training tool was corrected after review because it misstated the sanctions treatment of a hypothetical relative of a designated person, that kind of check happens on content before publication, not just after someone flags it.</p>
+
+    <h2>6. What this site is, and isn't</h2>
+    <p>FinCrimeRadar provides educational content and decision-support tooling for compliance professionals. It is not legal advice, and using it doesn't create a client relationship of any kind. Every guide, tool, and reference page is built to inform professional judgement, not replace it.</p>
+
+    <h2>7. How this site is funded</h2>
+    <p>FinCrimeRadar is free to use. It's funded through display advertising and, in future, affiliate relationships with industry training and certification providers, alongside a planned freemium API tier. Editorial content is never written to favour an advertiser or affiliate partner, and no paid placement influences which topics get covered or what a guide concludes. If that ever changes, this page will say so.</p>
+
+  </div>
+</div>
+
+<footer>© 2026 FinCrimeRadar · <a href="/">Home</a> · <a href="/knowledge.html">Knowledge Hub</a> · <a href="/screen.html">Screen</a> · <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/editorial-standards.html">Editorial Standards</a> · <a href="/methodology.html">Methodology</a></footer>
+
+
+<!-- Cookie Consent Banner -->
+<div id="cookieBanner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; background:#0f2044; border-top:1px solid #1d3a6e; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; box-shadow:0 -4px 20px rgba(0,0,0,0.3);">
+  <div style="flex:1; min-width:260px;">
+    <div style="font-size:13px; font-weight:600; color:#fff; margin-bottom:4px;">🍪 We use cookies</div>
+    <div style="font-size:12px; color:#94a3b8; line-height:1.5;">We use Google Analytics to understand how visitors use FinCrimeRadar. No personal data is sold. See our <a href="/privacy.html" style="color:#93c5fd; text-decoration:none;">Privacy Policy</a>.</div>
+  </div>
+  <div style="display:flex; gap:8px; flex-shrink:0;">
+    <button onclick="rejectCookies()" style="padding:8px 16px; background:transparent; border:1px solid #334155; color:#94a3b8; border-radius:6px; font-size:12px; font-weight:500; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Reject non-essential</button>
+    <button onclick="acceptCookies()" style="padding:8px 18px; background:#00c4a7; border:none; color:#fff; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Accept all</button>
+  </div>
+</div>
+<script>
+  (function() {
+    var consent = localStorage.getItem('fcr_cookie_consent');
+    if (!consent) {
+      document.getElementById('cookieBanner').style.display = 'flex';
+    }
+  })();
+  function acceptCookies() {
+    localStorage.setItem('fcr_cookie_consent', 'accepted');
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { 'analytics_storage': 'granted' });
+    }
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+  function rejectCookies() {
+    localStorage.setItem('fcr_cookie_consent', 'rejected');
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { 'analytics_storage': 'denied' });
+    }
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+</script>
+<script>
+function toggleMobileNav(){
+  var nav=document.getElementById('mobileNav');
+  var btn=document.getElementById('navHamburger');
+  if(!nav) return;
+  var open=nav.classList.toggle('open');
+  btn.innerHTML=open?'&#10005;':'&#9776;';
+  document.body.style.overflow=open?'hidden':'';
+}
+document.addEventListener('click',function(e){
+  var nav=document.getElementById('mobileNav');
+  var btn=document.getElementById('navHamburger');
+  if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==btn){
+    nav.classList.remove('open');
+    btn.innerHTML='&#9776;';
+    document.body.style.overflow='';
+  }
+});
+</script>
+<script defer src="/brand.js"></script>
+</body>
+</html>
