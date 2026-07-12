@@ -47,12 +47,25 @@ Knowledge Hub articles and guide series. Ship two to three parts of a series clo
 - ✅ MLRO Handbook, Part 2: The Role, SARs and Enforcement
 - ✅ Crypto Guide, Part 1
 - ✅ Crypto Guide, Part 2
+- ✅ Crypto Guide, Part 3: Typologies, Mixers, Layering, and Rug Pulls Explained (series complete)
+- ✅ Editorial Standards and Methodology pages, linked from every page footer
 
 **Next up:**
-- [ ] **Editorial standards and methodology pages.** Two new pages: an editorial standards page (how content gets researched, fact-checked, and updated) and a methodology page explaining data sources specifically, live OpenSanctions integration, record counts, screening logic. Genuine E-E-A-T substance given the site has real differentiators here most compliance content can't claim. Cheap to build, worth doing regardless of AdSense outcome.
 - [ ] **Consistent author attribution on guides.** `about.html` carries founder credibility but individual guide pages don't visibly attribute authorship. Add a byline/author block to each guide, consistent placement, linking back to `about.html`. Retrofit onto existing guides alongside (or as part of) the cheat sheet retrofit already queued in the Polish loop, natural to do both in the same pass per guide rather than two separate touches on the same files.
-- [ ] **Cross-jurisdictional MLRO/SMF17 comparison (UK + UAE first)** — needs a dedicated scoping session before drafting starts, bigger lift than a standard guide part. Practitioner-grounded comparison of MLRO equivalent roles, personal liability frameworks, and enforcement patterns across FCA (UK) and CBUAE (UAE) to start, scoped to expand toward MAS, AUSTRAC, FIU India, and BNM later if it lands well. Differentiator is the practitioner footprint across all six regimes and that it's free, not the raw concept, similar paid/partial versions exist elsewhere (Comsure's terminology piece, The MLRO Ltd's paid UAE cross-regulatory advisory). Do not start drafting until scoping session defines structure, sourcing standard for non-UK regulatory claims, and how much of each jurisdiction's material is genuinely verifiable versus secondary sourced. Include cheat sheet component.
 - [ ] Possible MLRO Handbook Part 3: resourcing benchmarks by firm size, FCA's move toward AML supervisor for professional services (flagged as a maybe in Part 2's closing note, not committed yet)
+
+**Investigation handbook series, next major content push once the above is clear.** Positioning shift: most free AML content explains what the rules say, this series teaches how the actual investigative work gets done, direct match to practitioner background rather than research-only content. Sequence:
+
+1. [ ] **False Positive Playbook** — how to defensibly dispose false positives, most of an analyst's real workload, genuinely underserved topic, almost no free content covers this depth.
+2. [ ] **UBO Investigation Handbook** — how to actually investigate a UBO, not just define one: which registries to check, nominee director patterns, red flags in ownership structures.
+3. [ ] **Source of Wealth Investigation Handbook** — same treatment as UBO: how to tell a plausible SoW explanation from a thin one, practical investigative technique, not a definitions page.
+4. [ ] **Adverse Media Intelligence Guide** — pairs naturally with UBO and SoW as a genuine investigation-technique cluster.
+5. [ ] **Transaction Monitoring guide** — reframed from the originally proposed "Alert Encyclopedia." Do not build as an open-ended, ever-growing list, that risks reading as thin/glossary content, exactly the trap the AdSense low-value-content flag was originally about. Scope as one deep guide (or a two-part series) on the alert types that matter most in practice, same investigative depth as the other handbooks in this series.
+6. [ ] **Enforcement case library** — strongest differentiation idea in this batch, a free properly root-cause-tagged enforcement case library is something paid compliance intelligence services charge for, and extends what's already proven working (Sonali Bank, CFP Management in the MLRO Handbook). Not a single article and not a database build upfront, start as a slowly growing case library page, add one case at a time to the same depth standard as existing cases, only consider real database/search infrastructure once it's proven itself as content first. Can run alongside whichever other loop is active rather than needing a dedicated push.
+
+**Cut from consideration:** "AML Analyst Survival Handbook" — reads as generic career-blog content, risks undermining the authority positioning built through the MLRO Handbook's enforcement detail and the Crypto Guide's regulatory currency. Its actual intent is better served by the investigation handbooks above.
+
+**Held for a later stage, not currently scoped:** Cross-jurisdictional MLRO/SMF17 comparison. Originally scoped as UK + UAE only, decision made to pivot this to a genuine multi-jurisdictional comparison (UK, UAE, MAS, AUSTRAC, FIU India, BNM, matching the practitioner's actual six-regime footprint) rather than a narrower two-country piece, once the investigation handbook series and other current priorities are through. Needs its own dedicated scoping session when it's actually picked back up, including the sourcing standard question for non-UK regulatory claims flagged in the original scoping discussion.
 
 ---
 
