@@ -24,21 +24,21 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Crypto Guide Part 2: What to Actually Do Before October 2027 | FinCrimeRadar</title>
-  <meta name="description" content="What changed on 30 June and 3 June 2026, the FSMA cryptoasset authorisation timeline, why MLR registration does not convert into authorisation, what the FCA says good looks like, and a practical starting checklist." />
-  <meta name="keywords" content="FSMA cryptoasset authorisation, FCA cryptoasset gateway, Pre-Application Support Service, MLR to FSMA transition, SYSC 3 crypto, cryptoasset authorisation checklist, FCA cryptoasset rules 2026" />
-  <link rel="canonical" href="https://fincrimeradar.org/crypto-guide-part2.html" />
+    <title>The Crypto Guide Part 3: Typologies, Mixers, Layering, and Rug Pulls Explained | FinCrimeRadar</title>
+  <meta name="description" content="How crypto laundering typologies actually work: mixing and chain-hopping, peel chains, rug pull red flags an analyst can actually check, and NFT wash trading, explained as patterns to recognise, not named tools to blacklist." />
+  <meta name="keywords" content="crypto money laundering typologies, mixer tumbler AML, peel chain crypto, rug pull red flags, NFT wash trading, chain hopping AML, crypto layering techniques" />
+  <link rel="canonical" href="https://fincrimeradar.org/crypto-guide-part3.html" />
   <!-- Open Graph -->
-  <meta property="og:title" content="The Crypto Guide Part 2: What to Actually Do Before October 2027 | FinCrimeRadar" />
-  <meta property="og:description" content="What changed on 30 June and 3 June 2026, the FSMA cryptoasset authorisation timeline, why MLR registration does not convert into authorisation, what the FCA says good looks like, and a practical starting checklist." />
-  <meta property="og:url" content="https://fincrimeradar.org/crypto-guide-part2.html" />
+  <meta property="og:title" content="The Crypto Guide Part 3: Typologies, Mixers, Layering, and Rug Pulls Explained | FinCrimeRadar" />
+  <meta property="og:description" content="How crypto laundering typologies actually work: mixing and chain-hopping, peel chains, rug pull red flags an analyst can actually check, and NFT wash trading, explained as patterns to recognise, not named tools to blacklist." />
+  <meta property="og:url" content="https://fincrimeradar.org/crypto-guide-part3.html" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://fincrimeradar.org/og-image.png" />
   <meta property="og:site_name" content="FinCrimeRadar" />
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="The Crypto Guide Part 2: What to Actually Do Before October 2027 | FinCrimeRadar" />
-  <meta name="twitter:description" content="What changed on 30 June and 3 June 2026, the FSMA cryptoasset authorisation timeline, why MLR registration does not convert into authorisation, what the FCA says good looks like, and a practical starting checklist." />
+  <meta name="twitter:title" content="The Crypto Guide Part 3: Typologies, Mixers, Layering, and Rug Pulls Explained | FinCrimeRadar" />
+  <meta name="twitter:description" content="How crypto laundering typologies actually work: mixing and chain-hopping, peel chains, rug pull red flags an analyst can actually check, and NFT wash trading, explained as patterns to recognise, not named tools to blacklist." />
   <meta name="twitter:image" content="https://fincrimeradar.org/og-image.png" />
   <!-- Schema.org -->
   <meta name="author" content="Pratik Zanke, FinCrimeRadar" />
@@ -138,34 +138,31 @@
     footer a { color:var(--muted); text-decoration:none; margin:0 8px; }
     footer a:hover { color:#00c4a7; }
 
-    /* MILESTONE STRIP (horizontal timeline, with a "today" marker) */
-    .milestone-strip { overflow-x:auto; -webkit-overflow-scrolling:touch; margin:1.75rem 0; padding-bottom:4px; }
-    .milestone-track { position:relative; min-width:640px; height:132px; }
-    .milestone-line { position:absolute; top:23px; left:3%; right:3%; height:2px; background:var(--border); }
-    .milestone-node { position:absolute; top:0; width:160px; text-align:center; transform:translateX(-50%); }
-    .milestone-dot { width:28px; height:28px; border-radius:50%; background:var(--accent); color:#fff; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; position:relative; z-index:2; }
-    .milestone-date { font-size:11px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:0.4px; margin-bottom:4px; }
-    .milestone-title { font-size:13px; font-weight:600; color:var(--navy); margin-bottom:4px; line-height:1.4; }
-    .milestone-desc { font-size:12px; color:var(--muted); line-height:1.5; }
-    .milestone-today { position:absolute; top:-30px; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; z-index:3; }
-    .milestone-today-pill { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; background:var(--navy); color:#fff; padding:3px 9px; border-radius:99px; white-space:nowrap; margin-bottom:4px; }
-    .milestone-today-line { width:2px; height:56px; background:var(--navy); opacity:0.55; }
-
-    /* MLR VS FSMA EXPECTATIONS (two column expandable comparison) */
-    .role-split { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0; }
-    .role-col { border:1px solid var(--border); border-radius:10px; overflow:hidden; }
-    .role-head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:1.1rem 1.3rem; cursor:pointer; background:var(--white); user-select:none; }
-    .role-head:hover { background:var(--off); }
-    .role-head-text { flex:1; }
-    .role-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--accent); margin-bottom:4px; }
-    .role-title { font-size:15px; font-weight:600; color:var(--navy); }
-    .role-icon { font-size:17px; color:var(--muted); transition:transform 0.2s; flex-shrink:0; }
-    .role-icon.open { transform:rotate(45deg); }
-    .role-body { display:none; padding:0 1.3rem 1.1rem; font-size:13.5px; color:#374151; line-height:1.65; border-top:1px solid var(--border); background:#fafafa; }
-    .role-body.open { display:block; padding-top:1rem; }
-    .role-body ul { padding-left:1.15rem; margin-bottom:0; }
-    .role-body li { font-size:13px; margin-bottom:0.5rem; line-height:1.55; }
-    .role-source { font-size:11.5px; color:var(--muted); margin-top:0.7rem; padding-top:0.7rem; border-top:1px dashed var(--border); }
+    /* PEEL CHAIN (step-through diagram, same visual language as the
+       milestone strip used in Part 2: horizontal track, numbered
+       nodes, a scrollable strip on narrow viewports). Each node can
+       "peel off" a smaller amount below the main line while the bulk
+       continues along the track, and a caption panel below explains
+       the step currently in focus. */
+    .peel-chain-wrap { margin:1.75rem 0; }
+    .peel-chain-strip { overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:4px; }
+    .peel-chain-track { position:relative; min-width:720px; height:190px; }
+    .peel-chain-line { position:absolute; top:64px; left:4%; right:4%; height:2px; background:var(--border); }
+    .peel-chain-node { position:absolute; top:0; width:150px; text-align:center; transform:translateX(-50%); cursor:pointer; background:none; border:none; font-family:inherit; }
+    .peel-chain-dot { width:32px; height:32px; border-radius:50%; background:var(--border); color:var(--muted); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; margin:48px auto 10px; position:relative; z-index:2; border:2px solid var(--white); transition:all 0.2s; }
+    .peel-chain-node.active .peel-chain-dot { background:var(--accent); color:#fff; transform:scale(1.15); }
+    .peel-chain-addr { font-size:11px; font-weight:700; color:var(--navy); margin-bottom:2px; }
+    .peel-chain-balance { font-size:11.5px; color:var(--muted); }
+    .peel-chain-peel { position:absolute; top:106px; display:flex; flex-direction:column; align-items:center; transform:translateX(-50%); }
+    .peel-chain-peel-line { width:2px; height:20px; background:var(--warning); opacity:0.55; }
+    .peel-chain-peel-amt { font-size:10.5px; font-weight:700; color:var(--warning); background:#fffbeb; border:1px solid #fde68a; border-radius:6px; padding:3px 7px; margin-top:4px; white-space:nowrap; }
+    .peel-chain-controls { display:flex; align-items:center; justify-content:center; gap:1rem; margin-top:1rem; }
+    .peel-chain-btn { padding:8px 16px; border-radius:8px; border:1px solid var(--border); background:var(--white); color:var(--navy); font-size:13px; font-weight:600; cursor:pointer; }
+    .peel-chain-btn:hover:not(:disabled) { background:var(--off); }
+    .peel-chain-btn:disabled { opacity:0.4; cursor:default; }
+    .peel-chain-step-label { font-size:13px; color:var(--muted); font-weight:600; min-width:80px; text-align:center; }
+    .peel-chain-caption { background:var(--off); border:1px solid var(--border); border-radius:10px; padding:1rem 1.25rem; margin-top:1rem; font-size:13.5px; color:#374151; line-height:1.6; min-height:64px; }
+    .peel-chain-caption strong { color:var(--navy); }
 
     /* CHEAT SHEET (reusable end-of-guide summary component)
        SVG colors are mapped to brand.css custom properties, not
@@ -242,13 +239,12 @@
       .toc { display: none !important; }
       .article-section { padding: 1.25rem !important; }
       .try-tool { flex-direction: column !important; }
-      .role-split { grid-template-columns: 1fr !important; }
       footer { flex-direction: column !important; align-items: flex-start !important; gap: 1rem !important; }
     }
   </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Crypto Guide Part 2: What to Actually Do Before October 2027","url":"https://fincrimeradar.org/crypto-guide-part2.html","publisher":{"@type":"Organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org"},"datePublished":"2026-07-09"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Crypto Guide Part 3: Typologies, Mixers, Layering, and Rug Pulls Explained","url":"https://fincrimeradar.org/crypto-guide-part3.html","publisher":{"@type":"Organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org"},"datePublished":"2026-07-12"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -257,7 +253,7 @@
        defines --accent globally (teal), which would otherwise override the
        first inline block. --hero-accent-em is intentionally left as brand.css's
        green, it is a shared hero convention, not a guide specific accent.
-       Blue carried over from Part 1 so the series reads as one accent. -->
+       Blue carried over from Parts 1 and 2 so the series reads as one accent. -->
   <style>
     :root {
       --accent: #2563eb;
@@ -288,21 +284,21 @@
 </div>
 
 <div class="series-hero">
-  <div class="series-tag">🪙 Crypto Compliance Guide · Part 2 of 6</div>
-  <h1>The Crypto Guide, Part 2: <em>What to Actually Do Before October 2027</em></h1>
-  <p class="series-sub">Part 1 was the map, what counts as a cryptoasset, and why two regimes are live at once. This part is the route, what's actually happening, in what order, and what to do about it before the window closes.</p>
+  <div class="series-tag">🪙 Crypto Compliance Guide · Part 3 of 6</div>
+  <h1>The Crypto Guide, Part 3: <em>Typologies, Mixers, Layering, and Rug Pulls Explained</em></h1>
+  <p class="series-sub">Written for the analyst who needs to recognise the pattern, not memorise a glossary.</p>
   <div class="series-meta">
-    <span>📖 11 min read</span>
-    <span>⚖️ FSMA 2000 (Cryptoassets) Regulations 2026 · MLR 2017</span>
+    <span>📖 9 min read</span>
+    <span>⚖️ POCA 2002 · MLR 2017</span>
     <span>🇬🇧 UK specific</span>
-    <span>🏛️ FCA</span>
+    <span>🔍 Pattern recognition</span>
   </div>
 </div>
 
 <div class="part-nav">
   <a href="/crypto-guide-part1.html" class="part-link done">✓ Part 1: Foundations and the Regulatory Ground Shifting Beneath Them</a>
-  <a href="/crypto-guide-part2.html" class="part-link active">Part 2: What to Actually Do Before October 2027</a>
-  <a href="/crypto-guide-part3.html" class="part-link">Part 3: Typologies, Mixers, Layering, and Rug Pulls Explained</a>
+  <a href="/crypto-guide-part2.html" class="part-link done">✓ Part 2: What to Actually Do Before October 2027</a>
+  <a href="/crypto-guide-part3.html" class="part-link active">Part 3: Typologies, Mixers, Layering, and Rug Pulls Explained</a>
   <a href="#" class="part-link">Part 4: How Crypto Wallets Actually End Up Sanctioned</a>
   <a href="#" class="part-link">Part 5: The Gap Between AML Training and a Real Crypto Case</a>
   <a href="#" class="part-link">Part 6: Screening Logic and Wallet Addresses, Where It Breaks Down</a>
@@ -314,10 +310,10 @@
       <div class="toc-title">In this part</div>
       <ul class="toc-list">
         <li><a href="#intro">Introduction</a></li>
-        <li><a href="#timeline">The timeline that matters</a></li>
-        <li><a href="#no-conversion">No automatic conversion</a></li>
-        <li><a href="#good-looks-like">What "good" looks like</a></li>
-        <li><a href="#checklist">Practical starting checklist</a></li>
+        <li><a href="#layering">Layering on-chain</a></li>
+        <li><a href="#rug-pulls">Rug pulls</a></li>
+        <li><a href="#nft-wash-trading">NFT wash trading</a></li>
+        <li><a href="#practical">Onboarding and monitoring</a></li>
       </ul>
       <div class="toc-progress">
         <div class="toc-progress-label"><span>Progress</span><span id="pct">0%</span></div>
@@ -326,8 +322,8 @@
       <div class="series-nav-box">
         <div class="toc-title">Series</div>
         <a href="/crypto-guide-part1.html" class="sn-link done">✓ Part 1: Foundations</a>
-        <a href="/crypto-guide-part2.html" class="sn-link active">Part 2: What to Do Now</a>
-        <a href="/crypto-guide-part3.html" class="sn-link">Part 3: Typologies and Red Flags</a>
+        <a href="/crypto-guide-part2.html" class="sn-link done">✓ Part 2: What to Do Now</a>
+        <a href="/crypto-guide-part3.html" class="sn-link active">Part 3: Typologies and Red Flags</a>
       </div>
     </div>
   </aside>
@@ -336,160 +332,144 @@
 
     <section class="article-section" id="intro">
       <div class="section-num">Introduction</div>
-      <h2>Written for the person who now has to build a plan, not just understand the regime</h2>
-      <p>Part 1 covered what counts as a cryptoasset, why owning and dealing are different questions, and why two regulatory regimes are live at once. That's the map. This part is the route, what's actually happening, in what order, and what a firm operating in this space needs to be doing right now, not eventually.</p>
-      <p>Two things have happened very recently that change the practical answer to "what do I do". On 30 June 2026, the FCA published its final rules and guidance for the new regime. And on 3 June 2026, the FCA published direct responses to firms' questions on exactly the interaction this guide is about, MLR registration versus FSMA authorisation.</p>
+      <h2>Pattern recognition, not a glossary to memorise</h2>
+      <p>Parts 1 and 2 covered what actually counts as regulated activity and the timeline you're working against. This part is different in kind: it's about pattern recognition. Crypto laundering typologies borrow the same underlying logic as traditional money laundering, placement, layering, integration, but the mechanics look different enough on-chain that an analyst trained purely on fiat red flags will miss them.</p>
       <div class="callout info">
         <div class="callout-icon">💡</div>
         <div class="callout-body">
-          <div class="callout-title">This reflects the settled position, not the earlier version of the timeline</div>
-          <div class="callout-text">Both the final rules (30 June 2026) and the FCA's direct responses on MLR versus FSMA (3 June 2026) landed within the last few weeks. If you read guidance on this topic from earlier in the year, treat it as superseded, the practical answer has moved.</div>
+          <div class="callout-title">Why this guide doesn't name specific mixers, bridges, or DEXs as "currently sanctioned"</div>
+          <div class="callout-text">One deliberate choice in this guide: where a technique is commonly executed through a specific type of tool, mixers, bridges, DEXs, this guide describes the pattern and what to look for, not a named product's current sanctions status. Designations on specific mixing services have proven genuinely volatile, contested in court, reversed, reapplied, which means a guide that names a tool as "currently sanctioned" risks being wrong within months. The underlying red flag pattern doesn't change even when a specific tool's legal status does, so that's what this guide teaches.</div>
         </div>
       </div>
     </section>
 
-    <section class="article-section" id="timeline">
+    <section class="article-section" id="layering">
       <div class="section-num">Section 01</div>
-      <h2>The timeline that actually matters</h2>
-      <ul>
-        <li><strong>Now (from July 2026):</strong> The FCA's Pre-Application Support Service is open. Firms preparing for authorisation can engage directly with the FCA ahead of the formal window.</li>
-        <li><strong>30 September 2026:</strong> The FSMA cryptoasset authorisation gateway opens. This is when firms can formally submit applications.</li>
-        <li><strong>28 February 2027:</strong> The application window closes.</li>
-        <li><strong>25 October 2027:</strong> The new regime commences. From this date, cryptoasset activities move fully under FSMA authorisation.</li>
-      </ul>
-      <p>The FCA has been explicit that applying inside the window matters. Submit during the application period and the FCA expects to determine the application before the regime commences. Miss it, and a saving provision allows continued operation while the application is pending, but that's a position of ongoing regulatory uncertainty, not a comfortable one to be running a business from.</p>
+      <h2>Layering: how crypto's version actually works</h2>
+      <p>In fiat laundering, layering means moving funds through multiple accounts and jurisdictions to obscure the trail. On-chain, the same goal is achieved differently, and faster.</p>
 
-      <div class="milestone-strip" role="img" aria-label="Timeline from July 2026 to October 2027 showing four key milestones, with today, 9 July 2026, marked just after the Pre-Application Support Service opened">
-        <div class="milestone-track">
-          <div class="milestone-line"></div>
+      <h3>Mixing and tumbling</h3>
+      <p>Mixing and tumbling services pool funds from many users and redistribute them, breaking the direct on-chain link between a deposit and a withdrawal address. The mechanics vary, some use smart contract pools, others coordinate off-chain, but the effect is the same: a clean address that received funds from a mixer has no verifiable on-chain link back to the original source, even though the mixer itself may be entirely legitimate infrastructure used by both privacy-conscious ordinary users and launderers alike. That dual-use nature is exactly why a screening approach based on "did this address touch a mixer" needs nuance, not a blanket reject.</p>
 
-          <div class="milestone-today" style="left:9%;">
-            <div class="milestone-today-pill">Today · 9 Jul 2026</div>
-            <div class="milestone-today-line"></div>
+      <h3>Chain-hopping</h3>
+      <p>Chain-hopping moves value across multiple blockchains via bridges or cross-chain swaps. Each hop can reset the assumptions a monitoring tool has built up about an address's history, and bridge protocols vary enormously in the transaction data they preserve versus discard. An address history that looks clean on one chain may simply mean the funds arrived via a bridge from a chain your tooling doesn't have visibility into.</p>
+
+      <h3>Peel chains</h3>
+      <p>Peel chains are the on-chain equivalent of structuring. A large sum moves through a sequence of addresses, peeling off a smaller amount at each hop while the bulk continues onward, mimicking normal transactional behaviour rather than one large, conspicuous transfer. The individual peeled amounts often sit comfortably under whatever threshold triggers automated review, which is precisely the point.</p>
+
+      <div class="peel-chain-wrap">
+        <div class="peel-chain-strip">
+          <div class="peel-chain-track" id="peelTrack" role="img" aria-label="Step-through diagram of a peel chain: 612,400 in illicit proceeds moves through five addresses, peeling off a smaller amount at each hop while the bulk continues onward to the next address">
+            <div class="peel-chain-line"></div>
+
+            <button type="button" class="peel-chain-node active" data-step="0" style="left:8%;" onclick="setPeelStep(0)">
+              <div class="peel-chain-dot">A1</div>
+              <div class="peel-chain-addr">Deposit address</div>
+              <div class="peel-chain-balance">$612,400</div>
+            </button>
+            <div class="peel-chain-peel" style="left:8%;">
+              <div class="peel-chain-peel-line"></div>
+              <div class="peel-chain-peel-amt">peels $9,400</div>
+            </div>
+
+            <button type="button" class="peel-chain-node" data-step="1" style="left:29%;" onclick="setPeelStep(1)">
+              <div class="peel-chain-dot">A2</div>
+              <div class="peel-chain-addr">Hop 2</div>
+              <div class="peel-chain-balance">$603,000</div>
+            </button>
+            <div class="peel-chain-peel" style="left:29%;">
+              <div class="peel-chain-peel-line"></div>
+              <div class="peel-chain-peel-amt">peels $8,150</div>
+            </div>
+
+            <button type="button" class="peel-chain-node" data-step="2" style="left:50%;" onclick="setPeelStep(2)">
+              <div class="peel-chain-dot">A3</div>
+              <div class="peel-chain-addr">Hop 3</div>
+              <div class="peel-chain-balance">$594,850</div>
+            </button>
+            <div class="peel-chain-peel" style="left:50%;">
+              <div class="peel-chain-peel-line"></div>
+              <div class="peel-chain-peel-amt">peels $9,800</div>
+            </div>
+
+            <button type="button" class="peel-chain-node" data-step="3" style="left:71%;" onclick="setPeelStep(3)">
+              <div class="peel-chain-dot">A4</div>
+              <div class="peel-chain-addr">Hop 4</div>
+              <div class="peel-chain-balance">$585,050</div>
+            </button>
+            <div class="peel-chain-peel" style="left:71%;">
+              <div class="peel-chain-peel-line"></div>
+              <div class="peel-chain-peel-amt">peels $7,600</div>
+            </div>
+
+            <button type="button" class="peel-chain-node" data-step="4" style="left:92%;" onclick="setPeelStep(4)">
+              <div class="peel-chain-dot">A5</div>
+              <div class="peel-chain-addr">Consolidation</div>
+              <div class="peel-chain-balance">$577,450</div>
+            </button>
           </div>
-
-          <div class="milestone-node" style="left:6%;">
-            <div class="milestone-dot">1</div>
-            <div class="milestone-date">Now, from July 2026</div>
-            <div class="milestone-title">Pre-Application Support Service opens</div>
-            <div class="milestone-desc">Engage the FCA directly ahead of the formal window.</div>
-          </div>
-
-          <div class="milestone-node" style="left:37%;">
-            <div class="milestone-dot">2</div>
-            <div class="milestone-date">30 Sep 2026</div>
-            <div class="milestone-title">FSMA gateway opens</div>
-            <div class="milestone-desc">Firms can formally submit authorisation applications.</div>
-          </div>
-
-          <div class="milestone-node" style="left:68%;">
-            <div class="milestone-dot">3</div>
-            <div class="milestone-date">28 Feb 2027</div>
-            <div class="milestone-title">Application window closes</div>
-            <div class="milestone-desc">Apply inside this window and the FCA expects to decide before commencement.</div>
-          </div>
-
-          <div class="milestone-node" style="left:98%;">
-            <div class="milestone-dot">4</div>
-            <div class="milestone-date">25 Oct 2027</div>
-            <div class="milestone-title">Regime commences</div>
-            <div class="milestone-desc">Cryptoasset activities move fully under FSMA authorisation.</div>
-          </div>
+        </div>
+        <div class="peel-chain-controls">
+          <button type="button" class="peel-chain-btn" id="peelPrev" onclick="stepPeel(-1)" disabled>← Prev</button>
+          <span class="peel-chain-step-label" id="peelStepLabel">Step 1 of 5</span>
+          <button type="button" class="peel-chain-btn" id="peelNext" onclick="stepPeel(1)">Next →</button>
+        </div>
+        <div class="peel-chain-caption" id="peelCaption">
+          <strong>Step 1, the deposit address.</strong> $612,400 in illicit proceeds lands at the first address. To an analyst looking at this address in isolation, it's just a large incoming transfer, nothing yet distinguishes it from a legitimate large transaction.
         </div>
       </div>
     </section>
 
-    <section class="article-section" id="no-conversion">
+    <section class="article-section" id="rug-pulls">
       <div class="section-num">Section 02</div>
-      <h2>The fact that changes everything for MLR-registered firms</h2>
-      <p>There is no automatic conversion from MLR registration to FSMA authorisation. The FCA has stated this plainly and repeatedly. A firm currently registered under the Money Laundering Regulations, and compliant, and operating without issue, does not carry that status forward. It has to apply for FSMA authorisation as a genuinely new process.</p>
-      <div class="pull-quote">There is no automatic conversion from MLR registration to FSMA authorisation.</div>
-      <p>The FCA's own steer, published 3 June 2026, goes further: new firms are encouraged to focus on securing FSMA authorisation directly, rather than pursuing MLR registration in the meantime. If your firm is only now entering this space, MLR registration is increasingly a detour, not a stepping stone, given the transition already underway. Firms that still want to apply for MLR registration after 30 September 2026 are directed to contact the FCA's Pre-Application Support Service first to explain the rationale, that's not a formality, it's the FCA asking firms to justify why they're pursuing a route the regulator has already signalled is being phased out.</p>
-    </section>
+      <h2>Rug pulls: the typology, not just the headline</h2>
+      <p>A rug pull is a scheme where a token's creators build apparent legitimacy, a project, a website, a community, liquidity on a decentralised exchange, then withdraw that liquidity or dump their own holdings, leaving other holders with a worthless token. It's fraud with a laundering dimension: the funds extracted often move immediately into layering techniques before victims have finished realising what happened.</p>
 
-    <section class="article-section" id="good-looks-like">
-      <div class="section-num">Section 03</div>
-      <h2>What "good" actually looks like to the FCA</h2>
-      <p>The FCA has set out, specifically, what separates a strong FSMA cryptoasset application from a weak one. This isn't generic authorisation guidance, it's stated in relation to this exact regime.</p>
-
-      <h3>A financial crime assessment broader than MLR registration currently requires</h3>
-      <p>Firms should expect the authorisation process to examine governance, systems and controls, resourcing, and overall readiness, not just whether AML policies exist on paper. Innovative or "pure on-chain" business models are expected to demonstrate a risk-based approach calibrated to their actual transaction flows, not a template lifted from a traditional payments firm.</p>
-
-      <h3>Explicit governance and MLRO competency expectations</h3>
-      <p>The FCA has directly referenced SYSC 3, its senior management arrangements, systems and controls sourcebook, in relation to crypto authorisation. Individuals in key AML roles, including the MLRO, need to be competent and appropriately experienced for the specific activities and risks the firm is running, with genuinely sufficient time and resource to do the job. If Part 1 of <a href="/mlro-handbook-part1.html">the MLRO Handbook</a> sounded familiar reading this, that's not a coincidence, the same fit and proper bar that applies to any FCA authorised firm applies here, with crypto specific risk layered on top.</p>
-
-      <h3>Travel Rule obligations continue to run alongside FSMA, not instead of it</h3>
-      <p>The Travel Rule sits within the MLRs and operates concurrently with the new regime. Firms shouldn't assume that FSMA authorisation replaces MLR obligations wholesale, applicability is assessed firm by firm, based on the actual business and operating model.</p>
-
-      <h3>Sanctions and fraud controls sit inside the same picture, not beside it</h3>
-      <p>The FCA has been explicit that it expects AML, counter-terrorist financing, and counter-proliferation financing controls to be considered alongside sanctions and fraud risk, reflected end to end in governance, risk assessment, monitoring, and escalation, not run as separate, disconnected workstreams.</p>
-
-      <div class="role-split">
-        <div class="role-col">
-          <div class="role-head" onclick="toggleRole(this)">
-            <div class="role-head-text">
-              <div class="role-label">Existing</div>
-              <div class="role-title">MLR Registration Expectations</div>
-            </div>
-            <span class="role-icon">+</span>
-          </div>
-          <div class="role-body">
-            <ul>
-              <li>Anti-money laundering and counter terrorist financing supervision only</li>
-              <li>Business wide risk assessment, CDD and EDD as currently required</li>
-              <li>In force and ongoing since 10 January 2020</li>
-              <li>Does not, on its own, satisfy the new authorisation bar</li>
-            </ul>
-            <div class="role-source">Legal source: Money Laundering Regulations 2017</div>
-          </div>
-        </div>
-        <div class="role-col">
-          <div class="role-head" onclick="toggleRole(this)">
-            <div class="role-head-text">
-              <div class="role-label">New, broader</div>
-              <div class="role-title">FSMA Authorisation Expectations</div>
-            </div>
-            <span class="role-icon">+</span>
-          </div>
-          <div class="role-body">
-            <ul>
-              <li>Full financial crime assessment: governance, systems and controls, resourcing, and readiness, not just policies on paper</li>
-              <li>Explicit SYSC 3 governance and MLRO competency, with sufficient time and experience for the firm's actual risk</li>
-              <li>Risk based approach calibrated to actual transaction flows, not a template from traditional payments</li>
-              <li>AML, CTF, CPF, sanctions, and fraud controls reflected end to end, not run as separate workstreams</li>
-            </ul>
-            <div class="role-source">Legal source: FSMA 2000 (Cryptoassets) Regulations 2026; SYSC 3</div>
-          </div>
-        </div>
-      </div>
+      <h3>Red flags an analyst can actually check</h3>
+      <p>Rather than relying on hindsight:</p>
+      <ul>
+        <li><strong>Concentrated token ownership.</strong> A small number of wallets holding a large percentage of total supply is a structural risk regardless of what the project claims about its tokenomics.</li>
+        <li><strong>Unlocked or short-locked liquidity.</strong> Legitimate projects typically lock liquidity for a meaningful period, verifiable on-chain. Liquidity that can be withdrawn immediately, or that unlocks unusually soon after launch, is a genuine structural red flag, not paranoia.</li>
+        <li><strong>Anonymous team with no verifiable history.</strong> Anonymity alone isn't disqualifying in crypto generally, but combined with the two factors above it meaningfully raises risk.</li>
+        <li><strong>Contract permissions that allow minting new supply or blocking specific wallets from selling.</strong> Both are checkable directly in the smart contract code, and both have been used in documented rug pull cases to trap holders while the team exits.</li>
+      </ul>
 
       <div class="try-tool">
         <div class="tl">
           <div class="tl-eyebrow">Put it into practice</div>
-          <div class="tl-title">Screen a director or beneficial owner name during your authorisation prep</div>
-          <div class="tl-sub">Free, no login. Check sanctions and PEP exposure before it surfaces in the FCA's own review.</div>
+          <div class="tl-title">Screen a project founder or beneficial owner before onboarding</div>
+          <div class="tl-sub">Free, no login. Anonymous teams and concentrated ownership are red flags, checking sanctions and PEP exposure closes one more gap.</div>
         </div>
         <a href="/screen.html" class="tl-btn">Screen a name →</a>
       </div>
     </section>
 
-    <section class="article-section" id="checklist">
+    <section class="article-section" id="nft-wash-trading">
+      <div class="section-num">Section 03</div>
+      <h2>NFT wash trading as a laundering vector</h2>
+      <p>Less discussed than mixers, but a real, documented pattern: an individual or coordinated group buys and sells the same NFT between wallets they control, artificially inflating its apparent trading volume and price history. Once a fabricated price history exists, a genuine third-party sale at that inflated price becomes a plausible-looking vehicle for moving value, the "profit" is really just laundered funds dressed as a legitimate art or collectibles transaction. The giveaway is usually in the wallet graph: a small, tightly connected cluster of addresses trading exclusively with each other before a single external sale.</p>
+    </section>
+
+    <section class="article-section" id="practical">
       <div class="section-num">Section 04</div>
-      <h2>A practical starting checklist</h2>
-      <p>For a firm currently MLR registered, or actively preparing to enter the UK cryptoasset market, five things worth actioning now rather than in Q1 2027:</p>
+      <h2>What this actually means for onboarding and monitoring</h2>
+      <p>None of these patterns are individually proof of anything. Mixer usage, cross-chain activity, and even holding a token that later turns out to be a rug pull are all things that happen to entirely legitimate users too. The skill this guide is actually teaching is the same one running through <a href="/scenario-lab.html">Scenario Lab</a>'s cases: don't treat any single indicator as automatically dispositive, and don't treat a clean-looking transaction history as automatically clean either. Ask what the pattern of behaviour is consistent with, not just whether one box got ticked.</p>
+      <div class="pull-quote">Don't treat a clean-looking transaction history as automatically clean either.</div>
+
+      <h3>Practical checklist</h3>
+      <p>For a KYC or transaction monitoring team building this into an actual process, four things worth actioning:</p>
       <ol>
-        <li><strong>Revisit your perimeter assessment.</strong> Not every MLR registered firm will be carrying out a regulated activity under the new framework, and some firms currently outside scope may find they're inside it. Don't assume last year's analysis still holds.</li>
-        <li><strong>Engage the Pre-Application Support Service early.</strong> It's open now. Early engagement, gap analysis, and operational planning are explicitly what the FCA has said it wants to see, not a completed application arriving cold.</li>
-        <li><strong>Stress test governance against SYSC 3, specifically for crypto risk.</strong> A generic AML governance structure inherited from a different regulated activity won't automatically satisfy this bar.</li>
-        <li><strong>Confirm your MLRO, or whoever will hold the equivalent function, genuinely has crypto specific competency and capacity.</strong> Not a general AML background stretched to cover a business model it wasn't built for.</li>
-        <li><strong>Map your Travel Rule exposure independently of the FSMA timeline.</strong> It's a live, current obligation regardless of where a firm sits in the authorisation process.</li>
+        <li><strong>Flag mixer interaction as a risk factor requiring further review, not an automatic reject.</strong></li>
+        <li><strong>Build cross-chain visibility into monitoring tooling deliberately.</strong> Don't assume a clean single-chain history means a clean overall history.</li>
+        <li><strong>For any token-related onboarding or business relationship, check ownership concentration and liquidity lock status directly on-chain</strong> before relying on the project's own claims.</li>
+        <li><strong>Watch for tightly clustered wallet graphs on NFT-related activity specifically.</strong> That's the wash trading tell.</li>
       </ol>
 
       <div class="callout amber">
         <div class="callout-icon">📘</div>
         <div class="callout-body">
-          <div class="callout-title">Coming next in the series</div>
-          <div class="callout-text">This part covered the current timeline, why MLR registration doesn't carry over, and what the FCA says separates a strong application from a weak one. Part 3 turns to typologies, mixers, layering, and rug pulls, the patterns that show up once a crypto touching customer is actually on your desk.</div>
+          <div class="callout-title">This closes the typology arc of the series</div>
+          <div class="callout-text">Together with Parts 1 and 2, this covers what counts as regulated activity, the current authorisation timeline, and the actual laundering typologies an analyst needs to recognise on-chain. Part 4 turns to how crypto wallets actually end up sanctioned.</div>
         </div>
       </div>
 
@@ -497,67 +477,64 @@
         <div class="cheat-sheet-label">Quick Reference</div>
         <div class="cheat-sheet-scroll">
           <svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img">
-            <title>FSMA cryptoasset authorisation at a glance, cheat sheet summary</title>
-            <desc>Summary card covering key dates, the MLR to FSMA transition, what the FCA says good looks like, and the four milestone timeline, for the Crypto Guide Part 2 guide.</desc>
+            <title>Crypto laundering typologies at a glance, cheat sheet summary</title>
+            <desc>Summary card covering mixing and layering, peel chains, rug pull red flags, and a four-step practical checklist, for the Crypto Guide Part 3 guide.</desc>
 
             <rect width="800" height="520" class="cs-bg" rx="16"/>
 
-            <text x="40" y="52" class="cs-primary" font-family="Arial, sans-serif" font-size="28" font-weight="700">FSMA Cryptoasset Authorisation</text>
+            <text x="40" y="52" class="cs-primary" font-family="Arial, sans-serif" font-size="28" font-weight="700">Crypto Laundering Typologies</text>
             <text x="40" y="78" class="cs-muted" font-family="Arial, sans-serif" font-size="15" font-weight="400" letter-spacing="2">AT A GLANCE — CHEAT SHEET</text>
             <line x1="40" y1="94" x2="760" y2="94" class="cs-divider" stroke-width="1"/>
 
             <rect x="40" y="116" width="230" height="180" rx="10" class="cs-card" stroke-width="1"/>
-            <text x="60" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">KEY DATES</text>
-            <text x="60" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Gateway opens 30 Sep 2026</text>
-            <text x="60" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Window closes 28 Feb 2027</text>
-            <text x="60" y="214" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Regime starts 25 Oct 2027</text>
-            <text x="60" y="244" class="cs-muted" font-family="Arial, sans-serif" font-size="13">Pre-Application Support</text>
-            <text x="60" y="264" class="cs-muted" font-family="Arial, sans-serif" font-size="13">Service open now</text>
+            <text x="60" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">MIXING &amp; LAYERING</text>
+            <text x="60" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Mixers break the on-chain</text>
+            <text x="60" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">link, but are dual-use tools</text>
+            <text x="60" y="214" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Chain-hops reset per-chain</text>
+            <text x="60" y="244" class="cs-muted" font-family="Arial, sans-serif" font-size="13">history analysts rely on</text>
 
             <rect x="285" y="116" width="230" height="180" rx="10" class="cs-card" stroke-width="1"/>
-            <text x="305" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">MLR TO FSMA</text>
-            <text x="305" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">No automatic conversion,</text>
-            <text x="305" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">fresh application required</text>
-            <text x="305" y="222" class="cs-primary" font-family="Arial, sans-serif" font-size="13">New firms steered toward</text>
-            <text x="305" y="242" class="cs-primary" font-family="Arial, sans-serif" font-size="13">FSMA directly</text>
-            <text x="305" y="270" class="cs-muted" font-family="Arial, sans-serif" font-size="13">FCA position as of 3 Jun 2026</text>
+            <text x="305" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">PEEL CHAINS</text>
+            <text x="305" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Large sum splits at each</text>
+            <text x="305" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">hop, bulk continues onward</text>
+            <text x="305" y="214" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Peeled amounts sit under</text>
+            <text x="305" y="244" class="cs-muted" font-family="Arial, sans-serif" font-size="13">automated review thresholds</text>
 
             <rect x="530" y="116" width="230" height="180" rx="10" class="cs-card" stroke-width="1"/>
-            <text x="550" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">WHAT GOOD LOOKS LIKE</text>
-            <text x="550" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Full financial crime</text>
-            <text x="550" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">assessment, not just policy</text>
-            <text x="550" y="222" class="cs-primary" font-family="Arial, sans-serif" font-size="13">SYSC 3 governance and</text>
-            <text x="550" y="242" class="cs-primary" font-family="Arial, sans-serif" font-size="13">MLRO competency</text>
-            <text x="550" y="270" class="cs-muted" font-family="Arial, sans-serif" font-size="13">Travel Rule runs alongside FSMA</text>
+            <text x="550" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">RUG PULL RED FLAGS</text>
+            <text x="550" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Concentrated ownership,</text>
+            <text x="550" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">short-locked liquidity</text>
+            <text x="550" y="214" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Anonymous team raises risk</text>
+            <text x="550" y="244" class="cs-muted" font-family="Arial, sans-serif" font-size="13">only combined with the above</text>
 
-            <text x="40" y="336" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">THE TIMELINE</text>
+            <text x="40" y="336" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">THE PRACTICAL CHECKLIST</text>
 
             <g font-family="Arial, sans-serif">
               <circle cx="90" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
               <text x="90" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">1</text>
-              <text x="90" y="418" class="cs-muted" font-size="11" text-anchor="middle">PASS Service</text>
-              <text x="90" y="432" class="cs-muted" font-size="11" text-anchor="middle">open, Jul 2026</text>
+              <text x="90" y="418" class="cs-muted" font-size="11" text-anchor="middle">Flag mixer use,</text>
+              <text x="90" y="432" class="cs-muted" font-size="11" text-anchor="middle">not auto-reject</text>
 
               <line x1="118" y1="380" x2="272" y2="380" class="cs-connector" stroke-width="1.5"/>
 
               <circle cx="300" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
               <text x="300" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">2</text>
-              <text x="300" y="418" class="cs-muted" font-size="11" text-anchor="middle">Gateway opens</text>
-              <text x="300" y="432" class="cs-muted" font-size="11" text-anchor="middle">30 Sep 2026</text>
+              <text x="300" y="418" class="cs-muted" font-size="11" text-anchor="middle">Build cross-chain</text>
+              <text x="300" y="432" class="cs-muted" font-size="11" text-anchor="middle">visibility</text>
 
               <line x1="328" y1="380" x2="482" y2="380" class="cs-connector" stroke-width="1.5"/>
 
               <circle cx="510" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
               <text x="510" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">3</text>
-              <text x="510" y="418" class="cs-muted" font-size="11" text-anchor="middle">Window closes</text>
-              <text x="510" y="432" class="cs-muted" font-size="11" text-anchor="middle">28 Feb 2027</text>
+              <text x="510" y="418" class="cs-muted" font-size="11" text-anchor="middle">Check ownership +</text>
+              <text x="510" y="432" class="cs-muted" font-size="11" text-anchor="middle">liquidity locks</text>
 
               <line x1="538" y1="380" x2="692" y2="380" class="cs-connector" stroke-width="1.5"/>
 
               <circle cx="720" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
               <text x="720" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">4</text>
-              <text x="720" y="418" class="cs-muted" font-size="11" text-anchor="middle">Regime starts</text>
-              <text x="720" y="432" class="cs-muted" font-size="11" text-anchor="middle">25 Oct 2027</text>
+              <text x="720" y="418" class="cs-muted" font-size="11" text-anchor="middle">Watch wallet</text>
+              <text x="720" y="432" class="cs-muted" font-size="11" text-anchor="middle">clusters (NFT)</text>
             </g>
 
             <line x1="40" y1="466" x2="760" y2="466" class="cs-divider" stroke-width="1"/>
@@ -570,12 +547,12 @@
       <div class="part-footer">
         <div class="pf-prev">
           <div class="pf-label">← Back</div>
-          <a href="/crypto-guide-part1.html" class="pf-link">Part 1: Foundations</a>
+          <a href="/crypto-guide-part2.html" class="pf-link">Part 2: What to Actually Do Before October 2027</a>
         </div>
-        <div class="pf-center">Part 2 of 6</div>
+        <div class="pf-center">Part 3 of 6</div>
         <div class="pf-next">
           <div class="pf-label">Next →</div>
-          <a href="/crypto-guide-part3.html" class="pf-link">Part 3: Typologies, Mixers, Layering, and Rug Pulls →</a>
+          <a href="#" class="pf-link">Part 4: How Crypto Wallets Actually End Up Sanctioned →</a>
         </div>
       </div>
     </section>
@@ -609,9 +586,29 @@
     }, { rootMargin:'-20% 0px -70% 0px' }).observe(s);
   });
 
-  function toggleRole(el) {
-    el.querySelector('.role-icon').classList.toggle('open');
-    el.nextElementSibling.classList.toggle('open');
+  var peelSteps = [
+    { label: 'Step 1 of 5', caption: '<strong>Step 1, the deposit address.</strong> $612,400 in illicit proceeds lands at the first address. To an analyst looking at this address in isolation, it&rsquo;s just a large incoming transfer, nothing yet distinguishes it from a legitimate large transaction.' },
+    { label: 'Step 2 of 5', caption: '<strong>Step 2, first peel.</strong> $9,400 peels off to a separate address, comfortably under the kind of amount that would trigger automated review on its own. The remaining $603,000 continues onward to a new address, restarting the pattern.' },
+    { label: 'Step 3 of 5', caption: '<strong>Step 3, second peel.</strong> Another small amount, $8,150, peels off. Each individual peeled transaction looks unremarkable in isolation. The pattern only becomes visible when the addresses are linked together and viewed as one chain, not five unrelated transactions.' },
+    { label: 'Step 4 of 5', caption: '<strong>Step 4, third peel.</strong> $9,800 peels off at this hop. By now the bulk of the original amount has moved through three intermediate addresses, each one adding a small amount of distance from the original deposit.' },
+    { label: 'Step 5 of 5', caption: '<strong>Step 5, consolidation.</strong> $577,450, roughly 94% of the original amount, arrives at a consolidation address four hops removed from where it started. The five peeled amounts sit as separate, individually unremarkable transactions elsewhere on-chain, this is the split the peel chain is named for.' }
+  ];
+  var peelStep = 0;
+  function setPeelStep(i) {
+    peelStep = i;
+    renderPeelStep();
+  }
+  function stepPeel(delta) {
+    setPeelStep(Math.max(0, Math.min(peelSteps.length - 1, peelStep + delta)));
+  }
+  function renderPeelStep() {
+    document.querySelectorAll('.peel-chain-node').forEach(function (n) {
+      n.classList.toggle('active', parseInt(n.dataset.step, 10) === peelStep);
+    });
+    document.getElementById('peelStepLabel').textContent = peelSteps[peelStep].label;
+    document.getElementById('peelCaption').innerHTML = peelSteps[peelStep].caption;
+    document.getElementById('peelPrev').disabled = peelStep === 0;
+    document.getElementById('peelNext').disabled = peelStep === peelSteps.length - 1;
   }
 </script>
 
