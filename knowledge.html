@@ -123,6 +123,11 @@
 
     /* FEATURED SERIES — compact strip */
     .series-strip { display:flex; flex-direction:column; gap:6px; margin-bottom:0; }
+    .series-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
     .series-row { display:flex; align-items:center; gap:12px; background:#fff; border:1px solid var(--border); border-radius:10px; padding:10px 14px; text-decoration:none; transition:all .15s; }
     .series-row:hover { box-shadow:0 2px 8px rgba(0,0,0,.07); transform:translateX(2px); }
     .series-row-dot { width:10px; height:10px; border-radius:3px; flex-shrink:0; }
@@ -290,6 +295,9 @@
       .hub-hero { padding: 2.5rem 1.25rem 2rem !important; }
       .tool-context { margin: 0 1rem 1.25rem !important; padding: 1.25rem !important; }
       .hub-container { padding: 1rem !important; }
+      .series-grid {
+        grid-template-columns: 1fr;
+      }
       .series-row { padding:9px 12px; }
       .series-row-meta { display:none; }
       .filter-bar { padding: 1rem 1rem 0 !important; }
@@ -408,7 +416,7 @@
     <div class="section-heading">
       <h2>⭐ Series</h2>
     </div>
-    <div class="series-strip">
+    <div class="series-grid">
       <a href="/aml-guide-part1.html" class="series-row">
         <div class="series-row-dot" style="background:var(--blue);"></div>
         <div class="series-row-body">
