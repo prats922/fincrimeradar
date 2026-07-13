@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+  gtag('js', new Date());
+  (function () {
+    try {
+      var consent = localStorage.getItem('fcr_cookie_consent');
+      if (consent === 'accepted') {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+  })();
+  gtag('config', 'G-FC1VMTE7JH');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Crypto Guide Part 4: How Crypto Wallets Actually End Up Sanctioned | FinCrimeRadar</title>
+  <meta name="description" content="How OFAC and OFSI actually designate wallet addresses, direct versus indirect exposure under the UK Sanctions List, FAQ 646 blocked property, and what wallet screening design needs that name screening doesn't." />
+  <meta name="keywords" content="crypto wallet sanctions, OFAC SDN wallet address, OFSI cryptoassets threat assessment, UK Sanctions List crypto, blocked property FAQ 646, direct indirect exposure crypto, wallet screening design" />
+  <link rel="canonical" href="https://fincrimeradar.org/crypto-guide-part4.html" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Crypto Guide Part 4: How Crypto Wallets Actually End Up Sanctioned | FinCrimeRadar" />
+  <meta property="og:description" content="How OFAC and OFSI actually designate wallet addresses, direct versus indirect exposure under the UK Sanctions List, FAQ 646 blocked property, and what wallet screening design needs that name screening doesn't." />
+  <meta property="og:url" content="https://fincrimeradar.org/crypto-guide-part4.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://fincrimeradar.org/og-image.png" />
+  <meta property="og:site_name" content="FinCrimeRadar" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Crypto Guide Part 4: How Crypto Wallets Actually End Up Sanctioned | FinCrimeRadar" />
+  <meta name="twitter:description" content="How OFAC and OFSI actually designate wallet addresses, direct versus indirect exposure under the UK Sanctions List, FAQ 646 blocked property, and what wallet screening design needs that name screening doesn't." />
+  <meta name="twitter:image" content="https://fincrimeradar.org/og-image.png" />
+  <!-- Schema.org -->
+  <meta name="author" content="Pratik Zanke, FinCrimeRadar" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --white:#ffffff; --off:#f7f8fa; --border:#e4e7ec;
+      --muted:#6b7280; --text:#111827; --navy:#0f2044;
+      --accent:#2563eb; --accent-h:#1d4ed8; --accent-light:#eff6ff;
+      --accent-border:#bfdbfe;
+      --danger:#dc2626; --success:#16a34a; --warning:#d97706;
+      --blue:#1d5fc4; --purple:#7c3aed;
+    }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
+    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:72px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:8px; text-decoration:none; }
+    .nav-logo { width:26px; height:26px; }
+    .nav-name { font-size:15px; font-weight:600; color:var(--navy); }
+    .nav-name span { color:#00c4a7; }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:var(--navy); text-decoration:none; }
+    .nav-links a:hover { color:#00c4a7; }
+    .nav-cta { padding:7px 16px; background:#00c4a7; color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; }
+    .progress-bar { position:fixed; top:60px; left:0; width:0%; height:3px; background:var(--accent); z-index:199; transition:width 0.1s; }
+    .series-hero { background:linear-gradient(135deg,var(--hero-bg-1) 0%,var(--hero-bg-2) 100%); color:#fff; padding:4rem 2rem 3rem; }
+    .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:var(--hero-accent-em); margin-bottom:1.25rem; }
+    .series-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(1.9rem,4vw,3rem); font-weight:400; line-height:1.2; margin-bottom:0.75rem; max-width:760px; }
+    .series-hero h1 em { font-style:italic; color:var(--hero-accent-em); }
+    .series-sub { font-size:16px; color:#dbeafe; max-width:620px; line-height:1.7; margin-bottom:2rem; }
+    .series-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#93c5fd; }
+    .part-nav { background:var(--white); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; gap:0; overflow-x:auto; }
+    .part-link { padding:14px 20px; font-size:13px; font-weight:500; color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; }
+    .part-link:hover { color:var(--navy); }
+    .part-link.active { color:var(--accent); border-bottom-color:var(--accent); }
+    .part-link.done { color:var(--success); }
+    .article-layout { display:grid; grid-template-columns:220px 1fr; gap:2rem; max-width:1080px; margin:0 auto; padding:2.5rem 1.5rem; align-items:start; }
+    .toc { position:sticky; top:105px; background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.25rem; }
+    .toc-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--muted); margin-bottom:0.875rem; }
+    .toc-list { list-style:none; }
+    .toc-list a { font-size:12.5px; color:var(--muted); text-decoration:none; display:block; padding:5px 8px; border-radius:6px; transition:all 0.15s; border-left:2px solid transparent; }
+    .toc-list a:hover,.toc-list a.active { color:var(--accent); background:var(--accent-light); border-left-color:var(--accent); }
+    .toc-progress { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); }
+    .toc-progress-label { font-size:11px; color:var(--muted); margin-bottom:6px; display:flex; justify-content:space-between; }
+    .toc-bar { height:4px; background:var(--border); border-radius:99px; overflow:hidden; }
+    .toc-fill { height:100%; background:var(--accent); border-radius:99px; transition:width 0.2s; width:0%; }
+    .series-nav-box { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); }
+    .sn-link { display:block; font-size:12px; font-weight:600; color:var(--muted); text-decoration:none; padding:5px 8px; border-radius:6px; }
+    .sn-link.done { color:var(--success); }
+    .sn-link.active { color:var(--accent); background:var(--accent-light); }
+    .article-body { min-width:0; }
+    .article-section { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:2.25rem; margin-bottom:1.25rem; }
+    .section-num { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--accent); margin-bottom:0.5rem; }
+    .article-section h2 { font-family:'DM Serif Display',Georgia,serif; font-size:24px; font-weight:400; color:var(--navy); margin-bottom:1rem; line-height:1.3; }
+    .article-section h3 { font-size:16px; font-weight:600; color:var(--navy); margin:1.75rem 0 0.65rem; }
+    .article-section p { font-size:14.5px; color:#374151; margin-bottom:0.9rem; line-height:1.75; }
+    .article-section ul,.article-section ol { padding-left:1.5rem; margin-bottom:0.9rem; }
+    .article-section li { font-size:14.5px; color:#374151; margin-bottom:0.45rem; line-height:1.65; }
+    .article-section a { color:var(--blue); text-decoration:none; }
+    .article-section a:hover { text-decoration:underline; }
+    .callout { border-radius:10px; padding:1.1rem 1.4rem; margin:1.25rem 0; display:flex; gap:12px; }
+    .callout-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+    .callout-body { flex:1; }
+    .callout-title { font-size:12px; font-weight:700; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.4px; }
+    .callout-text { font-size:13.5px; line-height:1.6; }
+    .callout.info { background:#eff6ff; border:1px solid #bfdbfe; }
+    .callout.info .callout-title { color:#1e40af; }
+    .callout.info .callout-text { color:#1e3a8a; }
+    .callout.warning { background:#fffbeb; border:1px solid #fde68a; }
+    .callout.warning .callout-title { color:#92400e; }
+    .callout.warning .callout-text { color:#78350f; }
+    .callout.amber { background:var(--accent-light); border:1px solid var(--accent-border); }
+    .callout.amber .callout-title { color:#92400e; }
+    .callout.amber .callout-text { color:#78350f; }
+    .pull-quote { font-family:'DM Serif Display',Georgia,serif; font-size:18px; font-style:italic; color:var(--navy); border-left:3px solid var(--accent); padding-left:1.25rem; margin:1.5rem 0; line-height:1.6; }
+    .try-tool { background:linear-gradient(135deg,#1e3a8a 0%,#1d4ed8 100%); border-radius:12px; padding:1.5rem 1.75rem; margin:1.75rem 0; display:flex; align-items:center; justify-content:space-between; gap:1.25rem; flex-wrap:wrap; }
+    .try-tool .tl { flex:1; }
+    .try-tool .tl-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:#bfdbfe; margin-bottom:5px; }
+    .try-tool .tl-title { font-size:16px; font-weight:600; color:#fff; margin-bottom:4px; line-height:1.4; }
+    .try-tool .tl-sub { font-size:13px; color:#93c5fd; }
+    .try-tool .tl-btn { padding:10px 20px; background:var(--accent); color:#fff; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap; transition:all 0.15s; }
+    .try-tool .tl-btn:hover { background:var(--accent-h); transform:translateY(-1px); }
+    .part-footer { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-top:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    .pf-prev,.pf-next { display:flex; flex-direction:column; gap:4px; }
+    .pf-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--muted); }
+    .pf-link { font-size:14px; font-weight:600; color:var(--blue); text-decoration:none; }
+    .pf-link:hover { text-decoration:underline; }
+    .pf-next { text-align:right; }
+    .pf-center { font-size:13px; color:var(--muted); }
+    footer { background:var(--white); border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:12px; color:var(--muted); margin-top:2rem; }
+    footer a { color:var(--muted); text-decoration:none; margin:0 8px; }
+    footer a:hover { color:#00c4a7; }
+
+    /* DIRECT VS INDIRECT EXPOSURE (expandable card pair, same interaction
+       pattern as the MLRO Handbook's nominated officer vs compliance
+       steward split: two columns, click a head to expand its body). */
+    .exposure-split { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0; }
+    .exposure-col { border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+    .exposure-head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:1.1rem 1.3rem; cursor:pointer; background:var(--white); user-select:none; }
+    .exposure-head:hover { background:var(--off); }
+    .exposure-head-text { flex:1; }
+    .exposure-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--accent); margin-bottom:4px; }
+    .exposure-title { font-size:15px; font-weight:600; color:var(--navy); }
+    .exposure-icon { font-size:17px; color:var(--muted); transition:transform 0.2s; flex-shrink:0; }
+    .exposure-icon.open { transform:rotate(45deg); }
+    .exposure-body { display:none; padding:0 1.3rem 1.1rem; font-size:13.5px; color:#374151; line-height:1.65; border-top:1px solid var(--border); background:#fafafa; }
+    .exposure-body.open { display:block; padding-top:1rem; }
+    .exposure-body ul { padding-left:1.15rem; margin-bottom:0; }
+    .exposure-body li { font-size:13px; margin-bottom:0.5rem; line-height:1.55; }
+    .exposure-source { font-size:11.5px; color:var(--muted); margin-top:0.7rem; padding-top:0.7rem; border-top:1px dashed var(--border); }
+
+    /* CHEAT SHEET (reusable end-of-guide summary component)
+       SVG colors are mapped to brand.css custom properties, not
+       hardcoded hex, so this inherits the live brand palette:
+       background -> --hero-bg-1, card/circle fill -> --hero-bg-2,
+       all borders/dividers/connectors -> --teal-deep (opacity varies
+       for visual hierarchy), accent green -> --teal (not --accent,
+       which this guide series overrides to blue for its own UI),
+       primary text -> --white, muted/secondary text -> --hero-accent-em. */
+    .cheat-sheet-card { margin:1.75rem 0 0.5rem; }
+    .cheat-sheet-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--accent); margin-bottom:0.75rem; }
+    .cheat-sheet-scroll { max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:16px; box-shadow:0 1px 2px rgba(0,0,0,0.04), 0 18px 44px rgba(7,25,18,0.16); }
+    .cheat-sheet-scroll svg { display:block; width:800px; max-width:none; height:auto; }
+    .cheat-sheet-scroll .cs-bg { fill:var(--hero-bg-1); }
+    .cheat-sheet-scroll .cs-card { fill:var(--hero-bg-2); stroke:var(--teal-deep); stroke-opacity:0.5; }
+    .cheat-sheet-scroll .cs-divider { stroke:var(--teal-deep); stroke-opacity:0.3; }
+    .cheat-sheet-scroll .cs-connector { stroke:var(--teal-deep); stroke-opacity:0.45; }
+    .cheat-sheet-scroll .cs-circle { fill:var(--hero-bg-2); stroke:var(--teal-deep); stroke-opacity:0.75; }
+    .cheat-sheet-scroll .cs-accent { fill:var(--teal); }
+    .cheat-sheet-scroll .cs-primary { fill:var(--white); }
+    .cheat-sheet-scroll .cs-muted { fill:var(--hero-accent-em); }
+
+    /* ===== MOBILE RESPONSIVE ===== */
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--navy, #0f2044);
+      padding: 4px 6px;
+      line-height: 1;
+    }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0; right: 0;
+      background: #fff;
+      border-bottom: 1px solid #e4e7ec;
+      flex-direction: column;
+      z-index: 99;
+      padding: 0.5rem 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      padding: 14px 1.5rem;
+      font-size: 15px;
+      color: #374151;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #f3f4f6;
+      transition: background 0.1s;
+    }
+    .mobile-nav a:hover { background: #f9fafb; }
+    .mobile-nav .mobile-nav-cta {
+      margin: 0.75rem 1.5rem 0.5rem;
+      background: #00c4a7;
+      color: #fff !important;
+      border-radius: 8px;
+      text-align: center;
+      border-bottom: none;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1rem; }
+      .nav-hamburger { display: block; }
+      .nav-links { display: none; }
+      .nav-logo img,
+      .nav-brand img { height: 40px !important; width: auto !important; max-width: 160px !important; }
+      .series-hero { padding: 2.5rem 1.25rem 2rem; }
+      .article-layout { grid-template-columns: 1fr !important; }
+      .toc { display: none !important; }
+      .article-section { padding: 1.25rem !important; }
+      .try-tool { flex-direction: column !important; }
+      .exposure-split { grid-template-columns: 1fr !important; }
+      footer { flex-direction: column !important; align-items: flex-start !important; gap: 1rem !important; }
+    }
+  </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Crypto Guide Part 4: How Crypto Wallets Actually End Up Sanctioned","url":"https://fincrimeradar.org/crypto-guide-part4.html","publisher":{"@type":"Organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org"},"datePublished":"2026-07-13"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand.css">
+  <!-- Loaded after brand.css so the series accent wins the cascade. brand.css
+       defines --accent globally (teal), which would otherwise override the
+       first inline block. --hero-accent-em is intentionally left as brand.css's
+       green, it is a shared hero convention, not a guide specific accent.
+       Blue carried over from Parts 1 through 3 so the series reads as one accent. -->
+  <style>
+    :root {
+      --accent: #2563eb;
+      --accent-h: #1d4ed8;
+      --accent-light: #eff6ff;
+      --accent-border: #bfdbfe;
+    }
+  </style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav>
+  <a class="nav-brand" href="/">
+    <img src="/logo.png" alt="FinCrimeRadar" style="height:44px;width:auto;max-width:200px;object-fit:contain;object-position:left center;display:block;" />
+  </a>
+  <div class="nav-links">
+    <a href="/knowledge.html" class="hm">Knowledge Hub</a>
+    <a href="/screen.html" class="hm">Screen</a>
+    <a href="/screen.html" class="nav-cta" style="background:#00c4a7;color:#fff;font-weight:600;">Try the tool →</a>
+  </div>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/knowledge.html">Knowledge Hub</a>
+  <a href="/learn.html">Learn</a>
+  <a href="/about.html">About</a>
+  <a href="/screen.html" class="mobile-nav-cta">Try the tool →</a>
+</div>
+
+<div class="series-hero">
+  <div class="series-tag">🪙 Crypto Compliance Guide · Part 4 of 6</div>
+  <h1>The Crypto Guide, Part 4: <em>How Crypto Wallets Actually End Up Sanctioned</em></h1>
+  <p class="series-sub">Written for the analyst who needs to know what a wallet designation actually means, not just that one exists.</p>
+  <div class="series-meta">
+    <span>📖 9 min read</span>
+    <span>⚖️ OFAC SDN · UK Sanctions List</span>
+    <span>🇬🇧🇺🇸 UK &amp; US frameworks</span>
+    <span>🔍 Designation mechanics</span>
+  </div>
+</div>
+
+<div class="part-nav">
+  <a href="/crypto-guide-part1.html" class="part-link done">✓ Part 1: Foundations and the Regulatory Ground Shifting Beneath Them</a>
+  <a href="/crypto-guide-part2.html" class="part-link done">✓ Part 2: What to Actually Do Before October 2027</a>
+  <a href="/crypto-guide-part3.html" class="part-link done">✓ Part 3: Typologies, Mixers, Layering, and Rug Pulls Explained</a>
+  <a href="/crypto-guide-part4.html" class="part-link active">Part 4: How Crypto Wallets Actually End Up Sanctioned</a>
+  <a href="#" class="part-link">Part 5: The Gap Between AML Training and a Real Crypto Case</a>
+  <a href="#" class="part-link">Part 6: Screening Logic and Wallet Addresses, Where It Breaks Down</a>
+</div>
+
+<div class="article-layout">
+  <aside>
+    <div class="toc">
+      <div class="toc-title">In this part</div>
+      <ul class="toc-list">
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#designation">How designation actually works</a></li>
+        <li><a href="#uk-exposure">Direct vs indirect exposure</a></li>
+        <li><a href="#red-flags">OFSI's red flags</a></li>
+        <li><a href="#screening-design">Screening design</a></li>
+      </ul>
+      <div class="toc-progress">
+        <div class="toc-progress-label"><span>Progress</span><span id="pct">0%</span></div>
+        <div class="toc-bar"><div class="toc-fill" id="fill"></div></div>
+      </div>
+      <div class="series-nav-box">
+        <div class="toc-title">Series</div>
+        <a href="/crypto-guide-part1.html" class="sn-link done">✓ Part 1: Foundations</a>
+        <a href="/crypto-guide-part2.html" class="sn-link done">✓ Part 2: What to Do Now</a>
+        <a href="/crypto-guide-part3.html" class="sn-link done">✓ Part 3: Typologies and Red Flags</a>
+        <a href="/crypto-guide-part4.html" class="sn-link active">Part 4: How Wallets Get Sanctioned</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="article-body">
+
+    <section class="article-section" id="intro">
+      <div class="section-num">Introduction</div>
+      <h2>What a wallet designation actually means</h2>
+      <p>A name appearing on a sanctions list is something most AML training covers reasonably well. A wallet address appearing on one is a different animal. The mechanics, the compliance obligations, and the practical traps are genuinely distinct from screening a person's name, and most training built for fiat AML doesn't translate cleanly.</p>
+      <div class="callout warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <div class="callout-title">The OFSI Consolidated List closed on 28 January 2026</div>
+          <div class="callout-text">One structural fact worth knowing before anything else: if you're screening against UK sanctions data, the ground shifted recently. The OFSI Consolidated List, the list most UK compliance teams have built their screening processes around for years, closed on 28 January 2026. UK sanctions designations now live in a single UK Sanctions List, published by the Foreign, Commonwealth and Development Office. If your firm's screening tooling still references the old OFSI list as its primary source, that's now a live gap, not a future one.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section" id="designation">
+      <div class="section-num">Section 01</div>
+      <h2>How a wallet address actually gets designated</h2>
+      <p>OFAC has been adding cryptocurrency wallet addresses directly to the SDN List since 2018, starting with addresses tied to Iranian ransomware operators. The process is the same administrative mechanism used for any SDN designation: OFAC identifies a nexus between a wallet and a sanctioned party, typically through blockchain analytics, intelligence gathering, or coordination with law enforcement, then publishes the address alongside the underlying designation.</p>
+
+      <h3>The scale has grown substantially</h3>
+      <p>A single action in July 2026 added 134 wallet addresses tied to ISIS-K financing in one designation. A May 2026 action against Sinaloa Cartel-linked individuals added six Ethereum addresses, five of them attributed to a single individual, a pattern OFAC itself flagged as multi-wallet fragmentation used to layer funds. That detail matters operationally: a firm screening only the named addresses on the SDN list, without examining the wallet clusters and counterparty relationships around them, will miss exposure sitting one or two hops away from a listed address.</p>
+
+      <h3>Blocked property doesn't require an individual listing</h3>
+      <p>A wallet doesn't need to be individually listed to be blocked property. This is the detail that catches firms out.</p>
+      <div class="callout info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <div class="callout-title">OFAC FAQ 646</div>
+          <div class="callout-text">OFAC's own guidance is explicit: any wallet in which a sanctioned person has a property interest must be blocked, regardless of whether OFAC has published that specific address. The published list is there to help industry, it isn't the exhaustive boundary of what's actually prohibited.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section" id="uk-exposure">
+      <div class="section-num">Section 02</div>
+      <h2>The UK picture: direct exposure versus indirect exposure</h2>
+      <p>OFSI's own Cryptoassets Threat Assessment, published July 2025, sets out a framework worth internalising directly, since it's the regulator's own language, not a third party's interpretation of it. Click either card below for the detail behind each term.</p>
+
+      <div class="exposure-split">
+        <div class="exposure-col">
+          <div class="exposure-head" onclick="toggleExposure(this)">
+            <div class="exposure-head-text">
+              <div class="exposure-label">On-chain, direct</div>
+              <div class="exposure-title">Direct Exposure</div>
+            </div>
+            <span class="exposure-icon">+</span>
+          </div>
+          <div class="exposure-body">
+            <ul>
+              <li>Transacting with a wallet address known to belong to a designated person</li>
+              <li>Sending or receiving crypto-assets owned, held, or controlled by someone on the sanctions list</li>
+            </ul>
+            <div class="exposure-source">Source: OFSI Cryptoassets Threat Assessment, July 2025</div>
+          </div>
+        </div>
+        <div class="exposure-col">
+          <div class="exposure-head" onclick="toggleExposure(this)">
+            <div class="exposure-head-text">
+              <div class="exposure-label">Layered, obscured</div>
+              <div class="exposure-title">Indirect Exposure</div>
+            </div>
+            <span class="exposure-icon">+</span>
+          </div>
+          <div class="exposure-body">
+            <ul>
+              <li>Crypto-assets pass through one or more intermediaries after originating from a designated person's wallet, layering</li>
+              <li>Assets arrive having been mixed or tumbled, making the original source harder to trace</li>
+            </ul>
+            <div class="exposure-source">Source: OFSI Cryptoassets Threat Assessment, July 2025</div>
+          </div>
+        </div>
+      </div>
+
+      <p>OFSI has flagged a specific, recurring failure pattern in how UK firms handle this: identifying a sanctioned transaction only retrospectively, once the firm gains access to better blockchain analytics, well after the transaction has already occurred. That delay creates a reporting problem on top of the underlying exposure, since UK firms classed as relevant firms are legally required to report to OFSI once they know or suspect a breach, and a late-discovered breach is still a breach that needed reporting when it was found, not when it happened.</p>
+
+      <p>A structural point worth understanding, not just memorising: unlike a bank, a crypto-asset firm generally can't simply reject an incoming transaction the way a bank can decline to open an account. Once value arrives on-chain, the firm has to deal with what's now sitting in a wallet it controls, freeze it, report it, and manage it under license conditions, rather than having declined it at the door. That changes the practical shape of sanctions compliance in this sector compared to traditional finance.</p>
+    </section>
+
+    <section class="article-section" id="red-flags">
+      <div class="section-num">Section 03</div>
+      <h2>OFSI's own red flags for crypto sanctions evasion</h2>
+      <p>Straight from the regulator's July 2025 assessment, worth treating as a genuine working checklist rather than paraphrasing into something vaguer:</p>
+      <ul>
+        <li><strong>Counterparties with known associations to designated persons.</strong></li>
+        <li><strong>Unusual or sudden transaction activity</strong>, particularly dormant wallets suddenly becoming active.</li>
+        <li><strong>Activity linked to sanctioned jurisdictions.</strong></li>
+        <li><strong>Proxy payment patterns, mixing, or layering</strong> designed to obscure a transaction's true origin or destination.</li>
+      </ul>
+
+      <p>OFSI's assessment also names a concrete example worth knowing: the regulator found it likely that UK crypto-asset firms had facilitated transactions involving Nobitex, an Iranian exchange with suspected links to a designated entity, illustrating that exposure risk runs through counterparty exchanges, not just individually flagged wallets.</p>
+      <div class="pull-quote">Exposure risk runs through counterparty exchanges, not just individually flagged wallets.</div>
+
+      <div class="try-tool">
+        <div class="tl">
+          <div class="tl-eyebrow">Put it into practice</div>
+          <div class="tl-title">Screen a counterparty or beneficial owner before onboarding</div>
+          <div class="tl-sub">Free, no login. A clean wallet history doesn't rule out sanctions exposure sitting one hop away through a counterparty exchange.</div>
+        </div>
+        <a href="/screen.html" class="tl-btn">Screen a name →</a>
+      </div>
+    </section>
+
+    <section class="article-section" id="screening-design">
+      <div class="section-num">Section 04</div>
+      <h2>What this actually means for screening design</h2>
+      <p>The practical takeaway isn't "screen wallet addresses too", most teams already know that much. It's that wallet screening needs a fundamentally different design than name screening:</p>
+      <ol>
+        <li><strong>Exact match isn't enough, but neither is fuzzy match.</strong> A wallet address is a cryptographic string, there's no "close enough" the way there is with name spelling variants. What's needed instead is cluster-level screening, checking whether an address has ever transacted with a known designated wallet, not just whether it matches one directly.</li>
+        <li><strong>Screening needs to be near-real-time, not point-in-time.</strong> OFSI's own assessment flags retrospective discovery as a recurring, reportable failure. A wallet clean at onboarding can become exposed the moment it receives funds from a newly designated source.</li>
+        <li><strong>The old OFSI Consolidated List is dead as a data source.</strong> If your tooling, or a vendor's, hasn't migrated to the UK Sanctions List as the primary source, that's a live gap worth checking today, not filed away as background reading.</li>
+      </ol>
+
+      <div class="callout amber">
+        <div class="callout-icon">📘</div>
+        <div class="callout-body">
+          <div class="callout-title">This closes Part 4 of the series</div>
+          <div class="callout-text">Part 5 looks at the gap between how AML analysts are typically trained and what a real crypto-touching case actually demands of them. Part 6 goes deeper into where wallet screening logic itself tends to break down.</div>
+        </div>
+      </div>
+
+      <div class="cheat-sheet-card">
+        <div class="cheat-sheet-label">Quick Reference</div>
+        <div class="cheat-sheet-scroll">
+          <svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img">
+            <title>How crypto wallets get sanctioned, cheat sheet summary</title>
+            <desc>Summary card covering wallet designation mechanics, direct versus indirect exposure, OFSI red flags, and a three-point screening design checklist, for the Crypto Guide Part 4 guide.</desc>
+
+            <rect width="800" height="520" class="cs-bg" rx="16"/>
+
+            <text x="40" y="52" class="cs-primary" font-family="Arial, sans-serif" font-size="28" font-weight="700">How Wallets Get Sanctioned</text>
+            <text x="40" y="78" class="cs-muted" font-family="Arial, sans-serif" font-size="15" font-weight="400" letter-spacing="2">AT A GLANCE — CHEAT SHEET</text>
+            <line x1="40" y1="94" x2="760" y2="94" class="cs-divider" stroke-width="1"/>
+
+            <rect x="40" y="116" width="230" height="180" rx="10" class="cs-card" stroke-width="1"/>
+            <text x="60" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">WALLET DESIGNATION</text>
+            <text x="60" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">OFAC adds addresses to</text>
+            <text x="60" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">the SDN List directly</text>
+            <text x="60" y="214" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Blocked property doesn't</text>
+            <text x="60" y="244" class="cs-muted" font-family="Arial, sans-serif" font-size="13">require individual listing</text>
+
+            <rect x="285" y="116" width="230" height="180" rx="10" class="cs-card" stroke-width="1"/>
+            <text x="305" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">DIRECT VS INDIRECT</text>
+            <text x="305" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Direct: wallet known to</text>
+            <text x="305" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">belong to designated person</text>
+            <text x="305" y="214" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Indirect: layered through</text>
+            <text x="305" y="244" class="cs-muted" font-family="Arial, sans-serif" font-size="13">intermediaries or mixers</text>
+
+            <rect x="530" y="116" width="230" height="180" rx="10" class="cs-card" stroke-width="1"/>
+            <text x="550" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">OFSI RED FLAGS</text>
+            <text x="550" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Dormant wallets suddenly</text>
+            <text x="550" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">active, sanctioned jurisdictions</text>
+            <text x="550" y="214" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Proxy payments, mixing,</text>
+            <text x="550" y="244" class="cs-muted" font-family="Arial, sans-serif" font-size="13">counterparty exchange risk</text>
+
+            <text x="40" y="336" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">THE SCREENING DESIGN CHECKLIST</text>
+
+            <g font-family="Arial, sans-serif">
+              <circle cx="150" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="150" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">1</text>
+              <text x="150" y="418" class="cs-muted" font-size="11" text-anchor="middle">Cluster-level screening,</text>
+              <text x="150" y="432" class="cs-muted" font-size="11" text-anchor="middle">not exact match alone</text>
+
+              <line x1="178" y1="380" x2="372" y2="380" class="cs-connector" stroke-width="1.5"/>
+
+              <circle cx="400" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="400" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">2</text>
+              <text x="400" y="418" class="cs-muted" font-size="11" text-anchor="middle">Near-real-time,</text>
+              <text x="400" y="432" class="cs-muted" font-size="11" text-anchor="middle">not point-in-time</text>
+
+              <line x1="428" y1="380" x2="622" y2="380" class="cs-connector" stroke-width="1.5"/>
+
+              <circle cx="650" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="650" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">3</text>
+              <text x="650" y="418" class="cs-muted" font-size="11" text-anchor="middle">Migrate to the UK</text>
+              <text x="650" y="432" class="cs-muted" font-size="11" text-anchor="middle">Sanctions List</text>
+            </g>
+
+            <line x1="40" y1="466" x2="760" y2="466" class="cs-divider" stroke-width="1"/>
+            <text x="40" y="492" class="cs-muted" font-family="Arial, sans-serif" font-size="12">A summary aid, not a substitute for the full guide or professional advice.</text>
+            <text x="760" y="492" class="cs-accent" font-family="Arial, sans-serif" font-size="12" text-anchor="end">fincrimeradar.org</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="part-footer">
+        <div class="pf-prev">
+          <div class="pf-label">← Back</div>
+          <a href="/crypto-guide-part3.html" class="pf-link">Part 3: Typologies, Mixers, Layering, and Rug Pulls Explained</a>
+        </div>
+        <div class="pf-center">Part 4 of 6</div>
+        <div class="pf-next">
+          <div class="pf-label">Next →</div>
+          <a href="#" class="pf-link">Part 5: The Gap Between AML Training and a Real Crypto Case →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  © 2026 FinCrimeRadar · <a href="/">Home</a> · <a href="/knowledge.html">Knowledge Hub</a> · <a href="/screen.html">Screen</a> · <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a> · <a href="/editorial-standards.html">Editorial Standards</a> · <a href="/methodology.html">Methodology</a>
+  <br><br>
+  <span style="font-size:11px;color:#9ca3af;">Decision support, not legal advice. Always verify against official OFAC and OFSI sources before acting on a live case. Last updated July 2026.</span>
+</footer>
+
+<script>
+  function updateProgress() {
+    const pct = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('fill').style.width = pct + '%';
+    document.getElementById('pct').textContent = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+  document.querySelectorAll('section[id]').forEach(s => {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          document.querySelectorAll('.toc-list a').forEach(l => l.classList.remove('active'));
+          const a = document.querySelector(`.toc-list a[href="#${e.target.id}"]`);
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin:'-20% 0px -70% 0px' }).observe(s);
+  });
+
+  function toggleExposure(el) {
+    el.querySelector('.exposure-icon').classList.toggle('open');
+    el.nextElementSibling.classList.toggle('open');
+  }
+</script>
+
+<!-- Cookie Consent Banner -->
+<div id="cookieBanner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; background:#0f2044; border-top:1px solid #1d3a6e; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; box-shadow:0 -4px 20px rgba(0,0,0,0.3);">
+  <div style="flex:1; min-width:260px;">
+    <div style="font-size:13px; font-weight:600; color:#fff; margin-bottom:4px;">🍪 We use cookies</div>
+    <div style="font-size:12px; color:#94a3b8; line-height:1.5;">We use Google Analytics to understand how visitors use FinCrimeRadar. No personal data is sold. See our <a href="/privacy.html" style="color:#93c5fd; text-decoration:none;">Privacy Policy</a>.</div>
+  </div>
+  <div style="display:flex; gap:8px; flex-shrink:0;">
+    <button onclick="rejectCookies()" style="padding:8px 16px; background:transparent; border:1px solid #334155; color:#94a3b8; border-radius:6px; font-size:12px; font-weight:500; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Reject non-essential</button>
+    <button onclick="acceptCookies()" style="padding:8px 18px; background:#00c4a7; border:none; color:#fff; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Accept all</button>
+  </div>
+</div>
+<script>
+  (function() {
+    var consent = localStorage.getItem('fcr_cookie_consent');
+    if (!consent) {
+      document.getElementById('cookieBanner').style.display = 'flex';
+    }
+  })();
+  function acceptCookies() {
+    localStorage.setItem('fcr_cookie_consent', 'accepted');
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { 'analytics_storage': 'granted' });
+    }
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+  function rejectCookies() {
+    localStorage.setItem('fcr_cookie_consent', 'rejected');
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { 'analytics_storage': 'denied' });
+    }
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+</script>
+<script>
+function toggleMobileNav(){
+  var nav=document.getElementById('mobileNav');
+  var btn=document.getElementById('navHamburger');
+  if(!nav) return;
+  var open=nav.classList.toggle('open');
+  btn.innerHTML=open?'&#10005;':'&#9776;';
+  document.body.style.overflow=open?'hidden':'';
+}
+document.addEventListener('click',function(e){
+  var nav=document.getElementById('mobileNav');
+  var btn=document.getElementById('navHamburger');
+  if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==btn){
+    nav.classList.remove('open');
+    btn.innerHTML='&#9776;';
+    document.body.style.overflow='';
+  }
+});
+</script>
+<script defer src="/brand.js"></script>
+</body>
+</html>
