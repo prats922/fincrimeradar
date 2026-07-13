@@ -24,21 +24,21 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Crypto Guide Part 5: The Gap Between AML Training and a Real Crypto Case | FinCrimeRadar</title>
-  <meta name="description" content="Five gaps standard AML training leaves in a genuinely crypto-touching case: no bank in the middle to block a transaction, identity versus wallet attribution, what a clean on-chain history actually means, review-cycle pace, and reading a wallet graph." />
-  <meta name="keywords" content="AML training gaps crypto, KYC wallet attribution, crypto case investigation skills, wallet graph analysis training, Scenario Lab KYC sanctions investigation, on-chain review cycle sanctions" />
-  <link rel="canonical" href="https://fincrimeradar.org/crypto-guide-part5.html" />
+    <title>The Crypto Guide Part 6: Screening Logic and Wallet Addresses, Where It Breaks Down | FinCrimeRadar</title>
+  <meta name="description" content="Where wallet screening logic actually breaks down: clustering confidence thresholds, why mixing defeats the clustering assumption, cross-chain visibility gaps, custodial wallet attribution, and five design requirements for screening tools that hold up." />
+  <meta name="keywords" content="wallet screening design, address clustering AML, sanctions screening confidence threshold, cross-chain wallet visibility, custodial wallet attribution, crypto screening tool requirements" />
+  <link rel="canonical" href="https://fincrimeradar.org/crypto-guide-part6.html" />
   <!-- Open Graph -->
-  <meta property="og:title" content="The Crypto Guide Part 5: The Gap Between AML Training and a Real Crypto Case | FinCrimeRadar" />
-  <meta property="og:description" content="Five gaps standard AML training leaves in a genuinely crypto-touching case: no bank in the middle to block a transaction, identity versus wallet attribution, what a clean on-chain history actually means, review-cycle pace, and reading a wallet graph." />
-  <meta property="og:url" content="https://fincrimeradar.org/crypto-guide-part5.html" />
+  <meta property="og:title" content="The Crypto Guide Part 6: Screening Logic and Wallet Addresses, Where It Breaks Down | FinCrimeRadar" />
+  <meta property="og:description" content="Where wallet screening logic actually breaks down: clustering confidence thresholds, why mixing defeats the clustering assumption, cross-chain visibility gaps, custodial wallet attribution, and five design requirements for screening tools that hold up." />
+  <meta property="og:url" content="https://fincrimeradar.org/crypto-guide-part6.html" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://fincrimeradar.org/og-image.png" />
   <meta property="og:site_name" content="FinCrimeRadar" />
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="The Crypto Guide Part 5: The Gap Between AML Training and a Real Crypto Case | FinCrimeRadar" />
-  <meta name="twitter:description" content="Five gaps standard AML training leaves in a genuinely crypto-touching case: no bank in the middle to block a transaction, identity versus wallet attribution, what a clean on-chain history actually means, review-cycle pace, and reading a wallet graph." />
+  <meta name="twitter:title" content="The Crypto Guide Part 6: Screening Logic and Wallet Addresses, Where It Breaks Down | FinCrimeRadar" />
+  <meta name="twitter:description" content="Where wallet screening logic actually breaks down: clustering confidence thresholds, why mixing defeats the clustering assumption, cross-chain visibility gaps, custodial wallet attribution, and five design requirements for screening tools that hold up." />
   <meta name="twitter:image" content="https://fincrimeradar.org/og-image.png" />
   <!-- Schema.org -->
   <meta name="author" content="Pratik Zanke, FinCrimeRadar" />
@@ -217,7 +217,7 @@
   </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Crypto Guide Part 5: The Gap Between AML Training and a Real Crypto Case","url":"https://fincrimeradar.org/crypto-guide-part5.html","publisher":{"@type":"Organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org"},"datePublished":"2026-07-13"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Crypto Guide Part 6: Screening Logic and Wallet Addresses, Where It Breaks Down","url":"https://fincrimeradar.org/crypto-guide-part6.html","publisher":{"@type":"Organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org"},"datePublished":"2026-07-13"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -226,7 +226,7 @@
        defines --accent globally (teal), which would otherwise override the
        first inline block. --hero-accent-em is intentionally left as brand.css's
        green, it is a shared hero convention, not a guide specific accent.
-       Blue carried over from Parts 1 through 4 so the series reads as one accent. -->
+       Blue carried over from Parts 1 through 5 so the series reads as one accent. -->
   <style>
     :root {
       --accent: #2563eb;
@@ -257,14 +257,14 @@
 </div>
 
 <div class="series-hero">
-  <div class="series-tag">Crypto Compliance Guide · Part 5 of 6</div>
-  <h1>The Crypto Guide, Part 5: <em>The Gap Between AML Training and a Real Crypto Case</em></h1>
-  <p class="series-sub">Written for the analyst who's completed the training and still feels unprepared for the first real case.</p>
+  <div class="series-tag">Crypto Compliance Guide · Part 6 of 6</div>
+  <h1>The Crypto Guide, Part 6: <em>Screening Logic and Wallet Addresses, Where It Breaks Down</em></h1>
+  <p class="series-sub">Written for the analyst, or the person specifying what a wallet screening tool actually needs to do.</p>
   <div class="series-meta">
-    <span>8 min read</span>
-    <span>Analyst readiness</span>
-    <span>Five training gaps</span>
-    <span>Scenario Lab cross-link</span>
+    <span>9 min read</span>
+    <span>Screening design</span>
+    <span>Series finale</span>
+    <span>Technical deep dive</span>
   </div>
 </div>
 
@@ -273,8 +273,8 @@
   <a href="/crypto-guide-part2.html" class="part-link done">✓ Part 2: What to Actually Do Before October 2027</a>
   <a href="/crypto-guide-part3.html" class="part-link done">✓ Part 3: Typologies, Mixers, Layering, and Rug Pulls Explained</a>
   <a href="/crypto-guide-part4.html" class="part-link done">✓ Part 4: How Crypto Wallets Actually End Up Sanctioned</a>
-  <a href="/crypto-guide-part5.html" class="part-link active">Part 5: The Gap Between AML Training and a Real Crypto Case</a>
-  <a href="/crypto-guide-part6.html" class="part-link">Part 6: Screening Logic and Wallet Addresses, Where It Breaks Down</a>
+  <a href="/crypto-guide-part5.html" class="part-link done">✓ Part 5: The Gap Between AML Training and a Real Crypto Case</a>
+  <a href="/crypto-guide-part6.html" class="part-link active">Part 6: Screening Logic and Wallet Addresses, Where It Breaks Down</a>
 </div>
 
 <div class="article-layout">
@@ -283,12 +283,12 @@
       <div class="toc-title">In this part</div>
       <ul class="toc-list">
         <li><a href="#intro">Introduction</a></li>
-        <li><a href="#gap-one">Gap 1: No bank in the middle</a></li>
-        <li><a href="#gap-two">Gap 2: Identity vs ownership</a></li>
-        <li><a href="#gap-three">Gap 3: "Clean" on-chain history</a></li>
-        <li><a href="#gap-four">Gap 4: The pace problem</a></li>
-        <li><a href="#gap-five">Gap 5: Reading a wallet graph</a></li>
-        <li><a href="#closing">Closing the gap</a></li>
+        <li><a href="#exact-match">Exact match isn't enough</a></li>
+        <li><a href="#mixing">Mixing breaks clustering</a></li>
+        <li><a href="#cross-chain">Cross-chain resets tooling</a></li>
+        <li><a href="#custodial">Custodial wallets hide individuals</a></li>
+        <li><a href="#requirements">What good screening requires</a></li>
+        <li><a href="#closing">Closing the series</a></li>
       </ul>
       <div class="toc-progress">
         <div class="toc-progress-label"><span>Progress</span><span id="pct">0%</span></div>
@@ -300,7 +300,8 @@
         <a href="/crypto-guide-part2.html" class="sn-link done">✓ Part 2: What to Do Now</a>
         <a href="/crypto-guide-part3.html" class="sn-link done">✓ Part 3: Typologies and Red Flags</a>
         <a href="/crypto-guide-part4.html" class="sn-link done">✓ Part 4: How Wallets Get Sanctioned</a>
-        <a href="/crypto-guide-part5.html" class="sn-link active">Part 5: The Training Gap</a>
+        <a href="/crypto-guide-part5.html" class="sn-link done">✓ Part 5: The Training Gap</a>
+        <a href="/crypto-guide-part6.html" class="sn-link active">Part 6: Screening Logic</a>
       </div>
     </div>
   </aside>
@@ -309,59 +310,90 @@
 
     <section class="article-section" id="intro">
       <div class="section-num">Introduction</div>
-      <h2>Where standard AML training runs out</h2>
-      <p>Most AML training programmes were built for a world of names, accounts, and correspondent banking relationships. That training isn't wrong, the underlying skill, recognising a pattern inconsistent with a stated profile, still applies. But a genuinely crypto-touching case exposes gaps that standard training simply doesn't cover, and an analyst who's never had those gaps named tends to discover them under pressure, mid-investigation, rather than beforehand.</p>
-      <div class="pull-quote">This part names the gaps directly.</div>
+      <h2>The most technical part of the series</h2>
+      <p>Parts 1 through 5 covered the regulatory landscape, the typologies, and the training gap. This closing part is the most technical: where wallet screening logic itself actually breaks down in practice, the specific mechanics, not just the general warning that "crypto is different."</p>
     </section>
 
-    <section class="article-section" id="gap-one">
-      <div class="section-num">Gap 01</div>
-      <h2>Fiat training assumes a bank in the middle</h2>
-      <p>Traditional AML training is built around the assumption that value moves through regulated intermediaries, banks, payment processors, each capable of holding, delaying, or refusing a transaction. <a href="/crypto-guide-part4.html">Part 4</a> already covered the structural consequence of this assumption breaking down in crypto: a firm often can't simply decline an incoming on-chain transaction the way a bank can decline to open an account. An analyst trained purely on "when in doubt, block the transaction" hits a genuine procedural wall the first time they're looking at value that's already landed in a wallet the firm controls, with no equivalent "return to sender" option available.</p>
+    <section class="article-section" id="exact-match">
+      <div class="section-num">Breakdown 01</div>
+      <h2>Exact match is necessary but nowhere near sufficient</h2>
+      <p>Screening a wallet address against a sanctions list sounds simple: string match, done. It isn't, for two structural reasons.</p>
+
+      <h3>A designated person rarely operates only one address</h3>
+      <p><a href="/crypto-guide-part4.html">Part 4</a> covered a real example, five Ethereum addresses attributed to a single sanctioned individual in one OFAC action. Screening only the addresses actually published on a sanctions list misses every unpublished address in that same person's cluster, and clusters are identified through blockchain analytics and heuristics, common-input-ownership, change address detection, exchange deposit tagging, not through the sanctions list itself.</p>
+
+      <h3>Clustering confidence isn't binary</h3>
+      <p>A wallet might be attributed to a sanctioned entity with high confidence, based on repeated direct transactions, or with much lower confidence, based on an indirect pattern that merely resembles known behaviour. A screening tool that treats every cluster hit as equally certain will either drown analysts in low-confidence noise or, worse, get tuned down until it also suppresses genuine high-confidence hits.</p>
+
+      <div class="callout info">
+        <div class="callout-body">
+          <div class="callout-title">A design decision, not a technical afterthought</div>
+          <div class="callout-text">Confidence thresholds need to be explicit and adjustable, not baked in silently. Whoever owns the screening design has to decide, deliberately, where the line between "flag it" and "suppress it" actually sits.</div>
+        </div>
+      </div>
     </section>
 
-    <section class="article-section" id="gap-two">
-      <div class="section-num">Gap 02</div>
-      <h2>Identity and ownership don't map the way KYC training assumes</h2>
-      <p>Standard KYC training teaches verifying who a customer is. Crypto adds a second, separate question standard training rarely addresses with any depth: whose wallet is this, actually. A customer can pass every identity check and still control multiple wallets under different guises, or conversely, a wallet address alone tells you nothing about who controls it without additional attribution work, clustering, exchange deposit tagging, or off-chain intelligence. An analyst trained to think "identity verified, case closed" misses that wallet-level attribution is a distinct, ongoing task, not something settled once at onboarding.</p>
+    <section class="article-section" id="mixing">
+      <div class="section-num">Breakdown 02</div>
+      <h2>Mixing and tumbling break the assumption clustering relies on</h2>
+      <p>Address clustering heuristics generally work by inferring that addresses used together in the same transaction are likely controlled by the same entity. A mixing service exists specifically to break that inference, pooling funds from many unrelated users and redistributing them so that the on-chain link between a deposit and a withdrawal address is deliberately severed. This is exactly why <a href="/crypto-guide-part3.html">Part 3</a> framed mixer usage as a red flag requiring further review rather than an automatic red flag against the receiving address itself, mixing is genuinely dual-use, and a screening design that treats every address that's ever touched a mixer as automatically tainted will flag a large volume of entirely legitimate activity alongside the genuinely suspicious activity it's trying to catch.</p>
     </section>
 
-    <section class="article-section" id="gap-three">
-      <div class="section-num">Gap 03</div>
-      <h2>"Clean history" means something different on-chain</h2>
-      <p>In fiat AML, a clean transaction history over time is genuinely reassuring. On-chain, a wallet's history can look clean simply because the tooling in use doesn't have visibility into activity on other chains, or because funds arrived via a bridge or mixer that severed the traceable link to their origin, not because the funds are actually clean. An analyst applying fiat intuition, "nothing's flagged, therefore it's fine", is applying a standard that doesn't transfer.</p>
+    <section class="article-section" id="cross-chain">
+      <div class="section-num">Breakdown 03</div>
+      <h2>Cross-chain activity resets what your tooling actually knows</h2>
+      <p>A wallet's transaction history on one chain tells you nothing about its activity on another. Bridges and cross-chain swaps move value between blockchains, and different bridge protocols vary significantly in how much transaction metadata they preserve versus discard in the process. A screening tool built around single-chain visibility will show a wallet as having a short, clean history, when in reality that's simply where its visible history begins, not where its activity actually started.</p>
     </section>
 
-    <section class="article-section" id="gap-four">
-      <div class="section-num">Gap 04</div>
-      <h2>The pace is faster than the review cycle</h2>
-      <p>A suspicious fiat transaction typically allows some window for review before it settles irreversibly. On-chain finality is often near-immediate. This changes what "acting quickly" actually means in practice, and it's a big part of why OFSI specifically flagged retrospective discovery, catching a sanctioned transaction only after better analytics tools became available, as a recurring, reportable failure pattern among UK crypto firms, covered in <a href="/crypto-guide-part4.html">Part 4</a>. Standard training rarely prepares an analyst for a case where the review window has already closed before the review even starts.</p>
+    <section class="article-section" id="custodial">
+      <div class="section-num">Breakdown 04</div>
+      <h2>Custodial wallets hide the individual behind the exchange</h2>
+      <p>A wallet address belonging to a cryptocurrency exchange represents potentially thousands of individual users pooled together. Activity that looks like one entity's behaviour from the outside, high volume, frequent counterparties, is often just the exchange's own operational wallet doing what exchange wallets do. Distinguishing a genuine custodial exchange wallet from a wallet exhibiting exchange-like behaviour for less legitimate reasons requires attribution data most raw on-chain analysis alone can't supply, exchange wallet labelling depends on external intelligence, not just transaction graph analysis.</p>
     </section>
 
-    <section class="article-section" id="gap-five">
-      <div class="section-num">Gap 05</div>
-      <h2>Standard training doesn't teach you to read a wallet graph</h2>
-      <p>This is the most concrete, learnable skill gap, and arguably the easiest one to actually close. Reading a cluster of connected wallets, spotting a peel chain, recognising a tightly-knit group of addresses trading only with each other, none of this is covered in a typical AML certification course, and all of it is a genuinely learnable, practical skill once someone's shown what to look for. <a href="/crypto-guide-part3.html">Part 3</a> of this series covered the underlying typologies directly.</p>
-    </section>
+    <section class="article-section" id="requirements">
+      <div class="section-num">Section 05</div>
+      <h2>What good wallet screening actually requires, in practice</h2>
+      <p>Pulling the above together into design requirements, not just warnings:</p>
+      <ol>
+        <li><strong>Cluster-aware screening, not single-address matching</strong>, with an explicit, adjustable confidence threshold rather than a fixed, opaque cutoff.</li>
+        <li><strong>Ongoing, near-real-time monitoring</strong>, not point-in-time screening at onboarding, given how fast a clean wallet can become exposed.</li>
+        <li><strong>Multi-chain visibility built in from the start</strong>, not treated as a future enhancement, since single-chain tooling systematically understates genuine risk.</li>
+        <li><strong>Mixer interaction treated as a risk factor triggering review</strong>, not an automatic disqualifier, consistent with the dual-use reality covered in <a href="/crypto-guide-part3.html">Part 3</a>.</li>
+        <li><strong>Exchange wallet labelling maintained as a distinct data source</strong>, since transaction graph analysis alone can't reliably tell a custodial wallet from an unusually active individual one.</li>
+      </ol>
 
-    <section class="article-section" id="closing">
-      <div class="section-num">Closing</div>
-      <h2>Closing this gap deliberately, not by accident</h2>
-      <p>None of the five gaps above get closed by reading about them once. They get closed by working through cases that force the decision the way a real one would, which is the entire premise behind <a href="/scenario-lab.html">Scenario Lab</a>'s KYC and Sanctions Investigation module: building an actual ownership tree, screening entities in sequence, and making a disposition call against a case that's specifically designed to test whether a clean surface result gets treated as the end of the analysis or the start of it. If any of the five gaps above sound familiar from your own experience, that's a reasonable place to test the actual skill, not just read another paragraph about it.</p>
+      <div class="pull-quote">The tool's job is to surface the right pattern with the right context.</div>
+      <p>None of this replaces human judgement, it structures what the human judgement is actually being applied to. The analyst's job, same as every case in <a href="/scenario-lab.html">Scenario Lab</a>, is deciding what that pattern actually means.</p>
 
       <div class="try-tool">
         <div class="tl">
           <div class="tl-eyebrow">Put it into practice</div>
-          <div class="tl-title">Test the five gaps in Scenario Lab's KYC and Sanctions Investigation module</div>
-          <div class="tl-sub">Free, no login. Build an ownership tree, screen entities in sequence, and make a real disposition call.</div>
+          <div class="tl-title">See sanctions and PEP screening applied to a real name check</div>
+          <div class="tl-sub">Free, no login. The same judgement call this guide describes for wallets applies directly to counterparties and beneficial owners.</div>
         </div>
-        <a href="/scenario-lab.html" class="tl-btn">Open Scenario Lab →</a>
+        <a href="/screen.html" class="tl-btn">Screen a name →</a>
       </div>
+    </section>
+
+    <section class="article-section" id="closing">
+      <div class="section-num">Closing</div>
+      <h2>Where the Crypto Guide closes</h2>
+      <p>This closes the Crypto Guide series. Together, all six parts cover what counts as regulated activity, the current authorisation timeline, the actual laundering typologies, how wallet sanctions designations work in practice, where standard AML training falls short for crypto-touching cases, and where wallet screening logic itself needs to be built differently from name screening.</p>
 
       <div class="callout amber">
         <div class="callout-body">
-          <div class="callout-title">This closes Part 5 of the series</div>
-          <div class="callout-text">Part 6 goes deeper into the specific mechanics of where wallet screening logic itself tends to break down, address clustering, mixing, and cross-chain visibility gaps.</div>
+          <div class="callout-title">The complete series</div>
+          <div class="callout-text">
+            <ul style="padding-left:1.15rem; margin-bottom:0;">
+              <li><a href="/crypto-guide-part1.html">Part 1: Foundations and the Regulatory Ground Shifting Beneath Them</a></li>
+              <li><a href="/crypto-guide-part2.html">Part 2: What to Actually Do Before October 2027</a></li>
+              <li><a href="/crypto-guide-part3.html">Part 3: Typologies, Mixers, Layering, and Rug Pulls Explained</a></li>
+              <li><a href="/crypto-guide-part4.html">Part 4: How Crypto Wallets Actually End Up Sanctioned</a></li>
+              <li><a href="/crypto-guide-part5.html">Part 5: The Gap Between AML Training and a Real Crypto Case</a></li>
+              <li><a href="/crypto-guide-part6.html">Part 6: Screening Logic and Wallet Addresses, Where It Breaks Down</a></li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -369,59 +401,72 @@
         <div class="cheat-sheet-label">Quick Reference</div>
         <div class="cheat-sheet-scroll">
           <svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img">
-            <title>The training gap between AML certification and a real crypto case, cheat sheet summary</title>
-            <desc>Summary card listing five gaps between standard AML training and crypto-touching casework, plus a pointer to Scenario Lab's KYC and Sanctions Investigation module, for the Crypto Guide Part 5 guide.</desc>
+            <title>Where wallet screening logic breaks down, cheat sheet summary</title>
+            <desc>Summary card covering clustering and confidence, mixing as dual-use, cross-chain and custodial wallet gaps, and five design requirements for wallet screening tools, for the Crypto Guide Part 6 guide.</desc>
 
             <rect width="800" height="520" class="cs-bg" rx="16"/>
 
-            <text x="40" y="52" class="cs-primary" font-family="Arial, sans-serif" font-size="28" font-weight="700">The Training Gap, At A Glance</text>
-            <text x="40" y="78" class="cs-muted" font-family="Arial, sans-serif" font-size="15" font-weight="400" letter-spacing="2">FIVE GAPS — CHEAT SHEET</text>
+            <text x="40" y="52" class="cs-primary" font-family="Arial, sans-serif" font-size="28" font-weight="700">Where Screening Breaks Down</text>
+            <text x="40" y="78" class="cs-muted" font-family="Arial, sans-serif" font-size="15" font-weight="400" letter-spacing="2">AT A GLANCE — CHEAT SHEET</text>
             <line x1="40" y1="94" x2="760" y2="94" class="cs-divider" stroke-width="1"/>
 
-            <text x="40" y="130" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">THE FIVE TRAINING GAPS</text>
+            <rect x="40" y="116" width="230" height="180" rx="10" class="cs-card" stroke-width="1"/>
+            <text x="60" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">CLUSTERING &amp; CONFIDENCE</text>
+            <text x="60" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Multiple addresses per</text>
+            <text x="60" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">entity, not one-to-one</text>
+            <text x="60" y="214" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Confidence thresholds</text>
+            <text x="60" y="244" class="cs-muted" font-family="Arial, sans-serif" font-size="13">must be explicit, adjustable</text>
+
+            <rect x="285" y="116" width="230" height="180" rx="10" class="cs-card" stroke-width="1"/>
+            <text x="305" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">MIXING IS DUAL-USE</text>
+            <text x="305" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Breaks the clustering</text>
+            <text x="305" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">inference deliberately</text>
+            <text x="305" y="214" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Flag for review, don't</text>
+            <text x="305" y="244" class="cs-muted" font-family="Arial, sans-serif" font-size="13">auto-block the receiver</text>
+
+            <rect x="530" y="116" width="230" height="180" rx="10" class="cs-card" stroke-width="1"/>
+            <text x="550" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">CROSS-CHAIN &amp; CUSTODIAL</text>
+            <text x="550" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Short history may just</text>
+            <text x="550" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">be where visibility starts</text>
+            <text x="550" y="214" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Exchange wallets need</text>
+            <text x="550" y="244" class="cs-muted" font-family="Arial, sans-serif" font-size="13">labelling, not just graphs</text>
+
+            <text x="40" y="336" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">THE FIVE DESIGN REQUIREMENTS</text>
 
             <g font-family="Arial, sans-serif">
-              <circle cx="80" cy="195" r="18" class="cs-circle" stroke-width="1.5"/>
-              <text x="80" y="201" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">1</text>
-              <text x="80" y="233" class="cs-muted" font-size="11" text-anchor="middle">No bank in the</text>
-              <text x="80" y="247" class="cs-muted" font-size="11" text-anchor="middle">middle to block it</text>
+              <circle cx="80" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="80" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">1</text>
+              <text x="80" y="418" class="cs-muted" font-size="11" text-anchor="middle">Cluster-aware,</text>
+              <text x="80" y="432" class="cs-muted" font-size="11" text-anchor="middle">not 1:1 matching</text>
 
-              <line x1="108" y1="195" x2="212" y2="195" class="cs-connector" stroke-width="1.5"/>
+              <line x1="108" y1="380" x2="212" y2="380" class="cs-connector" stroke-width="1.5"/>
 
-              <circle cx="240" cy="195" r="18" class="cs-circle" stroke-width="1.5"/>
-              <text x="240" y="201" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">2</text>
-              <text x="240" y="233" class="cs-muted" font-size="11" text-anchor="middle">Identity verified</text>
-              <text x="240" y="247" class="cs-muted" font-size="11" text-anchor="middle">≠ wallet control</text>
+              <circle cx="240" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="240" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">2</text>
+              <text x="240" y="418" class="cs-muted" font-size="11" text-anchor="middle">Near-real-time,</text>
+              <text x="240" y="432" class="cs-muted" font-size="11" text-anchor="middle">ongoing monitoring</text>
 
-              <line x1="268" y1="195" x2="372" y2="195" class="cs-connector" stroke-width="1.5"/>
+              <line x1="268" y1="380" x2="372" y2="380" class="cs-connector" stroke-width="1.5"/>
 
-              <circle cx="400" cy="195" r="18" class="cs-circle" stroke-width="1.5"/>
-              <text x="400" y="201" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">3</text>
-              <text x="400" y="233" class="cs-muted" font-size="11" text-anchor="middle">"Clean" history</text>
-              <text x="400" y="247" class="cs-muted" font-size="11" text-anchor="middle">isn't always clean</text>
+              <circle cx="400" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="400" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">3</text>
+              <text x="400" y="418" class="cs-muted" font-size="11" text-anchor="middle">Multi-chain</text>
+              <text x="400" y="432" class="cs-muted" font-size="11" text-anchor="middle">visibility built in</text>
 
-              <line x1="428" y1="195" x2="532" y2="195" class="cs-connector" stroke-width="1.5"/>
+              <line x1="428" y1="380" x2="532" y2="380" class="cs-connector" stroke-width="1.5"/>
 
-              <circle cx="560" cy="195" r="18" class="cs-circle" stroke-width="1.5"/>
-              <text x="560" y="201" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">4</text>
-              <text x="560" y="233" class="cs-muted" font-size="11" text-anchor="middle">Finality outruns</text>
-              <text x="560" y="247" class="cs-muted" font-size="11" text-anchor="middle">the review cycle</text>
+              <circle cx="560" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="560" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">4</text>
+              <text x="560" y="418" class="cs-muted" font-size="11" text-anchor="middle">Mixer flags review,</text>
+              <text x="560" y="432" class="cs-muted" font-size="11" text-anchor="middle">not auto-block</text>
 
-              <line x1="588" y1="195" x2="692" y2="195" class="cs-connector" stroke-width="1.5"/>
+              <line x1="588" y1="380" x2="692" y2="380" class="cs-connector" stroke-width="1.5"/>
 
-              <circle cx="720" cy="195" r="18" class="cs-circle" stroke-width="1.5"/>
-              <text x="720" y="201" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">5</text>
-              <text x="720" y="233" class="cs-muted" font-size="11" text-anchor="middle">Wallet graphs</text>
-              <text x="720" y="247" class="cs-muted" font-size="11" text-anchor="middle">aren't taught</text>
+              <circle cx="720" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="720" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">5</text>
+              <text x="720" y="418" class="cs-muted" font-size="11" text-anchor="middle">Exchange wallet</text>
+              <text x="720" y="432" class="cs-muted" font-size="11" text-anchor="middle">labelling maintained</text>
             </g>
-
-            <rect x="40" y="280" width="720" height="160" rx="10" class="cs-card" stroke-width="1"/>
-            <text x="60" y="312" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">CLOSE THE GAP DELIBERATELY</text>
-            <text x="60" y="338" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Scenario Lab's KYC and Sanctions</text>
-            <text x="60" y="358" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Investigation module is built to test</text>
-            <text x="60" y="378" class="cs-primary" font-family="Arial, sans-serif" font-size="13">exactly these five gaps: build an</text>
-            <text x="60" y="398" class="cs-primary" font-family="Arial, sans-serif" font-size="13">ownership tree, screen in sequence,</text>
-            <text x="60" y="418" class="cs-muted" font-family="Arial, sans-serif" font-size="13">and make a real disposition call.</text>
 
             <line x1="40" y1="466" x2="760" y2="466" class="cs-divider" stroke-width="1"/>
             <text x="40" y="492" class="cs-muted" font-family="Arial, sans-serif" font-size="12">A summary aid, not a substitute for the full guide or professional advice.</text>
@@ -433,12 +478,12 @@
       <div class="part-footer">
         <div class="pf-prev">
           <div class="pf-label">← Back</div>
-          <a href="/crypto-guide-part4.html" class="pf-link">Part 4: How Crypto Wallets Actually End Up Sanctioned</a>
+          <a href="/crypto-guide-part5.html" class="pf-link">Part 5: The Gap Between AML Training and a Real Crypto Case</a>
         </div>
-        <div class="pf-center">Part 5 of 6</div>
+        <div class="pf-center">Part 6 of 6</div>
         <div class="pf-next">
-          <div class="pf-label">Next →</div>
-          <a href="/crypto-guide-part6.html" class="pf-link">Part 6: Screening Logic and Wallet Addresses, Where It Breaks Down →</a>
+          <div class="pf-label">All series →</div>
+          <a href="/knowledge.html" class="pf-link">Knowledge Hub →</a>
         </div>
       </div>
     </section>
