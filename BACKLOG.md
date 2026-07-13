@@ -45,9 +45,7 @@ Knowledge Hub articles and guide series. Ship two to three parts of a series clo
 **Done:**
 - ✅ MLRO Handbook, Part 1: Becoming SMF16 or SMF17 (includes cheat sheet component)
 - ✅ MLRO Handbook, Part 2: The Role, SARs and Enforcement
-- ✅ Crypto Guide, Part 1
-- ✅ Crypto Guide, Part 2
-- ✅ Crypto Guide, Part 3: Typologies, Mixers, Layering, and Rug Pulls Explained (series complete)
+- ✅ Crypto Guide, complete six-part series: Part 1 (Foundations), Part 2 (What to Do Before October 2027), Part 3 (Typologies, Mixers, Layering, Rug Pulls), Part 4 (How Wallets Actually End Up Sanctioned), Part 5 (The Gap Between AML Training and a Real Crypto Case), Part 6 (Screening Logic, Where It Breaks Down)
 - ✅ Editorial Standards and Methodology pages, linked from every page footer
 
 **Next up:**
