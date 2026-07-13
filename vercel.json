@@ -1,5 +1,6 @@
 {
   "redirects": [
-    { "source": "/news.html", "destination": "/", "permanent": true }
+    { "source": "/news.html", "destination": "/", "permanent": true },
+    { "source": "/fincrimeradar-landing.html", "destination": "/", "permanent": true }
   ]
 }
