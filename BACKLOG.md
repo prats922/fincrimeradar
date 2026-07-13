@@ -47,9 +47,9 @@ Knowledge Hub articles and guide series. Ship two to three parts of a series clo
 - ✅ MLRO Handbook, Part 2: The Role, SARs and Enforcement
 - ✅ Crypto Guide, complete six-part series: Part 1 (Foundations), Part 2 (What to Do Before October 2027), Part 3 (Typologies, Mixers, Layering, Rug Pulls), Part 4 (How Wallets Actually End Up Sanctioned), Part 5 (The Gap Between AML Training and a Real Crypto Case), Part 6 (Screening Logic, Where It Breaks Down)
 - ✅ Editorial Standards and Methodology pages, linked from every page footer
+- ✅ Consistent author attribution on guides: "Written by Pratik Zanke" byline linking to `about.html`, added near the top (right after the hero subtitle) on all 24 guide pages, same placement and styling across the AML/PEP/SAR/FATF/MLRO/Crypto series and the standalone deep-dive guides
 
 **Next up:**
-- [ ] **Consistent author attribution on guides.** `about.html` carries founder credibility but individual guide pages don't visibly attribute authorship. Add a byline/author block to each guide, consistent placement, linking back to `about.html`. Retrofit onto existing guides alongside (or as part of) the cheat sheet retrofit already queued in the Polish loop, natural to do both in the same pass per guide rather than two separate touches on the same files.
 - [ ] Possible MLRO Handbook Part 3: resourcing benchmarks by firm size, FCA's move toward AML supervisor for professional services (flagged as a maybe in Part 2's closing note, not committed yet)
 
 **Investigation handbook series, next major content push once the above is clear.** Positioning shift: most free AML content explains what the rules say, this series teaches how the actual investigative work gets done, direct match to practitioner background rather than research-only content. Sequence:
