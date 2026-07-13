@@ -24,21 +24,21 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Crypto Guide Part 4: How Crypto Wallets Actually End Up Sanctioned | FinCrimeRadar</title>
-  <meta name="description" content="How OFAC and OFSI actually designate wallet addresses, direct versus indirect exposure under the UK Sanctions List, FAQ 646 blocked property, and what wallet screening design needs that name screening doesn't." />
-  <meta name="keywords" content="crypto wallet sanctions, OFAC SDN wallet address, OFSI cryptoassets threat assessment, UK Sanctions List crypto, blocked property FAQ 646, direct indirect exposure crypto, wallet screening design" />
-  <link rel="canonical" href="https://fincrimeradar.org/crypto-guide-part4.html" />
+    <title>The Crypto Guide Part 5: The Gap Between AML Training and a Real Crypto Case | FinCrimeRadar</title>
+  <meta name="description" content="Five gaps standard AML training leaves in a genuinely crypto-touching case: no bank in the middle to block a transaction, identity versus wallet attribution, what a clean on-chain history actually means, review-cycle pace, and reading a wallet graph." />
+  <meta name="keywords" content="AML training gaps crypto, KYC wallet attribution, crypto case investigation skills, wallet graph analysis training, Scenario Lab KYC sanctions investigation, on-chain review cycle sanctions" />
+  <link rel="canonical" href="https://fincrimeradar.org/crypto-guide-part5.html" />
   <!-- Open Graph -->
-  <meta property="og:title" content="The Crypto Guide Part 4: How Crypto Wallets Actually End Up Sanctioned | FinCrimeRadar" />
-  <meta property="og:description" content="How OFAC and OFSI actually designate wallet addresses, direct versus indirect exposure under the UK Sanctions List, FAQ 646 blocked property, and what wallet screening design needs that name screening doesn't." />
-  <meta property="og:url" content="https://fincrimeradar.org/crypto-guide-part4.html" />
+  <meta property="og:title" content="The Crypto Guide Part 5: The Gap Between AML Training and a Real Crypto Case | FinCrimeRadar" />
+  <meta property="og:description" content="Five gaps standard AML training leaves in a genuinely crypto-touching case: no bank in the middle to block a transaction, identity versus wallet attribution, what a clean on-chain history actually means, review-cycle pace, and reading a wallet graph." />
+  <meta property="og:url" content="https://fincrimeradar.org/crypto-guide-part5.html" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://fincrimeradar.org/og-image.png" />
   <meta property="og:site_name" content="FinCrimeRadar" />
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="The Crypto Guide Part 4: How Crypto Wallets Actually End Up Sanctioned | FinCrimeRadar" />
-  <meta name="twitter:description" content="How OFAC and OFSI actually designate wallet addresses, direct versus indirect exposure under the UK Sanctions List, FAQ 646 blocked property, and what wallet screening design needs that name screening doesn't." />
+  <meta name="twitter:title" content="The Crypto Guide Part 5: The Gap Between AML Training and a Real Crypto Case | FinCrimeRadar" />
+  <meta name="twitter:description" content="Five gaps standard AML training leaves in a genuinely crypto-touching case: no bank in the middle to block a transaction, identity versus wallet attribution, what a clean on-chain history actually means, review-cycle pace, and reading a wallet graph." />
   <meta name="twitter:image" content="https://fincrimeradar.org/og-image.png" />
   <!-- Schema.org -->
   <meta name="author" content="Pratik Zanke, FinCrimeRadar" />
@@ -106,7 +106,6 @@
     .article-section a { color:var(--blue); text-decoration:none; }
     .article-section a:hover { text-decoration:underline; }
     .callout { border-radius:10px; padding:1.1rem 1.4rem; margin:1.25rem 0; display:flex; gap:12px; }
-    .callout-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
     .callout-body { flex:1; }
     .callout-title { font-size:12px; font-weight:700; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.4px; }
     .callout-text { font-size:13.5px; line-height:1.6; }
@@ -137,24 +136,6 @@
     footer { background:var(--white); border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:12px; color:var(--muted); margin-top:2rem; }
     footer a { color:var(--muted); text-decoration:none; margin:0 8px; }
     footer a:hover { color:#00c4a7; }
-
-    /* DIRECT VS INDIRECT EXPOSURE (expandable card pair, same interaction
-       pattern as the MLRO Handbook's nominated officer vs compliance
-       steward split: two columns, click a head to expand its body). */
-    .exposure-split { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0; }
-    .exposure-col { border:1px solid var(--border); border-radius:10px; overflow:hidden; }
-    .exposure-head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:1.1rem 1.3rem; cursor:pointer; background:var(--white); user-select:none; }
-    .exposure-head:hover { background:var(--off); }
-    .exposure-head-text { flex:1; }
-    .exposure-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:var(--accent); margin-bottom:4px; }
-    .exposure-title { font-size:15px; font-weight:600; color:var(--navy); }
-    .exposure-icon { font-size:17px; color:var(--muted); transition:transform 0.2s; flex-shrink:0; }
-    .exposure-icon.open { transform:rotate(45deg); }
-    .exposure-body { display:none; padding:0 1.3rem 1.1rem; font-size:13.5px; color:#374151; line-height:1.65; border-top:1px solid var(--border); background:#fafafa; }
-    .exposure-body.open { display:block; padding-top:1rem; }
-    .exposure-body ul { padding-left:1.15rem; margin-bottom:0; }
-    .exposure-body li { font-size:13px; margin-bottom:0.5rem; line-height:1.55; }
-    .exposure-source { font-size:11.5px; color:var(--muted); margin-top:0.7rem; padding-top:0.7rem; border-top:1px dashed var(--border); }
 
     /* CHEAT SHEET (reusable end-of-guide summary component)
        SVG colors are mapped to brand.css custom properties, not
@@ -231,13 +212,12 @@
       .toc { display: none !important; }
       .article-section { padding: 1.25rem !important; }
       .try-tool { flex-direction: column !important; }
-      .exposure-split { grid-template-columns: 1fr !important; }
       footer { flex-direction: column !important; align-items: flex-start !important; gap: 1rem !important; }
     }
   </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Crypto Guide Part 4: How Crypto Wallets Actually End Up Sanctioned","url":"https://fincrimeradar.org/crypto-guide-part4.html","publisher":{"@type":"Organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org"},"datePublished":"2026-07-13"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Crypto Guide Part 5: The Gap Between AML Training and a Real Crypto Case","url":"https://fincrimeradar.org/crypto-guide-part5.html","publisher":{"@type":"Organization","name":"FinCrimeRadar","url":"https://fincrimeradar.org"},"datePublished":"2026-07-13"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -246,7 +226,7 @@
        defines --accent globally (teal), which would otherwise override the
        first inline block. --hero-accent-em is intentionally left as brand.css's
        green, it is a shared hero convention, not a guide specific accent.
-       Blue carried over from Parts 1 through 3 so the series reads as one accent. -->
+       Blue carried over from Parts 1 through 4 so the series reads as one accent. -->
   <style>
     :root {
       --accent: #2563eb;
@@ -277,14 +257,14 @@
 </div>
 
 <div class="series-hero">
-  <div class="series-tag">🪙 Crypto Compliance Guide · Part 4 of 6</div>
-  <h1>The Crypto Guide, Part 4: <em>How Crypto Wallets Actually End Up Sanctioned</em></h1>
-  <p class="series-sub">Written for the analyst who needs to know what a wallet designation actually means, not just that one exists.</p>
+  <div class="series-tag">Crypto Compliance Guide · Part 5 of 6</div>
+  <h1>The Crypto Guide, Part 5: <em>The Gap Between AML Training and a Real Crypto Case</em></h1>
+  <p class="series-sub">Written for the analyst who's completed the training and still feels unprepared for the first real case.</p>
   <div class="series-meta">
-    <span>📖 9 min read</span>
-    <span>⚖️ OFAC SDN · UK Sanctions List</span>
-    <span>🇬🇧🇺🇸 UK &amp; US frameworks</span>
-    <span>🔍 Designation mechanics</span>
+    <span>8 min read</span>
+    <span>Analyst readiness</span>
+    <span>Five training gaps</span>
+    <span>Scenario Lab cross-link</span>
   </div>
 </div>
 
@@ -292,8 +272,8 @@
   <a href="/crypto-guide-part1.html" class="part-link done">✓ Part 1: Foundations and the Regulatory Ground Shifting Beneath Them</a>
   <a href="/crypto-guide-part2.html" class="part-link done">✓ Part 2: What to Actually Do Before October 2027</a>
   <a href="/crypto-guide-part3.html" class="part-link done">✓ Part 3: Typologies, Mixers, Layering, and Rug Pulls Explained</a>
-  <a href="/crypto-guide-part4.html" class="part-link active">Part 4: How Crypto Wallets Actually End Up Sanctioned</a>
-  <a href="/crypto-guide-part5.html" class="part-link">Part 5: The Gap Between AML Training and a Real Crypto Case</a>
+  <a href="/crypto-guide-part4.html" class="part-link done">✓ Part 4: How Crypto Wallets Actually End Up Sanctioned</a>
+  <a href="/crypto-guide-part5.html" class="part-link active">Part 5: The Gap Between AML Training and a Real Crypto Case</a>
   <a href="#" class="part-link">Part 6: Screening Logic and Wallet Addresses, Where It Breaks Down</a>
 </div>
 
@@ -303,10 +283,12 @@
       <div class="toc-title">In this part</div>
       <ul class="toc-list">
         <li><a href="#intro">Introduction</a></li>
-        <li><a href="#designation">How designation actually works</a></li>
-        <li><a href="#uk-exposure">Direct vs indirect exposure</a></li>
-        <li><a href="#red-flags">OFSI's red flags</a></li>
-        <li><a href="#screening-design">Screening design</a></li>
+        <li><a href="#gap-one">Gap 1: No bank in the middle</a></li>
+        <li><a href="#gap-two">Gap 2: Identity vs ownership</a></li>
+        <li><a href="#gap-three">Gap 3: "Clean" on-chain history</a></li>
+        <li><a href="#gap-four">Gap 4: The pace problem</a></li>
+        <li><a href="#gap-five">Gap 5: Reading a wallet graph</a></li>
+        <li><a href="#closing">Closing the gap</a></li>
       </ul>
       <div class="toc-progress">
         <div class="toc-progress-label"><span>Progress</span><span id="pct">0%</span></div>
@@ -317,7 +299,8 @@
         <a href="/crypto-guide-part1.html" class="sn-link done">✓ Part 1: Foundations</a>
         <a href="/crypto-guide-part2.html" class="sn-link done">✓ Part 2: What to Do Now</a>
         <a href="/crypto-guide-part3.html" class="sn-link done">✓ Part 3: Typologies and Red Flags</a>
-        <a href="/crypto-guide-part4.html" class="sn-link active">Part 4: How Wallets Get Sanctioned</a>
+        <a href="/crypto-guide-part4.html" class="sn-link done">✓ Part 4: How Wallets Get Sanctioned</a>
+        <a href="/crypto-guide-part5.html" class="sn-link active">Part 5: The Training Gap</a>
       </div>
     </div>
   </aside>
@@ -326,120 +309,59 @@
 
     <section class="article-section" id="intro">
       <div class="section-num">Introduction</div>
-      <h2>What a wallet designation actually means</h2>
-      <p>A name appearing on a sanctions list is something most AML training covers reasonably well. A wallet address appearing on one is a different animal. The mechanics, the compliance obligations, and the practical traps are genuinely distinct from screening a person's name, and most training built for fiat AML doesn't translate cleanly.</p>
-      <div class="callout warning">
-        <div class="callout-icon">⚠️</div>
-        <div class="callout-body">
-          <div class="callout-title">The OFSI Consolidated List closed on 28 January 2026</div>
-          <div class="callout-text">One structural fact worth knowing before anything else: if you're screening against UK sanctions data, the ground shifted recently. The OFSI Consolidated List, the list most UK compliance teams have built their screening processes around for years, closed on 28 January 2026. UK sanctions designations now live in a single UK Sanctions List, published by the Foreign, Commonwealth and Development Office. If your firm's screening tooling still references the old OFSI list as its primary source, that's now a live gap, not a future one.</div>
-        </div>
-      </div>
+      <h2>Where standard AML training runs out</h2>
+      <p>Most AML training programmes were built for a world of names, accounts, and correspondent banking relationships. That training isn't wrong, the underlying skill, recognising a pattern inconsistent with a stated profile, still applies. But a genuinely crypto-touching case exposes gaps that standard training simply doesn't cover, and an analyst who's never had those gaps named tends to discover them under pressure, mid-investigation, rather than beforehand.</p>
+      <div class="pull-quote">This part names the gaps directly.</div>
     </section>
 
-    <section class="article-section" id="designation">
-      <div class="section-num">Section 01</div>
-      <h2>How a wallet address actually gets designated</h2>
-      <p>OFAC has been adding cryptocurrency wallet addresses directly to the SDN List since 2018, starting with addresses tied to Iranian ransomware operators. The process is the same administrative mechanism used for any SDN designation: OFAC identifies a nexus between a wallet and a sanctioned party, typically through blockchain analytics, intelligence gathering, or coordination with law enforcement, then publishes the address alongside the underlying designation.</p>
-
-      <h3>The scale has grown substantially</h3>
-      <p>A single action in July 2026 added 134 wallet addresses tied to ISIS-K financing in one designation. A May 2026 action against Sinaloa Cartel-linked individuals added six Ethereum addresses, five of them attributed to a single individual, a pattern OFAC itself flagged as multi-wallet fragmentation used to layer funds. That detail matters operationally: a firm screening only the named addresses on the SDN list, without examining the wallet clusters and counterparty relationships around them, will miss exposure sitting one or two hops away from a listed address.</p>
-
-      <h3>Blocked property doesn't require an individual listing</h3>
-      <p>A wallet doesn't need to be individually listed to be blocked property. This is the detail that catches firms out.</p>
-      <div class="callout info">
-        <div class="callout-icon">💡</div>
-        <div class="callout-body">
-          <div class="callout-title">OFAC FAQ 646</div>
-          <div class="callout-text">OFAC's own guidance is explicit: any wallet in which a sanctioned person has a property interest must be blocked, regardless of whether OFAC has published that specific address. The published list is there to help industry, it isn't the exhaustive boundary of what's actually prohibited.</div>
-        </div>
-      </div>
+    <section class="article-section" id="gap-one">
+      <div class="section-num">Gap 01</div>
+      <h2>Fiat training assumes a bank in the middle</h2>
+      <p>Traditional AML training is built around the assumption that value moves through regulated intermediaries, banks, payment processors, each capable of holding, delaying, or refusing a transaction. <a href="/crypto-guide-part4.html">Part 4</a> already covered the structural consequence of this assumption breaking down in crypto: a firm often can't simply decline an incoming on-chain transaction the way a bank can decline to open an account. An analyst trained purely on "when in doubt, block the transaction" hits a genuine procedural wall the first time they're looking at value that's already landed in a wallet the firm controls, with no equivalent "return to sender" option available.</p>
     </section>
 
-    <section class="article-section" id="uk-exposure">
-      <div class="section-num">Section 02</div>
-      <h2>The UK picture: direct exposure versus indirect exposure</h2>
-      <p>OFSI's own Cryptoassets Threat Assessment, published July 2025, sets out a framework worth internalising directly, since it's the regulator's own language, not a third party's interpretation of it. Click either card below for the detail behind each term.</p>
-
-      <div class="exposure-split">
-        <div class="exposure-col">
-          <div class="exposure-head" onclick="toggleExposure(this)">
-            <div class="exposure-head-text">
-              <div class="exposure-label">On-chain, direct</div>
-              <div class="exposure-title">Direct Exposure</div>
-            </div>
-            <span class="exposure-icon">+</span>
-          </div>
-          <div class="exposure-body">
-            <ul>
-              <li>Transacting with a wallet address known to belong to a designated person</li>
-              <li>Sending or receiving crypto-assets owned, held, or controlled by someone on the sanctions list</li>
-            </ul>
-            <div class="exposure-source">Source: OFSI Cryptoassets Threat Assessment, July 2025</div>
-          </div>
-        </div>
-        <div class="exposure-col">
-          <div class="exposure-head" onclick="toggleExposure(this)">
-            <div class="exposure-head-text">
-              <div class="exposure-label">Layered, obscured</div>
-              <div class="exposure-title">Indirect Exposure</div>
-            </div>
-            <span class="exposure-icon">+</span>
-          </div>
-          <div class="exposure-body">
-            <ul>
-              <li>Crypto-assets pass through one or more intermediaries after originating from a designated person's wallet, layering</li>
-              <li>Assets arrive having been mixed or tumbled, making the original source harder to trace</li>
-            </ul>
-            <div class="exposure-source">Source: OFSI Cryptoassets Threat Assessment, July 2025</div>
-          </div>
-        </div>
-      </div>
-
-      <p>OFSI has flagged a specific, recurring failure pattern in how UK firms handle this: identifying a sanctioned transaction only retrospectively, once the firm gains access to better blockchain analytics, well after the transaction has already occurred. That delay creates a reporting problem on top of the underlying exposure, since UK firms classed as relevant firms are legally required to report to OFSI once they know or suspect a breach, and a late-discovered breach is still a breach that needed reporting when it was found, not when it happened.</p>
-
-      <p>A structural point worth understanding, not just memorising: unlike a bank, a crypto-asset firm generally can't simply reject an incoming transaction the way a bank can decline to open an account. Once value arrives on-chain, the firm has to deal with what's now sitting in a wallet it controls, freeze it, report it, and manage it under license conditions, rather than having declined it at the door. That changes the practical shape of sanctions compliance in this sector compared to traditional finance.</p>
+    <section class="article-section" id="gap-two">
+      <div class="section-num">Gap 02</div>
+      <h2>Identity and ownership don't map the way KYC training assumes</h2>
+      <p>Standard KYC training teaches verifying who a customer is. Crypto adds a second, separate question standard training rarely addresses with any depth: whose wallet is this, actually. A customer can pass every identity check and still control multiple wallets under different guises, or conversely, a wallet address alone tells you nothing about who controls it without additional attribution work, clustering, exchange deposit tagging, or off-chain intelligence. An analyst trained to think "identity verified, case closed" misses that wallet-level attribution is a distinct, ongoing task, not something settled once at onboarding.</p>
     </section>
 
-    <section class="article-section" id="red-flags">
-      <div class="section-num">Section 03</div>
-      <h2>OFSI's own red flags for crypto sanctions evasion</h2>
-      <p>Straight from the regulator's July 2025 assessment, worth treating as a genuine working checklist rather than paraphrasing into something vaguer:</p>
-      <ul>
-        <li><strong>Counterparties with known associations to designated persons.</strong></li>
-        <li><strong>Unusual or sudden transaction activity</strong>, particularly dormant wallets suddenly becoming active.</li>
-        <li><strong>Activity linked to sanctioned jurisdictions.</strong></li>
-        <li><strong>Proxy payment patterns, mixing, or layering</strong> designed to obscure a transaction's true origin or destination.</li>
-      </ul>
+    <section class="article-section" id="gap-three">
+      <div class="section-num">Gap 03</div>
+      <h2>"Clean history" means something different on-chain</h2>
+      <p>In fiat AML, a clean transaction history over time is genuinely reassuring. On-chain, a wallet's history can look clean simply because the tooling in use doesn't have visibility into activity on other chains, or because funds arrived via a bridge or mixer that severed the traceable link to their origin, not because the funds are actually clean. An analyst applying fiat intuition, "nothing's flagged, therefore it's fine", is applying a standard that doesn't transfer.</p>
+    </section>
 
-      <p>OFSI's assessment also names a concrete example worth knowing: the regulator found it likely that UK crypto-asset firms had facilitated transactions involving Nobitex, an Iranian exchange with suspected links to a designated entity, illustrating that exposure risk runs through counterparty exchanges, not just individually flagged wallets.</p>
-      <div class="pull-quote">Exposure risk runs through counterparty exchanges, not just individually flagged wallets.</div>
+    <section class="article-section" id="gap-four">
+      <div class="section-num">Gap 04</div>
+      <h2>The pace is faster than the review cycle</h2>
+      <p>A suspicious fiat transaction typically allows some window for review before it settles irreversibly. On-chain finality is often near-immediate. This changes what "acting quickly" actually means in practice, and it's a big part of why OFSI specifically flagged retrospective discovery, catching a sanctioned transaction only after better analytics tools became available, as a recurring, reportable failure pattern among UK crypto firms, covered in <a href="/crypto-guide-part4.html">Part 4</a>. Standard training rarely prepares an analyst for a case where the review window has already closed before the review even starts.</p>
+    </section>
+
+    <section class="article-section" id="gap-five">
+      <div class="section-num">Gap 05</div>
+      <h2>Standard training doesn't teach you to read a wallet graph</h2>
+      <p>This is the most concrete, learnable skill gap, and arguably the easiest one to actually close. Reading a cluster of connected wallets, spotting a peel chain, recognising a tightly-knit group of addresses trading only with each other, none of this is covered in a typical AML certification course, and all of it is a genuinely learnable, practical skill once someone's shown what to look for. <a href="/crypto-guide-part3.html">Part 3</a> of this series covered the underlying typologies directly.</p>
+    </section>
+
+    <section class="article-section" id="closing">
+      <div class="section-num">Closing</div>
+      <h2>Closing this gap deliberately, not by accident</h2>
+      <p>None of the five gaps above get closed by reading about them once. They get closed by working through cases that force the decision the way a real one would, which is the entire premise behind <a href="/scenario-lab.html">Scenario Lab</a>'s KYC and Sanctions Investigation module: building an actual ownership tree, screening entities in sequence, and making a disposition call against a case that's specifically designed to test whether a clean surface result gets treated as the end of the analysis or the start of it. If any of the five gaps above sound familiar from your own experience, that's a reasonable place to test the actual skill, not just read another paragraph about it.</p>
 
       <div class="try-tool">
         <div class="tl">
           <div class="tl-eyebrow">Put it into practice</div>
-          <div class="tl-title">Screen a counterparty or beneficial owner before onboarding</div>
-          <div class="tl-sub">Free, no login. A clean wallet history doesn't rule out sanctions exposure sitting one hop away through a counterparty exchange.</div>
+          <div class="tl-title">Test the five gaps in Scenario Lab's KYC and Sanctions Investigation module</div>
+          <div class="tl-sub">Free, no login. Build an ownership tree, screen entities in sequence, and make a real disposition call.</div>
         </div>
-        <a href="/screen.html" class="tl-btn">Screen a name →</a>
+        <a href="/scenario-lab.html" class="tl-btn">Open Scenario Lab →</a>
       </div>
-    </section>
-
-    <section class="article-section" id="screening-design">
-      <div class="section-num">Section 04</div>
-      <h2>What this actually means for screening design</h2>
-      <p>The practical takeaway isn't "screen wallet addresses too", most teams already know that much. It's that wallet screening needs a fundamentally different design than name screening:</p>
-      <ol>
-        <li><strong>Exact match isn't enough, but neither is fuzzy match.</strong> A wallet address is a cryptographic string, there's no "close enough" the way there is with name spelling variants. What's needed instead is cluster-level screening, checking whether an address has ever transacted with a known designated wallet, not just whether it matches one directly.</li>
-        <li><strong>Screening needs to be near-real-time, not point-in-time.</strong> OFSI's own assessment flags retrospective discovery as a recurring, reportable failure. A wallet clean at onboarding can become exposed the moment it receives funds from a newly designated source.</li>
-        <li><strong>The old OFSI Consolidated List is dead as a data source.</strong> If your tooling, or a vendor's, hasn't migrated to the UK Sanctions List as the primary source, that's a live gap worth checking today, not filed away as background reading.</li>
-      </ol>
 
       <div class="callout amber">
-        <div class="callout-icon">📘</div>
         <div class="callout-body">
-          <div class="callout-title">This closes Part 4 of the series</div>
-          <div class="callout-text">Part 5 looks at the gap between how AML analysts are typically trained and what a real crypto-touching case actually demands of them. Part 6 goes deeper into where wallet screening logic itself tends to break down.</div>
+          <div class="callout-title">This closes Part 5 of the series</div>
+          <div class="callout-text">Part 6 goes deeper into the specific mechanics of where wallet screening logic itself tends to break down, address clustering, mixing, and cross-chain visibility gaps.</div>
         </div>
       </div>
 
@@ -447,58 +369,59 @@
         <div class="cheat-sheet-label">Quick Reference</div>
         <div class="cheat-sheet-scroll">
           <svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img">
-            <title>How crypto wallets get sanctioned, cheat sheet summary</title>
-            <desc>Summary card covering wallet designation mechanics, direct versus indirect exposure, OFSI red flags, and a three-point screening design checklist, for the Crypto Guide Part 4 guide.</desc>
+            <title>The training gap between AML certification and a real crypto case, cheat sheet summary</title>
+            <desc>Summary card listing five gaps between standard AML training and crypto-touching casework, plus a pointer to Scenario Lab's KYC and Sanctions Investigation module, for the Crypto Guide Part 5 guide.</desc>
 
             <rect width="800" height="520" class="cs-bg" rx="16"/>
 
-            <text x="40" y="52" class="cs-primary" font-family="Arial, sans-serif" font-size="28" font-weight="700">How Wallets Get Sanctioned</text>
-            <text x="40" y="78" class="cs-muted" font-family="Arial, sans-serif" font-size="15" font-weight="400" letter-spacing="2">AT A GLANCE — CHEAT SHEET</text>
+            <text x="40" y="52" class="cs-primary" font-family="Arial, sans-serif" font-size="28" font-weight="700">The Training Gap, At A Glance</text>
+            <text x="40" y="78" class="cs-muted" font-family="Arial, sans-serif" font-size="15" font-weight="400" letter-spacing="2">FIVE GAPS — CHEAT SHEET</text>
             <line x1="40" y1="94" x2="760" y2="94" class="cs-divider" stroke-width="1"/>
 
-            <rect x="40" y="116" width="230" height="180" rx="10" class="cs-card" stroke-width="1"/>
-            <text x="60" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">WALLET DESIGNATION</text>
-            <text x="60" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">OFAC adds addresses to</text>
-            <text x="60" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">the SDN List directly</text>
-            <text x="60" y="214" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Blocked property doesn't</text>
-            <text x="60" y="244" class="cs-muted" font-family="Arial, sans-serif" font-size="13">require individual listing</text>
-
-            <rect x="285" y="116" width="230" height="180" rx="10" class="cs-card" stroke-width="1"/>
-            <text x="305" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">DIRECT VS INDIRECT</text>
-            <text x="305" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Direct: wallet known to</text>
-            <text x="305" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">belong to designated person</text>
-            <text x="305" y="214" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Indirect: layered through</text>
-            <text x="305" y="244" class="cs-muted" font-family="Arial, sans-serif" font-size="13">intermediaries or mixers</text>
-
-            <rect x="530" y="116" width="230" height="180" rx="10" class="cs-card" stroke-width="1"/>
-            <text x="550" y="148" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">OFSI RED FLAGS</text>
-            <text x="550" y="174" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Dormant wallets suddenly</text>
-            <text x="550" y="194" class="cs-primary" font-family="Arial, sans-serif" font-size="13">active, sanctioned jurisdictions</text>
-            <text x="550" y="214" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Proxy payments, mixing,</text>
-            <text x="550" y="244" class="cs-muted" font-family="Arial, sans-serif" font-size="13">counterparty exchange risk</text>
-
-            <text x="40" y="336" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">THE SCREENING DESIGN CHECKLIST</text>
+            <text x="40" y="130" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">THE FIVE TRAINING GAPS</text>
 
             <g font-family="Arial, sans-serif">
-              <circle cx="150" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
-              <text x="150" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">1</text>
-              <text x="150" y="418" class="cs-muted" font-size="11" text-anchor="middle">Cluster-level screening,</text>
-              <text x="150" y="432" class="cs-muted" font-size="11" text-anchor="middle">not exact match alone</text>
+              <circle cx="80" cy="195" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="80" y="201" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">1</text>
+              <text x="80" y="233" class="cs-muted" font-size="11" text-anchor="middle">No bank in the</text>
+              <text x="80" y="247" class="cs-muted" font-size="11" text-anchor="middle">middle to block it</text>
 
-              <line x1="178" y1="380" x2="372" y2="380" class="cs-connector" stroke-width="1.5"/>
+              <line x1="108" y1="195" x2="212" y2="195" class="cs-connector" stroke-width="1.5"/>
 
-              <circle cx="400" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
-              <text x="400" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">2</text>
-              <text x="400" y="418" class="cs-muted" font-size="11" text-anchor="middle">Near-real-time,</text>
-              <text x="400" y="432" class="cs-muted" font-size="11" text-anchor="middle">not point-in-time</text>
+              <circle cx="240" cy="195" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="240" y="201" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">2</text>
+              <text x="240" y="233" class="cs-muted" font-size="11" text-anchor="middle">Identity verified</text>
+              <text x="240" y="247" class="cs-muted" font-size="11" text-anchor="middle">≠ wallet control</text>
 
-              <line x1="428" y1="380" x2="622" y2="380" class="cs-connector" stroke-width="1.5"/>
+              <line x1="268" y1="195" x2="372" y2="195" class="cs-connector" stroke-width="1.5"/>
 
-              <circle cx="650" cy="380" r="18" class="cs-circle" stroke-width="1.5"/>
-              <text x="650" y="386" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">3</text>
-              <text x="650" y="418" class="cs-muted" font-size="11" text-anchor="middle">Migrate to the UK</text>
-              <text x="650" y="432" class="cs-muted" font-size="11" text-anchor="middle">Sanctions List</text>
+              <circle cx="400" cy="195" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="400" y="201" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">3</text>
+              <text x="400" y="233" class="cs-muted" font-size="11" text-anchor="middle">"Clean" history</text>
+              <text x="400" y="247" class="cs-muted" font-size="11" text-anchor="middle">isn't always clean</text>
+
+              <line x1="428" y1="195" x2="532" y2="195" class="cs-connector" stroke-width="1.5"/>
+
+              <circle cx="560" cy="195" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="560" y="201" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">4</text>
+              <text x="560" y="233" class="cs-muted" font-size="11" text-anchor="middle">Finality outruns</text>
+              <text x="560" y="247" class="cs-muted" font-size="11" text-anchor="middle">the review cycle</text>
+
+              <line x1="588" y1="195" x2="692" y2="195" class="cs-connector" stroke-width="1.5"/>
+
+              <circle cx="720" cy="195" r="18" class="cs-circle" stroke-width="1.5"/>
+              <text x="720" y="201" class="cs-primary" font-size="14" font-weight="700" text-anchor="middle">5</text>
+              <text x="720" y="233" class="cs-muted" font-size="11" text-anchor="middle">Wallet graphs</text>
+              <text x="720" y="247" class="cs-muted" font-size="11" text-anchor="middle">aren't taught</text>
             </g>
+
+            <rect x="40" y="280" width="720" height="160" rx="10" class="cs-card" stroke-width="1"/>
+            <text x="60" y="312" class="cs-accent" font-family="Arial, sans-serif" font-size="15" font-weight="700">CLOSE THE GAP DELIBERATELY</text>
+            <text x="60" y="338" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Scenario Lab's KYC and Sanctions</text>
+            <text x="60" y="358" class="cs-primary" font-family="Arial, sans-serif" font-size="13">Investigation module is built to test</text>
+            <text x="60" y="378" class="cs-primary" font-family="Arial, sans-serif" font-size="13">exactly these five gaps: build an</text>
+            <text x="60" y="398" class="cs-primary" font-family="Arial, sans-serif" font-size="13">ownership tree, screen in sequence,</text>
+            <text x="60" y="418" class="cs-muted" font-family="Arial, sans-serif" font-size="13">and make a real disposition call.</text>
 
             <line x1="40" y1="466" x2="760" y2="466" class="cs-divider" stroke-width="1"/>
             <text x="40" y="492" class="cs-muted" font-family="Arial, sans-serif" font-size="12">A summary aid, not a substitute for the full guide or professional advice.</text>
@@ -510,12 +433,12 @@
       <div class="part-footer">
         <div class="pf-prev">
           <div class="pf-label">← Back</div>
-          <a href="/crypto-guide-part3.html" class="pf-link">Part 3: Typologies, Mixers, Layering, and Rug Pulls Explained</a>
+          <a href="/crypto-guide-part4.html" class="pf-link">Part 4: How Crypto Wallets Actually End Up Sanctioned</a>
         </div>
-        <div class="pf-center">Part 4 of 6</div>
+        <div class="pf-center">Part 5 of 6</div>
         <div class="pf-next">
           <div class="pf-label">Next →</div>
-          <a href="/crypto-guide-part5.html" class="pf-link">Part 5: The Gap Between AML Training and a Real Crypto Case →</a>
+          <a href="#" class="pf-link">Part 6: Screening Logic and Wallet Addresses, Where It Breaks Down →</a>
         </div>
       </div>
     </section>
@@ -548,17 +471,12 @@
       });
     }, { rootMargin:'-20% 0px -70% 0px' }).observe(s);
   });
-
-  function toggleExposure(el) {
-    el.querySelector('.exposure-icon').classList.toggle('open');
-    el.nextElementSibling.classList.toggle('open');
-  }
 </script>
 
 <!-- Cookie Consent Banner -->
 <div id="cookieBanner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; background:#0f2044; border-top:1px solid #1d3a6e; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; box-shadow:0 -4px 20px rgba(0,0,0,0.3);">
   <div style="flex:1; min-width:260px;">
-    <div style="font-size:13px; font-weight:600; color:#fff; margin-bottom:4px;">🍪 We use cookies</div>
+    <div style="font-size:13px; font-weight:600; color:#fff; margin-bottom:4px;">We use cookies</div>
     <div style="font-size:12px; color:#94a3b8; line-height:1.5;">We use Google Analytics to understand how visitors use FinCrimeRadar. No personal data is sold. See our <a href="/privacy.html" style="color:#93c5fd; text-decoration:none;">Privacy Policy</a>.</div>
   </div>
   <div style="display:flex; gap:8px; flex-shrink:0;">
