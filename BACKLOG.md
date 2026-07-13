@@ -68,12 +68,14 @@ Knowledge Hub articles and guide series. Ship two to three parts of a series clo
 ---
 
 ## Not in the loop (separate track, own timing)
-Business and legal items that don't fit the dev/content rotation, tracked here so they don't get lost, but not pulled into a fortnightly slot:
+
+Business, legal, and standing-practice items that don't fit the dev/content rotation, tracked here so they don't get lost, but not pulled into a fortnightly slot:
 
 - Trademark filing for FinCrimeRadar, once resources allow
 - LinkedIn slug reclaim (depends on trademark)
-- AdSense re-review, once genuine content depth exists, not on an arbitrary schedule
-- ✅ Anthropic Claude for Open Source Programme application, submitted
+- AdSense re-review, submitted, awaiting outcome
+- Anthropic Claude for Open Source Programme application, submitted, follow-up sent via support chat
+- **Genuine backlink and authority building, ongoing, no dedicated session.** Legitimate approach only, guest content or citations on compliance-adjacent blogs, being referenced by other people's LinkedIn posts, relevant directory listings, answering questions on compliance forums with a link back to the specific guide that answers it. Slow by nature, months not weeks, no shortcut. Fold into whatever content or LinkedIn work is already happening rather than treating as a separate task. Triggered by a cold-sales SEO email, correctly not engaged with, "guaranteed first page of Google" is a red flag for black-hat techniques that risk a penalty.
 
 ---
 
