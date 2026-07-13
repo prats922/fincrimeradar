@@ -207,6 +207,16 @@
     .clear-result p { font-size: 13px; color: var(--muted); }
     .empty { text-align: center; padding: 1.5rem; font-size: 13px; color: var(--muted); background: var(--white); border: 1px solid var(--border); border-radius: 8px; }
 
+    /* TOOL CONTEXT — static explanatory content above the interactive
+       screener, matching the guide pages' article typography. Colors
+       and radius pull from the same brand.css custom properties the
+       rest of this page already uses, not hardcoded values. */
+    .tool-context { background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 1.5rem 1.75rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-sm); }
+    .tool-context h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 22px; font-weight: 400; color: var(--navy); margin-bottom: 0.85rem; line-height: 1.3; }
+    .tool-context h3 { font-size: 15px; font-weight: 600; color: var(--navy); margin: 1.5rem 0 0.6rem; }
+    .tool-context p { font-size: 14.5px; color: var(--slate); line-height: 1.75; margin-bottom: 0.9rem; }
+    .tool-context p:last-child { margin-bottom: 0; }
+
     footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 3rem; background: var(--white); }
     /* ===== MOBILE RESPONSIVE ===== */
     .nav-hamburger {
@@ -309,6 +319,7 @@
       .search-row { flex-direction: column !important; }
       .btn-search { width: 100% !important; }
       .summary-bar { grid-template-columns: repeat(2, 1fr) !important; }
+      .tool-context { padding: 1.25rem !important; }
 
       /* ABOUT PAGE */
       .hero-inner { grid-template-columns: 1fr !important; }
@@ -394,6 +405,20 @@
   <div class="disclaimer">
     <strong>Educational tool only.</strong> Results are for learning purposes and must not be used as a substitute for regulated compliance screening. Always verify against official sources.
   </div>
+
+  <section class="tool-context">
+    <h2>What this screening tool actually checks</h2>
+    <p>This screener runs your search term against two live datasets sourced from OpenSanctions: a consolidated sanctions list covering over 72,000 records, and a dedicated politically exposed persons dataset covering more than 59,000 records. Both are drawn from primary regulatory sources including OFAC, OFSI, the EU consolidated list, and UN Security Council designations, refreshed on OpenSanctions' own update cycle rather than a static snapshot we control.</p>
+
+    <p>A sanctions hit means the entity or individual you searched appears on an active designation list, which typically carries legal restrictions on dealing with them. A PEP hit means the person holds or has held a prominent public function, which under FATF Recommendation 12 and most national AML regimes triggers enhanced due diligence, not an automatic block. Treating the two the same way is a common and costly analyst error, and this tool keeps them visually and functionally distinct for that reason.</p>
+
+    <h3>How the matching works</h3>
+    <p>Name matching in sanctions and PEP screening is never a simple exact-match problem. Sanctioned individuals appear under transliterated spellings, aliases, and partial name records, so this tool applies fuzzy matching with an adjustable threshold. A lower threshold surfaces more potential matches, including weaker ones, and reduces the risk of missing a genuine hit under an alternate spelling. A higher threshold tightens results to close matches only, reducing false positives but raising the risk of a missed hit. There is no universally correct setting, the right threshold depends on your risk appetite and the population you're screening, which is why the control is exposed here rather than hidden behind a fixed default.</p>
+
+    <p>A result with no hit is not the end of the analysis. It confirms the exact name and known aliases in these datasets returned nothing, it does not confirm the underlying person or entity carries no risk, particularly where beneficial ownership, family relationships, or front company structures are involved. Screening output is one input into a wider investigation, not a substitute for one.</p>
+
+    <p>This tool is free, open-source, and built for practitioners who need a genuine screening capability without an enterprise vendor contract. It draws on the same underlying OpenSanctions data that several commercial screening platforms license, presented here without a paywall.</p>
+  </section>
 
   <div id="results"></div>
 </div>
