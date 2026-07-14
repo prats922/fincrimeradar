@@ -109,7 +109,7 @@
     fraudTile.innerHTML = [
       "<div>",
       "<h3>Fraud Detection</h3>",
-      "<p>Step through live account activity, watch the risk signal shift with every new fact, then decide across two cases.</p>",
+      "<p>Step through live account activity, watch the risk signal shift with every new fact, then decide across four cases.</p>",
       "</div>",
     ].join("");
     fraudTile.addEventListener("click", () => startFraudModule(dashboard, workspace, state));
