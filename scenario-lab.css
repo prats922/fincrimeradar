@@ -225,6 +225,91 @@
   color: var(--sl-text-muted);
 }
 
+/* Case picker, shared by both the KYC and Fraud Detection modules. Free
+   case selection instead of a forced sequence, see renderCasePicker. */
+.sl-case-picker {
+  background: var(--sl-surface);
+  border: 1px solid var(--sl-border);
+  border-radius: var(--sl-radius-md);
+  padding: 20px;
+}
+
+.sl-case-picker h2 {
+  margin: 0 0 6px;
+  font-size: 1.15rem;
+  color: var(--sl-text);
+}
+
+.sl-case-picker > p {
+  margin: 0 0 18px;
+  color: var(--sl-text-secondary);
+  font-size: 0.9rem;
+}
+
+.sl-case-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 14px;
+}
+
+.sl-case-tile {
+  text-align: left;
+  background: var(--sl-surface);
+  border: 1px solid var(--sl-border);
+  border-radius: var(--sl-radius-md);
+  padding: 16px;
+  cursor: pointer;
+  font-family: var(--sl-font);
+  transition: transform 0.15s var(--sl-ease), box-shadow 0.15s var(--sl-ease), border-color 0.15s var(--sl-ease);
+}
+
+.sl-case-tile:hover {
+  border-color: var(--sl-teal);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(12, 27, 42, 0.08);
+}
+
+.sl-case-tile h3 {
+  margin: 8px 0 6px;
+  font-size: 0.98rem;
+  color: var(--sl-text);
+}
+
+.sl-case-tile-briefing {
+  margin: 0;
+  color: var(--sl-text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sl-case-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.sl-case-badge.not-started {
+  background: var(--sl-locked-bg);
+  color: var(--sl-text-secondary);
+}
+
+.sl-case-badge.completed {
+  background: var(--sl-surface-sunken);
+  color: var(--sl-success);
+}
+
+.sl-case-badge.attempted {
+  background: rgba(232, 163, 58, 0.14);
+  color: var(--sl-warning);
+}
+
 .sl-main-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -822,6 +907,7 @@
   .sl-btn,
   .sl-node-circle,
   .sl-request-btn,
+  .sl-case-tile,
   .fd-step-marker,
   .fd-risk-fill {
     transition: none;

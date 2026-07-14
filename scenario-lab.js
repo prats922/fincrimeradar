@@ -39,6 +39,8 @@
       decisionMade: false, // fraud module: decision already committed for this case
       results: [], // { caseId, correct: bool }
       startedAt: null,
+      currentModule: null, // "kyc" or "fraud", set by renderCasePicker
+      pendingAdvanceTimeout: null, // cancelled by "Back to case list"
       requested: JSON.parse(localStorage.getItem("sl_requested_modules") || "{}"),
     };
 
@@ -166,15 +168,104 @@
     }
   }
 
+  // ---- Per-case progress, shared by both modules ----
+  // Keyed by entity_id in localStorage, same persistence pattern as
+  // sl_requested_modules. Read fresh on every call rather than cached on
+  // state, the data is small and this guarantees the case picker never
+  // shows stale status after a decision updates it.
+  function readCaseProgress() {
+    return JSON.parse(localStorage.getItem("sl_case_progress") || "{}");
+  }
+
+  function recordCaseProgress(entityId, correct) {
+    const progress = readCaseProgress();
+    progress[entityId] = { attempted: true, correct: correct };
+    localStorage.setItem("sl_case_progress", JSON.stringify(progress));
+  }
+
+  function caseStatus(entityId) {
+    const p = readCaseProgress()[entityId];
+    if (!p || !p.attempted) return { label: "Not started", cls: "not-started" };
+    if (p.correct) return { label: "Completed", cls: "completed" };
+    return { label: "Attempted, review again", cls: "attempted" };
+  }
+
+  // ---- Case picker, shared by both modules ----
+  // Entry point for a module from the dashboard, and the destination of
+  // "Back to case list" from mid-sequence. Free selection rather than a
+  // forced 1-2-3 order: clicking any tile sets state.caseIndex directly
+  // and hands off to that module's existing loadCase/loadFraudCase, so
+  // auto-advance afterwards continues in array order from wherever the
+  // analyst chose to start, exactly like the original sequential flow.
+  function renderCasePicker(workspace, state, moduleKey) {
+    state.currentModule = moduleKey;
+    const cases = moduleKey === "kyc" ? state.kycCases : state.fraudCases;
+    state.cases = cases;
+    workspace.dataset.total = String(cases.length);
+
+    workspace.innerHTML = "";
+    const picker = document.createElement("div");
+    picker.className = "sl-case-picker";
+    const title = moduleKey === "kyc" ? "KYC and Sanctions Investigation" : "Fraud Detection";
+    picker.innerHTML = [
+      "<h2>" + title + "</h2>",
+      "<p>Choose any case to start. Progress on each one is saved on this device.</p>",
+    ].join("");
+    workspace.appendChild(picker);
+    picker.prepend(backToDashboardButton(workspace, state));
+
+    const grid = document.createElement("div");
+    grid.className = "sl-case-grid";
+    cases.forEach((c, idx) => {
+      const status = caseStatus(c.entity_id);
+      const tile = document.createElement("button");
+      tile.type = "button";
+      tile.className = "sl-case-tile";
+      tile.innerHTML = [
+        '<span class="sl-case-badge ' + status.cls + '">' + status.label + "</span>",
+        "<h3>Case " + c.case_number + ": " + escapeHtml(c.title) + "</h3>",
+        '<p class="sl-case-tile-briefing">' + escapeHtml(c.briefing) + "</p>",
+      ].join("");
+      tile.addEventListener("click", () => {
+        state.caseIndex = idx;
+        if (moduleKey === "kyc") {
+          loadCase(workspace, state);
+        } else {
+          loadFraudCase(workspace, state);
+        }
+      });
+      grid.appendChild(tile);
+    });
+    picker.appendChild(grid);
+  }
+
+  // Cancels any pending auto-advance and returns to the case picker for
+  // whichever module is currently active, without touching state.results
+  // so accuracy on the eventual completion screen still reflects every
+  // decision made this session, not just ones made in picker order.
+  function backToCaseList(workspace, state) {
+    if (state.pendingAdvanceTimeout) {
+      clearTimeout(state.pendingAdvanceTimeout);
+      state.pendingAdvanceTimeout = null;
+    }
+    renderCasePicker(workspace, state, state.currentModule);
+  }
+
+  function appendBackToCaseListControl(workspace, state, afterEl) {
+    const btn = document.createElement("button");
+    btn.className = "sl-request-btn";
+    btn.textContent = "Back to case list";
+    btn.style.marginTop = "12px";
+    btn.addEventListener("click", () => backToCaseList(workspace, state));
+    afterEl.insertAdjacentElement("afterend", btn);
+  }
+
   function startModule(dashboard, workspace, state) {
-    state.cases = state.kycCases;
-    state.caseIndex = 0;
     state.results = [];
     state.startedAt = Date.now();
-    workspace.dataset.total = String(state.cases.length);
     dashboard.style.display = "none";
     workspace.classList.add("visible");
-    loadCase(workspace, state);
+    renderCasePicker(workspace, state, "kyc");
   }
 
   function loadCase(workspace, state) {
@@ -955,13 +1046,17 @@
     const isCorrect = caseData.correct_disposition.includes(disposition);
 
     state.results.push({ caseId: caseData.entity_id, correct: isCorrect });
+    recordCaseProgress(caseData.entity_id, isCorrect);
 
     banner.className = "sl-decision-banner show " + (isCorrect ? "correct" : "incorrect");
     banner.textContent = (isCorrect ? "Correct. " : "Not quite. ") + caseData.rationale;
 
     footer.querySelectorAll("button").forEach((b) => (b.disabled = true));
 
-    setTimeout(() => {
+    appendBackToCaseListControl(workspace, state, banner);
+
+    state.pendingAdvanceTimeout = setTimeout(() => {
+      state.pendingAdvanceTimeout = null;
       state.caseIndex += 1;
       if (state.caseIndex < state.cases.length) {
         loadCase(workspace, state);
@@ -1007,20 +1102,53 @@
     container.appendChild(nextTile);
   }
 
-  function renderCompletionScreen(workspace, state) {
-    const total = state.results.length;
+  function pickUpRestButton(workspace, state, moduleKey) {
+    const btn = document.createElement("button");
+    btn.className = "sl-btn";
+    btn.textContent = "Pick up the rest";
+    btn.style.marginTop = "16px";
+    btn.addEventListener("click", () => renderCasePicker(workspace, state, moduleKey));
+    return btn;
+  }
+
+  // Shared by both completion screens. The case picker means a session can
+  // now end here after only some of the module's cases, not just after all
+  // of them in order, so this only ever calls it "complete" when every case
+  // in the module was actually attempted this session (results.length vs.
+  // state.cases.length, not just having reached the end of the array via
+  // auto-advance). Otherwise the heading, copy, and stats are honest about
+  // a partial session, and a direct link back to the picker covers the rest.
+  function renderCompletionBody(complete, workspace, state, moduleKey, fullIntro) {
+    const attempted = state.results.length;
+    const totalCases = state.cases.length;
     const correct = state.results.filter((r) => r.correct).length;
-    const accuracy = Math.round((correct / total) * 100);
+    const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
     const elapsedSeconds = Math.round((Date.now() - state.startedAt) / 1000);
     const minutes = Math.floor(elapsedSeconds / 60);
     const seconds = elapsedSeconds % 60;
+    const isFullSession = attempted >= totalCases;
 
-    workspace.innerHTML = "";
-    const complete = document.createElement("div");
-    complete.className = "sl-complete";
+    const heading = isFullSession
+      ? moduleKey === "kyc"
+        ? "Module complete"
+        : "Session complete"
+      : "Cases complete for this session";
+
+    const remaining = totalCases - attempted;
+    const intro = isFullSession
+      ? fullIntro
+      : attempted +
+        " of " +
+        totalCases +
+        " cases attempted this session, " +
+        remaining +
+        " case" +
+        (remaining === 1 ? "" : "s") +
+        " still untried.";
+
     complete.innerHTML = [
-      "<h2>Module complete</h2>",
-      "<p>KYC and Sanctions Investigation, all five cases.</p>",
+      "<h2>" + heading + "</h2>",
+      "<p>" + intro + "</p>",
       '<div class="sl-stats">',
       '<div><div class="sl-stat-value">' + accuracy + '%</div><div class="sl-stat-label">Accuracy</div></div>',
       '<div><div class="sl-stat-value">' +
@@ -1030,7 +1158,18 @@
         's</div><div class="sl-stat-label">Time elapsed</div></div>',
       "</div>",
     ].join("");
+
+    if (!isFullSession) {
+      complete.appendChild(pickUpRestButton(workspace, state, moduleKey));
+    }
+  }
+
+  function renderCompletionScreen(workspace, state) {
+    workspace.innerHTML = "";
+    const complete = document.createElement("div");
+    complete.className = "sl-complete";
     workspace.appendChild(complete);
+    renderCompletionBody(complete, workspace, state, "kyc", "KYC and Sanctions Investigation, all five cases.");
     complete.prepend(backToDashboardButton(workspace, state));
     appendNextModuleTeaser(complete, state);
   }
@@ -1051,13 +1190,11 @@
   // properties directly rather than a parallel token layer.
 
   function startFraudModule(dashboard, workspace, state) {
-    state.cases = state.fraudCases;
-    state.caseIndex = 0;
     state.results = [];
     state.startedAt = Date.now();
     dashboard.style.display = "none";
     workspace.classList.add("visible");
-    loadFraudCase(workspace, state);
+    renderCasePicker(workspace, state, "fraud");
   }
 
   function loadFraudCase(workspace, state) {
@@ -1429,6 +1566,7 @@
     state.decisionMade = true;
     const isCorrect = c.correct_disposition.includes(dispositionKey);
     state.results.push({ caseId: c.entity_id, correct: isCorrect });
+    recordCaseProgress(c.entity_id, isCorrect);
 
     state.bodyEl.querySelectorAll(".fd-decision-buttons button").forEach((b) => (b.disabled = true));
 
@@ -1436,7 +1574,10 @@
     banner.className = "sl-decision-banner show " + (isCorrect ? "correct" : "incorrect");
     banner.textContent = (isCorrect ? "Correct. " : "Not quite. ") + c.rationale;
 
-    setTimeout(() => {
+    appendBackToCaseListControl(state.workspace, state, banner);
+
+    state.pendingAdvanceTimeout = setTimeout(() => {
+      state.pendingAdvanceTimeout = null;
       state.caseIndex += 1;
       if (state.caseIndex < state.cases.length) {
         loadFraudCase(state.workspace, state);
@@ -1447,29 +1588,18 @@
   }
 
   function renderFraudCompletionScreen(workspace, state) {
-    const total = state.results.length;
-    const correct = state.results.filter((r) => r.correct).length;
-    const accuracy = Math.round((correct / total) * 100);
-    const elapsedSeconds = Math.round((Date.now() - state.startedAt) / 1000);
-    const minutes = Math.floor(elapsedSeconds / 60);
-    const seconds = elapsedSeconds % 60;
-
     workspace.innerHTML = "";
     const complete = document.createElement("div");
     complete.className = "sl-complete";
-    complete.innerHTML = [
-      "<h2>Session complete</h2>",
-      "<p>Fraud Detection preview, " + total + " case" + (total === 1 ? "" : "s") + ".</p>",
-      '<div class="sl-stats">',
-      '<div><div class="sl-stat-value">' + accuracy + '%</div><div class="sl-stat-label">Accuracy</div></div>',
-      '<div><div class="sl-stat-value">' +
-        minutes +
-        "m " +
-        seconds +
-        's</div><div class="sl-stat-label">Time elapsed</div></div>',
-      "</div>",
-    ].join("");
     workspace.appendChild(complete);
+    const totalCases = state.cases.length;
+    renderCompletionBody(
+      complete,
+      workspace,
+      state,
+      "fraud",
+      "Fraud Detection preview, " + totalCases + " case" + (totalCases === 1 ? "" : "s") + "."
+    );
     complete.prepend(backToDashboardButton(workspace, state));
     appendNextModuleTeaser(complete, state);
   }
