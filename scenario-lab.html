@@ -109,11 +109,13 @@
     footer a:hover { color:var(--teal); }
     .footer-legal { font-size:11px; color:var(--light); margin-top:8px; }
 
-    /* TOOL CONTEXT — static explanatory content above the interactive
-       Scenario Lab app, matching the guide pages' article typography.
-       Colors and radius pull from the same brand.css custom properties
-       nav/footer above already use, not hardcoded values. Scenario Lab
-       has no shared .container wrapper, so this block centers itself. */
+    /* TOOL CONTEXT — static explanatory content placed below the
+       dashboard tiles, above the footer, so it no longer sits between
+       nav and the dashboard on first load. Matching the guide pages'
+       article typography. Colors and radius pull from the same
+       brand.css custom properties nav/footer above already use, not
+       hardcoded values. Scenario Lab has no shared .container wrapper,
+       so this block centers itself. */
     .tool-context { max-width: 900px; margin: 2rem auto 1.5rem; padding: 1.75rem 2rem; background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
     .tool-context h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 22px; font-weight: 400; color: var(--navy); margin-bottom: 0.85rem; line-height: 1.3; }
     .tool-context h3 { font-size: 15px; font-weight: 600; color: var(--navy); margin: 1.5rem 0 0.6rem; }
@@ -151,23 +153,15 @@
   <!-- Nav injected at runtime by /js/site-chrome.js -->
   <div id="site-nav"></div>
 
+  <main id="scenario-lab-root"></main>
+
   <section class="tool-context">
     <h2>What Scenario Lab trains you to do</h2>
-    <p>Scenario Lab is a free, interactive KYC and KYB investigation trainer built for AML and financial crime compliance professionals. Each case presents a corporate ownership structure you have not seen before, and your task is to build out the ultimate beneficial ownership tree, identify each entity in that structure, screen the individuals against sanctions and PEP data, and reach a disposition decision, exactly as you would in a live case review.</p>
-
-    <p>The current release covers five cases spanning KYC and KYB scenarios of varying complexity, including nominee director structures, layered ownership through intermediate holding entities, and family relationships that require escalation judgement rather than a simple pass or fail. Every case is authored specifically for this tool, not adapted from a public enforcement action, so the scenarios stay original while reflecting the structural patterns compliance professionals encounter in real investigations.</p>
-
-    <p>A second track, Fraud Detection, sits alongside KYC and KYB on the same dashboard below. Its cases play back a sequence of account events one at a time, and a live risk signal updates as each new fact arrives, testing judgement under incomplete information rather than pattern matching against a fully assembled case file. Four cases are available in this preview, an authorised push payment scam, session hijacking and impossible travel, transaction laundering through a mimicked storefront, and a structuring pattern, with more in development.</p>
+    <p>Scenario Lab is a free, interactive investigation trainer for AML and financial crime compliance professionals. In KYC and KYB cases, you build out the ultimate beneficial ownership tree, screen each entity against sanctions and PEP data, and reach a disposition decision. In Fraud Detection, account events play back one at a time and a live risk signal updates as each new fact arrives, testing judgement under incomplete information rather than pattern matching against a fully assembled case file. Every case is authored specifically for this tool, not adapted from a public enforcement action, so the scenarios stay original while reflecting the structural patterns compliance professionals encounter in real investigations. It is a training environment, not a certification, and carries no affiliation with ACAMS, ICA, or any credentialing body.</p>
 
     <h3>How the investigation tools work</h3>
-    <p>The ownership tree is built as an interactive node graph. Nodes stay unidentified until you investigate them, deliberately, because premature visual cues would defeat the purpose of practising judgement under incomplete information. A fuzzy matching threshold slider lets you control how tightly the screening engine matches names against the sanctions and PEP datasets, the same tradeoff between missed hits and false positives that governs real screening decisions. An optional PEP hint mode and a live risk calculator update as you work through the structure, giving you a running signal of how your investigation choices are shifting the overall risk picture.</p>
-
-    <p>Critically, a clear sanctions result on a direct entity is not treated as the end of the case. Where family relationships or nominee arrangements are present, the correct path requires escalation for a beneficial ownership determination, not automatic clearance, and the scoring in this tool reflects that. Scenario accuracy here is treated as a compliance obligation, not a content exercise, every case has been checked against how a real investigation would actually be expected to proceed.</p>
-
-    <p>This is a training environment, not a certification, and it carries no affiliation with ACAMS, ICA, or any credentialing body. It exists because the best practical training for AML investigation judgement is usually locked behind expensive enterprise platforms, and FinCrimeRadar's position is that practitioners should be able to build this muscle for free.</p>
+    <p>The ownership tree is built as an interactive node graph, entities stay unidentified until you investigate them, so premature visual cues don't defeat the judgement exercise. A fuzzy matching threshold slider controls how tightly the screening engine matches names, the same tradeoff between missed hits and false positives that governs real screening decisions. A clear sanctions result on a direct entity is not the end of the case either, where family relationships or nominee arrangements are present, the correct path is escalation for a beneficial ownership determination, not automatic clearance.</p>
   </section>
-
-  <main id="scenario-lab-root"></main>
 
   <!-- Footer injected at runtime by /js/site-chrome.js -->
   <div id="site-footer"></div>
