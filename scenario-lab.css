@@ -587,13 +587,243 @@
   letter-spacing: 0.04em;
 }
 
+/* ---- Fraud Detection module ----
+   Reuses the KYC module's card shells (.sl-tree-panel, .sl-tools-panel),
+   buttons (.sl-btn), detail wrapper (.sl-node-detail), edge line/label
+   (.sl-edge-line, .sl-edge-label) and decision banner (.sl-decision-banner)
+   directly rather than a second copy of any of them. Only the concepts
+   KYC has no equivalent for, the case header scene, the evidence stepper,
+   and the risk bar, get their own fd- prefixed rules here, still built on
+   the --sl- custom properties above rather than a parallel token layer. */
+
+.fd-scene-node-circle {
+  fill: var(--sl-surface);
+  stroke-width: 2;
+}
+
+.fd-scene-node-circle.teal { stroke: var(--sl-teal); }
+.fd-scene-node-circle.amber { stroke: var(--sl-warning); }
+.fd-scene-node-circle.red { stroke: var(--sl-danger); }
+
+.fd-scene-node-icon {
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.fd-scene-node-icon.teal { stroke: var(--sl-teal); }
+.fd-scene-node-icon.amber { stroke: var(--sl-warning); }
+.fd-scene-node-icon.red { stroke: var(--sl-danger); }
+
+.fd-scene-label {
+  font-size: 11px;
+  text-anchor: middle;
+}
+
+.fd-scene-sublabel {
+  font-size: 9.5px;
+  fill: var(--sl-text-muted);
+  text-anchor: middle;
+}
+
+/* Base stroke/width comes from the shared .sl-edge-line; this only adds
+   the arrowhead KYC's undirected ownership lines never needed. */
+.fd-scene-edge-line {
+  marker-end: url(#fd-arrow);
+}
+
+.fd-scene-arrow-fill {
+  fill: var(--sl-border-mid);
+}
+
+@media (max-width: 768px) {
+  .fd-scene-sublabel { font-size: 13px; }
+}
+
+/* Evidence timeline stepper */
+.fd-stepper {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  margin-bottom: 18px;
+}
+
+.fd-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1 0 84px;
+  min-width: 84px;
+  background: none;
+  border: none;
+  padding: 4px 2px 0;
+  cursor: pointer;
+  font-family: var(--sl-font);
+  position: relative;
+}
+
+.fd-step::after {
+  content: "";
+  position: absolute;
+  top: 19px;
+  left: calc(50% + 22px);
+  width: calc(100% - 22px);
+  height: 2px;
+  background: var(--sl-border-mid);
+  z-index: 0;
+}
+
+.fd-step:last-child::after {
+  display: none;
+}
+
+.fd-step.viewed::after {
+  background: var(--sl-teal);
+}
+
+.fd-step-marker {
+  position: relative;
+  z-index: 1;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sl-surface);
+  border: 2px solid var(--sl-border-mid);
+  color: var(--sl-text-muted);
+  transition: border-color 0.15s var(--sl-ease), background 0.15s var(--sl-ease), color 0.15s var(--sl-ease);
+}
+
+.fd-step-marker svg {
+  width: 16px;
+  height: 16px;
+}
+
+.fd-step.viewed .fd-step-marker {
+  border-color: var(--sl-teal);
+  color: var(--sl-teal);
+}
+
+.fd-step.active .fd-step-marker {
+  background: var(--sl-teal);
+  border-color: var(--sl-teal);
+  color: #FFFFFF;
+}
+
+.fd-step.locked {
+  cursor: default;
+}
+
+.fd-step.locked .fd-step-marker {
+  color: var(--sl-locked-text);
+  opacity: 0.7;
+}
+
+.fd-step-label {
+  font-size: 0.7rem;
+  color: var(--sl-text-muted);
+  text-align: center;
+  line-height: 1.25;
+}
+
+.fd-step.active .fd-step-label {
+  color: var(--sl-text);
+  font-weight: 600;
+}
+
+/* Live risk signal bar */
+.fd-risk-panel {
+  margin-bottom: 18px;
+}
+
+.fd-risk-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.fd-risk-caption {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--sl-text-muted);
+  font-weight: 600;
+}
+
+.fd-risk-value {
+  font-family: var(--sl-font-mono);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.fd-risk-value.green { color: var(--sl-success); }
+.fd-risk-value.amber { color: var(--sl-warning); }
+.fd-risk-value.red { color: var(--sl-danger); }
+
+.fd-risk-track {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--sl-border);
+  overflow: hidden;
+}
+
+.fd-risk-fill {
+  height: 100%;
+  border-radius: 999px;
+  width: 0%;
+  transition: width 0.4s var(--sl-ease), background 0.4s var(--sl-ease);
+}
+
+.fd-risk-fill.green { background: var(--sl-success); }
+.fd-risk-fill.amber { background: var(--sl-warning); }
+.fd-risk-fill.red { background: var(--sl-danger); }
+
+/* Evidence card text; the wrapper itself reuses .sl-node-detail */
+.fd-evidence-time {
+  font-family: var(--sl-font-mono);
+  font-size: 0.78rem;
+  color: var(--sl-text-muted);
+  margin-bottom: 4px;
+}
+
+.fd-evidence-body {
+  margin: 0 0 16px;
+  color: var(--sl-text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.fd-decision-intro {
+  margin: 0 0 14px;
+  color: var(--sl-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.fd-decision-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .sl-tile.active,
   .sl-toggle,
   .sl-toggle::after,
   .sl-btn,
   .sl-node-circle,
-  .sl-request-btn {
+  .sl-request-btn,
+  .fd-step-marker,
+  .fd-risk-fill {
     transition: none;
   }
 }

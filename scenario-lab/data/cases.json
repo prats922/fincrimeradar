@@ -212,5 +212,123 @@
         "ownership_pct": 30
       }
     ]
+  },
+  {
+    "module": "fraud",
+    "case_number": 1,
+    "entity_id": "app-scam-001",
+    "title": "Authorised Push Payment Scam",
+    "briefing": "A customer's account shows a large outbound transfer request. Step through the account activity below, then decide.",
+    "header_scene": {
+      "nodes": [
+        { "id": "n1", "label": "Customer", "color": "teal" },
+        { "id": "n2", "label": "New account", "sublabel": "41 hrs old", "color": "amber" },
+        { "id": "n3", "label": "Under review", "sublabel": "APP scam pattern", "color": "red" }
+      ],
+      "edges": [
+        { "from": "n1", "to": "n2", "label": "£45,000" },
+        { "from": "n2", "to": "n3" }
+      ]
+    },
+    "timeline": [
+      {
+        "icon": "login",
+        "time": "09:14:02",
+        "title": "Login",
+        "body": "Customer logs in from their usual device. IP and location match prior sessions. Nothing unusual yet.",
+        "risk": 5
+      },
+      {
+        "icon": "transfer",
+        "time": "09:14:55",
+        "title": "Transfer request",
+        "body": "£45,000 outbound transfer requested to a domestic business account. The account was opened 41 hours ago.",
+        "risk": 45
+      },
+      {
+        "icon": "device",
+        "time": "09:15:10",
+        "title": "Device check",
+        "body": "Session originates from the customer's known iPad. Device fingerprint matches history, no spoofing detected.",
+        "risk": 40
+      },
+      {
+        "icon": "message",
+        "time": "09:16:40",
+        "title": "Support chat log",
+        "body": "Customer contacts support mid transfer, sounds panicked, references an urgent \"crypto bond opportunity\" someone told them about.",
+        "risk": 90
+      }
+    ],
+    "disposition_options": [
+      { "key": "approve", "label": "Approve" },
+      { "key": "reject_freeze", "label": "Reject and freeze funds" },
+      { "key": "escalate", "label": "Escalate" }
+    ],
+    "correct_disposition": ["reject_freeze"],
+    "rationale": "Every individual signal here looks clean in isolation, that's exactly what makes this pattern dangerous. Biometrics and device fingerprint are genuine. The risk sits entirely in the behavioural pattern: a large, urgent transfer to a brand-new account, combined with a support call describing textbook social-engineering language. This is precisely the scenario the UK's mandatory APP fraud reimbursement regime was built around. Since 7 October 2024, payment providers have been required to reimburse eligible APP scam victims up to £85,000, with the cost split 50/50 between the sending and receiving payment provider. The Payment Systems Regulator's own independent evaluation, published 1 July 2026, found the policy cut in-scope Faster Payments scam losses by roughly £73m a year. That regime exists precisely because catching this pattern before the money moves is now a direct, shared financial liability for the firm, not just a customer protection nicety. Freezing the transfer here isn't just good practice, it's the decision the regulatory framework is actively designed to reward."
+  },
+  {
+    "module": "fraud",
+    "case_number": 4,
+    "entity_id": "structuring-004",
+    "title": "Structuring (Smurfing)",
+    "briefing": "A dormant personal account suddenly receives a rapid sequence of cash deposits. Step through the deposit history below, then decide.",
+    "header_scene": {
+      "nodes": [
+        { "id": "n1", "label": "Deposit 1", "sublabel": "£2,400", "color": "teal" },
+        { "id": "n2", "label": "Deposit 2", "sublabel": "£2,350", "color": "teal" },
+        { "id": "n3", "label": "Deposit 3", "sublabel": "£2,480", "color": "teal" },
+        { "id": "n4", "label": "Deposit 4", "sublabel": "£2,290", "color": "teal" },
+        { "id": "n5", "label": "Deposit 5", "sublabel": "£2,410", "color": "teal" },
+        { "id": "n6", "label": "Dormant account", "color": "amber" },
+        { "id": "n7", "label": "Under review", "sublabel": "Structuring pattern", "color": "red" }
+      ],
+      "edges": [
+        { "from": "n1", "to": "n6" },
+        { "from": "n2", "to": "n6" },
+        { "from": "n3", "to": "n6" },
+        { "from": "n4", "to": "n6" },
+        { "from": "n5", "to": "n6" },
+        { "from": "n6", "to": "n7", "label": "5 deposits, 36 hrs" }
+      ]
+    },
+    "timeline": [
+      {
+        "icon": "cash",
+        "time": "Day 1, 10:02",
+        "title": "First deposit",
+        "body": "A dormant personal current account, minimal transaction history for the past 14 months, receives a cash deposit of £2,400 at a branch ATM.",
+        "risk": 15
+      },
+      {
+        "icon": "cash",
+        "time": "Day 1, 15:40",
+        "title": "Second deposit",
+        "body": "A second cash deposit of £2,350 is made at a different ATM location, in the same municipal area.",
+        "risk": 35
+      },
+      {
+        "icon": "cash",
+        "time": "Day 2, 09:15",
+        "title": "Two further deposits",
+        "body": "Two further cash deposits, £2,480 and £2,290, are made within the same morning at two more separate ATM locations.",
+        "risk": 60
+      },
+      {
+        "icon": "cash",
+        "time": "Day 2, 14:20",
+        "title": "Fifth deposit",
+        "body": "A fifth deposit of £2,410 completes the pattern: five deposits totalling £11,930 across five distinct locations inside roughly 36 hours, none individually large enough to be conspicuous on its own.",
+        "risk": 85
+      }
+    ],
+    "disposition_options": [
+      { "key": "approve", "label": "Approve" },
+      { "key": "escalate_sar", "label": "Reject and escalate for SAR filing" },
+      { "key": "request_more_info", "label": "Request more information" }
+    ],
+    "correct_disposition": ["escalate_sar"],
+    "rationale": "There is no automatic reporting threshold in UK law the way there is in the US, UK AML runs on suspicion-based reporting under POCA 2002, not a fixed currency transaction trigger. What matters here is the pattern itself: a dormant account suddenly receiving a rapid sequence of cash deposits, each kept below a round, conspicuous figure, spread deliberately across multiple locations in a short window. That's a classic structuring pattern regardless of any specific threshold, the deliberate fragmentation and geographic spread across the account's otherwise dormant history is itself the red flag POCA's suspicion-based regime is built to catch. The correct action is to escalate for a Suspicious Activity Report, the analyst doesn't need the deposits to cross any specific number to form a reasonable suspicion, they need the pattern, and this one is textbook."
   }
 ]
