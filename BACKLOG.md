@@ -42,7 +42,7 @@ New tools, features, and platform capability. Naturally slower, needs a dedicate
 ## 📝 Content Loop
 Knowledge Hub articles and guide series. Ship two to three parts of a series close together, then move to the next topic rather than leaving series unfinished.
 
-**Standing requirement, applies to every guide from here on:** every guide ends with a branded cheat sheet summary component (title, 3-4 key point panels, optional process strip), matching the pattern proven on `mlro-handbook-part1.html`. Colors always mapped to `brand.css` custom properties, never hardcoded hex. No emoji in labels, matches the rest of the site's voice. This is not optional for new guides going forward.
+**Standing requirement, applies to every new guide from here on, confirmed by user, do not deviate without explicit sign-off:** guides must match the interactivity depth of kyc-onboarding-dilemma.html, not the lighter prose-plus-cheat-sheet format used in MLRO Handbook and Crypto Guide. Required per guide: multiple worked scenarios, each with a structure or relationship diagram where the content has one to show, a decision point per scenario with graded multiple-choice options and full reasoning revealed after the analyst chooses, and a multi-question knowledge check with live scoring at the end. A single end-of-guide cheat sheet alone no longer satisfies this requirement, it becomes a denser, richer visual summary component instead, still built on brand.css tokens and existing icon conventions, not modeled on generic corporate infographic templates. This standard was adopted mid-project. Guides already live before this point are not automatically retrofitted, that's a separate scoped decision if it happens.
 
 **Done:**
 - ✅ MLRO Handbook, Part 1: Becoming SMF16 or SMF17 (includes cheat sheet component)
@@ -52,6 +52,7 @@ Knowledge Hub articles and guide series. Ship two to three parts of a series clo
 - ✅ Consistent author attribution on guides: "Written by Pratik Zanke" byline linking to `about.html`, added near the top (right after the hero subtitle) on all 24 guide pages, same placement and styling across the AML/PEP/SAR/FATF/MLRO/Crypto series and the standalone deep-dive guides
 
 **Next up:**
+- [ ] **Fraud Red Flags guide, held.** Content already drafted covering the four live Scenario Lab fraud typologies (account takeover, APP scams, transaction laundering, structuring). Held from build pending rework to meet the new standing content standard, decision-point scenarios and a proper knowledge check, not the lighter format it was originally drafted against. Do not build as currently written.
 - [ ] Possible MLRO Handbook Part 3: resourcing benchmarks by firm size, FCA's move toward AML supervisor for professional services (flagged as a maybe in Part 2's closing note, not committed yet)
 - [ ] **Dedicated fraud/behavioural red flags guide.** Two Fraud Detection cases (APP Scam, Session Hijacking) currently link to Related Guides that are honest stretches, not strong matches (Screening Alert Survival Guide, Transaction Monitoring), since no Knowledge Hub content specifically covers behavioural fraud red flags yet. Once written, update those two cases' related_guide fields in scenario-lab/data/cases.json to point to the real match instead.
 
