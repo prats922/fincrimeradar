@@ -10,6 +10,11 @@
       "request_more_info"
     ],
     "rationale": "The 26 percent stake is routed through a British Virgin Islands shell company, and the ultimate beneficial owner returns a possible sanctions match with a mismatched date of birth. Neither fact alone is sufficient justification, together they require rejection or a request for more information.",
+    "related_guide": {
+      "title": "The Onboarding Dilemma",
+      "url": "/kyc-onboarding-dilemma.html",
+      "reason": "More on judgement calls like this one"
+    },
     "nodes": [
       {
         "id": "n1",
@@ -64,6 +69,11 @@
       "request_more_info"
     ],
     "rationale": "Screening returned no match, but a clean screening result does not close an investigation on its own. The document's MRZ typography does not match standard ICAO passport font, an independent authenticity red flag that screening cannot detect.",
+    "related_guide": {
+      "title": "The Onboarding Dilemma",
+      "url": "/kyc-onboarding-dilemma.html",
+      "reason": "More on document and identity red flags"
+    },
     "nodes": [
       {
         "id": "n1",
@@ -92,6 +102,11 @@
       "approve"
     ],
     "rationale": "Both founders are local and fully verified, and business operations match the public profile. Founder B carries a disclosed PEP connection, correctly identified and weighed rather than overlooked, but screening returns clean and the connection presents low risk. Screening every identified entity returns clean, this remains the case where identification and screening clear without qualification, the PEP status is a factor considered, not a blocker.",
+    "related_guide": {
+      "title": "Methodology",
+      "url": "/methodology.html",
+      "reason": "What a clean screening result actually means"
+    },
     "nodes": [
       {
         "id": "n1",
@@ -153,6 +168,11 @@
       "request_more_info"
     ],
     "rationale": "The applicant's own identity is genuine, this is not a document fraud or impersonation case. The risk sits in the business profile itself: a shared virtual mailbox address hosting thousands of unrelated entities, a domain registered days before onboarding, and no evidence of a functioning business behind the registration. This pattern matches known transaction laundering storefronts, shells used to route card-not-present processing volume that has nothing to do with the stated business. The correct action is to request historical processing history, signed client agreements, or other evidence the business genuinely operates before approving payment processing access.",
+    "related_guide": {
+      "title": "Transaction Monitoring",
+      "url": "/tm-guide.html",
+      "reason": "More on spotting transaction laundering patterns"
+    },
     "nodes": [
       {
         "id": "n1",
@@ -181,6 +201,11 @@
       "request_more_info"
     ],
     "rationale": "This case tests whether a clean direct screening result is treated as the end of the analysis or the start of it. The son is not designated, so an automatic reject cannot be justified on sanctions grounds alone, ownership by a family member of a designated person is not itself a listing trigger. But a 30% stake held by the close relative of a currently sanctioned official is a well established nominee and asset-shielding pattern. The correct action is to request further information to establish whether the son is acting as an independent beneficial owner or as a proxy holding the stake on his father's behalf, before any onboarding decision is made. Approving on the strength of a clean screening hit alone ignores the relational risk; rejecting outright on relationship alone is not supported by the facts as they stand.",
+    "related_guide": {
+      "title": "Sanctions Compliance Guide",
+      "url": "/sanctions-compliance-guide.html",
+      "reason": "More on relational sanctions exposure"
+    },
     "nodes": [
       {
         "id": "n1",
@@ -266,7 +291,12 @@
       { "key": "escalate", "label": "Escalate" }
     ],
     "correct_disposition": ["reject_freeze"],
-    "rationale": "Every individual signal here looks clean in isolation, that's exactly what makes this pattern dangerous. Biometrics and device fingerprint are genuine. The risk sits entirely in the behavioural pattern: a large, urgent transfer to a brand-new account, combined with a support call describing textbook social-engineering language. This is precisely the scenario the UK's mandatory APP fraud reimbursement regime was built around. Since 7 October 2024, payment providers have been required to reimburse eligible APP scam victims up to £85,000, with the cost split 50/50 between the sending and receiving payment provider. The Payment Systems Regulator's own independent evaluation, published 1 July 2026, found the policy cut in-scope Faster Payments scam losses by roughly £73m a year. That regime exists precisely because catching this pattern before the money moves is now a direct, shared financial liability for the firm, not just a customer protection nicety. Freezing the transfer here isn't just good practice, it's the decision the regulatory framework is actively designed to reward."
+    "rationale": "Every individual signal here looks clean in isolation, that's exactly what makes this pattern dangerous. Biometrics and device fingerprint are genuine. The risk sits entirely in the behavioural pattern: a large, urgent transfer to a brand-new account, combined with a support call describing textbook social-engineering language. This is precisely the scenario the UK's mandatory APP fraud reimbursement regime was built around. Since 7 October 2024, payment providers have been required to reimburse eligible APP scam victims up to £85,000, with the cost split 50/50 between the sending and receiving payment provider. The Payment Systems Regulator's own independent evaluation, published 1 July 2026, found the policy cut in-scope Faster Payments scam losses by roughly £73m a year. That regime exists precisely because catching this pattern before the money moves is now a direct, shared financial liability for the firm, not just a customer protection nicety. Freezing the transfer here isn't just good practice, it's the decision the regulatory framework is actively designed to reward.",
+    "related_guide": {
+      "title": "Screening Alert Survival Guide",
+      "url": "/screening-alerts-guide.html",
+      "reason": "More on triaging alerts like this one"
+    }
   },
   {
     "module": "fraud",
@@ -321,7 +351,12 @@
       { "key": "escalate", "label": "Escalate" }
     ],
     "correct_disposition": ["reject_kill_session"],
-    "rationale": "Three independent signals point the same direction. A password change immediately before a high-value transaction attempt is a classic account takeover marker, not routine account hygiene. The geographic jump from London to Lagos inside minutes is not physically possible, this is textbook impossible travel, a strong, well-established indicator that the second session belongs to someone other than the account holder. Digital gift vouchers specifically are a common cash-out mechanism in account takeover fraud, they convert stolen access into a liquid, hard-to-trace asset almost immediately. The correct action is to kill the session and force step-up, out-of-band verification before anything proceeds, not just decline the single transaction, since the account itself is compromised, not just this one checkout attempt."
+    "rationale": "Three independent signals point the same direction. A password change immediately before a high-value transaction attempt is a classic account takeover marker, not routine account hygiene. The geographic jump from London to Lagos inside minutes is not physically possible, this is textbook impossible travel, a strong, well-established indicator that the second session belongs to someone other than the account holder. Digital gift vouchers specifically are a common cash-out mechanism in account takeover fraud, they convert stolen access into a liquid, hard-to-trace asset almost immediately. The correct action is to kill the session and force step-up, out-of-band verification before anything proceeds, not just decline the single transaction, since the account itself is compromised, not just this one checkout attempt.",
+    "related_guide": {
+      "title": "Transaction Monitoring",
+      "url": "/tm-guide.html",
+      "reason": "More on behavioural alert patterns"
+    }
   },
   {
     "module": "fraud",
@@ -376,7 +411,12 @@
       { "key": "request_more_info", "label": "Request more information" }
     ],
     "correct_disposition": ["reject_suspend"],
-    "rationale": "Every element of this pattern is inconsistent with the merchant's stated business, small-value handmade goods sold during normal hours. Round, high-value transaction amounts appearing overnight are the classic tell of transaction laundering, a storefront that looks legitimate on paper being used to process payments for a completely different, often illicit business the card networks would otherwise decline to onboard directly. The card testing failure rate above 65% adds a second, distinct risk layer on top: this account is very likely also being used to validate stolen card numbers before they're used elsewhere, a pattern often called carding. Two separate fraud typologies converging on one merchant account in the same overnight window isn't a coincidence worth waiting on, it's grounds to suspend the account and investigate before further volume passes through it."
+    "rationale": "Every element of this pattern is inconsistent with the merchant's stated business, small-value handmade goods sold during normal hours. Round, high-value transaction amounts appearing overnight are the classic tell of transaction laundering, a storefront that looks legitimate on paper being used to process payments for a completely different, often illicit business the card networks would otherwise decline to onboard directly. The card testing failure rate above 65% adds a second, distinct risk layer on top: this account is very likely also being used to validate stolen card numbers before they're used elsewhere, a pattern often called carding. Two separate fraud typologies converging on one merchant account in the same overnight window isn't a coincidence worth waiting on, it's grounds to suspend the account and investigate before further volume passes through it.",
+    "related_guide": {
+      "title": "Transaction Monitoring",
+      "url": "/tm-guide.html",
+      "reason": "More on transaction laundering typologies"
+    }
   },
   {
     "module": "fraud",
@@ -439,6 +479,11 @@
       { "key": "request_more_info", "label": "Request more information" }
     ],
     "correct_disposition": ["escalate_sar"],
-    "rationale": "There is no automatic reporting threshold in UK law the way there is in the US, UK AML runs on suspicion-based reporting under POCA 2002, not a fixed currency transaction trigger. What matters here is the pattern itself: a dormant account suddenly receiving a rapid sequence of cash deposits, each kept below a round, conspicuous figure, spread deliberately across multiple locations in a short window. That's a classic structuring pattern regardless of any specific threshold, the deliberate fragmentation and geographic spread across the account's otherwise dormant history is itself the red flag POCA's suspicion-based regime is built to catch. The correct action is to escalate for a Suspicious Activity Report, the analyst doesn't need the deposits to cross any specific number to form a reasonable suspicion, they need the pattern, and this one is textbook."
+    "rationale": "There is no automatic reporting threshold in UK law the way there is in the US, UK AML runs on suspicion-based reporting under POCA 2002, not a fixed currency transaction trigger. What matters here is the pattern itself: a dormant account suddenly receiving a rapid sequence of cash deposits, each kept below a round, conspicuous figure, spread deliberately across multiple locations in a short window. That's a classic structuring pattern regardless of any specific threshold, the deliberate fragmentation and geographic spread across the account's otherwise dormant history is itself the red flag POCA's suspicion-based regime is built to catch. The correct action is to escalate for a Suspicious Activity Report, the analyst doesn't need the deposits to cross any specific number to form a reasonable suspicion, they need the pattern, and this one is textbook.",
+    "related_guide": {
+      "title": "SAR Complete Guide, Part 2",
+      "url": "/sar-guide-part2.html",
+      "reason": "More on what actually goes into a SAR"
+    }
   }
 ]

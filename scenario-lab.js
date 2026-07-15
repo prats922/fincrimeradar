@@ -1036,6 +1036,22 @@
     });
   }
 
+  // Renders caseData.related_guide, if present, as a small secondary card
+  // inside the decision banner, below the rationale text. Deliberately
+  // muted relative to the correct/incorrect feedback itself, this is a
+  // pointer to further reading, not part of the verdict.
+  function appendRelatedGuide(banner, caseData) {
+    const guide = caseData.related_guide;
+    if (!guide) return;
+    const card = document.createElement("div");
+    card.className = "sl-related-guide";
+    card.innerHTML =
+      '<span class="sl-related-guide-label">Related guide</span>' +
+      '<a class="sl-related-guide-link" href="' + escapeHtml(guide.url) + '">' + escapeHtml(guide.title) + "</a>" +
+      '<p class="sl-related-guide-reason">' + escapeHtml(guide.reason) + "</p>";
+    banner.appendChild(card);
+  }
+
   function displayLabel(disposition) {
     if (disposition === "approve") return "Approve";
     if (disposition === "reject") return "Reject";
@@ -1050,6 +1066,7 @@
 
     banner.className = "sl-decision-banner show " + (isCorrect ? "correct" : "incorrect");
     banner.textContent = (isCorrect ? "Correct. " : "Not quite. ") + caseData.rationale;
+    appendRelatedGuide(banner, caseData);
 
     footer.querySelectorAll("button").forEach((b) => (b.disabled = true));
 
@@ -1182,8 +1199,11 @@
   // evidence events with a decision at the end, not a relationship graph,
   // so it carries its own header_scene and timeline fields in cases.json
   // instead of nodes/edges, while still using the shared entity_id,
-  // case_number, correct_disposition and rationale fields KYC's cases
-  // already use. Cases are told apart by the "module" field split out in
+  // case_number, correct_disposition, rationale and related_guide fields
+  // KYC's cases already use. related_guide is optional: { title, url, reason },
+  // rendered as a secondary card under the decision banner when present.
+  // Future cases (Risk Scoring, Cases 5/6) should follow the same
+  // related_guide shape. Cases are told apart by the "module" field split out in
   // initScenarioLab. Only genuinely new UI, the header scene, the evidence
   // stepper, and the risk bar, gets its own fd- prefixed rules in
   // scenario-lab.css, and those still reference the --sl- custom
@@ -1573,6 +1593,7 @@
     const banner = state.fraudBanner;
     banner.className = "sl-decision-banner show " + (isCorrect ? "correct" : "incorrect");
     banner.textContent = (isCorrect ? "Correct. " : "Not quite. ") + c.rationale;
+    appendRelatedGuide(banner, c);
 
     appendBackToCaseListControl(state.workspace, state, banner);
 

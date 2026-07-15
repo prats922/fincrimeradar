@@ -634,6 +634,43 @@
   color: var(--sl-text);
 }
 
+/* Secondary "read more" pointer inside the decision banner. Deliberately
+   quieter than the verdict text above it, smaller type, muted label,
+   its own top border, so it reads as supplementary, not part of the
+   correct/incorrect feedback. */
+.sl-related-guide {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(12, 27, 42, 0.1);
+}
+
+.sl-related-guide-label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--sl-text-muted);
+  margin-bottom: 2px;
+}
+
+.sl-related-guide-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--sl-teal);
+  text-decoration: none;
+}
+
+.sl-related-guide-link:hover {
+  text-decoration: underline;
+}
+
+.sl-related-guide-reason {
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+  color: var(--sl-text-muted);
+}
+
 /* Completion screen */
 .sl-complete {
   max-width: 640px;
