@@ -53,6 +53,7 @@ Knowledge Hub articles and guide series. Ship two to three parts of a series clo
 
 **Next up:**
 - [ ] Possible MLRO Handbook Part 3: resourcing benchmarks by firm size, FCA's move toward AML supervisor for professional services (flagged as a maybe in Part 2's closing note, not committed yet)
+- [ ] **Dedicated fraud/behavioural red flags guide.** Two Fraud Detection cases (APP Scam, Session Hijacking) currently link to Related Guides that are honest stretches, not strong matches (Screening Alert Survival Guide, Transaction Monitoring), since no Knowledge Hub content specifically covers behavioural fraud red flags yet. Once written, update those two cases' related_guide fields in scenario-lab/data/cases.json to point to the real match instead.
 
 **Investigation handbook series, next major content push once the above is clear.** Positioning shift: most free AML content explains what the rules say, this series teaches how the actual investigative work gets done, direct match to practitioner background rather than research-only content. Sequence:
 
