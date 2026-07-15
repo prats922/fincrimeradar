@@ -293,9 +293,9 @@
     "correct_disposition": ["reject_freeze"],
     "rationale": "Every individual signal here looks clean in isolation, that's exactly what makes this pattern dangerous. Biometrics and device fingerprint are genuine. The risk sits entirely in the behavioural pattern: a large, urgent transfer to a brand-new account, combined with a support call describing textbook social-engineering language. This is precisely the scenario the UK's mandatory APP fraud reimbursement regime was built around. Since 7 October 2024, payment providers have been required to reimburse eligible APP scam victims up to £85,000, with the cost split 50/50 between the sending and receiving payment provider. The Payment Systems Regulator's own independent evaluation, published 1 July 2026, found the policy cut in-scope Faster Payments scam losses by roughly £73m a year. That regime exists precisely because catching this pattern before the money moves is now a direct, shared financial liability for the firm, not just a customer protection nicety. Freezing the transfer here isn't just good practice, it's the decision the regulatory framework is actively designed to reward.",
     "related_guide": {
-      "title": "Screening Alert Survival Guide",
-      "url": "/screening-alerts-guide.html",
-      "reason": "More on triaging alerts like this one"
+      "title": "Fraud Red Flags: Reading the Patterns, Not Just the Rules",
+      "url": "/fraud-red-flags-guide.html",
+      "reason": "Work through the APP scam pattern as a decision scenario"
     }
   },
   {
@@ -353,9 +353,9 @@
     "correct_disposition": ["reject_kill_session"],
     "rationale": "Three independent signals point the same direction. A password change immediately before a high-value transaction attempt is a classic account takeover marker, not routine account hygiene. The geographic jump from London to Lagos inside minutes is not physically possible, this is textbook impossible travel, a strong, well-established indicator that the second session belongs to someone other than the account holder. Digital gift vouchers specifically are a common cash-out mechanism in account takeover fraud, they convert stolen access into a liquid, hard-to-trace asset almost immediately. The correct action is to kill the session and force step-up, out-of-band verification before anything proceeds, not just decline the single transaction, since the account itself is compromised, not just this one checkout attempt.",
     "related_guide": {
-      "title": "Transaction Monitoring",
-      "url": "/tm-guide.html",
-      "reason": "More on behavioural alert patterns"
+      "title": "Fraud Red Flags: Reading the Patterns, Not Just the Rules",
+      "url": "/fraud-red-flags-guide.html",
+      "reason": "Work through the impossible travel pattern as a decision scenario"
     }
   },
   {
@@ -413,9 +413,9 @@
     "correct_disposition": ["reject_suspend"],
     "rationale": "Every element of this pattern is inconsistent with the merchant's stated business, small-value handmade goods sold during normal hours. Round, high-value transaction amounts appearing overnight are the classic tell of transaction laundering, a storefront that looks legitimate on paper being used to process payments for a completely different, often illicit business the card networks would otherwise decline to onboard directly. The card testing failure rate above 65% adds a second, distinct risk layer on top: this account is very likely also being used to validate stolen card numbers before they're used elsewhere, a pattern often called carding. Two separate fraud typologies converging on one merchant account in the same overnight window isn't a coincidence worth waiting on, it's grounds to suspend the account and investigate before further volume passes through it.",
     "related_guide": {
-      "title": "Transaction Monitoring",
-      "url": "/tm-guide.html",
-      "reason": "More on transaction laundering typologies"
+      "title": "Fraud Red Flags: Reading the Patterns, Not Just the Rules",
+      "url": "/fraud-red-flags-guide.html",
+      "reason": "Work through the transaction laundering pattern as a decision scenario"
     }
   },
   {
@@ -481,9 +481,9 @@
     "correct_disposition": ["escalate_sar"],
     "rationale": "There is no automatic reporting threshold in UK law the way there is in the US, UK AML runs on suspicion-based reporting under POCA 2002, not a fixed currency transaction trigger. What matters here is the pattern itself: a dormant account suddenly receiving a rapid sequence of cash deposits, each kept below a round, conspicuous figure, spread deliberately across multiple locations in a short window. That's a classic structuring pattern regardless of any specific threshold, the deliberate fragmentation and geographic spread across the account's otherwise dormant history is itself the red flag POCA's suspicion-based regime is built to catch. The correct action is to escalate for a Suspicious Activity Report, the analyst doesn't need the deposits to cross any specific number to form a reasonable suspicion, they need the pattern, and this one is textbook.",
     "related_guide": {
-      "title": "SAR Complete Guide, Part 2",
-      "url": "/sar-guide-part2.html",
-      "reason": "More on what actually goes into a SAR"
+      "title": "Fraud Red Flags: Reading the Patterns, Not Just the Rules",
+      "url": "/fraud-red-flags-guide.html",
+      "reason": "Work through the structuring pattern as a decision scenario"
     }
   }
 ]
