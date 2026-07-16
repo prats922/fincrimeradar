@@ -179,14 +179,26 @@ html, body{
    brand.js now physically wraps every comparison table in a real
    div at runtime, this rule only needs to size that wrapper and
    let long cell content sit on one line so the scroll is genuinely
-   usable rather than the row heights ballooning instead. */
+   usable rather than the row heights ballooning instead.
+   white-space:nowrap is scoped to the same max-width:760px mobile
+   breakpoint used elsewhere in this file (section 7): tables whose
+   cells are short enough to already fit on desktop (the .data-table
+   instances this was first built for) render identically either
+   way, but table.ref-table (the guides' "At a glance" reference
+   table, longer sentence-style cells) forced nowrap unconditionally
+   would overflow and force a horizontal scrollbar on desktop too,
+   where the text previously just wrapped onto two lines and fit
+   without needing to scroll at all, a real regression caught while
+   fixing the ref-table mobile clipping bug. */
 .table-scroll{
   max-width:100%;
   overflow-x:auto;
   -webkit-overflow-scrolling:touch;
 }
-.table-scroll table{
-  white-space:nowrap;
+@media (max-width:760px){
+  .table-scroll table{
+    white-space:nowrap;
+  }
 }
 
 /* ---------- 9. Screening tool CTA button text hardening ----------

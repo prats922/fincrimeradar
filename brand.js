@@ -41,10 +41,16 @@
    browsers. Wrapping the table in a genuine block level div is the
    reliable version of this fix, so this runs on every page and
    physically wraps any comparison table in a scrollable container
-   rather than relying on the table's own display mode. */
+   rather than relying on the table's own display mode.
+   table.ref-table is the locked "At a glance" reference table used
+   as every guide's end-of-guide visual summary (see BACKLOG.md
+   Content Loop standing requirement): it overflowed uncontrolled on
+   mobile, invisible and unreachable, because it wasn't in this list.
+   Any future guide built against that standard must keep the
+   ref-table class so it picks up this wrapper automatically. */
 (function(){
   "use strict";
-  var tables = document.querySelectorAll('table.data-table, table.compare-table');
+  var tables = document.querySelectorAll('table.data-table, table.compare-table, table.ref-table');
   tables.forEach(function(t){
     if(t.parentElement && t.parentElement.classList.contains('table-scroll')) return;
     var wrap = document.createElement('div');
