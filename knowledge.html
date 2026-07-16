@@ -372,7 +372,7 @@
   <h1>AML Knowledge Hub — <em>Learn financial crime compliance</em></h1>
   <p class="hub-sub">Guides, explainers, and deep dives on sanctions, PEP screening, UK AML law, and more — written for compliance students and professionals. All free, always.</p>
   <div class="hub-stats">
-    <div class="hub-stat"><div class="num">14</div><div class="lbl">In-depth guides</div></div>
+    <div class="hub-stat"><div class="num" id="guide-count-stat">14</div><div class="lbl">In-depth guides</div></div>
     <div class="hub-stat"><div class="num">25K+</div><div class="lbl">Sanctions records</div></div>
     <div class="hub-stat"><div class="num">100%</div><div class="lbl">Free forever</div></div>
     <div class="hub-stat"><div class="num">2026</div><div class="lbl">Regularly updated</div></div>
@@ -1196,6 +1196,18 @@ async function footerSignup() {
     cards.forEach(card => grid.appendChild(card));
   }
 
+  // Keeps the hero "In-depth guides" stat accurate automatically, counts
+  // the same direct-child .article-card elements sortCards() targets, so
+  // there's no hardcoded number to remember to update as guides are
+  // added or removed. Runs once on load, not on every filter/search,
+  // since the total card count in the DOM never changes from filtering.
+  function updateGuideCountStat() {
+    const statEl = document.getElementById('guide-count-stat');
+    const grid = document.getElementById('articlesGrid');
+    if (!statEl || !grid) return;
+    statEl.textContent = grid.querySelectorAll(':scope > .article-card').length;
+  }
+
   function filterCards() {
     sortCards();
     const q = document.getElementById('searchInput').value.toLowerCase();
@@ -1247,6 +1259,7 @@ async function footerSignup() {
 
   // Init count
   filterCards();
+  updateGuideCountStat();
 </script>
 
 
