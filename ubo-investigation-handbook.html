@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The UBO Investigation Handbook: Finding the Real Owner | FinCrimeRadar</title>
+  <meta name="description" content="Three decision scenarios on actually investigating beneficial ownership, nominee directors, unreliable PSC register data, the 2022 CJEU ruling on EU register access, and trust beneficiary classes, with full reasoning, a knowledge check, and a quick reference table." />
+  <meta name="keywords" content="UBO investigation, beneficial ownership, PSC register, nominee director, shell company, trust beneficiaries, CJEU ruling, customer due diligence, CDD, corporate transparency act" />
+  <meta name="author" content="FinCrimeRadar" />
+  <link rel="canonical" href="https://fincrimeradar.org/ubo-investigation-handbook.html" />
+  <meta property="og:title" content="The UBO Investigation Handbook: Finding the Real Owner" />
+  <meta property="og:description" content="Checking a register isn't investigating an ownership structure, it's the starting point. Three decision scenarios on nominee directors, unreliable register data, and trust beneficiaries, with full reasoning and a knowledge check." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://fincrimeradar.org/ubo-investigation-handbook.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The UBO Investigation Handbook: Finding the Real Owner",
+    "description": "Checking a register isn't investigating an ownership structure, it's the starting point. Three decision scenarios on nominee directors, unreliable register data, and trust beneficiaries, with full reasoning and a knowledge check.",
+    "author": {"@type": "Organization", "name": "FinCrimeRadar"},
+    "publisher": {"@type": "Organization", "name": "FinCrimeRadar", "url": "https://fincrimeradar.org"},
+    "url": "https://fincrimeradar.org/ubo-investigation-handbook.html",
+    "datePublished": "2026-07-16"
+  }
+  </script>
+
+  <!-- Google Analytics -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+  gtag('js', new Date());
+  (function () {
+    try {
+      var consent = localStorage.getItem('fcr_cookie_consent');
+      if (consent === 'accepted') {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+  })();
+  gtag('config', 'G-FC1VMTE7JH');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:#ffffff; --off:#f7f8fa; --border:#e4e7ec;
+      --muted:#6b7280; --text:#111827; --navy:#0f2044;
+      --accent:#00c4a7; --accent-h:#00a892; --accent-light:#f0fdf9;
+      --danger:#dc2626; --success:#16a34a; --warning:#d97706;
+      --c-paperowner:#2563eb; --c-paperowner-light:#eff6ff;
+      --c-100:#d97706; --c-100-light:#fffbeb;
+      --c-closeddoor:#dc2626; --c-closeddoor-light:#fef2f2;
+      --c-unnamedclass:#7c3aed; --c-unnamedclass-light:#f5f3ff;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
+
+    /* NAV */
+    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:72px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:8px; text-decoration:none; }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:#374151; text-decoration:none; transition:color 0.15s; }
+    .nav-links a:hover { color:var(--accent); }
+    .nav-cta { padding:7px 16px; background:var(--accent); color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; text-decoration:none; }
+    .nav-hamburger { display:none; background:none; border:none; font-size:22px; cursor:pointer; color:var(--navy); padding:4px 6px; }
+    .mobile-nav { display:none; position:fixed; top:72px; left:0; right:0; background:#fff; border-bottom:1px solid #e4e7ec; flex-direction:column; z-index:99; padding:0.5rem 0; box-shadow:0 8px 24px rgba(0,0,0,0.08); }
+    .mobile-nav.open { display:flex; }
+    .mobile-nav a { padding:14px 1.5rem; font-size:15px; color:#374151; text-decoration:none; font-weight:500; border-bottom:1px solid #f3f4f6; }
+    .mobile-nav .mobile-nav-cta { margin:0.75rem 1.5rem 0.5rem; background:var(--accent); color:#fff !important; border-radius:8px; text-align:center; border-bottom:none; }
+
+    /* PROGRESS */
+    .progress-bar { position:fixed; top:72px; left:0; width:0%; height:3px; background:var(--c-paperowner); z-index:199; transition:width 0.1s; }
+
+    /* HERO */
+    .article-hero {
+      background:linear-gradient(135deg,var(--hero-bg-1) 0%,var(--hero-bg-2) 100%);
+      color:#fff; padding:4rem 2rem 3rem; position:relative; overflow:hidden;
+    }
+    .article-hero::before {
+      content:'';
+      position:absolute; inset:0;
+      background-image: radial-gradient(ellipse at 20% 50%, rgba(37,99,235,0.15) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 20%, rgba(124,58,237,0.15) 0%, transparent 60%);
+    }
+    .hero-nodes { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+    .hero-node { position:absolute; border-radius:50%; opacity:0.08; animation:pulse-node 4s ease-in-out infinite; }
+    .hero-node:nth-child(1) { width:300px; height:300px; background:var(--c-paperowner); top:-80px; right:10%; animation-delay:0s; }
+    .hero-node:nth-child(2) { width:200px; height:200px; background:var(--c-unnamedclass); bottom:20px; right:30%; animation-delay:1s; }
+    .hero-node:nth-child(3) { width:150px; height:150px; background:var(--c-closeddoor); top:40%; left:5%; animation-delay:2s; }
+    @keyframes pulse-node { 0%,100%{transform:scale(1);opacity:0.08} 50%{transform:scale(1.2);opacity:0.14} }
+    .hero-inner { max-width:860px; margin:0 auto; position:relative; z-index:1; }
+    .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(37,99,235,0.25); border:1px solid rgba(147,197,253,0.4); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:var(--hero-accent-em); margin-bottom:1.25rem; }
+    .article-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(1.9rem,4vw,3rem); font-weight:400; line-height:1.2; margin-bottom:0.75rem; }
+    .article-hero h1 em { font-style:italic; color:var(--hero-accent-em); }
+    .hero-sub { font-size:16px; color:#93c5fd; max-width:640px; line-height:1.7; margin-bottom:2rem; }
+    .hero-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#60a5fa; }
+    .hero-meta span { display:flex; align-items:center; gap:5px; }
+
+    /* LAYOUT */
+    .article-layout { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 280px; gap:2rem; padding:2rem 1.5rem; align-items:start; }
+    .article-body { min-width:0; }
+    .article-sidebar { position:sticky; top:90px; }
+
+    /* TOC */
+    .toc { background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.25rem; margin-bottom:1rem; }
+    .toc-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); margin-bottom:0.75rem; }
+    .toc a { display:block; font-size:13px; color:var(--muted); text-decoration:none; padding:4px 0; border-left:2px solid transparent; padding-left:10px; transition:all 0.15s; line-height:1.4; }
+    .toc a:hover { color:var(--c-paperowner); border-left-color:var(--c-paperowner); }
+    .toc a.active { color:var(--c-paperowner); border-left-color:var(--c-paperowner); font-weight:600; }
+    .toc-scenario { display:flex; align-items:center; gap:5px; }
+    .toc-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+
+    /* SIDEBAR SCORE */
+    .score-card { background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.25rem; margin-bottom:1rem; }
+    .score-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); margin-bottom:1rem; }
+    .score-stat { display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid #f3f4f6; font-size:13px; }
+    .score-stat:last-child { border-bottom:none; }
+    .score-badge { font-weight:700; font-size:13px; }
+
+    /* TOOL CTA */
+    .tool-cta { background:linear-gradient(135deg, #0f2044, #1a3a6e); color:#fff; border-radius:12px; padding:1.25rem; text-align:center; }
+    .tool-cta p { font-size:13px; color:#93c5fd; margin-bottom:0.75rem; line-height:1.5; }
+    .tool-cta a { display:block; background:var(--accent); color:#fff; text-decoration:none; border-radius:8px; padding:10px; font-size:14px; font-weight:600; transition:background 0.15s; }
+    .tool-cta a:hover { background:var(--accent-h); }
+
+    /* ARTICLE SECTIONS */
+    .article-section { background:#fff; border:1px solid var(--border); border-radius:12px; padding:2rem; margin-bottom:1.5rem; }
+    .article-section h2 { font-family:'DM Serif Display',Georgia,serif; font-size:1.7rem; color:var(--navy); margin-bottom:0.5rem; line-height:1.3; }
+    .article-section h3 { font-size:1.05rem; font-weight:700; color:var(--navy); margin:1.5rem 0 0.5rem; }
+    .article-section p { color:#374151; margin-bottom:1rem; font-size:15px; }
+    .article-section ul, .article-section ol { padding-left:1.4rem; margin-bottom:1rem; }
+    .article-section li { font-size:15px; color:#374151; margin-bottom:0.4rem; }
+    .section-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:0.5rem; }
+
+    /* SCENARIO TYPOLOGY BADGES */
+    .badge { display:inline-flex; align-items:center; gap:5px; border-radius:99px; padding:3px 12px; font-size:12px; font-weight:700; }
+    .badge-paperowner { background:var(--c-paperowner-light); color:var(--c-paperowner); border:1px solid #bfdbfe; }
+    .badge-100 { background:var(--c-100-light); color:var(--c-100); border:1px solid #fde68a; }
+    .badge-closeddoor { background:var(--c-closeddoor-light); color:var(--c-closeddoor); border:1px solid #fecaca; }
+    .badge-unnamedclass { background:var(--c-unnamedclass-light); color:var(--c-unnamedclass); border:1px solid #ddd6fe; }
+
+    /* VISUAL MEMORY CARD (same pattern as fatf-guide-part1.html) */
+    .memory-card { border-radius:12px; padding:1.25rem; margin:1rem 0; display:grid; grid-template-columns:auto 1fr; gap:1rem; align-items:start; }
+    .memory-icon { font-size:32px; line-height:1; }
+    .memory-title { font-size:13px; font-weight:700; margin-bottom:4px; }
+    .memory-text { font-size:13px; color:var(--slate); line-height:1.5; }
+
+    /* SCENARIO HEADER */
+    .scenario-header { display:flex; align-items:center; gap:14px; margin-bottom:1.25rem; padding-bottom:1rem; border-bottom:1px solid var(--border); }
+    .scenario-icon { width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:26px; flex-shrink:0; }
+    .scenario-num { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); }
+    .scenario-name { font-family:'DM Serif Display',Georgia,serif; font-size:1.4rem; color:var(--navy); line-height:1.2; }
+
+    /* SCENE FLOW DIAGRAM */
+    .scene-flow { display:flex; align-items:center; gap:0; overflow-x:auto; background:#f8fafc; border:1px solid var(--border); border-radius:10px; padding:1.5rem 1.25rem; margin:1.25rem 0; }
+    .scene-flow-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); margin-bottom:1rem; }
+    .scene-node { display:flex; flex-direction:column; align-items:center; text-align:center; min-width:140px; flex-shrink:0; }
+    .scene-node .dot { width:46px; height:46px; border-radius:50%; border:2px solid; display:flex; align-items:center; justify-content:center; font-size:19px; margin-bottom:6px; background:#fff; }
+    .scene-node.clean .dot { border-color:var(--accent); color:var(--accent); background:var(--accent-light); }
+    .scene-node.flag .dot { border-color:var(--warning); color:var(--warning); background:#fffbeb; }
+    .scene-node.alert .dot { border-color:var(--danger); color:var(--danger); background:#fef2f2; }
+    .scene-node .label { font-size:12.5px; font-weight:700; color:var(--navy); }
+    .scene-node .sub { font-size:10.5px; color:var(--muted); margin-top:2px; max-width:150px; line-height:1.4; }
+    .scene-edge { flex-shrink:0; display:flex; flex-direction:column; align-items:center; padding:0 6px; min-width:64px; }
+    .scene-edge .line { width:100%; height:2px; background:#cbd5e1; position:relative; }
+    .scene-edge .arrow { font-size:16px; color:var(--muted); line-height:1; margin-top:-9px; }
+    .scene-edge .edge-label { font-size:10px; color:var(--muted); margin-top:4px; white-space:nowrap; }
+
+    /* DILEMMA CARD */
+    .dilemma-card { border:2px solid #e4e7ec; border-radius:12px; overflow:hidden; margin:1.25rem 0; }
+    .dilemma-header { background:var(--navy); color:#fff; padding:1rem 1.25rem; display:flex; align-items:center; gap:10px; }
+    .dilemma-header .icon { font-size:20px; }
+    .dilemma-header strong { font-size:14px; font-weight:700; }
+    .dilemma-header span { font-size:12px; color:#93c5fd; }
+    .dilemma-scenario { padding:1.25rem; background:#f8fafc; border-bottom:1px solid var(--border); }
+    .dilemma-scenario p { font-size:14px; color:#374151; margin:0; font-style:italic; line-height:1.6; }
+    .dilemma-options { padding:1.25rem; display:flex; flex-direction:column; gap:8px; }
+    .dilemma-option { border:1.5px solid var(--border); border-radius:8px; padding:12px 16px; cursor:pointer; transition:all 0.2s; font-size:14px; color:#374151; display:flex; align-items:flex-start; gap:10px; background:#fff; text-align:left; width:100%; }
+    .dilemma-option:hover { border-color:var(--c-paperowner); background:#eff6ff; }
+    .dilemma-option .opt-label { font-weight:700; font-size:13px; min-width:20px; color:var(--muted); }
+    .dilemma-option.correct { border-color:var(--success); background:#f0fdf4; }
+    .dilemma-option.wrong { border-color:var(--danger); background:#fef2f2; }
+    .dilemma-option:disabled { cursor:default; }
+    .dilemma-verdict { padding:1.25rem; border-top:1px solid var(--border); display:none; }
+    .dilemma-verdict.show { display:block; }
+    .verdict-correct { background:#f0fdf4; border-radius:8px; padding:1rem; }
+    .verdict-wrong { background:#fef2f2; border-radius:8px; padding:1rem; }
+    .verdict-icon { font-size:20px; margin-bottom:6px; }
+    .verdict-title { font-weight:700; font-size:15px; margin-bottom:6px; }
+    .verdict-body { font-size:14px; color:#374151; line-height:1.6; }
+    .verdict-body p { margin-bottom:0.75rem; }
+    .verdict-body p:last-child { margin-bottom:0; }
+
+    /* CALLOUTS */
+    .callout { border-radius:10px; padding:1.1rem 1.25rem; margin:1.25rem 0; border-left:4px solid; }
+    .callout-navy { background:#f0f4ff; border-color:var(--navy); }
+    .callout strong { display:block; font-size:13px; font-weight:700; margin-bottom:4px; }
+    .callout p { font-size:14px; margin:0; color:#374151; }
+
+    /* INLINE TOOL PROMO */
+    .inline-tool-promo { background:linear-gradient(135deg, #f0fdf9, #ecfeff); border:1px solid var(--accent); border-radius:12px; padding:1.25rem 1.5rem; margin:1.5rem 0; display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap; }
+    .itp-text { flex:1; min-width:220px; }
+    .itp-text strong { display:block; font-size:15px; color:var(--navy); margin-bottom:4px; }
+    .itp-text span { font-size:13px; color:var(--muted); }
+    .itp-btn { background:var(--accent); color:#fff; text-decoration:none; border-radius:8px; padding:10px 18px; font-size:14px; font-weight:600; white-space:nowrap; transition:background 0.15s; }
+    .itp-btn:hover { background:var(--accent-h); }
+
+    /* QUIZ */
+    .quiz-section { background:var(--navy); border-radius:12px; padding:2rem; margin:1.5rem 0; color:#fff; }
+    .quiz-title { font-family:'DM Serif Display',Georgia,serif; font-size:1.3rem; margin-bottom:0.5rem; }
+    .quiz-sub { font-size:13px; color:#93c5fd; margin-bottom:1.5rem; }
+    .quiz-q { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:1.25rem; margin-bottom:1rem; }
+    .quiz-q-text { font-size:14px; font-weight:600; margin-bottom:0.75rem; }
+    .quiz-opts { display:flex; flex-direction:column; gap:6px; }
+    .quiz-opt { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:6px; padding:10px 14px; cursor:pointer; font-size:13px; color:#e2e8f0; transition:all 0.15s; text-align:left; width:100%; }
+    .quiz-opt:hover { background:rgba(255,255,255,0.15); border-color:rgba(255,255,255,0.3); }
+    .quiz-opt.q-correct { background:rgba(22,163,74,0.25); border-color:#4ade80; color:#86efac; }
+    .quiz-opt.q-wrong { background:rgba(220,38,38,0.25); border-color:#f87171; color:#fca5a5; }
+    .quiz-feedback { font-size:13px; margin-top:8px; padding:8px 12px; border-radius:6px; display:none; }
+    .quiz-feedback.show { display:block; }
+    .quiz-score-display { text-align:center; padding:1.5rem; background:rgba(255,255,255,0.05); border-radius:10px; margin-top:1rem; display:none; }
+    .quiz-score-display.show { display:block; }
+    .quiz-score-num { font-family:'DM Serif Display',Georgia,serif; font-size:3rem; color:#86efac; }
+    .quiz-score-label { font-size:14px; color:#93c5fd; margin-top:4px; }
+
+    /* REFERENCE TABLE, locked visual summary standard */
+    .ref-table-wrap { margin:2rem 0 0.5rem; }
+    .ref-table-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); margin-bottom:0.75rem; }
+    .ref-table { width:100%; border-collapse:collapse; border-radius:12px; overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,0.04), 0 12px 32px rgba(7,25,18,0.12); }
+    .ref-table thead th { background:var(--hero-bg-2); color:#fff; font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; padding:12px 16px; text-align:left; }
+    .ref-table tbody td { background:var(--white); border-bottom:1px solid var(--border); padding:14px 16px; font-size:13.5px; color:var(--slate); vertical-align:top; line-height:1.5; }
+    .ref-table tbody tr:last-child td { border-bottom:none; }
+    .ref-table tbody td:first-child { font-weight:700; color:var(--navy); white-space:nowrap; }
+    .rt-icon { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:8px; background:var(--teal-soft); color:var(--teal-deep); margin-right:8px; vertical-align:middle; }
+    .rt-icon svg { width:16px; height:16px; display:block; }
+
+    /* SAVE AS IMAGE BUTTON */
+    .save-img-row { display:flex; justify-content:flex-end; margin-bottom:0.75rem; }
+    .save-img-btn { display:inline-flex; align-items:center; gap:6px; background:var(--white); color:var(--navy); border:1.5px solid var(--border); border-radius:8px; padding:8px 14px; font-size:13px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s; }
+    .save-img-btn:hover { border-color:var(--c-paperowner); color:var(--c-paperowner); }
+
+    /* MOBILE */
+    @media(max-width:768px) {
+      .article-layout { grid-template-columns:1fr; }
+      .article-sidebar { position:static; }
+      .nav-hamburger { display:block; }
+      .nav-links { display:none; }
+      .nav-brand img { height:40px !important; max-width:160px !important; }
+      .inline-tool-promo { flex-direction:column; }
+    }
+  </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand.css">
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <a class="nav-brand" href="/">
+    <img src="/logo.png" alt="FinCrimeRadar" style="height:44px;width:auto;max-width:200px;object-fit:contain;object-position:left center;display:block;" />
+  </a>
+  <div class="nav-links">
+    <a href="/knowledge.html">Knowledge Hub</a>
+    <a href="/scenario-lab.html">Scenario Lab</a>
+    <a href="/about.html">About</a>
+    <a href="/screen.html" class="nav-cta">Try the tool →</a>
+  </div>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/knowledge.html">Knowledge Hub</a>
+  <a href="/scenario-lab.html">Scenario Lab</a>
+  <a href="/about.html">About</a>
+  <a href="/screen.html" class="mobile-nav-cta">Try the tool →</a>
+</div>
+
+<!-- HERO -->
+<div class="article-hero">
+  <div class="hero-nodes">
+    <div class="hero-node"></div>
+    <div class="hero-node"></div>
+    <div class="hero-node"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="series-tag">🔎 Interactive Deep Dive · CDD &amp; Beneficial Ownership</div>
+    <h1>The UBO Investigation Handbook:<br><em>Finding the Real Owner</em></h1>
+    <p class="hero-sub">Checking a register isn't investigating an ownership structure, it's the starting point.</p>
+    <p style="font-size:13px;color:#93c5fd;margin-bottom:1.5rem;">Written by <a href="/about.html" style="color:#93c5fd;text-decoration:underline;">Pratik Zanke</a></p>
+    <div class="hero-meta">
+      <span>⏱ 14 min read</span>
+      <span>🔎 Interactive</span>
+      <span>🎓 Practitioner Level</span>
+      <span>📋 3 Scenarios</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="article-layout">
+  <div class="article-body">
+
+    <!-- INTRO -->
+    <div class="article-section" id="intro">
+      <div class="section-eyebrow" style="color:var(--c-paperowner)">The Starting Point, Not the Answer</div>
+      <h2>Checking a register isn't investigating an ownership structure.</h2>
+      <p>Every AML guide defines a beneficial owner: a natural person who ultimately owns or controls an entity, usually above a 25% threshold. Almost none teach you how to actually find one when the paperwork is designed to obscure them. This guide covers the practical investigative technique, what the registers genuinely show you, where they mislead by default, and how nominee arrangements, layered structures, and trusts are actually unwound in practice.</p>
+      <p>One thing worth knowing before anything else: the landscape changed in a way a lot of existing AML content hasn't caught up with. On 22 November 2022, the Court of Justice of the European Union struck down the EU's requirement for unrestricted public access to beneficial ownership registers, ruling it violated fundamental privacy rights. Most EU member states closed or restricted public access within days. If your mental model is "just look up the foreign UBO register," that model is largely out of date, most EU registers now require demonstrating a legitimate interest, and some, like Italy's, remain suspended entirely pending further litigation.</p>
+      <p>Before going further, it's worth being precise about who actually qualifies as a UBO, because "more than 25%" isn't a universal rule the way a lot of training treats it. FATF itself doesn't mandate a specific percentage, its guidance mentions 25% only as an illustrative example of how a threshold could work, not a fixed international standard. The UK and the EU's AMLD6 both apply 25% as the default, though EU member states can lower it to as little as 15% for higher-risk sectors with European Commission approval. Plenty of jurisdictions set the bar meaningfully lower: India applies 10%, South Africa applies as low as 5% for certain financial institutions, Nigeria and Colombia apply 5%, Kenya applies 10%, and Ghana requires disclosure of all shareholders for domestic extractives companies regardless of stake size. The US Corporate Transparency Act uses 25% but adds a separate control prong entirely independent of ownership percentage, someone exercising substantial control over an entity qualifies as a beneficial owner regardless of how small their formal shareholding is. That control dimension matters everywhere, not just in the US, a shareholder sitting just under whatever the local threshold happens to be, deliberately structured at 24.9% rather than 25%, but holding board appointment rights or an effective veto, is still the beneficial owner in substance, and a UBO analysis that stops at the percentage figure on the cap table misses exactly the structuring pattern the threshold was designed to catch.</p>
+
+      <div class="callout callout-navy">
+        <strong>How to use this guide</strong>
+        <p>Read the four patterns first. Then work each scenario, make your call, and read why, both for the right answer and every wrong one. The knowledge check at the end pulls the same patterns from new angles. Do not skip ahead.</p>
+      </div>
+    </div>
+
+    <!-- FOUR VISUAL MEMORY CARDS -->
+    <div class="article-section" id="patterns">
+      <div class="section-eyebrow" style="color:var(--c-paperowner)">Four Patterns</div>
+      <h2>Four patterns, four visual memory cards</h2>
+      <p>Most beneficial ownership misjudgments trace back to one of these four shapes. Learn to recognise them before the scenarios test them.</p>
+
+      <div class="memory-card" style="background:var(--c-paperowner-light);border:1px solid #bfdbfe;">
+        <div class="memory-icon">📝</div>
+        <div>
+          <div class="memory-title" style="color:var(--c-paperowner);">Visual Memory: The Paper Owner</div>
+          <div class="memory-text"><strong>A named director or shareholder isn't automatically the person in control.</strong> Picture a company file where every box is technically filled in, a director's name, a registered address, a shareholding percentage, but none of it tells you who's actually making decisions. A nominee is someone who holds a position on paper, often for a fee, on behalf of someone who deliberately stays off the record. The presence of a named individual isn't evidence you've found the beneficial owner, it's the starting point for asking whether that individual has any real decision-making power at all.</div>
+        </div>
+      </div>
+
+      <div class="memory-card" style="background:var(--c-100-light);border:1px solid #fde68a;">
+        <div class="memory-icon">💯</div>
+        <div>
+          <div class="memory-title" style="color:var(--c-100);">Visual Memory: The 100% Problem</div>
+          <div class="memory-text"><strong>Public registers are not automatically accurate or complete.</strong> The UK's Companies House PSC register is genuinely one of the more transparent in the world, fully public, free, with a bulk data API. It's also, by independent analysis, meaningfully unreliable in places: research by Open Ownership found that roughly 20% of PSC entries list no individual beneficial owner at all, and a further 20% show combined declared ownership exceeding 100%. A register entry that looks complete on screen can be structurally wrong, and treating a PSC lookup as verification, rather than a starting data point to independently confirm, is one of the most common UBO investigation shortcuts that doesn't survive scrutiny.</div>
+        </div>
+      </div>
+
+      <div class="memory-card" style="background:var(--c-closeddoor-light);border:1px solid #fecaca;">
+        <div class="memory-icon">🚪</div>
+        <div>
+          <div class="memory-title" style="color:var(--c-closeddoor);">Visual Memory: The Closed Door</div>
+          <div class="memory-text"><strong>You can no longer assume free public access to a foreign UBO register.</strong> Before November 2022, checking a company's beneficial ownership across most of the EU meant a free, instant public lookup. After the CJEU's ruling, that changed country by country, some registers closed entirely, some now require proving a "legitimate interest" before access is granted, and the rules differ meaningfully state to state. An investigation plan built around "we'll just check the foreign register" needs to confirm, country by country, whether that's actually still true before relying on it.</div>
+        </div>
+      </div>
+
+      <div class="memory-card" style="background:var(--c-unnamedclass-light);border:1px solid #ddd6fe;">
+        <div class="memory-icon">👪</div>
+        <div>
+          <div class="memory-title" style="color:var(--c-unnamedclass);">Visual Memory: The Unnamed Class</div>
+          <div class="memory-text"><strong>"Family members" is not a beneficial owner, it's a category that hasn't been investigated yet.</strong> Trust structures routinely list beneficiaries as an unspecified class, "the settlor's children and their issue," rather than named individuals. That's often legitimate trust drafting, not evidence of concealment on its own. But it is not, on its own, a completed UBO identification. Each individual who can actually benefit needs to be identified where practicable, the class description is where the investigation starts, not where it ends.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENARIO 1: THE PERFECT-LOOKING FILE -->
+    <div class="article-section" id="scenario1">
+      <div class="scenario-header">
+        <div class="scenario-icon" style="background:var(--c-100-light);">📋</div>
+        <div>
+          <div class="scenario-num">Scenario 01 · PSC register verification</div>
+          <div class="scenario-name">The Perfect-Looking File</div>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="badge badge-100">The 100% Problem</span>
+        </div>
+      </div>
+
+      <div class="scene-flow-title">Investigation Evidence</div>
+      <div class="scene-flow">
+        <div class="scene-node clean">
+          <div class="dot">🔔</div>
+          <div class="label">PSC filing reviewed</div>
+          <div class="sub">Two individuals, 50/50, both named and addressed</div>
+        </div>
+        <div class="scene-edge">
+          <div class="line"></div>
+          <div class="arrow">→</div>
+          <div class="edge-label">cross-check</div>
+        </div>
+        <div class="scene-node flag">
+          <div class="dot">📋</div>
+          <div class="label">Register looks clean</div>
+          <div class="sub">No adverse media, three years trading history</div>
+        </div>
+        <div class="scene-edge">
+          <div class="line"></div>
+          <div class="arrow">→</div>
+          <div class="edge-label">verify independently</div>
+        </div>
+        <div class="scene-node alert">
+          <div class="dot">⚠️</div>
+          <div class="label">Under review</div>
+          <div class="sub">Register completeness isn't the same as verification</div>
+        </div>
+      </div>
+
+      <div class="dilemma-card" id="dilemma-scenario1">
+        <div class="dilemma-header">
+          <span class="icon">⚖️</span>
+          <div>
+            <strong>What do you do?</strong>
+            <span>Make the call</span>
+          </div>
+        </div>
+        <div class="dilemma-scenario">
+          <p>A UK company's Companies House filing shows two individuals as Persons with Significant Control, each declared at 50% ownership. The filing looks complete, both PSCs are named, addresses are on file, and the company has been trading for three years with no adverse media. Nothing about the record itself appears unusual.</p>
+        </div>
+        <div class="dilemma-options">
+          <button class="dilemma-option" onclick="showVerdict('scenario1','A',this)">
+            <span class="opt-label">A</span>
+            <span>Accept the PSC filing as sufficient beneficial ownership verification, it's complete and consistent.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('scenario1','B',this)">
+            <span class="opt-label">B</span>
+            <span>Independently verify the PSC declaration against the customer's own account of ownership, and check whether either individual holds an unusually high number of unrelated directorships elsewhere.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('scenario1','C',this)">
+            <span class="opt-label">C</span>
+            <span>Reject the relationship, two 50/50 owners is inherently suspicious.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('scenario1','D',this)">
+            <span class="opt-label">D</span>
+            <span>Request a solicitor's letter confirming ownership before proceeding.</span>
+          </button>
+        </div>
+        <div class="dilemma-verdict" id="scenario1-verdict">
+          <div id="scenario1-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENARIO 2: THE SERIAL DIRECTOR -->
+    <div class="article-section" id="scenario2">
+      <div class="scenario-header">
+        <div class="scenario-icon" style="background:var(--c-paperowner-light);">🏢</div>
+        <div>
+          <div class="scenario-num">Scenario 02 · Nominee investigation</div>
+          <div class="scenario-name">The Serial Director</div>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="badge badge-paperowner">The Paper Owner</span>
+        </div>
+      </div>
+
+      <div class="scene-flow-title">Investigation Evidence</div>
+      <div class="scene-flow">
+        <div class="scene-node clean">
+          <div class="dot">🔔</div>
+          <div class="label">PSC verification</div>
+          <div class="sub">Cross-checking named individual's public footprint</div>
+        </div>
+        <div class="scene-edge">
+          <div class="line"></div>
+          <div class="arrow">→</div>
+          <div class="edge-label">check directorships</div>
+        </div>
+        <div class="scene-node flag">
+          <div class="dot">🏢</div>
+          <div class="label">340 directorships found</div>
+          <div class="sub">Same formation agent address, no independent presence</div>
+        </div>
+        <div class="scene-edge">
+          <div class="line"></div>
+          <div class="arrow">→</div>
+          <div class="edge-label">assess control</div>
+        </div>
+        <div class="scene-node alert">
+          <div class="dot">⚠️</div>
+          <div class="label">Under review</div>
+          <div class="sub">Zero public presence beyond the filings themselves</div>
+        </div>
+      </div>
+
+      <div class="dilemma-card" id="dilemma-scenario2">
+        <div class="dilemma-header">
+          <span class="icon">⚖️</span>
+          <div>
+            <strong>What do you do?</strong>
+            <span>Make the call</span>
+          </div>
+        </div>
+        <div class="dilemma-scenario">
+          <p>During your PSC verification for Scenario 1, you discover that one of the two named individuals is listed as a director or PSC on 340 other UK companies, most registered at the same commercial address, a known company formation agent's office. The individual has no other public presence, no LinkedIn profile, no professional history discoverable anywhere.</p>
+        </div>
+        <div class="dilemma-options">
+          <button class="dilemma-option" onclick="showVerdict('scenario2','A',this)">
+            <span class="opt-label">A</span>
+            <span>Proceed as normal, 340 directorships isn't against any rule.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('scenario2','B',this)">
+            <span class="opt-label">B</span>
+            <span>Treat this as a strong nominee indicator, escalate for further investigation into who is actually exercising control, don't accept this individual as the real beneficial owner without more.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('scenario2','C',this)">
+            <span class="opt-label">C</span>
+            <span>Reject the relationship immediately, this is definitive proof of a shell structure.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('scenario2','D',this)">
+            <span class="opt-label">D</span>
+            <span>Contact the individual directly to ask if they're a nominee.</span>
+          </button>
+        </div>
+        <div class="dilemma-verdict" id="scenario2-verdict">
+          <div id="scenario2-content"></div>
+        </div>
+      </div>
+
+      <div class="inline-tool-promo">
+        <div class="itp-text">
+          <strong>Verifying a corporate customer?</strong>
+          <span>Run a free sanctions, PEP, and adverse media check on named individuals before onboarding, no account required.</span>
+        </div>
+        <a href="/screen.html" class="itp-btn">Screen an entity →</a>
+      </div>
+    </div>
+
+    <!-- SCENARIO 3: THE FAMILY TRUST -->
+    <div class="article-section" id="scenario3">
+      <div class="scenario-header">
+        <div class="scenario-icon" style="background:var(--c-unnamedclass-light);">📜</div>
+        <div>
+          <div class="scenario-num">Scenario 03 · Trust beneficial ownership</div>
+          <div class="scenario-name">The Family Trust</div>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="badge badge-unnamedclass">The Unnamed Class</span>
+        </div>
+      </div>
+
+      <div class="scene-flow-title">Investigation Evidence</div>
+      <div class="scene-flow">
+        <div class="scene-node clean">
+          <div class="dot">🔔</div>
+          <div class="label">Ownership traced</div>
+          <div class="sub">Holding company leads to a discretionary trust</div>
+        </div>
+        <div class="scene-edge">
+          <div class="line"></div>
+          <div class="arrow">→</div>
+          <div class="edge-label">read the deed</div>
+        </div>
+        <div class="scene-node flag">
+          <div class="dot">📜</div>
+          <div class="label">Unnamed beneficiary class</div>
+          <div class="sub">"Children and remoter issue," no individuals named</div>
+        </div>
+        <div class="scene-edge">
+          <div class="line"></div>
+          <div class="arrow">→</div>
+          <div class="edge-label">identify beneficiaries</div>
+        </div>
+        <div class="scene-node alert">
+          <div class="dot">⚠️</div>
+          <div class="label">Under review</div>
+          <div class="sub">Settlor and trustee identified, beneficiaries still pending</div>
+        </div>
+      </div>
+
+      <div class="dilemma-card" id="dilemma-scenario3">
+        <div class="dilemma-header">
+          <span class="icon">⚖️</span>
+          <div>
+            <strong>What do you do?</strong>
+            <span>Make the call</span>
+          </div>
+        </div>
+        <div class="dilemma-scenario">
+          <p>A corporate customer's ownership traces up through a holding company to a discretionary trust. The trust deed names the settlor and the professional trustee, but describes the beneficiary class simply as "the settlor's children and remoter issue from time to time living." No individual beneficiaries are named.</p>
+        </div>
+        <div class="dilemma-options">
+          <button class="dilemma-option" onclick="showVerdict('scenario3','A',this)">
+            <span class="opt-label">A</span>
+            <span>Accept the settlor and trustee as sufficient beneficial ownership identification, the deed is standard trust drafting.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('scenario3','B',this)">
+            <span class="opt-label">B</span>
+            <span>Reject the relationship, unnamed beneficiary classes are inherently a concealment red flag.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('scenario3','C',this)">
+            <span class="opt-label">C</span>
+            <span>Identify the settlor and trustees as required, and separately identify each individual member of the beneficiary class who can currently benefit, applying enhanced due diligence given the additional structural complexity.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('scenario3','D',this)">
+            <span class="opt-label">D</span>
+            <span>File a Suspicious Activity Report, trust structures with unnamed beneficiaries are reportable by default.</span>
+          </button>
+        </div>
+        <div class="dilemma-verdict" id="scenario3-verdict">
+          <div id="scenario3-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KNOWLEDGE CHECK QUIZ -->
+    <div class="quiz-section" id="knowledge-check">
+      <div class="quiz-title">Knowledge Check</div>
+      <div class="quiz-sub">Five questions. How well do you investigate ownership?</div>
+
+      <div class="quiz-q" id="qq1">
+        <div class="quiz-q-text">1. What does independent research suggest about the UK's PSC register data quality?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="answerQuiz('qq1','A')">A - It's completely unreliable and shouldn't be used</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq1','B')">B - Roughly a fifth of entries have no individual beneficial owner listed, and a further fifth show combined ownership over 100%</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq1','C')">C - It's fully accurate and requires no independent verification</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq1','D')">D - Only companies formed before 2020 have data quality issues</button>
+        </div>
+        <div class="quiz-feedback" id="qq1-fb"></div>
+      </div>
+
+      <div class="quiz-q" id="qq2">
+        <div class="quiz-q-text">2. What changed for EU beneficial ownership registers after November 2022?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="answerQuiz('qq2','A')">A - Nothing, access remained the same</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq2','B')">B - All EU registers became fully private with no access for anyone</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq2','C')">C - The CJEU struck down unrestricted public access, most member states moved to a "legitimate interest" access model, and access rules now vary significantly by country</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq2','D')">D - Access became free and unrestricted for the first time</button>
+        </div>
+        <div class="quiz-feedback" id="qq2-fb"></div>
+      </div>
+
+      <div class="quiz-q" id="qq3">
+        <div class="quiz-q-text">3. What does a named individual holding director or PSC status on 340 unrelated companies at a formation agent's address most likely indicate?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="answerQuiz('qq3','A')">A - A genuinely active, prolific business owner</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq3','B')">B - A strong nominee indicator, not proof of illegality, but grounds to investigate who actually controls the entities</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq3','C')">C - A data entry error that should be ignored</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq3','D')">D - Definitive proof of a shell company scheme</button>
+        </div>
+        <div class="quiz-feedback" id="qq3-fb"></div>
+      </div>
+
+      <div class="quiz-q" id="qq4">
+        <div class="quiz-q-text">4. An unnamed beneficiary class in a trust deed ("children and remoter issue") is:</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="answerQuiz('qq4','A')">A - Always evidence of concealment requiring an automatic SAR</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq4','B')">B - Standard trust drafting that still requires identifying each current individual beneficiary</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq4','C')">C - Sufficient beneficial ownership identification on its own</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq4','D')">D - Only relevant for offshore trusts, not UK ones</button>
+        </div>
+        <div class="quiz-feedback" id="qq4-fb"></div>
+      </div>
+
+      <div class="quiz-q" id="qq5">
+        <div class="quiz-q-text">5. What's the actual argument this guide makes about beneficial ownership registers?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="answerQuiz('qq5','A')">A - Registers should never be used for UBO investigation</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq5','B')">B - A register lookup is a starting data point requiring independent verification, not a completed investigation</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq5','C')">C - Only foreign registers require verification, domestic ones don't</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq5','D')">D - Nominee arrangements are always illegal and should be rejected on sight</button>
+        </div>
+        <div class="quiz-feedback" id="qq5-fb"></div>
+      </div>
+
+      <div class="quiz-score-display" id="quiz-score">
+        <div class="quiz-score-num" id="quiz-score-num">0/5</div>
+        <div class="quiz-score-label" id="quiz-score-label"></div>
+      </div>
+    </div>
+
+    <!-- AT A GLANCE, reference table visual summary -->
+    <div class="article-section" id="glance">
+      <div class="section-eyebrow" style="color:var(--c-paperowner)">Quick Reference</div>
+      <h2>At a glance</h2>
+      <p>Four patterns, the trap that makes each one look routine, the tell that actually gives it away, and the response that fits.</p>
+
+      <div class="save-img-row">
+        <button class="save-img-btn" id="saveTableImgBtn" onclick="saveTableAsImage()">💾 Save as image</button>
+      </div>
+
+      <div class="ref-table-wrap">
+        <table class="ref-table" id="glanceTable">
+          <thead>
+            <tr><th>Pattern</th><th>The trap</th><th>The tell</th><th>Response</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="rt-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v4h4"/><path d="M8 13h8"/><path d="M8 17h5"/></svg>
+                </span>
+                The Paper Owner
+              </td>
+              <td>Named director looks like the real owner</td>
+              <td>Extreme directorship count, formation agent address, no public presence</td>
+              <td>Treat as nominee indicator, investigate who actually controls</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="rt-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="7.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/><path d="M17 7 7 17"/></svg>
+                </span>
+                The 100% Problem
+              </td>
+              <td>Register entry looks complete and final</td>
+              <td>Combined ownership over 100%, or no individual listed at all</td>
+              <td>Independently verify, don't treat the register as sufficient alone</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="rt-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/><path d="M3 21h18"/><circle cx="14" cy="12" r="1" fill="currentColor" stroke="none"/></svg>
+                </span>
+                The Closed Door
+              </td>
+              <td>Assuming free public access to any foreign register</td>
+              <td>Post-2022 CJEU ruling, access rules vary by EU country</td>
+              <td>Confirm current access rules country by country before relying on them</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="rt-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M15 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M3 21c0-4 3-6.5 6-6.5s6 2.5 6 6.5"/><path d="M15 14.5c3 0 6 2.5 6 6.5"/></svg>
+                </span>
+                The Unnamed Class
+              </td>
+              <td>Unnamed trust beneficiaries look like concealment</td>
+              <td>Standard discretionary trust drafting, no individuals named</td>
+              <td>Identify settlor, trustees, and each current beneficiary individually</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CONCLUSION -->
+    <div class="article-section" id="conclusion">
+      <div class="section-eyebrow" style="color:var(--c-paperowner)">The Register Is the Start</div>
+      <h2>The register is where an investigation starts, not where it ends.</h2>
+      <p>Every pattern in this guide comes back to the same discipline: a register lookup is a data point, not a conclusion. <a href="/screen.html" style="color:var(--c-paperowner);font-weight:600;">FinCrimeRadar's screening tool</a> lets you check each individual beneficial owner you actually identify against live sanctions and PEP data, free, no account required.</p>
+
+      <div class="inline-tool-promo">
+        <div class="itp-text">
+          <strong>Identified a beneficial owner?</strong>
+          <span>Free. No account needed. Check them against live sanctions, PEP, and adverse media data.</span>
+        </div>
+        <a href="/screen.html" class="itp-btn">Screen an entity →</a>
+      </div>
+    </div>
+
+  </div><!-- /article-body -->
+
+  <!-- SIDEBAR -->
+  <div class="article-sidebar">
+    <div class="toc">
+      <div class="toc-title">Contents</div>
+      <a href="#intro">The Starting Point</a>
+      <a href="#patterns">Four Patterns</a>
+      <a href="#scenario1" class="toc-scenario"><span class="toc-dot" style="background:var(--c-100);"></span> 01 · The Perfect-Looking File</a>
+      <a href="#scenario2" class="toc-scenario"><span class="toc-dot" style="background:var(--c-paperowner);"></span> 02 · The Serial Director</a>
+      <a href="#scenario3" class="toc-scenario"><span class="toc-dot" style="background:var(--c-unnamedclass);"></span> 03 · The Family Trust</a>
+      <a href="#knowledge-check">Knowledge Check</a>
+      <a href="#glance">At a Glance</a>
+      <a href="#conclusion">Conclusion</a>
+    </div>
+
+    <div class="score-card">
+      <div class="score-title">Your Scenario Score</div>
+      <div class="score-stat"><span>Scenarios attempted</span><span class="score-badge" id="score-attempted" style="color:var(--muted);">0 / 3</span></div>
+      <div class="score-stat"><span>Correct answers</span><span class="score-badge" id="score-correct" style="color:var(--success);">0</span></div>
+      <div class="score-stat"><span>Wrong answers</span><span class="score-badge" id="score-wrong" style="color:var(--danger);">0</span></div>
+    </div>
+
+    <div class="tool-cta">
+      <p>Practise this live, run a free sanctions, PEP, and adverse media check on individuals you identify.</p>
+      <a href="/screen.html">Try the screening tool →</a>
+    </div>
+  </div>
+</div><!-- /article-layout -->
+
+<!-- FOOTER -->
+<footer style="background:#F7F8FA;color:var(--muted);border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;margin-top:2rem;">
+  <div style="max-width:900px;margin:0 auto;">
+    <a href="/" style="display:inline-block;margin-bottom:1rem;"><img src="/logo.png" alt="FinCrimeRadar" style="height:44px;object-fit:contain;" /></a>
+    <p style="font-size:13px;margin-bottom:0.5rem;color:var(--muted);">Free, open-source AML and financial crime compliance resources.</p>
+    <div style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin:1rem 0;font-size:13px;">
+      <a href="/knowledge.html" style="color:var(--navy);text-decoration:none;">Knowledge Hub</a>
+      <a href="/screen.html" style="color:var(--navy);text-decoration:none;">Screening Tool</a>
+      <a href="/about.html" style="color:var(--navy);text-decoration:none;">About</a>
+      <a href="/privacy.html" style="color:var(--navy);text-decoration:none;">Privacy</a>
+      <a href="/editorial-standards.html" style="color:var(--navy);text-decoration:none;">Editorial Standards</a>
+      <a href="/methodology.html" style="color:var(--navy);text-decoration:none;">Methodology</a>
+      <a href="/contact.html" style="color:var(--navy);text-decoration:none;">Contact</a>
+    </div>
+    <p style="font-size:12px;color:var(--muted);">© 2026 FinCrimeRadar. For educational purposes only. Not legal advice.</p>
+  </div>
+</footer>
+
+<script>
+// PROGRESS BAR
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const scrolled = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progressBar').style.width = scrolled + '%';
+});
+
+// TOC ACTIVE STATE
+const tocLinks = document.querySelectorAll('.toc a');
+const sections = document.querySelectorAll('[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+  tocLinks.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + current); });
+});
+
+// MOBILE NAV
+function toggleMobileNav() {
+  document.getElementById('mobileNav').classList.toggle('open');
+}
+
+// SCORE TRACKING
+let scenarioResults = {};
+
+function updateScoreCard() {
+  const attempted = Object.keys(scenarioResults).length;
+  const correct = Object.values(scenarioResults).filter(v => v === 'correct').length;
+  const wrong = Object.values(scenarioResults).filter(v => v === 'wrong').length;
+  document.getElementById('score-attempted').textContent = attempted + ' / 3';
+  document.getElementById('score-correct').textContent = correct;
+  document.getElementById('score-wrong').textContent = wrong;
+}
+
+// SCENARIO ANSWER KEYS AND FULL VERDICTS
+// Every option reveals the same full reasoning block: why the correct
+// answer is right AND why each wrong option fails, matching how each
+// scenario's explanation was actually authored as one continuous
+// argument rather than per-option variants.
+const answerKeys = {
+  scenario1: 'B',
+  scenario2: 'B',
+  scenario3: 'C'
+};
+
+const verdicts = {
+  scenario1: {
+    title: 'Correct answer: B, Independently verify the PSC declaration and check for unusually high directorship counts',
+    body: [
+      'A clean-looking PSC filing is not the same as independent verification, roughly one in five PSC entries has a genuine data quality problem per independent research, so "the register looks fine" isn’t itself evidence of accuracy. The correct discipline is treating the register as a starting data point to be cross-checked against the customer’s own declared ownership and against a basic screen for nominee-pattern indicators, most notably whether either named individual appears as a director or PSC on an implausibly large number of unrelated companies, a classic company formation agent or professional nominee signature.',
+      'Option A stops at the register without independent verification. Option C is a disproportionate reaction to a perfectly ordinary ownership split with no actual red flag present. Option D adds friction without addressing the actual question, a solicitor’s letter confirms a solicitor was engaged, not that the underlying ownership claim is accurate.'
+    ]
+  },
+  scenario2: {
+    title: 'Correct answer: B, Treat this as a strong nominee indicator and escalate to investigate who actually controls the entity',
+    body: [
+      'This is "The Paper Owner" pattern in its clearest form. 340 directorships at a formation agent’s address with zero independent public presence is one of the strongest, most reliable nominee indicators available, no real business owner is meaningfully involved in the operational control of 340 separate companies. It isn’t proof of illegality on its own, professional nominee services are a legitimate, regulated business in some contexts, but it is strong evidence that this named individual is not the person actually exercising control, and the investigation needs to identify who is.',
+      'Option A ignores a genuinely strong pattern. Option C overstates what’s actually been established, a nominee arrangement isn’t automatically a shell structure or automatically illegitimate, it needs investigating, not assuming the worst outright. Option D is unlikely to produce a reliable answer, and tips your hand about the investigation to someone who, if they are a nominee acting for an undisclosed principal, has no incentive to be forthcoming.'
+    ]
+  },
+  scenario3: {
+    title: 'Correct answer: C, Identify the settlor and trustees, then separately identify each individual beneficiary who can currently benefit',
+    body: [
+      'This wording, "children and remoter issue from time to time living," is genuinely standard discretionary trust drafting, not inherently suspicious on its own, trusts are legitimate legal arrangements and this is common language. But standard drafting doesn’t complete the UBO analysis, it just tells you where to keep looking. The correct approach identifies the settlor and trustees as a baseline, then individually identifies each current member of the beneficiary class who can practically benefit, applying the additional scrutiny that trust structures generally warrant given how much more complex they are to unwind than direct corporate ownership.',
+      'Option A stops too early, "settlor plus trustee" isn’t a complete UBO picture for a trust. Option B and D both treat standard trust drafting as automatically suspicious, which it isn’t, an unnamed beneficiary class is a prompt to investigate further, not evidence of wrongdoing requiring an automatic reject or report.'
+    ]
+  }
+};
+
+function showVerdict(scenarioId, chosen, btn) {
+  const verdictDiv = document.getElementById(scenarioId + '-verdict');
+  const contentDiv = document.getElementById(scenarioId + '-content');
+  const isCorrect = chosen === answerKeys[scenarioId];
+
+  // Disable all buttons in this scenario
+  const allBtns = btn.closest('.dilemma-options').querySelectorAll('button');
+  allBtns.forEach(b => {
+    b.disabled = true;
+    b.style.opacity = '0.6';
+    b.style.cursor = 'default';
+  });
+
+  // Style clicked button
+  btn.style.opacity = '1';
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+
+  const v = verdicts[scenarioId];
+  const bgClass = isCorrect ? 'verdict-correct' : 'verdict-wrong';
+  const icon = isCorrect ? '✅' : '❌';
+
+  contentDiv.innerHTML = `
+    <div class="${bgClass}">
+      <div class="verdict-icon">${icon}</div>
+      <div class="verdict-title">${v.title}</div>
+      <div class="verdict-body">${v.body.map(p => '<p>' + p + '</p>').join('')}</div>
+    </div>
+  `;
+
+  verdictDiv.classList.add('show');
+  scenarioResults[scenarioId] = isCorrect ? 'correct' : 'wrong';
+  updateScoreCard();
+}
+
+// QUIZ LOGIC
+const quizFeedback = {
+  qq1: { correct: 'B', fb: 'Roughly a fifth of PSC entries list no individual beneficial owner at all, and a further fifth show combined declared ownership over 100 percent, a register lookup alone is not verification.' },
+  qq2: { correct: 'C', fb: 'The CJEU’s November 2022 ruling ended unrestricted public access across the EU, most member states now require demonstrating a legitimate interest, and the specifics vary country by country.' },
+  qq3: { correct: 'B', fb: 'Hundreds of directorships at a single formation agent address with no independent public presence is a strong nominee indicator, not proof of wrongdoing on its own, but real grounds to keep investigating.' },
+  qq4: { correct: 'B', fb: 'Standard trust drafting still requires identifying each current individual beneficiary, an unnamed class is where the investigation starts, not where it stops.' },
+  qq5: { correct: 'B', fb: 'A register entry is a starting data point that needs independent verification, not a completed beneficial ownership investigation on its own.' }
+};
+
+let quizAnswered = 0;
+let quizCorrect = 0;
+
+function answerQuiz(questionId, chosen) {
+  const questionDiv = document.getElementById(questionId);
+  const fbDiv = document.getElementById(questionId + '-fb');
+  const opts = questionDiv.querySelectorAll('.quiz-opt');
+  const data = quizFeedback[questionId];
+
+  opts.forEach(o => o.disabled = true);
+  const isCorrect = chosen === data.correct;
+
+  opts.forEach(o => {
+    if (o.textContent.trim().startsWith(data.correct)) o.classList.add('q-correct');
+    else if (o.textContent.trim().startsWith(chosen) && !isCorrect) o.classList.add('q-wrong');
+  });
+
+  fbDiv.textContent = data.fb;
+  fbDiv.style.background = isCorrect ? 'rgba(22,163,74,0.2)' : 'rgba(220,38,38,0.2)';
+  fbDiv.style.padding = '8px 12px';
+  fbDiv.style.borderRadius = '6px';
+  fbDiv.style.color = isCorrect ? '#86efac' : '#fca5a5';
+  fbDiv.classList.add('show');
+
+  quizAnswered++;
+  if (isCorrect) quizCorrect++;
+
+  if (quizAnswered === 5) {
+    const scoreDiv = document.getElementById('quiz-score');
+    const scoreNum = document.getElementById('quiz-score-num');
+    const scoreLbl = document.getElementById('quiz-score-label');
+    scoreDiv.classList.add('show');
+    scoreNum.textContent = quizCorrect + '/5';
+    const labels = ['Keep studying, the register is a starting point, not a conclusion.','Getting there, go back through the patterns you missed.','Solid foundation, a few gaps to close.','Good grasp, you’re reading these structures well.','Excellent, practitioner-level ownership investigation.','Perfect, you’re ready to unwind a real structure.'];
+    scoreLbl.textContent = labels[quizCorrect] || labels[5];
+  }
+}
+
+// SAVE AS IMAGE
+// Renders the "At a glance" table to a downloadable PNG using native
+// Canvas 2D and Path2D APIs only, no external library. Content (icon
+// paths, pattern names, cell text) is read directly from the live DOM
+// at click time, so the image can never drift out of sync with the
+// on-page table.
+function wrapCanvasText(ctx, text, maxWidth) {
+  const words = text.split(' ');
+  const lines = [];
+  let line = '';
+  words.forEach(word => {
+    const test = line ? line + ' ' + word : word;
+    if (ctx.measureText(test).width > maxWidth && line) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = test;
+    }
+  });
+  if (line) lines.push(line);
+  return lines;
+}
+
+function drawSvgIconToCanvas(ctx, svgEl, x, y, size, color) {
+  const vb = (svgEl.getAttribute('viewBox') || '0 0 24 24').split(' ').map(Number);
+  const scale = size / vb[2];
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(scale, scale);
+  ctx.translate(-vb[0], -vb[1]);
+  ctx.lineWidth = 2;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.strokeStyle = color;
+  ctx.fillStyle = color;
+  Array.from(svgEl.children).forEach(el => {
+    const tag = el.tagName.toLowerCase();
+    const fillAttr = el.getAttribute('fill');
+    const strokeAttr = el.getAttribute('stroke');
+    let path = null;
+    if (tag === 'path') {
+      path = new Path2D(el.getAttribute('d'));
+    } else if (tag === 'circle') {
+      path = new Path2D();
+      path.arc(+el.getAttribute('cx'), +el.getAttribute('cy'), +el.getAttribute('r'), 0, Math.PI * 2);
+    } else if (tag === 'rect') {
+      path = new Path2D();
+      const rx = +(el.getAttribute('rx') || 0);
+      if (path.roundRect) {
+        path.roundRect(+el.getAttribute('x'), +el.getAttribute('y'), +el.getAttribute('width'), +el.getAttribute('height'), rx);
+      } else {
+        path.rect(+el.getAttribute('x'), +el.getAttribute('y'), +el.getAttribute('width'), +el.getAttribute('height'));
+      }
+    } else if (tag === 'ellipse') {
+      path = new Path2D();
+      path.ellipse(+el.getAttribute('cx'), +el.getAttribute('cy'), +el.getAttribute('rx'), +el.getAttribute('ry'), 0, 0, Math.PI * 2);
+    }
+    if (!path) return;
+    const isFilled = fillAttr && fillAttr !== 'none';
+    if (isFilled) ctx.fill(path);
+    if (strokeAttr !== 'none') ctx.stroke(path);
+  });
+  ctx.restore();
+}
+
+function saveTableAsImage() {
+  const table = document.getElementById('glanceTable');
+  if (!table) return;
+  const btn = document.getElementById('saveTableImgBtn');
+  const originalLabel = btn.textContent;
+  btn.textContent = 'Rendering…';
+  btn.disabled = true;
+
+  const headerCells = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
+  const rows = Array.from(table.querySelectorAll('tbody tr')).map(tr => {
+    const tds = tr.querySelectorAll('td');
+    return {
+      svg: tds[0].querySelector('svg'),
+      name: tds[0].textContent.trim(),
+      cells: [tds[1].textContent.trim(), tds[2].textContent.trim(), tds[3].textContent.trim()]
+    };
+  });
+
+  const WIDTH = 1200;
+  const OUTER_PAD = 20;
+  const contentWidth = WIDTH - OUTER_PAD * 2;
+  const colWidths = [260, Math.round((contentWidth - 260) / 3), Math.round((contentWidth - 260) / 3), 0];
+  colWidths[3] = contentWidth - colWidths[0] - colWidths[1] - colWidths[2];
+  const colX = [OUTER_PAD];
+  for (let i = 1; i < 4; i++) colX.push(colX[i - 1] + colWidths[i - 1]);
+
+  const TITLE_H = 64;
+  const HEADER_H = 50;
+  const CELL_PAD_X = 16;
+  const CELL_PAD_Y = 14;
+  const LINE_H = 20;
+  const BODY_FONT = '14px Inter, system-ui, sans-serif';
+  const NAME_FONT = '700 14px Inter, system-ui, sans-serif';
+
+  // Measure pass on a scratch canvas to compute row heights
+  const measure = document.createElement('canvas').getContext('2d');
+  measure.font = BODY_FONT;
+  const rowHeights = rows.map(row => {
+    const col0Lines = wrapCanvasText(measure, row.name, colWidths[0] - CELL_PAD_X * 2 - 36);
+    const otherLines = row.cells.map(text => wrapCanvasText(measure, text, colWidths[1] - CELL_PAD_X * 2));
+    const maxLines = Math.max(col0Lines.length, ...otherLines.map(l => l.length), 1);
+    return Math.max(70, CELL_PAD_Y * 2 + maxLines * LINE_H);
+  });
+
+  const totalHeight = OUTER_PAD * 2 + TITLE_H + HEADER_H + rowHeights.reduce((a, b) => a + b, 0);
+
+  const canvas = document.createElement('canvas');
+  canvas.width = WIDTH;
+  canvas.height = totalHeight;
+  const ctx = canvas.getContext('2d');
+
+  // Background
+  ctx.fillStyle = '#F4F6F3';
+  ctx.fillRect(0, 0, WIDTH, totalHeight);
+
+  // Card container (rounded)
+  const cardX = OUTER_PAD, cardY = OUTER_PAD, cardW = contentWidth, cardH = totalHeight - OUTER_PAD * 2;
+  ctx.fillStyle = '#FFFFFF';
+  ctx.beginPath();
+  if (ctx.roundRect) ctx.roundRect(cardX, cardY, cardW, cardH, 12); else ctx.rect(cardX, cardY, cardW, cardH);
+  ctx.fill();
+
+  // Title bar
+  ctx.fillStyle = '#0C1B2A';
+  ctx.beginPath();
+  if (ctx.roundRect) ctx.roundRect(cardX, cardY, cardW, TITLE_H, [12, 12, 0, 0]); else ctx.rect(cardX, cardY, cardW, TITLE_H);
+  ctx.fill();
+  ctx.fillStyle = '#FFFFFF';
+  ctx.font = '700 20px Georgia, serif';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('UBO Investigation Handbook: At a glance', cardX + CELL_PAD_X, cardY + TITLE_H / 2);
+
+  // Header row
+  let y = cardY + TITLE_H;
+  ctx.fillStyle = '#0E3226';
+  ctx.fillRect(cardX, y, cardW, HEADER_H);
+  ctx.fillStyle = '#FFFFFF';
+  ctx.font = '700 12px Inter, system-ui, sans-serif';
+  ctx.textBaseline = 'middle';
+  headerCells.forEach((text, i) => {
+    ctx.fillText(text.toUpperCase(), colX[i] + CELL_PAD_X, y + HEADER_H / 2);
+  });
+  y += HEADER_H;
+
+  // Data rows
+  rows.forEach((row, i) => {
+    const rh = rowHeights[i];
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(cardX, y, cardW, rh);
+
+    // Icon + name in column 0
+    if (row.svg) drawSvgIconToCanvas(ctx, row.svg, colX[0] + CELL_PAD_X, y + CELL_PAD_Y + 2, 20, '#0B7A57');
+    ctx.fillStyle = '#0C1B2A';
+    ctx.font = NAME_FONT;
+    ctx.textBaseline = 'top';
+    const nameLines = wrapCanvasText(ctx, row.name, colWidths[0] - CELL_PAD_X * 2 - 36);
+    nameLines.forEach((line, li) => ctx.fillText(line, colX[0] + CELL_PAD_X + 32, y + CELL_PAD_Y + li * LINE_H));
+
+    // Other columns
+    ctx.font = BODY_FONT;
+    ctx.fillStyle = '#3D4E5C';
+    row.cells.forEach((text, ci) => {
+      const lines = wrapCanvasText(ctx, text, colWidths[ci + 1] - CELL_PAD_X * 2);
+      lines.forEach((line, li) => ctx.fillText(line, colX[ci + 1] + CELL_PAD_X, y + CELL_PAD_Y + li * LINE_H));
+    });
+
+    // Bottom border (skip on last row)
+    if (i < rows.length - 1) {
+      ctx.strokeStyle = '#E3E8E3';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(cardX, y + rh);
+      ctx.lineTo(cardX + cardW, y + rh);
+      ctx.stroke();
+    }
+    y += rh;
+  });
+
+  canvas.toBlob(blob => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'ubo-investigation-handbook-at-a-glance.png';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    btn.textContent = originalLabel;
+    btn.disabled = false;
+  }, 'image/png');
+}
+</script>
+
+<!-- Cookie Consent -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#0f2044;color:#e2e8f0;padding:1rem 1.5rem;z-index:9999;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:13px;">
+  <span>We use cookies for analytics. <a href="/privacy.html" style="color:#00c4a7;">Privacy Policy</a></span>
+  <div style="display:flex;gap:8px;">
+    <button onclick="acceptCookies()" style="background:#00c4a7;color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:13px;font-weight:600;">Accept</button>
+    <button onclick="rejectCookies()" style="background:transparent;color:#94a3b8;border:1px solid #374151;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:13px;">Decline</button>
+  </div>
+</div>
+<script>
+if (!localStorage.getItem('fcr_cookie_consent')) document.getElementById('cookieBanner').style.display='flex';
+function acceptCookies() {
+  localStorage.setItem('fcr_cookie_consent', 'accepted');
+  if (typeof gtag === 'function') {
+    gtag('consent', 'update', { 'analytics_storage': 'granted' });
+  }
+  document.getElementById('cookieBanner').style.display = 'none';
+}
+function rejectCookies() {
+  localStorage.setItem('fcr_cookie_consent', 'rejected');
+  if (typeof gtag === 'function') {
+    gtag('consent', 'update', { 'analytics_storage': 'denied' });
+  }
+  document.getElementById('cookieBanner').style.display = 'none';
+}
+</script>
+
+<script defer src="/brand.js"></script>
+</body>
+</html>
