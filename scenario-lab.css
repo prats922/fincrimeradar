@@ -937,6 +937,80 @@
   margin-bottom: 4px;
 }
 
+/* Cross-reference fact cards (Cases 5/6): order-independent grid, reveal
+   on click, in place of the timeline stepper's locked sequential steps. */
+.fd-fact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+@media (max-width: 640px) {
+  .fd-fact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fd-fact-card {
+  text-align: left;
+  background: var(--sl-surface);
+  border: 1px solid var(--sl-border);
+  border-radius: var(--sl-radius-md);
+  padding: 14px;
+  cursor: pointer;
+  font-family: var(--sl-font);
+  color: inherit;
+  transition: border-color 0.15s var(--sl-ease), box-shadow 0.15s var(--sl-ease);
+}
+
+.fd-fact-card:hover {
+  border-color: var(--sl-teal);
+  box-shadow: 0 6px 16px rgba(12, 27, 42, 0.08);
+}
+
+.fd-fact-card.revealed {
+  border-color: var(--sl-teal);
+  cursor: default;
+}
+
+.fd-fact-card.revealed:hover {
+  box-shadow: none;
+}
+
+.fd-fact-icon {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  margin-bottom: 8px;
+  color: var(--sl-teal);
+}
+
+.fd-fact-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.fd-fact-card h4 {
+  margin: 0 0 6px;
+  font-size: 0.92rem;
+  color: var(--sl-text);
+}
+
+.fd-fact-body {
+  margin: 0;
+  color: var(--sl-text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.fd-fact-hint {
+  font-size: 0.78rem;
+  color: var(--sl-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .sl-tile.active,
   .sl-toggle,
@@ -946,7 +1020,8 @@
   .sl-request-btn,
   .sl-case-tile,
   .fd-step-marker,
-  .fd-risk-fill {
+  .fd-risk-fill,
+  .fd-fact-card {
     transition: none;
   }
 }

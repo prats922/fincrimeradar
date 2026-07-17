@@ -111,7 +111,7 @@
     fraudTile.innerHTML = [
       "<div>",
       "<h3>Fraud Detection</h3>",
-      "<p>Step through live account activity, watch the risk signal shift with every new fact, then decide across four cases.</p>",
+      "<p>Step through live account activity or cross-reference a set of facts, then decide across six cases.</p>",
       "</div>",
     ].join("");
     fraudTile.addEventListener("click", () => startFraudModule(dashboard, workspace, state));
@@ -231,7 +231,7 @@
         if (moduleKey === "kyc") {
           loadCase(workspace, state);
         } else {
-          loadFraudCase(workspace, state);
+          loadFraudCaseByLayout(workspace, state);
         }
       });
       grid.appendChild(tile);
@@ -1272,6 +1272,21 @@
     renderFraudStepBody(state);
   }
 
+  // Cases 5/6 are a set of facts that all exist simultaneously rather than
+  // a sequence, so they carry "layout": "cross_reference" and route to the
+  // fact card grid below instead of the timeline stepper. Every other fraud
+  // case has no "layout" field and keeps using the stepper, which is why
+  // every load/advance path calls this dispatcher rather than loadFraudCase
+  // directly.
+  function loadFraudCaseByLayout(workspace, state) {
+    const c = state.cases[state.caseIndex];
+    if (c.layout === "cross_reference") {
+      loadCrossReferenceCase(workspace, state);
+    } else {
+      loadFraudCase(workspace, state);
+    }
+  }
+
   // Nodes are grouped into columns by topological depth, how many hops
   // from a node with no incoming edge, so a fan-in shape, several sources
   // converging on one node, works the same as a simple chain without any
@@ -1441,6 +1456,12 @@
     message: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
     cash: '<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 12h.01M18 12h.01"/>',
     decision: '<path d="M4 22V4a1 1 0 0 1 1-1h12l-2 5 2 5H7a1 1 0 0 0-1 1v8"/>',
+    id: '<rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="8" cy="10" r="2"/><path d="M5 17c0-1.7 1.3-3 3-3s3 1.3 3 3"/><path d="M14 9h6M14 13h4"/>',
+    home: '<path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/>',
+    biometric: '<circle cx="12" cy="12" r="9"/><path d="M8 13a4 4 0 0 1 8 0"/><path d="M12 13v5"/><path d="M9.5 8.5a3.5 3.5 0 0 1 5 0"/>',
+    credit: '<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/>',
+    pattern: '<path d="M12 2l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/>',
+    network: '<circle cx="5" cy="6" r="2.5"/><circle cx="19" cy="6" r="2.5"/><circle cx="12" cy="19" r="2.5"/><path d="M6.8 8.2L10.5 16.8M17.2 8.2L13.5 16.8"/>',
   };
 
   function fraudStepIconSvg(key) {
@@ -1601,7 +1622,153 @@
       state.pendingAdvanceTimeout = null;
       state.caseIndex += 1;
       if (state.caseIndex < state.cases.length) {
-        loadFraudCase(state.workspace, state);
+        loadFraudCaseByLayout(state.workspace, state);
+      } else {
+        renderFraudCompletionScreen(state.workspace, state);
+      }
+    }, 3200);
+  }
+
+  // ---- Cross-reference fact card component (Cases 5/6) ----
+  // Reuses the header scene renderer, disposition panel button/banner
+  // pattern, and back-to-case-list/related-guide helpers unchanged. The
+  // only new interactive surface is the fact card grid immediately below:
+  // order-independent, gated by count of distinct cards revealed rather
+  // than the timeline's locked step-by-step index.
+  function loadCrossReferenceCase(workspace, state) {
+    const c = state.cases[state.caseIndex];
+    state.currentCase = c;
+    state.revealedFacts = {}; // fact index -> true, once clicked
+    state.decisionMade = false;
+
+    workspace.innerHTML = "";
+
+    const caseHeader = document.createElement("div");
+    caseHeader.className = "sl-case-header";
+    caseHeader.innerHTML = [
+      "<h2>Case " + c.case_number + ": " + escapeHtml(c.title) + "</h2>",
+      "<p>" + escapeHtml(c.briefing) + "</p>",
+    ].join("");
+    workspace.appendChild(caseHeader);
+
+    const scenePanel = document.createElement("div");
+    scenePanel.className = "sl-tree-panel";
+    workspace.appendChild(scenePanel);
+    renderHeaderScene(scenePanel, c.header_scene);
+
+    const factsPanel = document.createElement("div");
+    factsPanel.className = "sl-tools-panel";
+    workspace.appendChild(factsPanel);
+
+    const introEl = document.createElement("p");
+    introEl.className = "fd-decision-intro";
+    introEl.textContent = "These facts exist at once, not in sequence. Reveal every card below, in any order, then decide.";
+    factsPanel.appendChild(introEl);
+
+    const grid = document.createElement("div");
+    grid.className = "fd-fact-grid";
+    factsPanel.appendChild(grid);
+
+    const bodyEl = document.createElement("div");
+    bodyEl.className = "sl-node-detail";
+    factsPanel.appendChild(bodyEl);
+
+    state.factsGridEl = grid;
+    state.bodyEl = bodyEl;
+    state.workspace = workspace;
+
+    renderFactCards(state);
+    renderCrossReferenceDecisionPanel(state);
+  }
+
+  function renderFactCards(state) {
+    const c = state.currentCase;
+    state.factsGridEl.innerHTML = "";
+    c.cross_reference_facts.forEach((fact, idx) => {
+      const revealed = !!state.revealedFacts[idx];
+      const card = document.createElement("button");
+      card.type = "button";
+      card.className = "fd-fact-card" + (revealed ? " revealed" : "");
+      card.setAttribute("aria-expanded", revealed ? "true" : "false");
+      card.innerHTML = [
+        '<span class="fd-fact-icon">' + fraudStepIconSvg(fact.icon) + "</span>",
+        "<h4>" + escapeHtml(fact.title) + "</h4>",
+        revealed
+          ? '<p class="fd-fact-body">' + escapeHtml(fact.body) + "</p>"
+          : '<span class="fd-fact-hint">Click to reveal</span>',
+      ].join("");
+      card.addEventListener("click", () => revealFact(state, idx));
+      state.factsGridEl.appendChild(card);
+    });
+  }
+
+  function revealFact(state, idx) {
+    if (state.revealedFacts[idx]) return;
+    state.revealedFacts[idx] = true;
+    renderFactCards(state);
+    renderCrossReferenceDecisionPanel(state);
+  }
+
+  function allFactsRevealed(state) {
+    const c = state.currentCase;
+    return c.cross_reference_facts.every((_, idx) => !!state.revealedFacts[idx]);
+  }
+
+  // Gated the same way renderFraudDecisionPanel gates the timeline cases:
+  // in JS, by an actual count check, not just by hiding the panel with CSS.
+  function renderCrossReferenceDecisionPanel(state) {
+    const c = state.currentCase;
+    state.bodyEl.innerHTML = "";
+
+    if (!allFactsRevealed(state)) {
+      state.bodyEl.innerHTML = '<p class="fd-decision-intro">Reveal every fact above before deciding.</p>';
+      return;
+    }
+
+    state.bodyEl.innerHTML = '<p class="fd-decision-intro">All facts reviewed. What is your disposition?</p>';
+
+    const btnRow = document.createElement("div");
+    btnRow.className = "fd-decision-buttons";
+    c.disposition_options.forEach((opt) => {
+      const btn = document.createElement("button");
+      btn.className = "sl-btn";
+      btn.textContent = opt.label;
+      btn.disabled = state.decisionMade;
+      btn.addEventListener("click", () => decideCrossReference(state, opt.key));
+      btnRow.appendChild(btn);
+    });
+    state.bodyEl.appendChild(btnRow);
+
+    const banner = document.createElement("div");
+    banner.className = "sl-decision-banner";
+    state.bodyEl.appendChild(banner);
+    state.fraudBanner = banner;
+  }
+
+  function decideCrossReference(state, dispositionKey) {
+    const c = state.currentCase;
+    if (state.decisionMade) return; // defense in depth against a stray double click
+    if (!allFactsRevealed(state)) return;
+
+    state.decisionMade = true;
+    const isCorrect = c.correct_disposition.includes(dispositionKey);
+    state.results.push({ caseId: c.entity_id, correct: isCorrect });
+    recordCaseProgress(c.entity_id, isCorrect);
+
+    state.bodyEl.querySelectorAll(".fd-decision-buttons button").forEach((b) => (b.disabled = true));
+
+    const banner = state.fraudBanner;
+    banner.className = "sl-decision-banner show " + (isCorrect ? "correct" : "incorrect");
+    banner.textContent = (isCorrect ? "Correct. " : "Not quite. ") + c.rationale;
+    appendRelatedGuide(banner, c);
+
+    appendBackToCaseListControl(state.workspace, state, banner);
+
+    state.pendingAdvanceTimeout = setTimeout(() => {
+      state.pendingAdvanceTimeout = null;
+      state.caseIndex += 1;
+      if (state.caseIndex < state.cases.length) {
+        loadFraudCaseByLayout(state.workspace, state);
       } else {
         renderFraudCompletionScreen(state.workspace, state);
       }

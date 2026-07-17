@@ -485,5 +485,109 @@
       "url": "/fraud-red-flags-guide.html",
       "reason": "Work through the structuring pattern as a decision scenario"
     }
+  },
+  {
+    "module": "fraud",
+    "case_number": 5,
+    "entity_id": "synthetic-identity-005",
+    "title": "The Franken-ID",
+    "briefing": "A new account application returns four independent verification results. These are not a sequence, they all exist at once. Reveal each check below, in any order, then decide.",
+    "layout": "cross_reference",
+    "header_scene": {
+      "nodes": [
+        { "id": "n1", "label": "Applicant", "color": "teal" },
+        { "id": "n2", "label": "National ID record", "sublabel": "Belongs to deceased individual", "color": "red" },
+        { "id": "n3", "label": "Address record", "sublabel": "Different living person", "color": "red" },
+        { "id": "n4", "label": "Biometric database", "sublabel": "Zero history", "color": "red" },
+        { "id": "n5", "label": "Credit bureau", "sublabel": "Passed standard check", "color": "teal" }
+      ],
+      "edges": [
+        { "from": "n1", "to": "n2" },
+        { "from": "n1", "to": "n3" },
+        { "from": "n1", "to": "n4" },
+        { "from": "n1", "to": "n5" }
+      ]
+    },
+    "cross_reference_facts": [
+      {
+        "icon": "id",
+        "title": "National ID check",
+        "body": "The national identification number provided matches an official government record, but that record belongs to an individual who died three years ago."
+      },
+      {
+        "icon": "home",
+        "title": "Address check",
+        "body": "The residential address on file is currently registered to a different living person, with no family, marital, or historical connection to the applicant discoverable in public records."
+      },
+      {
+        "icon": "biometric",
+        "title": "Biometric check",
+        "body": "The submitted facial biometric returns zero historical matches across any available dataset, no prior photographs, no earlier account registrations, no public sighting anywhere. A genuine adult identity almost always has some digital footprint by this point."
+      },
+      {
+        "icon": "credit",
+        "title": "Credit bureau check",
+        "body": "Standard credit bureau verification passed cleanly, the applicant's declared name and date of birth returned a valid, unflagged credit file."
+      }
+    ],
+    "disposition_options": [
+      { "key": "approve", "label": "Approve" },
+      { "key": "reject", "label": "Reject" },
+      { "key": "request_more_info", "label": "Request further information" }
+    ],
+    "correct_disposition": ["reject"],
+    "rationale": "Each individual fact here can look explainable in isolation, but three components sourced from three separate, unconnected real identities do not combine into one coherent person. This is synthetic identity fraud in its classic form, sometimes called a Franken-ID, genuine identity fragments, often including a real ID number belonging to someone deceased or otherwise unaware, stitched together with an unrelated address and a freshly built credit history to create something that looks real to a single-source check. The clean credit bureau result here isn't reassurance, it's expected. Synthetic identities are specifically built to pass exactly that kind of single-source verification, that's the entire mechanism of the fraud, not a coincidence. The disqualifying evidence only appears once you cross-reference the separately sourced identity components against each other, which is exactly why this typology defeats verification approaches that check one source at a time and stop."
+  },
+  {
+    "module": "fraud",
+    "case_number": 6,
+    "entity_id": "device-network-006",
+    "title": "The Device Network",
+    "briefing": "A customer disputes a high-value electronics order as an empty-box claim. Four related facts already exist, they only become alarming once cross-referenced. Reveal each fact below, in any order, then decide.",
+    "layout": "cross_reference",
+    "header_scene": {
+      "nodes": [
+        { "id": "n1", "label": "Device fingerprint", "color": "amber" },
+        { "id": "n2", "label": "Account A", "sublabel": "Empty-box claim", "color": "red" },
+        { "id": "n3", "label": "Account B", "sublabel": "Empty-box claim", "color": "red" },
+        { "id": "n4", "label": "Account C", "sublabel": "Empty-box claim", "color": "red" },
+        { "id": "n5", "label": "Account D", "sublabel": "Empty-box claim", "color": "red" }
+      ],
+      "edges": [
+        { "from": "n1", "to": "n2" },
+        { "from": "n1", "to": "n3" },
+        { "from": "n1", "to": "n4" },
+        { "from": "n1", "to": "n5" }
+      ]
+    },
+    "cross_reference_facts": [
+      {
+        "icon": "device",
+        "title": "Device fingerprint",
+        "body": "The exact hardware and browser fingerprint used to file this dispute has been linked to four separate customer accounts over the past 60 days."
+      },
+      {
+        "icon": "home",
+        "title": "Shipping address",
+        "body": "All four accounts shipped their orders to the identical delivery coordinates, down to the specific building entrance code."
+      },
+      {
+        "icon": "pattern",
+        "title": "Claim pattern",
+        "body": "Every one of the four accounts filed an identical dispute, a high-value electronics order arriving in an empty or tampered box, shortly after delivery confirmation."
+      },
+      {
+        "icon": "network",
+        "title": "Account creation pattern",
+        "body": "All four accounts were created using different but visibly adjacent email address patterns and different but sequentially issued payment card numbers, consistent with one individual deliberately fragmenting their identity across multiple accounts."
+      }
+    ],
+    "disposition_options": [
+      { "key": "approve", "label": "Approve the claim" },
+      { "key": "reject_terminate_network", "label": "Reject and terminate the account network" },
+      { "key": "reject_claim_only", "label": "Reject this claim only, leave other accounts open" }
+    ],
+    "correct_disposition": ["reject_terminate_network"],
+    "rationale": "A single empty-box claim from one customer, taken alone, is routine and should generally be honoured, most such claims are genuine. But four accounts converging on the same device, the same shipping address, and the identical claim pattern inside a 60 day window isn't coincidence, it's a deliberate, systematic pattern of first-party fraud, sometimes called friendly fraud or refund abuse, executed at a network level rather than as an isolated transaction. Rejecting only the flagged claim while leaving the other three accounts open, the option that looks proportionate at first glance, leaves the underlying device and the pattern itself free to keep operating. The correct scope of action has to match the actual scope of the fraud, network-wide, not transaction-wide."
   }
 ]
