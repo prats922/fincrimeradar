@@ -162,6 +162,23 @@
   opacity: 0.6;
 }
 
+/* Shown after every decision, on every module: "Next case" (.sl-btn, the
+   existing primary/solid button style) is the more likely next action,
+   "Back to case list" (.sl-request-btn, the existing secondary/outline
+   style) sits alongside it. Overrides .sl-request-btn's own margin-top
+   here so the two buttons align on one row instead of stacking. */
+.sl-post-decision-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.sl-post-decision-controls .sl-request-btn {
+  margin-top: 0;
+}
+
 .sl-inline-banner {
   margin-top: 10px;
   font-size: 0.8rem;

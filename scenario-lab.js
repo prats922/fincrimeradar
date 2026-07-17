@@ -40,7 +40,6 @@
       results: [], // { caseId, correct: bool }
       startedAt: null,
       currentModule: null, // "kyc" or "fraud", set by renderCasePicker
-      pendingAdvanceTimeout: null, // cancelled by "Back to case list"
       requested: JSON.parse(localStorage.getItem("sl_requested_modules") || "{}"),
     };
 
@@ -239,25 +238,37 @@
     picker.appendChild(grid);
   }
 
-  // Cancels any pending auto-advance and returns to the case picker for
-  // whichever module is currently active, without touching state.results
-  // so accuracy on the eventual completion screen still reflects every
-  // decision made this session, not just ones made in picker order.
+  // Returns to the case picker for whichever module is currently active,
+  // without touching state.results so accuracy on the eventual completion
+  // screen still reflects every decision made this session, not just ones
+  // made in picker order.
   function backToCaseList(workspace, state) {
-    if (state.pendingAdvanceTimeout) {
-      clearTimeout(state.pendingAdvanceTimeout);
-      state.pendingAdvanceTimeout = null;
-    }
     renderCasePicker(workspace, state, state.currentModule);
   }
 
-  function appendBackToCaseListControl(workspace, state, afterEl) {
-    const btn = document.createElement("button");
-    btn.className = "sl-request-btn";
-    btn.textContent = "Back to case list";
-    btn.style.marginTop = "12px";
-    btn.addEventListener("click", () => backToCaseList(workspace, state));
-    afterEl.insertAdjacentElement("afterend", btn);
+  // Rendered once a decision has been made, on every decide function across
+  // every module: "Next case" is the primary action (advanceToNext runs
+  // exactly what used to fire on a timer), "Back to case list" is secondary.
+  // Advancing is always manual now, nothing here or elsewhere may schedule
+  // a timer to do this automatically, see the standing note above the
+  // Fraud Detection module section.
+  function appendBackToCaseListControl(workspace, state, afterEl, advanceToNext) {
+    const row = document.createElement("div");
+    row.className = "sl-post-decision-controls";
+
+    const nextBtn = document.createElement("button");
+    nextBtn.className = "sl-btn";
+    nextBtn.textContent = "Next case →";
+    nextBtn.addEventListener("click", advanceToNext);
+    row.appendChild(nextBtn);
+
+    const backBtn = document.createElement("button");
+    backBtn.className = "sl-request-btn";
+    backBtn.textContent = "Back to case list";
+    backBtn.addEventListener("click", () => backToCaseList(workspace, state));
+    row.appendChild(backBtn);
+
+    afterEl.insertAdjacentElement("afterend", row);
   }
 
   function startModule(dashboard, workspace, state) {
@@ -1070,17 +1081,14 @@
 
     footer.querySelectorAll("button").forEach((b) => (b.disabled = true));
 
-    appendBackToCaseListControl(workspace, state, banner);
-
-    state.pendingAdvanceTimeout = setTimeout(() => {
-      state.pendingAdvanceTimeout = null;
+    appendBackToCaseListControl(workspace, state, banner, () => {
       state.caseIndex += 1;
       if (state.caseIndex < state.cases.length) {
         loadCase(workspace, state);
       } else {
         renderCompletionScreen(workspace, state);
       }
-    }, 2600);
+    });
   }
 
   // Returns to the dashboard from a completion screen, re-rendering it so
@@ -1208,6 +1216,14 @@
   // stepper, and the risk bar, gets its own fd- prefixed rules in
   // scenario-lab.css, and those still reference the --sl- custom
   // properties directly rather than a parallel token layer.
+  //
+  // Standing standard, applies to every module, not just this one: no
+  // decide function may auto-advance to the next case on a timer. Every
+  // decide function (KYC's decide(), decideFraud(), decideCrossReference(),
+  // and any future module's own decide function, Risk Scoring included)
+  // must call appendBackToCaseListControl with an advanceToNext callback
+  // and let the analyst click "Next case" themselves. Do not reintroduce
+  // a setTimeout here.
 
   function startFraudModule(dashboard, workspace, state) {
     state.results = [];
@@ -1616,17 +1632,14 @@
     banner.textContent = (isCorrect ? "Correct. " : "Not quite. ") + c.rationale;
     appendRelatedGuide(banner, c);
 
-    appendBackToCaseListControl(state.workspace, state, banner);
-
-    state.pendingAdvanceTimeout = setTimeout(() => {
-      state.pendingAdvanceTimeout = null;
+    appendBackToCaseListControl(state.workspace, state, banner, () => {
       state.caseIndex += 1;
       if (state.caseIndex < state.cases.length) {
         loadFraudCaseByLayout(state.workspace, state);
       } else {
         renderFraudCompletionScreen(state.workspace, state);
       }
-    }, 3200);
+    });
   }
 
   // ---- Cross-reference fact card component (Cases 5/6) ----
@@ -1762,17 +1775,14 @@
     banner.textContent = (isCorrect ? "Correct. " : "Not quite. ") + c.rationale;
     appendRelatedGuide(banner, c);
 
-    appendBackToCaseListControl(state.workspace, state, banner);
-
-    state.pendingAdvanceTimeout = setTimeout(() => {
-      state.pendingAdvanceTimeout = null;
+    appendBackToCaseListControl(state.workspace, state, banner, () => {
       state.caseIndex += 1;
       if (state.caseIndex < state.cases.length) {
         loadFraudCaseByLayout(state.workspace, state);
       } else {
         renderFraudCompletionScreen(state.workspace, state);
       }
-    }, 3200);
+    });
   }
 
   function renderFraudCompletionScreen(workspace, state) {
