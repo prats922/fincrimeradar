@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Source of Wealth Investigation Handbook: Telling a Plausible Story from Verified Evidence | FinCrimeRadar</title>
+  <meta name="description" content="Three decision scenarios on verifying a claimed source of wealth and source of funds, a two-step gift case study, document evidence standards, and a knowledge check, for compliance analysts who need to distinguish a plausible story from actual verification." />
+  <meta name="keywords" content="source of wealth, source of funds, SoW, SoF, enhanced due diligence, EDD, gift verification, PEP due diligence, customer due diligence, CDD, AML investigation" />
+  <meta name="author" content="FinCrimeRadar" />
+  <link rel="canonical" href="https://fincrimeradar.org/source-of-wealth-investigation-handbook.html" />
+  <meta property="og:title" content="The Source of Wealth Investigation Handbook: Telling a Plausible Story from Verified Evidence" />
+  <meta property="og:description" content="A well-told explanation is not the same as a verified one. Three decision scenarios on verifying source of wealth and source of funds, with full reasoning and a knowledge check." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://fincrimeradar.org/source-of-wealth-investigation-handbook.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The Source of Wealth Investigation Handbook: Telling a Plausible Story from Verified Evidence",
+    "description": "A well-told explanation is not the same as a verified one. Three decision scenarios on verifying source of wealth and source of funds, with full reasoning and a knowledge check.",
+    "author": {"@type": "Organization", "name": "FinCrimeRadar"},
+    "publisher": {"@type": "Organization", "name": "FinCrimeRadar", "url": "https://fincrimeradar.org"},
+    "url": "https://fincrimeradar.org/source-of-wealth-investigation-handbook.html",
+    "datePublished": "2026-07-19"
+  }
+  </script>
+
+  <!-- Google Analytics -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+  gtag('js', new Date());
+  (function () {
+    try {
+      var consent = localStorage.getItem('fcr_cookie_consent');
+      if (consent === 'accepted') {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+  })();
+  gtag('config', 'G-FC1VMTE7JH');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1VMTE7JH"></script>
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158691611711023" crossorigin="anonymous"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:#ffffff; --off:#f7f8fa; --border:#e4e7ec;
+      --muted:#6b7280; --text:#111827; --navy:#0f2044;
+      --accent:#00c4a7; --accent-h:#00a892; --accent-light:#f0fdf9;
+      --danger:#dc2626; --success:#16a34a; --warning:#d97706;
+      --c-question:#2563eb; --c-question-light:#eff6ff;
+      --c-papertrail:#d97706; --c-papertrail-light:#fffbeb;
+      --c-gift:#dc2626; --c-gift-light:#fef2f2;
+      --c-proportion:#7c3aed; --c-proportion-light:#f5f3ff;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--off); color:var(--text); line-height:1.7; }
+
+    /* NAV */
+    nav { position:sticky; top:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:72px; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+    .nav-brand { display:flex; align-items:center; gap:8px; text-decoration:none; }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; }
+    .nav-links a { font-size:13px; color:#374151; text-decoration:none; transition:color 0.15s; }
+    .nav-links a:hover { color:var(--accent); }
+    .nav-cta { padding:7px 16px; background:var(--accent); color:#fff !important; border-radius:6px; font-size:13px; font-weight:500; text-decoration:none; }
+    .nav-hamburger { display:none; background:none; border:none; font-size:22px; cursor:pointer; color:var(--navy); padding:4px 6px; }
+    .mobile-nav { display:none; position:fixed; top:72px; left:0; right:0; background:#fff; border-bottom:1px solid #e4e7ec; flex-direction:column; z-index:99; padding:0.5rem 0; box-shadow:0 8px 24px rgba(0,0,0,0.08); }
+    .mobile-nav.open { display:flex; }
+    .mobile-nav a { padding:14px 1.5rem; font-size:15px; color:#374151; text-decoration:none; font-weight:500; border-bottom:1px solid #f3f4f6; }
+    .mobile-nav .mobile-nav-cta { margin:0.75rem 1.5rem 0.5rem; background:var(--accent); color:#fff !important; border-radius:8px; text-align:center; border-bottom:none; }
+
+    /* PROGRESS */
+    .progress-bar { position:fixed; top:72px; left:0; width:0%; height:3px; background:var(--c-question); z-index:199; transition:width 0.1s; }
+
+    /* HERO */
+    .article-hero {
+      background:linear-gradient(135deg,var(--hero-bg-1) 0%,var(--hero-bg-2) 100%);
+      color:#fff; padding:4rem 2rem 3rem; position:relative; overflow:hidden;
+    }
+    .article-hero::before {
+      content:'';
+      position:absolute; inset:0;
+      background-image: radial-gradient(ellipse at 20% 50%, rgba(37,99,235,0.15) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 20%, rgba(124,58,237,0.15) 0%, transparent 60%);
+    }
+    .hero-nodes { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+    .hero-node { position:absolute; border-radius:50%; opacity:0.08; animation:pulse-node 4s ease-in-out infinite; }
+    .hero-node:nth-child(1) { width:300px; height:300px; background:var(--c-question); top:-80px; right:10%; animation-delay:0s; }
+    .hero-node:nth-child(2) { width:200px; height:200px; background:var(--c-proportion); bottom:20px; right:30%; animation-delay:1s; }
+    .hero-node:nth-child(3) { width:150px; height:150px; background:var(--c-gift); top:40%; left:5%; animation-delay:2s; }
+    @keyframes pulse-node { 0%,100%{transform:scale(1);opacity:0.08} 50%{transform:scale(1.2);opacity:0.14} }
+    .hero-inner { max-width:860px; margin:0 auto; position:relative; z-index:1; }
+    .series-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(37,99,235,0.25); border:1px solid rgba(147,197,253,0.4); border-radius:99px; padding:5px 14px; font-size:12px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:var(--hero-accent-em); margin-bottom:1.25rem; }
+    .article-hero h1 { font-family:'DM Serif Display',Georgia,serif; font-size:clamp(1.9rem,4vw,3rem); font-weight:400; line-height:1.2; margin-bottom:0.75rem; }
+    .article-hero h1 em { font-style:italic; color:var(--hero-accent-em); }
+    .hero-sub { font-size:16px; color:#93c5fd; max-width:640px; line-height:1.7; margin-bottom:2rem; }
+    .hero-meta { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:13px; color:#60a5fa; }
+    .hero-meta span { display:flex; align-items:center; gap:5px; }
+
+    /* LAYOUT */
+    .article-layout { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 280px; gap:2rem; padding:2rem 1.5rem; align-items:start; }
+    .article-body { min-width:0; }
+    .article-sidebar { position:sticky; top:90px; }
+
+    /* TOC */
+    .toc { background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.25rem; margin-bottom:1rem; }
+    .toc-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); margin-bottom:0.75rem; }
+    .toc a { display:block; font-size:13px; color:var(--muted); text-decoration:none; padding:4px 0; border-left:2px solid transparent; padding-left:10px; transition:all 0.15s; line-height:1.4; }
+    .toc a:hover { color:var(--c-question); border-left-color:var(--c-question); }
+    .toc a.active { color:var(--c-question); border-left-color:var(--c-question); font-weight:600; }
+    .toc-scenario { display:flex; align-items:center; gap:5px; }
+    .toc-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+
+    /* SIDEBAR SCORE */
+    .score-card { background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.25rem; margin-bottom:1rem; }
+    .score-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); margin-bottom:1rem; }
+    .score-stat { display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid #f3f4f6; font-size:13px; }
+    .score-stat:last-child { border-bottom:none; }
+    .score-badge { font-weight:700; font-size:13px; }
+
+    /* TOOL CTA */
+    .tool-cta { background:linear-gradient(135deg, #0f2044, #1a3a6e); color:#fff; border-radius:12px; padding:1.25rem; text-align:center; }
+    .tool-cta p { font-size:13px; color:#93c5fd; margin-bottom:0.75rem; line-height:1.5; }
+    .tool-cta a { display:block; background:var(--accent); color:#fff; text-decoration:none; border-radius:8px; padding:10px; font-size:14px; font-weight:600; transition:background 0.15s; }
+    .tool-cta a:hover { background:var(--accent-h); }
+
+    /* ARTICLE SECTIONS */
+    .article-section { background:#fff; border:1px solid var(--border); border-radius:12px; padding:2rem; margin-bottom:1.5rem; }
+    .article-section h2 { font-family:'DM Serif Display',Georgia,serif; font-size:1.7rem; color:var(--navy); margin-bottom:0.5rem; line-height:1.3; }
+    .article-section h3 { font-size:1.05rem; font-weight:700; color:var(--navy); margin:1.5rem 0 0.5rem; }
+    .article-section p { color:#374151; margin-bottom:1rem; font-size:15px; }
+    .article-section ul, .article-section ol { padding-left:1.4rem; margin-bottom:1rem; }
+    .article-section li { font-size:15px; color:#374151; margin-bottom:0.4rem; }
+    .section-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:0.5rem; }
+
+    /* SCENARIO TYPOLOGY BADGES */
+    .badge { display:inline-flex; align-items:center; gap:5px; border-radius:99px; padding:3px 12px; font-size:12px; font-weight:700; }
+    .badge-question { background:var(--c-question-light); color:var(--c-question); border:1px solid #bfdbfe; }
+    .badge-papertrail { background:var(--c-papertrail-light); color:var(--c-papertrail); border:1px solid #fde68a; }
+    .badge-gift { background:var(--c-gift-light); color:var(--c-gift); border:1px solid #fecaca; }
+    .badge-proportion { background:var(--c-proportion-light); color:var(--c-proportion); border:1px solid #ddd6fe; }
+
+    /* DOCUMENT COMPARISON GRAPHIC */
+    .doc-compare { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:1.5rem 0 0.5rem; }
+    .doc-compare-col { border-radius:10px; padding:1.25rem; }
+    .doc-compare-col.wealth { background:var(--accent-light); border:1px solid #99f0e0; border-top:3px solid var(--accent); }
+    .doc-compare-col.funds { background:var(--c-question-light); border:1px solid #bfdbfe; border-top:3px solid var(--c-question); }
+    .doc-compare-label { font-size:13px; font-weight:700; color:var(--navy); margin-bottom:10px; line-height:1.35; }
+    .doc-compare-list { list-style:none; padding:0; margin:0; }
+    .doc-compare-list li { font-size:13px; color:var(--slate,#374151); line-height:1.5; padding-left:22px; position:relative; margin-bottom:8px; }
+    .doc-compare-list li:last-child { margin-bottom:0; }
+    .doc-compare-list li::before { content:'✓'; position:absolute; left:0; font-weight:700; }
+    .wealth .doc-compare-list li::before { color:var(--accent-h); }
+    .funds .doc-compare-list li::before { color:var(--c-question); }
+    .doc-compare-footer { grid-column:1 / -1; font-size:12.5px; color:var(--muted); font-style:italic; margin-bottom:1rem; }
+
+    /* CASE STUDY */
+    .case-study { border:2px solid var(--c-gift); border-radius:12px; overflow:hidden; margin:1.25rem 0; }
+    .case-study-header { background:var(--navy); color:#fff; padding:1rem 1.25rem; display:flex; align-items:center; gap:10px; }
+    .case-study-header .icon { font-size:20px; }
+    .case-study-header strong { font-size:14px; font-weight:700; }
+    .case-study-header span { font-size:12px; color:#93c5fd; }
+    .case-study-disclaimer { background:#fffbeb; border-bottom:1px solid #fde68a; color:#92400e; font-size:13px; font-weight:600; padding:0.9rem 1.25rem; display:flex; align-items:flex-start; gap:8px; }
+    .case-study-body { padding:1.25rem; }
+    .case-study-body p { font-size:14.5px; color:#374151; margin-bottom:1rem; }
+    .case-study-body p:last-child { margin-bottom:0; }
+
+    /* VISUAL MEMORY CARD (same pattern as fatf-guide-part1.html) */
+    .memory-card { border-radius:12px; padding:1.25rem; margin:1rem 0; display:grid; grid-template-columns:auto 1fr; gap:1rem; align-items:start; }
+    .memory-icon { font-size:32px; line-height:1; }
+    .memory-title { font-size:13px; font-weight:700; margin-bottom:4px; }
+    .memory-text { font-size:13px; color:var(--slate,#374151); line-height:1.5; }
+
+    /* SCENARIO HEADER */
+    .scenario-header { display:flex; align-items:center; gap:14px; margin-bottom:1.25rem; padding-bottom:1rem; border-bottom:1px solid var(--border); }
+    .scenario-icon { width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:26px; flex-shrink:0; }
+    .scenario-num { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); }
+    .scenario-name { font-family:'DM Serif Display',Georgia,serif; font-size:1.4rem; color:var(--navy); line-height:1.2; }
+
+    /* SCENE FLOW DIAGRAM */
+    .scene-flow { display:flex; align-items:center; gap:0; overflow-x:auto; background:#f8fafc; border:1px solid var(--border); border-radius:10px; padding:1.5rem 1.25rem; margin:1.25rem 0; }
+    .scene-flow-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); margin-bottom:1rem; }
+    .scene-node { display:flex; flex-direction:column; align-items:center; text-align:center; min-width:140px; flex-shrink:0; }
+    .scene-node .dot { width:46px; height:46px; border-radius:50%; border:2px solid; display:flex; align-items:center; justify-content:center; font-size:19px; margin-bottom:6px; background:#fff; }
+    .scene-node.clean .dot { border-color:var(--accent); color:var(--accent); background:var(--accent-light); }
+    .scene-node.flag .dot { border-color:var(--warning); color:var(--warning); background:#fffbeb; }
+    .scene-node.alert .dot { border-color:var(--danger); color:var(--danger); background:#fef2f2; }
+    .scene-node .label { font-size:12.5px; font-weight:700; color:var(--navy); }
+    .scene-node .sub { font-size:10.5px; color:var(--muted); margin-top:2px; max-width:150px; line-height:1.4; }
+    .scene-edge { flex-shrink:0; display:flex; flex-direction:column; align-items:center; padding:0 6px; min-width:64px; }
+    .scene-edge .line { width:100%; height:2px; background:#cbd5e1; position:relative; }
+    .scene-edge .arrow { font-size:16px; color:var(--muted); line-height:1; margin-top:-9px; }
+    .scene-edge .edge-label { font-size:10px; color:var(--muted); margin-top:4px; white-space:nowrap; }
+
+    /* DILEMMA CARD */
+    .dilemma-card { border:2px solid #e4e7ec; border-radius:12px; overflow:hidden; margin:1.25rem 0; }
+    .dilemma-header { background:var(--navy); color:#fff; padding:1rem 1.25rem; display:flex; align-items:center; gap:10px; }
+    .dilemma-header .icon { font-size:20px; }
+    .dilemma-header strong { font-size:14px; font-weight:700; }
+    .dilemma-header span { font-size:12px; color:#93c5fd; }
+    .dilemma-scenario { padding:1.25rem; background:#f8fafc; border-bottom:1px solid var(--border); }
+    .dilemma-scenario p { font-size:14px; color:#374151; margin:0; font-style:italic; line-height:1.6; }
+    .dilemma-options { padding:1.25rem; display:flex; flex-direction:column; gap:8px; }
+    .dilemma-option { border:1.5px solid var(--border); border-radius:8px; padding:12px 16px; cursor:pointer; transition:all 0.2s; font-size:14px; color:#374151; display:flex; align-items:flex-start; gap:10px; background:#fff; text-align:left; width:100%; }
+    .dilemma-option:hover { border-color:var(--c-question); background:#eff6ff; }
+    .dilemma-option .opt-label { font-weight:700; font-size:13px; min-width:20px; color:var(--muted); }
+    .dilemma-option.correct { border-color:var(--success); background:#f0fdf4; }
+    .dilemma-option.wrong { border-color:var(--danger); background:#fef2f2; }
+    .dilemma-option:disabled { cursor:default; }
+    .dilemma-verdict { padding:1.25rem; border-top:1px solid var(--border); display:none; }
+    .dilemma-verdict.show { display:block; }
+    .verdict-correct { background:#f0fdf4; border-radius:8px; padding:1rem; }
+    .verdict-wrong { background:#fef2f2; border-radius:8px; padding:1rem; }
+    .verdict-icon { font-size:20px; margin-bottom:6px; }
+    .verdict-title { font-weight:700; font-size:15px; margin-bottom:6px; }
+    .verdict-body { font-size:14px; color:#374151; line-height:1.6; }
+    .verdict-body p { margin-bottom:0.75rem; }
+    .verdict-body p:last-child { margin-bottom:0; }
+
+    /* CALLOUTS */
+    .callout { border-radius:10px; padding:1.1rem 1.25rem; margin:1.25rem 0; border-left:4px solid; }
+    .callout-navy { background:#f0f4ff; border-color:var(--navy); }
+    .callout strong { display:block; font-size:13px; font-weight:700; margin-bottom:4px; }
+    .callout p { font-size:14px; margin:0; color:#374151; }
+
+    /* INLINE TOOL PROMO */
+    .inline-tool-promo { background:linear-gradient(135deg, #f0fdf9, #ecfeff); border:1px solid var(--accent); border-radius:12px; padding:1.25rem 1.5rem; margin:1.5rem 0; display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap; }
+    .itp-text { flex:1; min-width:220px; }
+    .itp-text strong { display:block; font-size:15px; color:var(--navy); margin-bottom:4px; }
+    .itp-text span { font-size:13px; color:var(--muted); }
+    .itp-btn { background:var(--accent); color:#fff; text-decoration:none; border-radius:8px; padding:10px 18px; font-size:14px; font-weight:600; white-space:nowrap; transition:background 0.15s; }
+    .itp-btn:hover { background:var(--accent-h); }
+
+    /* QUIZ */
+    .quiz-section { background:var(--navy); border-radius:12px; padding:2rem; margin:1.5rem 0; color:#fff; }
+    .quiz-title { font-family:'DM Serif Display',Georgia,serif; font-size:1.3rem; margin-bottom:0.5rem; }
+    .quiz-sub { font-size:13px; color:#93c5fd; margin-bottom:1.5rem; }
+    .quiz-q { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:1.25rem; margin-bottom:1rem; }
+    .quiz-q-text { font-size:14px; font-weight:600; margin-bottom:0.75rem; }
+    .quiz-opts { display:flex; flex-direction:column; gap:6px; }
+    .quiz-opt { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:6px; padding:10px 14px; cursor:pointer; font-size:13px; color:#e2e8f0; transition:all 0.15s; text-align:left; width:100%; }
+    .quiz-opt:hover { background:rgba(255,255,255,0.15); border-color:rgba(255,255,255,0.3); }
+    .quiz-opt.q-correct { background:rgba(22,163,74,0.25); border-color:#4ade80; color:#86efac; }
+    .quiz-opt.q-wrong { background:rgba(220,38,38,0.25); border-color:#f87171; color:#fca5a5; }
+    .quiz-feedback { font-size:13px; margin-top:8px; padding:8px 12px; border-radius:6px; display:none; }
+    .quiz-feedback.show { display:block; }
+    .quiz-score-display { text-align:center; padding:1.5rem; background:rgba(255,255,255,0.05); border-radius:10px; margin-top:1rem; display:none; }
+    .quiz-score-display.show { display:block; }
+    .quiz-score-num { font-family:'DM Serif Display',Georgia,serif; font-size:3rem; color:#86efac; }
+    .quiz-score-label { font-size:14px; color:#93c5fd; margin-top:4px; }
+
+    /* REFERENCE TABLE, locked visual summary standard */
+    .ref-table-wrap { margin:2rem 0 0.5rem; }
+    .ref-table-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); margin-bottom:0.75rem; }
+    .ref-table { width:100%; border-collapse:collapse; border-radius:12px; overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,0.04), 0 12px 32px rgba(7,25,18,0.12); }
+    .ref-table thead th { background:var(--hero-bg-2); color:#fff; font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; padding:12px 16px; text-align:left; }
+    .ref-table tbody td { background:var(--white); border-bottom:1px solid var(--border); padding:14px 16px; font-size:13.5px; color:var(--slate,#374151); vertical-align:top; line-height:1.5; }
+    .ref-table tbody tr:last-child td { border-bottom:none; }
+    .ref-table tbody td:first-child { font-weight:700; color:var(--navy); white-space:nowrap; }
+    .rt-icon { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:8px; background:var(--teal-soft); color:var(--teal-deep); margin-right:8px; vertical-align:middle; }
+    .rt-icon svg { width:16px; height:16px; display:block; }
+
+    /* SAVE AS IMAGE BUTTON */
+    .save-img-row { display:flex; justify-content:flex-end; margin-bottom:0.75rem; }
+    .save-img-btn { display:inline-flex; align-items:center; gap:6px; background:var(--white); color:var(--navy); border:1.5px solid var(--border); border-radius:8px; padding:8px 14px; font-size:13px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s; }
+    .save-img-btn:hover { border-color:var(--c-question); color:var(--c-question); }
+
+    /* MOBILE */
+    @media(max-width:768px) {
+      .article-layout { grid-template-columns:1fr; }
+      .article-sidebar { position:static; }
+      .nav-hamburger { display:block; }
+      .nav-links { display:none; }
+      .nav-brand img { height:40px !important; max-width:160px !important; }
+      .inline-tool-promo { flex-direction:column; }
+      .doc-compare { grid-template-columns:1fr; }
+    }
+  </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand.css">
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <a class="nav-brand" href="/">
+    <img src="/logo.png" alt="FinCrimeRadar" style="height:44px;width:auto;max-width:200px;object-fit:contain;object-position:left center;display:block;" />
+  </a>
+  <div class="nav-links">
+    <a href="/knowledge.html">Knowledge Hub</a>
+    <a href="/scenario-lab.html">Scenario Lab</a>
+    <a href="/about.html">About</a>
+    <a href="/screen.html" class="nav-cta">Try the tool →</a>
+  </div>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/knowledge.html">Knowledge Hub</a>
+  <a href="/scenario-lab.html">Scenario Lab</a>
+  <a href="/about.html">About</a>
+  <a href="/screen.html" class="mobile-nav-cta">Try the tool →</a>
+</div>
+
+<!-- HERO -->
+<div class="article-hero">
+  <div class="hero-nodes">
+    <div class="hero-node"></div>
+    <div class="hero-node"></div>
+    <div class="hero-node"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="series-tag">🔎 Interactive Deep Dive · CDD &amp; Source of Wealth</div>
+    <h1>The Source of Wealth Investigation Handbook:<br><em>Telling a Plausible Story from Verified Evidence</em></h1>
+    <p class="hero-sub">A well-told explanation is not the same as a verified one.</p>
+    <p style="font-size:13px;color:#93c5fd;margin-bottom:1.5rem;">Written by <a href="/about.html" style="color:#93c5fd;text-decoration:underline;">Pratik Zanke</a></p>
+    <div class="hero-meta">
+      <span>⏱ 13 min read</span>
+      <span>🔎 Interactive</span>
+      <span>🎓 Practitioner Level</span>
+      <span>📋 3 Scenarios</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="article-layout">
+  <div class="article-body">
+
+    <!-- INTRO -->
+    <div class="article-section" id="intro">
+      <div class="section-eyebrow" style="color:var(--c-question)">Verification, Not Narrative</div>
+      <h2>A well-told explanation is not the same as a verified one.</h2>
+      <p>Ask any compliance analyst what source of wealth means and most will describe roughly the right idea, where the client's money came from. Ask them to distinguish it cleanly from source of funds, and the answers get vaguer, and that vagueness is genuinely costly. Regulators reviewing enhanced due diligence files across the UK, EU, US, and Asia consistently flag the same failure pattern: documentation that confuses the two, narrative assessments built entirely on unverified client statements, and audit trails a regulator can't actually follow back to real evidence. This guide covers the distinction properly, and the practical technique for verifying a claimed source rather than just recording it.</p>
+      <p>Before anything else, the definitional split that most training glosses over: source of funds is the origin of the specific money involved in a particular transaction, where did this £2.5 million payment actually come from. Source of wealth is the origin of the customer's overall net worth, how did this person accumulate everything they own, across their whole financial history. They require different evidence and answer different questions. A customer can have a perfectly legitimate, well-documented source of wealth, decades of a successful career, and still need a specific, separately verified source of funds for one unusual transaction that doesn't map cleanly onto that broader picture. Treating one as a substitute for the other is exactly the failure pattern regulators keep finding.</p>
+
+      <div class="doc-compare">
+        <div class="doc-compare-col wealth">
+          <div class="doc-compare-label">Proves source of WEALTH, the whole picture</div>
+          <ul class="doc-compare-list">
+            <li>Payslips and employment contracts</li>
+            <li>Tax returns</li>
+            <li>Audited business accounts and dividend records</li>
+            <li>Investment and pension statements built up over time</li>
+            <li>Property portfolio valuations</li>
+            <li>Grant of probate and estate accounts for inheritance</li>
+          </ul>
+        </div>
+        <div class="doc-compare-col funds">
+          <div class="doc-compare-label">Proves source of FUNDS, this specific payment</div>
+          <ul class="doc-compare-list">
+            <li>The bank statement showing the actual transfer landing</li>
+            <li>Completion statement for a property or business sale</li>
+            <li>A gift letter together with the giver's own source evidence</li>
+            <li>A loan agreement plus the lender's records</li>
+            <li>An exchange or wallet statement covering this specific movement</li>
+          </ul>
+        </div>
+        <div class="doc-compare-footer">A document can be genuine and still answer the wrong question, check which one you actually need before accepting it.</div>
+      </div>
+
+      <div class="callout callout-navy">
+        <strong>How to use this guide</strong>
+        <p>Read the case study and the four patterns first. Then work each scenario, make your call, and read why, both for the right answer and every wrong one. The knowledge check at the end pulls the same patterns from new angles. Do not skip ahead.</p>
+      </div>
+    </div>
+
+    <!-- CASE STUDY -->
+    <div class="article-section" id="case-study">
+      <div class="section-eyebrow" style="color:var(--c-gift)">Case Study</div>
+      <h2>The two-step gift</h2>
+
+      <div class="case-study">
+        <div class="case-study-header">
+          <span class="icon">📁</span>
+          <div>
+            <strong>Case Study</strong>
+            <span>The Two-Step Gift</span>
+          </div>
+        </div>
+        <div class="case-study-disclaimer">
+          <span>⚠️</span>
+          <span>The following is a composite, illustrative scenario built from common investigative patterns, not an account of any real client, transaction, or institution.</span>
+        </div>
+        <div class="case-study-body">
+          <p>A private bank client requests a £2.8 million transfer to complete a property purchase. Her declared source of wealth is a fifteen-year career as a senior consultant, verified against payslips, tax returns, and a pension statement, entirely genuine and well documented. That figure, however, doesn't come close to explaining £2.8 million on its own, so the analyst asks the obvious next question: where did this specific payment come from.</p>
+          <p>The client explains it as a gift from her uncle, a businessman based overseas, and provides a signed letter confirming it. Applying the discipline this guide has already covered, a signed letter is a claim, not verification, the analyst requests evidence of the uncle's own source of funds for the gift.</p>
+          <p>What comes back is a bank statement showing the £2.8 million arriving in the uncle's account only eleven days before he transferred it onward, sent from a corporate entity registered in a different jurisdiction again, with no stated business relationship to either the uncle or the niece. The money didn't sit in the uncle's account as part of his own accumulated wealth, it passed through him almost immediately, from a third party with no explained connection to anyone involved.</p>
+          <p>This is the "Convenient Gift" pattern converging with a layering pattern in the same case: a real, named individual, a real signed letter, and a real bank transfer, all of which can be entirely accurate as documents while still describing funds that moved through an intermediary specifically to obscure their actual origin. The correct response here is not to accept the second bank statement as "verification achieved", it's to recognise that the verification just uncovered a new, unresolved source of funds question one layer further back, who is the corporate entity, and why did £2.8 million pass through the uncle's account for eleven days before moving again. That's the point at which this stops being a source of wealth file and becomes a case for escalation and, most likely, a Suspicious Activity Report, not because any single document was false, but because following the chain properly is what actually revealed the pattern a surface-level review would have missed entirely.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOUR VISUAL MEMORY CARDS -->
+    <div class="article-section" id="patterns">
+      <div class="section-eyebrow" style="color:var(--c-question)">Four Patterns</div>
+      <h2>Four patterns, four visual memory cards</h2>
+      <p>Most source of wealth misjudgments trace back to one of these four shapes. Learn to recognise them before the scenarios test them.</p>
+
+      <div class="memory-card" style="background:var(--c-question-light);border:1px solid #bfdbfe;">
+        <div class="memory-icon">💰</div>
+        <div>
+          <div class="memory-title" style="color:var(--c-question);">Visual Memory: Two Different Questions</div>
+          <div class="memory-text"><strong>Source of wealth explains the whole picture. Source of funds explains this specific payment.</strong> Picture a customer with a genuinely impressive career, twenty years building a business, a clear, verifiable accumulation of wealth over time. That's a solid source of wealth. Now picture that same customer making a single £3 million transfer that doesn't obviously map onto anything in that career history. The strength of their overall wealth story doesn't answer where this specific money came from, that needs its own, separate explanation and its own separate evidence.</div>
+        </div>
+      </div>
+
+      <div class="memory-card" style="background:var(--c-papertrail-light);border:1px solid #fde68a;">
+        <div class="memory-icon">📄</div>
+        <div>
+          <div class="memory-title" style="color:var(--c-papertrail);">Visual Memory: The Paper Trail</div>
+          <div class="memory-text"><strong>A plausible story is a claim. A plausible story with underlying documents is verification.</strong> A signed letter, a confident explanation, a spreadsheet the client put together themselves, all of these can be entirely true and still not constitute verification. Genuine sources of wealth leave real, independently checkable evidence behind, probate documents for an inheritance, completion statements for a property sale, audited accounts for business profits, exchange statements for investment gains. The absence of that evidence doesn't prove the story is false, but the story alone doesn't discharge the obligation to verify it.</div>
+        </div>
+      </div>
+
+      <div class="memory-card" style="background:var(--c-gift-light);border:1px solid #fecaca;">
+        <div class="memory-icon">🎁</div>
+        <div>
+          <div class="memory-title" style="color:var(--c-gift);">Visual Memory: The Convenient Gift</div>
+          <div class="memory-text"><strong>An unverified third-party gift is one of the most common ways illicit funds enter a clean-looking transaction.</strong> A gift or loan from a family member, business associate, or friend is a completely normal, legitimate source of funds. It's also one of the easiest narratives to fabricate, since it requires no transaction history of the client's own, just a willing third party's signature. The gift itself isn't the red flag, the absence of any verification of where the giver's money came from, and the nature of the relationship between giver and recipient, is what needs investigating.</div>
+        </div>
+      </div>
+
+      <div class="memory-card" style="background:var(--c-proportion-light);border:1px solid #ddd6fe;">
+        <div class="memory-icon">📊</div>
+        <div>
+          <div class="memory-title" style="color:var(--c-proportion);">Visual Memory: The Proportion Problem</div>
+          <div class="memory-text"><strong>A stated source needs to be proportionate to the actual amount, not just plausible in general terms.</strong> "Business profits" is a plausible explanation for a modest, gradual accumulation of wealth. It's a much weaker explanation, on its own, for a sudden £3 million transaction when the client's filed accounts show £400,000 in total profit over eight years. The explanation isn't automatically false, but the scale mismatch itself is the thing that needs resolving, not glossed over because the general category of explanation sounds reasonable.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENARIO 1: THE FAMILY LETTER -->
+    <div class="article-section" id="scenario1">
+      <div class="scenario-header">
+        <div class="scenario-icon" style="background:var(--c-papertrail-light);">📜</div>
+        <div>
+          <div class="scenario-num">Scenario 01 · Inheritance verification</div>
+          <div class="scenario-name">The Family Letter</div>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="badge badge-papertrail">The Paper Trail</span>
+        </div>
+      </div>
+
+      <div class="scene-flow-title">Investigation Evidence</div>
+      <div class="scene-flow">
+        <div class="scene-node clean">
+          <div class="dot">🔔</div>
+          <div class="label">Property purchase</div>
+          <div class="sub">£2.5 million declared as family inheritance</div>
+        </div>
+        <div class="scene-edge">
+          <div class="line"></div>
+          <div class="arrow">→</div>
+          <div class="edge-label">evidence review</div>
+        </div>
+        <div class="scene-node flag">
+          <div class="dot">📜</div>
+          <div class="label">Signed letter only</div>
+          <div class="sub">No grant of probate, no estate accounts, no transfer records</div>
+        </div>
+        <div class="scene-edge">
+          <div class="line"></div>
+          <div class="arrow">→</div>
+          <div class="edge-label">verify independently</div>
+        </div>
+        <div class="scene-node alert">
+          <div class="dot">⚠️</div>
+          <div class="label">Under review</div>
+          <div class="sub">Documentary evidence requested before proceeding</div>
+        </div>
+      </div>
+
+      <div class="dilemma-card" id="dilemma-scenario1">
+        <div class="dilemma-header">
+          <span class="icon">⚖️</span>
+          <div>
+            <strong>What do you do?</strong>
+            <span>Make the call</span>
+          </div>
+        </div>
+        <div class="dilemma-scenario">
+          <p>A client purchasing a £2.5 million property declares the funds as a family inheritance. As evidence, they provide a signed letter from a relative confirming the gift was made. No grant of probate, no estate accounts, no bank records showing the transfer's origin are provided.</p>
+        </div>
+        <div class="dilemma-options">
+          <button class="dilemma-option" onclick="showVerdict('scenario1','A',this)">
+            <span class="opt-label">A</span>
+            <span>Accept the letter, it's a signed, credible statement from a named individual.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('scenario1','B',this)">
+            <span class="opt-label">B</span>
+            <span>Request the underlying documentary evidence, grant of probate or estate accounts, and the actual transfer records showing where the funds originated before reaching the client.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('scenario1','C',this)">
+            <span class="opt-label">C</span>
+            <span>Reject the transaction outright, the letter alone is insufficient and that's disqualifying.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('scenario1','D',this)">
+            <span class="opt-label">D</span>
+            <span>File a Suspicious Activity Report immediately given the weak documentation.</span>
+          </button>
+        </div>
+        <div class="dilemma-verdict" id="scenario1-verdict">
+          <div id="scenario1-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENARIO 2: THE MISMATCH -->
+    <div class="article-section" id="scenario2">
+      <div class="scenario-header">
+        <div class="scenario-icon" style="background:var(--c-question-light);">📊</div>
+        <div>
+          <div class="scenario-num">Scenario 02 · Source of funds gap</div>
+          <div class="scenario-name">The Mismatch</div>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="badge badge-question">Two Different Questions</span>
+        </div>
+      </div>
+
+      <div class="scene-flow-title">Investigation Evidence</div>
+      <div class="scene-flow">
+        <div class="scene-node clean">
+          <div class="dot">🔔</div>
+          <div class="label">Source of wealth verified</div>
+          <div class="sub">Trading business, £400k profit over eight years, audited</div>
+        </div>
+        <div class="scene-edge">
+          <div class="line"></div>
+          <div class="arrow">→</div>
+          <div class="edge-label">new request</div>
+        </div>
+        <div class="scene-node flag">
+          <div class="dot">📊</div>
+          <div class="label">£3.2m transaction requested</div>
+          <div class="sub">No further explanation beyond general business success</div>
+        </div>
+        <div class="scene-edge">
+          <div class="line"></div>
+          <div class="arrow">→</div>
+          <div class="edge-label">resolve the gap</div>
+        </div>
+        <div class="scene-node alert">
+          <div class="dot">⚠️</div>
+          <div class="label">Under review</div>
+          <div class="sub">Source of funds gap for this specific transaction</div>
+        </div>
+      </div>
+
+      <div class="dilemma-card" id="dilemma-scenario2">
+        <div class="dilemma-header">
+          <span class="icon">⚖️</span>
+          <div>
+            <strong>What do you do?</strong>
+            <span>Make the call</span>
+          </div>
+        </div>
+        <div class="dilemma-scenario">
+          <p>A client's declared source of wealth is a successful trading business. Filed accounts show total profits of approximately £400,000 across eight years of trading. The client is now requesting a £3.2 million transaction, with no further explanation offered beyond restating their general business success.</p>
+        </div>
+        <div class="dilemma-options">
+          <button class="dilemma-option" onclick="showVerdict('scenario2','A',this)">
+            <span class="opt-label">A</span>
+            <span>Accept the explanation, the business is real and verifiably profitable.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('scenario2','B',this)">
+            <span class="opt-label">B</span>
+            <span>Recognise this as a source of funds gap, not resolved by the source of wealth narrative, and request a specific explanation and evidence for this particular transaction.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('scenario2','C',this)">
+            <span class="opt-label">C</span>
+            <span>Reject the relationship, the numbers don't match so the story must be false.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('scenario2','D',this)">
+            <span class="opt-label">D</span>
+            <span>Escalate for a Suspicious Activity Report without requesting further information first.</span>
+          </button>
+        </div>
+        <div class="dilemma-verdict" id="scenario2-verdict">
+          <div id="scenario2-content"></div>
+        </div>
+      </div>
+
+      <div class="inline-tool-promo">
+        <div class="itp-text">
+          <strong>Verifying a customer's declared identity?</strong>
+          <span>Run a free sanctions, PEP, and adverse media check before proceeding, no account required.</span>
+        </div>
+        <a href="/screen.html" class="itp-btn">Screen an individual →</a>
+      </div>
+    </div>
+
+    <!-- SCENARIO 3: THE SPREADSHEET -->
+    <div class="article-section" id="scenario3">
+      <div class="scenario-header">
+        <div class="scenario-icon" style="background:var(--c-papertrail-light);">💻</div>
+        <div>
+          <div class="scenario-num">Scenario 03 · Third-party verification</div>
+          <div class="scenario-name">The Spreadsheet</div>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="badge badge-papertrail">The Paper Trail</span>
+        </div>
+      </div>
+
+      <div class="scene-flow-title">Investigation Evidence</div>
+      <div class="scene-flow">
+        <div class="scene-node clean">
+          <div class="dot">🔔</div>
+          <div class="label">Crypto gains declared</div>
+          <div class="sub">Presented as a significant portion of overall wealth</div>
+        </div>
+        <div class="scene-edge">
+          <div class="line"></div>
+          <div class="arrow">→</div>
+          <div class="edge-label">evidence review</div>
+        </div>
+        <div class="scene-node flag">
+          <div class="dot">💻</div>
+          <div class="label">Self-compiled spreadsheet</div>
+          <div class="sub">No exchange statements, no wallet transaction history</div>
+        </div>
+        <div class="scene-edge">
+          <div class="line"></div>
+          <div class="arrow">→</div>
+          <div class="edge-label">verify independently</div>
+        </div>
+        <div class="scene-node alert">
+          <div class="dot">⚠️</div>
+          <div class="label">Under review</div>
+          <div class="sub">Independent third-party verification requested</div>
+        </div>
+      </div>
+
+      <div class="dilemma-card" id="dilemma-scenario3">
+        <div class="dilemma-header">
+          <span class="icon">⚖️</span>
+          <div>
+            <strong>What do you do?</strong>
+            <span>Make the call</span>
+          </div>
+        </div>
+        <div class="dilemma-scenario">
+          <p>A client explains a significant portion of their wealth as cryptocurrency trading gains. As evidence, they provide a personally compiled spreadsheet listing trade dates, amounts, and profits. No exchange account statements, no wallet transaction history, no third-party verifiable records are provided.</p>
+        </div>
+        <div class="dilemma-options">
+          <button class="dilemma-option" onclick="showVerdict('scenario3','A',this)">
+            <span class="opt-label">A</span>
+            <span>Accept the spreadsheet, the figures are detailed and internally consistent.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('scenario3','B',this)">
+            <span class="opt-label">B</span>
+            <span>Request verifiable third-party evidence, exchange account statements or on-chain wallet history, that can independently confirm the claimed activity.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('scenario3','C',this)">
+            <span class="opt-label">C</span>
+            <span>Reject the explanation, cryptocurrency gains are inherently too risky to accept as a source of wealth.</span>
+          </button>
+          <button class="dilemma-option" onclick="showVerdict('scenario3','D',this)">
+            <span class="opt-label">D</span>
+            <span>Accept it provisionally and revisit if anything else raises concern later.</span>
+          </button>
+        </div>
+        <div class="dilemma-verdict" id="scenario3-verdict">
+          <div id="scenario3-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KNOWLEDGE CHECK QUIZ -->
+    <div class="quiz-section" id="knowledge-check">
+      <div class="quiz-title">Knowledge Check</div>
+      <div class="quiz-sub">Five questions. How well do you verify a claimed source of wealth?</div>
+
+      <div class="quiz-q" id="qq1">
+        <div class="quiz-q-text">1. What's the actual difference between source of funds and source of wealth?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="answerQuiz('qq1','A')">A - They're the same thing, just different terminology</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq1','B')">B - Source of funds is the origin of money for a specific transaction, source of wealth is how the customer's overall net worth was accumulated</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq1','C')">C - Source of funds only applies to cash transactions</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq1','D')">D - Source of wealth is only relevant for politically exposed persons</button>
+        </div>
+        <div class="quiz-feedback" id="qq1-fb"></div>
+      </div>
+
+      <div class="quiz-q" id="qq2">
+        <div class="quiz-q-text">2. Why is a signed letter from a relative confirming a gift or inheritance not sufficient verification on its own?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="answerQuiz('qq2','A')">A - Letters are never acceptable evidence in any context</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq2','B')">B - It's a narrative claim, not independently checkable documentary evidence like probate records or transfer history</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq2','C')">C - Only notarised letters are acceptable</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq2','D')">D - Family members are inherently unreliable sources</button>
+        </div>
+        <div class="quiz-feedback" id="qq2-fb"></div>
+      </div>
+
+      <div class="quiz-q" id="qq3">
+        <div class="quiz-q-text">3. A client's documented source of wealth shows steady but modest accumulation, but they request an unusually large transaction. What does this actually indicate?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="answerQuiz('qq3','A')">A - The client is definitely engaged in money laundering</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq3','B')">B - A source of funds gap for this specific transaction that needs its own explanation, separate from the general wealth narrative</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq3','C')">C - Nothing, if the source of wealth is verified, any transaction size is automatically justified</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq3','D')">D - The relationship should be rejected immediately</button>
+        </div>
+        <div class="quiz-feedback" id="qq3-fb"></div>
+      </div>
+
+      <div class="quiz-q" id="qq4">
+        <div class="quiz-q-text">4. Why is a self-compiled spreadsheet of trading activity weak evidence on its own?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="answerQuiz('qq4','A')">A - Spreadsheets are never acceptable in any compliance context</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq4','B')">B - It has no independent, third-party verification, it only contains what the client chose to include</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq4','C')">C - Cryptocurrency evidence is always unverifiable by nature</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq4','D')">D - It should always be accepted if the numbers are internally consistent</button>
+        </div>
+        <div class="quiz-feedback" id="qq4-fb"></div>
+      </div>
+
+      <div class="quiz-q" id="qq5">
+        <div class="quiz-q-text">5. What's the actual argument this guide makes about source of wealth investigation?</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="answerQuiz('qq5','A')">A - Any plausible-sounding explanation should be accepted at face value</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq5','B')">B - A claimed source needs to be verified against real, independent, proportionate evidence, not just recorded as a narrative</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq5','C')">C - Source of wealth and source of funds can always be used interchangeably</button>
+          <button class="quiz-opt" onclick="answerQuiz('qq5','D')">D - Rejection is the safest response whenever documentation is incomplete</button>
+        </div>
+        <div class="quiz-feedback" id="qq5-fb"></div>
+      </div>
+
+      <div class="quiz-score-display" id="quiz-score">
+        <div class="quiz-score-num" id="quiz-score-num">0/5</div>
+        <div class="quiz-score-label" id="quiz-score-label"></div>
+      </div>
+    </div>
+
+    <!-- AT A GLANCE, reference table visual summary -->
+    <div class="article-section" id="glance">
+      <div class="section-eyebrow" style="color:var(--c-question)">Quick Reference</div>
+      <h2>At a glance</h2>
+      <p>Four patterns, the trap that makes each one look routine, the tell that actually gives it away, and the response that fits.</p>
+
+      <div class="save-img-row">
+        <button class="save-img-btn" id="saveTableImgBtn" onclick="saveTableAsImage()">💾 Save as image</button>
+      </div>
+
+      <div class="ref-table-wrap">
+        <table class="ref-table" id="glanceTable">
+          <thead>
+            <tr><th>Pattern</th><th>The trap</th><th>The tell</th><th>Response</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="rt-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 3.5"/><path d="M12 17h.01"/></svg>
+                </span>
+                Two Different Questions
+              </td>
+              <td>Strong overall wealth story feels sufficient</td>
+              <td>A specific transaction doesn't map onto the general wealth narrative</td>
+              <td>Treat as a distinct source of funds question requiring its own evidence</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="rt-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v4h4"/><path d="M8 13h8"/><path d="M8 17h5"/></svg>
+                </span>
+                The Paper Trail
+              </td>
+              <td>A confident, detailed explanation feels like proof</td>
+              <td>No independently checkable documents behind the story</td>
+              <td>Request the actual underlying evidence, probate, accounts, transfer records</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="rt-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 8h18"/><path d="M12 8v13"/><path d="M12 8c-1.5-4-6-4.5-6-1.5S9 8 12 8Z"/><path d="M12 8c1.5-4 6-4.5 6-1.5S15 8 12 8Z"/></svg>
+                </span>
+                The Convenient Gift
+              </td>
+              <td>A named, willing third party feels credible</td>
+              <td>No verification of the giver's own funds or the relationship</td>
+              <td>Investigate the giver's source and the relationship itself</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="rt-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3"/><path d="M5 8h14"/><path d="M7 8l-3 7a3 3 0 0 0 6 0l-3-7Z"/><path d="M17 8l-3 7a3 3 0 0 0 6 0l-3-7Z"/><path d="M9 21h6"/><path d="M12 8v13"/></svg>
+                </span>
+                The Proportion Problem
+              </td>
+              <td>The category of explanation sounds reasonable</td>
+              <td>The claimed source's scale doesn't match the transaction amount</td>
+              <td>Resolve the mismatch directly, don't accept the general category alone</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CONCLUSION -->
+    <div class="article-section" id="conclusion">
+      <div class="section-eyebrow" style="color:var(--c-question)">Verification Is the Difference</div>
+      <h2>Verification is the difference between a file that survives review and one that doesn't.</h2>
+      <p>Every pattern in this guide comes back to the same discipline: a plausible story is a claim, not a conclusion, until it's backed by real, independent, proportionate evidence. <a href="/screen.html" style="color:var(--c-question);font-weight:600;">FinCrimeRadar's screening tool</a> covers the sanctions and PEP side of due diligence, free, no signup required, alongside the guides that cover the rest of the investigation.</p>
+
+      <div class="inline-tool-promo">
+        <div class="itp-text">
+          <strong>Verifying a customer or a third party?</strong>
+          <span>Free. No account needed. Check them against live sanctions, PEP, and adverse media data.</span>
+        </div>
+        <a href="/screen.html" class="itp-btn">Screen an individual →</a>
+      </div>
+    </div>
+
+  </div><!-- /article-body -->
+
+  <!-- SIDEBAR -->
+  <div class="article-sidebar">
+    <div class="toc">
+      <div class="toc-title">Contents</div>
+      <a href="#intro">Verification, Not Narrative</a>
+      <a href="#case-study">Case Study</a>
+      <a href="#patterns">Four Patterns</a>
+      <a href="#scenario1" class="toc-scenario"><span class="toc-dot" style="background:var(--c-papertrail);"></span> 01 · The Family Letter</a>
+      <a href="#scenario2" class="toc-scenario"><span class="toc-dot" style="background:var(--c-question);"></span> 02 · The Mismatch</a>
+      <a href="#scenario3" class="toc-scenario"><span class="toc-dot" style="background:var(--c-papertrail);"></span> 03 · The Spreadsheet</a>
+      <a href="#knowledge-check">Knowledge Check</a>
+      <a href="#glance">At a Glance</a>
+      <a href="#conclusion">Conclusion</a>
+    </div>
+
+    <div class="score-card">
+      <div class="score-title">Your Scenario Score</div>
+      <div class="score-stat"><span>Scenarios attempted</span><span class="score-badge" id="score-attempted" style="color:var(--muted);">0 / 3</span></div>
+      <div class="score-stat"><span>Correct answers</span><span class="score-badge" id="score-correct" style="color:var(--success);">0</span></div>
+      <div class="score-stat"><span>Wrong answers</span><span class="score-badge" id="score-wrong" style="color:var(--danger);">0</span></div>
+    </div>
+
+    <div class="tool-cta">
+      <p>Practise this live, run a free sanctions, PEP, and adverse media check on individuals you identify.</p>
+      <a href="/screen.html">Try the screening tool →</a>
+    </div>
+  </div>
+</div><!-- /article-layout -->
+
+<!-- FOOTER -->
+<footer style="background:#F7F8FA;color:var(--muted);border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;margin-top:2rem;">
+  <div style="max-width:900px;margin:0 auto;">
+    <a href="/" style="display:inline-block;margin-bottom:1rem;"><img src="/logo.png" alt="FinCrimeRadar" style="height:44px;object-fit:contain;" /></a>
+    <p style="font-size:13px;margin-bottom:0.5rem;color:var(--muted);">Free, open-source AML and financial crime compliance resources.</p>
+    <div style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin:1rem 0;font-size:13px;">
+      <a href="/knowledge.html" style="color:var(--navy);text-decoration:none;">Knowledge Hub</a>
+      <a href="/screen.html" style="color:var(--navy);text-decoration:none;">Screening Tool</a>
+      <a href="/about.html" style="color:var(--navy);text-decoration:none;">About</a>
+      <a href="/privacy.html" style="color:var(--navy);text-decoration:none;">Privacy</a>
+      <a href="/editorial-standards.html" style="color:var(--navy);text-decoration:none;">Editorial Standards</a>
+      <a href="/methodology.html" style="color:var(--navy);text-decoration:none;">Methodology</a>
+      <a href="/contact.html" style="color:var(--navy);text-decoration:none;">Contact</a>
+    </div>
+    <p style="font-size:12px;color:var(--muted);">© 2026 FinCrimeRadar. For educational purposes only. Not legal advice.</p>
+  </div>
+</footer>
+
+<script>
+// PROGRESS BAR
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const scrolled = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progressBar').style.width = scrolled + '%';
+});
+
+// TOC ACTIVE STATE
+const tocLinks = document.querySelectorAll('.toc a');
+const sections = document.querySelectorAll('[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+  tocLinks.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + current); });
+});
+
+// MOBILE NAV
+function toggleMobileNav() {
+  document.getElementById('mobileNav').classList.toggle('open');
+}
+
+// SCORE TRACKING
+let scenarioResults = {};
+
+function updateScoreCard() {
+  const attempted = Object.keys(scenarioResults).length;
+  const correct = Object.values(scenarioResults).filter(v => v === 'correct').length;
+  const wrong = Object.values(scenarioResults).filter(v => v === 'wrong').length;
+  document.getElementById('score-attempted').textContent = attempted + ' / 3';
+  document.getElementById('score-correct').textContent = correct;
+  document.getElementById('score-wrong').textContent = wrong;
+}
+
+// SCENARIO ANSWER KEYS AND FULL VERDICTS
+// Every option reveals the same full reasoning block: why the correct
+// answer is right AND why each wrong option fails, matching how each
+// scenario's explanation was actually authored as one continuous
+// argument rather than per-option variants.
+const answerKeys = {
+  scenario1: 'B',
+  scenario2: 'B',
+  scenario3: 'B'
+};
+
+const verdicts = {
+  scenario1: {
+    title: 'Correct answer: B, Request the underlying documentary evidence and the actual transfer records',
+    body: [
+      'A signed letter is a narrative claim, not verification, it establishes that someone is willing to say this happened, not that it did. Genuine inheritance leaves a real, independently checkable paper trail, a grant of probate confirms the estate and its value, estate accounts show how funds were distributed, and transfer records confirm the money’s actual path. None of that requires the client to prove anything unusual, it’s standard documentation any genuine inheritance already generates.',
+      'Option A stops at the narrative without verification. Option C and D are both premature, the client hasn’t yet been given the opportunity to provide the evidence a genuine case would actually have, rejecting or reporting before that request has even been made skips the actual investigative step this scenario is testing.'
+    ]
+  },
+  scenario2: {
+    title: 'Correct answer: B, Recognise the source of funds gap and request a specific explanation and evidence',
+    body: [
+      'This is the "Two Different Questions" pattern directly. The client’s source of wealth, the trading business, may be entirely genuine and well documented, that’s not in dispute. But £400,000 in eight years of accumulated profit doesn’t explain a single £3.2 million transaction, that’s a specific source of funds question the general wealth narrative doesn’t answer. The correct response isn’t to disbelieve the business, it’s to ask what specifically funded this particular transaction, a business sale, an external investor, an inheritance, something distinct from the ordinary trading profits already on file.',
+      'Option A lets the strength of the broader wealth story paper over a genuine gap for this specific transaction. Option C treats a documentation gap as proof of falsehood, which isn’t established yet. Option D skips the step of actually asking, which is what the situation calls for first.'
+    ]
+  },
+  scenario3: {
+    title: 'Correct answer: B, Request verifiable third-party evidence that can independently confirm the claimed activity',
+    body: [
+      'A self-compiled spreadsheet is not independent evidence, it’s a document the client made themselves, containing exactly the numbers they want you to see, with no way to verify any of it against an outside source. Genuine cryptocurrency trading gains are verifiable, exchange platforms retain account statements and transaction histories, and blockchain activity itself is a public, permanent record for on-chain transactions. Requesting that evidence isn’t treating the client as guilty, it’s applying the same verification standard any other claimed source of wealth requires.',
+      'Option A accepts a document with no independent verification. Option C rejects a genuinely legitimate and common wealth source category outright rather than verifying the specific claim. Option D defers a decision that has a clear, immediate right answer, ask for the verifiable evidence now.'
+    ]
+  }
+};
+
+function showVerdict(scenarioId, chosen, btn) {
+  const verdictDiv = document.getElementById(scenarioId + '-verdict');
+  const contentDiv = document.getElementById(scenarioId + '-content');
+  const isCorrect = chosen === answerKeys[scenarioId];
+
+  // Disable all buttons in this scenario
+  const allBtns = btn.closest('.dilemma-options').querySelectorAll('button');
+  allBtns.forEach(b => {
+    b.disabled = true;
+    b.style.opacity = '0.6';
+    b.style.cursor = 'default';
+  });
+
+  // Style clicked button
+  btn.style.opacity = '1';
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+
+  const v = verdicts[scenarioId];
+  const bgClass = isCorrect ? 'verdict-correct' : 'verdict-wrong';
+  const icon = isCorrect ? '✅' : '❌';
+
+  contentDiv.innerHTML = `
+    <div class="${bgClass}">
+      <div class="verdict-icon">${icon}</div>
+      <div class="verdict-title">${v.title}</div>
+      <div class="verdict-body">${v.body.map(p => '<p>' + p + '</p>').join('')}</div>
+    </div>
+  `;
+
+  verdictDiv.classList.add('show');
+  scenarioResults[scenarioId] = isCorrect ? 'correct' : 'wrong';
+  updateScoreCard();
+}
+
+// QUIZ LOGIC
+const quizFeedback = {
+  qq1: { correct: 'B', fb: 'Source of funds is the origin of money for a specific transaction, source of wealth is how the customer’s overall net worth was accumulated, they answer different questions and need different evidence.' },
+  qq2: { correct: 'B', fb: 'A signed letter establishes that someone is willing to make a claim, not that the claim is true, genuine inheritance and gifts leave independently checkable evidence like probate records or transfer history.' },
+  qq3: { correct: 'B', fb: 'A strong source of wealth doesn’t automatically explain an unusually large transaction, that’s a distinct source of funds question needing its own explanation and evidence.' },
+  qq4: { correct: 'B', fb: 'A self-compiled spreadsheet contains only what the client chose to include, with no independent way to verify it, genuine trading activity leaves third-party verifiable records.' },
+  qq5: { correct: 'B', fb: 'A claimed source of wealth needs to be verified against real, independent, proportionate evidence, a plausible story alone is a claim, not verification.' }
+};
+
+let quizAnswered = 0;
+let quizCorrect = 0;
+
+function answerQuiz(questionId, chosen) {
+  const questionDiv = document.getElementById(questionId);
+  const fbDiv = document.getElementById(questionId + '-fb');
+  const opts = questionDiv.querySelectorAll('.quiz-opt');
+  const data = quizFeedback[questionId];
+
+  opts.forEach(o => o.disabled = true);
+  const isCorrect = chosen === data.correct;
+
+  opts.forEach(o => {
+    if (o.textContent.trim().startsWith(data.correct)) o.classList.add('q-correct');
+    else if (o.textContent.trim().startsWith(chosen) && !isCorrect) o.classList.add('q-wrong');
+  });
+
+  fbDiv.textContent = data.fb;
+  fbDiv.style.background = isCorrect ? 'rgba(22,163,74,0.2)' : 'rgba(220,38,38,0.2)';
+  fbDiv.style.padding = '8px 12px';
+  fbDiv.style.borderRadius = '6px';
+  fbDiv.style.color = isCorrect ? '#86efac' : '#fca5a5';
+  fbDiv.classList.add('show');
+
+  quizAnswered++;
+  if (isCorrect) quizCorrect++;
+
+  if (quizAnswered === 5) {
+    const scoreDiv = document.getElementById('quiz-score');
+    const scoreNum = document.getElementById('quiz-score-num');
+    const scoreLbl = document.getElementById('quiz-score-label');
+    scoreDiv.classList.add('show');
+    scoreNum.textContent = quizCorrect + '/5';
+    const labels = ['Keep studying, a plausible story is a claim, not a conclusion.','Getting there, go back through the patterns you missed.','Solid foundation, a few gaps to close.','Good grasp, you’re reading these files well.','Excellent, practitioner-level source of wealth investigation.','Perfect, you’re ready to verify a real file.'];
+    scoreLbl.textContent = labels[quizCorrect] || labels[5];
+  }
+}
+
+// SAVE AS IMAGE
+// Renders the "At a glance" table to a downloadable PNG using native
+// Canvas 2D and Path2D APIs only, no external library. Content (icon
+// paths, pattern names, cell text) is read directly from the live DOM
+// at click time, so the image can never drift out of sync with the
+// on-page table.
+function wrapCanvasText(ctx, text, maxWidth) {
+  const words = text.split(' ');
+  const lines = [];
+  let line = '';
+  words.forEach(word => {
+    const test = line ? line + ' ' + word : word;
+    if (ctx.measureText(test).width > maxWidth && line) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = test;
+    }
+  });
+  if (line) lines.push(line);
+  return lines;
+}
+
+function drawSvgIconToCanvas(ctx, svgEl, x, y, size, color) {
+  const vb = (svgEl.getAttribute('viewBox') || '0 0 24 24').split(' ').map(Number);
+  const scale = size / vb[2];
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(scale, scale);
+  ctx.translate(-vb[0], -vb[1]);
+  ctx.lineWidth = 2;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.strokeStyle = color;
+  ctx.fillStyle = color;
+  Array.from(svgEl.children).forEach(el => {
+    const tag = el.tagName.toLowerCase();
+    const fillAttr = el.getAttribute('fill');
+    const strokeAttr = el.getAttribute('stroke');
+    let path = null;
+    if (tag === 'path') {
+      path = new Path2D(el.getAttribute('d'));
+    } else if (tag === 'circle') {
+      path = new Path2D();
+      path.arc(+el.getAttribute('cx'), +el.getAttribute('cy'), +el.getAttribute('r'), 0, Math.PI * 2);
+    } else if (tag === 'rect') {
+      path = new Path2D();
+      const rx = +(el.getAttribute('rx') || 0);
+      if (path.roundRect) {
+        path.roundRect(+el.getAttribute('x'), +el.getAttribute('y'), +el.getAttribute('width'), +el.getAttribute('height'), rx);
+      } else {
+        path.rect(+el.getAttribute('x'), +el.getAttribute('y'), +el.getAttribute('width'), +el.getAttribute('height'));
+      }
+    } else if (tag === 'ellipse') {
+      path = new Path2D();
+      path.ellipse(+el.getAttribute('cx'), +el.getAttribute('cy'), +el.getAttribute('rx'), +el.getAttribute('ry'), 0, 0, Math.PI * 2);
+    }
+    if (!path) return;
+    const isFilled = fillAttr && fillAttr !== 'none';
+    if (isFilled) ctx.fill(path);
+    if (strokeAttr !== 'none') ctx.stroke(path);
+  });
+  ctx.restore();
+}
+
+function saveTableAsImage() {
+  const table = document.getElementById('glanceTable');
+  if (!table) return;
+  const btn = document.getElementById('saveTableImgBtn');
+  const originalLabel = btn.textContent;
+  btn.textContent = 'Rendering…';
+  btn.disabled = true;
+
+  const headerCells = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
+  const rows = Array.from(table.querySelectorAll('tbody tr')).map(tr => {
+    const tds = tr.querySelectorAll('td');
+    return {
+      svg: tds[0].querySelector('svg'),
+      name: tds[0].textContent.trim(),
+      cells: [tds[1].textContent.trim(), tds[2].textContent.trim(), tds[3].textContent.trim()]
+    };
+  });
+
+  const WIDTH = 1200;
+  const OUTER_PAD = 20;
+  const contentWidth = WIDTH - OUTER_PAD * 2;
+  const colWidths = [260, Math.round((contentWidth - 260) / 3), Math.round((contentWidth - 260) / 3), 0];
+  colWidths[3] = contentWidth - colWidths[0] - colWidths[1] - colWidths[2];
+  const colX = [OUTER_PAD];
+  for (let i = 1; i < 4; i++) colX.push(colX[i - 1] + colWidths[i - 1]);
+
+  const TITLE_H = 64;
+  const HEADER_H = 50;
+  const CELL_PAD_X = 16;
+  const CELL_PAD_Y = 14;
+  const LINE_H = 20;
+  const BODY_FONT = '14px Inter, system-ui, sans-serif';
+  const NAME_FONT = '700 14px Inter, system-ui, sans-serif';
+
+  // Measure pass on a scratch canvas to compute row heights
+  const measure = document.createElement('canvas').getContext('2d');
+  measure.font = BODY_FONT;
+  const rowHeights = rows.map(row => {
+    const col0Lines = wrapCanvasText(measure, row.name, colWidths[0] - CELL_PAD_X * 2 - 36);
+    const otherLines = row.cells.map(text => wrapCanvasText(measure, text, colWidths[1] - CELL_PAD_X * 2));
+    const maxLines = Math.max(col0Lines.length, ...otherLines.map(l => l.length), 1);
+    return Math.max(70, CELL_PAD_Y * 2 + maxLines * LINE_H);
+  });
+
+  const totalHeight = OUTER_PAD * 2 + TITLE_H + HEADER_H + rowHeights.reduce((a, b) => a + b, 0);
+
+  const canvas = document.createElement('canvas');
+  canvas.width = WIDTH;
+  canvas.height = totalHeight;
+  const ctx = canvas.getContext('2d');
+
+  // Background
+  ctx.fillStyle = '#F4F6F3';
+  ctx.fillRect(0, 0, WIDTH, totalHeight);
+
+  // Card container (rounded)
+  const cardX = OUTER_PAD, cardY = OUTER_PAD, cardW = contentWidth, cardH = totalHeight - OUTER_PAD * 2;
+  ctx.fillStyle = '#FFFFFF';
+  ctx.beginPath();
+  if (ctx.roundRect) ctx.roundRect(cardX, cardY, cardW, cardH, 12); else ctx.rect(cardX, cardY, cardW, cardH);
+  ctx.fill();
+
+  // Title bar
+  ctx.fillStyle = '#0C1B2A';
+  ctx.beginPath();
+  if (ctx.roundRect) ctx.roundRect(cardX, cardY, cardW, TITLE_H, [12, 12, 0, 0]); else ctx.rect(cardX, cardY, cardW, TITLE_H);
+  ctx.fill();
+  ctx.fillStyle = '#FFFFFF';
+  ctx.font = '700 20px Georgia, serif';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('Source of Wealth Investigation Handbook: At a glance', cardX + CELL_PAD_X, cardY + TITLE_H / 2);
+
+  // Header row
+  let y = cardY + TITLE_H;
+  ctx.fillStyle = '#0E3226';
+  ctx.fillRect(cardX, y, cardW, HEADER_H);
+  ctx.fillStyle = '#FFFFFF';
+  ctx.font = '700 12px Inter, system-ui, sans-serif';
+  ctx.textBaseline = 'middle';
+  headerCells.forEach((text, i) => {
+    ctx.fillText(text.toUpperCase(), colX[i] + CELL_PAD_X, y + HEADER_H / 2);
+  });
+  y += HEADER_H;
+
+  // Data rows
+  rows.forEach((row, i) => {
+    const rh = rowHeights[i];
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(cardX, y, cardW, rh);
+
+    // Icon + name in column 0
+    if (row.svg) drawSvgIconToCanvas(ctx, row.svg, colX[0] + CELL_PAD_X, y + CELL_PAD_Y + 2, 20, '#0B7A57');
+    ctx.fillStyle = '#0C1B2A';
+    ctx.font = NAME_FONT;
+    ctx.textBaseline = 'top';
+    const nameLines = wrapCanvasText(ctx, row.name, colWidths[0] - CELL_PAD_X * 2 - 36);
+    nameLines.forEach((line, li) => ctx.fillText(line, colX[0] + CELL_PAD_X + 32, y + CELL_PAD_Y + li * LINE_H));
+
+    // Other columns
+    ctx.font = BODY_FONT;
+    ctx.fillStyle = '#3D4E5C';
+    row.cells.forEach((text, ci) => {
+      const lines = wrapCanvasText(ctx, text, colWidths[ci + 1] - CELL_PAD_X * 2);
+      lines.forEach((line, li) => ctx.fillText(line, colX[ci + 1] + CELL_PAD_X, y + CELL_PAD_Y + li * LINE_H));
+    });
+
+    // Bottom border (skip on last row)
+    if (i < rows.length - 1) {
+      ctx.strokeStyle = '#E3E8E3';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(cardX, y + rh);
+      ctx.lineTo(cardX + cardW, y + rh);
+      ctx.stroke();
+    }
+    y += rh;
+  });
+
+  canvas.toBlob(blob => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'source-of-wealth-investigation-handbook-at-a-glance.png';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    btn.textContent = originalLabel;
+    btn.disabled = false;
+  }, 'image/png');
+}
+</script>
+
+<!-- Cookie Consent -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#0f2044;color:#e2e8f0;padding:1rem 1.5rem;z-index:9999;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:13px;">
+  <span>We use cookies for analytics. <a href="/privacy.html" style="color:#00c4a7;">Privacy Policy</a></span>
+  <div style="display:flex;gap:8px;">
+    <button onclick="acceptCookies()" style="background:#00c4a7;color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:13px;font-weight:600;">Accept</button>
+    <button onclick="rejectCookies()" style="background:transparent;color:#94a3b8;border:1px solid #374151;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:13px;">Decline</button>
+  </div>
+</div>
+<script>
+if (!localStorage.getItem('fcr_cookie_consent')) document.getElementById('cookieBanner').style.display='flex';
+function acceptCookies() {
+  localStorage.setItem('fcr_cookie_consent', 'accepted');
+  if (typeof gtag === 'function') {
+    gtag('consent', 'update', { 'analytics_storage': 'granted' });
+  }
+  document.getElementById('cookieBanner').style.display = 'none';
+}
+function rejectCookies() {
+  localStorage.setItem('fcr_cookie_consent', 'rejected');
+  if (typeof gtag === 'function') {
+    gtag('consent', 'update', { 'analytics_storage': 'denied' });
+  }
+  document.getElementById('cookieBanner').style.display = 'none';
+}
+</script>
+
+<script defer src="/brand.js"></script>
+</body>
+</html>
