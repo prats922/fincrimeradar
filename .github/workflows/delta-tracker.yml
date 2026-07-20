@@ -1,10 +1,18 @@
 name: Sanctions Delta Tracker
 
-# Runs daily after OpenSanctions refreshes. Can also be triggered manually
-# from the Actions tab for testing.
+# DISABLED 2026-07-20: OpenSanctions cuts off the unauthenticated bulk
+# data endpoint (data.opensanctions.org) on 2026-08-01. generate_delta_pages.py
+# fetches DATASET_URL directly from that endpoint with no API key, so this
+# job would start failing every morning from that date onward with no one
+# watching for it. Scheduled trigger removed proactively rather than left
+# to fail silently forever. workflow_dispatch is kept so this can still be
+# run manually (e.g. for one-off testing once/if a migration to the
+# authenticated OpenSanctions API lands in generate_delta_pages.py).
+# This was a deliberate removal, not an accidental drift, re-add the
+# schedule block below once that migration is confirmed working.
+#   schedule:
+#     - cron: "0 6 * * *"
 on:
-  schedule:
-    - cron: "0 6 * * *"
   workflow_dispatch:
     inputs:
       max_sane_changes_override:

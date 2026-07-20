@@ -126,73 +126,24 @@ def extract_meta(page_html):
     }
 
 
-def generate_snapshot_narrative(added, delisted, amended, renamed):
-    if added == 0 and delisted == 0:
-        return ("Quiet week for new sanctions activity, no new designations "
-                "or delistings recorded. Most movement was administrative, "
-                "alias and identifier updates on existing listings, which "
-                "can still change match outcomes on names you've already "
-                "screened.")
-    parts = []
-    if added > 0:
-        parts.append(f"{added} new designation{'s' if added != 1 else ''}")
-    if delisted > 0:
-        parts.append(f"{delisted} delisting{'s' if delisted != 1 else ''}")
-    headline = " and ".join(parts) + " this week, worth checking against your existing book."
-    if amended > 500:
-        headline += " The bulk of amendment volume typically reflects one or two regimes doing routine updates, not widespread new risk."
-    return headline
-
-
-def build_digest_html(entries):
-    if not entries:
-        return None
-
-    total_added = sum(e["counts"]["ADDED"] for e in entries)
-    total_delisted = sum(e["counts"]["DELISTED"] for e in entries)
-    total_amended = sum(e["counts"]["AMENDED"] for e in entries)
-    total_renamed = sum(e["counts"]["RENAMED"] for e in entries)
-
-    override_days = [e for e in entries if e["meta"]["override_active"]]
-
-    rows = ""
-    for e in entries:
-        flagged = e["meta"]["override_active"]
-        row_note = (
-            ' <span style="color:#B8860B;font-weight:600;">&#9888; manual correction</span>'
-            if flagged else ""
-        )
-        rows += f"""
-        <tr>
-          <td style="padding:10px 14px;border-bottom:1px solid #E3E8E3;">
-            <a href="{SITE}/delta/{e['date'].isoformat()}.html" style="color:#0B7A57;text-decoration:none;font-weight:600;">
-              {e['date'].strftime('%d %b %Y')}
-            </a>{row_note}
-          </td>
-          <td style="padding:10px 14px;border-bottom:1px solid #E3E8E3;">{e['counts']['ADDED']}</td>
-          <td style="padding:10px 14px;border-bottom:1px solid #E3E8E3;">{e['counts']['DELISTED']}</td>
-          <td style="padding:10px 14px;border-bottom:1px solid #E3E8E3;">{e['counts']['AMENDED']}</td>
-          <td style="padding:10px 14px;border-bottom:1px solid #E3E8E3;">{e['counts']['RENAMED']}</td>
-        </tr>"""
-
-    period_start = entries[0]["date"].strftime("%d %b")
-    period_end = entries[-1]["date"].strftime("%d %b %Y")
-
-    override_banner = ""
-    if override_days:
-        day_list = ", ".join(
-            f"{e['date'].strftime('%d %b')} (threshold {e['meta']['threshold']})"
-            for e in override_days
-        )
-        plural = "s" if len(override_days) != 1 else ""
-        override_banner = f"""
-      <div style="background:#FDF6E3;border:1px solid #E8D48A;border-radius:8px;padding:14px 18px;margin-top:16px;">
-        <p style="font-size:13px;line-height:1.6;color:#6B5416;margin:0;">
-          <strong>{len(override_days)} manual correction{plural} applied this week:</strong> {day_list}.
-          These figures were reviewed and published deliberately by a working MLRO, not an automated
-          anomaly or a data error. Full detail on each day is on its linked page above.
-        </p>
-      </div>"""
+def build_digest_html(entries=None):
+    # entries (delta-page data) is no longer required to build a digest.
+    # The sanctions snapshot section that consumed it was removed 2026-07-20
+    # because OpenSanctions cuts off the unauthenticated bulk endpoint the
+    # delta tracker depends on, generate_delta_pages.py, on 2026-08-01, and
+    # the workflow that produces delta pages is disabled ahead of that date.
+    # Gating the whole digest on recent_delta_files() being non-empty (the
+    # old behaviour) would silently stop the guides/Scenario Lab content
+    # from sending too, once no delta page exists within the trailing
+    # window, not just the sanctions section, which defeats the point of
+    # decoupling this email from sanctions data. main() no longer applies
+    # that gate. The parameter is kept, unused for now, in case a future
+    # migration of generate_delta_pages.py to the authenticated OpenSanctions
+    # API brings delta content back and this section is reinstated.
+    period_end_date = date.today()
+    period_start_date = period_end_date - timedelta(days=WINDOW_DAYS)
+    period_start = period_start_date.strftime("%d %b")
+    period_end = period_end_date.strftime("%d %b %Y")
 
     guides_html = ""
     for g in get_featured_guides():
@@ -202,10 +153,6 @@ def build_digest_html(entries):
           <p style="font-size:13px;line-height:1.6;color:#3D4E5C;margin:6px 0 10px 0;">{g['hook']}</p>
           <a href="{g['url']}" style="color:#0B7A57;text-decoration:none;font-weight:600;font-size:13px;">Read the guide &rarr;</a>
         </div>"""
-
-    snapshot_narrative = generate_snapshot_narrative(
-        total_added, total_delisted, total_amended, total_renamed
-    )
 
     return f"""<!DOCTYPE html>
 <html>
@@ -222,27 +169,11 @@ def build_digest_html(entries):
       </div>
       <!-- RESERVED: "This week in financial crime" news roundup section goes here in a future update. Do not build yet. -->
       <div style="margin-top:28px;">
-        <div style="color:#0B7A57;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;">Sanctions snapshot</div>
-        <p style="font-size:14px;line-height:1.6;color:#3D4E5C;margin-top:10px;">
-          {snapshot_narrative}
-        </p>
-        <table style="width:100%;border-collapse:collapse;font-size:13px;margin-top:16px;">
-          <thead>
-            <tr style="background:#F4F6F3;">
-              <th style="padding:8px 14px;text-align:left;">Date</th>
-              <th style="padding:8px 14px;text-align:left;">Added</th>
-              <th style="padding:8px 14px;text-align:left;">Delisted</th>
-              <th style="padding:8px 14px;text-align:left;">Amended</th>
-              <th style="padding:8px 14px;text-align:left;">Renamed</th>
-            </tr>
-          </thead>
-          <tbody>{rows}</tbody>
-        </table>
-        {override_banner}
-        <div style="margin-top:24px;">
-          <a href="{SITE}/screen.html" style="background:#12B981;color:#ffffff;text-decoration:none;padding:12px 24px;border-radius:8px;font-weight:600;font-size:14px;display:inline-block;">
-            Screen a name now
-          </a>
+        <div style="color:#0B7A57;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;">This week's tool</div>
+        <div style="border:1px solid #E3E8E3;border-radius:8px;padding:16px 18px;margin-top:12px;">
+          <div style="font-size:15px;font-weight:700;color:#0B7A57;">Scenario Lab</div>
+          <p style="font-size:13px;line-height:1.6;color:#3D4E5C;margin:6px 0 10px 0;">Build the ownership tree, screen every entity, then make the call, approve, reject, or escalate. Two modules live now, KYC/KYB and Fraud Detection, 11 cases combined. Free, no signup.</p>
+          <a href="{SITE}/scenario-lab.html" style="color:#0B7A57;text-decoration:none;font-weight:600;font-size:13px;">Try Scenario Lab &rarr;</a>
         </div>
       </div>
       <p style="font-size:12px;color:#66757F;margin-top:28px;">
@@ -312,31 +243,14 @@ def send_campaign(subject, html_content):
 
 
 def main():
-    files = recent_delta_files()
-    if not files:
-        print("No delta pages in the trailing window, nothing to send this week.")
-        return
+    # No longer gated on recent_delta_files() being non-empty. The digest's
+    # content (guides, Scenario Lab) doesn't depend on delta pages since the
+    # 2026-07-20 removal of the sanctions snapshot section, see the comment
+    # in build_digest_html(). Sends every run regardless of sanctions
+    # activity.
+    digest_html = build_digest_html()
 
-    entries = []
-    for file_date, path in files:
-        with open(path, encoding="utf-8") as f:
-            page_html = f.read()
-        entries.append({
-            "date": file_date,
-            "counts": extract_counts(page_html),
-            "meta": extract_meta(page_html),
-        })
-
-    override_count = sum(1 for e in entries if e["meta"]["override_active"])
-    if override_count:
-        print(f"Detected {override_count} manually overridden day(s) in this week's digest window.")
-
-    digest_html = build_digest_html(entries)
-    if digest_html is None:
-        print("No entries to summarise, nothing to send.")
-        return
-
-    period_end = entries[-1]["date"].strftime("%d %b %Y")
+    period_end = date.today().strftime("%d %b %Y")
     subject = f"FinCrimeRadar weekly digest, week ending {period_end}"
 
     send_campaign(subject, digest_html)
