@@ -108,6 +108,79 @@
     }
   }
 
+  /**
+   * Collapses a pathname to a canonical form so "/", "/index.html", and
+   * "/foo.html/" all compare equal to their counterparts. Used to match
+   * nav link hrefs against the current page regardless of which of these
+   * equivalent forms either side happens to be written in.
+   */
+  function normalizePath(path) {
+    path = path.replace(/\/index\.html$/, '/');
+    if (path.length > 1 && path.charAt(path.length - 1) === '/') {
+      path = path.slice(0, -1);
+    }
+    return path || '/';
+  }
+
+  /**
+   * Marks whichever injected nav link points at the current page as
+   * active. Works against whatever anchors happen to exist in #site-nav,
+   * desktop nav-links and mobile-nav alike, so it isn't tied to Variant
+   * A's specific link set and keeps working once other nav variants are
+   * added. The CTA link is deliberately skipped, it's an action button,
+   * not a "you are here" indicator, on every variant seen so far.
+   */
+  function applyActiveNavState() {
+    var mount = document.getElementById('site-nav');
+    if (!mount) return;
+
+    var currentPath = normalizePath(window.location.pathname);
+    var links = mount.querySelectorAll('a[href]');
+
+    for (var i = 0; i < links.length; i++) {
+      var link = links[i];
+      if (link.classList.contains('nav-cta')) continue;
+
+      var linkPath;
+      try {
+        linkPath = normalizePath(new URL(link.getAttribute('href'), window.location.origin).pathname);
+      } catch (error) {
+        continue;
+      }
+
+      if (linkPath === currentPath) {
+        link.classList.add('active');
+      }
+    }
+  }
+
+  /**
+   * Optional per-page footer disclaimer. A page opts in by placing
+   * <div id="page-disclaimer" data-disclaimer="..."></div> just above
+   * its #site-footer mount. If that element isn't present, this is a
+   * no-op and the footer renders with no disclaimer, unchanged from
+   * today's behavior for every page that doesn't use the slot.
+   */
+  function applyPageDisclaimer() {
+    var source = document.getElementById('page-disclaimer');
+    if (!source) return;
+
+    var text = source.getAttribute('data-disclaimer');
+    if (!text) return;
+
+    var footer = document.querySelector('#site-footer footer');
+    if (!footer) return;
+
+    footer.appendChild(document.createElement('br'));
+    footer.appendChild(document.createElement('br'));
+
+    var span = document.createElement('span');
+    span.style.fontSize = '11px';
+    span.style.color = '#9ca3af';
+    span.textContent = text;
+    footer.appendChild(span);
+  }
+
   // Expose the handlers the injected markup calls via inline onclick attributes.
   // These must be global because the HTML they're wired to is injected at runtime.
   window.toggleMobileNav = toggleMobileNav;
@@ -120,6 +193,8 @@
       loadPartial(FOOTER_PARTIAL_URL, 'site-footer', FALLBACK_FOOTER)
     ]).then(function () {
       initCookieBanner();
+      applyActiveNavState();
+      applyPageDisclaimer();
       document.addEventListener('click', closeMobileNavOnOutsideClick);
     });
   });

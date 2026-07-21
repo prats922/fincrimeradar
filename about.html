@@ -266,25 +266,7 @@
 </head>
 <body>
 
-<nav>
-  <a class="nav-brand" href="/">
-    <img src="/logo.png" alt="FinCrimeRadar" style="height:44px;width:auto;max-width:200px;object-fit:contain;object-position:left center;display:block;" />
-  </a>
-  <div class="nav-links">
-    <a href="/" class="hm">Home</a>
-    <a href="/knowledge.html" class="hm">Knowledge Hub</a>
-    <a href="/screen.html" class="hm">Screen</a>
-    <a href="/about.html" class="active hm">About</a>
-    <a href="/screen.html" class="nav-cta" style="background:var(--teal);color:#fff;font-weight:600;">Try the tool →</a>
-  </div>
-  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">&#9776;</button>
-</nav>
-<div class="mobile-nav" id="mobileNav">
-  <a href="/knowledge.html">Knowledge Hub</a>
-  <a href="/learn.html">Learn</a>
-  <a href="/about.html">About</a>
-  <a href="/screen.html" class="mobile-nav-cta">Try the tool →</a>
-</div>
+<div id="site-nav"></div>
 
 <!-- HERO -->
 <div class="about-hero">
@@ -637,6 +619,7 @@ document.addEventListener('click',function(e){
   }
 });
 </script>
+<script defer src="/js/site-chrome.js"></script>
 <script defer src="/brand.js"></script>
 </body>
 </html>
