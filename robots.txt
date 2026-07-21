@@ -1,3 +1,9 @@
+# Applebot-Extended (Apple AI training/Siri citations) is deliberately
+# allowed, not blocked, decision made 2026-07-21. This permits
+# FinCrimeRadar content to be used in Siri/Apple Intelligence answers
+# with citation, chosen for exposure over restricting AI training use.
+# See BACKLOG.md if this needs revisiting later.
+
 User-agent: *
 Allow: /
 
