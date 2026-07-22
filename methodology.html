@@ -168,21 +168,24 @@
       Where the data comes from, and how the screening tool actually works.
     </div>
 
-    <h2>1. Data source</h2>
+    <h2 id="format">1. A note on format</h2>
+    <p>You'll notice the Knowledge Hub's guides don't all look or work the same way. That's deliberate, not inconsistent. This site is actively evolving how it teaches, some guides use a rich, narrative format with stat strips and detailed case studies, others use structured decision scenarios with graded reasoning and a scored knowledge check. Rather than force every guide into one format retroactively, older guides that are already working well stay as they are, and new formats get tested and refined going forward. If a format change proves itself, newer guides adopt it. If you have thoughts on which style actually helps you learn better, <a href="/contact.html">get in touch</a>.</p>
+
+    <h2>2. Data source</h2>
     <p>FinCrimeRadar's sanctions and PEP screening runs on data from <a href="https://www.opensanctions.org" target="_blank" rel="noopener">OpenSanctions</a>, an open-data project that consolidates sanctions lists, watchlists, and politically exposed persons data from official sources worldwide, OFAC's SDN list, UK OFSI's consolidated list, EU sanctions, UN Security Council designations, and dozens of national PEP registers, into a single structured dataset.</p>
     <p>FinCrimeRadar does not compile, verify, or independently maintain sanctions or PEP data. The underlying data is OpenSanctions' work, sourced under a non-commercial API arrangement. Any question about the accuracy of a specific listing, designation date, or source attribution should go to OpenSanctions directly, not treated as something FinCrimeRadar has independently confirmed.</p>
 
-    <h2>2. What's in the dataset</h2>
+    <h2>3. What's in the dataset</h2>
     <p>At last check, the screening tool draws on over 72,000 sanctions records and over 59,000 PEP records, spanning the major global sanctions regimes and a wide range of national and international PEP sources. These figures change as OpenSanctions' own coverage grows and as designations are added or removed, they're a snapshot, not a fixed count.</p>
 
-    <h2>3. Update frequency</h2>
+    <h2>4. Update frequency</h2>
     <p>Sanctions data is checked daily against the live OpenSanctions feed. New designations, delistings, amendments, and identifier changes are tracked and published as a daily changelog, visible in the weekly compliance digest and the site's delta tracking pages. This means the screening tool reflects the current state of the underlying data within a day of a change, not a static snapshot from whenever the tool was last manually updated.</p>
 
-    <h2>4. How matching works</h2>
+    <h2>5. How matching works</h2>
     <p>Name screening uses fuzzy matching, comparing the searched name against records in the dataset for close matches, not just exact string matches. This is deliberate: sanctioned individuals and entities appear under multiple spellings, transliterations, and aliases, and exact-match-only screening misses genuine hits. The tradeoff is that fuzzy matching also surfaces false positives, matches that share a name pattern but are a different person entirely.</p>
     <p>The matching threshold is adjustable in the tool itself, a lower threshold surfaces more potential matches at the cost of more false positives, a higher threshold narrows results but risks missing a genuine hit with an unusual spelling. There's no single correct setting, it depends on risk appetite and the specific use case, which is why the threshold is user-controlled rather than fixed.</p>
 
-    <h2>5. What the tool doesn't do</h2>
+    <h2>6. What the tool doesn't do</h2>
     <ul>
       <li>It doesn't perform ongoing monitoring of a saved list of names. Each search reflects the data at the moment it's run.</li>
       <li>It doesn't check adverse media, court records, or any source outside the OpenSanctions dataset described above.</li>
@@ -190,7 +193,7 @@
       <li>It isn't a licensed, commercial-grade screening product with SLAs, audit trails, or regulatory certification. It's a free educational and decision-support tool, and should be treated accordingly in any regulated firm's actual compliance workflow.</li>
     </ul>
 
-    <h2>6. Why this is free</h2>
+    <h2>7. Why this is free</h2>
     <p>FinCrimeRadar exists because genuinely useful compliance tooling and reference material shouldn't sit behind a training budget or an enterprise sales process. The tradeoff for that is stated plainly above: this is a decision-support and learning tool, not a substitute for a firm's licensed, auditable screening infrastructure. Full detail on how the site is funded is on the <a href="/editorial-standards.html">Editorial Standards</a> page.</p>
 
   </div>
