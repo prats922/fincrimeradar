@@ -244,6 +244,7 @@
   </a>
   <div class="nav-links">
     <a href="/knowledge.html" class="hm">Knowledge Hub</a>
+    <a href="/scenario-lab.html" class="hm">Scenario Lab</a>
     <a href="/screen.html" class="hm">Screen</a>
     <a href="/screen.html" class="nav-cta" style="background:#00c4a7;color:#fff;font-weight:600;">Try the tool →</a>
   </div>
@@ -492,11 +493,8 @@
   </main>
 </div>
 
-<footer>
-  © 2026 FinCrimeRadar · <a href="/">Home</a> · <a href="/knowledge.html">Knowledge Hub</a> · <a href="/screen.html">Screen</a> · <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a> · <a href="/editorial-standards.html">Editorial Standards</a> · <a href="/methodology.html">Methodology</a>
-  <br><br>
-  <span style="font-size:11px;color:#9ca3af;">Decision support, not legal advice. Always verify against official OFAC and OFSI sources before acting on a live case. Last updated July 2026.</span>
-</footer>
+<div id="page-disclaimer" data-disclaimer="Decision support, not legal advice. Always verify against official OFAC and OFSI sources before acting on a live case. Last updated July 2026."></div>
+<div id="site-footer"></div>
 
 <script>
   function updateProgress() {
@@ -519,58 +517,7 @@
   });
 </script>
 
-<!-- Cookie Consent Banner -->
-<div id="cookieBanner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; background:#0f2044; border-top:1px solid #1d3a6e; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; box-shadow:0 -4px 20px rgba(0,0,0,0.3);">
-  <div style="flex:1; min-width:260px;">
-    <div style="font-size:13px; font-weight:600; color:#fff; margin-bottom:4px;">We use cookies</div>
-    <div style="font-size:12px; color:#94a3b8; line-height:1.5;">We use Google Analytics to understand how visitors use FinCrimeRadar. No personal data is sold. See our <a href="/privacy.html" style="color:#93c5fd; text-decoration:none;">Privacy Policy</a>.</div>
-  </div>
-  <div style="display:flex; gap:8px; flex-shrink:0;">
-    <button onclick="rejectCookies()" style="padding:8px 16px; background:transparent; border:1px solid #334155; color:#94a3b8; border-radius:6px; font-size:12px; font-weight:500; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Reject non-essential</button>
-    <button onclick="acceptCookies()" style="padding:8px 18px; background:#00c4a7; border:none; color:#fff; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s;">Accept all</button>
-  </div>
-</div>
-<script>
-  (function() {
-    var consent = localStorage.getItem('fcr_cookie_consent');
-    if (!consent) {
-      document.getElementById('cookieBanner').style.display = 'flex';
-    }
-  })();
-  function acceptCookies() {
-    localStorage.setItem('fcr_cookie_consent', 'accepted');
-    if (typeof gtag === 'function') {
-      gtag('consent', 'update', { 'analytics_storage': 'granted' });
-    }
-    document.getElementById('cookieBanner').style.display = 'none';
-  }
-  function rejectCookies() {
-    localStorage.setItem('fcr_cookie_consent', 'rejected');
-    if (typeof gtag === 'function') {
-      gtag('consent', 'update', { 'analytics_storage': 'denied' });
-    }
-    document.getElementById('cookieBanner').style.display = 'none';
-  }
-</script>
-<script>
-function toggleMobileNav(){
-  var nav=document.getElementById('mobileNav');
-  var btn=document.getElementById('navHamburger');
-  if(!nav) return;
-  var open=nav.classList.toggle('open');
-  btn.innerHTML=open?'&#10005;':'&#9776;';
-  document.body.style.overflow=open?'hidden':'';
-}
-document.addEventListener('click',function(e){
-  var nav=document.getElementById('mobileNav');
-  var btn=document.getElementById('navHamburger');
-  if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==btn){
-    nav.classList.remove('open');
-    btn.innerHTML='&#9776;';
-    document.body.style.overflow='';
-  }
-});
-</script>
+<script defer src="/js/site-chrome.js"></script>
 <script defer src="/brand.js"></script>
 </body>
 </html>
