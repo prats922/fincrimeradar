@@ -87,6 +87,21 @@ This standard was adopted mid-project. Guides already live before this point are
 **Next up:**
 - [ ] Possible MLRO Handbook Part 3: resourcing benchmarks by firm size, FCA's move toward AML supervisor for professional services (flagged as a maybe in Part 2's closing note, not committed yet)
 - [ ] **Synthetic identity and device-network fraud guide content gap.** Scenario Lab's Fraud Detection Cases 5 (Franken-ID) and 6 (Device Network) have no matching Knowledge Hub content, related_guide left empty on both intentionally rather than force-linking to fraud-red-flags-guide.html, which only covers the original four typologies (APP scam, session hijacking, transaction laundering, structuring). Either extend that guide with two more scenarios and cheat sheet rows, or scope as its own short guide, once written, update both cases' related_guide fields in scenario-lab/data/cases.json.
+- [ ] **The Certifications Dilemma** — CAMS vs ICA vs CFE vs CFCS vs a
+  Master's, which one's actually worth the money and time, and for
+  whom. Genuine recurring question with no honest, vendor-neutral
+  answer available anywhere, every existing resource on this is
+  published by a certification body itself, or a training provider
+  selling the course, neither has any incentive to say "skip this
+  one." Real practitioner ground to cover: what each certification
+  actually signals to an employer at different career stages
+  (entry-level vs 5+ years vs MLRO-track), what recertification/CPD
+  costs look like over time, whether a Master's is worth it versus a
+  certification given the actual cost difference, and honest cases
+  where the "right" answer is none of them, experience alone.
+  Differentiated the same way the False Positive Playbook was, a real,
+  underserved question practitioners actually ask, not a comparison
+  chart repackaging marketing copy from each provider's own site.
 
 **Investigation handbook series, next major content push once the above is clear.** Positioning shift: most free AML content explains what the rules say, this series teaches how the actual investigative work gets done, direct match to practitioner background rather than research-only content. Sequence:
 
