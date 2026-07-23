@@ -78,6 +78,8 @@ Save as image button stays permanent, exporting the closing card grid instead of
 
 This standard was adopted mid-project. 4 guides shipped under the earlier table-based version (Fraud Red Flags, False Positive Playbook, UBO Investigation Handbook, Source of Wealth) need retrofitting to the merged card design, queued, not urgent. The PEP and SAR series (6 guides) are explicitly NOT being retrofitted to any version of this standard, they're genuinely good in their existing rich-narrative format and stay as they are.
 
+**Correction, 2026-07-23:** confirmed via building adverse-media-intelligence-guide.html as the first true reference implementation, none of these 4 guides currently have any version of the merged card standard (stat strip, process-flow diagram, merged Trap/Tell/Do cards, FAQ accordion). The original retrofit note understated scope, it was written when the standard was decided but before any guide actually built it. adverse-media-intelligence-guide.html is now the actual reference to build these 4 against, not a description in BACKLOG.md alone.
+
 **Done:**
 - ✅ MLRO Handbook, Part 1: Becoming SMF16 or SMF17 (includes cheat sheet component)
 - ✅ MLRO Handbook, Part 2: The Role, SARs and Enforcement
