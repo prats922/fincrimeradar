@@ -244,6 +244,11 @@
     .rt-icon { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:8px; background:var(--teal-soft); color:var(--teal-deep); margin-right:8px; vertical-align:middle; }
     .rt-icon svg { width:16px; height:16px; display:block; }
 
+    /* SAVE AS IMAGE BUTTON */
+    .save-img-row { display:flex; justify-content:flex-end; margin-bottom:0.75rem; }
+    .save-img-btn { display:inline-flex; align-items:center; gap:6px; background:var(--white); color:var(--navy); border:1.5px solid var(--border); border-radius:8px; padding:8px 14px; font-size:13px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.15s; }
+    .save-img-btn:hover { border-color:var(--c-structuring); color:var(--c-structuring); }
+
     /* MOBILE */
     @media(max-width:768px) {
       .article-layout { grid-template-columns:1fr; }
@@ -709,8 +714,12 @@
       <h2>At a glance</h2>
       <p>Four patterns, the trap that makes each one look routine, the tell that actually gives it away, and the response that fits.</p>
 
+      <div class="save-img-row">
+        <button class="save-img-btn" id="saveTableImgBtn" onclick="saveTableAsImage()">💾 Save as image</button>
+      </div>
+
       <div class="ref-table-wrap">
-        <table class="ref-table">
+        <table class="ref-table" id="glanceTable">
           <thead>
             <tr><th>Pattern</th><th>The trap</th><th>The tell</th><th>Response</th></tr>
           </thead>
@@ -984,6 +993,203 @@ function answerQuiz(questionId, chosen) {
     const labels = ['Keep studying — the signal is in the pattern, not any single fact.','Getting there — go back through the patterns you missed.','Solid foundation — a few gaps to close.','Good grasp — you’re reading these patterns well.','Excellent — practitioner-level pattern recognition.','Perfect — you’re ready for Scenario Lab’s live cases.'];
     scoreLbl.textContent = labels[quizCorrect] || labels[5];
   }
+}
+
+// SAVE AS IMAGE
+// Renders the "At a glance" table to a downloadable PNG using native
+// Canvas 2D and Path2D APIs only, no external library. Content (icon
+// paths, pattern names, cell text) is read directly from the live DOM
+// at click time, so the image can never drift out of sync with the
+// on-page table.
+function wrapCanvasText(ctx, text, maxWidth) {
+  const words = text.split(' ');
+  const lines = [];
+  let line = '';
+  words.forEach(word => {
+    const test = line ? line + ' ' + word : word;
+    if (ctx.measureText(test).width > maxWidth && line) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = test;
+    }
+  });
+  if (line) lines.push(line);
+  return lines;
+}
+
+function drawSvgIconToCanvas(ctx, svgEl, x, y, size, color) {
+  const vb = (svgEl.getAttribute('viewBox') || '0 0 24 24').split(' ').map(Number);
+  const scale = size / vb[2];
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(scale, scale);
+  ctx.translate(-vb[0], -vb[1]);
+  ctx.lineWidth = 2;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.strokeStyle = color;
+  ctx.fillStyle = color;
+  Array.from(svgEl.children).forEach(el => {
+    const tag = el.tagName.toLowerCase();
+    const fillAttr = el.getAttribute('fill');
+    const strokeAttr = el.getAttribute('stroke');
+    let path = null;
+    if (tag === 'path') {
+      path = new Path2D(el.getAttribute('d'));
+    } else if (tag === 'circle') {
+      path = new Path2D();
+      path.arc(+el.getAttribute('cx'), +el.getAttribute('cy'), +el.getAttribute('r'), 0, Math.PI * 2);
+    } else if (tag === 'rect') {
+      path = new Path2D();
+      const rx = +(el.getAttribute('rx') || 0);
+      if (path.roundRect) {
+        path.roundRect(+el.getAttribute('x'), +el.getAttribute('y'), +el.getAttribute('width'), +el.getAttribute('height'), rx);
+      } else {
+        path.rect(+el.getAttribute('x'), +el.getAttribute('y'), +el.getAttribute('width'), +el.getAttribute('height'));
+      }
+    } else if (tag === 'ellipse') {
+      path = new Path2D();
+      path.ellipse(+el.getAttribute('cx'), +el.getAttribute('cy'), +el.getAttribute('rx'), +el.getAttribute('ry'), 0, 0, Math.PI * 2);
+    }
+    if (!path) return;
+    const isFilled = fillAttr && fillAttr !== 'none';
+    if (isFilled) ctx.fill(path);
+    if (strokeAttr !== 'none') ctx.stroke(path);
+  });
+  ctx.restore();
+}
+
+function saveTableAsImage() {
+  const table = document.getElementById('glanceTable');
+  if (!table) return;
+  const btn = document.getElementById('saveTableImgBtn');
+  const originalLabel = btn.textContent;
+  btn.textContent = 'Rendering…';
+  btn.disabled = true;
+
+  const headerCells = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
+  const rows = Array.from(table.querySelectorAll('tbody tr')).map(tr => {
+    const tds = tr.querySelectorAll('td');
+    return {
+      svg: tds[0].querySelector('svg'),
+      name: tds[0].textContent.trim(),
+      cells: [tds[1].textContent.trim(), tds[2].textContent.trim(), tds[3].textContent.trim()]
+    };
+  });
+
+  const WIDTH = 1200;
+  const OUTER_PAD = 20;
+  const contentWidth = WIDTH - OUTER_PAD * 2;
+  const colWidths = [260, Math.round((contentWidth - 260) / 3), Math.round((contentWidth - 260) / 3), 0];
+  colWidths[3] = contentWidth - colWidths[0] - colWidths[1] - colWidths[2];
+  const colX = [OUTER_PAD];
+  for (let i = 1; i < 4; i++) colX.push(colX[i - 1] + colWidths[i - 1]);
+
+  const TITLE_H = 64;
+  const HEADER_H = 50;
+  const CELL_PAD_X = 16;
+  const CELL_PAD_Y = 14;
+  const LINE_H = 20;
+  const BODY_FONT = '14px Inter, system-ui, sans-serif';
+  const NAME_FONT = '700 14px Inter, system-ui, sans-serif';
+
+  // Measure pass on a scratch canvas to compute row heights
+  const measure = document.createElement('canvas').getContext('2d');
+  measure.font = BODY_FONT;
+  const rowHeights = rows.map(row => {
+    const col0Lines = wrapCanvasText(measure, row.name, colWidths[0] - CELL_PAD_X * 2 - 36);
+    const otherLines = row.cells.map(text => wrapCanvasText(measure, text, colWidths[1] - CELL_PAD_X * 2));
+    const maxLines = Math.max(col0Lines.length, ...otherLines.map(l => l.length), 1);
+    return Math.max(70, CELL_PAD_Y * 2 + maxLines * LINE_H);
+  });
+
+  const totalHeight = OUTER_PAD * 2 + TITLE_H + HEADER_H + rowHeights.reduce((a, b) => a + b, 0);
+
+  const canvas = document.createElement('canvas');
+  canvas.width = WIDTH;
+  canvas.height = totalHeight;
+  const ctx = canvas.getContext('2d');
+
+  // Background
+  ctx.fillStyle = '#F4F6F3';
+  ctx.fillRect(0, 0, WIDTH, totalHeight);
+
+  // Card container (rounded)
+  const cardX = OUTER_PAD, cardY = OUTER_PAD, cardW = contentWidth, cardH = totalHeight - OUTER_PAD * 2;
+  ctx.fillStyle = '#FFFFFF';
+  ctx.beginPath();
+  if (ctx.roundRect) ctx.roundRect(cardX, cardY, cardW, cardH, 12); else ctx.rect(cardX, cardY, cardW, cardH);
+  ctx.fill();
+
+  // Title bar
+  ctx.fillStyle = '#0C1B2A';
+  ctx.beginPath();
+  if (ctx.roundRect) ctx.roundRect(cardX, cardY, cardW, TITLE_H, [12, 12, 0, 0]); else ctx.rect(cardX, cardY, cardW, TITLE_H);
+  ctx.fill();
+  ctx.fillStyle = '#FFFFFF';
+  ctx.font = '700 20px Georgia, serif';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('Fraud Red Flags: At a glance', cardX + CELL_PAD_X, cardY + TITLE_H / 2);
+
+  // Header row
+  let y = cardY + TITLE_H;
+  ctx.fillStyle = '#0E3226';
+  ctx.fillRect(cardX, y, cardW, HEADER_H);
+  ctx.fillStyle = '#FFFFFF';
+  ctx.font = '700 12px Inter, system-ui, sans-serif';
+  ctx.textBaseline = 'middle';
+  headerCells.forEach((text, i) => {
+    ctx.fillText(text.toUpperCase(), colX[i] + CELL_PAD_X, y + HEADER_H / 2);
+  });
+  y += HEADER_H;
+
+  // Data rows
+  rows.forEach((row, i) => {
+    const rh = rowHeights[i];
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(cardX, y, cardW, rh);
+
+    // Icon + name in column 0
+    if (row.svg) drawSvgIconToCanvas(ctx, row.svg, colX[0] + CELL_PAD_X, y + CELL_PAD_Y + 2, 20, '#0B7A57');
+    ctx.fillStyle = '#0C1B2A';
+    ctx.font = NAME_FONT;
+    ctx.textBaseline = 'top';
+    const nameLines = wrapCanvasText(ctx, row.name, colWidths[0] - CELL_PAD_X * 2 - 36);
+    nameLines.forEach((line, li) => ctx.fillText(line, colX[0] + CELL_PAD_X + 32, y + CELL_PAD_Y + li * LINE_H));
+
+    // Other columns
+    ctx.font = BODY_FONT;
+    ctx.fillStyle = '#3D4E5C';
+    row.cells.forEach((text, ci) => {
+      const lines = wrapCanvasText(ctx, text, colWidths[ci + 1] - CELL_PAD_X * 2);
+      lines.forEach((line, li) => ctx.fillText(line, colX[ci + 1] + CELL_PAD_X, y + CELL_PAD_Y + li * LINE_H));
+    });
+
+    // Bottom border (skip on last row)
+    if (i < rows.length - 1) {
+      ctx.strokeStyle = '#E3E8E3';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(cardX, y + rh);
+      ctx.lineTo(cardX + cardW, y + rh);
+      ctx.stroke();
+    }
+    y += rh;
+  });
+
+  canvas.toBlob(blob => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'fraud-red-flags-guide-at-a-glance.png';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    btn.textContent = originalLabel;
+    btn.disabled = false;
+  }, 'image/png');
 }
 </script>
 
